@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+  "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../general.ent">
+  %general-entities;
+]>
+
+<sect1 id="pre-foreword">
+  <?dbhtml filename="foreword.html"?>
+
+  <title>前言</title>
+
+<para>我学习和更好的理解 Linux 的旅程开始于十多年前，早在 1998 年。我刚安装了我的第一个 Linux 发行版，很快就被它背后完整的理念和哲学所吸引。</para> 
+
+<para>总会有很多方法来完成同一个任务，对于 Linux 发行版也可一这样说。这些年来存在过很多。有些继续存在，有些转变成了别的东西，其余的都成为了我们的记忆。他们都以不同方式符合他们目标人群的需求。因为完成这同一个最终目标有太多不同方法存在，我开始意识到我不必受任何一种实现的限制。在发现 Linux 之前，我们在其他操作系统中简单地容忍问题，因为没有选择余地。它是什么就是什么，不管你喜不喜欢。有了 Linux，选择的概念开始出现。你如果不喜欢什么，你有自由，甚至受到鼓励来改变它。</para>
+
+<para>我尝试了很多发行版，却无法选中其中任何一个。它们按照本身的实力都是很强大的系统。这再也不是一个对与错的问题了，是个人口味的问题。虽然有那么多选择，但很显然不会有哪怕一个系统对我来说是完美的。所以我开始创造能完全符合我个人喜好的 Linux 系统。</para>
+
+<para>要真的使它成为我自己的系统，我决定从源代码编译一切而不使用预先编译好的二进制程序包。这个 <quote>完美的</quote> Linux 系统要有不同系统的强项还不能有它们已知的弱点。一开始这个主意有点吓人，我却一直认为编制这样一个系统完全可以做到。</para>
+
+<para>在解决了循环依赖关系和编译时错误等问题之后，我终于编制出一个定制的 Linux 系统。它像当时存在的其他 Linux 系统一样完全可操控和完美可用，但是它是我自己的创造。自己组装起这样一个系统是非常令人满足的，仅次于自己创造每个软件。</para>
+
+<para>当我和 Linux 社区的其他成员分享我的目标和经验的时候，对这个主意的持久兴趣就显现出来。大家很快就明白，像这样定制的 Linux 系统并非只为满足用户的特定要求服务，也是程序员和系统管理员强化他们已有的 Linux 技能的理想学习机会。出于这种广泛的兴趣， <emphasis>Linux From Scratch 工程</emphasis> 诞生了。</para>
+
+<para>Linux From Scratch 这本书是此工程的核心。它提供了让你设计和编制你自己的系统的必要背景知识和引导。不过，虽然本书提供了一个能产生正确工作的系统的模板，你完全可以改变指令来适合你自己。从某种程度上来说，这也是此工程的一部分。我们只是帮你开始旅程，你一直是自己来控制。</para>
+
+<para>我真心祝愿你能愉快地度过为你自己的 Linux From Scratch 系统而努力的时光，并希望你能因拥有真正属于自己的系统而受益。</para>
+
+<literallayout>--
+Gerard Beekmans
+gerard@linuxfromscratch.org</literallayout>
+
+</sect1>

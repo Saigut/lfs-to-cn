@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+  "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../general.ent">
+  %general-entities;
+]>
+
+<sect1 id="pre-audience">
+  <?dbhtml filename="audience.html"?>
+
+  <title>读者</title>
+
+<para>There are many reasons why you would want to read this book. One of the
+questions many people raise is, <quote>why go through all the hassle of manually
+building a Linux system from scratch when you can just download and install
+an existing one?</quote></para>
+
+<para>这个工程存在的一个重要原因就是要帮你有内而外学习 Linux 系统是如何工作的。编制一套 LFS 系统帮助了解是什么使 Linux 工作，还有这些东西如何协同工作并相互依赖。可以证明，这种学习体验能提供的最好的东西之一就是定制一个 Linux 系统来满足你自己独特需求的能力。</para>
+
+<para>LFS 的另一个关键的好处就是允许你更多地控制系统而不用依赖别人的 Linux 实现。有了 LFS ，你坐在驾驶位上来支配系统的每个层面。</para>
+
+<para>LFS 允许你创建非常紧凑的 Linux 系统。安装常规发行版的时候，你经常要被迫安装大量可能永远不会被理解和使用的程序。这些程序浪费资源。你可能要反驳说有当今的硬盘和 CPU ，这样的资源不必再考虑了。然而有的时候，你却至少仍被尺寸限制着。想一想可引导 CD ，优盘和嵌入式系统。这都是 LFS 可以有利的地方。</para>
+
+<para>定制 Linux 系统的另一个优势就是安全。通过从源代码编译整个系统，你能够审查一切并能应用所有需要的安全补丁。不用再等别人来编译二进制程序包以修复安全漏洞。除非你自己检查和实现补丁，你无法绝对保证新的二进制程序正确编制并能精确地修复问题。</para>
+
+<para>The goal of Linux From Scratch is to build a complete and usable
+foundation-level system. If you do not wish to build your own Linux system
+from scratch, you may not entirely benefit from the information in this
+book.</para>
+
+<para>There are too many other good reasons to build your own LFS system to
+list them all here. In the end, education is by far the most powerful of
+reasons. As you continue in your LFS experience, you will discover the power
+that information and knowledge truly bring.</para>
+
+</sect1>
+
