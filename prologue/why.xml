@@ -8,248 +8,196 @@
 <sect1 id="pre-why">
   <?dbhtml filename="package-choices.html"?>
 
-  <title>Rationale for Packages in the Book</title>
+  <title>使用本书中软件包的理由</title>
 
-    <para>As stated earlier, the goal of LFS is to build a complete and usable 
-    foundation-level system.  This includes all packages needed to replicate 
-    itself while providing a relatively minimal base from which to customize
-    a more complete system based on the choices of the user.  This does not
-    mean that LFS is the smallest system possible.  Several important packages
-    are included that are not strictly required.  The lists below document the
-    rationale for each package in the book.</para>
+    <para>就像前面所说， LFS的目的是构建一个完整可用的基础系统。  这包括一些用于提供相对最小的工作环境
+    的软件包， 用户在此之上定制自己的系统。这些工具经常会用于替换他们本身。这并不意味着LFS是最小的操作系统。
+    几个最为重要的软件包在其他系统上并不是必需的。下面列出了使用这些软件的理由。</para>
 
     <itemizedlist>
 
       <listitem>
         <para>Autoconf</para>
 
-        <para>This package contains programs for producing shell scripts that
-        can automatically configure source code from a developer's
-        template. It is often needed to rebuild a package after updates
-        to the build procedures.</para>
+        <para>这个软件包包含可以用来根据模板生成configure脚本的程序。当源码改动的时候往往需要重新生成
+	相应的configure脚本</para>
       </listitem>
 
       <listitem>
         <para>Automake</para>
 
-        <para>This package contains programs for generating Make files from
-        a template. It is often needed to rebuild a package after updates
-        to the build procedures.</para>
+        <para>这个软件包包含根据模板生成Makefile的程序。重新构建包的时候需要此程序。</para>
       </listitem>
 
       <listitem>
         <para>Bash</para>
 
-        <para>This package satisfies an LSB core requirement to provide
-        a Bourne Shell interface to the system.  It was chosen over
-        other shell packages because of its common usage and extensive
-        capabilities beyond basic shell functions.</para>
+        <para>Bourne Shell。提供系统与用户的交互界面。可替换成其他shell。因为其通用性和良好的可扩展性
+	被选用。</para>
       </listitem>
 
       <listitem>
         <para>Binutils</para>
 
-        <para>This package contains a linker, an assembler, and other 
-        tools for handling object files. The programs in this package are
-        needed to compile most of the packages in an LFS system and beyond.</para>
+        <para>包含汇编器， 链接器等其他工具用于处理目标文件。这个软件包用于编译LFS系统中的大部分软件。</para>
       </listitem>
 
       <listitem>
         <para>Bison</para>
 
-        <para>This package contains the GNU version of yacc (Yet Another
-        Compiler Compiler) needed to build several other LFS programs.</para>
+        <para>GNU版yacc， 一个语法分析器生成器， 用于构建其他几个LFS系统中的程序。</para>
       </listitem>
 
       <listitem>
         <para>Bzip2</para>
 
-        <para>This package contains programs for compressing and decompressing 
-        files.  It is required to decompress many LFS packages.</para>
+        <para>用于压缩和解压.bz2文件。这个软件被用于解压大部分用于构建LFS系统的软件包。</para>
       </listitem>
 
       <listitem>
         <para>Coreutils</para>
 
-        <para>This package contains a number of essential programs for viewing 
-        and manipulating files and directories. These programs are needed for
-        command line file management, and are necessary for the installation
-        procedures of every package in LFS.</para>
+        <para>这个软件包包含一些用于操作和查看文件和文件夹的工具。被用于命令行文件管理。对LFS系统安装
+	过程至关重要。</para>
       </listitem>
 
       <listitem>
         <para>DejaGNU</para>
 
-        <para>This package contains a framework for testing other programs.
-        It is only installed in the temporary toolchain.</para>
+        <para>这个软件包包含一个用于测试其他程序的框架。只被安装在临时工具链中。</para>
       </listitem>
 
       <listitem>
         <para>Diffutils</para>
 
-        <para>This package contains programs that show the differences 
-        between files or directories. These programs can be used to create
-        patches, and are also used in many packages' build procedures.</para>
+        <para>提供用于比较文件和文件夹不同之处。可以用来生成patch， 并在许多软件的安装流程中被使用。</para>
       </listitem>
 
       <listitem>
         <para>Expect</para>
 
-        <para>This package contains a program for carrying out scripted 
-        dialogues with other interactive programs.  It is commonly used
-        for testing other packages.  It is only installed in the temporary 
-        toolchain.</para>
+        <para>用于测试其他程序。只被安装在临时工具链中。</para>
       </listitem>
 
       <listitem>
         <para>E2fsprogs</para>
 
-        <para>This package contains the utilities for handling the ext2, ext3
-        and ext4 file systems.  These are the most common and thoroughly
-        tested file systems that Linux supports.</para>
+        <para>包含用于处理ext2，ext3，ext4文件系统的工具。这些文件系统在linux系统中被广泛使用。</para>
       </listitem>
 
       <listitem>
         <para>File</para>
 
-        <para>This package contains a utility for determining the type of a 
-        given file or files. A few packages need it to build.</para>
+        <para>用于检测文件类型。几个软件包的编译需要他。</para>
       </listitem>
 
       <listitem>
         <para>Findutils</para>
 
-        <para>This package contains programs to find files in a file system.
-        It is used in many packages' build scripts.</para>
+        <para>提供用于在文件系统中查找文件的工具。被许多安装脚本调用。</para>
       </listitem>
 
       <listitem>
         <para>Flex</para>
 
-        <para>This package contains a utility for generating programs that 
-        recognize patterns in text.  It is the GNU version of the lex 
-        (lexical analyzer) program.  It is required to build several 
-        LFS packages.</para>
+        <para>词法分析器生成器。GNU版lex。被用于一些软件包。</para>
       </listitem>
 
       <listitem>
         <para>Gawk</para>
 
-        <para>This package contains programs for manipulating text files.
-        It is the GNU version of awk (Aho-Weinberg-Kernighan). It is used in
-        many other packages' build scripts.</para>
+        <para>awk脚本解释器。被安装脚本调用</para>
       </listitem>
 
       <listitem>
         <para>Gcc</para>
 
-        <para>This package is the Gnu Compiler Collection.  It contains the 
-        C and C++ compilers as well as several others not built by LFS.  
+        <para>GNU编译器集，包含用于构建LFS系统的C与C++编译器。
         </para>
       </listitem>
 
       <listitem>
         <para>GDBM</para>
 
-        <para>This package contains the GNU Database Manager library.  It
-        is used by one other LFS package, Man-DB.</para>
+        <para>GNU数据管理库(Library)。 被Man-DB需要。</para>
       </listitem>
 
       <listitem>
         <para>Gettext</para>
 
-        <para>This package contains utilities and libraries for 
-        internationalization and localization of numerous packages.</para>
+        <para>包含国际化和本地化的库和工具。</para>
       </listitem>
 
       <listitem>
         <para>Glibc</para>
 
-        <para>This package contains the main C library.  Linux programs would
-        not run without it.</para>
+        <para>标准C库， 缺了他其他程序基本无法工作。</para>
       </listitem>
 
       <listitem>
         <para>GMP</para>
 
-        <para>This package contains math libraries that provide useful functions
-        for arbitrary precision arithmetic.  It is required to build Gcc.</para>
+        <para>包含数学库提供任意精度计算。用于Gcc的构建。</para>
       </listitem>
 
       <listitem>
         <para>Grep</para>
 
-        <para>This package contains programs for searching through files. These
-        programs are used by most packages' build scripts.</para>
+        <para>用于在文件中查找。大多数安装脚本使用了grep。</para>
       </listitem>
 
       <listitem>
         <para>Groff</para>
 
-        <para>This package contains programs for processing and formatting text.
-        One important function of these programs is to format man pages.</para>
+        <para>包含用于处理和格式化文本的工具。一个重要的功能是格式化man手册页。</para>
       </listitem>
 
       <listitem>
         <para>GRUB</para>
 
-        <para>This package is the Grand Unified Boot Loader.  It is one 
-        of several boot loaders available, but is the most flexible.
-        </para>
+        <para>用于引导系统。</para>
       </listitem>
 
       <listitem>
         <para>Gzip</para>
 
-        <para>This package contains programs for compressing and 
-        decompressing files. It is needed to decompress many packages in LFS
-        and beyond.</para>
+        <para>压缩和解压缩.gz文件。用于解压缩其他软件包。</para>
       </listitem>
 
       <listitem>
         <para>Iana-etc</para>
 
-        <para>This package provides data for network services and protocols.
-        It is needed to enable proper networking capabilities.</para>
+        <para>提供一些网络服务和协议的数据。用于提供网络功能。</para>
       </listitem>
 
       <listitem>
         <para>Inetutils</para>
 
-        <para>This package contains programs for basic network 
-        administration.</para>
+        <para>提供基础的网络管理程序。</para>
       </listitem>
 
       <listitem>
         <para>IProute2</para>
 
-        <para>This package contains programs for basic and advanced IPv4 and
-        IPv6 networking.  It was chosen over the other common network
-        tools package (net-tools) for its IPv6 capabilities.  </para>
+        <para>包含管理基本的和高级的IPv4和IPv6网络。因为IPv6功能被选用</para>
       </listitem>
 
       <listitem>
         <para>Kbd</para>
 
-        <para>This package contains key-table files, keyboard utilities
-        for non-US keyboards, and a number of console fonts.</para>
+        <para>提供键盘映射表，键盘相关的工具用于非标准US键盘。还有一些控制台用到的字体。</para>
       </listitem>
 
       <listitem>
         <para>Less</para>
 
-        <para>This package contains a very nice text file viewer that
-        allows scrolling up or down when viewing a file. It is also used by
-        Man-DB for viewing manpages.</para>
+        <para>用于浏览文件， 被Man-DB使用。</para>
       </listitem>
 
       <listitem>
         <para>Libtool</para>
 
-        <para>This package contains the GNU generic library support 
-        script. It wraps the complexity of using shared libraries in a 
-        consistent, portable interface.  It is needed by the test
-        suites in other LFS packages.</para>
+        <para>用于构建库</para>
       </listitem>
 
       <listitem>
