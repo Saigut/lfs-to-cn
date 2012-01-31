@@ -10,12 +10,9 @@
 
   <title>读者</title>
 
-<para>There are many reasons why you would want to read this book. One of the
-questions many people raise is, <quote>why go through all the hassle of manually
-building a Linux system from scratch when you can just download and install
-an existing one?</quote></para>
+<para>你要读这本书可能会有很多原因。很多人问的问题之一是：<quote>为什么本来只要下载安装一个 Linux 系统就行却非要克服所有困难去人工编制一个？</quote></para>
 
-<para>这个工程存在的一个重要原因就是要帮你有内而外学习 Linux 系统是如何工作的。编制一套 LFS 系统帮助了解是什么使 Linux 工作，还有这些东西如何协同工作并相互依赖。可以证明，这种学习体验能提供的最好的东西之一就是定制一个 Linux 系统来满足你自己独特需求的能力。</para>
+<para>这个工程存在的一个重要原因就是要帮你有内而外学习 Linux 系统是如何工作的。编制一套 LFS 系统帮助了解是什么使 Linux 工作，还有这些东西如何协同工作并相互依赖。可以证明，这种学习经历能提供的最好的东西之一就是定制一个 Linux 系统来满足你自己独特需求的能力。</para>
 
 <para>LFS 的另一个关键的好处就是允许你更多地控制系统而不用依赖别人的 Linux 实现。有了 LFS ，你坐在驾驶位上来支配系统的每个层面。</para>
 
@@ -23,15 +20,9 @@ an existing one?</quote></para>
 
 <para>定制 Linux 系统的另一个优势就是安全。通过从源代码编译整个系统，你能够审查一切并能应用所有需要的安全补丁。不用再等别人来编译二进制程序包以修复安全漏洞。除非你自己检查和实现补丁，你无法绝对保证新的二进制程序正确编制并能精确地修复问题。</para>
 
-<para>The goal of Linux From Scratch is to build a complete and usable
-foundation-level system. If you do not wish to build your own Linux system
-from scratch, you may not entirely benefit from the information in this
-book.</para>
+<para>Linux From Scratch 的目标是编制一个完整并且可用的底层系统。如果没想编制自己的 LFS 系统，你可能就无法从本书的信息中获益。</para>
 
-<para>There are too many other good reasons to build your own LFS system to
-list them all here. In the end, education is by far the most powerful of
-reasons. As you continue in your LFS experience, you will discover the power
-that information and knowledge truly bring.</para>
+<para>编制自己的 LFS 系统还有许多好处，在此就不意一一列举了。说到底，教育才是最强有力的原因。当你继续你的 LFS 经历的时候，你就会明白信息和知识带来的力量究竟有多大了。</para>
 
 </sect1>
 
