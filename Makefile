@@ -59,7 +59,7 @@ pdf: validxml
 	$(Q)if [ ! -e $(BASEDIR) ]; then \
 	  mkdir -p $(BASEDIR); \
 	fi;
-	$(Q)fop $(RENDERTMP)/lfs-pdf.fo $(BASEDIR)/$(PDF_OUTPUT)
+	$(Q)fop -c ./stylesheets/fop.xconf $(RENDERTMP)/lfs-pdf.fo $(BASEDIR)/$(PDF_OUTPUT)
 
 nochunks: maketar validxml profile-html
 	@echo "Generating non chunked XHTML file..."
