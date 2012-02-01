@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
   "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
   <!ENTITY % general-entities SYSTEM "../general.ent">
@@ -8,36 +8,26 @@
 <sect1 id="pre-organization">
   <?dbhtml filename="organization.html"?>
 
-  <title>Structure</title>
+  <title>结构</title>
 
-  <para>This book is divided into the following parts.</para>
+  <para>本书分为以下几部分。</para>
 
   <sect2>
-    <title>Part I - Introduction</title>
+    <title>第 I 部分 - 介绍</title>
 
-    <para>Part I explains a few important notes on how to proceed with the
-    LFS installation.  This section also provides meta-information about
-    the book.</para>
+    <para>第 I 部分解释了进行 LFS 安装的几个要点。这一步分也提供了本书的元信息。</para>
   </sect2>
 
   <sect2>
-    <title>Part II - Preparing for the Build</title>
+    <title>第 II 部分 - 准备工作</title>
 
-    <para>Part II describes how to prepare for the building process&mdash;making
-    a partition, downloading the packages, and compiling temporary
-    tools.</para>
+    <para>第 II 部分描述了如何为编制过程做准备 &mdash; 创建分区、下载程序包和编译临时工具。</para>
   </sect2>
 
   <sect2>
-    <title>Part III - Building the LFS System</title>
+    <title>第 III 部分 - 编制 LFS 系统</title>
 
-    <para>Part III guides the reader through the building of the LFS
-    system&mdash;compiling and installing all the packages one by one,
-    setting up the boot scripts, and installing the kernel. The resulting
-    Linux system is the foundation on which other software can be built to
-    expand the system as desired. At the end of this book, there is an
-    easy to use reference listing all of the programs, libraries, and
-    important files that have been installed.</para>
+    <para>第 III 部分带领读者编制 LFS 系统 &mdash; 逐一编译和安装程序包，设置引导脚本并安装内核。产生的 Linux 系统是一个可以编制其他软件来扩充的系统。在本书末尾，有一组易用的参考列表，列出所有安装的程序、库和重要文件。</para>
   </sect2>
 
 </sect1>
