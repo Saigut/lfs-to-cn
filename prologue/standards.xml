@@ -27,7 +27,7 @@
       <listitem>
         <para><ulink url="http：//refspecs.freestandards.org/LSB_4.0.0/">Linux 基础标准 (LSB) 核心要求 4.0</ulink></para>
 
-        <para>LSB 有五个分立的标准：核心，C++，桌面，解释型语言和打印。除通用要求之外，还有一些架构特有的要求。LFS 试图符合前一节中提及的架构的相关要求。</para>
+        <para>LSB 有五个分立的标准：核心、C++、桌面、解释型语言和打印。除通用要求之外，还有一些架构特有的要求。LFS 试图符合前一节中提及的架构的相关要求。</para>
 
         <note><para>很多人不认可 LSB 的要求。定义它的主要目的是为了确保专有软件可以在兼容的系统环境下正确安装和运行。由于 LFS 是基于源代码的，用户对程序包有完全的控制，很多人选择不安装某些由 LSB 指定的程序包。</para></note>
 
@@ -44,9 +44,7 @@
       <varlistentry>
         <term><emphasis>LSB 核心：</emphasis></term>
         <listitem>
-          <para>Bash, Binutils, 核心utils, Diffutils, File, Findutils, Gawk,
-                Grep, Gzip, M4, Man-DB, Ncurses, Procps, Psmisc, Sed,
-                Shadow, Tar, Util-linux, Zlib</para>
+          <para>Bash、Binutils、Coreutils、Diffutils、File、Findutils、Gawk、Grep, Gzip, M4, Man-DB, Ncurses, Procps、Psmisc、Sed、Shadow、Tar、Util-linux、Zlib</para>
         </listitem>
       </varlistentry>
 
@@ -95,8 +93,7 @@
       <varlistentry>
         <term><emphasis>LSB 核心：</emphasis></term>
         <listitem>
-          <para>Bc, Cpio, Ed, Fcrontab, Initd-tools, PAM, 
-          Sendmail (or Postfix or Exim) </para>
+          <para>Bc、Cpio、Ed、Fcrontab、Initd-tools、PAM、Sendmail (或 Postfix 或 Exim) </para>
         </listitem>
       </varlistentry>
 
@@ -110,9 +107,7 @@
       <varlistentry>
         <term><emphasis>LSB 桌面：</emphasis></term>
         <listitem>
-          <para>ATK, Cairo, Desktop-file-utils, Freetype, Fontconfig,
-                Glib2, GTK+2, Icon-naming-utils, Libjpeg, Libpng, Libxml2,
-                MesaLib, Pango, Qt3, Qt4, Xorg</para>
+          <para>ATK、Cairo、Desktop-file-utils、Freetype、Fontconfig、Glib2、GTK+2、Icon-naming-utils、Libjpeg、Libpng、Libxml2、MesaLib、Pango、Qt3、Qt4、Xorg</para>
         </listitem>
       </varlistentry>
 
@@ -133,7 +128,7 @@
       <varlistentry>
         <term><emphasis>LSB 多媒体：</emphasis></term>
         <listitem>
-          <para>Alsa Libraries, NSPR, NSS, OpenSSL, Java</para>
+          <para>Alsa 库、NSPR、NSS、OpenSSL、Java</para>
         </listitem>
       </varlistentry>
 
@@ -147,7 +142,7 @@
       <varlistentry>
         <term><emphasis>LSB 核心：</emphasis></term>
         <listitem>
-          <para>At, Batch, Lsb_release
+          <para>At、Batch、Lsb_release
           </para>
         </listitem>
       </varlistentry>
