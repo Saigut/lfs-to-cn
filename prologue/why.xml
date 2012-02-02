@@ -216,190 +216,145 @@
       <listitem>
         <para>Man-DB</para>
 
-        <para>This package contains programs for finding and viewing man pages.
-        It was chosen instead of the <application>man</application> package
-        due to superior internationalization capabilities.  It supplies
-        the man program.</para>
+        <para>包含用于查找和查看man手册页的工具。使用该软件而不是<application>man</application> 是由于他更好的国际化支持。</para>
       </listitem>
 
       <listitem>
         <para>Man-pages</para>
 
-        <para>This package contains the actual contents of the basic
-        Linux man pages.</para>
+        <para>提供Linux系统man手册页的内容。</para>
       </listitem>
 
       <listitem>
         <para>Module-Init-Tools</para>
 
-        <para>This package contains programs needed to administer Linux
-        kernel modules.</para>
+        <para>提供用于管理Linux内核模块的工具。</para>
       </listitem>
 
       <listitem>
         <para>MPC</para>
 
-        <para>This package contains functions for the arithmetic of complex
-        numbers. It is required by Gcc.</para>
+        <para>提供复杂数学计算支持。Gcc安装时需要。</para>
       </listitem>
 
       <listitem>
         <para>MPFR</para>
 
-        <para>This package contains functions for multiple precision 
-        arithmetic.  It is required by Gcc.</para>
+        <para>提供多精度数学支持。Gcc安装时需要。</para>
       </listitem>
 
       <listitem>
         <para>Ncurses</para>
 
-        <para>This package contains libraries for terminal-independent 
-        handling of character screens.  It is often used to provide 
-        cursor control for a menuing system. It is needed by a number of
-        packages in LFS.</para>
+        <para>提供用于控制字符界面的函数库。经常用于字符菜单。被LFS系统中的一些软件使用。</para>
       </listitem>
 
       <listitem>
         <para>Patch</para>
 
-        <para>This package contains a program for modifying or creating files by
-        applying a <emphasis>patch</emphasis> file typically created 
-        by the <application>diff</application> program.  It is needed by
-        the build procedure for several LFS packages.</para>
+        <para>根据<emphasis>patch</emphasis>修正或创建文件。<emphasis>patch</emphasis>一般由<application>diff</application>程序创建。在LFS系统一些软件的安装流程中用到。</para>
       </listitem>
 
       <listitem>
         <para>PCRE</para>
 
-        <para>This package provides a library that can be used to implement
-        regular expression pattern matching using the same syntax and semantics
-        as Perl 5.  It is a mandatory dependency of Glib, and can also be used
-        by Grep.</para>
+        <para>提供Perl 5语法正则表达式函数库。被Glib强制依赖，也可以被Grep使用</para>
       </listitem>
 
       <listitem>
         <para>Perl</para>
 
-        <para>This package is an interpreter for the runtime language
-        PERL. It is needed for the installation and test suites of several LFS
-        packages.</para>
+        <para>包含Perl语言的解释器。被一些LFS系统中的软件的安装或测试流程用到。</para>
       </listitem>
 
       <listitem>
         <para>Procps</para>
 
-        <para>This package contains programs for monitoring processes. These
-        programs are useful for system administration, and are also used by
-        the LFS Bootscripts.</para>
+        <para>提供用于监视系统进程的工具。这些工具对系统管理非常有用，并且被LFS系统启动脚本使用。</para>
       </listitem>
 
       <listitem>
         <para>Psmisc</para>
 
-        <para>This package contains programs for displaying information 
-        about running processes. These programs are useful for system
-        administration.</para>
+        <para>提供用于显示系统中正在运行的进程的信息的工具。对系统管理非常有用。</para>
       </listitem>
 
       <listitem>
         <para>Readline</para>
 
-        <para>This package is a set of libraries that offers command-line 
-        editing and history capabilities.  It is used by Bash.</para>
+        <para>提供一系列函数库，用于提供命令行编辑和历史查询功能。被Bash使用。</para>
       </listitem>
 
       <listitem>
         <para>Sed</para>
 
-        <para>This package allows editing of text without opening it in a 
-        text editor. It is also needed by most LFS packages' configure 
-        scripts.</para>
+        <para>流文本编辑器。被LFS系统大部分软件包的configure脚本使用。</para>
       </listitem>
 
       <listitem>
         <para>Shadow</para>
 
-        <para>This package contains programs for handling passwords 
-        in a secure way.</para>
+        <para>提供更安全的系统密码存储。</para>
       </listitem>
 
       <listitem>
         <para>Sysklogd</para>
 
-        <para>This package contains programs for logging system messages, 
-        such as those given by the kernel or daemon processes when unusual 
-        events occur.</para>
+        <para>提供用于记录系统日志的程序。</para>
       </listitem>
 
       <listitem>
         <para>Sysvinit</para>
 
-        <para>This package provides the <application>init</application>
-        program, which is the parent of all other processes on the Linux
-        system. </para>
+        <para>提供<application>init</application>程序。该进程是Linux系统中所有进程的父进程。</para>
       </listitem>
 
       <listitem>
         <para>Tar</para>
 
-        <para>This package provides archiving and extraction capabilities
-        of virtually all packages used in LFS.</para>
+        <para>压缩包管理。</para>
       </listitem>
 
       <listitem>
         <para>Tcl</para>
 
-        <para>This package contains the Tool Command Language used
-        in many test suites in LFS packages.  It is only installed in 
-        the temporary toolchain.</para>
+        <para>提供Tcl语言（Tool Command Language）支持。在一些测试中用到。只被安装在临时工具链。</para>
       </listitem>
 
       <listitem>
         <para>Texinfo</para>
 
-        <para>This package contains programs for reading, writing, and 
-        converting info pages.  It is used in the installation 
-        procedures of many LFS packages.</para>
+        <para>提供info页读取，写入，转换的相关程序。在许多LFS系统软件包的安装流程中用到。</para>
       </listitem>
 
       <listitem>
         <para>Udev</para>
 
-        <para>This package contains programs for dynamic creation of 
-        device nodes.  It is an alternative to creating thousands of
-        static devices in the /dev directory.</para>
+        <para>提供一个在用户空间的守护进程，用于动态创建设备节点。</para>
       </listitem>
 
       <listitem>
         <para>Util-linux</para>
 
-        <para>This package contains miscellaneous utility programs. 
-        Among them are utilities for handling file systems, consoles, 
-        partitions, and messages.</para>
+        <para>提供一些实用工具用于系统，硬盘分区，收集信息。</para>
       </listitem>
 
       <listitem>
         <para>Vim</para>
 
-        <para>This package contains an editor. It was chosen because of its
-        compatibility with the classic vi editor and its huge number of powerful
-        capabilities.  An editor is a very personal choice for
-        many users and any other editor could be substituted if desired.</para>
+        <para>Vim编辑器。可根据个人喜好选择其他编辑器。</para>
       </listitem>
 
       <listitem>
         <para>XZ Utils</para>
 
-        <para>This package contains programs for compressing and decompressing 
-        files.  It provides the highest compression generally available
-        and is useful for decompressing packages XZ or LZMA format.</para>
+        <para>提供XZ或LZMA压缩包格式的支持。</para>
       </listitem>
 
       <listitem>
         <para>Zlib</para>
 
-        <para>This package contains compression and decompression routines 
-        used by some programs.</para>
+        <para>为一些程序提供压缩解压支持。</para>
       </listitem>
 
     </itemizedlist>
