@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
   "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
   <!ENTITY % general-entities SYSTEM "../general.ent">
@@ -8,10 +8,9 @@
 <sect1 id="ch-intro-whatsnew">
   <?dbhtml filename="whatsnew.html"?>
 
-  <title>What's new since the last release</title>
+  <title>上次发布以来的改动</title>
 
-  <para>Below is a list of package updates made since the previous
-  release of the book.</para>
+  <para>以下是本书上次发布以来做的改动</para>
 
   <!--
     Every package in the book is listed in the "Upgraded to:" section.
@@ -20,7 +19,7 @@
   -->
 
   <itemizedlist>
-    <title>Upgraded to:</title>
+    <title>升级至：</title>
     <listitem><para></para></listitem>  <!-- satisfy build -->
     <!--<listitem>
     <para>None</para>
@@ -223,7 +222,7 @@
   </itemizedlist>-->
 
   <itemizedlist>
-    <title>Added:</title>
+    <title>加入：</title>
 
     <listitem>
       <para>Kmod-&kmod-version;</para>
@@ -236,7 +235,7 @@
   </itemizedlist>
 
   <itemizedlist>
-    <title>Removed:</title>
+    <title>移除：</title>
 
     <listitem>
       <para>bash-4.2-fixes-3.patch</para>
