@@ -8,17 +8,11 @@
 <sect1 id="ch-intro-askforhelp">
   <?dbhtml filename="askforhelp.html"?>
 
-  <title>Help</title>
+  <title>帮助</title>
 
-  <para>If an issue or a question is encountered while working through
-  this book, please check the FAQ page at <ulink url="&faq-root;#generalfaq"/>.
-  Questions are often already answered there. If your question is not
-  answered on this page, try to find the source of the problem. The
-  following hint will give you some guidance for troubleshooting:
-  <ulink url="&hints-root;errors.txt"/>.</para>
+  <para>如果根据本书的示例进行安装时发生了任何错误，请检查常见问题列表<ulink url="&faq-root;#generalfaq"/>。大多数问题会在这里解决。如果你的问题在这里没有解决，试着自己找到错误信息。下面的提示会在纠错中提供帮助：<ulink url="&hints-root;errors.txt"/>。</para>
 
-  <para>If you cannot find your problem listed in the FAQ, search the mailing
-  lists at <ulink url="&lfs-root;search.html"/>.</para>
+  <para>如果你的问题不能在常见问题列表中找到答案，请查找邮件列表<ulink url="&lfs-root;search.html"/>。</para>
 
   <para>We also have a wonderful LFS community that is willing to offer
   assistance through the mailing lists and IRC (see the <xref
