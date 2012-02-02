@@ -216,61 +216,61 @@
       <listitem>
         <para>Man-DB</para>
 
-        <para>包含用于查找和查看man手册页的工具。使用该软件而不是<application>man</application> 是由于他更好的国际化支持。</para>
+        <para>包含用于查找和查看 man 手册页的工具。使用该软件而不是 <application>man</application> 是由于他更好的国际化支持。</para>
       </listitem>
 
       <listitem>
         <para>Man-pages</para>
 
-        <para>提供Linux系统man手册页的内容。</para>
+        <para>提供 Linux 系统 man 手册页的内容。</para>
       </listitem>
 
       <listitem>
         <para>Module-Init-Tools</para>
 
-        <para>提供用于管理Linux内核模块的工具。</para>
+        <para>提供用于管理 Linux 内核模块的工具。</para>
       </listitem>
 
       <listitem>
         <para>MPC</para>
 
-        <para>提供复杂数学计算支持。Gcc安装时需要。</para>
+        <para>提供复杂数学计算支持。Gcc 安装时需要。</para>
       </listitem>
 
       <listitem>
         <para>MPFR</para>
 
-        <para>提供多精度数学支持。Gcc安装时需要。</para>
+        <para>提供多精度数学支持。Gcc 安装时需要。</para>
       </listitem>
 
       <listitem>
         <para>Ncurses</para>
 
-        <para>提供用于控制字符界面的函数库。经常用于字符菜单。被LFS系统中的一些软件使用。</para>
+        <para>提供用于控制字符界面的函数库。经常用于字符菜单。被 LFS 系统中的一些软件使用。</para>
       </listitem>
 
       <listitem>
         <para>Patch</para>
 
-        <para>根据<emphasis>patch</emphasis>修正或创建文件。<emphasis>patch</emphasis>一般由<application>diff</application>程序创建。在LFS系统一些软件的安装流程中用到。</para>
+        <para>根据 <emphasis>patch</emphasis> 修正或创建文件。<emphasis>patch</emphasis>一般由 <application>diff</application> 程序创建。在 LFS 系统一些软件的安装流程中用到。</para>
       </listitem>
 
       <listitem>
         <para>PCRE</para>
 
-        <para>提供Perl 5语法正则表达式函数库。被Glib强制依赖，也可以被Grep使用</para>
+        <para>提供 Perl 5 语法正则表达式函数库。被 Glib 强制依赖，也可以被 Grep 使用</para>
       </listitem>
 
       <listitem>
         <para>Perl</para>
 
-        <para>包含Perl语言的解释器。被一些LFS系统中的软件的安装或测试流程用到。</para>
+        <para>包含 Perl 语言的解释器。被一些 LFS 系统中的软件的安装或测试流程用到。</para>
       </listitem>
 
       <listitem>
         <para>Procps</para>
 
-        <para>提供用于监视系统进程的工具。这些工具对系统管理非常有用，并且被LFS系统启动脚本使用。</para>
+        <para>提供用于监视系统进程的工具。这些工具对系统管理非常有用，并且被 LFS 系统启动脚本使用。</para>
       </listitem>
 
       <listitem>
@@ -282,13 +282,13 @@
       <listitem>
         <para>Readline</para>
 
-        <para>提供一系列函数库，用于提供命令行编辑和历史查询功能。被Bash使用。</para>
+        <para>提供一系列函数库，用于提供命令行编辑和历史查询功能。被 Bash 使用。</para>
       </listitem>
 
       <listitem>
         <para>Sed</para>
 
-        <para>流文本编辑器。被LFS系统大部分软件包的configure脚本使用。</para>
+        <para>流文本编辑器。被 LFS 系统大部分软件包的 configure 脚本使用。</para>
       </listitem>
 
       <listitem>
@@ -306,7 +306,7 @@
       <listitem>
         <para>Sysvinit</para>
 
-        <para>提供<application>init</application>程序。该进程是Linux系统中所有进程的父进程。</para>
+        <para>提供 <application>init</application> 程序。该进程是 Linux 系统中所有进程的父进程。</para>
       </listitem>
 
       <listitem>
@@ -318,13 +318,13 @@
       <listitem>
         <para>Tcl</para>
 
-        <para>提供Tcl语言（Tool Command Language）支持。在一些测试中用到。只被安装在临时工具链。</para>
+        <para>提供 Tcl 语言 (Tool Command Language) 支持。在一些测试中用到。只被安装在临时工具链。</para>
       </listitem>
 
       <listitem>
         <para>Texinfo</para>
 
-        <para>提供info页读取，写入，转换的相关程序。在许多LFS系统软件包的安装流程中用到。</para>
+        <para>提供 info 页读取、写入、转换的相关程序。在许多 LFS 系统软件包的安装流程中用到。</para>
       </listitem>
 
       <listitem>
@@ -342,13 +342,13 @@
       <listitem>
         <para>Vim</para>
 
-        <para>Vim编辑器。可根据个人喜好选择其他编辑器。</para>
+        <para>Vim 编辑器。可根据个人喜好选择其他编辑器。</para>
       </listitem>
 
       <listitem>
         <para>XZ Utils</para>
 
-        <para>提供XZ或LZMA压缩包格式的支持。</para>
+        <para>提供 XZ 或 LZMA 压缩包格式的支持。</para>
       </listitem>
 
       <listitem>
