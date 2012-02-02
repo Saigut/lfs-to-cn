@@ -289,12 +289,7 @@
       <para>2011-11-14</para>
       <itemizedlist>
         <listitem>
-          <para>[bdubbs] - 升级引导脚本：
-          清理；
-          将 consolelog 功能移至 rc；
-          清理引导日志功能;
-          修正运行级别 S 与目标运行级别之间的交互尝试。
-          感谢 DJ Lucas。</para>
+          <para>[bdubbs] - 升级引导脚本：清理；将 consolelog 功能移至 rc；清理引导日志功能;修正运行级别 S 与目标运行级别之间的交互尝试。感谢 DJ Lucas。</para>
         </listitem>
       </itemizedlist>
     </listitem>
