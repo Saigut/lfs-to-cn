@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
   "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
   <!ENTITY % general-entities SYSTEM "../general.ent">
@@ -8,18 +8,14 @@
 <sect1 id="ch-scatter-changelog">
   <?dbhtml filename="changelog.html"?>
 
-  <title>Changelog</title>
+  <title>变更日志</title>
 
-  <para>This is version &version; of the Linux From Scratch book, dated
-  &releasedate;. If this book is more than six months old, a newer and better
-  version is probably already available. To find out, please check one of the
-  mirrors via <ulink url="&lfs-root;mirrors.html"/>.</para>
+  <para>这是 Linux From Scratch 版本 &version;，日期 &releasedate;。如果本书已经超过六个月了，或许会有更新的版本发布。请查看镜像站点 <ulink url="&lfs-root;mirrors.html"/> 。</para>
 
-  <para>Below is a list of changes made since the previous release of the
-  book.</para>
+  <para>以下是本书上次发布以来所做的改动。</para>
 
   <itemizedlist>
-    <title>Changelog Entries:</title>
+    <title>变更日志条目：</title>
 
 <!-- Changelog template
 
@@ -41,11 +37,10 @@
       <para>2012-02-01</para>
       <itemizedlist>
         <listitem>
-          <para>[bdubbs] - Clarify (again) the extraction order
-          in GCC Pass 1.</para>
+          <para>[bdubbs] - (再次) 说明 GCC 第一遍的提取顺序。</para>
         </listitem>
         <listitem>
-          <para>[bdubbs] - Reformat Kmod configure command.</para>
+          <para>[bdubbs] - 重新格式化 Kmod 配置脚本。</para>
         </listitem>
       </itemizedlist>
     </listitem>
@@ -54,16 +49,13 @@
       <para>2012-01-30</para>
       <itemizedlist>
         <listitem>
-          <para>[matthew] - Upgrade to Zlib-1.2.6. Fixes
-          <ulink url="&lfs-ticket-root;3009">#3009</ulink>.</para>
+          <para>[matthew] - 升级至 Zlib-1.2.6。修正 <ulink url="&lfs-ticket-root;3009">#3009</ulink>。</para>
         </listitem>
         <listitem>
-          <para>[matthew] - Move Xz to before GRUB so that the latter can
-          support compressed kernel images.</para>
+          <para>[matthew] - 将 Xz 移到 GRUB 之前，使后者支持压缩内核镜像。</para>
         </listitem>
         <listitem>
-          <para>[matthew] - Upgrade to Udev-180. Fixes
-          <ulink url="&lfs-ticket-root;3008">#3008</ulink>.</para>
+          <para>[matthew] - 升级至 Udev-180。修正 <ulink url="&lfs-ticket-root;3008">#3008</ulink>。</para>
         </listitem>
       </itemizedlist>
     </listitem>
@@ -72,20 +64,16 @@
       <para>2012-01-28</para>
       <itemizedlist>
         <listitem>
-          <para>[matthew] - Upgrade to Psmisc-22.15. Fixes
-          <ulink url="&lfs-ticket-root;3007">#3007</ulink>.</para>
+          <para>[matthew] - 升级至 Psmisc-22.15。修正 <ulink url="&lfs-ticket-root;3007">#3007</ulink>。</para>
         </listitem>
         <listitem>
-          <para>[matthew] - Upgrade to GMP-5.0.3. Fixes
-          <ulink url="&lfs-ticket-root;3006">#3006</ulink>.</para>
+          <para>[matthew] - 升级至 GMP-5.0.3。修正 <ulink url="&lfs-ticket-root;3006">#3006</ulink>。</para>
         </listitem>
         <listitem>
-          <para>[matthew] - Upgrade to Linux-3.2.2. Fixes
-          <ulink url="&lfs-ticket-root;3005">#3005</ulink>.</para>
+          <para>[matthew] - 升级至 Linux-3.2.2。修正 <ulink url="&lfs-ticket-root;3005">#3005</ulink>。</para>
         </listitem>
         <listitem>
-          <para>[matthew] - Upgrade to Udev-179. Fixes
-          <ulink url="&lfs-ticket-root;3004">#3004</ulink>.</para>
+          <para>[matthew] - 升级至 Udev-179。修正 <ulink url="&lfs-ticket-root;3004">#3004</ulink>。</para>
         </listitem>
       </itemizedlist>
     </listitem>
@@ -94,18 +82,13 @@
       <para>2012-01-22</para>
       <itemizedlist>
         <listitem>
-          <para>[bdubbs] - Update network bootscripts to support bridge
-          devices in BLFS.</para>
+          <para>[bdubbs] - 升级网络引导脚本以支持 BLFS 中的桥设备。</para>
         </listitem>
         <listitem>
-          <para>[matthew] - Upgrade to Linux-3.2.1. Fixes
-          <ulink url="&lfs-ticket-root;2999">#2999</ulink>.</para>
+          <para>[matthew] - 升级至 Linux-3.2.1。修正 <ulink url="&lfs-ticket-root;2999">#2999</ulink>。</para>
         </listitem>
         <listitem>
-          <para>[matthew] - Upgrade to Udev-178, including adding its new
-          depdendency, Kmod-4. Fixes
-          <ulink url="&lfs-ticket-root;2998">#2998</ulink> and
-          <ulink url="&lfs-ticket-root;3001">#3001</ulink>.</para>
+          <para>[matthew] - 升级至 Udev-178，并加入新依赖的 Kmod-4。修正 <ulink url="&lfs-ticket-root;2998">#2998</ulink> 和 <ulink url="&lfs-ticket-root;3001">#3001</ulink>。</para>
         </listitem>
       </itemizedlist>
     </listitem>
@@ -114,10 +97,7 @@
       <para>2012-01-16</para>
       <itemizedlist>
         <listitem>
-          <para>[bdubbs] - Change bootscripts to use devtmpfs for /dev.
-          Move mounting of /dev to mountvirtfs and ensure /dev gets
-          placed in /etc/mtab.  Change fstab and kernel configuration
-          sections to reflect these changes.</para>
+          <para>[bdubbs] - 改变引导脚本，给 /dev 使用 devtmpfs。将 /dev 的挂在移到 mountvirtfs 并确保 /dev 被置于 /etc/mtab。相应改动 fstab 和内核配置。</para>
         </listitem>
       </itemizedlist>
     </listitem>
@@ -126,13 +106,10 @@
       <para>2012-01-11</para>
       <itemizedlist>
         <listitem>
-          <para>[bdubbs] - Add clarification to the GRUB configuration about
-          using a separate boot partition. </para>
+          <para>[bdubbs] - 增加 GRUB 配置中关于使用独立引导分区的声明。</para>
         </listitem>
         <listitem>
-          <para>[matthew] - Remove Libnl, as it's not actually required by
-          IPRoute2 after all. Thanks to Markku Pesonen for the pointer to the
-          upstream fix.</para>
+          <para>[matthew] - 移除 Libnl，因为实际上不再被 IPRoute2 需求。感谢 Markku Pesonen 指出。</para>
         </listitem>
       </itemizedlist>
     </listitem>
@@ -141,33 +118,25 @@
       <para>2012-01-08</para>
       <itemizedlist>
         <listitem>
-          <para>[matthew] - Prevent Libnl from installing static libraries.
-          Thanks to Ken Moffat for the report.</para>
+          <para>[matthew] - 阻止 Libnl 安装静态库。感谢 Ken Moffat 报告。</para>
         </listitem>
         <listitem>
-          <para>[matthew] - Upgrade to Coreutils-8.15. Fixes
-          <ulink url="&lfs-ticket-root;2996">#2996</ulink>.</para>
+          <para>[matthew] - 升级至 Coreutils-8.15。修正 <ulink url="&lfs-ticket-root;2996">#2996</ulink>。</para>
         </listitem>
         <listitem>
-          <para>[matthew] - Upgrade to IPRoute2-3.2.0, and add its new
-          dependency, libnl-2.0. Fixes
-          <ulink url="&lfs-ticket-root;2995">#2995</ulink>.</para>
+          <para>[matthew] - 升级至 IPRoute2-3.2.0，并加入新依赖的 libnl-2.0。修正 <ulink url="&lfs-ticket-root;2995">#2995</ulink>。</para>
         </listitem>
         <listitem>
-          <para>[matthew] - Upgrade to Linux-3.2. Fixes
-          <ulink url="&lfs-ticket-root;2993">#2993</ulink>.</para>
+          <para>[matthew] - 升级至 Linux-3.2。修正 <ulink url="&lfs-ticket-root;2993">#2993</ulink>。</para>
         </listitem>
         <listitem>
-          <para>[matthew] - Upgrade to Inetutils-1.9.1. Fixes
-          <ulink url="&lfs-ticket-root;2992">#2992</ulink>.</para>
+          <para>[matthew] - 升级至 Inetutils-1.9.1。修正 <ulink url="&lfs-ticket-root;2992">#2992</ulink>。</para>
         </listitem>
         <listitem>
-          <para>[matthew] - Fix typo in Linux tarball name. Fixes
-          <ulink url="&lfs-ticket-root;2991">#2991</ulink>.</para>
+          <para>[matthew] - 修正 Linux 压缩包名中的打字错误。修正 <ulink url="&lfs-ticket-root;2991">#2991</ulink>。</para>
         </listitem>
         <listitem>
-          <para>[matthew] - Upgrade to File-5.10. Fixes
-          <ulink url="&lfs-ticket-root;2989">#2989</ulink>.</para>
+          <para>[matthew] - 升级至 File-5.10。修正 <ulink url="&lfs-ticket-root;2989">#2989</ulink>。</para>
         </listitem>
       </itemizedlist>
     </listitem>
@@ -176,12 +145,10 @@
       <para>2012-01-06</para>
       <itemizedlist>
         <listitem>
-          <para>[bdubbs] - Change to simpler command for version-check.sh's 
-          Glibc version detection on all platforms.
-          Thanks to Pierre Labastie for the report and fix.</para>
+          <para>[bdubbs] - 将 version-check.sh 中各平台的 Glibc 版本检测改为改为更简单的命令。感谢 Pierre Labastie 报告和修正。</para>
         </listitem>
         <listitem>
-          <para>[bdubbs] - Change to php script for 'get counted'.</para>
+          <para>[bdubbs] - 将 “参与计数” 改为 php 脚本。</para>
         </listitem>
       </itemizedlist>
     </listitem>
@@ -190,9 +157,7 @@
       <para>2011-12-28</para>
       <itemizedlist>
         <listitem>
-          <para>[matthew] - Fix version-check.sh's Glibc version detection 
-          on 64-bit Debian hosts.
-          Thanks to Pierre Labastie for the report and fix.</para>
+          <para>[matthew] - 修正 version-check.sh 在 64 位 Debian 平台上的 Glibc 版本检测。感谢 Pierre Labastie 报告并修正。</para>
         </listitem>
       </itemizedlist>
     </listitem>
@@ -201,20 +166,16 @@
       <para>2011-12-22</para>
       <itemizedlist>
         <listitem>
-          <para>[matthew] - Upgrade to Automake-1.11.2. Fixes
-          <ulink url="&lfs-ticket-root;2986">#2986</ulink>.</para>
+          <para>[matthew] - 升级至 Automake-1.11.2。修正 <ulink url="&lfs-ticket-root;2986">#2986</ulink>。</para>
         </listitem>
         <listitem>
-          <para>[matthew] - Upgrade to Linux-3.1.6. Fixes
-          <ulink url="&lfs-ticket-root;2985">#2985</ulink>.</para>
+          <para>[matthew] - 升级至 Linux-3.1.6。修正 <ulink url="&lfs-ticket-root;2985">#2985</ulink>。</para>
         </listitem>
         <listitem>
-          <para>[matthew] - Correct permissions on /run/shm. Fixes
-          <ulink url="&lfs-ticket-root;2984">#2984</ulink>.</para>
+          <para>[matthew] - Correct permissions on /run/shm。修正 <ulink url="&lfs-ticket-root;2984">#2984</ulink>。</para>
         </listitem>
         <listitem>
-          <para>[matthew] - Add upstream patches for MPFR. Fixes
-          <ulink url="&lfs-ticket-root;2983">#2983</ulink>.</para>
+          <para>[matthew] - Add upstream patches for MPFR。修正 <ulink url="&lfs-ticket-root;2983">#2983</ulink>。</para>
         </listitem>
       </itemizedlist>
     </listitem>
@@ -223,8 +184,7 @@
       <para>2011-12-10</para>
       <itemizedlist>
         <listitem>
-          <para>[matthew] - Upgrade to Linux-3.1.5. Fixes
-          <ulink url="&lfs-ticket-root;2981">#2981</ulink>.</para>
+          <para>[matthew] - 升级至 Linux-3.1.5。修正 <ulink url="&lfs-ticket-root;2981">#2981</ulink>。</para>
         </listitem>
       </itemizedlist>
     </listitem>
@@ -233,23 +193,16 @@
       <para>2011-12-05</para>
       <itemizedlist>
         <listitem>
-          <para>[matthew] - Improve the accuracy of the list of installed files
-          for a number of packages.  Thanks to Chris Staub for the patch. Fixes
-          <ulink url="&lfs-ticket-root;2979">#2979</ulink>.</para>
+          <para>[matthew] - 改进多个程序包安装文件列表的精度。感谢 Chris Staub 提供补丁。修正 <ulink url="&lfs-ticket-root;2979">#2979</ulink>。</para>
         </listitem>
         <listitem>
-          <para>[matthew] - Prevent some arpd artefacts from being installed by
-          IPRoute2. Fixes
-          <ulink url="&lfs-ticket-root;2977">#2977</ulink>.</para>
+          <para>[matthew] - 组织某些 arpd 伪装被 IPRoute2 安装。修正 <ulink url="&lfs-ticket-root;2977">#2977</ulink>。</para>
         </listitem>
         <listitem>
-          <para>[matthew] - Correct location of Coreutils' libstdbuf. Fixes
-          <ulink url="&lfs-ticket-root;2976">#2976</ulink>.</para>
+          <para>[matthew] - 修正 Coreutils 的 libstdbuf 的位置。修正 <ulink url="&lfs-ticket-root;2976">#2976</ulink>。</para>
         </listitem>
         <listitem>
-          <para>[matthew] - Move Psmisc to before E2fsprogs because the
-          E2fsprogs testsuite uses killall. Fixes
-          <ulink url="&lfs-ticket-root;2975">#2975</ulink>.</para>
+          <para>[matthew] - 将 Psmisc 移至 E2fsprogs 之前，因为 E2fsprogs 测试套件使用了 killall。修正 <ulink url="&lfs-ticket-root;2975">#2975</ulink>。</para>
         </listitem>
       </itemizedlist>
     </listitem>
@@ -258,20 +211,16 @@
       <para>2011-12-01</para>
       <itemizedlist>
         <listitem>
-          <para>[matthew] - Upgrade to E2fsprogs-1.42. Fixes
-          <ulink url="&lfs-ticket-root;2973">#2973</ulink>.</para>
+          <para>[matthew] - 升级至 E2fsprogs-1.42。修正 <ulink url="&lfs-ticket-root;2973">#2973</ulink>。</para>
         </listitem>
         <listitem>
-          <para>[matthew] - Upgrade to Linux-3.1.4. Fixes
-          <ulink url="&lfs-ticket-root;2970">#2970</ulink>.</para>
+          <para>[matthew] - 升级至 Linux-3.1.4。修正 <ulink url="&lfs-ticket-root;2970">#2970</ulink>。</para>
         </listitem>
         <listitem>
-          <para>[matthew] - Upgrade to IPRoute2-3.1.0. Fixes
-          <ulink url="&lfs-ticket-root;2969">#2969</ulink>.</para>
+          <para>[matthew] - 升级至 IPRoute2-3.1.0。修正 <ulink url="&lfs-ticket-root;2969">#2969</ulink>。</para>
         </listitem>
         <listitem>
-          <para>[matthew] - Add latest upstream patches for Bash. Fixes
-          <ulink url="&lfs-ticket-root;2968">#2968</ulink>.</para>
+          <para>[matthew] - Add latest upstream patches for Bash。修正 <ulink url="&lfs-ticket-root;2968">#2968</ulink>。</para>
         </listitem>
       </itemizedlist>
     </listitem>
@@ -280,10 +229,10 @@
       <para>2011-11-28</para>
       <itemizedlist>
         <listitem>
-          <para>[dj] - Update to lfs-bootscripts-20111128.</para>
+          <para>[dj] - 升级至 lfs-bootscripts-20111128。</para>
         </listitem>
         <listitem>
-          <para>[ken] - Fix daylight saving time bug in coreutils testsuite.</para>
+          <para>[ken] - 修正 coreutils 测试套件中的夏令时漏洞。</para>
         </listitem>
       </itemizedlist>
     </listitem>
@@ -292,7 +241,7 @@
       <para>2011-11-26</para>
       <itemizedlist>
         <listitem>
-          <para>[bdubbs] - Clean up console script.</para>
+          <para>[bdubbs] - 清理控制台脚本。</para>
         </listitem>
       </itemizedlist>
     </listitem>
@@ -301,41 +250,28 @@
       <para>2011-11-25</para>
       <itemizedlist>
         <listitem>
-          <para>[matthew] - Upgrade to Binutils-2.22. Fixes
-          <ulink url="&lfs-ticket-root;2967">#2967</ulink>.</para>
+          <para>[matthew] - 升级至 Binutils-2.22。修正 <ulink url="&lfs-ticket-root;2967">#2967</ulink>。</para>
         </listitem>
         <listitem>
-          <para>[matthew] - Install Glibc's NIS and RPC headers again.  The
-          headers have not been installed by default since Glibc-2.14, but that
-          causes various BLFS packages to break. Fixes
-          <ulink url="&lfs-ticket-root;2965">#2965</ulink>.</para>
+          <para>[matthew] - 再一次安装 Glibc 的 NIS 和 RPC 头文件。 从 Glibc-2.14 开始就默认不安装，但这使某些 BLFS 程序包崩溃。修正 <ulink url="&lfs-ticket-root;2965">#2965</ulink>。</para>
         </listitem>
         <listitem>
-          <para>[matthew] - Upgrade to Grep-2.10. Fixes
-          <ulink url="&lfs-ticket-root;2964">#2964</ulink>.</para>
+          <para>[matthew] - 升级至 Grep-2.10。修正 <ulink url="&lfs-ticket-root;2964">#2964</ulink>。</para>
         </listitem>
         <listitem>
-          <para>[matthew] - Add a patch to fix a security vulnerability in Perl.
-          Fixes <ulink url="&lfs-ticket-root;2963">#2963</ulink>.</para>
+          <para>[matthew] - 添加一个补丁以修复 Perl 中的一个安全弱点。修正 <ulink url="&lfs-ticket-root;2963">#2963</ulink>。</para>
         </listitem>
         <listitem>
-          <para>[matthew] - Upgrade to GDBM-1.10. Fixes
-          <ulink url="&lfs-ticket-root;2962">#2962</ulink>.</para>
+          <para>[matthew] - 升级至 GDBM-1.10。修正 <ulink url="&lfs-ticket-root;2962">#2962</ulink>。</para>
         </listitem>
         <listitem>
-          <para>[matthew] - Install Coreutils'
-          <filename class="libraryfile">libstdbuf.so</filename> to
-          <filename class="directory">/usr/lib/coreutils</filename> to
-          maintain consistency with other packages' shared library locations.
-          Fixes <ulink url="&lfs-ticket-root;2961">#2961</ulink>.</para>
+          <para>[matthew] - 安装 Coreutils 的 <filename class="libraryfile">libstdbuf.so</filename> 至 <filename class="directory">/usr/lib/coreutils</filename> 以与其他程序包的共享库位置保持一致。修正 <ulink url="&lfs-ticket-root;2961">#2961</ulink>。</para>
         </listitem>
         <listitem>
-          <para>[matthew] - Upgrade to Linux-3.1.2. Fixes
-          <ulink url="&lfs-ticket-root;2960">#2960</ulink>.</para>
+          <para>[matthew] - 升级至 Linux-3.1.2。修正 <ulink url="&lfs-ticket-root;2960">#2960</ulink>。</para>
         </listitem>
         <listitem>
-          <para>[matthew] - Upgrade to Tcl-8.5.11. Fixes
-          <ulink url="&lfs-ticket-root;2959">#2959</ulink>.</para>
+          <para>[matthew] - 升级至 Tcl-8.5.11。修正 <ulink url="&lfs-ticket-root;2959">#2959</ulink>。</para>
         </listitem>
       </itemizedlist>
     </listitem>
@@ -344,8 +280,7 @@
       <para>2011-11-16</para>
       <itemizedlist>
         <listitem>
-          <para>[bdubbs] - Make /var/log/btmp have 660 permissions.
-          Suggestion from Michael Blanchard.</para>
+          <para>[bdubbs] - 给 /var/log/btmp 设置 660 权限。由 Michael Blanchard 提出。</para>
         </listitem>
       </itemizedlist>
     </listitem>
@@ -354,12 +289,12 @@
       <para>2011-11-14</para>
       <itemizedlist>
         <listitem>
-          <para>[bdubbs] - Updates to boot scripts: 
-          general cleanup;
-          move consolelog function to rc;
-          clean up boot logging functions;
-          fix interactive prompt between run level S and target run level.  
-          Thanks to DJ Lucas.</para>
+          <para>[bdubbs] - 升级引导脚本：
+          清理；
+          将 consolelog 功能移至 rc；
+          清理引导日志功能;
+          修正运行级别 S 与目标运行级别之间的交互尝试。
+          感谢 DJ Lucas。</para>
         </listitem>
       </itemizedlist>
     </listitem>
@@ -368,11 +303,10 @@
       <para>2011-10-29</para>
       <itemizedlist>
         <listitem>
-          <para>[bdubbs] - Text correction in bootscripts description.</para>
+          <para>[bdubbs] - 在引导脚本介绍中改正文本。</para>
         </listitem>
         <listitem>
-          <para>[bdubbs] - Remove erroneous sourcing line in bootscript 
-          functions used for backward BLFS compatibility.</para>
+          <para>[bdubbs] - 移除引导脚本功能中用于向后兼容 BLFS 的源代码行。</para>
         </listitem>
       </itemizedlist>
     </listitem>
@@ -381,19 +315,16 @@
       <para>2011-10-29</para>
       <itemizedlist>
         <listitem>
-          <para>[matthew] - Upgrade to GCC-4.6.2. Fixes
-          <ulink url="&lfs-ticket-root;2951">#2951</ulink>.</para>
+          <para>[matthew] - 升级至 GCC-4.6.2。修正 <ulink url="&lfs-ticket-root;2951">#2951</ulink>。</para>
         </listitem>
         <listitem>
-          <para>[matthew] - Upgrade to Util-Linux-2.20.1. Fixes
-          <ulink url="&lfs-ticket-root;2947">#2947</ulink>.</para>
+          <para>[matthew] - 升级至 Util-Linux-2.20.1。修正 <ulink url="&lfs-ticket-root;2947">#2947</ulink>。</para>
         </listitem>
         <listitem>
-          <para>[matthew] - Upgrade to Libtool-2.4.2. Fixes
-          <ulink url="&lfs-ticket-root;2946">#2946</ulink>.</para>
+          <para>[matthew] - 升级至 Libtool-2.4.2。修正 <ulink url="&lfs-ticket-root;2946">#2946</ulink>。</para>
         </listitem>
         <listitem>
-          <para>[bdubbs] - LFS-7.0 released.
+          <para>[bdubbs] - LFS-7.0 发布。
           </para>
         </listitem>
       </itemizedlist>
