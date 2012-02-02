@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+  "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../general.ent">
+  %general-entities;
+]>
+
+<sect1 id="pre-prerequisites">
+  <?dbhtml filename="prerequisites.html"?>
+
+  <title>前提条件</title>
+
+  <para>编制 LFS 系统不是一项简单的任务。它需要一定水平的 Unix 系统管理知识来解决问题并正确执行列出的命令。通常，你至少应该有能力用命令行 (Shell) 来复制或移动文件和目录，列出文件和目录的内容，还有改变当前工作目录。也推荐你最好是有一定的使用和安装 Linux 软件的知识。</para>
+
+  <para>因为 LFS 系统需求<emphasis>至少</emphasis>这样的基础水平技能，LFS 支持论坛可能无法在这些领域提供很多帮助。你会发现你此类基础知识问题很可能无人回答，或者有人会给你指出 LFS 必要预阅读列表。</para>
+
+  <para>在编制 LFS 系统之前，我们推荐阅读以下指南：</para>
+
+  <itemizedlist>
+    <listitem>
+      <para>软件编制指南
+      <ulink url="http://www.tldp.org/HOWTO/Software-Building-HOWTO.html"/></para>
+
+      <para>这是关于在 Linux 下编制和安装 <quote>通用</quote> Unix 程序包的理解性向导。虽然写出来有些日子了，它仍能提供编制和安装 Linux 软件基本技术的很好总结。</para>
+    </listitem>
+
+    <listitem>
+      <para>Linux 用户指南
+      <ulink url="http://www.linuxhq.com/guides/LUG/guide.html"/></para>
+
+      <para>此指南覆盖了各式各样 Linux 软件的使用。这本参考也很老了但仍然可用。</para>
+    </listitem>
+
+    <listitem>
+      <para>必要的阅读前提示
+      <ulink url="&hints-root;essential_prereading.txt"/></para>
+
+      <para>这是专为 Linux 新手写的 LFS 提示。它包含到很多主题下信息资源的链接。任何一个试图安装 LFS 的人都应该了解其中的很多话题。</para>
+    </listitem>
+
+  </itemizedlist>
+
+</sect1>

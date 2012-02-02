@@ -1,0 +1,408 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+  "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../general.ent">
+  %general-entities;
+]>
+
+<sect1 id="pre-why">
+  <?dbhtml filename="package-choices.html"?>
+
+  <title>使用本书中软件包的理由</title>
+
+    <para>就像前面所说， LFS的目的是构建一个完整可用的基础系统。  这包括一些用于提供相对最小的工作环境的软件包， 用户在此之上定制自己的系统。这些工具经常会用于替换他们本身。这并不意味着LFS是最小的操作系统。几个最为重要的软件包在其他系统上并不是必需的。下面列出了使用这些软件的理由。</para>
+
+    <itemizedlist>
+
+      <listitem>
+        <para>Autoconf</para>
+
+        <para>这个软件包包含可以用来根据模板生成configure脚本的程序。当源码改动的时候往往需要重新生成相应的configure脚本</para>
+      </listitem>
+
+      <listitem>
+        <para>Automake</para>
+
+        <para>这个软件包包含根据模板生成 Makefile 的程序。重新编制包的时候需要此程序。</para>
+      </listitem>
+
+      <listitem>
+        <para>Bash</para>
+
+        <para>Bourne Shell。提供系统与用户的交互界面。可替换成其他 shell 。因为其通用性和良好的可扩展性被选用。</para>
+      </listitem>
+
+      <listitem>
+        <para>Binutils</para>
+
+        <para>包含汇编器、链接器等其他工具，用于处理目标文件。这个软件包用于编译 LFS 系统中的大部分软件。</para>
+      </listitem>
+
+      <listitem>
+        <para>Bison</para>
+
+        <para>GNU 版 yacc，一个语法分析器生成器，用于构建其他几个 LFS 系统中的程序。</para>
+      </listitem>
+
+      <listitem>
+        <para>Bzip2</para>
+
+        <para>用于压缩和解压 .bz2 文件。这个软件被用于解压大部分用于构建 LFS 系统的软件包。</para>
+      </listitem>
+
+      <listitem>
+        <para>Coreutils</para>
+
+        <para>这个软件包包含一些用于操作和查看文件和文件夹的工具。被用于命令行文件管理。对 LFS 系统安装过程至关重要。</para>
+      </listitem>
+
+      <listitem>
+        <para>DejaGNU</para>
+
+        <para>这个软件包包含一个用于测试其他程序的框架。只被安装在临时工具链中。</para>
+      </listitem>
+
+      <listitem>
+        <para>Diffutils</para>
+
+        <para>提供用于比较文件和文件夹不同之处。可以用来生成 patch， 并在许多软件的安装流程中被使用。</para>
+      </listitem>
+
+      <listitem>
+        <para>Expect</para>
+
+        <para>用于测试其他程序。只被安装在临时工具链中。</para>
+      </listitem>
+
+      <listitem>
+        <para>E2fsprogs</para>
+
+        <para>包含用于处理 ext2、ext3、ext4 文件系统的工具。这些文件系统在 linux 系统中被广泛使用。</para>
+      </listitem>
+
+      <listitem>
+        <para>File</para>
+
+        <para>用于检测文件类型。几个软件包的编译需要他。</para>
+      </listitem>
+
+      <listitem>
+        <para>Findutils</para>
+
+        <para>提供用于在文件系统中查找文件的工具。被许多安装脚本调用。</para>
+      </listitem>
+
+      <listitem>
+        <para>Flex</para>
+
+        <para>词法分析器生成器。GNU 版 lex。被用于一些软件包。</para>
+      </listitem>
+
+      <listitem>
+        <para>Gawk</para>
+
+        <para>awk 脚本解释器。被安装脚本调用</para>
+      </listitem>
+
+      <listitem>
+        <para>Gcc</para>
+
+        <para>GNU 编译器集，包含用于编制 LFS 系统的 C 与 C++ 编译器。
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>GDBM</para>
+
+        <para>GNU 数据管理库。被Man-DB需要。</para>
+      </listitem>
+
+      <listitem>
+        <para>Gettext</para>
+
+        <para>包含国际化和本地化的库和工具。</para>
+      </listitem>
+
+      <listitem>
+        <para>Glibc</para>
+
+        <para>标准 C 库，缺了他其他程序基本无法工作。</para>
+      </listitem>
+
+      <listitem>
+        <para>GMP</para>
+
+        <para>包含数学库提供任意精度计算。用于 Gcc 的构建。</para>
+      </listitem>
+
+      <listitem>
+        <para>Grep</para>
+
+        <para>用于在文件中查找。大多数安装脚本使用了 grep。</para>
+      </listitem>
+
+      <listitem>
+        <para>Groff</para>
+
+        <para>包含用于处理和格式化文本的工具。一个重要的功能是格式化 man 手册页。</para>
+      </listitem>
+
+      <listitem>
+        <para>GRUB</para>
+
+        <para>用于引导系统。</para>
+      </listitem>
+
+      <listitem>
+        <para>Gzip</para>
+
+        <para>压缩和解压缩 .gz 文件。用于解压缩其他软件包。</para>
+      </listitem>
+
+      <listitem>
+        <para>Iana-etc</para>
+
+        <para>提供一些网络服务和协议的数据。用于提供网络功能。</para>
+      </listitem>
+
+      <listitem>
+        <para>Inetutils</para>
+
+        <para>提供基础的网络管理程序。</para>
+      </listitem>
+
+      <listitem>
+        <para>IProute2</para>
+
+        <para>包含管理基本的和高级的 IPv4 和 IPv6 网络。因为 IPv6 功能被选用</para>
+      </listitem>
+
+      <listitem>
+        <para>Kbd</para>
+
+        <para>提供键盘映射表，键盘相关的工具用于非标准 US 键盘。还有一些控制台用到的字体。</para>
+      </listitem>
+
+      <listitem>
+        <para>Less</para>
+
+        <para>用于浏览文件， 被 Man-DB 使用。</para>
+      </listitem>
+
+      <listitem>
+        <para>Libtool</para>
+
+        <para>用于构建库</para>
+      </listitem>
+
+      <listitem>
+        <para>Linux Kernel</para>
+
+        <para>操作系统内核。GNU/Linux 环境的 Linux 。</para>
+      </listitem>
+
+      <listitem>
+        <para>M4</para>
+
+        <para>通用文本宏处理器，用作其他程序包的编制工具。</para>
+      </listitem>
+
+      <listitem>
+        <para>Make</para>
+
+        <para>指导程序包编制。被 LFS 中几乎每个程序包需求。</para>
+      </listitem>
+
+      <listitem>
+        <para>Man-DB</para>
+
+        <para>This package contains programs for finding and viewing man pages.
+        It was chosen instead of the <application>man</application> package
+        due to superior internationalization capabilities.  It supplies
+        the man program.</para>
+      </listitem>
+
+      <listitem>
+        <para>Man-pages</para>
+
+        <para>This package contains the actual contents of the basic
+        Linux man pages.</para>
+      </listitem>
+
+      <listitem>
+        <para>Module-Init-Tools</para>
+
+        <para>This package contains programs needed to administer Linux
+        kernel modules.</para>
+      </listitem>
+
+      <listitem>
+        <para>MPC</para>
+
+        <para>This package contains functions for the arithmetic of complex
+        numbers. It is required by Gcc.</para>
+      </listitem>
+
+      <listitem>
+        <para>MPFR</para>
+
+        <para>This package contains functions for multiple precision 
+        arithmetic.  It is required by Gcc.</para>
+      </listitem>
+
+      <listitem>
+        <para>Ncurses</para>
+
+        <para>This package contains libraries for terminal-independent 
+        handling of character screens.  It is often used to provide 
+        cursor control for a menuing system. It is needed by a number of
+        packages in LFS.</para>
+      </listitem>
+
+      <listitem>
+        <para>Patch</para>
+
+        <para>This package contains a program for modifying or creating files by
+        applying a <emphasis>patch</emphasis> file typically created 
+        by the <application>diff</application> program.  It is needed by
+        the build procedure for several LFS packages.</para>
+      </listitem>
+
+      <listitem>
+        <para>PCRE</para>
+
+        <para>This package provides a library that can be used to implement
+        regular expression pattern matching using the same syntax and semantics
+        as Perl 5.  It is a mandatory dependency of Glib, and can also be used
+        by Grep.</para>
+      </listitem>
+
+      <listitem>
+        <para>Perl</para>
+
+        <para>This package is an interpreter for the runtime language
+        PERL. It is needed for the installation and test suites of several LFS
+        packages.</para>
+      </listitem>
+
+      <listitem>
+        <para>Procps</para>
+
+        <para>This package contains programs for monitoring processes. These
+        programs are useful for system administration, and are also used by
+        the LFS Bootscripts.</para>
+      </listitem>
+
+      <listitem>
+        <para>Psmisc</para>
+
+        <para>This package contains programs for displaying information 
+        about running processes. These programs are useful for system
+        administration.</para>
+      </listitem>
+
+      <listitem>
+        <para>Readline</para>
+
+        <para>This package is a set of libraries that offers command-line 
+        editing and history capabilities.  It is used by Bash.</para>
+      </listitem>
+
+      <listitem>
+        <para>Sed</para>
+
+        <para>This package allows editing of text without opening it in a 
+        text editor. It is also needed by most LFS packages' configure 
+        scripts.</para>
+      </listitem>
+
+      <listitem>
+        <para>Shadow</para>
+
+        <para>This package contains programs for handling passwords 
+        in a secure way.</para>
+      </listitem>
+
+      <listitem>
+        <para>Sysklogd</para>
+
+        <para>This package contains programs for logging system messages, 
+        such as those given by the kernel or daemon processes when unusual 
+        events occur.</para>
+      </listitem>
+
+      <listitem>
+        <para>Sysvinit</para>
+
+        <para>This package provides the <application>init</application>
+        program, which is the parent of all other processes on the Linux
+        system. </para>
+      </listitem>
+
+      <listitem>
+        <para>Tar</para>
+
+        <para>This package provides archiving and extraction capabilities
+        of virtually all packages used in LFS.</para>
+      </listitem>
+
+      <listitem>
+        <para>Tcl</para>
+
+        <para>This package contains the Tool Command Language used
+        in many test suites in LFS packages.  It is only installed in 
+        the temporary toolchain.</para>
+      </listitem>
+
+      <listitem>
+        <para>Texinfo</para>
+
+        <para>This package contains programs for reading, writing, and 
+        converting info pages.  It is used in the installation 
+        procedures of many LFS packages.</para>
+      </listitem>
+
+      <listitem>
+        <para>Udev</para>
+
+        <para>This package contains programs for dynamic creation of 
+        device nodes.  It is an alternative to creating thousands of
+        static devices in the /dev directory.</para>
+      </listitem>
+
+      <listitem>
+        <para>Util-linux</para>
+
+        <para>This package contains miscellaneous utility programs. 
+        Among them are utilities for handling file systems, consoles, 
+        partitions, and messages.</para>
+      </listitem>
+
+      <listitem>
+        <para>Vim</para>
+
+        <para>This package contains an editor. It was chosen because of its
+        compatibility with the classic vi editor and its huge number of powerful
+        capabilities.  An editor is a very personal choice for
+        many users and any other editor could be substituted if desired.</para>
+      </listitem>
+
+      <listitem>
+        <para>XZ Utils</para>
+
+        <para>This package contains programs for compressing and decompressing 
+        files.  It provides the highest compression generally available
+        and is useful for decompressing packages XZ or LZMA format.</para>
+      </listitem>
+
+      <listitem>
+        <para>Zlib</para>
+
+        <para>This package contains compression and decompression routines 
+        used by some programs.</para>
+      </listitem>
+
+    </itemizedlist>
+
+</sect1>
+
