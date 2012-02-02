@@ -11,7 +11,7 @@ $Date: 2008-11-17 02:44:52 +0800 (一, 2008-11-17) $
   <l:l10n xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0"
           language="zh_cn" english-language-name="Chinese Simplified">
 
-    <l:gentext key="description" text="描述"/>
+    <l:gentext key="description" text="介绍"/>
     <l:gentext key="Bootscripts" text="引导脚本"/>
     <l:gentext key="Configuration Files" text="配置文件"/>
     <l:gentext key="Kernel Configuration" text="内核配置"/>
