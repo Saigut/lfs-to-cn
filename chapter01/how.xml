@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
   "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
   <!ENTITY % general-entities SYSTEM "../general.ent">
@@ -8,19 +8,11 @@
 <sect1 id="ch-intro-how">
   <?dbhtml filename="how.html"?>
 
-  <title>How to Build an LFS System</title>
+  <title>如何编制 LFS 系统</title>
 
-  <para>The LFS system will be built by using an already installed
-  Linux distribution (such as Debian, Mandriva, Red Hat, or SUSE). This
-  existing Linux system (the host) will be used as a starting point to
-  provide necessary programs, including a compiler, linker, and shell,
-  to build the new system. Select the <quote>development</quote> option
-  during the distribution installation to be able to access these
-  tools.</para>
+  <para>编制 LFS 系统需要使用一个已安装好的 Linux 发行版 (比如 Debian、Mandriva、红帽子或 SUSE)。这个存在的 Linux 系统 (宿主) 会用作起点来为编制新系统提供必要的程序，包括编译器、链接器和 shell。在安装发行版的过程中选择 <quote>development</quote> 选项来获取这些工具。</para>
 
-  <para>As an alternative to installing a separate distribution onto your
-  machine, you may wish to use <!-- the Linux From Scratch LiveCD or --> a LiveCD from a
-  commercial distribution. <!-- The LFS LiveCD works well as a host system,
+  <para>若不愿在计算机上安装一独立的发行版，可以使用<!-- the Linux From Scratch LiveCD or -->商业发行版的 LiveCD。<!-- The LFS LiveCD works well as a host system,
   providing all the tools you need to successfully follow the instructions in
   this book. The LiveCD version is behind the current book, but is still useful
   as a host for building the current book.  The <quote>-nosrc</quote> or
@@ -35,8 +27,7 @@
     drives.</para>
   </note> -->
 
-  <para><xref linkend="chapter-partitioning"/> of this book describes how
-  to create a new Linux native partition and file system. This is the place
+  <para>本书的<xref linkend="chapter-partitioning"/>介绍了如何创建一个原生的 Linux 分区和文件系统。This is the place
   where the new LFS system will be compiled and installed. <xref
   linkend="chapter-getting-materials"/> explains which packages and
   patches need to be downloaded to build an LFS system and how to store
