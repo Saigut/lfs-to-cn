@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
   "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
   <!ENTITY % general-entities SYSTEM "../general.ent">
@@ -8,57 +8,27 @@
 <sect1 id="materials-introduction">
   <?dbhtml filename="introduction.html"?>
 
-  <title>Introduction</title>
+  <title>介绍</title>
 
-  <para>This chapter includes a list of packages that need to be downloaded in
-  order to build a basic Linux system. The listed version numbers correspond to
-  versions of the software that are known to work, and this book is based on
-  their use. We highly recommend against using newer versions because the build
-  commands for one version may not work with a newer version. The newest package
-  versions may also have problems that require work-arounds. These work-arounds
-  will be developed and stabilized in the development version of the
-  book.</para>
+  <para>本章列出了要编制基本 Linux 系统需要下载的程序包。列出的版本号对应该软件已知能够工作的版本，本书也基于它们。我们非常不推荐使用更新的版本，因为一个版本的编制指令对更新的版本不工作。最新的程序包版本也可能由需要研究处理处理的问题。这些工作在本书的开发版本中会逐步完成。</para>
 
-  <para>Download locations may not always be accessible. If a download
-  location has changed since this book was published, Google (<ulink
-  url="http://www.google.com/"/>) provides a useful search engine for
-  most packages. If this search is unsuccessful, try one of the
-  alternative means of downloading discussed at <ulink
-  url="&lfs-root;lfs/packages.html#packages"/>. </para>
+  <para>下载位置可能不总有效。如果本书发布之后有下载位置改变，Google (<ulink url="http://www.google.com/"/>) 搜索一下。如果搜索不成功，尝试位于 <ulink url="&lfs-root;lfs/packages.html#packages"/> 的替代解决方案之一。</para>
 
-  <para>Downloaded packages and patches will need to be stored somewhere
-  that is conveniently available throughout the entire build. A working
-  directory is also required to unpack the sources and build them.
-  <filename class="directory">$LFS/sources</filename> can be used both
-  as the place to store the tarballs and patches and as a working
-  directory. By using this directory, the required elements will be
-  located on the LFS partition and will be available during all stages
-  of the building process.</para>
+  <para>下载的程序包和补丁要存储在整个编制过城中都方便可用的地方。还需要一个工作目录来解压缩源代码并编制。<filename class="directory">$LFS/sources</filename> 可以既用作存放压缩包的地方也用作工作目录。通过使用此目录，需要的信息就会位于 LFS 分区上，也就在编制过城中的每一步都可用。</para>
 
-  <para>To create this directory, execute the following command, as user
-  <systemitem class="username">root</systemitem>, before starting the download
-  session:</para>
+  <para>要创建这个目录，在开始下载前作为用户 <systemitem class="username">root</systemitem> 运行此命令：</para>
 
 <screen role="nodump"><userinput>mkdir -v $LFS/sources</userinput></screen>
 
-  <para>Make this directory writable and sticky. <quote>Sticky</quote>
-  means that even if multiple users have write permission on a
-  directory, only the owner of a file can delete the file within a
-  sticky directory. The following command will enable the write and
-  sticky modes:</para>
+  <para>使此目录可写并且粘滞。<quote>粘滞</quote> 是说即使多个用户对目录拥有写权限，粘滞目录中的文件只有所有者能够删除。以下命令将启用可写和粘滞模式：</para>
 
 <screen role="nodump"><userinput>chmod -v a+wt $LFS/sources</userinput></screen>
 
-  <para>An easy way to download all of the packages and patches is by using
-  <ulink url="../wget-list">wget-list</ulink> as an input to
-  <command>wget</command>. For example:</para>
+  <para>下载所有程序包和补丁的简单方式是使用 <ulink url="../wget-list">wget-list</ulink> 作为 <command>wget</command>的输入，例如：</para>
 
 <screen role="nodump"><userinput>wget -i wget-list -P $LFS/sources</userinput></screen> 
 
-  <para>Additionally, starting with LFS-7.0, there is a separate file, 
-  <ulink url="../md5sums">md5sums</ulink>, can be used to verify that all
-  the correct packages are available before proceeding.  Place that file in 
-  <filename class="directory">$LFS/sources</filename> and run:</para>
+  <para>另外，从 LFS-7.0 开始，还有一个独立的文件 <ulink url="../md5sums">md5sums</ulink>，可以用来在进行下去之前检验是否所有程序包都可用。将此文件置于 <filename class="directory">$LFS/sources</filename> 并运行：</para>
 
 <screen role="nodump"><userinput>pushd  $LFS/sources
 md5sum -c md5sums
