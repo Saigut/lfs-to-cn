@@ -34,6 +34,18 @@
 -->
 
     <listitem>
+      <para>2012-02-02</para>
+      <itemizedlist>
+        <listitem>
+          <para>[bdubbs] - 移除到 consolelog 的废弃引用。</para>
+        </listitem>
+        <listitem>
+          <para>[bdubbs] - 重新格式化 udev 配置命令。</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+    
+    <listitem>
       <para>2012-02-01</para>
       <itemizedlist>
         <listitem>
