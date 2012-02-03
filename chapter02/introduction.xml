@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
   "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
   <!ENTITY % general-entities SYSTEM "../general.ent">
@@ -8,10 +8,8 @@
 <sect1 id="space-introduction">
   <?dbhtml filename="introduction.html"?>
 
-  <title>Introduction</title>
+  <title>介绍</title>
 
-  <para>In this chapter, the partition which will host the LFS system is
-  prepared. We will create the partition itself, create a file system
-  on it, and mount it.</para>
+  <para>在本章中，我们将要为 LFS 系统准备分区。创建一个分区，在其上创建一个文件系统并挂载它。</para>
 
 </sect1>
