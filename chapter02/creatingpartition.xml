@@ -36,88 +36,45 @@
   <para>请记住你将使用的分区 (例如<filename class="devicefile">hda5</filename>)。这本书将这个分区称作 LFS 分区。同样记住 <systemitem class="filesystem">swap</systemitem> 分区的名称。这些名称会在 <filename>/etc/fstab</filename> 文件中用到。</para>
 
   <sect2>
-  <title>Other Partition Issues</title>
+  <title>其他分区问题</title>
 
-  <para>Requests for advice on system partitioning are often posted on the LFS mailing 
-  lists.  This is a highly subjective topic.  The default for most distributions
-  is to use the entire drive with the exception of one small swap partition.  This
-  is not optimal for LFS for several reasons.  It reduces flexibility, makes 
-  sharing of data across multiple distributions or LFS builds more difficult, makes
-  backups more time consuming, and can waste disk space through inefficient 
-  allocation of file system structures.</para>
+  <para>LFS 邮件列表中经常有人寻求系统分区建议。这是一个很主观的话题。多数发行版默认扣出一个小的交换分区然后使用整个驱动器。出于如下原因，这种做法对 LFS 并不理想。它减弱了灵活性，使得在多个发行版或 LFS 编制之间共享数据更困难，使备份更消耗时间，还会因为低效率的文件系统结构分布浪费磁盘空间。</para>
 
     <sect3>
-    <title>The Root Partition</title>
+    <title>根分区</title>
    
-    <para>A root LFS partition (not to be confused with the
-    <filename class="directory">/root</filename> directory) of
-    ten gigabytes is a good compromise for most systems.  It provides enough
-    space to build LFS and most of BLFS, but is small enough so that multiple
-    partitions can be easily created for experimentation.</para> </sect3>
+    <para>LFS 根分区 (不要与 <filename class="directory">/root</filename> 目录混淆) 有 10GB 对多数系统够用。它提供足够空间来编制 LFS 和 BLFS 的大部分，又小到可以很容易地创建多个分区用于实验。</para> </sect3>
    
     <sect3>
-    <title>The Swap Partition</title>
+    <title>交换分区</title>
    
-    <para>Most distributions automatically create a swap partition.  Generally
-    the recommended size of the swap partition is about twice the amount of
-    physical RAM, however this is rarely needed.  If disk space is limited,
-    hold the swap partition to two gigabytes and monitor the amount of disk
-    swapping.</para>
+    <para>很多发行版会自动创建交换分区。通常推荐交换分区相当于 RAM 的两倍大，但这其实很少用到。如果磁盘空间有限，将交换分区的尺寸限制到 2GB，并监视磁盘交换用量。</para>
    
-    <para>Swapping is never good.  Generally you can tell if a system is
-    swapping by just listening to disk activity and observing how the system
-    reacts to commands.  The first reaction to swapping should be to check for
-    an unreasonable command such as trying to edit a five gigabyte file.  If
-    swapping becomes a normal occurance, the best solution is to purchase more
-    RAM for your system.</para> </sect3>
+    <para>交换从来就不是好现象。通常只要听磁盘活动并观察系统对命令的响应即可判断它是否在交换。发现交换的第一反应应该是检查是否有没道理的命令，比如试图编辑 5GB 大的文件。如果交换经常发生，最好的解决方式应该是给电脑加内存。</para> </sect3>
    
     <sect3>
-    <title>Convenience Partitions</title>
+    <title>便捷分区</title>
    
-    <para>There are several other partitions that are not required, but should
-    be considered when designing a disk layout.  The following list
-    is not comprehensive, but is meant as a guide.</para>
+    <para>还有几个不强制要求的分区，在设计磁盘布局的时候应该考虑一下。以下列表可能不全面，只作向导用。</para>
    
     <itemizedlist>
       
-      <listitem><para>/boot &ndash; Highly recommended.  Use this partition to
-      store kernels and other booting information.  To minimize potential boot
-      problems with larger disks, make this the first physical partition on
-      your first disk drive.  A partition size of 100 megabytes is quite
-      adequate.</para></listitem>
+      <listitem><para>/boot &ndash; 高度推荐。用这个分区来存放内核和其他启动信息。为了减少大磁盘的间歇启动问题，把此分区作为磁盘上的第一个物理分区。有 100MB 就足够了。</para></listitem>
       
-      <listitem><para>/home &ndash; Highly recommended.  Share your home
-      directory and user customization across multiple distributions or LFS
-      builds.  The size is generally fairly large and depends on available disk
-      space.</para></listitem>
+      <listitem><para>/home &ndash; 高度推荐。在多个发行版或 LFS 编制之间共享主目录和用户自定义配置。通常尺寸很大，取决与可用磁盘空间。</para></listitem>
       
-      <listitem><para>/usr &ndash; A separate /usr partition is generally used
-      if providing a server for a thin client or diskless workstation.  It is
-      normally not needed for LFS.  A size of five gigabytes will handle most
-      installations.</para></listitem>
+      <listitem><para>/usr &ndash; 独立的 /usr 分区通常用于给小客户端或无磁盘工作站作服务器。LFS 中通常不需要。5GB 的尺寸可以容纳多数安装。</para></listitem>
       
-      <listitem><para>/opt &ndash; This directory is most useful for
-      BLFS where multiple installations of large packages like Gnome or KDE can
-      be installed without embedding the files in the /usr hierarchy.  If
-      used, five to ten gigabytes is generally adequate.</para>
+      <listitem><para>/opt &ndash; 此目录在 BLFS 中多重安装 Gnome、KDE 等大程序包而不用将文件嵌入 /usr 目录时最有用。如果要用， 5-10GB 通常很适宜。</para>
       </listitem>
       
-      <listitem><para>/tmp &ndash; A separate /tmp directory is rare, but
-      useful if configuring a thin client.  This partition, if used, will
-      usually not need to exceed a couple of gigabytes.</para></listitem>
+      <listitem><para>/tmp &ndash; 独立的 /tmp 目录很少见，但是在配置小客户端时很有用。此分区如果使用，通常不必超过几 GB。</para></listitem>
       
-      <listitem><para>/usr/src &ndash; This partition is very
-      useful for providing a location to store BLFS source files and
-      share them across LFS builds.  It can also be used as a location
-      for building BLFS packages.  A reasonably large partition of 30-50
-      gigabytes allows plenty of room.</para></listitem>
+      <listitem><para>/usr/src &ndash; 此分区非常有用，可以提供一个位置来存放 BLFS 源文件并在 LFS 编制之间共享。它也可以用作编译 BLFS 程序包的位置。大到 30-50GB 不无道理，可以提供充足的空间。</para></listitem>
    
     </itemizedlist>
    
-    <para>Any separate partition that you want automatically mounted upon boot
-    needs to be specified in the <filename>/etc/fstab</filename>.  Details
-    about how to specify partitions will be discussed in <xref
-    linkend="ch-bootable-fstab"/>.  </para>
+    <para>你想在启动时自动挂载的任何分区都要在 <filename>/etc/fstab</filename> 中指定。关于如何指定分区的细节位于 <xref linkend="ch-bootable-fstab"/>。</para>
    
     </sect3>
   </sect2>
