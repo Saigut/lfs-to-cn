@@ -8,13 +8,9 @@
 <sect1 id="materials-patches">
   <?dbhtml filename="patches.html"?>
 
-  <title>Needed Patches</title>
+  <title>需要的补丁文件</title>
 
-  <para>In addition to the packages, several patches are also required.
-  These patches correct any mistakes in the packages that should be
-  fixed by the maintainer.  The patches also make small modifications to
-  make the packages easier to work with. The following patches will be
-  needed to build an LFS system:</para>
+  <para>除了软件包，一些补丁文件也是必不可少的。这些补丁文件修正了一些软件源码中的错误，也做了些小修正使这些软件更易使用。下面的一些补丁文件是构建LFS系统需要的：</para>
 
   <variablelist role="materials">
 
@@ -206,13 +202,8 @@
 
   </variablelist>
 
-  <para>Total size of these patches: about <returnvalue/></para>
+  <para>这些补丁文件的总大小：大约 <returnvalue/></para>
 
-  <para>In addition to the above required patches, there exist a number of
-  optional patches created by the LFS community. These optional patches
-  solve minor problems or enable functionality that is not enabled by
-  default. Feel free to peruse the patches database located at
-  <ulink url="&lfs-root;patches/downloads/"/> and acquire any additional
-  patches to suit your system needs.</para>
+  <para>除了上面的补丁，还有一些在LFS交流中创建的可选补丁。这些小补丁可以解决一些小问题，并能给一些软件增加一些默认没有的功能。如果需要，请到<ulink url="&lfs-root;patches/downloads/"/>得到符合你的需求的补丁文件。</para>
 
 </sect1>
