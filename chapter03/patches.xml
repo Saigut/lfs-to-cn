@@ -8,15 +8,9 @@
 <sect1 id="materials-patches">
   <?dbhtml filename="patches.html"?>
 
-<<<<<<< HEAD
-  <title>需要的补丁文件</title>
-
-  <para>除了软件包，一些补丁文件也是必不可少的。这些补丁文件修正了一些软件源码中的错误，也做了些小修正使这些软件更易使用。下面的一些补丁文件是构建LFS系统需要的：</para>
-=======
   <title>需要的补丁</title>
 
-  <para>除了程序包之外还需要几个补丁。这些补丁修复程序包中维护者应该修复的错误。它们也做一些小的修改使得程序包更容易操作。LFS 系统需要一下补丁：</para>
->>>>>>> 9d91baac0c364ebd48a01202b1979bf952ff6cde
+  <para>除了程序包之外还需要几个补丁。这些补丁修复程序包中维护者应该修复的错误。它们也做一些小的修改使得程序包更容易操作。LFS 系统需要以下补丁：</para>
 
   <variablelist role="materials">
 
@@ -208,14 +202,8 @@
 
   </variablelist>
 
-<<<<<<< HEAD
-  <para>这些补丁文件的总大小：大约 <returnvalue/></para>
-
-  <para>除了上面的补丁，还有一些在LFS交流中创建的可选补丁。这些小补丁可以解决一些小问题，并能给一些软件增加一些默认没有的功能。如果需要，请到<ulink url="&lfs-root;patches/downloads/"/>得到符合你的需求的补丁文件。</para>
-=======
   <para>这些补丁的总大小：大约 <returnvalue/></para>
 
-  <para>除了这些需要的补丁之外，LFS 社区还创建了一些可选补丁。这些可选补丁能解决一些小问题或者启用默认禁用的功能。随意从补丁数据库获取额外补丁来适合你的系统需求，它位于 <ulink url="&lfs-root;patches/downloads/"/> 。</para>
->>>>>>> 9d91baac0c364ebd48a01202b1979bf952ff6cde
+  <para>除了这些需要的补丁之外，LFS 社区还创建了一些可选补丁。这些可选补丁能解决一些小问题或者启用默认禁用的功能。根据需要从补丁数据库获取额外补丁来适合你的系统需求，它位于 <ulink url="&lfs-root;patches/downloads/"/> 。</para>
 
 </sect1>
