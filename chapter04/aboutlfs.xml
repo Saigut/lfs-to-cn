@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
   "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
   <!ENTITY % general-entities SYSTEM "../general.ent">
@@ -8,32 +8,19 @@
 <sect1 id="prepare-aboutlfs">
   <?dbhtml filename="aboutlfs.html"?>
 
-  <title>About $LFS</title>
+  <title>关于 $LFS</title>
 
-  <para>Throughout this book, the environment variable <envar>LFS</envar> will
-  be used. It is paramount that this variable is always defined.
-  It should be set to the mount point chosen for the LFS partition.
-  Check that the <envar>LFS</envar> variable is set up properly with:</para>
+  <para>环境变量 <envar>LFS</envar> 在整本书中都要用到。首要一点就是要保证它总是定义好的。它应该被设置为 LFS 分区的挂载点。用以下命令检查 <envar>LFS</envar> 变量是否正确设置：</para>
 
 <screen role="nodump"><userinput>echo $LFS</userinput></screen>
 
-  <para>Make sure the output shows the path to the LFS partition's mount
-  point, which is <filename class="directory">/mnt/lfs</filename> if the
-  provided example was followed. If the output is incorrect, the
-  variable can be set with:</para>
+  <para>确保输出显示到 LFS 分区的挂载点的路径，在之前的例子中是 <filename class="directory">/mnt/lfs</filename>。如果输出不正确，如此设置此变量：</para>
 
 <screen role="nodump"><userinput>export LFS=/mnt/lfs</userinput></screen>
 
-  <para>Having this variable set is beneficial in that commands such as
-  <command>mkdir $LFS/tools</command> can be typed literally. The shell
-  will automatically replace <quote>$LFS</quote> with
-  <quote>/mnt/lfs</quote> (or whatever the variable was set to) when it
-  processes the command line.</para>
+  <para>设置好这一变量很有用，这样如同 <command>mkdir $LFS/tools</command> 的命令就可以逐字键入不必改动。Shell 会在处理命令行的时候自动把 <quote>$LFS</quote> 替换为 <quote>/mnt/lfs</quote> (此变量的值) 。</para>
 
-  <para>Do not forget to check that <envar>$LFS</envar> is set whenever
-  you leave and reenter the current working environment (as when doing a
-  <command>su</command> to <systemitem class="username">root</systemitem>
-  or another user).</para>
+  <para>在离开或重新进入当前工作环境 (比如 <command>su</command> 到 <systemitem class="username">root</systemitem> 或者其他用户) 时不要忘记检查 <envar>$LFS</envar> 是否设置好。</para>
 
 </sect1>
 
