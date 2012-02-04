@@ -94,7 +94,7 @@
       <para>2012-01-22</para>
       <itemizedlist>
         <listitem>
-          <para>[bdubbs] - 升级网络引导脚本以支持 BLFS 中的桥设备。</para>
+          <para>[bdubbs] - 升级网络启动脚本以支持 BLFS 中的桥设备。</para>
         </listitem>
         <listitem>
           <para>[matthew] - 升级至 Linux-3.2.1。修正 <ulink url="&lfs-ticket-root;2999">#2999</ulink>。</para>
@@ -109,7 +109,7 @@
       <para>2012-01-16</para>
       <itemizedlist>
         <listitem>
-          <para>[bdubbs] - 改变引导脚本，给 /dev 使用 devtmpfs。将 /dev 的挂在移到 mountvirtfs 并确保 /dev 被置于 /etc/mtab。相应改动 fstab 和内核配置。</para>
+          <para>[bdubbs] - 改变启动脚本，给 /dev 使用 devtmpfs。将 /dev 的挂在移到 mountvirtfs 并确保 /dev 被置于 /etc/mtab。相应改动 fstab 和内核配置。</para>
         </listitem>
       </itemizedlist>
     </listitem>
@@ -301,7 +301,7 @@
       <para>2011-11-14</para>
       <itemizedlist>
         <listitem>
-          <para>[bdubbs] - 升级引导脚本：清理；将 consolelog 功能移至 rc；清理引导日志功能;修正运行级别 S 与目标运行级别之间的交互尝试。感谢 DJ Lucas。</para>
+          <para>[bdubbs] - 升级启动脚本：清理；将 consolelog 功能移至 rc；清理引导日志功能;修正运行级别 S 与目标运行级别之间的交互尝试。感谢 DJ Lucas。</para>
         </listitem>
       </itemizedlist>
     </listitem>
@@ -310,10 +310,10 @@
       <para>2011-10-29</para>
       <itemizedlist>
         <listitem>
-          <para>[bdubbs] - 在引导脚本介绍中改正文本。</para>
+          <para>[bdubbs] - 在启动脚本介绍中改正文本。</para>
         </listitem>
         <listitem>
-          <para>[bdubbs] - 移除引导脚本功能中用于向后兼容 BLFS 的源代码行。</para>
+          <para>[bdubbs] - 移除启动脚本功能中用于向后兼容 BLFS 的源代码行。</para>
         </listitem>
       </itemizedlist>
     </listitem>

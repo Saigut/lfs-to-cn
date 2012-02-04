@@ -34,13 +34,11 @@
 
   <para>下一个章节是安装启动脚本的一些细节。这些脚本大多数不用修正就能直接使用，但是还是有一些需要额外的配置文件，因为他们需要处理一些跟你的硬件相关的信息。</para>
   
-  <para>本书中使用 System-V 风格的启动脚本，因为它们简单并被广泛应用。可选地，这里有一些关于使用 BSD 风格的启动脚本的使用提示<ulink
-  url="&hints-root;bsd-init.txt"/>。在LFS的邮件列表中查找<quote>depinit</quote>，<quote>upstart</quote>，或<quote>systemd</quote>会找到一些额外信息。</para>
+  <para>本书中使用 System-V 风格的启动脚本，因为它们简单并被广泛应用。可选地，这里有一些关于使用 BSD 风格的启动脚本的使用提示<ulink url="&hints-root;bsd-init.txt"/>。在LFS的邮件列表中查找 <quote>depinit</quote>、<quote>upstart</quote> 或 <quote>systemd</quote> 会找到一些额外信息。</para>
  
   <para>如果使用其他风格的启动脚本，请跳过这些章节。</para>
 
-  <para>启动脚本的列表可以在<xref linkend="scripts"
-  role="."/>找到。</para>
+  <para>启动脚本的列表可以在<xref linkend="scripts" role="."/>找到。</para>
 
 
   <itemizedlist>
