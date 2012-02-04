@@ -94,7 +94,7 @@
       <para>2012-01-22</para>
       <itemizedlist>
         <listitem>
-          <para>[bdubbs] - 升级网络启动脚本以支持 BLFS 中的桥设备。</para>
+          <para>[bdubbs] - 升级网络引导脚本以支持 BLFS 中的桥设备。</para>
         </listitem>
         <listitem>
           <para>[matthew] - 升级至 Linux-3.2.1。修正 <ulink url="&lfs-ticket-root;2999">#2999</ulink>。</para>
@@ -184,10 +184,10 @@
           <para>[matthew] - 升级至 Linux-3.1.6。修正 <ulink url="&lfs-ticket-root;2985">#2985</ulink>。</para>
         </listitem>
         <listitem>
-          <para>[matthew] - Correct permissions on /run/shm。修正 <ulink url="&lfs-ticket-root;2984">#2984</ulink>。</para>
+          <para>[matthew] - 修正 /run/shm 的权限。修正 <ulink url="&lfs-ticket-root;2984">#2984</ulink>。</para>
         </listitem>
         <listitem>
-          <para>[matthew] - Add upstream patches for MPFR。修正 <ulink url="&lfs-ticket-root;2983">#2983</ulink>。</para>
+          <para>[matthew] - 添加 MPFR 的上游补丁。修正 <ulink url="&lfs-ticket-root;2983">#2983</ulink>。</para>
         </listitem>
       </itemizedlist>
     </listitem>
@@ -232,7 +232,7 @@
           <para>[matthew] - 升级至 IPRoute2-3.1.0。修正 <ulink url="&lfs-ticket-root;2969">#2969</ulink>。</para>
         </listitem>
         <listitem>
-          <para>[matthew] - Add latest upstream patches for Bash。修正 <ulink url="&lfs-ticket-root;2968">#2968</ulink>。</para>
+          <para>[matthew] - 添加 Bash 的最新上游补丁。修正 <ulink url="&lfs-ticket-root;2968">#2968</ulink>。</para>
         </listitem>
       </itemizedlist>
     </listitem>
@@ -310,10 +310,10 @@
       <para>2011-10-29</para>
       <itemizedlist>
         <listitem>
-          <para>[bdubbs] - 在启动脚本介绍中改正文本。</para>
+          <para>[bdubbs] - 在引导脚本介绍中改正文本。</para>
         </listitem>
         <listitem>
-          <para>[bdubbs] - 移除启动脚本功能中用于向后兼容 BLFS 的源代码行。</para>
+          <para>[bdubbs] - 移除引导脚本功能中用于向后兼容 BLFS 的源代码行。</para>
         </listitem>
       </itemizedlist>
     </listitem>
