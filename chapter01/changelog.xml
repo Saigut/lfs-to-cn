@@ -94,7 +94,7 @@
       <para>2012-01-22</para>
       <itemizedlist>
         <listitem>
-          <para>[bdubbs] - 升级网络引导脚本以支持 BLFS 中的桥设备。</para>
+          <para>[bdubbs] - 升级网络启动脚本以支持 BLFS 中的桥设备。</para>
         </listitem>
         <listitem>
           <para>[matthew] - 升级至 Linux-3.2.1。修正 <ulink url="&lfs-ticket-root;2999">#2999</ulink>。</para>
@@ -310,10 +310,10 @@
       <para>2011-10-29</para>
       <itemizedlist>
         <listitem>
-          <para>[bdubbs] - 在引导脚本介绍中改正文本。</para>
+          <para>[bdubbs] - 在启动脚本介绍中改正文本。</para>
         </listitem>
         <listitem>
-          <para>[bdubbs] - 移除引导脚本功能中用于向后兼容 BLFS 的源代码行。</para>
+          <para>[bdubbs] - 移除启动脚本功能中用于向后兼容 BLFS 的源代码行。</para>
         </listitem>
       </itemizedlist>
     </listitem>
