@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
   "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
   <!ENTITY % general-entities SYSTEM "../general.ent">
@@ -8,34 +8,17 @@
 <sect1 id="ch-tools-settingenviron">
   <?dbhtml filename="settingenvironment.html"?>
 
-  <title>Setting Up the Environment</title>
+  <title>设置工作环境</title>
 
-  <para>Set up a good working environment by creating two new startup files
-  for the <command>bash</command> shell. While logged in as user
-  <systemitem class="username">lfs</systemitem>, issue the following command
-  to create a new <filename>.bash_profile</filename>:</para>
+  <para>给 <command>bash</command> shell 创建两个新的起始文件来创建一个好的工作环境。作为用户 <systemitem class="username">lfs</systemitem> 登录后运行以下命令来创建新的 <filename>.bash_profile</filename> 文件：</para>
 
 <screen><userinput>cat &gt; ~/.bash_profile &lt;&lt; "EOF"
 <literal>exec env -i HOME=$HOME TERM=$TERM PS1='\u:\w\$ ' /bin/bash</literal>
 EOF</userinput></screen>
 
-  <para>When logged on as user <systemitem class="username">lfs</systemitem>,
-  the initial shell is usually a <emphasis>login</emphasis> shell which reads
-  the <filename>/etc/profile</filename> of the host (probably containing some
-  settings and environment variables) and then <filename>.bash_profile</filename>.
-  The <command>exec env -i.../bin/bash</command> command in the
-  <filename>.bash_profile</filename> file replaces the running shell with a new
-  one with a completely empty environment, except for the <envar>HOME</envar>,
-  <envar>TERM</envar>, and <envar>PS1</envar> variables. This ensures that no
-  unwanted and potentially hazardous environment variables from the host system
-  leak into the build environment. The technique used here achieves the goal of
-  ensuring a clean environment.</para>
+  <para>作为用户 <systemitem class="username">lfs</systemitem> 登录时，初始 shell 通常是一个<emphasis>登录</emphasis> shell，会先读取宿主的 <filename>/etc/profile</filename> 文件 (可能包含一些设置和环境变量) 然后是 <filename>.bash_profile</filename>。<filename>.bash_profile</filename> 文件中的 <command>exec env -i.../bin/bash</command> 这条命令用全空的环境替换运行中的 shell，只保留 <envar>HOME</envar>、<envar>TERM</envar> 和 <envar>PS1</envar> 变量。这样就确保了不会有不想要的或有千载威海的环境变量从宿主系统泄漏到编制环境中。这样就实现了确保环境干净的目标。</para>
 
-  <para>The new instance of the shell is a <emphasis>non-login</emphasis>
-  shell, which does not read the <filename>/etc/profile</filename> or
-  <filename>.bash_profile</filename> files, but rather reads the
-  <filename>.bashrc</filename> file instead. Create the
-  <filename>.bashrc</filename> file now:</para>
+  <para>新的 shell 是<emphasis>非登录</emphasis> shell，不读 <filename>/etc/profile</filename> 和 <filename>.bash_profile</filename> 这两个文件，而去读 <filename>.bashrc</filename> 文件。现在创建 <filename>.bashrc</filename> 文件：</para>
 
 <screen><userinput>cat &gt; ~/.bashrc &lt;&lt; "EOF"
 <literal>set +h
