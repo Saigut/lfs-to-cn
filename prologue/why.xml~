@@ -226,6 +226,12 @@
       </listitem>
 
       <listitem>
+        <para>Module-Init-Tools</para>
+
+        <para>提供用于管理 Linux 内核模块的工具。</para>
+      </listitem>
+
+      <listitem>
         <para>MPC</para>
 
         <para>提供复杂数学计算支持。Gcc 安装时需要。</para>

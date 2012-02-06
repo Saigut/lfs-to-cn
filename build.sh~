@@ -1,0 +1,10 @@
+#!/bin/bash
+
+make BASEDIR=~/LFS-trans/LFS
+make BASEDIR=~/LFS-trans pdf
+make BASEDIR=~/LFS-trans nochunks
+make BASEDIR=~/LFS-trans wget-list
+make BASEDIR=~/LFS-trans md5sums
+
+cd ~/LFS-trans
+tar -jcf LFS.tar.bz2 LFS
