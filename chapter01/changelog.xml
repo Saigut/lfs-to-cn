@@ -37,10 +37,10 @@
       <para>2012-02-05</para>
       <itemizedlist>
         <listitem>
-          <para>[matthew] - 升级至 Linux-3.2.4。修正 <ulink url="&lfs-ticket-root;3012">#3012</ulink>.</para>
+          <para>[matthew] - 升级至 Linux-3.2.4。修正 <ulink url="&lfs-ticket-root;3012">#3012</ulink>。</para>
         </listitem>
         <listitem>
-          <para>[matthew] - 升级至 Automake-1.11.3。修正 <ulink url="&lfs-ticket-root;3011">#3011</ulink>.</para>
+          <para>[matthew] - 升级至 Automake-1.11.3。修正 <ulink url="&lfs-ticket-root;3011">#3011</ulink>。</para>
         </listitem>
         <listitem>
           <para>[matthew] - 移除剩余的对 Module-Init-Tools 的提及
@@ -58,7 +58,7 @@
         <listitem>
           <para>[bdubbs] - 修正启动脚本：
           <itemizedlist>
-            <listitem><para>移除不必要的 function literal。</para></listitem>
+            <listitem><para>移除不必要的功能文字。</para></listitem>
             <listitem><para>修正 statusproc 中的 pidlist 逻辑。</para></listitem>
             <listitem><para>修正 statusproc 使用声明。</para></listitem>
             <listitem><para>在 mountfs 中加入 nodevtmpfs。</para></listitem>
@@ -66,15 +66,10 @@
           </para>
         </listitem>
          <listitem>
-           <para>[bdubbs] Add nodump to xml so command to print out 
-           70-persistent-net.rules will not be used in jhalfs.
-           Fixes a problem in kvm.</para>
+           <para>[bdubbs] 给 xml 添加 nodump 使得打印出 70-persistent-net.rules 的命令在 jhalfs 中不会使用。修复 kvm 中的一个问题。</para>
          </listitem>
         <listitem>
-          <para>[bryan] - Fix up text in section 7.4 ("device and module
-          handling"), and change the recommendation for wrapper modules to
-          use kmod's support for soft post-dependencies instead.  Fixes
-          <ulink url="&lfs-ticket-root;3010">#3010</ulink>.</para>
+          <para>[bryan] - 修正 7.4 节中的文本，并改变包装模块推荐以使用 kmod 的对软 post-dependencies。修正 <ulink url="&lfs-ticket-root;3010">#3010</ulink>。</para>
         </listitem>
       </itemizedlist>
     </listitem>

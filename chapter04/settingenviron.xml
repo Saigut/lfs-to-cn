@@ -30,17 +30,7 @@ PATH=/tools/bin:/bin:/usr/bin
 export LFS LC_ALL LFS_TGT PATH</literal>
 EOF</userinput></screen>
 
-  <para>The <command>set +h</command> command turns off
-  <command>bash</command>'s hash function. Hashing is ordinarily a useful
-  feature&mdash;<command>bash</command> uses a hash table to remember the
-  full path of executable files to avoid searching the <envar>PATH</envar>
-  time and again to find the same executable. However, the new tools should
-  be used as soon as they are installed. By switching off the hash function,
-  the shell will always search the <envar>PATH</envar> when a program is to
-  be run. As such, the shell will find the newly compiled tools in
-  <filename class="directory">$LFS/tools</filename> as soon as they are
-  available without remembering a previous version of the same program in a
-  different location.</para>
+  <para><command>set +h</command> 命令关闭 <command>bash</command> 的哈希功能。哈希通常是很有用的功能 &mdash;<command>bash</command> 使用哈希表来记忆可执行文件的完整路径以防每次为了同样的可执行文件搜索 <envar>PATH</envar>。然而，新的工具应该一旦安装就被使用。通过关闭哈希功能，shell 在要运行程序的时候就总会搜索 <envar>PATH</envar>。这样，shell 就会找到 <filename class="directory">$LFS/tools</filename> 中新编译的工具而不会记住另外一个位置的以前版本的相同程序。</para>
 
   <para>Setting the user file-creation mask (umask) to 022 ensures that newly
   created files and directories are only writable by their owner, but are
