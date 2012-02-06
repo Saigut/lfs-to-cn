@@ -41,6 +41,7 @@ lfs: maketar validxml profile-html
 	done;
 
 	$(Q)$(MAKE) wget-list
+	
 
 pdf: validxml
 	@echo "Generating profiled XML for PDF..."
@@ -130,6 +131,8 @@ validate: maketar validxml
 	@echo "Validation complete."
 
 all: lfs nochunks pdf dump-commands md5sums
+
+other: pdf nochunks wget-list md5sums
 
 .PHONY : all dump-commands lfs nochunks pdf profile-html tmpdir validate \
 	 validxml wget-list maketar md5sums
