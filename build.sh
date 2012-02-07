@@ -15,5 +15,3 @@ rm *.tar.bz2
 echo "创建压缩包"
 cd ~/LFS-trans
 tar -jcf LFS.tar.bz2 LFS
-
-

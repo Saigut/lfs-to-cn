@@ -8,7 +8,7 @@
 <sect1 id="ch-scripts-network">
   <?dbhtml filename="network.html"?>
 
-  <title>General Network Configuration</title>
+  <title>网络设置</title>
 
   <indexterm zone="ch-scripts-network">
     <primary sortas="d-network">network</primary>
