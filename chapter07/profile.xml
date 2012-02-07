@@ -8,56 +8,38 @@
 <sect1 id="ch-scripts-profile">
   <?dbhtml filename="profile.html"?>
 
-  <title>The Bash Shell Startup Files</title>
+  <title>Bash初始化文件</title>
 
   <indexterm zone="ch-scripts-profile">
     <primary sortas="e-/etc/profile">/etc/profile</primary>
   </indexterm>
 
-  <para>The shell program <command>/bin/bash</command> (hereafter referred to
-  as <quote>the shell</quote>) uses a collection of startup files to help
-  create an environment to run in. Each file has a specific use and may affect
-  login and interactive environments differently. The files in the <filename
-  class="directory">/etc</filename> directory provide global settings. If an
-  equivalent file exists in the home directory, it may override the global
-  settings.</para>
+  <para>Shell程序 <command>/bin/bash</command> （后面用 <quote>shell</quote> 来代替）使用一系列与启动相关的文件创建一个运行环境。每个文件在不同的方面影响登录设定和交互环境。在 <filename
+  class="directory">/etc</filename> 文件夹中的文件提供全局设定。如果相同的设置文件存在于你的$HOME目录，那些文件会覆盖全局设定。</para>
 
-  <para>An interactive login shell is started after a successful login, using
-  <command>/bin/login</command>, by reading the <filename>/etc/passwd</filename>
-  file. An interactive non-login shell is started at the command-line (e.g.,
-  <prompt>[prompt]$</prompt><command>/bin/bash</command>). A non-interactive
-  shell is usually present when a shell script is running. It is non-interactive
-  because it is processing a script and not waiting for user input between
-  commands.</para>
+  <para>一个登录 shell 会在使用 <command>/bin/login</command> 核对 <filename>/etc/passwd</filename> 文件中的用户信息，成功登陆后启动。一个非登录 shell 是从命令行启动的（例如，使用 直接执行 <command>/bin/bash</command>）。一个非登录 shell 总是在一个 shell 脚本执行时存在。他是非交互式的，因为它会执行一个脚本，不会等待用户输入命令。</para>
 
-  <para>For more information, see <command>info bash</command> under the
-  <emphasis>Bash Startup Files and Interactive Shells</emphasis> section.</para>
+  <para>更多信息，查看 <command>info bash</command> 下的 <emphasis>Bash Startup Files and Interactive Shells</emphasis> 章节。</para>
 
-  <para>The files <filename>/etc/profile</filename> and
-  <filename>~/.bash_profile</filename> are read when the shell is
-  invoked as an interactive login shell.</para>
+  <para><filename>/etc/profile</filename> 文件和 <filename>~/.bash_profile</filename> 文件会在一个 shell 被当作一个登录 shell 时被读取。</para>
 
-  <para>The base <filename>/etc/profile</filename> below sets some
-  environment variables necessary for native language support. Setting
-  them properly results in:</para>
+  <para><filename>/etc/profile</filename> 文件设置重要的环境变量来提供本地语言支持。通过设置它们，可以达成:</para>
 
   <itemizedlist>
     <listitem>
-      <para>The output of programs translated into the native language</para>
+      <para>将一些程序的输出翻译成本地语言。</para>
     </listitem>
     <listitem>
-      <para>Correct classification of characters into letters, digits and other
-      classes. This is necessary for <command>bash</command> to properly accept
-      non-ASCII characters in command lines in non-English locales</para>
+      <para>正确的将字符分类成字母，数字，或者其它类别。这对 <command>bash</command> 正确处理非 ASCII 字符非常重要。</para>
     </listitem>
     <listitem>
-      <para>The correct alphabetical sorting order for the country</para>
+      <para>根据国家不同进行合适的按字符排序。</para>
     </listitem>
     <listitem>
-      <para>Appropriate default paper size</para>
+      <para>默认合适的页大小。</para>
     </listitem>
     <listitem>
-      <para>Correct formatting of monetary, time, and date values</para>
+      <para>正确的时间，日期和价格格式。</para>
     </listitem>
   </itemizedlist>
 
