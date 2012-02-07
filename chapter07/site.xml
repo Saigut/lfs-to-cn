@@ -9,25 +9,15 @@
 <sect1 id="ch-scripts-site">
   <?dbhtml filename="site.html"?>
 
-  <title>The rc.site File</title>
+  <title>rc.site文件</title>
 
   <indexterm zone="ch-scripts-site">
     <primary sortas="a-rc.site">rc.site</primary>
   </indexterm>
 
-  <para>The optional <filename>/etc/sysconfig/rc.site</filename> file contains
-  settings that are automatically set for each boot script.  It can alternatively
-  set the values specified in the <filename>hostname</filename>,
-  <filename>console</filename>, and <filename>clock</filename> files in the
-  <filename class='directory'>/etc/sysconfig/</filename> directory.  If the
-  associated variables are present in both these separate files and
-  <filename>rc.site</filename>, the values in the script specific files have
-  precedence. </para>
+  <para>可选的 <filename>/etc/sysconfig/rc.site</filename> 文件包含一些可以自动设置给每一个启动脚本的设置。这是另一种设置 <filename class='directory'>/etc/sysconfig/</filename> 文件夹中的 <filename>hostname</filename>，<filename>console</filename>，和 <filename>clock</filename> 文件中指定变量的方法。如果这些相关的变量在这些分开的文件和 <filename>rc.site</filename> 文件中都有设置，在 <filename>rc.site</filename>中的设置会覆盖其他文件的设置。</para>
 
-  <para><filename>rc.site</filename> also contains parameters that can 
-  customize other aspects of the boot process.  Setting the IPROMPT variable
-  will enable selective running of bootscripts.  Other options are described
-  in the file comments.  The default version of the file is as follows:</para>
+  <para><filename>rc.site</filename> 也包含一些可以定制启动流程的其他方面的参数。设置 IPROMPT 变量可以启用交互式启动。其他选项会在这个文件的注释中说明。这个文件的默认版本如下：</para>
 
   <!-- Use role to fix a pdf generation problem -->
   <screen role="auto">&site;</screen>
