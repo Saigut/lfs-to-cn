@@ -8,36 +8,17 @@
 <sect1 id="prepare-aboutsbus">
   <?dbhtml filename="aboutsbus.html"?>
 
-  <title>About SBUs</title>
+  <title>关于SBU</title>
 
-  <para>Many people would like to know beforehand approximately how long
-  it takes to compile and install each package. Because Linux From
-  Scratch can be built on many different systems, it is impossible to
-  provide accurate time estimates. The biggest package (Glibc) will
-  take approximately 20 minutes on the fastest systems, but could take
-  up to three days on slower systems! Instead of providing actual times,
-  the Standard Build Unit (SBU) measure will be
-  used instead.</para>
+  <para>许多用户希望知道编译安装一个软件包最终会花费多少时间。因为LFS系统可以构建于多种系统中，所以不可能准确知道所需时间。最大的一个软件包（glibc）在最快的系统中仅仅花费20分钟，但在比较慢的系统上要花费3天！为了说明大概的时间，我们引入了SBU（Standard Build Unit）。</para>
 
-  <para>The SBU measure works as follows. The first package to be compiled
-  from this book is Binutils in <xref linkend="chapter-temporary-tools"/>. The
-  time it takes to compile this package is what will be referred to as the
-  Standard Build Unit or SBU. All other compile times will be expressed relative
-  to this time.</para>
+  <para>SBU是这样工作的。在<xref linkend="chapter-temporary-tools"/>，第一个安装的包是 Binutils。编译这个包所花费的时间被叫做 SBU。其他的软件包的编译时间会根据这个来表示。</para>
 
-  <para>For example, consider a package whose compilation time is 4.5
-  SBUs. This means that if a system took 10 minutes to compile and
-  install the first pass of Binutils, it will take
-  <emphasis>approximately</emphasis> 45 minutes to build this example package.
-  Fortunately, most build times are shorter than the one for Binutils.</para>
+  <para>例如，一个标记为4.5 SBUs的包，意味着，如果一个系统需要10分钟编译第一个软件包Binutils，那么这个软件包需要45分钟进行编译。幸运的是，绝大多数软件包进行编译时花费的时间比Binutils要少。</para>
 
-  <para>In general, SBUs are not entirely accurate because they depend on many
-  factors, including the host system's version of GCC.  They are provided here
-  to give an estimate of how long it might take to install a package, but the
-  numbers can vary by as much as dozens of minutes in some cases.</para>
+  <para>通常，SBU所代表的时间并不是十分精确。它取决于很多因素，包括你的系统中GCC的版本。它们仅仅时给你一个大概的描述。一些情况下，会有一些误差。</para>
 
-  <para>To view actual timings for a number of specific machines, we recommend
-  The LinuxFromScratch SBU Home Page at <ulink url="&lfs-root;~sbu/"/>.</para>
+  <para>要了解某些具体的机器上的具体时间，可以登录 LinuxFromScratch SBU 主页，其位于 <ulink url="&lfs-root;~sbu/"/>。</para>
 
   <note><para>For many modern systems with multiple processors (or cores) the
   compilation time for a package can be reduced by performing a "parallel make"
