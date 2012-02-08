@@ -17,7 +17,7 @@
   <title>Using GRUB to Set Up the Boot Process</title>
 
   <sect2>
-    <title>Introduction</title>
+    <title>介绍</title>
 
     <warning><para>Configuring GRUB incorrectly can render your system
     inoperable without an alternate boot device such as a CD-ROM.  This
@@ -26,13 +26,9 @@
     LILO.</para></warning>
 
 
-    <para> Ensure that an emergency boot disk is ready to
-    <quote>rescue</quote> the computer if the computer becomes
-    unusable (un-bootable).  If you do not already have a boot device,
-    you can create one.  In order for the procedure below to work,
-    you need to jump ahead to BLFS and install <ulink
+    <para>确保你有一个应急的可引导磁盘（译者注，光盘Linux也行），这使我们可以在电脑不能启动时进行<quote>救援</quote>。如果你没有，可以创建一个。为此，你需要跳到BLFS中，安装<ulink
     url="http://www.linuxfromscratch.org/blfs/view/svn/multimedia/xorriso.html">
-    xorriso</ulink>.</para>
+    xorriso</ulink>。</para>
 
 <screen role="nodump"><userinput>cd /tmp &amp;&amp;
 grub-mkrescue --output=grub-img.iso &amp;&amp;

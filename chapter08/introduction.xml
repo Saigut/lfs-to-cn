@@ -8,11 +8,8 @@
 <sect1 id="ch-bootable-introduction">
   <?dbhtml filename="introduction.html"?>
 
-  <title>Introduction</title>
+  <title>介绍</title>
 
-  <para>It is time to make the LFS system bootable. This chapter
-  discusses creating an <filename>fstab</filename> file, building a
-  kernel for the new LFS system, and installing the GRUB boot loader so
-  that the LFS system can be selected for booting at startup.</para>
+  <para>现在该让LFS系统可以启动。这一章节谈论如何创建一个 <filename>fstab</filename> 文件， 为LFS系统编译一个新的内核，并安装配置GRUB。以使LFS系统在开机时可以被选择并启动。</para>
 
 </sect1>
