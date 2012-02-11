@@ -8,19 +8,15 @@
 <sect1 id="ch-finish-theend">
   <?dbhtml filename="theend.html"?>
 
-  <title>The End</title>
+  <title>结束</title>
 
   <indexterm zone="ch-finish-theend">
     <primary sortas="e-/etc/lfs-release">/etc/lfs-release</primary>
   </indexterm>
 
-  <para>Well done! The new LFS system is installed! We wish you much
-  success with your shiny new custom-built Linux system.</para>
+  <para>干得好！LFS系统已经安装完毕！我们祝元你亲自定制的系统取得成功。</para>
 
-  <para>It may be a good idea to create an <filename>/etc/lfs-release</filename>
-  file. By having this file, it is very easy for you (and for us if you need to
-  ask for help at some point) to find out which LFS version is installed on the
-  system. Create this file by running:</para>
+  <para>创建 <filename>/etc/lfs-release</filename> 是一个好主意。如果有这个文件，你可以方便的知道你所安装的 LFS 系统的版本（当你有问题向我们求助时）。创建这个文件：</para>
 
 <screen><userinput>echo &version; &gt; /etc/lfs-release</userinput></screen>
 

@@ -8,29 +8,16 @@
 <sect1 id="ch-finish-reboot">
   <?dbhtml filename="reboot.html"?>
 
-  <title>Rebooting the System</title>
+  <title>重启系统</title>
 
-  <para>Now that all of the software has been installed, it is time to reboot
-  your computer. However, you should be aware of a few things. The system you
-  have created in this book is quite minimal, and most likely will not have
-  the functionality you would need to be able to continue forward. By installing
-  a few extra packages from the BLFS book while still in our current chroot
-  environment, you can leave yourself in a much better position to continue on
-  once you reboot into your new LFS installation. Installing a text mode web
-  browser, such as Lynx, you can easily view the BLFS book in one virtual
-  terminal, while building packages in another. The GPM package will also allow
-  you to perform copy/paste actions in your virtual terminals. Lastly, if you
-  are in a situation where static IP configuration does not meet your networking
-  requirements, installing packages such as Dhcpcd or PPP at this point might
-  also be useful.</para>
+  <para>现在已经安装了所有的软件，该是重启系统的时候了。然而，你需要知道一些事情。根据本书创建的系统相当精简，可能没有足够的功能让你继续下去。通过在chroot环境安装一些 BLFS 书中提到的软件，你可以准备充足的进入新安装的 LFS 系统。安装一个像 Lynx的文本模式网页浏览器，你可以同时在两个虚拟终端边查看 BLFS 边安装。GPM 可以让你在虚拟终端中进行复制/粘贴操作。最后，如果静态IP不适合你的网络状况，安装Dhcpd 或者 PPP 会非常有用（译注：ADSL用户应该安装 PPP 和 rp-pppoe 或其他命令行拨号软件，这样联网比较方便）。</para>
 
 
-  <para>Now that we have said that, lets move on to booting our shiny new LFS
-  installation for the first time! First exit from the chroot environment:</para>
+  <para>现在我们要首次进入我们安装的 LFS 系统。首先，退出chroot环境：</para>
 
 <screen><userinput>logout</userinput></screen>
 
-  <para>Then unmount the virtual file systems:</para>
+  <para>然后，卸载我们先前挂载的虚拟文件系统：</para>
 
 <screen><userinput>umount -v $LFS/dev/pts
 umount -v $LFS/dev/shm
@@ -38,25 +25,22 @@ umount -v $LFS/dev
 umount -v $LFS/proc
 umount -v $LFS/sys</userinput></screen>
 
-  <para>Unmount the LFS file system itself:</para>
+  <para>卸载 LFS 文件系统（用于安装LFS系统的分区）本身：</para>
 
 <screen><userinput>umount -v $LFS</userinput></screen>
 
-  <para>If multiple partitions were created, unmount the other
-  partitions before unmounting the main one, like this:</para>
+  <para>如果你使用多个文件系统安装LFS系统，你需要一一卸载它们，就像这样：</para>
 
 <screen role="nodump"><userinput>umount -v $LFS/usr
 umount -v $LFS/home
 umount -v $LFS</userinput></screen>
 
-  <para>Now, reboot the system with:</para>
+  <para>现在，重启系统：</para>
 
 <screen role="nodump"><userinput>shutdown -r now</userinput></screen>
 
-  <para>Assuming the GRUB boot loader was set up as outlined earlier, the menu
-  is set to boot <emphasis>LFS &version;</emphasis> automatically.</para>
+  <para>假设GRUB的启动菜单已经设置好，并已经自动选择了<emphasis>LFS &version;</emphasis> 菜单项。</para>
 
-  <para>When the reboot is complete, the LFS system is ready for use and
-  more software may be added to suit your needs.</para>
+  <para>当重启完毕， LFS 系统就可以使用了。根据你的需要安装一些其他的软件。</para>
 
 </sect1>
