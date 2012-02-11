@@ -5,4 +5,4 @@
 #rm */*/*~
 #rm */*/*/*~
 
-echo `find . | grep '~$'`
+rm `find . | grep '~$'`
