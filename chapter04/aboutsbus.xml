@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
   "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
   <!ENTITY % general-entities SYSTEM "../general.ent">
@@ -8,19 +8,19 @@
 <sect1 id="prepare-aboutsbus">
   <?dbhtml filename="aboutsbus.html"?>
 
-  <title>关于SBU</title>
+  <title>关于 SBU</title>
 
-  <para>许多用户希望知道编译安装一个软件包最终会花费多少时间。因为LFS系统可以构建于多种系统中，所以不可能准确知道所需时间。最大的一个软件包（glibc）在最快的系统中仅仅花费20分钟，但在比较慢的系统上要花费3天！为了说明大概的时间，我们引入了SBU（Standard Build Unit）。</para>
+  <para>许多用户希望知道编译安装一个软件包最终会花费多少时间。因为 LFS 系统可以构建于多种系统中，所以不可能准确知道所需时间。最大的一个软件包 (glibc) 在最快的系统中仅仅花费 20 分钟，但在比较慢的系统上要花费 3 天！为了说明大概的时间，我们引入了 SBU (Standard Build Unit)。</para>
 
-  <para>SBU是这样工作的。在<xref linkend="chapter-temporary-tools"/>，第一个安装的包是 Binutils。编译这个包所花费的时间被叫做 SBU。其他的软件包的编译时间会根据这个来表示。</para>
+  <para>SBU 是这样工作的。在<xref linkend="chapter-temporary-tools"/>，第一个安装的包是 Binutils。编译这个包所花费的时间被叫做 SBU。其他的软件包的编译时间会根据这个来表示。</para>
 
-  <para>例如，一个标记为4.5 SBUs的包，意味着，如果一个系统需要10分钟编译第一个软件包Binutils，那么这个软件包需要45分钟进行编译。幸运的是，绝大多数软件包进行编译时花费的时间比Binutils要少。</para>
+  <para>例如，一个标记为 4.5 SBU 的包意味着，如果一个系统需要 10 分钟编译第一个软件包 Binutils，那么这个软件包需要 45 分钟进行编译。幸运的是，绝大多数软件包进行编译时花费的时间比 Binutils 要少。</para>
 
-  <para>通常，SBU所代表的时间并不是十分精确。它取决于很多因素，包括你的系统中GCC的版本。它们仅仅时给你一个大概的描述。一些情况下，会有一些误差。</para>
+  <para>通常，SBU 所代表的时间并不是十分精确。它取决于很多因素，包括你的系统中 GCC 的版本。它们仅仅时给你一个大概的描述。一些情况下，会有一些误差。</para>
 
   <para>要了解某些具体的机器上的具体时间，可以登录 LinuxFromScratch SBU 主页，其位于 <ulink url="&lfs-root;~sbu/"/>。</para>
 
-  <note><para>对于现代的许多多处理器系统 （或者多核心），可以使用“平行make”来减少编译时间（译注，make是单进程，“平行”指打开多个进程进行编译）。为此，可以通过设置环境变量或者给 <command>make</command> 设置参数来实现。例如，一个 Core2Duo 处理器可以用：</para>
+  <note><para>对于现代的许多多处理器系统 (或者多核心)，可以使用 “平行 make” 来减少编译时间 (译注，make 是单进程，“平行” 指打开多个进程进行编译)。为此，可以通过设置环境变量或者给 <command>make</command> 设置参数来实现。例如，一个 Core2Duo 处理器可以用：</para>
 
   <screen><userinput>export MAKEFLAGS='-j 2'</userinput></screen>
 
@@ -28,7 +28,7 @@
 
   <screen><userinput>make -j2</userinput></screen>
 
-  <para>如果使用这种方式进行编译，编译所用时间的变化幅度会非常大。同时，分析编译流程的输出会变的困难，因为多个处理流程会同时输出。如果你在按照此法进行编译时遇到问题，可以用单处理器模式重新编译，并分析错误信息（译注：虚拟机别用这个，vim的check步骤用这个会出错，Intel 的处理器，-j 后面跟的应该是支持的最大线程数。另外，此法会造成 CPU 满载，散热不好，噪音大的机子量力而为。）。
+  <para>如果使用这种方式进行编译，编译所用时间的变化幅度会非常大。同时，分析编译流程的输出会变的困难，因为多个处理流程会同时输出。如果你在按照此法进行编译时遇到问题，可以用单处理器模式重新编译，并分析错误信息。(译注：虚拟机别用这个，vim 的 check 步骤用这个会出错，Intel 的处理器，-j 后面跟的应该是支持的最大线程数。另外，此法会造成 CPU 满载，散热不好，噪音大的机子量力而为。)
   </para>
 
   </note>

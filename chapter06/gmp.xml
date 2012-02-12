@@ -50,11 +50,6 @@
 <screen role="nodump"><userinput><parameter>ABI=32</parameter> ./configure ...</userinput></screen></para>
     </note>
 
-    <para>First, fix a minor error noted on the upstream web page:</para>
-
-<screen><userinput remap="pre">sed -i 's/np + dn, qn/&amp; - dn/' mpn/generic/dcpi1_bdiv_q.c</userinput></screen>
-
-
     <para>Prepare GMP for compilation:</para>
 
 <screen><userinput remap="configure">./configure --prefix=/usr --enable-cxx --enable-mpbsd</userinput></screen>
@@ -91,7 +86,7 @@
 
 <screen><userinput remap="test">make check 2>&amp;1 | tee gmp-check-log</userinput></screen>
 
-    <para>Ensure that all 162 tests in the test suite passed.  
+    <para>Ensure that all 164 tests in the test suite passed.  
     Check the results by issuing the following command:</para>
 
 <screen><userinput remap="test">awk '/tests passed/{total+=$2} ; END{print total}' gmp-check-log</userinput></screen>

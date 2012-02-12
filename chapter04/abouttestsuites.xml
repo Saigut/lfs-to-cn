@@ -8,21 +8,11 @@
 <sect1 id="prepare-abouttestsuites">
   <?dbhtml filename="abouttestsuites.html"?>
 
-  <title>About the Test Suites</title>
+  <title>有关测试套件</title>
 
-  <para>Most packages provide a test suite. Running the test suite for a
-  newly built package is a good idea because it can provide a <quote>sanity
-  check</quote> indicating that everything compiled correctly. A test suite
-  that passes its set of checks usually proves that the package is
-  functioning as the developer intended. It does not, however, guarantee
-  that the package is totally bug free.</para>
+  <para>很多程序包都提供测试套件。很值得给心编制的程序包运行测试套件，这是 <quote>可用性测试</quote>，可以确认是不是一切都正确编译。通过的测试套件代表程序达到了开发者要求的功能。但是这并不能确保程序包没有漏洞。(译注：如果你没有对本书中的要求做很多修改，很多测试完全可以不做，它们占用很多时间，在线程较多的机器上测试时间甚至比编译时间长。)</para>
 
-  <para>Some test suites are more important than others. For example,
-  the test suites for the core toolchain packages&mdash;GCC, Binutils, and
-  Glibc&mdash;are of the utmost importance due to their central role in a
-  properly functioning system. The test suites for GCC and Glibc can
-  take a very long time to complete, especially on slower hardware, but
-  are strongly recommended.</para>
+  <para>有些测试套件比其他的重要，比如核心工具链程序包&mdash;GCC、Binutils 和 Glibc&mdash;的测试套件就很重要，因为这些程序是良好运转的系统的核心组件。GCC 和 Glibc 的测试套件占用很长时间，尤其在比较慢的硬件上，但是强烈推荐。</para>
 
   <note>
     <para>Experience has shown that there is little to be gained from running

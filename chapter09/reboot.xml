@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
   "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
   <!ENTITY % general-entities SYSTEM "../general.ent">
@@ -10,10 +10,10 @@
 
   <title>重启系统</title>
 
-  <para>现在已经安装了所有的软件，该是重启系统的时候了。然而，你需要知道一些事情。根据本书创建的系统相当精简，可能没有足够的功能让你继续下去。通过在chroot环境安装一些 BLFS 书中提到的软件，你可以准备充足的进入新安装的 LFS 系统。安装一个像 Lynx的文本模式网页浏览器，你可以同时在两个虚拟终端边查看 BLFS 边安装。GPM 可以让你在虚拟终端中进行复制/粘贴操作。最后，如果静态IP不适合你的网络状况，安装Dhcpd 或者 PPP 会非常有用（译注：ADSL用户应该安装 PPP 和 rp-pppoe 或其他命令行拨号软件，这样联网比较方便）。</para>
+  <para>现在已经安装了所有的软件，该是重启系统的时候了。然而，你需要知道一些事情。根据本书创建的系统相当精简，可能没有足够的功能让你继续下去。通过在 chroot 环境安装一些 BLFS 书中提到的软件，你可以准备充足的进入新安装的 LFS 系统。安装一个像 Lynx 的文本模式网页浏览器，你可以同时在两个虚拟终端查看 BLFS 边安装。GPM 可以让你在虚拟终端中进行复制/粘贴操作。最后，如果静态 IP 不适合你的网络状况，安装 Dhcpd 或者 PPP 会非常有用 (译注：ADSL用户应该安装 PPP 和 rp-pppoe 或其他命令行拨号软件，这样联网比较方便)。</para>
 
 
-  <para>现在我们要首次进入我们安装的 LFS 系统。首先，退出chroot环境：</para>
+  <para>现在我们要首次进入我们安装的 LFS 系统。首先，退出 chroot 环境：</para>
 
 <screen><userinput>logout</userinput></screen>
 
@@ -25,11 +25,11 @@ umount -v $LFS/dev
 umount -v $LFS/proc
 umount -v $LFS/sys</userinput></screen>
 
-  <para>卸载 LFS 文件系统（用于安装LFS系统的分区）本身：</para>
+  <para>卸载 LFS 文件系统 (用于安装 LFS 系统的分区) 本身：</para>
 
 <screen><userinput>umount -v $LFS</userinput></screen>
 
-  <para>如果你使用多个文件系统安装LFS系统，你需要一一卸载它们，就像这样：</para>
+  <para>如果你使用多个文件系统安装 LFS 系统，你需要一一卸载它们，就像这样：</para>
 
 <screen role="nodump"><userinput>umount -v $LFS/usr
 umount -v $LFS/home
@@ -39,8 +39,8 @@ umount -v $LFS</userinput></screen>
 
 <screen role="nodump"><userinput>shutdown -r now</userinput></screen>
 
-  <para>假设GRUB的启动菜单已经设置好，并已经自动选择了<emphasis>LFS &version;</emphasis> 菜单项。</para>
+  <para>假设 GRUB 的启动菜单已经设置好，并已经自动选择了 <emphasis>LFS &version;</emphasis> 菜单项。</para>
 
-  <para>当重启完毕， LFS 系统就可以使用了。根据你的需要安装一些其他的软件。</para>
+  <para>当重启完毕，LFS 系统就可以使用了。根据你的需要安装一些其他的软件。</para>
 
 </sect1>

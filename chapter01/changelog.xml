@@ -32,6 +32,44 @@
     </listitem>
 
 -->
+    <listitem>
+      <para>2012-02-11</para>
+      <itemizedlist>
+        <listitem>
+          <para>[matthew] - 修正几个安装命令的标记。这会对 jhalfs 的程序包管理特性有帮助。感谢 Pierre Labastie 提供补丁。</para>
+        </listitem>
+        <listitem>
+          <para>[matthew] - 提前至第六章创建 /usr/lib/libstdc++.la 以修复一 ICA 问题。感谢 Pierre Labastie 提供补丁。</para>
+        </listitem>
+        <listitem>
+          <para>[matthew] - 升级至 GMP-5.0.4。修正 <ulink url="&lfs-ticket-root;3017">#3017</ulink>。</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
+      <para>2012-02-09</para>
+      <itemizedlist>
+        <listitem>
+          <para>[matthew] - 移除 GMP 的测试套件中的一个修正，它在 GMP-5.0.3 中加入上游。修正 <ulink url="&lfs-ticket-root;3016">#3016</ulink>。</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
+      <para>2012-02-07</para>
+      <itemizedlist>
+        <listitem>
+          <para>[matthew] - 升级至 Udev-181。修正 <ulink url="&lfs-ticket-root;3015">#3015</ulink>。</para>
+        </listitem>
+        <listitem>
+          <para>[matthew] - 升级至 Kmod-5。修正 <ulink url="&lfs-ticket-root;3014">#3014</ulink>。</para>
+        </listitem>
+        <listitem>
+          <para>[matthew] - 升级至 Linux-3.2.5。修正 <ulink url="&lfs-ticket-root;3013">#3013</ulink>。</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
 
     <listitem>
       <para>2012-02-05</para>
@@ -69,7 +107,7 @@
            <para>[bdubbs] 给 xml 添加 nodump 使得打印出 70-persistent-net.rules 的命令在 jhalfs 中不会使用。修复 kvm 中的一个问题。</para>
          </listitem>
         <listitem>
-          <para>[bryan] - 修正 7.4 节中的文本，并改变包装模块推荐以使用 kmod 的对软 post-dependencies。修正 <ulink url="&lfs-ticket-root;3010">#3010</ulink>。</para>
+          <para>[bryan] - 修正 7.4 节中的文本，并改变包装模块推荐以使用 kmod 的对 soft post-dependencies 的支持。修正 <ulink url="&lfs-ticket-root;3010">#3010</ulink>。</para>
         </listitem>
       </itemizedlist>
     </listitem>
