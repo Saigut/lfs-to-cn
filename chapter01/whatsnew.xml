@@ -135,9 +135,9 @@
     <!--<listitem>
       <para>Make &make-version;</para>
     </listitem>-->
-    <!--<listitem>
+    <listitem>
       <para>Man-DB &man-db-version;</para>
-    </listitem>-->
+    </listitem>
     <!--<listitem>
       <para>Man-pages &man-pages-version;</para>
     </listitem>-->
@@ -168,9 +168,9 @@
     <!--<listitem>
       <para>Sed &sed-version;</para>
     </listitem>-->
-    <!--<listitem>
+    <listitem>
       <para>Shadow &shadow-version;</para>
-    </listitem>-->
+    </listitem>
     <!--<listitem>
       <para>Sysklogd &sysklogd-version;</para>
     </listitem>-->
@@ -224,6 +224,10 @@
 
     <listitem>
       <para>&mpfr-fixes-patch;</para>
+    </listitem>
+    
+    <listitem>
+      <para>&shadow-nscd-patch;</para>
     </listitem>
 
   </itemizedlist>

@@ -32,6 +32,31 @@
     </listitem>
 
 -->
+
+    <listitem>
+      <para>2012-02-15</para>
+      <itemizedlist>
+        <listitem>
+          <para>[matthew] - 升级至 Man-DB-2.6.1。修正 <ulink url="&lfs-ticket-root;3020">#3020</ulink>。</para>
+        </listitem>
+        <listitem>
+          <para>[bdubbs] - 在 checkfs 脚本中激活所有可能的 LVM 分区。感谢 Qrux 指出此问题。</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
+      <para>2012-02-14</para>
+      <itemizedlist>
+        <listitem>
+          <para>[matthew] - 升级至 Shadow-4.1.5。修正 <ulink url="&lfs-ticket-root;3019">#3019</ulink>。</para>
+        </listitem>
+        <listitem>
+          <para>[matthew] - 升级至 Linux-3.2.6。修正 <ulink url="&lfs-ticket-root;3018">#3018</ulink>。</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+    
     <listitem>
       <para>2012-02-11</para>
       <itemizedlist>

@@ -15,28 +15,11 @@
   <para>有些测试套件比其他的重要，比如核心工具链程序包&mdash;GCC、Binutils 和 Glibc&mdash;的测试套件就很重要，因为这些程序是良好运转的系统的核心组件。GCC 和 Glibc 的测试套件占用很长时间，尤其在比较慢的硬件上，但是强烈推荐。</para>
 
   <note>
-    <para>Experience has shown that there is little to be gained from running
-    the test suites in <xref linkend="chapter-temporary-tools"/>. There can be
-    no escaping the fact that the host system always exerts some influence on
-    the tests in that chapter, often causing inexplicable failures. Because
-    the tools built in <xref linkend="chapter-temporary-tools"/> are temporary
-    and eventually discarded, we do not recommend running the test suites in
-    <xref linkend="chapter-temporary-tools"/> for the average reader. The
-    instructions for running those test suites are provided for the benefit of
-    testers and developers, but they are strictly optional.</para>
+    <para>经验显示在<xref linkend="chapter-temporary-tools"/>中运行测试套件收效甚微。宿主系统无法避免都会对这一章中的测试产生影响，经常会导致莫名其妙的失败。因为在<xref linkend="chapter-temporary-tools"/>中编制的工具是临时的，最终会被丢弃掉，所以在<xref linkend="chapter-temporary-tools"/>中不推荐运行测试套件。提供的运行测试套件的指令是针对测试者和开发者的，是可选的。</para>
   </note>
 
-  <para>A common issue with running the test suites for Binutils and GCC
-  is running out of pseudo terminals (PTYs). This can result in a high
-  number of failing tests. This may happen for several reasons, but the
-  most likely cause is that the host system does not have the
-  <systemitem class="filesystem">devpts</systemitem> file system set up
-  correctly. This issue is discussed in greater detail at
-  <ulink url="&lfs-root;/lfs/faq.html#no-ptys"/>.</para>
+  <para>运行 Binutils 和 GCC 的测试套件时经常出现的一个问题是伪终端 (PTY) 不够用。这可能导致很多测试通不过。这可能有不同的原因，最可能是宿主系统没有正确建立 <systemitem class="filesystem">devpts</systemitem> 文件系统。这个问题在 <ulink url="&lfs-root;/lfs/faq.html#no-ptys"/> 中讨论过。</para>
 
-  <para>Sometimes package test suites will fail, but for reasons which the
-  developers are aware of and have deemed non-critical. Consult the logs located
-  at <ulink url="&test-results;"/> to verify whether or not these failures are
-  expected. This site is valid for all tests throughout this book.</para>
+  <para>有事程序包的测试套件会通不过，但是其原因开发者清楚并声明无害。查看位于 <ulink url="&test-results;"/> 的日志来查看这些失败是否应该出现。这一站点对本书中所有的测试都有效。</para>
 
 </sect1>
