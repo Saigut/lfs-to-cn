@@ -10,56 +10,21 @@
 
   <title>工具链技术注记</title>
 
-  <para>This section explains some of the rationale and technical details
-  behind the overall build method. It is not essential to immediately
-  understand everything in this section. Most of this information will be
-  clearer after performing an actual build. This section can be referred
-  to at any time during the process.</para>
+  <para>这一节解释总体编制方法的某些基本原理和技术细节。不必立刻理解本节的所有内容。大部分信息会在进行实际编制之后变得清晰。过程中可以随时查阅本节。</para>
 
-  <para>The overall goal of <xref linkend="chapter-temporary-tools"/> is to
-  produce a temporary area that contains a known-good set of tools that can be
-  isolated from the host system. By using <command>chroot</command>, the
-  commands in the remaining chapters will be contained within that environment,
-  ensuring a clean, trouble-free build of the target LFS system. The build
-  process has been designed to minimize the risks for new readers and to provide
-  the most educational value at the same time.</para>
+  <para><xref linkend="chapter-temporary-tools"/>的总体目的是制造一个临时区域，要包含已知可用的、能从宿主独立出来的工具集。通过使用 <command>chroot</command>，余下章节中的命令就会被限制在此环境内，确保目标 LFS 系统编制干净而且没有麻烦。编制进程按照最小化新读者风险并同时提供最大的教育价值设计。</para>
 
   <important>
-    <para>Before continuing, be aware of the name of the working platform,
-    often referred to as the target triplet. A simple way to determine the
-    name of the target triplet is to run the <command>config.guess</command>
-    script that comes with the source for many packages. Unpack the Binutils
-    sources and run the script: <userinput>./config.guess</userinput> and note
-    the output. For example, for a modern 32-bit Intel processor the
-    output will likely be <emphasis>i686-pc-linux-gnu</emphasis>.</para>
+    <para>在继续之前，注意工作平台的名字，也叫做目标三联字串。获知目标三联字串的简单方法是运行 <command>config.guess</command> 脚本，它随很多程序包的源代码出现。解包 Binutils 源代码并运行脚本：<userinput>./config.guess</userinput> 并注意输出。举个例子，对于一个现代的 32 位英特尔处理器来说输出可能会是 <emphasis>i686-pc-linux-gnu</emphasis>。</para>
 
-    <para>Also be aware of the name of the platform's dynamic linker, often
-    referred to as the dynamic loader (not to be confused with the standard
-    linker <command>ld</command> that is part of Binutils). The dynamic linker
-    provided by Glibc finds and loads the shared libraries needed by a program,
-    prepares the program to run, and then runs it. The name of the dynamic
-    linker for a 32-bit Intel machine will be
-    <filename class="libraryfile">ld-linux.so.2</filename>.
-    A sure-fire way to determine the name of the dynamic linker is to
-    inspect a random binary from the host system by running:
-    <userinput>readelf -l &lt;name of binary&gt; | grep interpreter</userinput>
-    and noting the output. The authoritative reference covering all platforms
-    is in the <filename>shlib-versions</filename> file in the root of the Glibc
-    source tree.</para>
+    <para>也要注意平台的动态链接器名称，通常叫做动态加载器 (以防与作为 Binutils 的一部分的标准链接器 <command>ld</command> 混淆)。动态链接器由 Glibc 提供，会寻找并加载程序需要的共享库，准备并运行程序。32 位英特尔处理器使用的动态链接器名应为 <filename class="libraryfile">ld-linux.so.2</filename>。在宿主系统中随意查看一个二进制就可以获知动态链接器名：<userinput>readelf -l &lt;二进制名&gt; | grep interpreter</userinput> 并注意输出。官方的覆盖了所有平台的参考位于 Glibc 源代码树中的 <filename>shlib-versions</filename> 文件中。</para>
   </important>
 
-  <para>Some key technical points of how the <xref
-  linkend="chapter-temporary-tools"/> build method works:</para>
+  <para>有关<xref linkend="chapter-temporary-tools"/>中的编制方法如何工作的一些核心技术要点：</para>
 
   <itemizedlist>
     <listitem>
-      <para>Slightly adjusting the name of the working platform, by changing the
-      &quot;vendor&quot; field target triplet by way of the
-      <envar>LFS_TGT</envar> variable, ensures that the first build of Binutils
-      and GCC produces a compatible cross-linker and cross-compiler. Instead of
-      producing binaries for another architecture, the cross-linker and
-      cross-compiler will produce binaries compatible with the current
-      hardware.</para>
+      <para>轻微调整工作平台名，通过 <envar>LFS_TGT</envar> 变量改变 &quot;经销商&quot; 域来确保首次编制的 Binutils 和 GCC 能产生兼容的跨平台编译器和跨链接器。跨平台编译器和跨链接器将会产生与当前硬件兼容的二进制而不会产生另一个架构的二进制。</para>
     </listitem>
     <listitem>
       <para> The temporary libraries are cross-compiled.  Because a
