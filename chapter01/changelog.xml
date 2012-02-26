@@ -34,6 +34,45 @@
 -->
 
     <listitem>
+      <para>2012-02-24</para>
+      <itemizedlist>
+        <listitem>
+          <para>[bdubbs] - 给 glibc 添加一个补丁修正某些情况下可能出现的 dlopen() 的 (segfault) 问题。</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
+      <para>2012-02-23</para>
+      <itemizedlist>
+        <listitem>
+          <para>[bdubbs] - 在有关分区的一节中添加一条油灌高级分区技术 (如 RAID 和 LVM) 的注记。</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
+      <para>2012-02-20</para>
+      <itemizedlist>
+        <listitem>
+          <para>[bdubbs] - LFS-7.1-rc1 发布。</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
+      <para>2012-02-19</para>
+      <itemizedlist>
+        <listitem>
+          <para>[bdubbs] - 给 m4 程序包添加一次 sed 以修正一个假的测试错误。修正 <ulink url="&lfs-ticket-root;3022">#3022</ulink>。</para>
+        </listitem>
+        <listitem>
+          <para>[bdubbs] - 升级 mountfs 脚本以在停止是支持 LVM 卷。</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
       <para>2012-02-15</para>
       <itemizedlist>
         <listitem>

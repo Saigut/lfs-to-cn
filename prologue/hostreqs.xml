@@ -113,13 +113,12 @@
 
   <para id="version-check">要查看你的宿主系统是否有所有正确版本并有能力编译程序，运行以下：</para>
 
-<!--<anchor xreflabel="Version Check Script" id="version-check"/>-->
+<!-- ANY additional lines in the script cause a pdf rendering problem-->
 <screen role="nodump"><userinput>cat &gt; version-check.sh &lt;&lt; "EOF"
 <literal>#!/bin/bash
-export LC_ALL=C
-
 # 简单的脚本，列出重要开发工具的版本
 
+export LC_ALL=C
 bash --version | head -n1 | cut -d" " -f2-4
 echo "/bin/sh -&gt; `readlink -f /bin/sh`"
 echo -n "Binutils: "; ld --version | head -n1 | cut -d" " -f3-

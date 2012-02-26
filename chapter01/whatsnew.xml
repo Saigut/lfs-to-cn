@@ -217,6 +217,10 @@
 
   <itemizedlist>
     <title>加入：</title>
+    
+    <listitem>
+      <para>&glibc-sort-patch;</para>
+    </listitem>
 
     <listitem>
       <para>Kmod-&kmod-version;</para>
