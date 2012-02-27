@@ -27,55 +27,23 @@
       <para>轻微调整工作平台名，通过 <envar>LFS_TGT</envar> 变量改变 &quot;经销商&quot; 域来确保首次编制的 Binutils 和 GCC 能产生兼容的跨平台编译器和跨链接器。跨平台编译器和跨链接器将会产生与当前硬件兼容的二进制而不会产生另一个架构的二进制。</para>
     </listitem>
     <listitem>
-      <para> The temporary libraries are cross-compiled.  Because a
-      cross-compiler by its nature cannot rely on anything from its host
-      system, this method removes potential contamination of the target
-      system by lessening the chance of headers or libraries from the host
-      being incorporated into the new tools.  Cross-compilation also allows for
-      the possibility of building both 32-bit and 64-bit libraries on 64-bit
-      capable hardware.</para>
+      <para>临时库是跨平台编译的。因为跨平台编译器自然无法依赖宿主系统上的任何东西，这就通过减少头文件和库从宿主被包含至新工具的可能来防止对目标系统的潜在污染。跨平台编译也允许在 64 位兼容的硬件上既编译 32 位库也编译 64 位库。</para>
     </listitem>
     <listitem>
-      <para>Careful manipulation of <command>gcc</command>'s
-      <filename>specs</filename> file tells the compiler which target dynamic
-      linker will be used</para>
+      <para>小心地对 <command>gcc</command> 的 <filename>specs</filename> 文件进行修改，以告知编译器应该使用哪个目标动态链接器。</para>
     </listitem>
   </itemizedlist>
 
-  <para>Binutils is installed first because the <command>configure</command>
-  runs of both GCC and Glibc perform various feature tests on the assembler
-  and linker to determine which software features to enable or disable. This
-  is more important than one might first realize. An incorrectly configured
-  GCC or Glibc can result in a subtly broken toolchain, where the impact of
-  such breakage might not show up until near the end of the build of an
-  entire distribution. A test suite failure will usually highlight this error
-  before too much additional work is performed.</para>
+  <para>Binutils 要首先安装，因为 GCC 和 Glibc 的 <command>configure</command> 运行都会对汇编器和链接器进行特性测试来决定要启用禁用他们自己的哪些特性。这比你一开始意识到的要重要。配置不正确的 GCC 或 Glibc 会导致工具链轻微破损，而这样的破损可能在整个发行版编制接近尾声之前都不会体现出来。在完成太多额外工作之前，某一个测试套件不能通过会指出此错误。</para>
 
-  <para>Binutils installs its assembler and linker in two locations,
-  <filename class="directory">/tools/bin</filename> and <filename
-  class="directory">/tools/$LFS_TGT/bin</filename>. The tools in one
-  location are hard linked to the other. An important facet of the linker is
-  its library search order. Detailed information can be obtained from
-  <command>ld</command> by passing it the <parameter>--verbose</parameter>
-  flag. For example, an <userinput>ld --verbose | grep SEARCH</userinput>
-  will illustrate the current search paths and their order. It shows which
-  files are linked by <command>ld</command> by compiling a dummy program and
-  passing the <parameter>--verbose</parameter> switch to the linker. For example,
-  <userinput>gcc dummy.c -Wl,--verbose 2&gt;&amp;1 | grep succeeded</userinput>
-  will show all the files successfully opened during the linking.</para>
+  <para>Binutils 安装汇编器和链接器到两个位置：<filename class="directory">/tools/bin</filename> 和 <filename class="directory">/tools/$LFS_TGT/bin</filename>。两个位置的工具间是硬链接。链接器很重要的一点是库搜索顺序。相关信息可以通过传递 <parameter>--verbose</parameter> 给 <command>ld</command> 来获取。比如 <userinput>ld --verbose | grep SEARCH</userinput> 就会按顺序列出当前的搜索路径。通过编译一个伪程序并给链接器传递一个 <parameter>--verbose</parameter> 开关可以显示哪些文件被 <command>ld</command> 链接。比如 <userinput>gcc dummy.c -Wl,--verbose 2&gt;&amp;1 | grep succeeded</userinput> 会显示链接过程中成功打开的所有文件。</para>
 
-  <para>The next package installed is GCC. An example of what can be
-  seen during its run of <command>configure</command> is:</para>
+  <para>下一个安装的程序包是 GCC。它的 <command>configure</command> 运行时能看到的一例输出为：</para>
 
 <screen><computeroutput>checking what assembler to use... /tools/i686-lfs-linux-gnu/bin/as
 checking what linker to use... /tools/i686-lfs-linux-gnu/bin/ld</computeroutput></screen>
 
-  <para>This is important for the reasons mentioned above. It also demonstrates
-  that GCC's configure script does not search the PATH directories to find which
-  tools to use. However, during the actual operation of <command>gcc</command>
-  itself, the same search paths are not necessarily used. To find out which
-  standard linker <command>gcc</command> will use, run:
-  <userinput>gcc -print-prog-name=ld</userinput>.</para>
+  <para>由于上面提到的原因，这很重要。这也显示了 GCC 的配置脚本不会搜索 PATH 目录来查找要使用的工具。然而，在实际操作 <command>gcc</command> 时，同样的搜索路径不必使用。要查看 <command>gcc</command> 要使用的标准链接器，运行：<userinput>gcc -print-prog-name=ld</userinput>。</para>
 
   <para>Detailed information can be obtained from <command>gcc</command> by
   passing it the <parameter>-v</parameter> command line option while compiling

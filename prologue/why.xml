@@ -10,14 +10,14 @@
 
   <title>使用本书中软件包的理由</title>
 
-    <para>就像前面所说， LFS的目的是构建一个完整可用的基础系统。  这包括一些用于提供相对最小的工作环境的软件包， 用户在此之上定制自己的系统。这些工具经常会用于替换他们本身。这并不意味着LFS是最小的操作系统。几个最为重要的软件包在其他系统上并不是必需的。下面列出了使用这些软件的理由。</para>
+    <para>就像前面所说，LFS的目的是构建一个完整可用的基础系统。这包括一些用于提供相对最小的工作环境的软件包，用户在此之上定制自己的系统。这些工具经常会用于替换他们本身。这并不意味着LFS是最小的操作系统。几个最为重要的软件包在其他系统上并不是必需的。下面列出了使用这些软件的理由。</para>
 
     <itemizedlist>
 
       <listitem>
         <para>Autoconf</para>
 
-        <para>这个软件包包含可以用来根据模板生成configure脚本的程序。当源码改动的时候往往需要重新生成相应的configure脚本</para>
+        <para>这个软件包包含可以用来根据模板生成 configure 脚本的程序。当源码改动的时候往往需要重新生成相应的 configure 脚本。</para>
       </listitem>
 
       <listitem>
@@ -29,13 +29,13 @@
       <listitem>
         <para>Bash</para>
 
-        <para>Bourne Shell。提供系统与用户的交互界面。可替换成其他 shell 。因为其通用性和良好的可扩展性被选用。</para>
+        <para>Bourne Shell。提供系统与用户的交互界面。可替换成其他 shell。因为其通用性和良好的可扩展性被选用。</para>
       </listitem>
 
       <listitem>
         <para>Binutils</para>
 
-        <para>包含汇编器、链接器等其他工具，用于处理目标文件。这个软件包用于编译 LFS 系统中的大部分软件。</para>
+        <para>包含汇编器、链接器等其他工具，用于处理对象文件。这个软件包用于编译 LFS 系统中的大部分软件。</para>
       </listitem>
 
       <listitem>
@@ -65,7 +65,7 @@
       <listitem>
         <para>Diffutils</para>
 
-        <para>提供用于比较文件和文件夹不同之处。可以用来生成 patch， 并在许多软件的安装流程中被使用。</para>
+        <para>提供用于比较文件和文件夹不同之处。可以用来生成 patch，并在许多软件的安装流程中被使用。</para>
       </listitem>
 
       <listitem>
@@ -186,13 +186,13 @@
       <listitem>
         <para>Kmod</para>
 
-        <para>此程序包包含用于管理 Linux 内核模块的程序。</para>
+        <para>包含用于管理 Linux 内核模块的程序。</para>
       </listitem>
 
       <listitem>
         <para>Less</para>
 
-        <para>用于浏览文件， 被 Man-DB 使用。</para>
+        <para>用于浏览文件，被 Man-DB 使用。</para>
       </listitem>
 
       <listitem>

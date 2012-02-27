@@ -8,11 +8,11 @@
 <sect1 id="ch-intro-askforhelp">
   <?dbhtml filename="askforhelp.html"?>
 
-  <title>帮助</title>
+  <title>请求帮助</title>
 
-  <para>如果根据本书的示例进行安装时发生了任何错误，请检查常见问题列表<ulink url="&faq-root;#generalfaq"/>。大多数问题会在这里解决。如果你的问题在这里没有解决，试着自己找到错误信息。下面的提示会在纠错中提供帮助：<ulink url="&hints-root;errors.txt"/>。</para>
+  <para>如果根据本书的示例进行安装时发生了任何错误，请检查常见问题列表 <ulink url="&faq-root;#generalfaq"/>。大多数问题会在这里解决。如果你的问题在这里没有解决，试着自己找到错误信息。下面的提示会在纠错中提供帮助：<ulink url="&hints-root;errors.txt"/>。</para>
 
-  <para>如果你的问题不能在常见问题列表中找到答案，请查找邮件列表<ulink url="&lfs-root;search.html"/>。</para>
+  <para>如果你的问题不能在常见问题列表中找到答案，请查找邮件列表 <ulink url="&lfs-root;search.html"/>。</para>
 
   <para>我们还有强大的 LFS 社区，愿意通过邮件列表和 IRC 提供帮助 (参考本书中 <xref linkend="ch-intro-resources"/>)。然而，我们每天都会收到几个支持问题，其中有很多都只需查看 FAQ 或搜索邮件列表即可回答。所以，为了我们能提供最大的帮助，你要自己先做一点调查。这样我们就能专注于更不寻常的支持需求。如果你的搜索没有产生解决方案，请在帮助请求中包含以下所有信息。</para>
 

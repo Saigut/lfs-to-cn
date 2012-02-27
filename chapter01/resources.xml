@@ -13,7 +13,7 @@
   <sect2 id="ch-intro-faq">
     <title>常见问题</title>
 
-    <para>如果你在构建 LFS 系统的时候遭遇任何错误，有任何问题，或者是认为本文当有排版问题，请查看<ulink url="&faq-root;"/>。</para>
+    <para>如果你在构建 LFS 系统的时候遭遇任何错误，有任何问题，或者是认为本文当有排版问题，请查看 <ulink url="&faq-root;"/>。</para>
 
   </sect2>
 
@@ -44,7 +44,7 @@
   <sect2 id="ch-intro-irc">
     <title>IRC</title>
 
-    <para>在确定 FAQ 和邮件列表无法解决你的问题时，可以向我们的 IRC 频道求助。我们的 IRC 地址是 <uri>irc.linuxfromscratch.org</uri> ，频道名称为 #LFS-support。</para>
+    <para>在确定 FAQ 和邮件列表无法解决你的问题时，可以向我们的 IRC 频道求助。我们的 IRC 地址是 <uri>irc.linuxfromscratch.org</uri>，频道名称为 #LFS-support。</para>
 
   </sect2>
 

@@ -10,7 +10,7 @@
 
   <title>如何编制 LFS 系统</title>
 
-  <para>编制 LFS 系统需要使用一个已安装好的 Linux 发行版 (比如 Debian、Mandriva、红帽子或 SUSE)。这个存在的 Linux 系统 (宿主) 会用作起点来为编制新系统提供必要的程序，包括编译器、链接器和 shell。在安装发行版的过程中选择 <quote>development</quote> 选项来获取这些工具。</para>
+  <para>编制 LFS 系统需要使用一个已安装好的 Linux 发行版 (比如 Debian、Mandriva、红帽子或 SUSE)。这个存在的 Linux 系统 (宿主) 会用作起点来为编制新系统提供必要的程序，包括编译器、链接器和 shell。在安装发行版的过程中选择 <quote>开发</quote> 选项来获取这些工具。</para>
 
   <para>若不愿在计算机上安装一独立的发行版，可以使用<!-- the Linux From Scratch LiveCD or -->商业发行版的 LiveCD。<!-- The LFS LiveCD works well as a host system,
   providing all the tools you need to successfully follow the instructions in

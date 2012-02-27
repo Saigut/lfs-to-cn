@@ -17,8 +17,7 @@
 
     <itemizedlist>
       <listitem>
-        <para><ulink url="http://pubs.opengroup.org/onlinepubs/9699919799/"> 
-        POSIX.1-2008</ulink>.</para>
+        <para><ulink url="http://pubs.opengroup.org/onlinepubs/9699919799/">POSIX.1-2008</ulink></para>
       </listitem>
       <listitem>
         <para><ulink url="http://www.pathname.com/fhs/pub/fhs-2.3.html">文件系统层级标准 (FHS)</ulink></para>
