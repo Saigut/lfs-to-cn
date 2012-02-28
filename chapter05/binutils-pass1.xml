@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
   "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
   <!ENTITY % general-entities SYSTEM "../general.ent">
@@ -14,11 +14,11 @@
     <address>&binutils-url;</address>
   </sect1info>
 
-  <title>Binutils-&binutils-version; - Pass 1</title>
+  <title>Binutils-&binutils-version; - 第一遍</title>
 
   <indexterm zone="ch-tools-binutils-pass1">
     <primary sortas="a-Binutils">Binutils</primary>
-    <secondary>tools, pass 1</secondary>
+    <secondary>工具, 第一遍</secondary>
   </indexterm>
 
   <sect2 role="package">
@@ -41,19 +41,13 @@
   </sect2>
 
   <sect2 role="installation">
-    <title>Installation of Cross Binutils</title>
+    <title>安装跨平台 Binutils</title>
 
-    <note><para>Go back and re-read the notes in the previous section. 
-    Understanding the notes labeled important will save you a lot
-    of problems later.</para></note>
+    <note><para>回去重新读一下上一节中的注记。读懂标记为重要的注记可以减少以后遇到的麻烦。</para></note>
 
-    <para>It is important that Binutils be the first package compiled
-    because both Glibc and GCC perform various tests on the available
-    linker and assembler to determine which of their own features to
-    enable.</para>
+    <para>Binutils 作为第一个编译的程序包很重要，因为 GCC 和 Glibc 都会对汇编器和链接器进行特性测试来决定要启用禁用他们自己的哪些特性。</para>
 
-    <para>The Binutils documentation recommends building Binutils outside of the
-    source directory in a dedicated build directory:</para>
+    <para>Binutils 文档推荐在源代码目录外创建目录编制 Binutils：</para>
 
 <screen><userinput remap="pre">mkdir -v ../binutils-build
 cd ../binutils-build</userinput></screen>
