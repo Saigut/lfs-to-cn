@@ -23,8 +23,7 @@
   <sect2 role="package">
     <title/>
 
-    <para>The Binutils package contains a linker, an assembler, and other
-    tools for handling object files.</para>
+    <para>Binutils 程序包包含一个链接器、一个汇编器和其他用于处理对象文件的工具。</para>
 
     <segmentedlist>
       <segtitle>&buildtime;</segtitle>
@@ -128,7 +127,7 @@ cd ../binutils-build</userinput></screen>
 
 
   <sect2 id="contents-binutils" role="content">
-    <title>Contents of Binutils</title>
+    <title>Binutils 的内容</title>
 
     <segmentedlist>
       <segtitle>Installed programs</segtitle>

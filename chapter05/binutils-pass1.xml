@@ -53,82 +53,63 @@
 cd ../binutils-build</userinput></screen>
 
     <note>
-      <para>In order for the SBU values listed in the rest of the book
-      to be of any use, measure the time it takes to build this package from
-      the configuration, up to and including the first install. To achieve
-      this easily, wrap the three commands in a <command>time</command>
-      command like this: <userinput>time { ./configure ... &amp;&amp; make
-      &amp;&amp; make install; }</userinput>.</para>
+      <para>为了使本书余下部分列出的 SBU 值有意义，测量这个程序包从配置开始到安装结束的编制时间。要完成这一任务，像这样用 <command>time</command> 命令把这三个命令打包：<userinput>time { ./configure ... &amp;&amp; make&amp;&amp; make install; }</userinput>。</para>
     </note>
 
-    <note><para>The approximate build SBU values and required disk space
-    in Chapter 5 does not include test suite data.</para></note>
+    <note><para>第五章的 SBU 值和需求磁盘空间不包含测试套件数据。</para></note>
 
-    <para>Now prepare Binutils for compilation:</para>
+    <para>现在准备编译 Binutils：</para>
 
 <screen><userinput remap="configure">../binutils-&binutils-version;/configure \
     --target=$LFS_TGT --prefix=/tools \
     --disable-nls --disable-werror</userinput></screen>
 
     <variablelist>
-      <title>The meaning of the configure options:</title>
+      <title>配置选项的含义：</title>
 
       <varlistentry>
         <term><envar>--target=$LFS_TGT</envar></term>
         <listitem>
-          <para>Because the machine description in the <envar>LFS_TGT</envar>
-          variable is slightly different than the value returned by the
-          <command>config.guess</command> script, this switch will tell the
-          <command>configure</command> script to adjust Binutil's build system
-          for building a cross linker.  </para>
+          <para>因为 <envar>LFS_TGT</envar> 变量中的计算机描述与 <command>config.guess</command> 脚本返回的值略有区别，此开关会告诉 <command>configure</command> 脚本调节 Binutil 的编制系统编制一个跨平台链接器。</para>
         </listitem>
       </varlistentry>
 
       <varlistentry>
         <term><parameter>--prefix=/tools</parameter></term>
         <listitem>
-          <para>This tells the configure script to prepare to install the
-          Binutils programs in the <filename class="directory">/tools</filename>
-          directory.</para>
+          <para>此项告诉配置脚本准备安装 Binutils 程序于 <filename class="directory">/tools</filename> 目录中。</para>
         </listitem>
       </varlistentry>
 
       <varlistentry>
         <term><parameter>--disable-nls</parameter></term>
         <listitem>
-          <para>This disables internationalization as i18n is not needed for the
-          temporary tools.</para>
+          <para>此项禁用国际化，因为国际化在临时工具中不需要。</para>
         </listitem>
       </varlistentry>
 
       <varlistentry>
         <term><parameter>--disable-werror</parameter></term>
         <listitem>
-          <para>This prevents the build from stopping in the event that there
-          are warnings from the host's compiler.</para>
+          <para>此项防止编制由于宿主的编译器的警告而停止。</para>
         </listitem>
       </varlistentry>
 
     </variablelist>
 
-    <para>Continue with compiling the package:</para>
+    <para>继续编译程序包：</para>
 
 <screen><userinput remap="make">make</userinput></screen>
 
-    <para>Compilation is now complete. Ordinarily we would now run the
-    test suite, but at this early stage the test suite framework (Tcl,
-    Expect, and DejaGNU) is not yet in place. The benefits of running the
-    tests at this point are minimal since the programs from this
-    first pass will soon be replaced by those from the second.</para>
+    <para>编译现在完成了。通常我们现在要运行测试套件，但现阶段测试套件框架 (Tcl、Expect 和 DejaGNU) 还没有到位。在这里运行测试意义不大，因为这第一遍编译的程序很快会被第二遍的替换掉。</para>
 
-    <para>If building on x86_64, create a symlink to ensure the sanity of
-    the toolchain:</para>
+    <para>如果在 x86_64 上编制，创建一个符号链接以确保工具链可靠：</para>
 
 <screen><userinput remap="install">case $(uname -m) in
   x86_64) mkdir -v /tools/lib &amp;&amp; ln -sv lib /tools/lib64 ;;
 esac</userinput></screen>
 
-    <para>Install the package:</para>
+    <para>安装程序包：</para>
 
 <screen><userinput remap="install">make install</userinput></screen>
 
@@ -137,8 +118,7 @@ esac</userinput></screen>
   <sect2 role="content">
     <title/>
 
-    <para>Details on this package are located in
-    <xref linkend="contents-binutils" role="."/></para>
+    <para>有关此程序包的细节位于<xref linkend="contents-binutils"/></para>
 
   </sect2>
 

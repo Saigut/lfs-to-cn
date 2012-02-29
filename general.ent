@@ -17,8 +17,8 @@
 <!ENTITY test-results "&lfs-root;lfs/build-logs/&generic-version;/">
 <!ENTITY errata "&lfs-root;lfs/errata/&generic-version;/">
 
-<!ENTITY buildtime "Approximate build time">
-<!ENTITY diskspace "Required disk space">
+<!ENTITY buildtime "预计编制时间">
+<!ENTITY diskspace "需求磁盘空间">
 <!ENTITY dependencies "Installation depends on">
 <!ENTITY testsuites "Test suite depends on">
 <!ENTITY before "Must be installed before">
