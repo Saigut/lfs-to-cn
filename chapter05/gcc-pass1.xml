@@ -14,11 +14,11 @@
     <address>&gcc-url;</address>
   </sect1info>
 
-  <title>GCC-&gcc-version; - Pass 1</title>
+  <title>GCC-&gcc-version; - 第一遍</title>
 
   <indexterm zone="ch-tools-gcc-pass1">
     <primary sortas="a-GCC">GCC</primary>
-    <secondary>tools, pass 1</secondary>
+    <secondary>工具、第一遍</secondary>
   </indexterm>
 
   <sect2 role="package">
@@ -41,19 +41,11 @@
   </sect2>
 
   <sect2 role="installation">
-    <title>Installation of Cross GCC</title>
+    <title>安装跨平台 GCC</title>
 
-    <para>GCC now requires the GMP, MPFR and MPC packages. As these packages may
-    not be included in your host distribution, they will be built with
-    GCC.  Unpack each package into the GCC source directory and rename the
-    resulting directories so the GCC build procedures will automatically
-    use them:</para>
+    <para>GCC 现在需求 GMP、MPFR 和 MPC 程序包。由于这些程序包可能未包含与你的宿主发行版中，它们将与 GCC 一同编制。将每个程序包解包至 GCC 源代码目录并重命名产生的文件夹使得 GCC 编制过程能够自动使用他们：</para>
 
-    <note><para>There are frequent misunderstandings about this chapter.  The
-    procedures are the same as every other chapter as explained earlier (<xref
-    linkend='buildinstr'/>).  First extract the gcc tarball from the sources
-    directory and then change to the directory created.  Only then should you
-    proceed with the instructions below.</para></note>
+    <note><para>关于这一节经常出现误解。此过程与其他每一节都是一样的，就像之前在<xref linkend='buildinstr'/>中解释的那样。首先从源代码目录中提取 gcc 压缩包然后改变到创建的目录，到这个时候再继续运行以下指令。</para></note>
 
 <screen><userinput remap="pre">tar -jxf ../mpfr-&mpfr-version;.tar.bz2
 mv -v mpfr-&mpfr-version; mpfr
@@ -62,19 +54,16 @@ mv -v gmp-&gmp-version; gmp
 tar -zxf ../mpc-&mpc-version;.tar.gz
 mv -v mpc-&mpc-version; mpc</userinput></screen>
 
-<para>Apply a patch that will allow the building of the libiberty and zlib
-target libraries to be disabled as these do not build correctly in a
-cross-compiled environment:</para>
+<para>应用一个补丁禁用编制 libiberty 和 zlib 目标库，因为它们在跨平台编译的环境中无法正常编制：</para>
 
 <screen><userinput remap="pre">patch -Np1 -i ../&gcc-crosscompile-patch;</userinput></screen>
 
-    <para>The GCC documentation recommends building GCC outside of the
-    source directory in a dedicated build directory:</para>
+    <para>GCC 文档推荐在源代码目录外创建目录编制 GCC：</para>
 
 <screen><userinput remap="pre">mkdir -v ../gcc-build
 cd ../gcc-build</userinput></screen>
 
-    <para>Prepare GCC for compilation:</para>
+    <para>准备编译 GCC：</para>
 
 <screen><userinput remap="configure">../gcc-&gcc-version;/configure \
     --target=$LFS_TGT --prefix=/tools \
@@ -88,76 +77,56 @@ cd ../gcc-build</userinput></screen>
     --with-mpfr-lib=$(pwd)/mpfr/src/.libs</userinput></screen>
 
     <variablelist>
-      <title>The meaning of the configure options:</title>
+      <title>配置选项的含义：</title>
 
       <varlistentry>
         <term><parameter>--disable-shared</parameter></term>
         <listitem>
-          <para>This switch forces GCC to link its internal libraries
-          statically. We do this to avoid possible issues with the host
-          system.</para>
+          <para>此开关强制 GCC 静态链接内部库以防止可能出现的有关宿主系统的问题。</para>
         </listitem>
       </varlistentry>
 
       <varlistentry>
         <term><parameter>--disable-decimal-float, --disable-threads, --disable-libmudflap, --disable-libssp, --disable-libgomp, --disable-libquadmath --disable-target-libiberty --disable-target-zlib</parameter></term>
         <listitem>
-          <para>These switches disable support for the decimal floating point
-          extension, threading, libmudflap, libssp and libgomp, libquadmath,
-          libiberty and zlib respectively. These features will fail to compile
-          when building a cross-compiler and are not necessary for the task of
-          cross-compiling the temporary libc.</para>
+          <para>这些开关禁用十进制浮点扩展、线程、libmudflap、libssp 和 libgomp、libquadmath、libiberty 和 zlib 的支持。这些特性在编制跨平台编译器时会编译失败，而且对于跨平台编译临时的 libc 没有必要。</para>
         </listitem>
       </varlistentry>
 
       <varlistentry>
         <term><parameter>--disable-multilib</parameter></term>
         <listitem>
-          <para>On x86_64, LFS does not yet support a multilib configuration.
-          This switch is harmless for x86.</para>
+          <para>在 x86_64 上，LFS 还不支持多重库配置。此开关对 x86 是无害的。</para>
         </listitem>
       </varlistentry>
 
       <varlistentry>
         <term><parameter>--enable-languages=c</parameter></term>
         <listitem>
-          <para>This option ensures that only the C compiler is built.
-          This is the only language needed now.</para>
+          <para>此选项确保只编制 C 编译器。这是目前需要的唯一的语言。</para>
         </listitem>
       </varlistentry>
 
       <varlistentry>
         <term><parameter>--without-ppl, --without-cloog</parameter></term>
         <listitem>
-          <para>These switches prevent GCC from building against the PPL and
-          CLooG libraries which may be present on the host system, but will not
-          be available in the chroot environment.</para>
+          <para>这些开关防止 GCC 依据宿主系统上可能出现但在 chroot 环境中不可用的 PPL 和 CLooG 库编制。</para>
         </listitem>
       </varlistentry>
 
     </variablelist>
 
-    <para>Compile GCC by running:</para>
+    <para>运行以下命令编译 GCC：</para>
 
 <screen><userinput remap="make">make</userinput></screen>
 
-    <para>Compilation is now complete. At this point, the test suite would
-    normally be run, but, as mentioned before, the test suite framework is
-    not in place yet. The benefits of running the tests at this point
-    are minimal since the programs from this first pass will soon be
-    replaced.</para>
+    <para>编译现在完成了。通常我们现在要运行测试套件，但现阶段测试套件框架 (Tcl、Expect 和 DejaGNU) 还没有到位。在这里运行测试意义不大，因为这第一遍编译的程序很快会被第二遍的替换掉。</para>
 
-    <para>Install the package:</para>
+    <para>安装程序包：</para>
 
 <screen><userinput remap="install">make install</userinput></screen>
 
-    <para>Using <parameter>--disable-shared</parameter> means that the
-    <filename>libgcc_eh.a</filename> file isn't created and installed. The
-    Glibc package depends on this library as it uses
-    <parameter>-lgcc_eh</parameter> within its build system. This dependency
-    can be satisfied by creating a symlink to <filename>libgcc.a</filename>,
-    since that file will end up containing the objects normally contained in
-    <filename>libgcc_eh.a</filename>:</para>
+    <para>使用 <parameter>--disable-shared</parameter> 意味着 <filename>libgcc_eh.a</filename> 文件不会创建和安装。Glibc 程序包因为在自己的编制系统中使用了 <parameter>-lgcc_eh</parameter> 而依赖这个库。此项依赖关系可以通过创建一个到 <filename>libgcc.a</filename> 的符号链接来满足，因为这个文件最后会包含通常包含在 <filename>libgcc_eh.a</filename> 中的对象。</para>
 
 <screen><userinput remap="install">ln -vs libgcc.a `$LFS_TGT-gcc -print-libgcc-file-name | \
     sed 's/libgcc/&amp;_eh/'`</userinput></screen>
@@ -167,8 +136,7 @@ cd ../gcc-build</userinput></screen>
   <sect2 role="content">
     <title/>
 
-    <para>Details on this package are located in
-    <xref linkend="contents-gcc" role="."/></para>
+    <para>有关此程序包的细节位于<xref linkend="contents-gcc"/>。</para>
 
   </sect2>
 
