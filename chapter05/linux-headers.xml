@@ -14,11 +14,11 @@
     <address>&linux-url;</address>
   </sect1info>
 
-  <title>Linux-&linux-version; API Headers</title>
+  <title>Linux-&linux-version; API 头文件</title>
 
   <indexterm zone="ch-tools-linux-headers">
     <primary sortas="a-Linux">Linux</primary>
-    <secondary>tools, API headers</secondary>
+    <secondary>工具、API 头文件</secondary>
   </indexterm>
 
   <sect2 role="package">
@@ -41,22 +41,15 @@
   </sect2>
 
   <sect2 role="installation">
-    <title>Installation of Linux API Headers</title>
+    <title>安装 Linux API 头文件</title>
 
-    <para>The Linux kernel needs to expose an Application Programming Interface
-    (API) for the system's C library (Glibc in LFS) to use.  This is done
-    by way of sanitizing various C header files that are shipped in the Linux
-    kernel source tarball.</para>
+    <para>Linux 内核需要暴露一套应用程序编程接口 (API) 供系统的 C 库 (LFS 中为 Glibc) 使用。通过净化 Linux 内核源代码压缩包中的多个 C 头文件来完成。</para>
 
-    <para>Make sure there are no stale files and dependencies lying around
-    from previous activity:</para>
+    <para>确保不存在之前的活动产生的旧的文件和依赖关系：</para>
 
 <screen><userinput remap="pre">make mrproper</userinput></screen>
 
-    <para>Now test and extract the user-visible kernel headers from the source.
-    They are placed in an intermediate local directory and copied to the needed
-    location because the extraction process removes any existing files in 
-    the target directory.</para>
+    <para>现在从源代码中测试并提取对用户可见的内核头文件。将它们置于本地媒介目录并复制到需要的位置，因为提取进程会移除目标目录中存在的所有文件。</para>
 
 <screen><userinput remap="make">make headers_check
 make INSTALL_HDR_PATH=dest headers_install
@@ -67,8 +60,7 @@ make INSTALL_HDR_PATH=dest headers_install
   <sect2 role="content">
     <title/>
 
-    <para>Details on this package are located in
-    <xref linkend="contents-linux-headers" role="."/></para>
+    <para>有关此程序包的细节位于<xref linkend="contents-linux-headers"/>。</para>
 
   </sect2>
 
