@@ -37,7 +37,7 @@
 
   <para>在<xref linkend="chapter-building-system"/>中，编制完整的 LFS 系统。用 <command>chroot</command> (改变根目录) 程序进入一个虚拟环境，启动新的 shell 并将根目录设置到 LFS 分区。这与重启并引导内核挂载 LFS 分区为根分区很相似。不重启却 <command>chroot</command> 是因为创建可启动的系统需要额外工作，现在还没必要。主要优点是 <quote>chroot</quote> 允许你在编制 LFS 的时候继续使用宿主系统。在等待程序包编译完成的时候，你可以正常使用计算机。</para>
 
-  <para>在<xref linkend="chapter-bootscripts"/>设置 LFS-Bootscripts，在<xref linkend="chapter-bootable"/>设置内核和引导加载器。<xref linkend="chapter-finalizing"/>包含有关在本书以外继续 LFS 体验的信息。实现了这些步骤之后，计算机就可以启动到新的 LFS 系统了。</para>
+  <para>在<xref linkend="chapter-bootscripts"/>设置引导与启动脚本，在<xref linkend="chapter-bootable"/>设置内核和引导加载器。<xref linkend="chapter-finalizing"/>包含有关在本书以外继续 LFS 体验的信息。实现了这些步骤之后，计算机就可以启动到新的 LFS 系统了。</para>
 
   <para>这是总体上的过程。每一步得细节在后面章节和程序包介绍中讨论。看起来很复杂的东西会被解释清楚，你开工的时候一切都会就位。</para>
 

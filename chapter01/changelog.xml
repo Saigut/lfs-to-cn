@@ -34,6 +34,15 @@
 -->
 
     <listitem>
+      <para>2012-02-29</para>
+      <itemizedlist>
+        <listitem>
+          <para>[bdubbs] - 轻微改动 LFS 启动脚本中的 ifup。</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+    
+    <listitem>
       <para>2012-02-24</para>
       <itemizedlist>
         <listitem>
