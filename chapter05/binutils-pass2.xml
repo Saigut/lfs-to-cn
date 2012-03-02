@@ -127,7 +127,7 @@ cp -v ld/ld-new /tools/bin</userinput></screen>
   <sect2 role="content">
     <title/>
 
-    <para>Details on this package are located in
+    <para>关于这个包的细节在
     <xref linkend="contents-binutils" role="."/></para>
 
   </sect2>
