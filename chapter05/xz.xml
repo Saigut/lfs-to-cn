@@ -41,23 +41,21 @@
   </sect2>
 
   <sect2 role="installation">
-    <title>Installation of Xz-Utils</title>
+    <title>安装 Xz 工具</title>
 
-    <para>Prepare Xz for compilation:</para>
+    <para>准备：</para>
 
 <screen><userinput remap="configure">./configure --prefix=/tools</userinput></screen>
 
-   <para>Compile the package:</para>
+   <para>编译：</para>
 
 <screen><userinput remap="make">make</userinput></screen>
 
-    <para>Compilation is now complete. As discussed earlier, running the test
-    suite is not mandatory for the temporary tools here in this chapter. To run
-    the Xz test suite anyway, issue the following command:</para>
+    <para>编译结束了。像前面所说，不建议在这章进行测试，如果一定要测试，运行：</para>
 
 <screen><userinput remap="test">make check</userinput></screen>
 
-    <para>Install the package:</para>
+    <para>安装：</para>
 
 <screen><userinput remap="install">make install</userinput></screen>
 
@@ -66,7 +64,7 @@
   <sect2 role="content">
     <title/>
 
-    <para>Details on this package are located in
+    <para>这个包的细节在
     <xref linkend="contents-xz" role="."/></para>
 
   </sect2>
