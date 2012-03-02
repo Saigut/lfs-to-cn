@@ -41,33 +41,33 @@
   </sect2>
 
   <sect2 role="installation">
-    <title>Installation of GMP</title>
+    <title>安装 GMP</title>
 
-    <para>Prepare GMP for compilation:</para>
+    <para>准备：</para>
 
 <screen><userinput remap="configure">./configure --prefix=/tools --enable-mpbsd</userinput></screen>
 
     <variablelist>
-      <title>The meaning of the configure option:</title>
+      <title>configure 脚本参数的含义：</title>
 
       <varlistentry>
         <term><parameter>--enable-mpbsd</parameter></term>
         <listitem>
-          <para>This builds the Berkeley MP compatibility library</para>
+          <para>构建 BSD MP库兼容的库</para>
         </listitem>
       </varlistentry>
 
     </variablelist>
 
-    <para>Compile the package:</para>
+    <para>编译：</para>
 
 <screen><userinput remap="make">make</userinput></screen>
 
-    <para>To test the results, issue:</para>
+    <para>如果要进行测试， 运行：</para>
 
 <screen><userinput remap="test">make check</userinput></screen>
 
-    <para>Install the package:</para>
+    <para>安装：</para>
 
 <screen><userinput remap="install">make install</userinput></screen>
 
@@ -76,7 +76,7 @@
   <sect2 role="content">
     <title/>
 
-    <para>Details on this package are located in
+    <para>这个包的细节在
     <xref linkend="contents-gmp" role="."/></para>
 
   </sect2>
