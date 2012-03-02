@@ -8,52 +8,41 @@
 <sect1 id="ch-finish-whatnow">
   <?dbhtml filename="whatnow.html"?>
 
-  <title>What Now?</title>
+  <title>接下来做什么?</title>
 
-  <para>Thank you for reading this LFS book. We hope that you have
-  found this book helpful and have learned more about the system
-  creation process.</para>
+  <para>感谢你阅读本书，我们希望读者从这本书中得到帮助。希望读者在构建的流程中能学到许多东西。</para>
 
-  <para>Now that the LFS system is installed, you may be wondering
-  <quote>What next?</quote> To answer that question, we have compiled a
-  list of resources for you.</para>
+  <para>现在 LFS 系统已经安装好了，你也许会有疑问，<quote>接下来干什么？</quote>
+为了回答你的疑问，我们准备了的下列资源。</para>
 
   <itemizedlist>
 
     <listitem>
-      <para>Maintenance</para>
+      <para>维护</para>
 
-      <para>Bugs and security notices are reported regularly for all software.
-      Since an LFS system is compiled from source, it is up to you to keep
-      abreast of such reports.  There are several online resources that track
-      such reports, some of which are shown below:</para>
+      <para>软件基本上都有 Bug 和安全报告。既然 LFS 系统是源码编译安装的，是否紧跟这些报告取决于你。这里有些可以跟踪这些报告的在线资源：</para>
 
       <itemizedlist>
 
         <listitem>
           <para>Freshmeat.net (<ulink url="http://freshmeat.net/"/>)</para>
 
-          <para>Freshmeat can notify you (via email) of new versions of packages
-          installed on your system.</para>
+          <para>如果你的系统里的软件有新的版本发布，Freshmeat 可以通过邮件通知你。</para>
         </listitem>
 
         <listitem>
           <para><ulink url="http://www.cert.org/">CERT</ulink> (Computer
           Emergency Response Team)</para>
 
-          <para>CERT has a mailing list that publishes security alerts concerning
-          various operating systems and applications. Subscription information is
-          available at <ulink
-          url="http://www.us-cert.gov/cas/signup.html"/>.</para>
+          <para>CERT 有一个可以告知你最新的系统，软件漏洞的邮件列表。订阅方式可以查看<ulink
+          url="http://www.us-cert.gov/cas/signup.html"/>。</para>
         </listitem>
 
         <listitem>
           <para>Bugtraq</para>
 
-          <para>Bugtraq is a full-disclosure computer security mailing list. It
-          publishes newly discovered security issues, and occasionally potential
-          fixes for them. Subscription information is available at <ulink
-          url="http://www.securityfocus.com/archive"/>.</para>
+          <para>Bugtraq 是一个全方面的关于计算机安全的邮件列表。他会发布最新的安全通告，订阅方法可以查看<ulink
+          url="http://www.securityfocus.com/archive"/>。</para>
         </listitem>
 
       </itemizedlist>
@@ -62,36 +51,26 @@
     <listitem>
       <para>Beyond Linux From Scratch</para>
 
-      <para>The Beyond Linux From Scratch book covers installation
-      procedures for a wide range of software beyond the scope of the LFS
-      Book. The BLFS project is located at <ulink url="&blfs-root;"/>.</para>
+      <para>BLFS 包括了许多LFS中没有提到的应用软件的安装流程。点击 <ulink url="&blfs-root;"/>进入 BLFS 的项目地址。</para>
     </listitem>
 
     <listitem>
-      <para>LFS Hints</para>
+      <para>LFS 提示</para>
 
-      <para>The LFS Hints are a collection of educational documents
-      submitted by volunteers in the LFS community. The hints are available
-      at <ulink url="&hints-index;"/>.</para>
+      <para>这里包含了一些由 LFS 社区志愿者提供的教程文档。<ulink url="&hints-index;"/>。</para>
     </listitem>
 
     <listitem>
-      <para>Mailing lists</para>
+      <para>邮件列表</para>
 
-      <para>There are several LFS mailing lists you may subscribe to if you
-      are in need of help, want to stay current with the latest developments,
-      want to contribute to the project, and more. See <xref
-      linkend="ch-intro-maillists"/> for more
-      information.</para>
+      <para>当你遇到问题的时候，关注LFS项目最新的进展，或者希望做出贡献，可以订阅邮件列表。查看<xref
+      linkend="ch-intro-maillists"/> 获得更多信息。</para>
     </listitem>
 
     <listitem>
-      <para>The Linux Documentation Project</para>
+      <para>Linux 文档项目</para>
 
-      <para>The goal of The Linux Documentation Project (TLDP) is to
-      collaborate on all of the issues of Linux documentation. The TLDP features
-      a large collection of HOWTOs, guides, and man pages.  It is located at
-      <ulink url="http://www.tldp.org/"/>.</para>
+      <para>Linux文档项目(TLDP) 的目的是整合关于Linux的文档。TLDP 提供了大量的HOWTO，指南，man手册。它位于<ulink url="http://www.tldp.org/"/>。</para>
     </listitem>
 
   </itemizedlist>
