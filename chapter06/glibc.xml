@@ -23,10 +23,7 @@
   <sect2 role="package">
     <title/>
 
-    <para>The Glibc package contains the main C library. This library provides
-    the basic routines for allocating memory, searching directories, opening and
-    closing files, reading and writing files, string handling, pattern matching,
-    arithmetic, and so on.</para>
+    <para>Glibc 程序包包含主要的 C 库。此库提供用于分配内存、搜索目录、开关读写文件、处理字符串、表达式匹配、算术等的基本途径。</para>
 
     <segmentedlist>
       <segtitle>&buildtime;</segtitle>
