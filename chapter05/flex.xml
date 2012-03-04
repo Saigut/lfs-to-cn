@@ -41,10 +41,9 @@
   </sect2>
 
   <sect2 role="installation">
-    <title>Installation of Flex</title>
+    <title>安装 Flex</title>
 
-    <para>Flex contains several known bugs. These can be fixed with the
-    following patch:</para>
+    <para>Flex 已经有几个已知的Bug，可以用patch修复：</para>
 
 <screen><userinput remap="pre">patch -Np1 -i ../&flex-fixes-patch;</userinput></screen>
 
@@ -76,7 +75,7 @@
   <sect2 role="content">
     <title/>
 
-    <para>Details on this package are located in
+    <para>关于这个包的细节在
     <xref linkend="contents-flex" role="."/></para>
 
   </sect2>

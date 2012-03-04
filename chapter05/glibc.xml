@@ -41,38 +41,28 @@
   </sect2>
 
   <sect2 role="installation">
-    <title>Installation of Glibc</title>
+	  <title>安装 GLibc</title>
 
-    <para>Fix a bug that prevents Glibc from building with GCC-&gcc-version;:</para>
+	  <para>首先修复一个使用 GCC-&gcc-version; 编译时出现的一个Bug ：</para>
 
     <screen><userinput remap="pre">patch -Np1 -i ../&glibc-gcc_fix-patch;</userinput></screen>
 
-    <para>Also address a header check that fails due to an incomplete build 
-    environment at this point:</para>
+    <para>还有一个因为现在不完整的编译环境所造成的头文件检测失败：</para>
 
     <screen><userinput remap="pre">patch -Np1 -i ../&glibc-cpuid-patch;</userinput></screen>
 
-    <para>The Glibc documentation recommends building Glibc outside of the source
-    directory in a dedicated build directory:</para>
+    <para>GLibc的相关文档强烈建议使用一个在源码文件夹外的文件夹进行编译：</para>
 
 <screen><userinput remap="pre">mkdir -v ../glibc-build
 cd ../glibc-build</userinput></screen>
 
-    <para>Because Glibc no longer supports i386, its developers say to use the
-    compiler flag <parameter>-march=i486</parameter> when building it for x86
-    machines. There are several ways to accomplish that, but testing shows that
-    the flag is best placed inside the build variable <quote>CFLAGS</quote>.
-    Instead of overriding completely what Glibc's internal build system uses
-    for CFLAGS, append the new flag to the existing contents of CFLAGS by
-    making use of the special file <filename>configparms</filename>. The
-    -mtune=native flag is also necessary to reset a reasonable value for -mtune
-    that is changed when setting -march.</para>
+    <para>因为 GLibc 不再支持i386，所以GLibc的开发者提出使用 <parameter>-march=i486</parameter> 参数在x86平台上进行编译。这里有几个不同的实现方法，但实践说明将这个参数加到 <quote>CFLAGS</quote> 中会比较好。我们通过将这个参数加入到 <filename>configparms</filename>文件中来达到目的，而不是彻底覆盖Glibc的内部CFLAGS。-mtune=native 参数也很重要，当重新设定 -march 的值时，可以得到一个合理的 -mtune的值。</para>
 
 <screen><userinput remap="configure">case `uname -m` in
   i?86) echo "CFLAGS += -march=i486 -mtune=native" &gt; configparms ;;
 esac</userinput></screen>
 
-    <para>Next, prepare Glibc for compilation:</para>
+    <para>接下来，准备Glibc的编译：</para>
 
 <screen><userinput remap="configure">../glibc-&glibc-version;/configure --prefix=/tools \
     --host=$LFS_TGT --build=$(../glibc-&glibc-version;/scripts/config.guess) \
@@ -81,75 +71,59 @@ esac</userinput></screen>
     libc_cv_forced_unwind=yes libc_cv_c_cleanup=yes</userinput></screen>
 
     <variablelist>
-      <title>The meaning of the configure options:</title>
+      <title>configure脚本参数的含义：</title>
 
       <varlistentry>
         <term><parameter>--host=$LFS_TGT, --build=$(../glibc-&glibc-version;/scripts/config.guess)</parameter></term>
         <listitem>
-          <para>The combined effect of these switches is that Glibc's build system
-          configures itself to cross-compile, using the cross-linker and
-          cross-compiler in <filename class="directory">/tools</filename>.</para>
+          <para>这几个参数告诉Glibc使用 <filename class="directory">/tools</filename> 中的编译器和连接器进行交叉编译。</para>
         </listitem>
       </varlistentry>
 
       <varlistentry>
         <term><parameter>--disable-profile</parameter></term>
         <listitem>
-          <para>This builds the libraries without profiling information. Omit
-          this option if profiling on the temporary tools is necessary.</para>
+          <para>不使用检测的信息进行编译。当需要检测信息时，去掉这个参数。</para>
         </listitem>
       </varlistentry>
 
       <varlistentry>
         <term><parameter>--enable-add-ons</parameter></term>
         <listitem>
-          <para>This tells Glibc to use the NPTL add-on as its threading
-          library.</para>
+          <para>告诉Glibc使用附加的NPTL作为线程库。</para>
         </listitem>
       </varlistentry>
 
       <varlistentry>
         <term><parameter>--enable-kernel=2.6.25</parameter></term>
         <listitem>
-          <para>This tells Glibc to compile the library with support
-          for 2.6.25 and later Linux kernels.  Workarounds for older
-          kernels are not enabled.</para>
+          <para>告诉Glibc提供2.6.25或更高的内核的支持。比这个旧的内核将不会提供支持。</para>
         </listitem>
       </varlistentry>
 
       <varlistentry>
         <term><parameter>--with-headers=/tools/include</parameter></term>
         <listitem>
-          <para>This tells Glibc to compile itself against the headers recently
-          installed to the tools directory, so that it knows exactly what
-          features the kernel has and can optimize itself accordingly.</para>
+          <para>告诉Glibc使用tools文件夹里的头文件编译自身，这样可以让Glibc根据新的内核进行优化。</para>
         </listitem>
       </varlistentry>
 
       <varlistentry>
         <term><parameter>libc_cv_forced_unwind=yes</parameter></term>
         <listitem>
-          <para>The linker installed during
-          <xref linkend="ch-tools-binutils-pass1"/> was cross-compiled and as
-          such cannot be used until Glibc has been installed.  This means that
-          the configure test for force-unwind support will fail, as it relies on
-          a working linker.  The libc_cv_forced_unwind=yes variable is passed in
-          order to inform <command>configure</command> that force-unwind
-          support is available without it having to run the test.</para>
+          <para>在 <xref linkend="ch-tools-binutils-pass1"/> 安装的连接器是交叉编译得到的，在Glibc安装好之前，它不能正常工作。这意味着configure对 force-unwind 的检查会失败。libc_cv_forced_unwind=yes 告诉 <command>configure</command> 脚本不进行这项检查。</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term><parameter>libc_cv_c_cleanup=yes</parameter></term>
         <listitem>
-          <para>Simlarly, we pass libc_cv_c_cleanup=yes through to the
-          <command>configure</command> script so that the test is skipped and C
-          cleanup handling support is configured.</para>
+          <para>同样的， 我们通过 libc_cv_c_cleanup=yes 告诉 <command>configure</command> 脚本跳过 cleanup handling 支持的检查。</para>
         </listitem>
       </varlistentry>
 
     </variablelist>
 
-    <para>During this stage the following warning might appear:</para>
+    <para>在这步进行时，可能会有下面的警告：</para>
 
     <blockquote>
 <screen><computeroutput>configure: WARNING:
@@ -159,29 +133,20 @@ esac</userinput></screen>
 *** Check the INSTALL file for required versions.</computeroutput></screen>
     </blockquote>
 
-    <para>The missing or incompatible <command>msgfmt</command> program is
-    generally harmless. This <command>msgfmt</command> program is part of the
-    Gettext package which the host distribution should provide.</para>
+    <para>这个丢失或不合适的 <command>msgfmt</command> 程序在这里是无害的。这个 <command>msgfmt</command> 是 gettext 的一部分，宿主系统默认会提供这个。</para>
 
-    <para>Compile the package:</para>
+    <para>编译这个包：</para>
 
 <screen><userinput remap="make">make</userinput></screen>
 
-    <para>This package does come with a test suite, however, it cannot be
-    run at this time because we do not have a C++ compiler yet.</para>
+    <para>这个包会有一些测试。然而，因为我们没有一个 C++ 编译器，这些测试无法执行。</para>
 
     <note>
-      <para>The test suite also requires locale data to be installed in order to run
-      successfully. Locale data provides information to the system regarding
-      such things as the date, time, and currency formats accepted and output by
-      system utilities. If the test suites are not being run in this chapter
-      (as per the recommendation), there is no need to install the locales now.
-      The appropriate locales will be installed in the next chapter. To install
-      the Glibc locales anyway, use instructions from <xref
-      linkend="ch-system-glibc" role="."/></para>
+      <para>这些测试的成功执行同样需要正确安装的区域数据。区域数据提供系统默认的信息，例如，日期，时间，以及一些系统工具默认的输入输出格式。如果这些测试没有这长章执行，那就没必要现在安装区域数据。合适的区域数据将会在下一张安装。如果无论如何都要安装这个数据，参考<xref
+      linkend="ch-system-glibc" role="."/>。</para>
     </note>
 
-    <para>Install the package:</para>
+    <para>安装：</para>
 
 <screen><userinput remap="install">make install</userinput></screen>
 
@@ -190,7 +155,7 @@ esac</userinput></screen>
   <sect2 role="content">
     <title/>
 
-    <para>Details on this package are located in
+    <para>这个包的细节在
     <xref linkend="contents-glibc" role="."/></para>
 
   </sect2>
