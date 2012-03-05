@@ -8,22 +8,11 @@
 <sect1 id="ch-tools-adjusting">
   <?dbhtml filename="adjusting.html"?>
 
-  <title>Adjusting the Toolchain</title>
+  <title>调节工具链</title>
 
-  <para>Now that the temporary C libraries have been installed, all
-  tools compiled in the rest of this chapter should be linked against
-  these libraries. In order to accomplish this, the cross-compiler's
-  specs file needs to be adjusted to point to the new dynamic linker
-  in <filename class="directory">/tools</filename>.</para>
+  <para>现在临时的 C 库已经安装好了，在本章剩余部分编译的所有工具都应该链接至这些库。要实现这一点，跨平台编译器的 specs 文件需要修改以指向位于 <filename class="directory">/tools</filename> 的新的动态链接器。</para>
 
-  <para>This is done by dumping the compiler's <quote>specs</quote> file to a
-  location where it will look for it by default.
-  A simple <command>sed</command> substitution then alters the
-  dynamic linker that GCC will use. The principle here is to find all references
-  to the dynamic linker file in <filename class="directory">/lib</filename>
-  or possibly <filename class="directory">/lib64</filename> if the host system
-  is 64-bit capable, and adjust them to point to the new location in
-  <filename class="directory">/tools</filename>.</para>
+  <para>通过转储编译器的 <quote>specs</quote> 文件至一个会被默认找到的位置。然后应用一次简单的 <command>sed</command> 替换来调节 Gcc 使用的动态链接器。此处的目的是找到所有到 <filename class="directory">/lib</filename> 或者 64 位兼容宿主系统上的 <filename class="directory">/lib64</filename> 中动态链接器的提及并调节它们指向 <filename class="directory">/tools</filename> 中的新位置。</para>
 
   <para>For the sake of accuracy, it is recommended to use a copy-and-paste
   method when issuing the following command. Be sure to visually inspect the

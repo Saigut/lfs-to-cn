@@ -41,7 +41,7 @@
   </sect2>
 
   <sect2 role="installation">
-	  <title>安装 GLibc</title>
+	  <title>安装 Glibc</title>
 
 	  <para>首先修复一个使用 GCC-&gcc-version; 编译时出现的一个Bug ：</para>
 
@@ -51,18 +51,18 @@
 
     <screen><userinput remap="pre">patch -Np1 -i ../&glibc-cpuid-patch;</userinput></screen>
 
-    <para>GLibc的相关文档强烈建议使用一个在源码文件夹外的文件夹进行编译：</para>
+    <para>Glibc 文档推荐在源代码目录外另建目录编译 Glibc：</para>
 
 <screen><userinput remap="pre">mkdir -v ../glibc-build
 cd ../glibc-build</userinput></screen>
 
-    <para>因为 GLibc 不再支持i386，所以GLibc的开发者提出使用 <parameter>-march=i486</parameter> 参数在x86平台上进行编译。这里有几个不同的实现方法，但实践说明将这个参数加到 <quote>CFLAGS</quote> 中会比较好。我们通过将这个参数加入到 <filename>configparms</filename>文件中来达到目的，而不是彻底覆盖Glibc的内部CFLAGS。-mtune=native 参数也很重要，当重新设定 -march 的值时，可以得到一个合理的 -mtune的值。</para>
+    <para>因为 Glibc 不再支持 i386，所以Glibc的开发者提出使用 <parameter>-march=i486</parameter> 参数在 x86 平台上进行编译。这里有几种不同的实现方法，但测试表明将这个参数加到 <quote>CFLAGS</quote> 中会比较好。我们通过将这个参数加入到 <filename>configparms</filename> 文件中来达到目的，而不是彻底覆盖 Glibc 的内部 CFLAGS。-mtune=native 参数也很重要，当重新设定 -march 的值时，可以得到一个合理的 -mtune 的值。</para>
 
 <screen><userinput remap="configure">case `uname -m` in
   i?86) echo "CFLAGS += -march=i486 -mtune=native" &gt; configparms ;;
 esac</userinput></screen>
 
-    <para>接下来，准备Glibc的编译：</para>
+    <para>接下来，准备编译 Glibc：</para>
 
 <screen><userinput remap="configure">../glibc-&glibc-version;/configure --prefix=/tools \
     --host=$LFS_TGT --build=$(../glibc-&glibc-version;/scripts/config.guess) \
@@ -71,12 +71,12 @@ esac</userinput></screen>
     libc_cv_forced_unwind=yes libc_cv_c_cleanup=yes</userinput></screen>
 
     <variablelist>
-      <title>configure脚本参数的含义：</title>
+      <title>配置选项的含义：</title>
 
       <varlistentry>
         <term><parameter>--host=$LFS_TGT, --build=$(../glibc-&glibc-version;/scripts/config.guess)</parameter></term>
         <listitem>
-          <para>这几个参数告诉Glibc使用 <filename class="directory">/tools</filename> 中的编译器和连接器进行交叉编译。</para>
+          <para>这几个参数告诉 Glibc 使用 <filename class="directory">/tools</filename> 中的编译器和链接器进行跨平台编译。</para>
         </listitem>
       </varlistentry>
 
@@ -90,34 +90,34 @@ esac</userinput></screen>
       <varlistentry>
         <term><parameter>--enable-add-ons</parameter></term>
         <listitem>
-          <para>告诉Glibc使用附加的NPTL作为线程库。</para>
+          <para>告诉 Glibc 使用附加的 NPTL 作为线程库。</para>
         </listitem>
       </varlistentry>
 
       <varlistentry>
         <term><parameter>--enable-kernel=2.6.25</parameter></term>
         <listitem>
-          <para>告诉Glibc提供2.6.25或更高的内核的支持。比这个旧的内核将不会提供支持。</para>
+          <para>告诉 Glibc 提供 2.6.25 或更高的内核的支持。比这个旧的内核将不会提供支持。</para>
         </listitem>
       </varlistentry>
 
       <varlistentry>
         <term><parameter>--with-headers=/tools/include</parameter></term>
         <listitem>
-          <para>告诉Glibc使用tools文件夹里的头文件编译自身，这样可以让Glibc根据新的内核进行优化。</para>
+          <para>告诉 Glibc 使用 tools 文件夹里的头文件编译自身，这样可以让 Glibc 根据新的内核进行优化。</para>
         </listitem>
       </varlistentry>
 
       <varlistentry>
         <term><parameter>libc_cv_forced_unwind=yes</parameter></term>
         <listitem>
-          <para>在 <xref linkend="ch-tools-binutils-pass1"/> 安装的连接器是交叉编译得到的，在Glibc安装好之前，它不能正常工作。这意味着configure对 force-unwind 的检查会失败。libc_cv_forced_unwind=yes 告诉 <command>configure</command> 脚本不进行这项检查。</para>
+          <para>在<xref linkend="ch-tools-binutils-pass1"/>安装的链接器是跨平台编译得到的，在Glibc安装好之前，它不能正常工作。这意味着 configure 对 force-unwind 的检查会失败。libc_cv_forced_unwind=yes 告诉 <command>configure</command> 脚本不进行这项检查。</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term><parameter>libc_cv_c_cleanup=yes</parameter></term>
         <listitem>
-          <para>同样的， 我们通过 libc_cv_c_cleanup=yes 告诉 <command>configure</command> 脚本跳过 cleanup handling 支持的检查。</para>
+          <para>同样，我们通过 libc_cv_c_cleanup=yes 告诉 <command>configure</command> 脚本跳过 cleanup handling 支持的检查。</para>
         </listitem>
       </varlistentry>
 
@@ -135,18 +135,17 @@ esac</userinput></screen>
 
     <para>这个丢失或不合适的 <command>msgfmt</command> 程序在这里是无害的。这个 <command>msgfmt</command> 是 gettext 的一部分，宿主系统默认会提供这个。</para>
 
-    <para>编译这个包：</para>
+    <para>编译程序包：</para>
 
 <screen><userinput remap="make">make</userinput></screen>
 
-    <para>这个包会有一些测试。然而，因为我们没有一个 C++ 编译器，这些测试无法执行。</para>
+    <para>此程序包包含测试套件，但现在还不能运行，因为我们还没有 C++ 编译器。</para>
 
     <note>
-      <para>这些测试的成功执行同样需要正确安装的区域数据。区域数据提供系统默认的信息，例如，日期，时间，以及一些系统工具默认的输入输出格式。如果这些测试没有这长章执行，那就没必要现在安装区域数据。合适的区域数据将会在下一张安装。如果无论如何都要安装这个数据，参考<xref
-      linkend="ch-system-glibc" role="."/>。</para>
+      <para>这些测试的成功执行同样需要正确安装的区域数据。区域数据提供系统默认的信息，比如日期、时间、货币格式以及系统工具的输出。如果在本章不运行测试套件，就没必要现在安装区域数据 (推荐)。合适的区域数据将会在下一章安装。如果无论如何都要安装 Glibc 区域数据，参考<xref linkend="ch-system-glibc" role="."/>。</para>
     </note>
 
-    <para>安装：</para>
+    <para>安装程序包：</para>
 
 <screen><userinput remap="install">make install</userinput></screen>
 
@@ -155,8 +154,7 @@ esac</userinput></screen>
   <sect2 role="content">
     <title/>
 
-    <para>这个包的细节在
-    <xref linkend="contents-glibc" role="."/></para>
+    <para>有关此程序包的细节位于<xref linkend="contents-glibc"/></para>
 
   </sect2>
 

@@ -403,7 +403,7 @@ mkdir /etc/ld.so.conf.d</userinput></screen>
   </sect2>
 
   <sect2 id="contents-glibc" role="content">
-    <title>Contents of Glibc</title>
+    <title>Glibc 的内容</title>
 
     <segmentedlist>
       <segtitle>Installed programs</segtitle>
