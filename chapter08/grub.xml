@@ -14,16 +14,12 @@
     <address>&grub-url;</address>
   </sect1info>
 
-  <title>Using GRUB to Set Up the Boot Process</title>
+  <title>使用 GRUB 来设置启动流程</title>
 
   <sect2>
     <title>介绍</title>
 
-    <warning><para>Configuring GRUB incorrectly can render your system
-    inoperable without an alternate boot device such as a CD-ROM.  This
-    section is not required to boot your LFS system.  You may just
-    want to modify your current boot loader, e.g. Grub-Legacy, GRUB2, or
-    LILO.</para></warning>
+    <warning><para>错误配置 GRUB 会造成你的系统无法操作（启动），除了使用其他的可启动媒介，例如光盘。这一章节不要求你启动你的LFS系统，你只需要修正系统当前的 Boot Loader，像 Grub-Legacy, GRUB2, 或者 LILO。</para></warning>
 
 
     <para>确保你有一个应急的可引导磁盘（译者注，光盘Linux也行），这使我们可以在电脑不能启动时进行<quote>救援</quote>。如果你没有，可以创建一个。为此，你需要跳到BLFS中，安装<ulink
@@ -37,24 +33,14 @@ xorriso -as cdrecord -v dev=/dev/cdrw blank=as_needed grub-img.iso</userinput></
   </sect2>
 
   <sect2>
-    <title>GRUB Naming Conventions</title>
+    <title>GRUB 的名称转换</title>
 
-    <para>GRUB uses its own naming structure for drives and partitions in
-    the form of <emphasis>(hdn,m)</emphasis>, where <emphasis>n</emphasis>
-    is the hard drive number and <emphasis>m</emphasis> is the partition
-    number. The hard drive number starts from zero, but the partition number
-    starts from one for normal partitions and five for extended partitions.  
-    Note that this is different from earlier versions where 
-    both numbers started from zero. For example, partition <filename
-    class="partition">sda1</filename> is <emphasis>(hd0,1)</emphasis> to
-    GRUB and <filename class="partition">sdb3</filename> is
-    <emphasis>(hd1,3)</emphasis>. In contrast to Linux, GRUB does not
-    consider CD-ROM drives to be hard drives. For example, if using a CD
-    on <filename class="partition">hdb</filename> and a second hard drive
-    on <filename class="partition">hdc</filename>, that second hard drive
-    would still be <emphasis>(hd1)</emphasis>.</para>
+    <para>GRUB 使用自己的命名方式来标识硬盘和分区， 比如 <emphasis>(hdn,m)</emphasis>，<emphasis>n</emphasis>是硬盘的编号，<emphasis>m</emphasis> 是分区的编号。硬盘的编号从零开始，分区的编号是从1开始（扩展分区的编号从5开始）。注意这与早期的使用0开始的软件版本不同。例如，分区<filename
+    class="partition">sda1</filename> 对于GRUB是 <emphasis>(hd0,1)</emphasis> 
+    GRUB，<filename class="partition">sdb3</filename>是
+    <emphasis>(hd1,3)</emphasis>。与Linux不同的是，GRUB 并不将光驱当作硬盘。例如，如果使用一个光驱作为<filename class="partition">hdb</filename>， 另一个硬盘作为 <filename class="partition">hdc</filename>，那么这个硬盘将是<emphasis>(hd1)</emphasis>。</para>
 
-    <para>You can determine what GRUB thinks your disk devices are by running:</para>
+    <para>你可以用下面的方法查看GRUB是如何看待你的硬件的：</para>
 
 <screen role="nodump"><userinput>grub-mkdevicemap --device-map=device.map
 cat device.map</userinput></screen>
@@ -62,7 +48,7 @@ cat device.map</userinput></screen>
   </sect2>
 
   <sect2>
-    <title>Setting Up the Configuration</title>
+    <title>创建配置</title>
 
     <para>GRUB works by writing data to the first physical track of the 
     hard disk.  This area is not part of any file system.  The programs
