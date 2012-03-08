@@ -14,12 +14,7 @@
 
   <para>通过转储编译器的 <quote>specs</quote> 文件至一个会被默认找到的位置。然后应用一次简单的 <command>sed</command> 替换来调节 Gcc 使用的动态链接器。此处的目的是找到所有到 <filename class="directory">/lib</filename> 或者 64 位兼容宿主系统上的 <filename class="directory">/lib64</filename> 中动态链接器的提及并调节它们指向 <filename class="directory">/tools</filename> 中的新位置。</para>
 
-  <para>For the sake of accuracy, it is recommended to use a copy-and-paste
-  method when issuing the following command. Be sure to visually inspect the
-  specs file to verify that it has properly adjusted all references to the
-  dynamic linker location. Refer to <xref
-    linkend="ch-tools-toolchaintechnotes" role=","/> for the default name
-  of the dynamic linker, if necessary.</para>
+  <para>为了准确，推荐使用复制粘贴方法来执行以下命令。一定要检查 specs 文件以确定所有到动态链接器位置的提及都正确调节。如果需要，参考<xref linkend="ch-tools-toolchaintechnotes"/>中的动态链接器默认名称。</para>
 
 <!-- Ampersands are needed to allow copy and paste -->
 <screen><userinput>SPECS=`dirname $($LFS_TGT-gcc -print-libgcc-file-name)`/specs
@@ -30,39 +25,26 @@ echo "New specs file is: $SPECS"
 unset SPECS</userinput></screen>
 
   <caution>
-    <para>At this point, it is imperative to stop and ensure that the basic
-    functions (compiling and linking) of the new toolchain are working as
-    expected. To perform a sanity check, run the following commands:</para>
+    <para>在这里，停下来确保新工具链的基本功能 (编译和链接) 能正常工作很重要。要进行完整性检查，运行以下命令：</para>
 
 <screen><userinput>echo 'main(){}' &gt; dummy.c
 $LFS_TGT-gcc -B/tools/lib dummy.c
 readelf -l a.out | grep ': /tools'</userinput></screen>
 
-    <para>If everything is working correctly, there should be no errors,
-    and the output of the last command will be of the form:</para>
+    <para>如果一切工作正常，就不会出现错误，最后一条命令的输出会符合以下格式：</para>
 
 <screen><computeroutput>[Requesting program interpreter: /tools/lib/ld-linux.so.2]</computeroutput></screen>
 
-    <para>Note that <filename class="directory">/tools/lib</filename>, or
-    <filename class="directory">/tools/lib64</filename> for 64-bit machines
-    appears as the prefix of the dynamic linker.</para>
+    <para>留意 <filename class="directory">/tools/lib</filename> 或者 64 位计算机上的 <filename class="directory">/tools/lib64</filename> 作为动态链接器的前缀出现。</para>
 
-    <para>If the output is not shown as above or there was no output at all,
-    then something is wrong. Investigate and retrace the steps to find out
-    where the problem is and correct it. This issue must be resolved before
-    continuing on. Something may have gone wrong with the
-    specs file amendment above. In this case, redo the specs file amendment,
-    being careful to copy-and-paste the commands.</para>
+    <para>如果输出不如上文所示或者根本没有输出，那就有什么地方出错了。研究回溯刚才的步骤，查出问题并修正它。在继续之前必须解决这一问题。可能在刚才的 specs 文件修改过程中出现了问题。如果出现了这种情况，重做 specs 文件修改，小心地复制粘贴命令。</para>
 
-    <para>Once all is well, clean up the test files:</para>
+    <para>一切正常之后，清理测试文件：</para>
 
 <screen><userinput>rm -v dummy.c a.out</userinput></screen>
 
   </caution>
 
-  <note><para>Building Binutils in the next section will serve as an additional check that
-  the toolchain has been built properly. If Binutils fails to build, it is an
-  indication that something has gone wrong with the previous Binutils, GCC, or Glibc
-  installations.</para></note>
+  <note><para>下一节中编制 Binutils 相当与额外检查了一次工具链是否正常编制。如果 Binutils 编制失败，就说名之前的 Binutils、GCC 或 Glibc 安装出现了问题。</para></note>
 
 </sect1>
