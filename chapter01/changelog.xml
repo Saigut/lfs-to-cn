@@ -34,10 +34,40 @@
 -->
 
     <listitem>
+      <para>2012-03-06</para>
+      <itemizedlist>
+         <listitem>
+           <para>[matthew] - 升级至 Libpipeline-1.2.1。修复 <ulink url="&lfs-ticket-root;3031">#3031</ulink>。</para>
+         </listitem>
+         <listitem>
+           <para>[matthew] - 升级至 Kmod-6。修复 <ulink url="&lfs-ticket-root;3030">#3030</ulink>。</para>
+         </listitem>
+         <listitem>
+           <para>[matthew] - 升级至 Grep-2.11。修复 <ulink url="&lfs-ticket-root;3029">#3029</ulink>。</para>
+         </listitem>
+         <listitem>
+           <para>[matthew] - 升级至 GCC-4.6.3。修复 <ulink url="&lfs-ticket-root;3028">#3028</ulink>。</para>
+         </listitem>
+         <listitem>
+           <para>[matthew] - 升级至 Psmisc-22.16。修复 <ulink url="&lfs-ticket-root;3026">#3026</ulink>。</para>
+         </listitem>
+         <listitem>
+           <para>[matthew] - 升级至 File-5.11。修复 <ulink url="&lfs-ticket-root;3024">#3024</ulink>。</para>
+         </listitem>
+         <listitem>
+           <para>[matthew] - 升级至 Linux-3.2.9。修复 <ulink url="&lfs-ticket-root;3023">#3023</ulink>。</para>
+         </listitem>
+         <listitem>
+           <para>[matthew] - 升级至 Util-Linux-2.21。修复 <ulink url="&lfs-ticket-root;3002">#3002</ulink>。</para>
+         </listitem>
+       </itemizedlist>
+    </listitem>
+
+    <listitem>
       <para>2012-03-02</para>
       <itemizedlist>
         <listitem>
-          <para>[bdubbs] - LFS-7.1 released.
+          <para>[bdubbs] - LFS-7.1 发布。
           </para>
         </listitem>
       </itemizedlist>

@@ -127,10 +127,10 @@
 <!ENTITY expect-ch5-du "4.1 MB">
 <!ENTITY expect-ch5-sbu "0.1 SBU">
 
-<!ENTITY file-version "5.10">
-<!ENTITY file-size "595 KB">
+<!ENTITY file-version "5.11">
+<!ENTITY file-size "596 KB">
 <!ENTITY file-url "ftp://ftp.astron.com/pub/file/file-&file-version;.tar.gz">
-<!ENTITY file-md5 "4cea34b087b060772511e066e2038196">
+<!ENTITY file-md5 "16a407bd66d6c7a832f3a5c0d609c27b">
 <!ENTITY file-home "http://www.darwinsys.com/file/">
 <!ENTITY file-ch5-du "9.5 MB">
 <!ENTITY file-ch5-sbu "0.2 SBU">
@@ -169,10 +169,10 @@
 <!ENTITY gawk-ch6-du "28 MB">
 <!ENTITY gawk-ch6-sbu "0.2 SBU">
 
-<!ENTITY gcc-version "4.6.2">
-<!ENTITY gcc-size "70,308 KB">
+<!ENTITY gcc-version "4.6.3">
+<!ENTITY gcc-size "70,312 KB">
 <!ENTITY gcc-url "&gnu;gcc/gcc-&gcc-version;/gcc-&gcc-version;.tar.bz2">
-<!ENTITY gcc-md5 "028115c4fbfb6cfd75d6369f4a90d87e">
+<!ENTITY gcc-md5 "773092fe5194353b02bb0110052a972e">
 <!ENTITY gcc-home "http://gcc.gnu.org/">
 <!ENTITY gcc-ch5p1-du "1.2 GB">
 <!ENTITY gcc-ch5p1-sbu "5.0 SBU">
@@ -221,10 +221,10 @@
 <!ENTITY gmp-ch6-du "39 MB">
 <!ENTITY gmp-ch6-sbu "1.7 SBU">
 
-<!ENTITY grep-version "2.10">
-<!ENTITY grep-size "1,048 KB">
+<!ENTITY grep-version "2.11">
+<!ENTITY grep-size "1,101 KB">
 <!ENTITY grep-url "&gnu;grep/grep-&grep-version;.tar.xz">
-<!ENTITY grep-md5 "709915434d09f5db655e5ebd7fd6bb7f">
+<!ENTITY grep-md5 "ad9c6dbdeab93e50d2bc380f10ed3643">
 <!ENTITY grep-home "&gnu-software;grep/">
 <!ENTITY grep-ch5-du "18 MB">
 <!ENTITY grep-ch5-sbu "0.2 SBU">
@@ -289,10 +289,10 @@
 <!ENTITY kbd-ch6-du "16.0 MB">
 <!ENTITY kbd-ch6-sbu "less than 0.1 SBU">
 
-<!ENTITY kmod-version "5">
-<!ENTITY kmod-size "855 KB">
-<!ENTITY kmod-url "http://packages.profusion.mobi/kmod/kmod-&kmod-version;.tar.xz">
-<!ENTITY kmod-md5 "b271c2ec54aba1c67bda63c8579d8c15">
+<!ENTITY kmod-version "6">
+<!ENTITY kmod-size "976 KB">
+<!ENTITY kmod-url "&kernel;linux/utils/kernel/kmod/kmod-&kmod-version;.tar.xz">
+<!ENTITY kmod-md5 "bad08102fad212cd34405136d9a7eb94">
 <!ENTITY kmod-home " ">
 <!ENTITY kmod-ch6-du "16.0 MB">
 <!ENTITY kmod-ch6-sbu "less than 0.1 SBU">
@@ -313,10 +313,10 @@
 <!ENTITY lfs-bootscripts-ch7-du "BOOTSCRIPTS-INSTALL-KB KB"> <!-- Updated in Makefile -->
 <!ENTITY lfs-bootscripts-ch7-sbu "less than 0.1 SBU">
 
-<!ENTITY libpipeline-version "1.2.0">
-<!ENTITY libpipeline-size "670 KB">
+<!ENTITY libpipeline-version "1.2.1">
+<!ENTITY libpipeline-size "723 KB">
 <!ENTITY libpipeline-url "http://download.savannah.gnu.org/releases/libpipeline/libpipeline-&libpipeline-version;.tar.gz">
-<!ENTITY libpipeline-md5 "dd3a987a0d2b594716baee2f73d61ae3">
+<!ENTITY libpipeline-md5 "20896c919eca4acb3d2f13012fb7ba02">
 <!ENTITY libpipeline-home "http://libpipeline.nongnu.org/">
 <!ENTITY libpipeline-ch6-du "8.0 MB">
 <!ENTITY libpipeline-ch6-sbu "0.1 SBU">
@@ -331,12 +331,12 @@
 
 <!ENTITY linux-major-version "3">
 <!ENTITY linux-minor-version "2">
-<!ENTITY linux-patch-version "6">
+<!ENTITY linux-patch-version "9">
 <!ENTITY linux-version "&linux-major-version;.&linux-minor-version;.&linux-patch-version;">
 <!--<!ENTITY linux-version "&linux-major-version;.&linux-minor-version;">-->
-<!ENTITY linux-size "63,560 KB">
+<!ENTITY linux-size "63,548 KB">
 <!ENTITY linux-url "&kernel;linux/kernel/v&linux-major-version;.x/linux-&linux-version;.tar.xz">
-<!ENTITY linux-md5 "b50e258e601a428d13bdcc9ae35f8340">
+<!ENTITY linux-md5 "a9b65ef81e036ad8aeaa6c60dbebad4c">
 <!ENTITY linux-home "http://www.kernel.org/">
 <!ENTITY linux-ch8-du "540 - 800 MB">
 <!ENTITY linux-ch8-sbu "1.0 - 5.0 SBU">
@@ -440,10 +440,10 @@
 <!ENTITY procps-ch6-du "2.3 MB">
 <!ENTITY procps-ch6-sbu "0.1 SBU">
 
-<!ENTITY psmisc-version "22.15">
-<!ENTITY psmisc-size "382 KB">
+<!ENTITY psmisc-version "22.16">
+<!ENTITY psmisc-size "454 KB">
 <!ENTITY psmisc-url "&sourceforge;psmisc/psmisc-&psmisc-version;.tar.gz">
-<!ENTITY psmisc-md5 "35e155bae2e499a6dcba35884560db1e">
+<!ENTITY psmisc-md5 "d52caf26159c905574c2ce4bd792b9ee">
 <!ENTITY psmisc-home "http://psmisc.sourceforge.net/">
 <!ENTITY psmisc-ch6-du "3.6 MB">
 <!ENTITY psmisc-ch6-sbu "less than 0.1 SBU">
@@ -533,13 +533,11 @@
 <!ENTITY udev-config-md5 "UDEV-MD5SUM">      <!-- Updated in Makefile -->
 <!ENTITY udev-config-home " ">
 
-<!ENTITY util-linux-version "2.20.1">
-<!ENTITY util-linux-size "4,506 KB">
-<!ENTITY util-linux-url "&kernel;linux/utils/util-linux/v2.20/util-linux-&util-linux-version;.tar.bz2">
-<!ENTITY util-linux-md5 "079b37517fd4e002a2e6e992e8b4e361">
+<!ENTITY util-linux-version "2.21">
+<!ENTITY util-linux-size "2,885 KB">
+<!ENTITY util-linux-url "&kernel;linux/utils/util-linux/v2.21/util-linux-&util-linux-version;.tar.xz">
+<!ENTITY util-linux-md5 "208aa058f4117759d2939d1be7d662fc">
 <!ENTITY util-linux-home "http://userweb.kernel.org/~kzak/util-linux/">
-<!--<!ENTITY util-linux-ch5-du "19 MB">-->
-<!--<!ENTITY util-linux-ch5-sbu "0.1 SBU">-->
 <!ENTITY util-linux-ch6-du "69 MB">
 <!ENTITY util-linux-ch6-sbu "0.7 SBU">
 
