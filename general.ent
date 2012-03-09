@@ -19,10 +19,11 @@
 
 <!ENTITY buildtime "预计编制时间">
 <!ENTITY diskspace "需求磁盘空间">
-<!ENTITY dependencies "Installation depends on">
-<!ENTITY testsuites "Test suite depends on">
-<!ENTITY before "Must be installed before">
-<!ENTITY external "Optional dependencies">
+<!ENTITY dependencies "安装依赖">
+<!ENTITY testsuites "测试套件依赖">
+<!ENTITY before "安装必须先于">
+<!ENTITY external "可选依赖关系">
+<!ENTITY detail "有关此程序包的细节位于">
 
 <!ENTITY gnu "http://ftp.gnu.org/gnu/">
 <!ENTITY gnu-software "http://www.gnu.org/software/">

@@ -136,7 +136,7 @@ cd ../gcc-build</userinput></screen>
   <sect2 role="content">
     <title/>
 
-    <para>有关此程序包的细节位于<xref linkend="contents-gcc"/>。</para>
+    <para>&detail;<xref linkend="contents-gcc"/>。</para>
 
   </sect2>
 
