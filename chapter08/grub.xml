@@ -50,59 +50,38 @@ cat device.map</userinput></screen>
   <sect2>
     <title>创建配置</title>
 
-    <para>GRUB works by writing data to the first physical track of the 
-    hard disk.  This area is not part of any file system.  The programs
-    there access GRUB modules in the boot partition.  The default location
-    is /boot/grub/.</para>
+    <para>GRUB 的工作方式是将信息写入硬盘的开头区域。这个区域不属于任何一个文件系统。这个区域储存的程序会在启动时读取启动分区的GRUB模块。默认位置为 /boot/grub/。</para>
 
-    <para>The location of the boot partition is a choice of the user that
-    affects the configuration.  One recommendation is to have a separate small
-    (suggested size is 100 MB) partition just for boot information.  That way
-    each build, whether LFS or some commercial distro, can access the same boot
-    files and access can be made from any booted system.  If you choose to do
-    this, you will need to mount the separate partition, move all files in the
-    current <filename class="directory">/boot</filename> directory (e.g. the
-    linux kernel you just built in the previous section) to the new partition.
-    You will then need to unmount the partition and remount it as <filename
-    class="directory">/boot</filename>.  If you do this, be sure to update
-    <filename>/etc/fstab</filename>.</para>
+    <para>启动分区的位置是用户的可选配置之一。一个建议是使用一个单独的小分区（建议100M）来作为启动分区。如果这样，你的机子上所有的系统（LFS 系统和一些发行版）都可以读取这个分区上相同的配置文件。如果你打算这么做，你需要挂载这个分区，然后将 <filename class="directory">/boot</filename> 文件夹 （包括你在前面章节编译的的内核）中的东西移动到这个被挂载了的分区。然后卸载这个分区，再重新将其挂载在 <filename
+    class="directory">/boot</filename>，并确认你更新了 <filename>/etc/fstab</filename>。</para>
 
-    <para>Using the current lfs partition will also work, but configuration
-    for multiple systems is more difficult.</para>
+    <para>使用当前的LFS分区一样没问题， 只是当你配置多系统启动的时候会有些麻烦。</para>
 
-    <para>Using the above information, determine the appropriate
-    designator for the root partition (or boot partition, if a separate
-    one is used). For the following example, it is assumed that the root
-    (or separate boot) partition is <filename
-    class="partition">sda2</filename>.</para>
+    <para>根据上面的信息，决定你的根分区（或者启动分区，如果你选择使用一个单独的启动分区）的设计。下面的例子，假设根分区（或者单独的启动分区）是 <filename
+    class="partition">sda2</filename>。</para>
 
-    <para>Install the GRUB files into <filename
-    class="directory">/boot/grub</filename> and set up the boot track:</para> 
+    <para>安装 GRUB 到<filename
+    class="directory">/boot/grub</filename> 并设置引导：</para> 
 
     <warning>
-      <para>The following command will overwrite the current boot loader. Do not
-      run the command if this is not desired, for example, if using a third party
-      boot manager to manage the Master Boot Record (MBR).</para> 
+      <para>下面的命令会覆盖原先的boot loader。如果你不想如此， 不要这么做。例如，如果你使用一个第三方的启动管理器来管理MBR。</para> 
     </warning>
 
 <screen role="nodump"><userinput>grub-install /dev/sda</userinput></screen>
 
-    <note><para><application>grub-install</application> is a script and calls another 
-    program, grub-probe, that may fail with a message "cannot stat `/dev/root'".  
-    If so, create a temporary symbolic link from your root partition to /dev/root:</para>
+    <note><para><application>grub-install</application> 是一个脚本，它会调用 grub-probe。这个程序可能会失败，并提示 "cannot stat `/dev/root'"。如果这样，创建一个从你的根分区到 /dev/root 的临时符号链接：</para>
 
 <screen role="nodump"><userinput>ln -sv /dev/sda2 /dev/root</userinput></screen>
 
-    <para>The symbolic link will only be present until the system is rebooted.
-    The link is only needed for the installation procedure.
+    <para>这个符号链接仅仅会存在于下次重启。它制作用于安装流程。
     </para></note>
 
   </sect2>
 
   <sect2>
-    <title>Creating the Configuration File</title>
+    <title>创建配置文件</title>
 
-    <para>Generate <filename>/boot/grub/grub.cfg</filename>:</para>
+    <para>创建 <filename>/boot/grub/grub.cfg</filename>：</para>
 
     <screen><userinput>cat &gt; /boot/grub/grub.cfg &lt;&lt; "EOF"
 <literal># Begin /boot/grub/grub.cfg
@@ -117,25 +96,13 @@ menuentry "GNU/Linux, Linux &linux-version;-lfs-&version;" {
 }</literal>
 EOF</userinput></screen>
 
-    <note><para>From <application>GRUB</application>'s perspective, the
-    kernel files are relative to the partition used.  If you
-    used a separate /boot partition, remove /boot from the above
-    <emphasis>linux</emphasis> line.  You will also need to change the
-    <emphasis>set root</emphasis> line to point to the boot partition.
+    <note><para>从 <application>GRUB</application> 的角度来看内核文件仅与其所在的分区相关。如果你使用一个单独的启动分区，从 <emphasis>linux</emphasis> 那行删掉/boot。你同时也需要将
+    <emphasis>set root</emphasis> 改成你的根分区。
     </para></note> 
 
-    <para>GRUB is an extremely powerful program and it provides a tremendous
-    number of options for booting from a wide variety of devices, operating
-    systems, and partition types.  There are also many options for customization 
-    such as graphical splash screens, playing sounds, mouse input, etc.  The
-    details of these options are beyond the scope of this introduction.</para>
+    <para>GRUB是一个很棒的软件，它提供了大量的选项用于不同的设备，操作系统，分区。它也有一些个性化的设置如图形启动界面，启动声音，鼠标输入等等。这些话题超出了这篇介绍的范围。</para>
 
-    <caution><para>There is a command, <application>grub-mkconfig</application>, that
-    can write a configuration file automatically.  It uses a set of scripts in
-    /etc/grub.d/ and will destroy any customizations that you make.  These scripts
-    are designed primarily for non-source distributions and are not recommended for 
-    LFS.  If you install a commercial Linux distribution, there is a good chance 
-    that this program will be run.  Be sure to back up your grub.cfg file.</para></caution> 
+    <caution><para><application>grub-mkconfig</application>这个命令可以自动生成一个配置文件。他会调用一系列 /etc/grub.d/ 中的脚本，并覆盖你原先的配置文件。这些脚本起初是为“非源码”发行版准备的，并不建议在LFS系统中使用它们。如果你使用一个商业Linux发行版，那么你有很大机会会用到他们。确保你备份了 grub.cfg 文件。</para></caution> 
 
    </sect2>
 
