@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
   "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
   <!ENTITY % general-entities SYSTEM "../general.ent">
@@ -14,11 +14,11 @@
     <address>&binutils-url;</address>
   </sect1info>
 
-  <title>Binutils-&binutils-version; - Pass 2</title>
+  <title>Binutils-&binutils-version; - 第二遍</title>
 
   <indexterm zone="ch-tools-binutils-pass2">
     <primary sortas="a-Binutils">Binutils</primary>
-    <secondary>tools, pass 2</secondary>
+    <secondary>工具、第二遍</secondary>
   </indexterm>
 
   <sect2 role="package">
@@ -41,14 +41,14 @@
   </sect2>
 
   <sect2 role="installation">
-    <title>Installation of Binutils</title>
+    <title>安装 Binutils</title>
 
-    <para>Create a separate build directory again:</para>
+    <para>再创建一个独立的编制目录：</para>
 
 <screen><userinput remap="pre">mkdir -v ../binutils-build
 cd ../binutils-build</userinput></screen>
 
-    <para>Prepare Binutils for compilation:</para>
+    <para>准备编译 Binutils：</para>
 
 <screen><userinput remap="configure">CC="$LFS_TGT-gcc -B/tools/lib/" \
 AR=$LFS_TGT-ar                  \
@@ -59,67 +59,52 @@ RANLIB=$LFS_TGT-ranlib          \
         --with-lib-path=/tools/lib</userinput></screen>
 
     <variablelist>
-      <title>The meaning of the new configure options:</title>
+      <title>新的配置选项的含义：</title>
 
       <varlistentry>
         <term><parameter>CC="$LFS_TGT-gcc -B/tools/lib/" AR=$LFS_TGT-ar RANLIB=$LFS_TGT-ranlib</parameter></term>
         <listitem>
-          <para>Because this is really a native build of Binutils, setting these
-          variables ensures that the build system uses the cross-compiler and
-          associated tools instead of the ones on the host system.</para>
+          <para>因为这一次是原生编制 Binutils，设置这些变量可以确保编制系统使用交叉编译器和相关工具而不是宿主系统上的工具。</para>
         </listitem>
       </varlistentry>
 
       <varlistentry>
         <term><parameter>--with-lib-path=/tools/lib</parameter></term>
         <listitem>
-          <para>This tells the configure script to specify the library
-          search path during the compilation of Binutils, resulting in
-          <filename class="directory">/tools/lib</filename> being passed
-          to the linker. This prevents the linker from searching through
-          library directories on the host.</para>
+          <para>此项告诉配置脚本在 Binutils 编译期间指定库搜索路径，使得 <filename class="directory">/tools/lib</filename> 传递给链接器。这就防止了链接器搜索宿主上的库目录。</para>
         </listitem>
       </varlistentry>
 
     </variablelist>
 
-    <para>Compile the package:</para>
+    <para>编译程序包：</para>
 
 <screen><userinput remap="make">make</userinput></screen>
 
-    <para>Install the package:</para>
+    <para>安装程序包：</para>
 
 <screen><userinput remap="install">make install</userinput></screen>
 
-    <para>Now prepare the linker for the <quote>Re-adjusting</quote> phase in
-    the next chapter:</para>
+    <para>现在为了下一章中的 <quote>重新调节</quote> 一节准备链接器：</para>
 
 <screen><userinput remap="adjust">make -C ld clean
 make -C ld LIB_PATH=/usr/lib:/lib
 cp -v ld/ld-new /tools/bin</userinput></screen>
 
     <variablelist>
-      <title>The meaning of the make parameters:</title>
+      <title>make 参数的含义：</title>
 
       <varlistentry>
         <term><parameter>-C ld clean</parameter></term>
         <listitem>
-          <para>This tells the make program to remove all compiled
-          files in the <filename class="directory">ld</filename>
-          subdirectory.</para>
+          <para>此项告诉 make 程序移除 <filename class="directory">ld</filename> 子目录中所有编译产生的文件。</para>
         </listitem>
       </varlistentry>
 
       <varlistentry>
         <term><parameter>-C ld LIB_PATH=/usr/lib:/lib</parameter></term>
         <listitem>
-          <para>This option rebuilds everything in the <filename
-          class="directory">ld</filename> subdirectory. Specifying the
-          <envar>LIB_PATH</envar> Makefile variable on the command line
-          allows us to override the default value of the temporary tools
-          and point it to the proper final path. The value of this variable
-          specifies the linker's default library search path. This
-          preparation is used in the next chapter.</para>
+          <para>此项重新编制 <filename class="directory">ld</filename> 子目录中的一切。在命令行中指定 <envar>LIB_PATH</envar> Makefile 变量允许我门覆盖临时工具的默认值并指向正确的最终路径。此变量的值指定了链接器默认的库搜索路径。这项准备工作在下一章中用到。</para>
         </listitem>
       </varlistentry>
 
@@ -130,8 +115,7 @@ cp -v ld/ld-new /tools/bin</userinput></screen>
   <sect2 role="content">
     <title/>
 
-    <para>Details on this package are located in
-    <xref linkend="contents-binutils" role="."/></para>
+    <para>&detail;<xref linkend="contents-binutils"/>。</para>
 
   </sect2>
 
