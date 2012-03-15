@@ -58,14 +58,7 @@ sed 's@\./fixinc\.sh@-c true@' gcc/Makefile.in.orig &gt; gcc/Makefile.in</userin
 sed 's/^T_CFLAGS =$/&amp; -fomit-frame-pointer/' gcc/Makefile.in.tmp \
   &gt; gcc/Makefile.in</userinput></screen>
 
-    <para>The following command will change the location of GCC's default
-    dynamic linker to use the one installed in
-    <filename class="directory">/tools</filename>. It also removes <filename
-    class="directory">/usr/include</filename> from GCC's include search path.
-    Doing this now rather than adjusting the specs file after installation
-    ensures that the new dynamic linker is used during the actual build of
-    GCC. That is, all of the binaries created during the build will link
-    against the new Glibc. Issue:</para>
+    <para>以下命令将改变 GCC 的默认动态链接器位置以使用安装于 <filename class="directory">/tools</filename> 的那一个。它也会从 GCC 的包含搜索路径中移除 <filename class="directory">/usr/include</filename>。现在就这样做而不是安装后调节 specs 文件是为了确保实际编制 GCC 的过程中使用新的动态链接器。执行：</para>
 
 <screen><userinput remap="pre">for file in \
  $(find gcc/config -name linux64.h -o -name linux.h -o -name sysv4.h)
@@ -81,25 +74,9 @@ do
   touch $file.orig
 done</userinput></screen>
 
-    <para>In case the above seems hard to follow, let's break it down a bit.
-    First we find all the files under the
-    <filename class="directory">gcc/config</filename> directory that are named
-    either <filename>linux.h</filename>, <filename>linux64.h</filename> or
-    <filename>sysv4.h</filename>.
-    For each file found, we copy it to a file of the same name but with an added
-    suffix of <quote>.orig</quote>. Then the first sed expression prepends
-    <quote>/tools</quote> to every instance of <quote>/lib/ld</quote>,
-    <quote>/lib64/ld</quote> or <quote>/lib32/ld</quote>, while the second one
-    replaces hard-coded instances of <quote>/usr</quote>. Then we add our define
-    statements which alter the include search path and the default startfile prefix
-    to the end of the file.
-    Finally, we use <command>touch</command> to update the timestamp on the copied files.
-    When used in conjunction with <command>cp -u</command>, this prevents unexpected
-    changes to the original files in case the commands are inadvertently run twice.
-    </para>
+    <para>由于上文似乎很难跟进，我们把它拆解开来。首先我们找到 <filename class="directory">gcc/config</filename> 目录中所有名为 <filename>linux.h</filename>、<filename>linux64.h</filename> 或者 <filename>sysv4.h</filename> 的文件。对于找到的每个文件，我们把它复制为一个有同样名字但是加上 <quote>.orig</quote> 后缀。然后第一个 sed 表达式将出现的所有 <quote>/lib/ld</quote>、<quote>/lib64/ld</quote> 或 <quote>/lib32/ld</quote> 替换为 <quote>/tools</quote>，第二个替换硬编码的 <quote>/usr</quote>。然后我们在文件末尾添加我们的声明，调节包含搜索路径和起始文件前缀。最后我们用 <command>touch</command> 来更新复制的文件的时间戳。在与 <command>cp -u</command> 联用时这可以防止由于误操作将命令运行两次而改变原有文件。</para>
 
-    <para>On x86_64, unsetting the multilib spec for GCC ensures that it
-    won't attempt to link against libraries on the host:</para>
+    <para>在 x86_64 上，给 GCC 解除多重库 specs 可以确保它不会试图链接至宿主上的库：</para>
 
 <screen><userinput remap="pre">case $(uname -m) in
   x86_64)
@@ -110,9 +87,7 @@ done</userinput></screen>
   ;;
 esac</userinput></screen>
 
-    <para>As in the first build of GCC it requires the GMP, MPFR and MPC
-    packages. Unpack the tarballs and move them into the required directory
-    names:</para>
+    <para>与第一次编译 GCC 相同，它需要 GMP、MPFR 和 MPC 程序包。解开压缩包冰将它们移动到指定名称的目录中：</para>
 
 <screen><userinput remap="pre">tar -jxf ../mpfr-&mpfr-version;.tar.bz2
 mv -v mpfr-&mpfr-version; mpfr
@@ -121,15 +96,14 @@ mv -v gmp-&gmp-version; gmp
 tar -zxf ../mpc-&mpc-version;.tar.gz
 mv -v mpc-&mpc-version; mpc</userinput></screen>
 
-    <para>Create a separate build directory again:</para>
+    <para>再创建一个独立的编制目录：</para>
 
 <screen><userinput remap="pre">mkdir -v ../gcc-build
 cd ../gcc-build</userinput></screen>
 
-    <para>Before starting to build GCC, remember to unset any environment
-    variables that override the default optimization flags.</para>
+    <para>在开始编制 GCC 之前，记得解除所有覆盖默认调节标记的环境变量。</para>
 
-    <para>Now prepare GCC for compilation:</para>
+    <para>现在准备编译 GCC：</para>
 
 <screen><userinput remap="configure">CC="$LFS_TGT-gcc -B/tools/lib/" \
 AR=$LFS_TGT-ar                  \
@@ -152,7 +126,7 @@ RANLIB=$LFS_TGT-ranlib          \
     --with-mpfr-lib=$(pwd)/mpfr/src/.libs</userinput></screen>
 
     <variablelist>
-      <title>The meaning of the new configure options:</title>
+      <title>新配置脚本的含义：</title>
 
       <varlistentry>
         <term><parameter>--enable-clocale=gnu</parameter></term>
