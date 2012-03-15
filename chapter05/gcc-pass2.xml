@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
   "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
   <!ENTITY % general-entities SYSTEM "../general.ent">
@@ -14,11 +14,11 @@
     <address>&gcc-url;</address>
   </sect1info>
 
-  <title>GCC-&gcc-version; - Pass 2</title>
+  <title>GCC-&gcc-version; - 第二遍</title>
 
   <indexterm zone="ch-tools-gcc-pass2">
     <primary sortas="a-GCC">GCC</primary>
-    <secondary>tools, pass 2</secondary>
+    <secondary>工具、第二遍</secondary>
   </indexterm>
 
   <sect2 role="package">
@@ -41,36 +41,18 @@
   </sect2>
 
   <sect2 role="installation">
-    <title>Installation of GCC</title>
+    <title>安装 GCC</title>
 
-    <para>Versions of GCC later than 4.3 will treat this build as if
-    it were a relocated compiler and disallow searching for startfiles in
-    the location specified by <parameter>--prefix</parameter>. Since this
-    will not be a relocated compiler, and the startfiles in
-    <filename class="directory">/tools</filename> are crucial to building
-    a working compiler linked to the libs in <filename class="directory">/tools</filename>,
-    apply the following patch which partially reverts GCC to its old behavior:</para>
+    <para>晚于 4.3 版本的 GCC 会将此次编制作为重新定位编译器来对待，不会允许在 <parameter>--prefix</parameter> 指定的位置搜索起始文件。由于这不是重新定位编译器，而 <filename class="directory">/tools</filename> 中的起始文件对于编制一个链接至 <filename class="directory">/tools</filename> 中的库的编译器至关重要，所以应用以下补丁暂时将 GCC 还原到旧的行为：</para>
 
 <screen><userinput remap="pre">patch -Np1 -i ../&gcc-startfiles-patch;</userinput></screen>
 
-    <para>Under normal circumstances the GCC <command>fixincludes</command> script
-    is run in order to fix potentially broken header files. As GCC-&gcc-version;
-    and Glibc-&glibc-version; have already been installed at this point, and
-    their respective header files are known to not require fixing, the
-    <command>fixincludes</command> script is not required. In fact, running
-    this script may actually pollute the build environment by
-    installing fixed headers from the host system into GCC's private include
-    directory. The running of the <command>fixincludes</command> script can
-    be suppressed by issuing the following commands:</para>
+    <para>通常情况下 GCC <command>fixincludes</command> 脚本会被运行，来修复潜在损坏的头文件。由于现在 GCC-&gcc-version; 和 Glibc-&glibc-version; 已经安装好了，它们的头文件都已知不需要修复，就不需要运行 <command>fixincludes</command> 脚本。事实上，运行这个脚本可能会从宿主系统向 GCC 的私有包含目录安装修复的头文件而污染编制环境。可以执行以下命令来支持运行 <command>fixincludes</command> 脚本：</para>
 
 <screen><userinput remap="pre">cp -v gcc/Makefile.in{,.orig}
 sed 's@\./fixinc\.sh@-c true@' gcc/Makefile.in.orig &gt; gcc/Makefile.in</userinput></screen>
 
-    <para>For x86 machines, a bootstrap build of GCC uses the
-    <option>-fomit-frame-pointer</option> compiler flag.  Non-bootstrap builds
-    omit this flag by default, and the goal should be to produce a compiler
-    that is exactly the same as if it were bootstrapped.  Apply the following
-    <command>sed</command> command to force the build to use the flag:</para> 
+    <para>对于 x86 计算机，引导编制 GCC 使用 <option>-fomit-frame-pointer</option> 编译器标记。非引导编制默认会忽略这个标记，而我们的目标是产生一个和引导过完全一样的编译器。应用以下的 <command>sed</command> 命令强制编制使用这个标记：</para> 
 
 <screen><userinput remap="pre">cp -v gcc/Makefile.in{,.tmp}
 sed 's/^T_CFLAGS =$/&amp; -fomit-frame-pointer/' gcc/Makefile.in.tmp \
