@@ -41,7 +41,7 @@
   </sect2>
 
   <sect2 role="installation">
-    <title>安装跨平台 Binutils</title>
+    <title>安装交叉 Binutils</title>
 
     <note><para>回去重新读一下上一节中的注记。读懂标记为重要的注记可以减少以后遇到的麻烦。</para></note>
 
@@ -71,7 +71,7 @@ cd ../binutils-build</userinput></screen>
       <varlistentry>
         <term><envar>--target=$LFS_TGT</envar></term>
         <listitem>
-          <para>因为 <envar>LFS_TGT</envar> 变量中的计算机描述与 <command>config.guess</command> 脚本返回的值略有区别，此开关会告诉 <command>configure</command> 脚本调节 Binutil 的编制系统编制一个跨平台链接器。</para>
+          <para>因为 <envar>LFS_TGT</envar> 变量中的计算机描述与 <command>config.guess</command> 脚本返回的值略有区别，此开关会告诉 <command>configure</command> 脚本调节 Binutil 的编制系统编制一个交叉链接器。</para>
         </listitem>
       </varlistentry>
 

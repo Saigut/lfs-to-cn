@@ -81,7 +81,7 @@ esac</userinput></screen>
       <varlistentry>
         <term><parameter>--host=$LFS_TGT, --build=$(../glibc-&glibc-version;/scripts/config.guess)</parameter></term>
         <listitem>
-          <para>这几个参数告诉 Glibc 使用 <filename class="directory">/tools</filename> 中的编译器和链接器进行跨平台编译。</para>
+          <para>这几个参数告诉 Glibc 使用 <filename class="directory">/tools</filename> 中的编译器和链接器进行交叉编译。</para>
         </listitem>
       </varlistentry>
 
@@ -116,7 +116,7 @@ esac</userinput></screen>
       <varlistentry>
         <term><parameter>libc_cv_forced_unwind=yes</parameter></term>
         <listitem>
-          <para>在<xref linkend="ch-tools-binutils-pass1"/>安装的链接器是跨平台编译得到的，在Glibc安装好之前，它不能正常工作。这意味着 configure 对 force-unwind 的检查会失败。libc_cv_forced_unwind=yes 告诉 <command>configure</command> 脚本不进行这项检查。</para>
+          <para>在<xref linkend="ch-tools-binutils-pass1"/>安装的链接器是交叉编译得到的，在Glibc安装好之前，它不能正常工作。这意味着 configure 对 force-unwind 的检查会失败。libc_cv_forced_unwind=yes 告诉 <command>configure</command> 脚本不进行这项检查。</para>
         </listitem>
       </varlistentry>
       <varlistentry>

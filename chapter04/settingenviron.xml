@@ -38,7 +38,7 @@ EOF</userinput></screen>
 
   <para><envar>LC_ALL</envar> 变量控制某些程序的本地化，使得它们的消息遵从特定国家的规则。如果宿主系统使用的 Glibc 版本晚于 2.2.4，把 <envar>LC_ALL</envar> 设置为不是 <quote>POSIX</quote> 或者 <quote>C</quote> (这一章) 的值在退出 chroot 环境然后重新进入时可能产生问题。设置 <envar>LC_ALL</envar> 为 <quote>POSIX</quote> 或 <quote>C</quote> (两者等价) 确保在 chroot 环境中一切都正常工作。</para>
 
-  <para><envar>LFS_TGT</envar> 变量设置一个非默认但兼容的计算机描述，用在编制跨平台编译器和链接器并跨平台编译我们的临时工具链的时候。更多信息位于<xref linkend="ch-tools-toolchaintechnotes" role=""/>。</para>
+  <para><envar>LFS_TGT</envar> 变量设置一个非默认但兼容的计算机描述，用在编制交叉编译器和链接器并交叉编译我们的临时工具链的时候。更多信息位于<xref linkend="ch-tools-toolchaintechnotes" role=""/>。</para>
 
   <para>通过把 <filename class="directory">/tools/bin</filename> 放在标准 <envar>PATH</envar> 之前，<xref linkend="chapter-temporary-tools"/>中安装的所有程序在安装过后就会立刻被 shell 找到。此项与关闭哈希联用，就限制了第五章环境中有程序却使用宿主程序的风险。</para>
 
