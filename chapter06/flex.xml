@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
   "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
   <!ENTITY % general-entities SYSTEM "../general.ent">
@@ -88,8 +88,7 @@ chmod -v 755 /usr/bin/lex</userinput></screen>
     file:</para>
 
 <screen><userinput remap="install">mkdir -v /usr/share/doc/flex-&flex-version;
-cp    -v doc/flex.pdf \
-         /usr/share/doc/flex-&flex-version;</userinput></screen>
+cp    -v doc/flex.pdf /usr/share/doc/flex-&flex-version;</userinput></screen>
 
   </sect2>
 

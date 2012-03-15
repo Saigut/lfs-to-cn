@@ -41,7 +41,7 @@
   </sect2>
 
   <sect2 role="installation">
-    <title>安装跨平台 GCC</title>
+    <title>安装交叉 GCC</title>
 
     <para>GCC 现在需求 GMP、MPFR 和 MPC 程序包。由于这些程序包可能未包含与你的宿主发行版中，它们将与 GCC 一同编制。将每个程序包解包至 GCC 源代码目录并重命名产生的文件夹使得 GCC 编制过程能够自动使用他们：</para>
 
@@ -54,10 +54,6 @@ mv -v gmp-&gmp-version; gmp
 tar -zxf ../mpc-&mpc-version;.tar.gz
 mv -v mpc-&mpc-version; mpc</userinput></screen>
 
-<para>应用一个补丁禁用编制 libiberty 和 zlib 目标库，因为它们在跨平台编译的环境中无法正常编制：</para>
-
-<screen><userinput remap="pre">patch -Np1 -i ../&gcc-crosscompile-patch;</userinput></screen>
-
     <para>GCC 文档推荐在源代码目录外创建目录编制 GCC：</para>
 
 <screen><userinput remap="pre">mkdir -v ../gcc-build
@@ -65,14 +61,21 @@ cd ../gcc-build</userinput></screen>
 
     <para>准备编译 GCC：</para>
 
-<screen><userinput remap="configure">../gcc-&gcc-version;/configure \
-    --target=$LFS_TGT --prefix=/tools \
-    --disable-nls --disable-shared --disable-multilib \
-    --disable-decimal-float --disable-threads \
-    --disable-libmudflap --disable-libssp \
-    --disable-libgomp --disable-libquadmath \
-    --disable-target-libiberty --disable-target-zlib \
-    --enable-languages=c --without-ppl --without-cloog \
+<screen><userinput remap="configure">../gcc-&gcc-version;/configure         \
+    --target=$LFS_TGT          \
+    --prefix=/tools            \
+    --disable-nls              \
+    --disable-shared           \
+    --disable-multilib         \
+    --disable-decimal-float    \
+    --disable-threads          \
+    --disable-libmudflap       \
+    --disable-libssp           \
+    --disable-libgomp          \
+    --disable-libquadmath      \
+    --enable-languages=c       \
+    --without-ppl              \
+    --without-cloog            \
     --with-mpfr-include=$(pwd)/../gcc-&gcc-version;/mpfr/src \
     --with-mpfr-lib=$(pwd)/mpfr/src/.libs</userinput></screen>
 

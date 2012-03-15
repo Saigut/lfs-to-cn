@@ -138,9 +138,9 @@
     <!--<listitem>
       <para>Man-DB &man-db-version;</para>
     </listitem>-->
-    <!--<listitem>
+    <listitem>
       <para>Man-pages &man-pages-version;</para>
-    </listitem>-->
+    </listitem>
     <!--<listitem>
       <para>MPC &mpc-version;</para>
     </listitem>-->
@@ -219,7 +219,7 @@
     <title>加入：</title>
 
     <listitem>
-      <para>&gcc-crosscompile-patch;</para>
+      <para>&bash-fixes-patch;</para>
     </listitem>
 
     <listitem>
@@ -230,6 +230,10 @@
 
   <itemizedlist>
     <title>移除：</title>
+
+    <listitem>
+      <para>bash-4.2-fixes-4.patch</para>
+    </listitem>
 
     <listitem>
       <para>gcc-4.6.2-cross_compile-1.patch</para>

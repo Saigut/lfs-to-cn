@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
   "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
   <!ENTITY % general-entities SYSTEM "../general.ent">
@@ -42,11 +42,11 @@
 
     <para>Prepare GRUB for compilation:</para>
 
-<screen><userinput remap="configure">./configure --prefix=/usr           \
-             --sysconfdir=/etc      \
-             --disable-grub-emu-usb \
-             --disable-efiemu       \
-             --disable-werror</userinput></screen>
+<screen><userinput remap="configure">./configure --prefix=/usr          \
+            --sysconfdir=/etc      \
+            --disable-grub-emu-usb \
+            --disable-efiemu       \
+            --disable-werror</userinput></screen>
 
     <para>The --disable switches minimize what is built by disabling features
     and testing programs not really needed for LFS.</para>

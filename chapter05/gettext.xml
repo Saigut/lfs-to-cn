@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
   "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
   <!ENTITY % general-entities SYSTEM "../general.ent">
@@ -49,10 +49,19 @@
     <para>Prepare Gettext for compilation:</para>
 
 <screen><userinput remap="configure">cd gettext-tools
-./configure --prefix=/tools --disable-shared</userinput></screen>
+EMACS="no" ./configure --prefix=/tools --disable-shared</userinput></screen>
 
     <variablelist>
       <title>The meaning of the configure option:</title>
+
+      <varlistentry>
+        <term><parameter>EMACS="no"</parameter></term>
+        <listitem>
+          <para>This prevents the configure script from determining where to
+          install Emacs Lisp files as the test is known to hang on some hosts.
+          </para>
+        </listitem>
+      </varlistentry>
 
       <varlistentry>
         <term><parameter>--disable-shared</parameter></term>
@@ -83,7 +92,7 @@ make -C src msgfmt</userinput></screen>
   <sect2 role="content">
     <title/>
 
-    <para>关于这个包的细节在
+    <para>Details on this package are located in
     <xref linkend="contents-gettext" role="."/></para>
 
   </sect2>

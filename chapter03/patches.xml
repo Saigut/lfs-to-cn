@@ -55,14 +55,6 @@
     </varlistentry>
 
     <varlistentry>
-      <term>GCC 跨平台编译补丁 - <token>&gcc-crosscompile-patch-size;</token>：</term>
-      <listitem>
-        <para>下载：<ulink url="&patches-root;&gcc-crosscompile-patch;"/></para>
-        <para>MD5 指纹码：<literal>&gcc-crosscompile-patch-md5;</literal></para>
-      </listitem>
-    </varlistentry>
-
-    <varlistentry>
       <term>GCC 起始文件修正补丁 - <token>&gcc-startfiles-patch-size;</token>：</term>
       <listitem>
         <para>下载：<ulink url="&patches-root;&gcc-startfiles-patch;"/></para>
@@ -77,7 +69,15 @@
         <para>MD5 指纹码：<literal>&glibc-fixes-patch-md5;</literal></para>
       </listitem>
     </varlistentry>
-
+    
+    <varlistentry>
+      <term>Glibc Bug Sort Relocatable Objects 补丁 - <token>&glibc-sort-patch-size;</token>：</term>
+      <listitem>
+        <para>Download: <ulink url="&patches-root;&glibc-sort-patch;"/></para>
+        <para>MD5 sum: <literal>&glibc-sort-patch-md5;</literal></para>
+      </listitem>
+    </varlistentry>
+    
     <varlistentry>
       <term>Glibc GCC 编制修正补丁 - <token>&glibc-gcc_fix-patch-size;</token>：</term>
       <listitem>

@@ -34,6 +34,33 @@
 -->
 
     <listitem>
+      <para>2012-03-14</para>
+      <itemizedlist>
+         <listitem>
+           <para>[matthew] - 移除 GCC 的 交叉编译补丁。不再需要它了。</para>
+         </listitem>
+         <listitem>
+           <para>[matthew] - 给 Bash 应用新的上游补丁。修复 <ulink url="&lfs-ticket-root;3037">#3037</ulink>。</para>
+         </listitem>
+         <listitem>
+           <para>[matthew] - 升级至 Linux-3.2.11。修复  <ulink url="&lfs-ticket-root;3036">#3036</ulink>。</para>
+         </listitem>
+         <listitem>
+           <para>[matthew] - 升级至 Man-Pages-3.37。修复 <ulink url="&lfs-ticket-root;3034">#3034</ulink>。</para>
+         </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
+      <para>2012-03-11</para>
+      <itemizedlist>
+         <listitem>
+           <para>[matthew] - 处理 Gettext 配置脚本中的一个问题。此问题会导致在某些宿主上获取 Emacs Lisp 文件路径时挂起。由 DJ Lucas 报告并提供修复。</para>
+         </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
       <para>2012-03-06</para>
       <itemizedlist>
          <listitem>

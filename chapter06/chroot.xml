@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
   "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
   <!ENTITY % general-entities SYSTEM "../general.ent">
@@ -16,7 +16,9 @@
   realm that is, at the moment, populated with only the temporary tools:</para>
 
 <screen><userinput>chroot "$LFS" /tools/bin/env -i \
-    HOME=/root TERM="$TERM" PS1='\u:\w\$ ' \
+    HOME=/root                  \
+    TERM="$TERM"                \
+    PS1='\u:\w\$ '              \
     PATH=/bin:/usr/bin:/sbin:/usr/sbin:/tools/bin \
     /tools/bin/bash --login +h</userinput></screen>
 

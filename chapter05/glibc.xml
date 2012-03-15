@@ -41,9 +41,9 @@
   </sect2>
 
   <sect2 role="installation">
-	  <title>安装 Glibc</title>
+    <title>安装 Glibc</title>
 
-	  <para>首先修复一个使用 GCC-&gcc-version; 编译时出现的一个Bug ：</para>
+    <para>首先修复一个使用 GCC-&gcc-version; 编译时出现的一个Bug ：</para>
 
     <screen><userinput remap="pre">patch -Np1 -i ../&glibc-gcc_fix-patch;</userinput></screen>
 
@@ -64,11 +64,16 @@ esac</userinput></screen>
 
     <para>接下来，准备编译 Glibc：</para>
 
-<screen><userinput remap="configure">../glibc-&glibc-version;/configure --prefix=/tools \
-    --host=$LFS_TGT --build=$(../glibc-&glibc-version;/scripts/config.guess) \
-    --disable-profile --enable-add-ons \
-    --enable-kernel=2.6.25 --with-headers=/tools/include \
-    libc_cv_forced_unwind=yes libc_cv_c_cleanup=yes</userinput></screen>
+<screen><userinput remap="configure">../glibc-&glibc-version;/configure                             \
+      --prefix=/tools                                 \
+      --host=$LFS_TGT                                 \
+      --build=$(../glibc-&glibc-version;/scripts/config.guess) \
+      --disable-profile                               \
+      --enable-add-ons                                \
+      --enable-kernel=2.6.25                          \
+      --with-headers=/tools/include                   \
+      libc_cv_forced_unwind=yes                       \
+      libc_cv_c_cleanup=yes</userinput></screen>
 
     <variablelist>
       <title>配置选项的含义：</title>
