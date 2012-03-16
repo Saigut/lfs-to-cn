@@ -131,120 +131,75 @@ RANLIB=$LFS_TGT-ranlib          \
       <varlistentry>
         <term><parameter>--enable-clocale=gnu</parameter></term>
         <listitem>
-          <para>This option ensures the correct locale model is selected
-          for the C++ libraries under all circumstances. If the configure
-          script finds the <emphasis>de_DE</emphasis> locale installed,
-          it will select the correct gnu locale model. However, if the
-          <emphasis>de_DE</emphasis> locale is not installed, there is the
-          risk of building Application Binary Interface (ABI)-incompatible
-          C++ libraries because the incorrect generic locale model may be
-          selected.</para>
+          <para>此选项确保在任何情况下都能给 C++ 库选择正确的区域数据模型。如果配置脚本发现安装了 <emphasis>de_DE</emphasis> 区域数据，它就会选择正确的 gnu 区域数据模型。但是如果 <emphasis>de_DE</emphasis> 区域数据没有安装，就有可能因为选中了不正确的通用区域数据模型而编制出与 ABI 不兼容的 C++ 库。</para>
         </listitem>
       </varlistentry>
 
       <varlistentry>
         <term><parameter>--enable-threads=posix</parameter></term>
         <listitem>
-          <para>This enables C++ exception handling for multi-threaded code.</para>
+          <para>此项启用 C++ 多线程代码的异常处理。</para>
         </listitem>
       </varlistentry>
 
       <varlistentry>
         <term><parameter>--enable-__cxa_atexit</parameter></term>
         <listitem>
-          <para>This option allows use of <function>__cxa_atexit</function>,
-          rather than <function>atexit</function>, to register C++ destructors
-          for local statics and global objects. This option is essential for
-          fully standards-compliant handling of destructors. It also affects
-          the C++ ABI, and therefore results in C++ shared libraries and C++
-          programs that are interoperable with other Linux distributions.</para>
+          <para>此选项允许使用 <function>__cxa_atexit</function> 而不是 <function>atexit</function> 来本地静态和全局对象注册 C++ 析构函数。此选项对于完全兼容标准的析构函数处理是必要的。它也会影响 C++ ABI，而使得 C++ 程序和共享库可以与其他 Linux 发行版相互操作。</para>
         </listitem>
       </varlistentry>
 
       <varlistentry>
         <term><parameter>--enable-languages=c,c++</parameter></term>
         <listitem>
-          <para>This option ensures that both the C and C++ compilers are
-          built.</para>
+          <para>此选项确保 C 和 C++ 编译器都被编制。</para>
         </listitem>
       </varlistentry>
 
       <varlistentry>
         <term><parameter>--disable-libstdcxx-pch</parameter></term>
         <listitem>
-          <para>Do not build the pre-compiled header (PCH) for
-          <filename class="libraryfile">libstdc++</filename>. It takes up a
-          lot of space, and we have no use for it.</para>
+          <para>不要给 <filename class="libraryfile">libstdc++</filename> 编制预编译头文件。它占用很多空间，对我们还没有用。</para>
         </listitem>
       </varlistentry>
 
       <varlistentry>
         <term><parameter>--disable-bootstrap</parameter></term>
         <listitem>
-          <para>For native builds of GCC, the default is to do a "bootstrap"
-          build. This does not just compile GCC, but compiles it several times.
-          It uses the programs compiled in a first round to compile itself a
-          second time, and then again a third time.  The second and third
-          iterations are compared to make sure it can reproduce itself
-          flawlessly. This also implies that it was compiled correctly.
-          However, the LFS build method should provide a solid compiler
-          without the need to bootstrap each time.</para> 
+          <para>对于原生 GCC 编制，默认会进行 “引导” 编制。这不是只编译 GCC，而是编译它几遍。用第一次编译的程序把自己编译第二遍，然后编译第三遍。然后比较第二遍和第三遍的产物以确保它可以不出差错地自编译。这也就表示它编译正确。然而，LFS 编制方法会提供一个固化的编译器，不用每次都引导。</para> 
         </listitem>
       </varlistentry>
 
     </variablelist>
 
-    <para>Compile the package:</para>
+    <para>编译程序包：</para>
 
 <screen><userinput remap="make">make</userinput></screen>
 
-    <para>Install the package:</para>
+    <para>安装程序包：</para>
 
 <screen><userinput remap="install">make install</userinput></screen>
 
-    <para>As a finishing touch, create a symlink. Many programs and scripts
-    run <command>cc</command> instead of <command>gcc</command>, which is
-    used to keep programs generic and therefore usable on all kinds of UNIX
-    systems where the GNU C compiler is not always installed. Running
-    <command>cc</command> leaves the system administrator free to decide
-    which C compiler to install:</para>
+    <para>最后一步，创建一个符号链接。很多程序和脚本会运行 <command>cc</command> 而不是 <command>gcc</command>，用来使程序通用，在所有的 UNIX 系统上都可用，而 GNU 编译器并不总是安装。运行 <command>cc</command> 就给系统管理员留出了选择安装哪一个 C 编译器的自由：</para>
 
 <screen><userinput remap="install">ln -vs gcc /tools/bin/cc</userinput></screen>
 
   <caution>
-    <para>At this point, it is imperative to stop and ensure that the basic
-    functions (compiling and linking) of the new toolchain are working as
-    expected. To perform a sanity check, run the following commands:</para>
+    <para>在这里，停下来确保新工具链的基本功能 (编译和链接) 能正常工作很重要。要进行完整性检查，运行以下命令：</para>
 
 <screen><userinput>echo 'main(){}' &gt; dummy.c
 cc dummy.c
 readelf -l a.out | grep ': /tools'</userinput></screen>
 
-    <para>If everything is working correctly, there should be no errors,
-    and the output of the last command will be of the form:</para>
+    <para>果一切工作正常，就不会出现错误，最后一条命令的输出会符合以下格式：</para>
 
 <screen><computeroutput>[Requesting program interpreter: /tools/lib/ld-linux.so.2]</computeroutput></screen>
 
-    <para>Note that <filename class="directory">/tools/lib</filename>, or
-    <filename class="directory">/tools/lib64</filename> for 64-bit machines
-    appears as the prefix of the dynamic linker.</para>
+    <para>留意 <filename class="directory">/tools/lib</filename> 或者 64 位计算机上的 <filename class="directory">/tools/lib64</filename> 作为动态链接器的前缀出现。</para>
 
-    <para>If the output is not shown as above or there was no output at all,
-    then something is wrong. Investigate and retrace the steps to find out
-    where the problem is and correct it. This issue must be resolved before
-    continuing on. First, perform the sanity check again, using
-    <command>gcc</command> instead of <command>cc</command>. If this works,
-    then the <filename class="symlink">/tools/bin/cc</filename> symlink is
-    missing. Install the symlink as per above.
-    Next, ensure that the <envar>PATH</envar> is correct. This
-    can be checked by running <command>echo $PATH</command> and verifying that
-    <filename class="directory">/tools/bin</filename> is at the head of the
-    list. If the <envar>PATH</envar> is wrong it could mean that you are not
-    logged in as user <systemitem class="username">lfs</systemitem> or that
-    something went wrong back in <xref linkend="ch-tools-settingenviron"
-    role="."/></para>
+    <para>如果输出不如上文所示或者根本没有输出，那就有什么地方出错了。研究回溯刚才的步骤，查出问题并修正它。在继续之前必须解决这一问题。首先，使用 <command>gcc</command> 而不是 <command>cc</command> 再做一次完整性检查。如果能够工作，那就是 <filename class="symlink">/tools/bin/cc</filename> 这个符号链接丢失了。重做这个链接。下一步，确保 <envar>PATH</envar> 正确。可以运行 <command>echo $PATH</command> 并检查 <filename class="directory">/tools/bin</filename> 是否在列表首位。如果 <envar>PATH</envar> 错误可能就是你未作为 <systemitem class="username">lfs</systemitem> 用户登录或者早在<xref linkend="ch-tools-settingenviron"/>就出现了错误。</para>
 
-    <para>Once all is well, clean up the test files:</para>
+    <para>一切正常之后，清理测试文件：</para>
 
 <screen><userinput>rm -v dummy.c a.out</userinput></screen>
 
@@ -255,8 +210,7 @@ readelf -l a.out | grep ': /tools'</userinput></screen>
   <sect2 role="content">
     <title/>
 
-    <para>Details on this package are located in
-    <xref linkend="contents-gcc" role="."/></para>
+    <para>&detail;<xref linkend="contents-gcc"/>。</para>
 
   </sect2>
 
