@@ -13,7 +13,7 @@ else
   Q = @
 endif
 
-lfs: validate profile-html
+lfs: validate profile-html md5sums
 	@echo "Generating chunked XHTML files..."
 	$(Q)xsltproc --nonet -stringparam chunk.output.encoding UTF-8 \
 	  -stringparam chunk.quietly $(CHUNK_QUIET) \

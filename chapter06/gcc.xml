@@ -291,7 +291,7 @@ SEARCH_DIR("/usr/lib");</computeroutput></screen>
   </sect2>
 
   <sect2 id="contents-gcc" role="content">
-    <title>Contents of GCC</title>
+    <title>GCC 的内容</title>
 
     <segmentedlist>
       <segtitle>Installed programs</segtitle>

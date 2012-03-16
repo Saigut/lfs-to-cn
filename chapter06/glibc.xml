@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
   "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
   <!ENTITY % general-entities SYSTEM "../general.ent">
@@ -23,10 +23,7 @@
   <sect2 role="package">
     <title/>
 
-    <para>The Glibc package contains the main C library. This library provides
-    the basic routines for allocating memory, searching directories, opening and
-    closing files, reading and writing files, string handling, pattern matching,
-    arithmetic, and so on.</para>
+    <para>Glibc 程序包包含主要的 C 库。此库提供用于分配内存、搜索目录、开关读写文件、字符串处理、表达式匹配、算术等的基本途径。</para>
 
     <segmentedlist>
       <segtitle>&buildtime;</segtitle>
@@ -409,7 +406,7 @@ mkdir /etc/ld.so.conf.d</userinput></screen>
   </sect2>
 
   <sect2 id="contents-glibc" role="content">
-    <title>Contents of Glibc</title>
+    <title>Glibc 的内容</title>
 
     <segmentedlist>
       <segtitle>Installed programs</segtitle>
