@@ -23,7 +23,7 @@
   <sect2 role="package">
     <title/>
 
-    <para>The Tcl package contains the Tool Command Language.</para>
+    <para>Tcl 程序包包含工具命令语言。</para>
 
     <segmentedlist>
       <segtitle>&buildtime;</segtitle>
@@ -38,51 +38,34 @@
   </sect2>
 
   <sect2 role="installation">
-    <title>Installation of Tcl</title>
+    <title>安装 Tcl</title>
 
-    <para>This package and the next three (Expect, DejaGNU, and Check) are
-    installed to support running the test suites for GCC and Binutils and other
-    packages.  Installing four packages for testing purposes may seem
-    excessive, but it is very reassuring, if not essential, to know that the
-    most important tools are working properly. Even if the test suites are not
-    run in this chapter (they are not mandatory), these packages are required
-    to run the test suites in <xref linkend="chapter-building-system"/>.</para>
+    <para>安装此程序包与接下来的三个 (Expect、DejaGNU 和 Check) 是为了支持运行 GCC、Binutils 和其他程序包的测试套件。似乎为了测试目的安装四个程序包有点过分，但是获知重要的工具工作正常即使不是必要的也很能让人放心。虽然这一章不运行测试套件 (不必要)，<xref linkend="chapter-building-system"/>中也需要这些程序包来运行。</para>
 
-    <para>Prepare Tcl for compilation:</para>
+    <para>准备编译 Tcl：</para>
 
 <screen><userinput remap="configure">cd unix
 ./configure --prefix=/tools</userinput></screen>
 
-    <para>Build the package:</para>
+    <para>编制程序包：</para>
 
 <screen><userinput remap="make">make</userinput></screen>
 
-    <para>Compilation is now complete. As discussed earlier, running the test
-    suite is not mandatory for the temporary tools here in this chapter. To run
-    the Tcl test suite anyway, issue the following command:</para>
+    <para>编译现在完成了。前面讨论过，没有必要在这一章中给临时工具运行测试套件。如果无论如何要运行 Tcl 的测试套件，执行以下指令：</para>
 
 <screen><userinput remap="test">TZ=UTC make test</userinput></screen>
 
-    <para>The Tcl test suite may experience failures under certain host
-    conditions that are not fully understood. Therefore, test suite failures
-    here are not surprising, and are not considered critical. The
-    <parameter>TZ=UTC</parameter> parameter sets the time zone to Coordinated
-    Universal Time (UTC), also known as Greenwich Mean Time (GMT), but only
-    for the duration of the test suite run. This ensures that the clock tests
-    are exercised correctly. Details on the <envar>TZ</envar> environment
-    variable are provided in <xref linkend="chapter-bootscripts"/>.</para>
+    <para>Tcl 测试套件再某些特定的宿主条件下会通不过，原因还不明确。因此这里出现测试套件挂掉不要惊奇，那无关紧要。 <parameter>TZ=UTC</parameter> 参数设置时区为协调世界时 (UTC)，也叫格林威治标准时间 (GMT)，但是仅再测试套件运行期间有效。这确保了时钟测试正常运行。有关 <envar>TZ</envar> 环境变量的细节位于<xref linkend="chapter-bootscripts"/>。</para>
 
-    <para>Install the package:</para>
+    <para>安装程序包：</para>
 
 <screen><userinput remap="install">make install</userinput></screen>
 
-    <para>Make the installed library writable so debugging symbols can
-    be removed later:</para>
+    <para>使得安装的库可写，这样以后就可以移除调试标志：</para>
 
 <screen><userinput remap="install">chmod -v u+w /tools/lib/libtcl8.5.so</userinput></screen>
 
-    <para>Install Tcl's headers. The next package, Expect, requires them
-    to build.</para>
+    <para>安装 Tcl 的头文件。下一个程序包 Expect 需要它们来编制。</para>
 
 <screen><userinput remap="install">make install-private-headers</userinput></screen>
 
