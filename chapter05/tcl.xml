@@ -69,34 +69,34 @@
 
 <screen><userinput remap="install">make install-private-headers</userinput></screen>
 
-    <para>Now make a necessary symbolic link:</para>
+    <para>现在做一个必要的符号链接：</para>
 
 <screen><userinput remap="install">ln -sv tclsh8.5 /tools/bin/tclsh</userinput></screen>
 
   </sect2>
 
   <sect2 id="contents-tcl" role="content">
-    <title>Contents of Tcl</title>
+    <title>Tcl 的内容</title>
 
     <segmentedlist>
-      <segtitle>Installed programs</segtitle>
-      <segtitle>Installed library</segtitle>
+      <segtitle>安装的程序</segtitle>
+      <segtitle>安装的库</segtitle>
 
       <seglistitem>
-        <seg>tclsh (link to tclsh8.5) and tclsh8.5</seg>
+        <seg>tclsh (到 tclsh8.5 的链接) and tclsh8.5</seg>
         <seg>libtcl8.5.so, libtclstub8.5.a</seg>
       </seglistitem>
     </segmentedlist>
 
     <variablelist>
-      <bridgehead renderas="sect3">Short Descriptions</bridgehead>
+      <bridgehead renderas="sect3">简介</bridgehead>
       <?dbfo list-presentation="list"?>
       <?dbhtml list-presentation="table"?>
 
       <varlistentry id="tclsh8.5">
         <term><command>tclsh8.5</command></term>
         <listitem>
-          <para>The Tcl command shell</para>
+          <para>Tcl 命令 shell</para>
           <indexterm zone="ch-tools-tcl tclsh8.5">
             <primary sortas="b-tclsh8.5">tclsh8.5</primary>
           </indexterm>
@@ -106,7 +106,7 @@
       <varlistentry id="tclsh">
         <term><command>tclsh</command></term>
         <listitem>
-          <para>A link to tclsh8.5</para>
+          <para>到 tclsh8.5 的链接</para>
           <indexterm zone="ch-tools-tcl tclsh">
             <primary sortas="b-tclsh">tclsh</primary>
           </indexterm>
@@ -116,7 +116,7 @@
       <varlistentry id="libtcl8.5.so">
         <term><filename class="libraryfile">libtcl8.5.so</filename></term>
         <listitem>
-          <para>The Tcl library</para>
+          <para>Tcl 库</para>
           <indexterm zone="ch-tools-tcl libtcl8.5.so">
             <primary sortas="c-libtcl8.5.so">libtcl8.5.so</primary>
           </indexterm>
@@ -126,7 +126,7 @@
       <varlistentry id="libtclstub8.5.a">
         <term><filename class="libraryfile">libtclstub8.5.a</filename></term>
         <listitem>
-          <para>The Tcl Stub library</para>
+          <para>Tcl 残余库</para>
           <indexterm zone="ch-tools-tcl libtclstub8.5.a">
             <primary sortas="c-libtclstub8.5.a">libtclstub8.5.a</primary>
           </indexterm>
