@@ -18,7 +18,7 @@
 
   <indexterm zone="ch-tools-ncurses">
     <primary sortas="a-Ncurses">Ncurses</primary>
-    <secondary>tools</secondary>
+    <secondary>工具</secondary>
   </indexterm>
 
   <sect2 role="package">
@@ -41,49 +41,39 @@
   </sect2>
 
   <sect2 role="installation">
-    <title>Installation of Ncurses</title>
+    <title>安装 Ncurses</title>
 
-    <para>Prepare Ncurses for compilation:</para>
+    <para>准备编译 Ncurses：</para>
 
 <screen><userinput remap="configure">./configure --prefix=/tools --with-shared \
     --without-debug --without-ada --enable-overwrite</userinput></screen>
 
     <variablelist>
-      <title>The meaning of the configure options:</title>
+      <title>配置选项的含义：</title>
 
       <varlistentry>
         <term><parameter>--without-ada</parameter></term>
         <listitem>
-          <para>This ensures that Ncurses does not build support for the Ada
-          compiler which may be present on the host but will not be available
-          once we enter the <command>chroot</command> environment.</para>
+          <para>此项确保 Ncurses 不给宿主上可能存在但进入 <command>chroot</command> 环境后不可用的 Ada 编译器编制支持。</para>
         </listitem>
       </varlistentry>
 
       <varlistentry>
         <term><parameter>--enable-overwrite</parameter></term>
         <listitem>
-          <para>This tells Ncurses to install its header files into
-          <filename class="directory">/tools/include</filename>, instead of
-          <filename class="directory">/tools/include/ncurses</filename>, to
-          ensure that other packages can find the Ncurses headers
-          successfully.</para>
+          <para>此项告诉 Ncurses 安装头文件至 <filename class="directory">/tools/include</filename> 而不是 <filename class="directory">/tools/include/ncurses</filename>，以确保其他程序包能够成功找到 Ncurses 头文件。</para>
         </listitem>
       </varlistentry>
 
     </variablelist>
 
-    <para>Compile the package:</para>
+    <para>编译程序包：</para>
 
 <screen><userinput remap="make">make</userinput></screen>
 
-    <para>This package has a test suite, but it can only be run after the
-    package has been installed.  The tests reside in the
-    <filename class="directory">test/</filename> directory.  See the
-    <filename>README</filename> file in that directory for further details.
-    </para>
+    <para>此程序包带有测试套件，但是只能在安装后运行。这些测试位于 <filename class="directory">test/</filename> 目录中。查看该目录中的 <filename>README</filename> 文件获取更多细节。</para>
 
-    <para>Install the package:</para>
+    <para>安装程序包：</para>
 
 <screen><userinput remap="install">make install</userinput></screen>
 
@@ -92,8 +82,7 @@
   <sect2 role="content">
     <title/>
 
-    <para>关于这个包的细节在
-    <xref linkend="contents-ncurses" role="."/></para>
+    <para>有关此程序包的细节位于<xref linkend="contents-ncurses"/>。</para>
 
   </sect2>
 
