@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 
 <!-- Notes:
      For empty *-home entities use " " not ""
@@ -64,9 +64,9 @@
 <!ENTITY bzip2-md5 "00b516f4704d4a7cb50a1d97e6e8e15b">
 <!ENTITY bzip2-home "http://www.bzip.org/">
 <!ENTITY bzip2-ch5-du "4.8 MB">
-<!ENTITY bzip2-ch5-sbu "less than 0.1 SBU">
+<!ENTITY bzip2-ch5-sbu "少于 0.1 SBU">
 <!ENTITY bzip2-ch6-du "6.4 MB">
-<!ENTITY bzip2-ch6-sbu "less than 0.1 SBU">
+<!ENTITY bzip2-ch6-sbu "少于 0.1 SBU">
 
 <!ENTITY check-version "0.9.8">
 <!ENTITY check-size "546 KB">
@@ -92,7 +92,7 @@
 <!ENTITY dejagnu-md5 "3df1cbca885e751e22d3ebd1ac64dc3c">
 <!ENTITY dejagnu-home "&gnu-software;dejagnu/">
 <!ENTITY dejagnu-ch5-du "6.1 MB">
-<!ENTITY dejagnu-ch5-sbu "less than 0.1 SBU">
+<!ENTITY dejagnu-ch5-sbu "少于 0.1 SBU">
 
 <!ENTITY diffutils-version "3.2">
 <!ENTITY diffutils-size "1,976 KB">
@@ -253,9 +253,9 @@
 <!ENTITY gzip-md5 "e381b8506210c794278f5527cba0e765">
 <!ENTITY gzip-home "&gnu-software;gzip/">
 <!ENTITY gzip-ch5-du "3.3 MB">
-<!ENTITY gzip-ch5-sbu "less than 0.1 SBU">
+<!ENTITY gzip-ch5-sbu "少于 0.1 SBU">
 <!ENTITY gzip-ch6-du "3.3 MB">
-<!ENTITY gzip-ch6-sbu "less than 0.1 SBU">
+<!ENTITY gzip-ch6-sbu "少于 0.1 SBU">
 
 <!ENTITY iana-etc-version "2.30">
 <!ENTITY iana-etc-size "201 KB">
@@ -263,7 +263,7 @@
 <!ENTITY iana-etc-md5 "3ba3afb1d1b261383d247f46cb135ee8">
 <!ENTITY iana-etc-home "http://freshmeat.net/projects/iana-etc/">
 <!ENTITY iana-etc-ch6-du "2.3 MB">
-<!ENTITY iana-etc-ch6-sbu "less than 0.1 SBU">
+<!ENTITY iana-etc-ch6-sbu "少于 0.1 SBU">
 
 <!ENTITY inetutils-version "1.9.1">
 <!ENTITY inetutils-size "1,941 KB">
@@ -287,7 +287,7 @@
 <!ENTITY kbd-md5 "77d0b51454522bc6c170bbdc6e31202a">
 <!ENTITY kbd-home " ">
 <!ENTITY kbd-ch6-du "16.0 MB">
-<!ENTITY kbd-ch6-sbu "less than 0.1 SBU">
+<!ENTITY kbd-ch6-sbu "少于 0.1 SBU">
 
 <!ENTITY kmod-version "7">
 <!ENTITY kmod-size "959 KB">
@@ -295,7 +295,7 @@
 <!ENTITY kmod-md5 "7bd916ae1c8a38e7697fdd8118bc98eb">
 <!ENTITY kmod-home " ">
 <!ENTITY kmod-ch6-du "16.0 MB">
-<!ENTITY kmod-ch6-sbu "less than 0.1 SBU">
+<!ENTITY kmod-ch6-sbu "少于 0.1 SBU">
 
 <!ENTITY less-version "444">
 <!ENTITY less-size "301 KB">
@@ -303,7 +303,7 @@
 <!ENTITY less-md5 "56f9f76ffe13f70155f47f6b3c87d421">
 <!ENTITY less-home "http://www.greenwoodsoftware.com/less/">
 <!ENTITY less-ch6-du "3.5 MB">
-<!ENTITY less-ch6-sbu "less than 0.1 SBU">
+<!ENTITY less-ch6-sbu "少于 0.1 SBU">
 
 <!ENTITY lfs-bootscripts-version "20120229">                 <!-- Scripts depend on this format -->
 <!ENTITY lfs-bootscripts-size "BOOTSCRIPTS-SIZE KB">         <!-- Updated in Makefile -->
@@ -311,7 +311,7 @@
 <!ENTITY lfs-bootscripts-md5 "BOOTSCRIPTS-MD5SUM">           <!-- Updated in Makefile -->
 <!ENTITY lfs-bootscripts-home " ">
 <!ENTITY lfs-bootscripts-ch7-du "BOOTSCRIPTS-INSTALL-KB KB"> <!-- Updated in Makefile -->
-<!ENTITY lfs-bootscripts-ch7-sbu "less than 0.1 SBU">
+<!ENTITY lfs-bootscripts-ch7-sbu "少于 0.1 SBU">
 
 <!ENTITY libpipeline-version "1.2.1">
 <!ENTITY libpipeline-size "723 KB">
@@ -380,7 +380,7 @@
 <!ENTITY man-pages-md5 "6b25e0411e203aa28ae2cb25a692a224">
 <!ENTITY man-pages-home "http://www.kernel.org/doc/man-pages/">
 <!ENTITY man-pages-ch6-du "21 MB">
-<!ENTITY man-pages-ch6-sbu "less than 0.1 SBU">
+<!ENTITY man-pages-ch6-sbu "少于 0.1 SBU">
 
 <!ENTITY mpc-version "0.9">
 <!ENTITY mpc-size "553 KB">
@@ -418,9 +418,9 @@
 <!ENTITY patch-md5 "0818d1763ae0c4281bcdc63cdac0b2c0">
 <!ENTITY patch-home "http://savannah.gnu.org/projects/patch/">
 <!ENTITY patch-ch5-du "1.9 MB">
-<!ENTITY patch-ch5-sbu "less than 0.1 SBU">
+<!ENTITY patch-ch5-sbu "少于 0.1 SBU">
 <!ENTITY patch-ch6-du "1.9 MB">
-<!ENTITY patch-ch6-sbu "less than 0.1 SBU">
+<!ENTITY patch-ch6-sbu "少于 0.1 SBU">
 
 <!ENTITY perl-version "5.14.2">
 <!ENTITY perl-size "12,917 KB">
@@ -446,7 +446,7 @@
 <!ENTITY psmisc-md5 "d52caf26159c905574c2ce4bd792b9ee">
 <!ENTITY psmisc-home "http://psmisc.sourceforge.net/">
 <!ENTITY psmisc-ch6-du "3.6 MB">
-<!ENTITY psmisc-ch6-sbu "less than 0.1 SBU">
+<!ENTITY psmisc-ch6-sbu "少于 0.1 SBU">
 
 <!ENTITY readline-version "6.2">
 <!ENTITY readline-size "2,225 KB">
@@ -480,7 +480,7 @@
 <!ENTITY sysklogd-md5 "e053094e8103165f98ddafe828f6ae4b">
 <!ENTITY sysklogd-home "http://www.infodrom.org/projects/sysklogd/">
 <!ENTITY sysklogd-ch6-du "0.5 MB">
-<!ENTITY sysklogd-ch6-sbu "less than 0.1 SBU">
+<!ENTITY sysklogd-ch6-sbu "少于 0.1 SBU">
 
 <!ENTITY sysvinit-version "2.88dsf">
 <!ENTITY sysvinit-size "108 KB">
@@ -488,7 +488,7 @@
 <!ENTITY sysvinit-md5 "6eda8a97b86e0a6f59dabbf25202aa6f">
 <!ENTITY sysvinit-home "http://savannah.nongnu.org/projects/sysvinit">
 <!ENTITY sysvinit-ch6-du "1 MB">
-<!ENTITY sysvinit-ch6-sbu "less than 0.1 SBU">
+<!ENTITY sysvinit-ch6-sbu "少于 0.1 SBU">
 
 <!ENTITY tar-version "1.26">
 <!ENTITY tar-size "2,285 KB">
@@ -566,5 +566,5 @@
 <!ENTITY zlib-md5 "dc2cfa0d2313ca77224b4d932b2911e9">
 <!ENTITY zlib-home "http://www.zlib.net/">
 <!ENTITY zlib-ch6-du "2.8 MB">
-<!ENTITY zlib-ch6-sbu "less than 0.1 SBU">
+<!ENTITY zlib-ch6-sbu "少于 0.1 SBU">
 
