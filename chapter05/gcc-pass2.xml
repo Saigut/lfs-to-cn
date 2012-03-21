@@ -210,7 +210,7 @@ readelf -l a.out | grep ': /tools'</userinput></screen>
   <sect2 role="content">
     <title/>
 
-    <para>&detail;<xref linkend="contents-gcc"/>。</para>
+    <para>有关此程序包的细节位于<xref linkend="contents-gcc"/>。</para>
 
   </sect2>
 

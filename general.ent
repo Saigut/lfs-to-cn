@@ -23,7 +23,6 @@
 <!ENTITY testsuites "测试套件依赖">
 <!ENTITY before "安装必须先于">
 <!ENTITY external "可选依赖关系">
-<!ENTITY detail "有关此程序包的细节位于">
 
 <!ENTITY gnu "http://ftp.gnu.org/gnu/">
 <!ENTITY gnu-software "http://www.gnu.org/software/">
