@@ -1,0 +1,122 @@
+#!/bin/sh
+########################################################################
+# Begin cleanfs
+#
+# Description : Clean file system
+#
+# Authors     : Gerard Beekmans - gerard@linuxfromscratch.org
+#               DJ Lucas - dj@linuxfromscratch.org
+# Update      : Bruce Dubbs - bdubbs@linuxfromscratch.org
+#
+# Version     : LFS 7.0
+#
+########################################################################
+
+### BEGIN INIT INFO
+# Provides:            cleanfs
+# Required-Start:      $local_fs
+# Should-Start:
+# Required-Stop:
+# Should-Stop:
+# Default-Start:       S
+# Default-Stop:
+# Short-Description:   Cleans temporary directories early in the boot process.
+# Description:         Cleans temporary directories /var/run, /var/lock, and
+#                      optionally, /tmp.  cleanfs also creates /var/run/utmp 
+#                      and any files defined in /etc/sysconfig/createfiles.
+# X-LFS-Provided-By:   LFS
+### END INIT INFO
+
+. /lib/lsb/init-functions
+
+# Function to create files/directory on boot.
+create_files() 
+{
+   # Input to file descriptor 9 and output to stdin (redirection)
+   exec 9&gt;&amp;0 &lt; /etc/sysconfig/createfiles
+
+   while read name type perm usr grp dtype maj min junk
+   do
+      # Ignore comments and blank lines.
+      case &quot;${name}&quot; in
+         &quot;&quot;|\#*) continue ;;
+      esac
+
+      # Ignore existing files.
+      if [ ! -e &quot;${name}&quot; ]; then
+         # Create stuff based on its type.
+         case &quot;${type}&quot; in
+            dir)
+               mkdir &quot;${name}&quot;
+               ;;
+            file)
+               :&gt; &quot;${name}&quot;
+               ;;
+            dev)
+               case &quot;${dtype}&quot; in
+                  char)
+                     mknod &quot;${name}&quot; c ${maj} ${min}
+                     ;;
+                  block)
+                     mknod &quot;${name}&quot; b ${maj} ${min}
+                     ;;
+                  pipe)
+                     mknod &quot;${name}&quot; p
+                     ;;
+                  *) 
+                     log_warning_msg &quot;\nUnknown device type: ${dtype}&quot; 
+                     ;;
+               esac
+               ;;
+            *)
+               log_warning_msg &quot;\nUnknown type: ${type}&quot; 
+               continue
+               ;;
+         esac
+
+         # Set up the permissions, too.
+         chown ${usr}:${grp} &quot;${name}&quot;
+         chmod ${perm} &quot;${name}&quot;
+      fi
+   done
+
+   # Close file descriptor 9 (end redirection)
+   exec 0&gt;&amp;9 9&gt;&amp;-
+   return 0
+}
+
+case &quot;${1}&quot; in
+   start)
+      log_info_msg &quot;Cleaning file systems:&quot; 
+
+      if [ &quot;${SKIPTMPCLEAN}&quot; = &quot;&quot; ]; then
+         log_info_msg2 &quot; /tmp&quot; 
+         cd /tmp &amp;&amp;
+         find . -xdev -mindepth 1 ! -name lost+found -delete || failed=1
+      fi
+
+      &gt; /var/run/utmp
+
+      if grep -q &apos;^utmp:&apos; /etc/group ; then
+         chmod 664 /var/run/utmp
+         chgrp utmp /var/run/utmp
+      fi
+
+      (exit ${failed})
+      evaluate_retval
+
+      if egrep -qv &apos;^(#|$)&apos; /etc/sysconfig/createfiles 2&gt;/dev/null; then
+         log_info_msg &quot;Creating files and directories... &quot;
+         create_files      # Always returns 0
+         evaluate_retval
+      fi
+
+      exit $failed
+      ;;
+   *)
+      echo &quot;Usage: ${0} {start}&quot;
+      exit 1
+      ;;
+esac
+
+# End cleanfs

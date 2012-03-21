@@ -1,0 +1,151 @@
+#!/bin/sh
+########################################################################
+# Begin checkfs
+#
+# Description : File System Check
+#
+# Authors     : Gerard Beekmans - gerard@linuxfromscratch.org
+#               A. Luebke - luebke@users.sourceforge.net
+#               DJ Lucas - dj@linuxfromscratch.org
+# Update      : Bruce Dubbs - bdubbs@linuxfromscratch.org
+#
+# Version     : LFS 7.0
+#
+# Based on checkfs script from LFS-3.1 and earlier.
+#
+# From man fsck
+# 0    - No errors
+# 1    - File system errors corrected
+# 2    - System should be rebooted
+# 4    - File system errors left uncorrected
+# 8    - Operational error
+# 16   - Usage or syntax error
+# 32   - Fsck canceled by user request
+# 128  - Shared library error
+#
+#########################################################################
+
+### BEGIN INIT INFO
+# Provides:            checkfs
+# Required-Start:      udev swap $time
+# Should-Start:
+# Required-Stop:
+# Should-Stop:
+# Default-Start:       S
+# Default-Stop:
+# Short-Description:   Checks local filesystems before mounting.
+# Description:         Checks local filesystmes before mounting.
+# X-LFS-Provided-By:   LFS
+### END INIT INFO
+
+. /lib/lsb/init-functions
+
+case &quot;${1}&quot; in
+   start)
+
+      # If any LVM based partitions are on the system, ensure they
+      # are activated so they can be checked/used.
+      if [ -x /sbin/vgchange ]; then
+         /sbin/vgchange -a y &gt;/dev/null
+      fi 
+
+      if [ -f /fastboot ]; then
+         msg=&quot;/fastboot found, will omit &quot;
+         msg=&quot;${msg} file system checks as requested.\n&quot;
+         log_info_msg &quot;${msg}&quot;
+         exit 0
+      fi
+
+      log_info_msg &quot;Mounting root file system in read-only mode... &quot;
+      mount -n -o remount,ro / &gt;/dev/null
+
+      if [ ${?} != 0 ]; then
+         log_failure_msg2
+         msg=&quot;\n\nCannot check root &quot;
+         msg=&quot;${msg}filesystem because it could not be mounted &quot;
+         msg=&quot;${msg}in read-only mode.\n\n&quot;
+         msg=&quot;${msg}After you press Enter, this system will be &quot;
+         msg=&quot;${msg}halted and powered off.\n\n&quot;
+         log_failure_msg &quot;${msg}&quot;
+
+         log_info_msg &quot;Press Enter to continue...&quot; 
+         wait_for_user
+         /etc/rc.d/init.d/halt stop
+      else
+         log_success_msg2
+      fi
+
+      if [ -f /forcefsck ]; then
+         msg=&quot;\n/forcefsck found, forcing file&quot; 
+         msg=&quot;${msg} system checks as requested.&quot;
+         log_success_msg &quot;$msg&quot;
+         options=&quot;-f&quot;
+      else
+         options=&quot;&quot;
+      fi
+
+      log_info_msg &quot;Checking file systems...&quot;
+      # Note: -a option used to be -p; but this fails e.g. on fsck.minix
+      fsck ${options} -a -A -C -T &gt;/dev/null
+      error_value=${?}
+
+      if [ &quot;${error_value}&quot; = 0 ]; then
+         log_success_msg2
+      fi
+
+      if [ &quot;${error_value}&quot; = 1 ]; then
+         msg=&quot;\nWARNING:\n\nFile system errors &quot;
+         msg=&quot;${msg}were found and have been corrected.\n&quot;
+         msg=&quot;${msg}You may want to double-check that &quot;
+         msg=&quot;${msg}everything was fixed properly.&quot;
+         log_warning_msg &quot;$msg&quot;
+      fi
+
+      if [ &quot;${error_value}&quot; = 2 -o &quot;${error_value}&quot; = 3 ]; then
+         msg=&quot;\nWARNING:\n\nFile system errors &quot;
+         msg=&quot;${msg}were found and have been been &quot;
+         msg=&quot;${msg}corrected, but the nature of the &quot;
+         msg=&quot;${msg}errors require this system to be rebooted.\n\n&quot;
+         msg=&quot;${msg}After you press enter, &quot;
+         msg=&quot;${msg}this system will be rebooted\n\n&quot;
+         log_failure_msg &quot;$msg&quot;
+
+         log_info_msg &quot;Press Enter to continue...&quot; 
+         wait_for_user
+         reboot -f
+      fi
+
+      if [ &quot;${error_value}&quot; -gt 3 -a &quot;${error_value}&quot; -lt 16 ]; then
+         msg=&quot;\nFAILURE:\n\nFile system errors &quot;
+         msg=&quot;${msg}were encountered that could not be &quot;
+         msg=&quot;${msg}fixed automatically.  This system &quot;
+         msg=&quot;${msg}cannot continue to boot and will &quot;
+         msg=&quot;${msg}therefore be halted until those &quot;
+         msg=&quot;${msg}errors are fixed manually by a &quot;
+         msg=&quot;${msg}System Administrator.\n\n&quot;
+         msg=&quot;${msg}After you press Enter, this system will be &quot;
+         msg=&quot;${msg}halted and powered off.\n\n&quot;
+         log_failure_msg &quot;$msg&quot;
+
+         log_info_msg &quot;Press Enter to continue...&quot; 
+         wait_for_user
+         /etc/rc.d/init.d/halt stop
+      fi
+
+      if [ &quot;${error_value}&quot; -ge 16 ]; then
+         msg=&quot;\nFAILURE:\n\nUnexpected Failure &quot;
+         msg=&quot;${msg}running fsck.  Exited with error &quot;
+         msg=&quot;${msg} code: ${error_value}.&quot;
+         log_failure_msg $msg
+         exit ${error_value}
+      fi
+
+      exit 0
+      ;;
+   *)
+      echo &quot;Usage: ${0} {start}&quot;
+      exit 1
+      ;;
+esac
+
+# End checkfs

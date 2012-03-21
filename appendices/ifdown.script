@@ -1,0 +1,104 @@
+#!/bin/sh 
+########################################################################
+# Begin /sbin/ifdown
+#
+# Description : Interface Down
+#
+# Authors     : Nathan Coulson - nathan@linuxfromscratch.org
+#               Kevin P. Fleming - kpfleming@linuxfromscratch.org
+# Update      : Bruce Dubbs - bdubbs@linuxfromscratch.org
+#
+# Version     : LFS 7.0
+#
+# Notes       : the IFCONFIG variable is passed to the scripts found
+#               in the /lib/services directory, to indicate what file the
+#               service should source to get interface specifications.
+#
+########################################################################
+
+RELEASE=&quot;7.0&quot;
+
+USAGE=&quot;Usage: $0 [ -hV ] [--help] [--version] interface&quot;
+VERSTR=&quot;LFS ifdown, version ${RELEASE}&quot;
+
+while [ $# -gt 0 ]; do
+   case &quot;$1&quot; in
+      --help | -h)     help=&quot;y&quot;; break ;;
+
+      --version | -V)  echo &quot;${VERSTR}&quot;; exit 0 ;;
+
+      -*)              echo &quot;ifup: ${1}: invalid option&quot; &gt;&amp;2
+                       echo &quot;${USAGE}&quot; &gt;&amp; 2
+                       exit 2 ;;
+                    
+      *)               break ;;
+   esac
+done
+
+if [ -n &quot;$help&quot; ]; then
+   echo &quot;${VERSTR}&quot;
+   echo &quot;${USAGE}&quot;
+   echo
+   cat &lt;&lt; HERE_EOF
+ifdown is used to bring down a network interface.  The interface
+parameter, e.g. eth0 or eth0:2, must match the trailing part of the
+interface specifications file, e.g. /etc/sysconfig/ifconfig.eth0:2.
+
+HERE_EOF
+   exit 0
+fi
+
+file=/etc/sysconfig/ifconfig.${1}
+
+# Skip backup files
+[ &quot;${file}&quot; = &quot;${file%&quot;&quot;~&quot;&quot;}&quot; ] || exit 0
+
+. /lib/lsb/init-functions 
+
+if [ ! -r &quot;${file}&quot; ]; then
+   log_warning_msg &quot;${file} is missing or cannot be accessed.&quot;
+   exit 1
+fi
+
+. ${file}
+
+if [ &quot;$IFACE&quot; = &quot;&quot; ]; then
+   log_failure_msg &quot;${file} does not define an interface [IFACE].&quot;
+   exit 1
+fi
+
+# Reverse the order
+SERVICES=
+for S in ${SERVICE}; do SERVICES=&quot;${SERVICES} ${S}&quot;; done
+
+# This will run the service scripts
+if ip link show ${IFACE} &gt; /dev/null 2&gt;&amp;1; then
+   for S in ${SERVICES}; do
+
+     if [ -n &quot;${S}&quot; -a -x &quot;/lib/services/${S}&quot; ]; then
+       IFCONFIG=${file} /lib/services/${S} ${IFACE} down
+     else
+       MSG=&quot;Unable to process ${file}.  Either &quot;
+       MSG=&quot;${MSG}the SERVICE variable was not set &quot;
+       MSG=&quot;${MSG}or the specified service cannot be executed.&quot;
+       log_failure_msg &quot;$MSG&quot;
+       exit 1
+    fi
+  done
+else
+   log_warning_msg &quot;Interface ${1} doesn&apos;t exist.&quot;
+fi
+
+link_status=`ip link show ${IFACE} 2&gt;/dev/null`
+
+if [ -n &quot;${link_status}&quot; ]; then
+   if [ &quot;$(echo &quot;${link_status}&quot; | grep UP)&quot; != &quot;&quot; ]; then
+      if [ &quot;$(ip addr show ${IFACE} | grep &apos;inet &apos;)&quot; != &quot;&quot;  ]; then
+         log_info_msg &quot;Bringing down the ${IFACE} interface...&quot;
+         ip link set ${IFACE} down
+         evaluate_retval
+      fi
+   fi
+fi
+
+# End /sbin/ifdown
