@@ -34,6 +34,21 @@
 -->
 
     <listitem>
+      <para>2012-03-20</para>
+      <itemizedlist>
+         <listitem>
+           <para>[matthew] - 升级至 Linux-3.3。修复 <ulink url="&lfs-ticket-root;3042">#3042</ulink>。</para>
+         </listitem>
+         <listitem>
+           <para>[matthew] - 升级至 Kmod-7。修复 <ulink url="&lfs-ticket-root;3041">#3041</ulink>。</para>
+         </listitem>
+         <listitem>
+           <para>[matthew] - 升级至 Udev-182。修复 <ulink url="&lfs-ticket-root;3040">#3040</ulink>。</para>
+         </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
       <para>2012-03-14</para>
       <itemizedlist>
          <listitem>
