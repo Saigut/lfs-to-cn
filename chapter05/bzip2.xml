@@ -18,7 +18,7 @@
 
   <indexterm zone="ch-tools-bzip2">
     <primary sortas="a-Bzip2">Bzip2</primary>
-    <secondary>tools</secondary>
+    <secondary>工具</secondary>
   </indexterm>
 
   <sect2 role="package">
@@ -41,14 +41,13 @@
   </sect2>
 
   <sect2 role="installation">
-    <title>Installation of Bzip2</title>
+    <title>安装 Bzip2</title>
 
-    <para>The Bzip2 package does not contain a <command>configure</command>
-    script. Compile and test it with:</para>
+    <para>Bzip2 程序包不包含 <command>configure</command> 脚本。如此编译并测试之：</para>
 
 <screen><userinput remap="make">make</userinput></screen>
 
-    <para>Install the package:</para>
+    <para>安装程序包：</para>
 
 <screen><userinput remap="install">make PREFIX=/tools install</userinput></screen>
 
@@ -57,8 +56,7 @@
   <sect2 role="content">
     <title/>
 
-    <para>关于这个包的细节在
-    <xref linkend="contents-bzip2" role="."/></para>
+    <para>有关此程序包的细节位于 <xref linkend="contents-bzip2"/>。</para>
 
   </sect2>
 

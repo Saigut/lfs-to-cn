@@ -23,10 +23,7 @@
   <sect2 role="package">
     <title/>
 
-    <para>The Bzip2 package contains programs for compressing and decompressing
-    files. Compressing text files with <command>bzip2</command> yields a much
-    better compression percentage than with the traditional
-    <command>gzip</command>.</para>
+    <para>Bzip2 程序包包含用于压缩和解压缩文件的程序。用 <command>bzip2</command> 压缩文本文件比传统的 <command>gzip</command> 压缩率更好。</para>
 
     <segmentedlist>
       <segtitle>&buildtime;</segtitle>
@@ -94,7 +91,7 @@ ln -sv bzip2 /bin/bzcat</userinput></screen>
   </sect2>
 
   <sect2 id="contents-bzip2" role="content">
-    <title>Contents of Bzip2</title>
+    <title>Bzip2 的内容</title>
 
     <segmentedlist>
       <segtitle>Installed programs</segtitle>
