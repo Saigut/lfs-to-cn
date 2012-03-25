@@ -23,8 +23,7 @@
   <sect2 role="package">
     <title/>
 
-    <para>The Diffutils package contains programs that show the differences
-    between files or directories.</para>
+    <para>Diffutils 程序包包含用于显示文件或目录之间的差别的程序。</para>
 
     <segmentedlist>
       <segtitle>&buildtime;</segtitle>
@@ -61,7 +60,7 @@
 
 
   <sect2 id="contents-diffutils" role="content">
-    <title>Contents of Diffutils</title>
+    <title>Diffutils 的内容</title>
 
     <segmentedlist>
       <segtitle>Installed programs</segtitle>
