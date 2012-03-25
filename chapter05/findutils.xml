@@ -18,7 +18,7 @@
 
   <indexterm zone="ch-tools-findutils">
     <primary sortas="a-Findutils">Findutils</primary>
-    <secondary>tools</secondary>
+    <secondary>工具</secondary>
   </indexterm>
 
   <sect2 role="package">
@@ -41,23 +41,21 @@
   </sect2>
 
   <sect2 role="installation">
-    <title>Installation of Findutils</title>
+    <title>安装 Findutils</title>
 
-    <para>Prepare Findutils for compilation:</para>
+    <para>准备编译 Findutils：</para>
 
 <screen><userinput remap="configure">./configure --prefix=/tools</userinput></screen>
 
-    <para>Compile the package:</para>
+    <para>编译程序包：</para>
 
 <screen><userinput remap="make">make</userinput></screen>
 
-    <para>Compilation is now complete. As discussed earlier, running the test
-    suite is not mandatory for the temporary tools here in this chapter. To run
-    the Findutils test suite anyway, issue the following command:</para>
+    <para>编译现在完成了。前面讨论过，没有必要在这一章中给临时工具运行测试套件。如果无论如何要运行 Findutils 的测试套件，执行以下指令：</para>
 
 <screen><userinput remap="test">make check</userinput></screen>
 
-    <para>Install the package:</para>
+    <para>安装程序包：</para>
 
 <screen><userinput remap="install">make install</userinput></screen>
 
@@ -66,8 +64,7 @@
   <sect2 role="content">
     <title/>
 
-    <para>关于这个包的细节在
-    <xref linkend="contents-findutils" role="."/></para>
+    <para>有关此程序包的细节位于<xref linkend="contents-findutils"/>。</para>
 
   </sect2>
 
