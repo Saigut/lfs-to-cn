@@ -32,6 +32,14 @@
     </listitem>
 
 -->
+    <listitem>
+      <para>2012-03-22</para>
+      <itemizedlist>
+         <listitem>
+           <para>[bdubbs] - 修复 ipv4-static 脚本中的极端情况。</para>
+         </listitem>
+      </itemizedlist>
+    </listitem>
 
     <listitem>
       <para>2012-03-20</para>

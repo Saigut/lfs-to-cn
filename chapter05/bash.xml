@@ -18,7 +18,7 @@
 
   <indexterm zone="ch-tools-bash">
     <primary sortas="a-Bash">Bash</primary>
-    <secondary>tools</secondary>
+    <secondary>工具</secondary>
   </indexterm>
 
   <sect2 role="package">
@@ -41,50 +41,42 @@
   </sect2>
 
   <sect2 role="installation">
-    <title>Installation of Bash</title>
+    <title>安装 Bash</title>
 
-    <para>First, apply the following patch to fix various bugs that have been
-    addressed upstream:</para>
+    <para>首先应用以下补丁修复几个在上游提出的漏洞：</para>
 
 <screen><userinput remap="pre">patch -Np1 -i ../&bash-fixes-patch;</userinput></screen>
 
-    <para>Prepare Bash for compilation:</para>
+    <para>准备编译 Bash：</para>
 
 <screen><userinput remap="configure">./configure --prefix=/tools --without-bash-malloc</userinput></screen>
 
     <variablelist>
-      <title>The meaning of the configure options:</title>
+      <title>配置脚本的含义：</title>
 
       <varlistentry>
         <term><parameter>--without-bash-malloc</parameter></term>
         <listitem>
-          <para>This option turns off the use of Bash's memory allocation
-          (<function>malloc</function>) function which is known to cause
-          segmentation faults. By turning this option off, Bash will use
-          the <function>malloc</function> functions from Glibc which are
-          more stable.</para>
+          <para>此选项关闭 Bash 的内存分配 (<function>malloc</function>) 函数，它已知会导致段错误。通过关闭这个选项，Bash 就会使用 Glibc 的 <function>malloc</function> 函数，它们更稳定。</para>
         </listitem>
       </varlistentry>
 
     </variablelist>
 
-    <para>Compile the package:</para>
+    <para>编译程序包：</para>
 
 <screen><userinput remap="make">make</userinput></screen>
 
-    <para>Compilation is now complete. As discussed earlier, running the test
-    suite is not mandatory for the temporary tools here in this chapter. To run
-    the Bash test suite anyway, issue the following command:</para>
+    <para>编译现在完成了。前面讨论过，没有必要在这一章中给临时工具运行测试套件。如果无论如何要运行 Bash 的测试套件，执行以下指令：</para>
 
 
 <screen><userinput remap="test">make tests</userinput></screen>
 
-    <para>Install the package:</para>
+    <para>安装程序包：</para>
 
 <screen><userinput remap="install">make install</userinput></screen>
 
-    <para>Make a link for the programs that use <command>sh</command> for
-    a shell:</para>
+    <para>为使用 <command>sh</command> 作为 Shell 的程序做一个链接：</para>
 
 <screen><userinput remap="install">ln -vs bash /tools/bin/sh</userinput></screen>
 
@@ -93,8 +85,7 @@
   <sect2 role="content">
     <title/>
 
-    <para>关于这个包的细节在
-    <xref linkend="contents-bash" role="."/></para>
+    <para>有关此程序包的细节位于<xref linkend="contents-bash"/>。</para>
 
   </sect2>
 
