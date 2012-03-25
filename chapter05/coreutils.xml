@@ -18,7 +18,7 @@
 
   <indexterm zone="ch-tools-coreutils">
     <primary sortas="a-Coreutils">Coreutils</primary>
-    <secondary>tools</secondary>
+    <secondary>工具</secondary>
   </indexterm>
 
   <sect2 role="package">
@@ -41,50 +41,38 @@
   </sect2>
 
   <sect2 role="installation">
-    <title>Installation of Coreutils</title>
+    <title>安装 Coreutils</title>
 
-    <para>Prepare Coreutils for compilation:</para>
+    <para>准备编译 Coreutils：</para>
 
 <screen><userinput remap="configure">./configure --prefix=/tools --enable-install-program=hostname</userinput></screen>
 
     <variablelist>
-      <title>The meaning of the configure options:</title>
+      <title>配置脚本的含义：</title>
 
       <varlistentry>
         <term><envar>--enable-install-program=hostname</envar></term>
         <listitem>
-          <para>This enables the <command>hostname</command> binary to be built
-          and installed &ndash; it is disabled by default but is required by the
-          Perl test suite.</para>
+          <para>此项启用编制和安装 <command>hostname</command> 二进制文件 &ndash; 它默认被禁用，但被 Perl 的测试套件需求。</para>
         </listitem>
       </varlistentry>
     </variablelist>
 
-    <para>Compile the package:</para>
+    <para>编译程序包：</para>
 
 <screen><userinput remap="make">make</userinput></screen>
 
-    <para>Compilation is now complete. As discussed earlier, running the test
-    suite is not mandatory for the temporary tools here in this chapter. To run
-    the Coreutils test suite anyway, issue the following command:</para>
+    <para>编译现在完成了。前面讨论过，没有必要在这一章中给临时工具运行测试套件。如果无论如何要运行 Coreutils 的测试套件，执行以下指令：</para>
 
 <screen><userinput remap="test">make RUN_EXPENSIVE_TESTS=yes check</userinput></screen>
 
-    <para>The <parameter>RUN_EXPENSIVE_TESTS=yes</parameter> parameter tells the
-    test suite to run several additional tests that are considered
-    relatively expensive (in terms of CPU power and memory usage) on some
-    platforms, but generally are not a problem on Linux.</para>
+    <para><parameter>RUN_EXPENSIVE_TESTS=yes</parameter> 参数告诉测试套件运行几个额外的测试，它们在某些平台上相对昂贵 (CPU 运算能力和内存使用)，但是在 Linux 上通常不是问题。</para>
 
-    <para>Install the package:</para>
+    <para>安装程序包：</para>
 
 <screen><userinput remap="install">make install</userinput></screen>
 
-    <para>The above command refuses to install <filename>su</filename>
-    because the program cannot be installed setuid root as a non-privileged
-    user. By manually installing it with a different name, we can use it for
-    running tests in the final system as a non-privileged user and we keep a
-    possibly useful <command>su</command> from our host first in our PATH.
-    Install it with:</para>
+    <para>以上命令拒绝安装 <filename>su</filename>，因为此程序无法作为非特权用户安装 setuid root。通过手动以另一个名字安装，我们就可以用它来在最终系统中作为非特权用户运行测试并保留一个可能会有用的 <command>su</command> 在 PATH 的最前面而且不被宿主系统发现。如此安装之：</para>
 
 <screen><userinput remap="install">cp -v src/su /tools/bin/su-tools</userinput></screen>
 
@@ -93,8 +81,7 @@
   <sect2 role="content">
     <title/>
 
-    <para>关于这个包的细节在
-    <xref linkend="contents-coreutils" role="."/></para>
+    <para>有关此程序包的细节位于<xref linkend="contents-coreutils"/>。</para>
 
   </sect2>
 
