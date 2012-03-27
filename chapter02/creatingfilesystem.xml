@@ -23,7 +23,7 @@
 
 <screen role="nodump"><userinput>debugfs -R feature /dev/<replaceable>&lt;xxx&gt;</replaceable></userinput></screen>
 
-    <para>如果输出包含除 <option>has_journal</option>、<option>ext_attr</option>、<option>resize_inode</option>、<option>dir_index</option>、<option>filetype</option>、<option>sparse_super</option>、<option>large_file</option> 或 <option>needs_recovery</option> 之外的选项，你的素质可能就有自定义增强。这样的话，为了防止以后出问题，你应该编译一下 E2fsprogs 程序包并使用产生的二进制来重新创建 LFS 分区上的文件系统：</para>
+    <para>如果输出包含除 <option>has_journal</option>、<option>ext_attr</option>、<option>resize_inode</option>、<option>dir_index</option>、<option>filetype</option>、<option>sparse_super</option>、<option>large_file</option> 或 <option>needs_recovery</option> 之外的选项，你的宿主可能就有自定义增强。这样的话，为了防止以后出问题，你应该编译一下 E2fsprogs 程序包并使用产生的二进制来重新创建 LFS 分区上的文件系统：</para>
 
 <screen role="nodump"><userinput>cd /tmp
 tar -xzvf /path/to/sources/e2fsprogs-&e2fsprogs-version;.tar.gz

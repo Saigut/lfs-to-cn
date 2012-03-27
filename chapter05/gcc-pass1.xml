@@ -90,9 +90,9 @@ cd ../gcc-build</userinput></screen>
       </varlistentry>
 
       <varlistentry>
-        <term><parameter>--disable-decimal-float, --disable-threads, --disable-libmudflap, --disable-libssp, --disable-libgomp, --disable-libquadmath --disable-target-libiberty --disable-target-zlib</parameter></term>
+        <term><parameter>--disable-decimal-float, --disable-threads, --disable-libmudflap, --disable-libssp, --disable-libgomp, --disable-libquadmath</parameter></term>
         <listitem>
-          <para>这些开关禁用十进制浮点扩展、线程、libmudflap、libssp 和 libgomp、libquadmath、libiberty 和 zlib 的支持。这些特性在编制交叉编译器时会编译失败，而且对于交叉编译临时的 libc 没有必要。</para>
+          <para>这些开关禁用十进制浮点扩展、线程、libmudflap、libssp 和 libgomp 和 libquadmath  的支持。这些特性在编制交叉编译器时会编译失败，而且对于交叉编译临时的 libc 没有必要。</para>
         </listitem>
       </varlistentry>
 
