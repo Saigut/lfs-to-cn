@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
   "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
   <!ENTITY % general-entities SYSTEM "../general.ent">
@@ -18,7 +18,7 @@
 
   <indexterm zone="ch-tools-grep">
     <primary sortas="a-Grep">Grep</primary>
-    <secondary>tools</secondary>
+    <secondary>工具</secondary>
   </indexterm>
 
   <sect2 role="package">
@@ -41,37 +41,32 @@
   </sect2>
 
   <sect2 role="installation">
-    <title>Installation of Grep</title>
+    <title>安装 Grep</title>
 
-    <para>Prepare Grep for compilation:</para>
+    <para>准备编译 Grep：</para>
 
 <screen><userinput remap="configure">./configure --prefix=/tools --disable-perl-regexp</userinput></screen>
 
     <variablelist>
-      <title>The meaning of the configure switches:</title>
+      <title>配置开关的含义：</title>
 
       <varlistentry>
         <term><parameter>--disable-perl-regexp</parameter></term>
         <listitem>
-          <para>This ensures that the <command>grep</command> program does
-          not get linked against a Perl Compatible Regular Expression (PCRE)
-          library that may be present on the host but will not be available
-          once we enter the <command>chroot</command> environment.</para>
+          <para>此项确保 <command>grep</command> 程序不会链接至宿主上可能出现但进入 <command>chroot</command> 环境就不再可用的 Perl 兼容正则表达式 (PCRE) 库。</para>
         </listitem>
       </varlistentry>
     </variablelist>
 
-    <para>Compile the package:</para>
+    <para>编译程序包：</para>
 
 <screen><userinput remap="make">make</userinput></screen>
 
-    <para>Compilation is now complete. As discussed earlier, running the test
-    suite is not mandatory for the temporary tools here in this chapter. To run
-    the Grep test suite anyway, issue the following command:</para>
+    <para>编译现在完成了。前面讨论过，没有必要在这一章中给临时工具运行测试套件。如果无论如何要运行 Grep 的测试套件，执行以下指令：</para>
 
 <screen><userinput remap="test">make check</userinput></screen>
 
-    <para>Install the package:</para>
+    <para>安装程序包：</para>
 
 <screen><userinput remap="install">make install</userinput></screen>
 
@@ -80,8 +75,7 @@
   <sect2 role="content">
     <title/>
 
-    <para>Details on this package are located in
-    <xref linkend="contents-grep" role="."/></para>
+    <para>有关此程序包的细节位于<xref linkend="contents-grep"/>。</para>
 
   </sect2>
 
