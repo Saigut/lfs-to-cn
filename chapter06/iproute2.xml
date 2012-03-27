@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
   "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
   <!ENTITY % general-entities SYSTEM "../general.ent">
@@ -52,11 +52,6 @@
 <screen><userinput remap="pre">sed -i '/^TARGETS/s@arpd@@g' misc/Makefile
 sed -i /ARPD/d Makefile
 rm man/man8/arpd.8</userinput></screen>
-
-    <para>Remove references to some Libnl headers that are not required by
-    IPRoute2:</para>
-
-<screen><userinput remap="pre">sed -i -e '/netlink\//d' ip/ipl2tp.c</userinput></screen>
 
     <para>Compile the package:</para>
 

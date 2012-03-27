@@ -43,14 +43,13 @@
   <sect2 role="installation">
     <title>安装 Glibc</title>
 
-    <para>首先修复一个使用 GCC-&gcc-version; 编译时出现的一个Bug ：</para>
+    <para>修复一个因为现在不完整的编译环境所造成的头文件检测失败：</para>
 
-    <screen><userinput remap="pre">patch -Np1 -i ../&glibc-gcc_fix-patch;</userinput></screen>
+    <screen><userinput remap="pre">sed -i 's#$ac_includes_default#\n\n#' sysdeps/i386/configure</userinput></screen>
 
-    <para>还有一个因为现在不完整的编译环境所造成的头文件检测失败：</para>
+    <para>修复一个不可更改的路径：</para>
 
-    <screen><userinput remap="pre">patch -Np1 -i ../&glibc-cpuid-patch;</userinput></screen>
-
+    <screen><userinput remap="pre">sed -i 's#/var/db#/tools/var/db#' Makeconfig</userinput></screen>
     <para>Glibc 文档推荐在源代码目录外另建目录编译 Glibc：</para>
 
 <screen><userinput remap="pre">mkdir -v ../glibc-build

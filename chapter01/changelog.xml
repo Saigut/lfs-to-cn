@@ -33,6 +33,27 @@
 
 -->
     <listitem>
+      <para>2012-03-26</para>
+      <itemizedlist>
+         <listitem>
+           <para>[matthew] - 升级至 Man-Pages-3.38。修复 <ulink url="&lfs-ticket-root;3047">#3047</ulink>。</para>
+         </listitem>
+         <listitem>
+           <para>[matthew] - 升级至 E2fsprogs-1.42.1。修复 <ulink url="&lfs-ticket-root;3046">#3046</ulink>。</para>
+         </listitem>
+         <listitem>
+           <para>[matthew] - 升级至 Glibc-2.15。修复 <ulink url="&lfs-ticket-root;3045">#3045</ulink>。感谢 Andy Benton 提供补丁。</para>
+         </listitem>
+         <listitem>
+           <para>[matthew] - 升级至 GCC-4.7.0。修复 <ulink url="&lfs-ticket-root;3044">#3044</ulink>。感谢 Andy Benton 提供补丁。</para>
+         </listitem>
+         <listitem>
+           <para>[matthew] - 升级至 IPRoute2-3.3.0。修复 <ulink url="&lfs-ticket-root;3043">#3043</ulink>。</para>
+         </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
       <para>2012-03-22</para>
       <itemizedlist>
          <listitem>

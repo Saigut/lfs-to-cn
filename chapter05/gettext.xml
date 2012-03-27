@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
   "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
   <!ENTITY % general-entities SYSTEM "../general.ent">
@@ -18,7 +18,7 @@
 
   <indexterm zone="ch-tools-gettext">
     <primary sortas="a-Gettext">Gettext</primary>
-    <secondary>tools</secondary>
+    <secondary>工具</secondary>
   </indexterm>
 
   <sect2 role="package">
@@ -41,49 +41,42 @@
   </sect2>
 
   <sect2 role="installation">
-    <title>Installation of Gettext</title>
+    <title>安装 Gettext</title>
 
-    <para>For our temporary set of tools, we only need to build and install
-    one binary from Gettext.</para>
+    <para>对于我们的临时工具，我们只需要编制安装 Gettext 的一个二进制。</para>
 
-    <para>Prepare Gettext for compilation:</para>
+    <para>准备编译 Gettext：</para>
 
 <screen><userinput remap="configure">cd gettext-tools
 EMACS="no" ./configure --prefix=/tools --disable-shared</userinput></screen>
 
     <variablelist>
-      <title>The meaning of the configure option:</title>
+      <title>配置选项的含义：</title>
 
       <varlistentry>
         <term><parameter>EMACS="no"</parameter></term>
         <listitem>
-          <para>This prevents the configure script from determining where to
-          install Emacs Lisp files as the test is known to hang on some hosts.
-          </para>
+          <para>此项防止配置脚本获知安装 Emacs Lisp 文件的位置，因为测试已知在某些宿主上会挂起。</para>
         </listitem>
       </varlistentry>
 
       <varlistentry>
         <term><parameter>--disable-shared</parameter></term>
         <listitem>
-          <para>We do not need to install any of the shared Gettext libraries at
-          this time, therefore there is no need to build them.</para>
+          <para>我们现在不需要安装任何的 Gettext 共享库，也就不必编制。</para>
         </listitem>
       </varlistentry>
 
     </variablelist>
 
-    <para>Compile the package:</para>
+    <para>编译程序包：</para>
 
 <screen><userinput remap="make">make -C gnulib-lib
 make -C src msgfmt</userinput></screen>
 
-    <para>As only one binary has been compiled, it is not possible to run the
-    test suite without compiling additional support libraries from the Gettext
-    package. It is therefore not recommended to attempt to run the test suite at
-    this stage.</para>
+    <para>因为只编译了一个二进制，就不可能在不编译 Gettext 程序包中额外支持库的前提下运行测试套件。因此在此处不推荐尝试运行测试套件。</para>
 
-    <para>Install the <command>msgfmt</command> binary:</para>
+    <para>安装 <command>msgfmt</command> 二进制：</para>
 
 <screen><userinput remap="install">cp -v src/msgfmt /tools/bin</userinput></screen>
 
@@ -92,8 +85,7 @@ make -C src msgfmt</userinput></screen>
   <sect2 role="content">
     <title/>
 
-    <para>Details on this package are located in
-    <xref linkend="contents-gettext" role="."/></para>
+    <para>有关此程序包的细节位于<xref linkend="contents-gettext"/>。</para>
 
   </sect2>
 
