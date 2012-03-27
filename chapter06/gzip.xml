@@ -23,8 +23,7 @@
   <sect2 role="package">
     <title/>
 
-    <para>The Gzip package contains programs for compressing and decompressing
-    files.</para>
+    <para>Gzip 程序包包含用于压缩和解压缩文件的程序。</para>
 
     <segmentedlist>
       <segtitle>&buildtime;</segtitle>
@@ -65,7 +64,7 @@ mv -v /bin/{zfgrep,zforce,zgrep,zless,zmore,znew} /usr/bin</userinput></screen>
   </sect2>
 
   <sect2 id="contents-gzip" role="content">
-    <title>Contents of Gzip</title>
+    <title>Gzip 的内容</title>
 
     <segmentedlist>
       <segtitle>Installed programs</segtitle>
