@@ -57,6 +57,10 @@ cd ../binutils-build</userinput></screen>
     </note>
 
     <note><para>第五章的 SBU 值和需求磁盘空间不包含测试套件数据。</para></note>
+    
+    <para>应用一个补丁防止使用编译器调节时编制失败：</para>
+
+<screen><userinput remap="pre">patch -Np1 -i ../&binutils-build-patch;</userinput></screen>
 
     <para>现在准备编译 Binutils：</para>
 

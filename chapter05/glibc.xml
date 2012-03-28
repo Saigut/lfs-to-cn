@@ -50,6 +50,11 @@
     <para>修复一个不可更改的路径：</para>
 
     <screen><userinput remap="pre">sed -i 's#/var/db#/tools/var/db#' Makeconfig</userinput></screen>
+    
+    <para>修复一个组织 Glibc 以 GCC-&gcc-version; 编制的漏洞：</para>
+    
+<screen><userinput remap="pre">patch -Np1 -i ../&glibc-gcc_fix-patch;</userinput></screen>
+
     <para>Glibc 文档推荐在源代码目录外另建目录编译 Glibc：</para>
 
 <screen><userinput remap="pre">mkdir -v ../glibc-build
@@ -121,7 +126,13 @@ esac</userinput></screen>
       <varlistentry>
         <term><parameter>libc_cv_c_cleanup=yes</parameter></term>
         <listitem>
-          <para>同样，我们通过 libc_cv_c_cleanup=yes 告诉 <command>configure</command> 脚本跳过 cleanup handling 支持的检查。</para>
+          <para>同样，我们传递 libc_cv_c_cleanup=yes 给 <command>configure</command> 脚本跳过检查但仍配置 C 清理控制支持。</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><parameter>libc_cv_ctors_header=yes</parameter></term>
+        <listitem>
+          <para>同样，我们传递 libc_cv_ctors_header=yes 给 <command>configure</command> 脚本跳过检查但仍配置 gcc 构造函数支持。</para>
         </listitem>
       </varlistentry>
 
@@ -137,7 +148,7 @@ esac</userinput></screen>
 *** Check the INSTALL file for required versions.</computeroutput></screen>
     </blockquote>
 
-    <para>这个丢失或不合适的 <command>msgfmt</command> 程序在这里是无害的。这个 <command>msgfmt</command> 是 gettext 的一部分，宿主系统默认会提供这个。</para>
+    <para>这个丢失或不合适的 <command>msgfmt</command> 程序在这里是无害的。这个 <command>msgfmt</command> 是 gettext 的一部分，宿主系统应该提供这个。</para>
 
     <para>编译程序包：</para>
 

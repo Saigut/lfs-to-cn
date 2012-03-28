@@ -33,6 +33,18 @@
 
 -->
     <listitem>
+      <para>2012-03-27</para>
+      <itemizedlist>
+         <listitem>
+           <para>[matthew] - 加入一个补丁，修复带 -O3 编译器标记编译 Binutils。感谢 Pierre Labastie 提出报告。</para>
+         </listitem>
+         <listitem>
+           <para>[matthew] - 为了修复 32 位宿主上的一个编制问题，重新将 GCC 修复补丁加入 Glibc 指令中。感谢 Pierre Labastie 提出报告。</para>
+         </listitem>
+      </itemizedlist>
+    </listitem>
+    
+    <listitem>
       <para>2012-03-26</para>
       <itemizedlist>
          <listitem>
