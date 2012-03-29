@@ -1,0 +1,54 @@
+#!/bin/sh
+########################################################################
+# Begin sysctl
+#
+# Description : File uses /etc/sysctl.conf to set kernel runtime
+#               parameters
+#
+# Authors     : Nathan Coulson (nathan@linuxfromscratch.org)
+#               Matthew Burgress (matthew@linuxfromscratch.org)
+#               DJ Lucas - dj@linuxfromscratch.org
+# Update      : Bruce Dubbs - bdubbs@linuxfromscratch.org
+#
+# Version     : LFS 7.0
+#
+########################################################################
+
+### BEGIN INIT INFO
+# Provides:            sysctl
+# Required-Start:      mountkernfs
+# Should-Start:
+# Required-Stop:
+# Should-Stop:
+# Default-Start:       S
+# Default-Stop:
+# Short-Description:   Makes changes to the proc filesystem
+# Description:         Makes changes to the proc filesystem as defined in
+#                      /etc/sysctl.conf.  See &apos;man sysctl(8)&apos;.
+# X-LFS-Provided-By:   LFS
+### END INIT INFO
+
+. /lib/lsb/init-functions
+
+case &quot;${1}&quot; in
+   start)
+      if [ -f &quot;/etc/sysctl.conf&quot; ]; then
+         log_info_msg &quot;Setting kernel runtime parameters...&quot;
+         sysctl -q -p
+         evaluate_retval
+      fi
+      ;;
+
+   status)
+      sysctl -a
+      ;;
+
+   *)
+      echo &quot;Usage: ${0} {start|status}&quot;
+      exit 1
+      ;;
+esac
+
+exit 0
+
+# End sysctl
