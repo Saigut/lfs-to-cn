@@ -33,6 +33,21 @@
 
 -->
     <listitem>
+      <para>2012-03-28</para>
+      <itemizedlist>
+         <listitem>
+           <para>[bdubbs] - 移动一个由 gcc 创建的 gdb python 模块到更好的位置。修复 <ulink url="&lfs-ticket-root;3048">#3048</ulink>。</para>
+         </listitem>
+         <listitem>
+           <para>[bdubbs] - 调整宿主需求中的 xz-utils 小版本。</para>
+         </listitem>
+         <listitem>
+           <para>[bdubbs] - 重写 “创建必要的文件” 一节中的日志文件描述。</para>
+         </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
       <para>2012-03-27</para>
       <itemizedlist>
          <listitem>
