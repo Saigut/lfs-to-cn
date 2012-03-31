@@ -18,7 +18,7 @@
 
   <indexterm zone="ch-tools-perl">
     <primary sortas="a-Perl">Perl</primary>
-    <secondary>tools</secondary>
+    <secondary>工具</secondary>
   </indexterm>
 
   <sect2 role="package">
@@ -41,26 +41,23 @@
   </sect2>
 
   <sect2 role="installation">
-    <title>Installation of Perl</title>
+    <title>安装 Perl</title>
 
-    <para>First apply the following patch to adapt some hard-wired paths to the
-    C library:</para>
+    <para>首先应用以下补丁修改一些到 C 库的不可更改路径：</para>
 
 <screen><userinput remap="pre">patch -Np1 -i ../&perl-libc-patch;</userinput></screen>
 
-    <para>Prepare Perl for compilation:</para>
+    <para>准备编译 Perl：</para>
 
 <screen><userinput remap="configure">sh Configure -des -Dprefix=/tools</userinput></screen>
 
-    <para>Build the package:</para>
+    <para>编译程序包：</para>
 
 <screen><userinput remap="make">make</userinput></screen>
 
-    <para>Although Perl comes with a test suite, it would be better to wait
-    until it is insalled in the next chapter.</para>
+    <para>虽然 Perl 带有测试套件，最好还是等下一章安装的时候再运行。</para>
 
-    <para>Only a few of the utilities and libraries, need to be installed at this
-    time:</para>
+    <para>现在只需要安装几个工具和库：</para>
 
 <screen><userinput remap="install">cp -v perl cpan/podlators/pod2man /tools/bin
 mkdir -pv /tools/lib/perl5/&perl-version;
@@ -71,8 +68,7 @@ cp -Rv lib/* /tools/lib/perl5/&perl-version;</userinput></screen>
   <sect2 role="content">
     <title/>
 
-    <para>关于这个包的细节在
-    <xref linkend="contents-perl" role="."/></para>
+    <para>有关此程序包的细节位于<xref linkend="contents-perl"/>。</para>
 
   </sect2>
 
