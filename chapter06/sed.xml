@@ -23,7 +23,7 @@
   <sect2 role="package">
     <title/>
 
-    <para>The Sed package contains a stream editor.</para>
+    <para>Sed 程序包包含一个流处理器。</para>
 
     <segmentedlist>
       <segtitle>&buildtime;</segtitle>
@@ -79,7 +79,7 @@
   </sect2>
 
   <sect2 id="contents-sed" role="content">
-    <title>Contents of Sed</title>
+    <title>Sed 的内容</title>
 
     <segmentedlist>
       <segtitle>Installed program</segtitle>
