@@ -23,9 +23,7 @@
   <sect2 role="package">
     <title/>
 
-    <para>The Patch package contains a program for modifying or creating files
-    by applying a <quote>patch</quote> file typically created by the
-    <command>diff</command> program.</para>
+    <para>Patch 程序包包含一个用于应用由 <command>diff</command> 程序创建的 <quote>patch</quote> 文件来修改或创建文件的程序。</para>
 
     <segmentedlist>
       <segtitle>&buildtime;</segtitle>
@@ -66,7 +64,7 @@
   </sect2>
 
   <sect2 id="contents-patch" role="content">
-    <title>Contents of Patch</title>
+    <title>Patch 的内容</title>
 
     <segmentedlist>
       <segtitle>Installed program</segtitle>
