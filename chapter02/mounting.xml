@@ -23,7 +23,7 @@ mount -v -t ext3 /dev/<replaceable>&lt;xxx&gt;</replaceable> $LFS</userinput></s
 
   <para>用你的 LFS 分区替换 <replaceable>&lt;xxx&gt;</replaceable>。</para>
 
-  <para>如果你打算在 LFS 系统中使用多个文件系统 (例如一个挂载到<filename class="directory">/</filename>另一个挂载到<filename class="directory">/usr</filename>)，可通过如下方式挂载它们：</para>
+  <para>如果你打算在 LFS 系统中使用多个文件系统 (例如一个挂载到 <filename class="directory">/</filename> 另一个挂载到 <filename class="directory">/usr</filename>)，可通过如下方式挂载它们：</para>
 
 <screen role="nodump"><userinput>mkdir -pv $LFS
 mount -v -t ext3 /dev/<replaceable>&lt;xxx&gt;</replaceable> $LFS

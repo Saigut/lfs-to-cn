@@ -8,7 +8,7 @@
 <sect1 id="space-creatingpartition">
   <?dbhtml filename="creatingpartition.html"?>
 
-  <title>新建一个分区</title>
+  <title>创建一个新分区</title>
 
   <para>像大多数操作系统一样，LFS 系统通常被安装在一个磁盘分区上。我们建议使用一个空的分区构建一个 LFS 系统，或者，如果你有足够多的未分配空间，新建一个分区。</para>
 

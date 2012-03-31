@@ -21,7 +21,7 @@
     </listitem>
 
     <listitem>
-      <para><emphasis role="strong">Binutils-2.17</emphasis> (早于 &binutils-version; )</para>
+      <para><emphasis role="strong">Binutils-2.17</emphasis> (高于 &binutils-version; 的版本因为未经测试而不推荐)</para>
     </listitem>
 
     <listitem>

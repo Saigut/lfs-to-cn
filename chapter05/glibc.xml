@@ -47,7 +47,7 @@
 
     <screen><userinput remap="pre">sed -i 's#$ac_includes_default#\n\n#' sysdeps/i386/configure</userinput></screen>
 
-    <para>修复一个不可更改的路径：</para>
+    <para>修复一个不可更改路径：</para>
 
     <screen><userinput remap="pre">sed -i 's#/var/db#/tools/var/db#' Makeconfig</userinput></screen>
     

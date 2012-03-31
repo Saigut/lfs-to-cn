@@ -131,8 +131,7 @@ cd ../gcc-build</userinput></screen>
 
     <para>使用 <parameter>--disable-shared</parameter> 意味着 <filename>libgcc_eh.a</filename> 文件不会创建和安装。Glibc 程序包因为在自己的编制系统中使用了 <parameter>-lgcc_eh</parameter> 而依赖这个库。此项依赖关系可以通过创建一个到 <filename>libgcc.a</filename> 的符号链接来满足，因为这个文件最后会包含通常包含在 <filename>libgcc_eh.a</filename> 中的对象。</para>
 
-<screen><userinput remap="install">ln -vs libgcc.a `$LFS_TGT-gcc -print-libgcc-file-name | \
-    sed 's/libgcc/&amp;_eh/'`</userinput></screen>
+<screen><userinput remap="install">ln -vs libgcc.a `$LFS_TGT-gcc -print-libgcc-file-name | sed 's/libgcc/&amp;_eh/'`</userinput></screen>
 
   </sect2>
 
