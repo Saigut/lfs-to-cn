@@ -23,8 +23,7 @@
   <sect2 role="package">
     <title/>
 
-    <para>The Texinfo package contains programs for reading, writing, and
-    converting info pages.</para>
+    <para>Texinfo 程序包包含用于读、写、转换信息页的程序。</para>
 
     <segmentedlist>
       <segtitle>&buildtime;</segtitle>
@@ -93,7 +92,7 @@ done</userinput></screen>
   </sect2>
 
   <sect2 id="contents-texinfo" role="content">
-    <title>Contents of Texinfo</title>
+    <title>Texinfo 的内容</title>
 
     <segmentedlist>
       <segtitle>Installed programs</segtitle>
