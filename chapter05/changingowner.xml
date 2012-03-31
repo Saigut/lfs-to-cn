@@ -8,46 +8,22 @@
 <sect1 id="ch-tools-changingowner">
   <?dbhtml filename="changingowner.html"?>
 
-  <title>Changing Ownership</title>
+  <title>改变归属</title>
 
   <note>
-    <para>The commands in the remainder of this book must be performed while
-    logged in as user <systemitem class="username">root</systemitem> and no
-    longer as user <systemitem class="username">lfs</systemitem>. Also, double
-    check that <envar>$LFS</envar> is set in <systemitem
-    class="username">root</systemitem>'s environment.</para>
+    <para>本书中余下部分的命令必须作为 <systemitem class="username">root</systemitem> 用户登录，不再是 <systemitem class="username">lfs</systemitem> 用户。同样，再次检查 <envar>$LFS</envar> 在 <systemitem class="username">root</systemitem> 的环境中设置好。</para>
   </note>
 
-  <para>Currently, the <filename class="directory">$LFS/tools</filename> directory
-  is owned by the user <systemitem class="username">lfs</systemitem>, a user
-  that exists only on the host system. If the <filename
-  class="directory">$LFS/tools</filename> directory is kept as is, the files are
-  owned by a user ID without a corresponding account. This is dangerous because
-  a user account created later could get this same user ID and would own the
-  <filename class="directory">$LFS/tools</filename> directory and all the files
-  therein, thus exposing these files to possible malicious manipulation.</para>
+  <para>现在，<filename class="directory">$LFS/tools</filename> 目录属于 <systemitem class="username">lfs</systemitem> 用户，它只存在于宿主系统上。如果 <filename class="directory">$LFS/tools</filename> 目录就这样，这些文件就会属于一个没有对应账户的用户 ID。这很危险，因为以后创建的用户账户可能会拿到同样的用户 ID 并拥有 <filename class="directory">$LFS/tools</filename> 目录和其中的所有文件，使得这些文件暴露在恶意修改风险中。</para>
 
-  <para>To avoid this issue, you could add the <systemitem
-  class="username">lfs</systemitem> user to the new LFS system later when
-  creating the <filename>/etc/passwd</filename> file, taking care to assign it
-  the same user and group IDs as on the host system. Better yet, change the
-  ownership of the <filename class="directory">$LFS/tools</filename> directory to
-  user <systemitem class="username">root</systemitem> by running the following
-  command:</para>
+  <para>要避开这个问题，你需要在创建 <filename>/etc/passwd</filename> 文件时添加 <systemitem class="username">lfs</systemitem> 用户到新的 LFS 系统中，并将其对应到与宿主系统上相同的用户和组 ID 上。更好的办法是改变 <filename class="directory">$LFS/tools</filename> 目录的归属为 <systemitem class="username">root</systemitem> 用户，运行以下命令：</para>
 
 <screen><userinput>chown -R root:root $LFS/tools</userinput></screen>
 
-  <para>Although the <filename class="directory">$LFS/tools</filename> directory
-  can be deleted once the LFS system has been finished, it can be retained to build
-  additional LFS systems <emphasis>of the same book version</emphasis>. How best
-  to backup <filename class="directory">$LFS/tools</filename> is a matter of
-  personal preference.</para>
+  <para>虽然 <filename class="directory">$LFS/tools</filename> 目录一旦 LFS 系统完成就可以删除，也可以留着用来编制额外的<emphasis>相同版本的</emphasis> LFS 系统。是否要备份 <filename class="directory">$LFS/tools</filename> 是个人偏好。</para>
 
   <caution>
-    <para>If you intend to keep the temporary tools for use in building future LFS
-    systems, <emphasis>now</emphasis> is the time to back them up. Subsequent
-    commands in chapter 6 will alter the tools currently in place, rendering them
-    useless for future builds.</para>
+    <para>如果你想要保留临时工具用于编制未来的 LFS 系统，<emphasis>n现在</emphasis>就该备份了。此后第六章中的命令会改变现在到位的工具，使它们对以后的编制毫无用处。</para>
   </caution>
 
 </sect1>
