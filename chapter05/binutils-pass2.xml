@@ -42,15 +42,15 @@
 
   <sect2 role="installation">
     <title>安装 Binutils</title>
+    
+    <para>应用一个补丁防止使用编译器调节时编制失败：</para>
+
+<screen><userinput remap="pre">patch -Np1 -i ../&binutils-build-patch;</userinput></screen>
 
     <para>再创建一个独立的编制目录：</para>
 
 <screen><userinput remap="pre">mkdir -v ../binutils-build
 cd ../binutils-build</userinput></screen>
-
-    <para>应用一个补丁防止使用编译器调节时编制失败：</para>
-
-<screen><userinput remap="pre">patch -Np1 -i ../&binutils-build-patch;</userinput></screen>
 
     <para>准备编译 Binutils：</para>
 

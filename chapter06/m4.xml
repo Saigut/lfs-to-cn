@@ -23,7 +23,7 @@
   <sect2 role="package">
     <title/>
 
-    <para>The M4 package contains a macro processor.</para>
+    <para>M4 程序包包含一个宏处理器。</para>
 
     <segmentedlist>
       <segtitle>&buildtime;</segtitle>
@@ -62,7 +62,7 @@ make check</userinput></screen>
 
 
   <sect2 id="contents-m4" role="content">
-    <title>Contents of M4</title>
+    <title>M4 的内容</title>
 
     <segmentedlist>
       <segtitle>Installed program</segtitle>
