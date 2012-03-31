@@ -18,7 +18,7 @@
 
   <indexterm zone="ch-tools-xz">
     <primary sortas="a-xz">xz</primary>
-    <secondary>tools</secondary>
+    <secondary>工具</secondary>
   </indexterm>
 
   <sect2 role="package">
@@ -43,19 +43,19 @@
   <sect2 role="installation">
     <title>安装 Xz 工具</title>
 
-    <para>准备：</para>
+    <para>准备编译 Xz：</para>
 
 <screen><userinput remap="configure">./configure --prefix=/tools</userinput></screen>
 
-   <para>编译：</para>
+   <para>编译程序包：</para>
 
 <screen><userinput remap="make">make</userinput></screen>
 
-    <para>编译结束了。像前面所说，不建议在这章进行测试，如果一定要测试，运行：</para>
+    <para>编译现在完成了。前面讨论过，没有必要在这一章中给临时工具运行测试套件。如果无论如何要运行 Xz 的测试套件，执行以下指令：</para>
 
 <screen><userinput remap="test">make check</userinput></screen>
 
-    <para>安装：</para>
+    <para>安装程序包：</para>
 
 <screen><userinput remap="install">make install</userinput></screen>
 
@@ -64,8 +64,7 @@
   <sect2 role="content">
     <title/>
 
-    <para>这个包的细节在
-    <xref linkend="contents-xz" role="."/></para>
+    <para>有关此程序包的细节位于<xref linkend="contents-xz"/>。</para>
 
   </sect2>
 
