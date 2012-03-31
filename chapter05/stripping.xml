@@ -8,31 +8,21 @@
 <sect1 id="ch-tools-stripping">
   <?dbhtml filename="stripping.html"?>
 
-  <title>Stripping</title>
+  <title>剥离</title>
 
-  <para>The steps in this section are optional, but if the LFS partition is
-  rather small, it is beneficial to learn that unnecessary items can be removed.
-  The executables and libraries built so far contain about 70 MB of unneeded
-  debugging symbols. Remove those symbols with:</para>
+  <para>这一节中的步骤是可选的，但如果 LFS 分区比较小，移除不必要的项目就很有用。到现在位置编制的可执行文件和库包含大约 70MB 的不需要的调试符号。如此移除这些符号：</para>
 
 <screen><userinput>strip --strip-debug /tools/lib/*
 strip --strip-unneeded /tools/{,s}bin/*</userinput></screen>
 
-  <para>These commands will skip a number of files, reporting that it does not
-  recognize their file format. Most of these are scripts instead of binaries.</para>
+  <para>这些命令会跳过一些文件并报告不识别其文件格式。其中多数是脚本而不是二进制。</para>
 
-  <para>Take care <emphasis>not</emphasis> to use
-  <parameter>--strip-unneeded</parameter> on the libraries. The static
-  ones would be destroyed and the toolchain packages would need to be
-  built all over again.</para>
+  <para>注意<emphasis>不要</emphasis>给库使用 <parameter>--strip-unneeded</parameter>。静态库会被破坏，工具链程序包就得从头编制了。</para>
 
-  <para>To save more, remove the documentation:</para>
+  <para>要节省更多空间，移除文档：</para>
 
 <screen><userinput>rm -rf /tools/{,share}/{info,man,doc}</userinput></screen>
 
-  <para>At this point, you should have at least 850 MB of free space in
-  <envar>$LFS</envar> that can be used to build and install Glibc in the
-  next phase. If you can build and install Glibc, you can build and install
-  the rest too.</para>
+  <para>在这里，你应该在 <envar>$LFS</envar> 中有至少 850MB 可用空间用来编制安装下一章的 Glibc。如果你能编制安装 Glibc，你也就能编制安装其他的。</para>
 
 </sect1>
