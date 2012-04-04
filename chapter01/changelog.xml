@@ -33,6 +33,30 @@
 
 -->
     <listitem>
+      <para>2012-04-03</para>
+      <itemizedlist>
+         <listitem>
+           <para>[matthew] - 升级至 Linux-3.3.1。修复 <ulink url="&lfs-ticket-root;3059">#3059</ulink>。</para>
+         </listitem>
+         <listitem>
+           <para>[matthew] - 升级至 Automake-1.11.4。修复 <ulink url="&lfs-ticket-root;3058">#3058</ulink>。</para>
+         </listitem>
+         <listitem>
+           <para>[matthew] - 升级至 Gawk-4.0.1。修复 <ulink url="&lfs-ticket-root;3056">#3056</ulink>。</para>
+         </listitem>
+         <listitem>
+           <para>[matthew] - 升级至 Util-Linux-2.21.1。修复 <ulink url="&lfs-ticket-root;3055">#3055</ulink>。</para>
+         </listitem>
+         <listitem>
+           <para>[matthew] - 升级至 E2fsprogs-1.42.2。修复 <ulink url="&lfs-ticket-root;3051">#3051</ulink>。</para>
+         </listitem>
+         <listitem>
+           <para>[matthew] - 升级至 Coreutils-8.16 并废弃 uname 补丁。修复 <ulink url="&lfs-ticket-root;3048">#3048</ulink>。</para>
+         </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
       <para>2012-03-28</para>
       <itemizedlist>
          <listitem>

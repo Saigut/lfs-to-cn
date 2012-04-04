@@ -47,14 +47,6 @@
     </varlistentry>
 
     <varlistentry>
-      <term>Coreutils Uname 补丁 - <token>&coreutils-uname-patch-size;</token>：</term>
-      <listitem>
-        <para>下载： <ulink url="&patches-root;&coreutils-uname-patch;"/></para>
-        <para>MD5 指纹码： <literal>&coreutils-uname-patch-md5;</literal></para>
-      </listitem>
-    </varlistentry>
-
-    <varlistentry>
       <term>Flex GCC-4.4.x 补丁 - <token>&flex-gcc-patch-size;</token>：</term>
       <listitem>
         <para>下载： <ulink url="&patches-root;&flex-gcc-patch;"/></para>
