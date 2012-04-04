@@ -8,29 +8,13 @@
 <sect1 id="ch-system-introduction">
   <?dbhtml filename="introduction.html"?>
 
-  <title>Introduction</title>
+  <title>介绍</title>
 
-  <para>In this chapter, we enter the building site and start constructing the
-  LFS system in earnest. That is, we chroot into the temporary mini Linux system,
-  make a few final preparations, and then begin installing the packages.</para>
+  <para>这一章中，我们进入编制位置开始搭建 LFS 系统。也就是说，我们 chroot 进入到临时的迷你 Linux 系统，做几项最后的准备工作，然后开始安装程序包。</para>
 
-  <para>The installation of this software is straightforward. Although in many
-  cases the installation instructions could be made shorter and more generic,
-  we have opted to provide the full instructions for every package to minimize
-  the possibilities for mistakes.  The key to learning what makes a Linux system
-  work is to know what each package is used for and why you (or the system)
-  may need it.</para>
+  <para>软件的安装很简单。虽然很多情况下安装指令还可以更加简短通用，我们选择提供每个程序包的完整指令来最小化出错的概率。学习 Linux 系统如何工作的关键就是了解每个程序包的用途，你 (或者系统) 又为什么会需要它。</para>
 
-  <para>We do not recommend using optimizations.  They can make
-  a program run slightly faster, but they may also cause compilation
-  difficulties and problems when running the program.  If a package refuses to
-  compile when using optimization, try to compile it without optimization and
-  see if that fixes the problem. Even if the package does compile when using
-  optimization, there is the risk it may have been compiled incorrectly because
-  of the complex interactions between the code and build tools.  Also note that
-  the <option>-march</option> and <option>-mtune</option> options using values
-  not specified in the book have not been tested. This may cause problems with
-  the toolchain packages (Binutils, GCC and Glibc).  The small potential gains
+  <para>我们不推荐做修改。它们可能会使程序运行略快一点，也可能会产生编译困难或者运行问题。如果有程序包在做了修改之后不能编译，试试不带修改能否解决问题。即使程序包做了修改之后能够编译，也存在由于代码和编制工具之间的复杂交互而编译不正确的风险。还要注意 <option>-march</option> 和 <option>-mtune</option> 选项使用本书中没有指定的值未经测试。这可能导致工具链程序包 (Binutils、GCC 和 Glibc) 出问题。The small potential gains
   achieved in using compiler optimizations are often outweighed by the risks.
   First-time builders of LFS are encouraged to build without custom
   optimizations. The subsequent system will still run very fast and be stable
