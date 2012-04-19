@@ -8,72 +8,95 @@
 <sect1 id="ch-scripts-network">
   <?dbhtml filename="network.html"?>
 
-  <title>网络设置</title>
+  <title>通用网络配置</title>
 
   <indexterm zone="ch-scripts-network">
     <primary sortas="d-network">network</primary>
   <secondary>configuring</secondary></indexterm>
 
-  <para>这一章节只当需要配置一个网卡的时候有用。</para>
+  <para>这一章节仅在需要配置网卡的时候有用。</para>
 
-  <para>如果不需要使用一个网卡，那么似乎不需要创建任何跟网卡相关的配置文件。如果真的是这样，请删除所有启动级别文件夹（<filename class="directory">/etc/rc.d/rc*.d</filename>）中的 <filename class="symlink">network</filename> 符号链接。 </para>
+  <para>如果不需要使用一个网卡，那么似乎不需要创建任何跟网卡相关的配置文件。如果真的是这样，请删除所有启动级别文件夹 (<filename
+  class="directory">/etc/rc.d/rc*.d</filename>) 中的 <filename class="symlink">network</filename>符号链接.</para>
 
   <sect2>
     <title>给网络接口创建稳定的名称</title>
 
-    <para>如果这个系统只需要设置一个网络接口，这一节是可选的，即时这永远也不会出错。在许多情况下（例如一个有无线接口和有线接口的笔记本电脑），实现本章的配置是很重要的。</para>  
+    <para>如果这个系统只需要设置一个网络接口，这一节是可选的，即时这永远也不会出错。在许多情况下 (例如一个有无线接口和有线接口的笔记本电脑)，完成本节的配置是很重要的。</para>  
 
-    <para>通过 Udev 和网卡驱动模块，网络接口的编号再重启之后并不是不变的，因为这些驱动会同时加载，或者说是随机。例如，一个拥有两块分别由 Intel 和 Realtek 制造的网卡的电脑，Intel 网卡会标识为 <filename class="devicefile">eth0</filename>，Realtek 网卡会标识为  <filename class="devicefile">eth1</filename>。在某些情况下，重启之后他们的标识符会随机交换。为了避免这样， Udev 使用一个脚本和一些规则，根据网卡的硬件地址（MAC）来分配稳定的标识符。</para>
+    <para>通过 Udev 和网卡驱动模块，网络接口的编号在重启之后并不是不变的，因为这些驱动会并行加载，也就是说是顺序随机。例如，一个拥有两块分别由 Intel 和 Realtek 制造的网卡的电脑，Intel 网卡可能会成为 <filename class="devicefile">eth0</filename>，Realtek 网卡会成为<filename class="devicefile">eth1</filename>。在某些情况下，重启之后他们的标号会互换。为了避免这种情况，Udev 使用一个脚本和一些规则，根据网卡的 MAC 地址来分配稳定的名称。</para>
 
-    <para>提前设定好规则来确保同样的设备分配到同样的标识符，首先：</para>
+    <para>提前设定好规则来确保同一个设备分配到同一个名称，首先：</para>
 
 <screen><userinput>for NIC in /sys/class/net/* ; do
     INTERFACE=${NIC##*/} udevadm test --action=add $NIC
 done</userinput></screen>
 
-    <para>现在，查看 <filename>/etc/udev/rules.d/70-persistent-net.rules</filename> 文件，查看你的网络设备们被分配到了哪些标识符：</para>
+    <para>现在，查看 <filename>/etc/udev/rules.d/70-persistent-net.rules</filename> 文件，查看你的网络设备们分别对应到哪些名称：</para>
 
 <screen role="nodump"><userinput>cat /etc/udev/rules.d/70-persistent-net.rules</userinput></screen>
 
-    <para>这个文件中，每个 NIC 由一行注释紧接两行内容表示。第一行是对硬件 ID 的描述（例如，它的 PCI 销售方和设备 ID，如果是一张 PCI 卡）。如果他的驱动程序可以找到，会写在圆括号中。硬件 ID 和驱动程序都不是如何分配标识符的标准，他们仅供参考。第二行是 Udev 用来匹配 NIC 的规则，以此来分配标识符。</para>
+    <para>这个文件中，每个 NIC 由一行注释紧接两行内容表示。第一行是对硬件 ID 的描述 (例如，如果是一张 PCI 卡，它的 PCI 销售方和设备 ID)，如果他的驱动程序可以找到，会写在圆括号中。硬件 ID 和驱动程序都不是如何分配标识符的标准，他们仅供参考。第二行是 Udev 用来匹配 NIC 的规则，以此来分配标识符。</para>
 
-    <para>Udev 的所有规则由关键字，逗号，还有可选的空格组成。如下是这些关键字和其说明：</para>
+    <para>Udev 的所有规则由关键字，由逗号和可选的空格隔开。如下是这些关键字和其说明：</para>
 
     <itemizedlist>
       <listitem>
-        <para><literal>SUBSYSTEM=="net"</literal> - 告诉 Udev 忽略不是网卡的设备。</para>
+        <para><literal>SUBSYSTEM=="net"</literal> - 此项告诉 Udev 忽略不是网卡的设备。</para>
       </listitem>
       <listitem>
-        <para><literal>ACTION=="add"</literal> - 告诉 Udev 忽略不是添加操作的 Udev 的事件（uevent）的发生（”删除“和“更改”事件依然会被触发，但是不需要重命名网卡标识符。</para>
+        <para><literal>ACTION=="add"</literal> - 此项告诉 Udev 对非添加操作的 Udev 事件 (uevent) 忽略此规则 (“移除” 和 “改动” 事件依然会被触发，但是不需要重命名网卡接口)。</para>
       </listitem>
       <listitem>
-        <para><literal>DRIVERS=="?*"</literal> - 如果这个存在，Udev 会忽略 VLAN 和 桥接的子接口（bridge sub-interface）（因为这些子接口没有相应的驱动程序）。这些子接口被分配时可能于他们的父设备发生冲突。</para>
+        <para><literal>DRIVERS=="?*"</literal> - 此项存在使得 Udev 忽略 VLAN 或者桥接子接口 (因为这些子接口没有驱动)。这些子接口会被跳过以防名称与父设备冲突。</para>
       </listitem>
       <listitem>
-        <para><literal>ATTR{address}</literal> - 这个值是 NIC 的硬件地址（MAC）。</para>
+        <para><literal>ATTR{address}</literal> - The value of this key is the
+        NIC's MAC address.</para>
       </listitem>
       <listitem>
-	      <para><literal>ATTR{type}=="1"</literal> - 这确保 Udev 在遇到一些会创建多个虚拟接口的无线网卡驱动程序的时候，能正确识别其主接口。次要的接口因为与 VLAN 桥接的子接口（bridge sub-interface）一样的原因被跳过：会造成名称冲突。</para>
+        <para><literal>ATTR{type}=="1"</literal> - This ensures the rule only
+        matches the primary interface in the case of certain wireless drivers,
+        which create multiple virtual interfaces. The secondary interfaces are
+        skipped for the same reason that VLAN and bridge sub-interfaces are
+        skipped: there would be a name collision otherwise.</para>
       </listitem>
       <listitem>
-        <para><literal>KERNEL=="eth*"</literal> - 这个关键字用来处理多个接口共用一个网卡地址（MAC）的机器（PS3 就是其中一个）。这些互不相关的接口有不同的基础名称，这个关键字允许 Udev 将他们分开处理。这同常对大多数 LFS 用户不怎么重要，但是没有害处。</para>
+        <para><literal>KERNEL=="eth*"</literal> - This key was added to the
+        Udev rule generator to handle machines that have multiple network
+        interfaces, all with the same MAC address (the PS3 is one such
+        machine).  If the independent interfaces have different basenames,
+        this key will allow Udev to tell them apart.  This is generally not
+        necessary for most Linux From Scratch users, but does not hurt.</para>
       </listitem>
       <listitem>
-        <para><literal>NAME</literal> - 这个值是 Udev 将要给这个接口分配的标识符。</para>
+        <para><literal>NAME</literal> - The value of this key is the name that
+        Udev will assign to this interface.</para>
       </listitem>
     </itemizedlist>
 
-    <para><literal>NAME</literal> 的值非常重要。请确定你清楚哪个设备分配到了哪个标识符。确保使用正确的 <literal>NAME</literal> 的值创建下面的配置文件。</para>
+    <para>The value of <literal>NAME</literal> is the important part. Make sure
+    you know which name has been assigned to each of your network cards before
+    proceeding, and be sure to use that <literal>NAME</literal> value when
+    creating your configuration files below.</para>
 
   </sect2>
 
   <sect2>
-    <title>创建网络接口配置文件</title>
+    <title>Creating Network Interface Configuration Files</title>
 
-    <para>哪个接口应该被网络启动脚本打开或关闭取决于<filename
-    class="directory">/etc/sysconfig/</filename> 中的文件。这个文件夹中应该有相对每个被配置了的网络接口的文件。例如 <filename>ifconfig.xyz</filename>，其中 <quote>xyz</quote> 应该是你的设备标识符（例如 eth0）。这个文件中包含这个接口的一些属性，例如 IP 地址，子网掩码等等。确保这个文件以 <emphasis>ifconfig</emphasis> 开头，这点非常重要。</para>
+    <para>Which interfaces are brought up and down by the network script
+    depends on the files in <filename
+    class="directory">/etc/sysconfig/</filename>.  This directory should
+    contain a file for each interface to be configured, such as
+    <filename>ifconfig.xyz</filename>, where <quote>xyz</quote> is
+    meaningful to the administrator such as the device name (e.g. eth0).
+    Inside this file are attributes to this interface, such as its IP
+    address(es), subnet masks, and so forth.  It is necessary that 
+    the stem of the filename be <emphasis>ifconfig</emphasis>.</para>
 
-    <para>下面的命令用于创建一个以 <emphasis>eth0</emphasis> 为标识符，使用静态 IP 地址的网络设备的示例配置文件：</para>
+    <para>The following command creates a sample file for the
+    <emphasis>eth0</emphasis> device with a static IP address:</para>
 
 <screen><userinput>cd /etc/sysconfig/
 cat &gt; ifconfig.eth0 &lt;&lt; "EOF"
@@ -86,45 +109,82 @@ PREFIX=24
 BROADCAST=192.168.1.255</literal>
 EOF</userinput></screen>
 
-    <para>这些变量的值需要根据自己的需要进行更改以合乎要求。</para>
+    <para>The values of these variables must be changed in every file to match
+    the proper setup.</para>
 
-    <para>如果 <envar>ONBOOT</envar> 变量被设置为 <quote>yes</quote>，网络启动脚本会在系统启动时打开该接口。如果没有设置成 <quote>yes</quote>，这个 NIC 会被网络启动脚本忽略，亦即开机时不会自动开启这个接口。这个接口需要用户自己使用 <command>ifup</command> 和 <command>ifdown</command> 命令打开和关闭。</para>
+    <para>If the <envar>ONBOOT</envar> variable is set to <quote>yes</quote> the
+    network script will bring up the Network Interface Card (NIC) during
+    booting of the system. If set to anything but <quote>yes</quote> the NIC
+    will be ignored by the network script and not be automatically brought up.
+    The interface can be manually started or stopped with the
+    <command>ifup</command> and <command>ifdown</command> commands.</para>
 
-    <para>变量 <envar>IFACE</envar> 定义了设备的标识符，例如，eth0。所有网络配置文件需要定义该变量。</para>
+    <para>The <envar>IFACE</envar> variable defines the interface name,
+    for example, eth0.  It is required for all network device configuration 
+    files. </para>
 
-    <para>变量 <envar>SERVICE</envar> 设置用来获得 IP 地址的方法。LFS启动脚本包含一个模块化的 IP 分配格式。在 <filename
-    class="directory">/lib/services/</filename> 文件夹中创建额外文件可以允许其他 IP 分配方法的启用。这通常用于 DHCP， 在 BLFS 中讲到。</para>
+    <para>The <envar>SERVICE</envar> variable defines the method used for
+    obtaining the IP address. The LFS-Bootscripts package has a modular IP
+    assignment format, and creating additional files in the <filename
+    class="directory">/lib/services/</filename> directory allows other IP
+    assignment methods. This is commonly used for Dynamic Host Configuration
+    Protocol (DHCP), which is addressed in the BLFS book.</para>
 
-    <para>变量 <envar>GATEWAY</envar> 应该包含至少一个网关 IP。如果没有，请将这一行全部注释掉。</para>
+    <para>The <envar>GATEWAY</envar> variable should contain the default
+    gateway IP address, if one is present. If not, then comment out the
+    variable entirely.</para>
 
-    <para><envar>PREFIX</envar> 变量是子网中使用的位数（bit）。如果子网掩码是 255.255.255.0，那么它使用前面3个8位二进制位（bit），即24位（bit）。如果子网掩码是 255.255.255.240， 它使用了前面的28位（bit）。这个变量的值如果超过24，那么他通常是被 DSL 和 ISP 使用。在这个例子中（PREFIX=24)，子网掩码是 255.255.255.0。根据你的子网掩码调整变量 <envar>PREFIX</envar>的值。</para>
+    <para>The <envar>PREFIX</envar> variable containis the number of
+    bits used in the subnet. Each octet in an IP address is 8 bits. If the
+    subnet's netmask is 255.255.255.0, then it is using the first three octets
+    (24 bits) to specify the network number. If the netmask is 255.255.255.240,
+    it would be using the first 28 bits.  Prefixes longer than 24 bits are
+    commonly used by DSL and cable-based Internet Service Providers (ISPs).
+    In this example (PREFIX=24), the netmask is 255.255.255.0. Adjust the
+    <envar>PREFIX</envar> variable according to your specific subnet.i
+    If omitted, the PREFIX defaults to 24.</para>
+
+    <para>For more information see the <command>ifup</command> man page.</para>
 
   </sect2>
 
   <sect2 id="resolv.conf">
-    <title>创建/etc/resolv.conf文件</title>
+    <title>Creating the /etc/resolv.conf File</title>
 
     <indexterm zone="resolv.conf">
       <primary sortas="e-/etc/resolv.conf">/etc/resolv.conf</primary>
     </indexterm>
 
-    <para>对于连接到互联网的系统，它需要 DNS 服务器来解析域名，该服务器的 IP 地址通常来自于你的网络服务运营商（ISP）或网络管理员。将 DNS 服务器的地址写入 <filename>/etc/resolv.conf</filename> 文件：</para>
+    <para>If the system is going to be connected to the Internet, it will
+    need some means of Domain Name Service (DNS) name resolution to
+    resolve Internet domain names to IP addresses, and vice versa. This is
+    best achieved by placing the IP address of the DNS server, available
+    from the ISP or network administrator, into
+    <filename>/etc/resolv.conf</filename>. Create the file by running the
+    following:</para>
 
 <screen><userinput>cat &gt; /etc/resolv.conf &lt;&lt; "EOF"
 <literal># Begin /etc/resolv.conf
 
-domain <replaceable>&lt;你的域名&gt;</replaceable>
-nameserver <replaceable>&lt;你的主要DNS服务器 IP 地址&gt;</replaceable>
-nameserver <replaceable>&lt;你的次要DNS服务器 IP 地址&gt;</replaceable>
+domain <replaceable>&lt;Your Domain Name&gt;</replaceable>
+nameserver <replaceable>&lt;IP address of your primary nameserver&gt;</replaceable>
+nameserver <replaceable>&lt;IP address of your secondary nameserver&gt;</replaceable>
 
 # End /etc/resolv.conf</literal>
 EOF</userinput></screen>
 
-    <para>这个 <varname>domain</varname> 可以省略或者替换成一个 <varname>search</varname> 声明。查看 resolv.conf 的 man 手册获取更多信息。</para>
+    <para>The <varname>domain</varname> statement can be omitted
+    or replaced with a <varname>search</varname> statement.  See the man page for
+    resolv.conf for more details.</para>
 
-    <para>将 <replaceable>&lt;你的DNS服务器&gt;</replaceable> 替换成合适的 DNS 服务器。一般会设置多个 DNS，用以充当备用胎。如果你只想设置一个 DNS，将第二行的 <emphasis>nameserver</emphasis> 删除。这个 IP 地址也可以是一个本地路由。</para>
+    <para>Replace <replaceable>&lt;IP address of the nameserver&gt;</replaceable>
+    with the IP address of the DNS most appropriate for the setup. There will
+    often be more than one entry (requirements demand secondary servers for
+    fallback capability). If you only need or want one DNS server, remove the
+    second <emphasis>nameserver</emphasis> line from the file. The IP address
+    may also be a router on the local network.</para>
 
-    <note><para>Google的公共 IPv4 DNS 服务器地址是 8.8.8.8 和 8.8.4.4。</para></note>
+    <note><para>The Google Public IPv4 DNS addresses are 8.8.8.8 and 8.8.4.4.</para></note>
 
   </sect2>
 

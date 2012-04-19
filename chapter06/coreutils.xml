@@ -59,7 +59,8 @@
 
     <para>Now prepare Coreutils for compilation:</para>
 
-<screen><userinput remap="configure">./configure --prefix=/usr         \
+<screen><userinput remap="configure">FORCE_UNSAFE_CONFIGURE=1 ./configure \
+            --prefix=/usr         \
             --libexecdir=/usr/lib \
             --enable-no-install-program=kill,uptime</userinput></screen>
 
@@ -103,7 +104,7 @@
 
     <para>Now run the tests:</para>
 
-<screen><userinput remap="test">su-tools nobody -s /bin/bash -c "make RUN_EXPENSIVE_TESTS=yes check"</userinput></screen>
+<screen><userinput remap="test">su nobody -s /bin/bash -c "make RUN_EXPENSIVE_TESTS=yes check"</userinput></screen>
 
     <para>Remove the temporary group:</para>
 

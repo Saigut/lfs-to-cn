@@ -33,6 +33,30 @@
 
 -->
     <listitem>
+      <para>2012-04-15</para>
+      <itemizedlist>
+         <listitem>
+           <para>[matthew] - 升级至 Linux-3.3.2。修复 <ulink url="&lfs-ticket-root;3063">#3063</ulink>。</para>
+         </listitem>
+         <listitem>
+           <para>[matthew] - 升级至 Automake-1.11.5。修复 <ulink url="&lfs-ticket-root;3062">#3062</ulink>。</para>
+         </listitem>
+         <listitem>
+           <para>[matthew] - 在 Bash 指令中使用第六章 Coreutils 的 su 而不是第五章的那一个。在第五章中安装 su 为 su 而不是 su-tools。修复 <ulink url="&lfs-ticket-root;3057">#3057</ulink>。</para>
+         </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
+      <para>2012-04-09</para>
+      <itemizedlist>
+         <listitem>
+           <para>[bdubbs] - 升级网络启动脚本。详见启动脚本变更日志。修复 <ulink url="&lfs-ticket-root;3053">#3053</ulink>。</para>
+         </listitem>
+      </itemizedlist>
+    </listitem>
+    
+    <listitem>
       <para>2012-04-05</para>
       <itemizedlist>
          <listitem>
