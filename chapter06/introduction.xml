@@ -14,29 +14,12 @@
 
   <para>软件的安装很简单。虽然很多情况下安装指令还可以更加简短通用，我们选择提供每个程序包的完整指令来最小化出错的概率。学习 Linux 系统如何工作的关键就是了解每个程序包的用途，你 (或者系统) 又为什么会需要它。</para>
 
-  <para>我们不推荐做修改。它们可能会使程序运行略快一点，也可能会产生编译困难或者运行问题。如果有程序包在做了修改之后不能编译，试试不带修改能否解决问题。即使程序包做了修改之后能够编译，也存在由于代码和编制工具之间的复杂交互而编译不正确的风险。还要注意 <option>-march</option> 和 <option>-mtune</option> 选项使用本书中没有指定的值未经测试。这可能导致工具链程序包 (Binutils、GCC 和 Glibc) 出问题。The small potential gains
-  achieved in using compiler optimizations are often outweighed by the risks.
-  First-time builders of LFS are encouraged to build without custom
-  optimizations. The subsequent system will still run very fast and be stable
-  at the same time.</para>
+  <para>我们不推荐做修改。它们可能会使程序运行略快一点，也可能会产生编译困难或者运行问题。如果有程序包在做了修改之后不能编译，试试不带修改能否解决问题。即使程序包做了修改之后能够编译，也存在由于代码和编制工具之间的复杂交互而编译不正确的风险。还要注意 <option>-march</option> 和 <option>-mtune</option> 选项使用本书中没有指定的值未经测试。这可能导致工具链程序包 (Binutils、GCC 和 Glibc) 出问题。使用编译器修改产生的小的潜在益处通常不及其风险。推荐 LFS 的首次编制者不使用自定义修改。产生的系统依然会很快并很稳定。</para>
 
-  <para>The order that packages are installed in this chapter needs to be
-  strictly followed to ensure that no program accidentally acquires a path
-  referring to <filename class="directory">/tools</filename> hard-wired into
-  it.  For the same reason, do not compile separate packages in parallel.
-  Compiling in parallel may save time (especially on dual-CPU machines), but it
-  could result in a program containing a hard-wired path to <filename
-  class="directory">/tools</filename>, which will cause the program to stop
-  working when that directory is removed.</para>
+  <para>本章安装程序包的顺序要严格遵守，以保证没有程序会错误地获得一个到 <filename class="directory">/tools</filename> 的不可更改路径。出于同样目的，不要并行编译多个程序包。并行编译可能会节省时间 (尤其在双核计算机上)，但是可能导致程序包含到 <filename class="directory">/tools</filename>的不可更改路径，导致此目录移除时程序停止工作。</para>
 
-  <para>Before the installation instructions, each installation page provides
-  information about the package, including a concise description of what it
-  contains, approximately how long it will take to build, and how much disk
-  space is required during this building process. Following the installation
-  instructions, there is a list of programs and libraries (along with brief
-  descriptions of these) that the package installs.</para>
+  <para>在安装指令之前，每个安装页面都提供了有关程序包的信息，其中简明介绍了它包含什么，大约要编制多长时间和编制过程中需要多少磁盘空间。在安装指令之后，列出了程序包安装的程序和库 (并介绍之)。</para>
 
-  <note><para>The SBU values and required disk space includes
-  test suite data for all applicable packages in Chapter 6.</para></note>
+  <note><para>第六章中提供的 SBU 值和需求磁盘空间对于所有可应用的程序包都包含测试套件数据。</para></note>
 
 </sect1>

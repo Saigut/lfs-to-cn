@@ -8,7 +8,7 @@
 <sect1 id="ch-system-kernfs">
   <?dbhtml filename="kernfs.html"?>
 
-  <title>Preparing Virtual Kernel File Systems</title>
+  <title>准备虚拟内核文件系统</title>
 
   <indexterm zone="ch-system-kernfs">
     <primary sortas="e-/dev/">/dev/*</primary>
