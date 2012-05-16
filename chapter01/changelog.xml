@@ -33,6 +33,15 @@
 
 -->
     <listitem>
+      <para>2012-05-14</para>
+      <itemizedlist>
+         <listitem>
+           <para>[matthew] - 升级至 Linux-3.3.6。修复 <ulink url="&lfs-ticket-root;3089">#3089</ulink>。</para>
+         </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
       <para>2012-05-13</para>
       <itemizedlist>
          <listitem>
