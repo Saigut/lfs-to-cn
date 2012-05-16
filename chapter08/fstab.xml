@@ -33,11 +33,7 @@ devtmpfs       /dev         devtmpfs mode=0755,nosuid    0     0
 # End /etc/fstab</literal>
 EOF</userinput></screen>
 
-  <para>将 <replaceable>&lt;xxx&gt;</replaceable>，
-  <replaceable>&lt;yyy&gt;</replaceable>， and <replaceable>&lt;fff&gt;</replaceable> 替换成合适的值，例如 <filename
-  class="partition">hda2</filename>， <filename
-  class="partition">hda5</filename>，和 <systemitem
-  class="filesystem">ext3</systemitem>。关于第六个区域的细节，可通过 <command>man 5 fstab</command>查看。</para>
+  <para>将 <replaceable>&lt;xxx&gt;</replaceable>、<replaceable>&lt;yyy&gt;</replaceable> 和 <replaceable>&lt;fff&gt;</replaceable> 替换成合适的值，例如 <filename class="partition">hda2</filename>、<filename class="partition">hda5</filename> 和 <systemitem class="filesystem">ext3</systemitem>。关于这六个域的细节，可通过 <command>man 5 fstab</command>查看。</para>
 
 <!--
   <para>The <filename class="directory">/dev/shm</filename> mount point

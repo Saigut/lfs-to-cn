@@ -54,6 +54,24 @@ mv -v gmp-&gmp-version; gmp
 tar -zxf ../mpc-&mpc-version;.tar.gz
 mv -v mpc-&mpc-version; mpc</userinput></screen>
 
+    <para>以下命令将改变 GCC 的默认动态链接器位置以使用安装于 <filename class="directory">/tools</filename> 的副本。它也会从 GCC 的包含搜索路径中移除 <filename class="directory">/usr/include</filename>。执行：</para>
+
+<screen><userinput remap="pre">for file in \
+ $(find gcc/config -name linux64.h -o -name linux.h -o -name sysv4.h)
+do
+  cp -uv $file{,.orig}
+  sed -e 's@/lib\(64\)\?\(32\)\?/ld@/tools&amp;@g' \
+      -e 's@/usr@/tools@g' $file.orig &gt; $file
+  echo '
+#undef STANDARD_STARTFILE_PREFIX_1
+#undef STANDARD_STARTFILE_PREFIX_2
+#define STANDARD_STARTFILE_PREFIX_1 "/tools/lib/"
+#define STANDARD_STARTFILE_PREFIX_2 ""' &gt;&gt; $file
+  touch $file.orig
+done</userinput></screen>
+
+    <para>由于上文似乎很难跟进，我们把它拆解开来。首先我们找到 <filename class="directory">gcc/config</filename> 目录中所有名为 <filename>linux.h</filename>、<filename>linux64.h</filename> 或者 <filename>sysv4.h</filename> 的文件。对于找到的每个文件，我们把它复制为一个有同样名字但是加上 <quote>.orig</quote> 后缀。然后第一个 sed 表达式将出现的所有 <quote>/lib/ld</quote>、<quote>/lib64/ld</quote> 或 <quote>/lib32/ld</quote> 替换为 <quote>/tools</quote>，第二个替换不可更改的 <quote>/usr</quote>。然后我们在文件末尾添加我们的声明，调节包含搜索路径和起始文件前缀。最后我们用 <command>touch</command> 来更新复制的文件的时间戳。在与 <command>cp -u</command> 联用时这可以防止由于误操作将命令运行两次而改变原有文件。</para>
+
     <para>GCC 文档推荐在源代码目录外创建目录编制 GCC：</para>
 
 <screen><userinput remap="pre">mkdir -v ../gcc-build
@@ -64,6 +82,11 @@ cd ../gcc-build</userinput></screen>
 <screen><userinput remap="configure">../gcc-&gcc-version;/configure         \
     --target=$LFS_TGT          \
     --prefix=/tools            \
+    --with-sysroot=$LFS        \
+    --with-newlib              \
+    --without-headers          \
+    --with-local-prefix=/tools \
+    --with-native-system-header-dir=/tools/include \
     --disable-nls              \
     --disable-shared           \
     --disable-multilib         \
@@ -74,13 +97,39 @@ cd ../gcc-build</userinput></screen>
     --disable-libgomp          \
     --disable-libquadmath      \
     --enable-languages=c       \
-    --without-ppl              \
-    --without-cloog            \
     --with-mpfr-include=$(pwd)/../gcc-&gcc-version;/mpfr/src \
     --with-mpfr-lib=$(pwd)/mpfr/src/.libs</userinput></screen>
 
     <variablelist>
       <title>配置选项的含义：</title>
+      
+      <varlistentry>
+        <term><parameter>--with-newlib</parameter></term>
+        <listitem>
+          <para>由于现在还没有能够工作的 C 库可用，此项确保编制 libgcc 时 inhibit_libc 常量是已经定义了的。此项防止编译任何需要 libc 支持的代码。</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><parameter>--without-headers</parameter></term>
+        <listitem>
+          <para>在创建一个完整的交叉编译器的时候，GCC 需要兼容于目标系统的标准头文件。出于我们的目的，不需要这些头文件。此开关防止 GCC 寻找它们。</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><parameter>--with-local-prefix=/tools</parameter></term>
+        <listitem>
+          <para>本地前缀是系统中 GCC 搜索本地安装的包含文件的位置。默认值是 <filename>/usr/local</filename>。设置它为 <filename>/tools</filename> 帮助保持宿主上的 <filename>/usr/local</filename> 在 GCC 的搜索路径之外。</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><parameter>--with-native-system-header-dir=/tools/include</parameter></term>
+        <listitem>
+          <para>GCC 默认搜索 <filename>/usr/include</filename> 寻找系统头文件。与 sysroot 开关联用时，它通常会被翻译为 <filename>$LFS/usr/include</filename>。然而下两节将要安装的头文件会去往 <filename>$LFS/tools/include</filename>。此开关确保 gcc 会正确地找到他们。在第二遍的 GCC 中，相同的开关将会确保不会找到宿主上的头文件。</para>
+        </listitem>
+      </varlistentry>
 
       <varlistentry>
         <term><parameter>--disable-shared</parameter></term>
@@ -107,13 +156,6 @@ cd ../gcc-build</userinput></screen>
         <term><parameter>--enable-languages=c</parameter></term>
         <listitem>
           <para>此选项确保只编制 C 编译器。这是目前需要的唯一的语言。</para>
-        </listitem>
-      </varlistentry>
-
-      <varlistentry>
-        <term><parameter>--without-ppl, --without-cloog</parameter></term>
-        <listitem>
-          <para>这些开关防止 GCC 依据宿主系统上可能出现但在 chroot 环境中不可用的 PPL 和 CLooG 库编制。</para>
         </listitem>
       </varlistentry>
 

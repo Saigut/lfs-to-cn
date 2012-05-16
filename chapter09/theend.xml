@@ -14,10 +14,21 @@
     <primary sortas="e-/etc/lfs-release">/etc/lfs-release</primary>
   </indexterm>
 
-  <para>干得好！LFS 系统已经安装完毕！我们祝愿你亲自定制的系统取得成功。</para>
+  <para>干得好！新的 LFS 系统已经安装完毕！我们祝愿您亲自定制的系统取得成功。</para>
 
-  <para>创建 <filename>/etc/lfs-release</filename> 是一个好主意。如果有这个文件，你可以方便的知道你所安装的 LFS 系统的版本 (当你有问题向我们求助时)。创建这个文件：</para>
+  <para>创建 <filename>/etc/lfs-release</filename> 是一个好主意。有了这个文件，你就可以方便的知道你所安装的 LFS 系统的版本 (当你有问题向我们求助时)。如此创建这个文件：</para>
 
 <screen><userinput>echo &version; &gt; /etc/lfs-release</userinput></screen>
+
+  <para>创建一个文件显示你的系统符合 Linux 基础标准 (LSB) 也是一个好主意。要创建此文件，运行：</para>
+
+<screen><userinput>cat &gt; /etc/lsb-release &lt;&lt; "EOF"
+DISTRIB_ID="Linux From Scratch"
+DISTRIB_RELEASE="&version;"
+DISTRIB_CODENAME="&lt;你的名字&gt;"
+DISTRIB_DESCRIPTION="Linux From Scratch"
+EOF</userinput></screen>
+  
+  <para>为了把你的系统标识为独特的，一定记得在 'DISTRIB_CODENAME' 域中填入一个自己定义的字串。</para>
 
 </sect1>

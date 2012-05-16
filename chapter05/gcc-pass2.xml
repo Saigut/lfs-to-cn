@@ -43,14 +43,10 @@
   <sect2 role="installation">
     <title>安装 GCC</title>
 
-    <para>晚于 4.3 版本的 GCC 会将此次编制作为重新定位编译器来对待，不会允许在 <parameter>--prefix</parameter> 指定的位置搜索起始文件。由于这不是重新定位编译器，而 <filename class="directory">/tools</filename> 中的起始文件对于编制一个链接至 <filename class="directory">/tools</filename> 中的库的编译器至关重要，所以应用以下补丁暂时将 GCC 还原到旧的行为：</para>
+    <para>我们第一次编制的 GCC 安装了几个内置系统头文件。通常其中一个，<filename>limits.h</filename> 会反过来包含对应的系统 <filename>limits.h</filename> 头文件，也就是 <filename>/tools/include/limits.h</filename>。然而在第一次编制 GCC 时 <filename>/tools/include/limits.h</filename> 不存在，所以 GCC 安装的内置头文件是一个部分的、自包含的文件，不包含系统头文件的扩展特性。这对于临时的 libc 已经足够了，但是这次编制的 GCC 需要完整的内置头文件。创建一个完整版本的内置头文件使用的命令与 GCC 编制系统通常情况下的行为相同：</para>
 
-<screen><userinput remap="pre">patch -Np1 -i ../&gcc-startfiles-patch;</userinput></screen>
-
-    <para>通常情况下 GCC <command>fixincludes</command> 脚本会被运行，来修复潜在损坏的头文件。由于现在 GCC-&gcc-version; 和 Glibc-&glibc-version; 已经安装好了，它们的头文件都已知不需要修复，就不需要运行 <command>fixincludes</command> 脚本。事实上，运行这个脚本可能会从宿主系统向 GCC 的私有包含目录安装修复的头文件而污染编制环境。可以执行以下命令来支持运行 <command>fixincludes</command> 脚本：</para>
-
-<screen><userinput remap="pre">cp -v gcc/Makefile.in{,.orig}
-sed 's@\./fixinc\.sh@-c true@' gcc/Makefile.in.orig &gt; gcc/Makefile.in</userinput></screen>
+<screen><userinput remap="pre">cat gcc/limitx.h gcc/glimits.h gcc/limity.h &gt; \
+  `dirname $($LFS_TGT-gcc -print-libgcc-file-name)`/include-fixed/limits.h</userinput></screen>
 
     <para>对于 x86 计算机，引导编制 GCC 使用 <option>-fomit-frame-pointer</option> 编译器标记。非引导编制默认会忽略这个标记，而我们的目标是产生一个和引导过完全一样的编译器。应用以下的 <command>sed</command> 命令强制编制使用这个标记：</para> 
 
@@ -58,7 +54,7 @@ sed 's@\./fixinc\.sh@-c true@' gcc/Makefile.in.orig &gt; gcc/Makefile.in</userin
 sed 's/^T_CFLAGS =$/&amp; -fomit-frame-pointer/' gcc/Makefile.in.tmp \
   &gt; gcc/Makefile.in</userinput></screen>
 
-    <para>以下命令将改变 GCC 的默认动态链接器位置以使用安装于 <filename class="directory">/tools</filename> 的那一个。它也会从 GCC 的包含搜索路径中移除 <filename class="directory">/usr/include</filename>。现在就这样做而不是安装后调节 specs 文件是为了确保实际编制 GCC 的过程中使用新的动态链接器。执行：</para>
+    <para>再次改变 GCC 的默认动态链接器位置以使用安装于 <filename class="directory">/tools</filename> 的副本。</para>
 
 <screen><userinput remap="pre">for file in \
  $(find gcc/config -name linux64.h -o -name linux.h -o -name sysv4.h)
@@ -69,23 +65,10 @@ do
   echo '
 #undef STANDARD_STARTFILE_PREFIX_1
 #undef STANDARD_STARTFILE_PREFIX_2
-#define STANDARD_STARTFILE_PREFIX_1 "/tools/lib"
+#define STANDARD_STARTFILE_PREFIX_1 "/tools/lib/"
 #define STANDARD_STARTFILE_PREFIX_2 ""' &gt;&gt; $file
   touch $file.orig
 done</userinput></screen>
-
-    <para>由于上文似乎很难跟进，我们把它拆解开来。首先我们找到 <filename class="directory">gcc/config</filename> 目录中所有名为 <filename>linux.h</filename>、<filename>linux64.h</filename> 或者 <filename>sysv4.h</filename> 的文件。对于找到的每个文件，我们把它复制为一个有同样名字但是加上 <quote>.orig</quote> 后缀。然后第一个 sed 表达式将出现的所有 <quote>/lib/ld</quote>、<quote>/lib64/ld</quote> 或 <quote>/lib32/ld</quote> 替换为 <quote>/tools</quote>，第二个替换硬编码的 <quote>/usr</quote>。然后我们在文件末尾添加我们的声明，调节包含搜索路径和起始文件前缀。最后我们用 <command>touch</command> 来更新复制的文件的时间戳。在与 <command>cp -u</command> 联用时这可以防止由于误操作将命令运行两次而改变原有文件。</para>
-
-    <para>在 x86_64 上，给 GCC 解除多重库 specs 可以确保它不会试图链接至宿主上的库：</para>
-
-<screen><userinput remap="pre">case $(uname -m) in
-  x86_64)
-    for file in $(find gcc/config -name t-linux64) ; do \
-      cp -v $file{,.orig}
-      sed '/MULTILIB_OSDIRNAMES/d' $file.orig &gt; $file
-    done
-  ;;
-esac</userinput></screen>
 
     <para>与第一次编译 GCC 相同，它需要 GMP、MPFR 和 MPC 程序包。解开压缩包冰将它们移动到指定名称的目录中：</para>
 
@@ -105,12 +88,13 @@ cd ../gcc-build</userinput></screen>
 
     <para>现在准备编译 GCC：</para>
 
-<screen><userinput remap="configure">CC="$LFS_TGT-gcc -B/tools/lib/" \
+<screen><userinput remap="configure">CC=$LFS_TGT-gcc \
 AR=$LFS_TGT-ar                  \
 RANLIB=$LFS_TGT-ranlib          \
 ../gcc-&gcc-version;/configure          \
     --prefix=/tools             \
     --with-local-prefix=/tools  \
+    --with-native-system-header-dir=/tools/include \
     --enable-clocale=gnu        \
     --enable-shared             \
     --enable-threads=posix      \
@@ -120,8 +104,6 @@ RANLIB=$LFS_TGT-ranlib          \
     --disable-multilib          \
     --disable-bootstrap         \
     --disable-libgomp           \
-    --without-ppl               \
-    --without-cloog             \
     --with-mpfr-include=$(pwd)/../gcc-&gcc-version;/mpfr/src \
     --with-mpfr-lib=$(pwd)/mpfr/src/.libs</userinput></screen>
 

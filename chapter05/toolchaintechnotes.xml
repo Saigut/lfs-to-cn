@@ -30,7 +30,7 @@
       <para>临时库是跨平台编译的。因为跨平台编译器自然无法依赖宿主系统上的任何东西，这就通过减少头文件和库从宿主被包含至新工具的可能来防止对目标系统的潜在污染。跨平台编译也允许在 64 位兼容的硬件上既编译 32 位库也编译 64 位库。</para>
     </listitem>
     <listitem>
-      <para>小心地对 <command>gcc</command> 的 <filename>specs</filename> 文件进行修改，以告知编译器应该使用哪个目标动态链接器。</para>
+      <para>小心地对 <command>gcc</command> 的源代码进行操作，以告知编译器应该使用哪个目标动态链接器。</para>
     </listitem>
   </itemizedlist>
 
@@ -56,53 +56,5 @@ checking what linker to use... /tools/i686-lfs-linux-gnu/bin/ld</computeroutput>
   <para>在第二遍编译 Binutils 时，我们就可以利用 <parameter>--with-lib-path</parameter> 配置开关来控制 <command>ld</command> 的库搜索路径了。从这里开始，核心工具链就以本身为容器和宿主了。<xref linkend="chapter-temporary-tools"/>余下的程序包都依照 <filename class="directory">/tools</filename> 中新的 Glibc 编译。</para>
 
   <para>在<xref linkend="chapter-building-system"/>进入 chroot 环境时，第一个安装的主要程序包就是 Glibc，原因就是上面提到过的自我高效的特性。一旦这个 Glibc 安装到 <filename class="directory">/usr</filename>，我们就要调节工具链默认设置，然后继续编制目标 LFS 系统的余下部分。</para>
-
-  <!-- FIXME: Removed as part of the fix for bug 1061 - we no longer build pass1
-      packages statically, therefore this explanation isn't required
-
-  <sect2>
-  <title>Notes on Static Linking</title>
-
-  <para>Besides their specific task, most programs have to perform many
-  common and sometimes trivial operations. These include allocating
-  memory, searching directories, reading and writing files, string
-  handling, pattern matching, arithmetic, and other tasks. Instead of
-  obliging each program to reinvent the wheel, the GNU system provides
-  all these basic functions in ready-made libraries. The major library
-  on any Linux system is Glibc.</para>
-
-  <para>There are two primary ways of linking the functions from a
-  library to a program that uses them&mdash;statically or dynamically. When
-  a program is linked statically, the code of the used functions is
-  included in the executable, resulting in a rather bulky program. When
-  a program is dynamically linked, it includes a reference to the
-  dynamic linker, the name of the library, and the name of the function,
-  resulting in a much smaller executable. A third option is to use the
-  programming interface of the dynamic linker (see <filename>dlopen(3)</filename>
-  for more information).</para>
-
-  <para>Dynamic linking is the default on Linux and has three major
-  advantages over static linking. First, only one copy of the executable
-  library code is needed on the hard disk, instead of having multiple
-  copies of the same code included in several programs, thus saving
-  disk space. Second, when several programs use the same library
-  function at the same time, only one copy of the function's code is
-  required in core, thus saving memory space. Third, when a library
-  function gets a bug fixed or is otherwise improved, only the one
-  library needs to be recompiled instead of recompiling all programs
-  that make use of the improved function.</para>
-
-  <para>If dynamic linking has several advantages, why then do we
-  statically link the first two packages in this chapter? The reasons
-  are threefold&mdash;historical, educational, and technical. The
-  historical reason is that earlier versions of LFS statically linked
-  every program in this chapter. Educationally, knowing the difference
-  between static and dynamic linking is useful. The technical benefit is
-  a gained element of independence from the host, meaning that those
-  programs can be used independently of the host system. However, it is
-  worth noting that an overall successful LFS build can still be
-  achieved when the first two packages are built dynamically.</para>
-
-  </sect2>-->
 
 </sect1>

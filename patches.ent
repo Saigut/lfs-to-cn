@@ -2,9 +2,9 @@
 
 <!-- Start of Common Patches -->
 
-<!ENTITY bash-fixes-patch "bash-&bash-version;-fixes-5.patch">
-<!ENTITY bash-fixes-patch-md5 "9bc1f8468d13745cd05d4ecade8582ea">
-<!ENTITY bash-fixes-patch-size "24 KB">
+<!ENTITY bash-fixes-patch "bash-&bash-version;-fixes-6.patch">
+<!ENTITY bash-fixes-patch-md5 "fcca082d3a6e51afc5c02c92221036a6">
+<!ENTITY bash-fixes-patch-size "28.3 KB">
 
 
 <!ENTITY binutils-build-patch "binutils-&binutils-version;-build_fix-1.patch">
@@ -18,7 +18,7 @@
 
 
 <!ENTITY coreutils-i18n-patch "coreutils-&coreutils-version;-i18n-1.patch">
-<!ENTITY coreutils-i18n-patch-md5 "d48bbb0a7f9d8effd975aa9cef9436ce">
+<!ENTITY coreutils-i18n-patch-md5 "481e9b16af57a7ee4f7b663aefc0b662">
 <!ENTITY coreutils-i18n-patch-size "123 KB">
 
 
@@ -37,6 +37,10 @@
 <!ENTITY gcc-startfiles-patch-size "1.5 KB">
 
 
+<!ENTITY glibc-fixes-patch "glibc-&glibc-version;-fixes-1.patch">
+<!ENTITY glibc-fixes-patch-md5 "78659b024e7175dcc28e9fc4552b1a27">
+<!ENTITY glibc-fixes-patch-size "6.5 KB">
+
 <!ENTITY glibc-gcc_fix-patch "glibc-&glibc-version;-gcc_fix-1.patch">
 <!ENTITY glibc-gcc_fix-patch-md5 "d1f28cb98acb9417fe52596908bbb9fd">
 <!ENTITY glibc-gcc_fix-patch-size "2.5 KB">
@@ -54,6 +58,11 @@
 <!ENTITY kbd-backspace-patch "kbd-&kbd-version;-backspace-1.patch">
 <!ENTITY kbd-backspace-patch-md5 "f75cca16a38da6caa7d52151f7136895">
 <!ENTITY kbd-backspace-patch-size "12 KB">
+
+
+<!ENTITY kbd-fixes-patch "kbd-&kbd-version;-upstream_fixes-1.patch">
+<!ENTITY kbd-fixes-patch-md5 "58ae9bd7d546426cfaccf3eba16ad1a2">
+<!ENTITY kbd-fixes-patch-size "1.6 KB">
 
 
 <!ENTITY mpfr-fixes-patch "mpfr-&mpfr-version;-fixes-1.patch">

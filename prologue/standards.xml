@@ -92,7 +92,7 @@
       <varlistentry>
         <term><emphasis>LSB 核心：</emphasis></term>
         <listitem>
-          <para>Bc、Cpio、Ed、Fcrontab、Initd-tools、PAM、Sendmail (或 Postfix 或 Exim) </para>
+          <para>At、Batch (作为 At 的一部分)、Bc、Cpio、Ed、Fcrontab、Initd-tools、PAM、Sendmail (或 Postfix 或 Exim) </para>
         </listitem>
       </varlistentry>
 
@@ -127,7 +127,7 @@
       <varlistentry>
         <term><emphasis>LSB 多媒体：</emphasis></term>
         <listitem>
-          <para>Alsa 库、NSPR、NSS、OpenSSL、Java</para>
+          <para>Alsa 库、NSPR、NSS、OpenSSL、Java、Xdg-utils</para>
         </listitem>
       </varlistentry>
 
@@ -141,8 +141,7 @@
       <varlistentry>
         <term><emphasis>LSB 核心：</emphasis></term>
         <listitem>
-          <para>At、Batch、Lsb_release
-          </para>
+          <para>无</para>
         </listitem>
       </varlistentry>
 
@@ -177,7 +176,7 @@
       <varlistentry>
         <term><emphasis>LSB 多媒体：</emphasis></term>
         <listitem>
-          <para>Xdg-utils</para>
+          <para>无</para>
         </listitem>
       </varlistentry>
 

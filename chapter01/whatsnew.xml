@@ -24,9 +24,9 @@
     <!--<listitem>
     <para>None</para>
     </listitem> -->
-    <!--<listitem>
+    <listitem>
       <para>Autoconf &autoconf-version;</para>
-    </listitem> -->
+    </listitem>
     <listitem>
       <para>Automake &automake-version;</para>
     </listitem>
@@ -84,9 +84,9 @@
     <listitem>
       <para>Glibc &glibc-version;</para>
     </listitem>
-    <!--<listitem>
+    <listitem>
       <para>GMP &gmp-version;</para>
-    </listitem>-->
+    </listitem>
     <listitem>
       <para>Grep &grep-version;</para>
     </listitem>
@@ -108,9 +108,9 @@
     <listitem>
       <para>IPRoute2 &iproute2-version;</para>
     </listitem>
-    <!--<listitem>
+    <listitem>
       <para>Kbd &kbd-version;</para>
-    </listitem>-->
+    </listitem>
     <listitem>
       <para>Kmod &kmod-version;</para>
     </listitem>
@@ -231,11 +231,15 @@
     </listitem>
 
     <listitem>
-      <para>&gcc-startfiles-patch;</para>
+      <para>&glibc-fixes-patch;</para>
     </listitem>
 
     <listitem>
       <para>&glibc-gcc_fix-patch;</para>
+    </listitem>
+
+    <listitem>
+      <para>&kbd-fixes-patch;</para>
     </listitem>
 
   </itemizedlist>

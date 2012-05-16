@@ -64,25 +64,43 @@ cd ../binutils-build</userinput></screen>
 
     <para>现在准备编译 Binutils：</para>
 
-<screen><userinput remap="configure">../binutils-&binutils-version;/configure --target=$LFS_TGT \
-                           --prefix=/tools   \
-                           --disable-nls     \
-                           --disable-werror</userinput></screen>
+<screen><userinput remap="configure">
+../binutils-&binutils-version;/configure     \
+    --prefix=/tools            \
+    --with-sysroot=$LFS        \
+    --with-lib-path=/tools/lib \
+    --target=$LFS_TGT          \
+    --disable-nls              \
+    --disable-werror</userinput></screen>
 
     <variablelist>
       <title>配置选项的含义：</title>
+      
+      <varlistentry>
+        <term><parameter>--prefix=/tools</parameter></term>
+        <listitem>
+          <para>此项告诉配置脚本准备安装 Binutils 程序于 <filename class="directory">/tools</filename> 目录中。</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><parameter>--with-sysroot=$LFS</parameter></term>
+        <listitem>
+          <para>对于交叉编译，此项告诉编制系统到 $LFS 中寻找需要的目标系统库。</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><parameter>--with-lib-path=/tools/lib</parameter></term>
+        <listitem>
+          <para>此项指定要配置链接器使用的库路径。</para>
+        </listitem>
+      </varlistentry>
 
       <varlistentry>
         <term><envar>--target=$LFS_TGT</envar></term>
         <listitem>
           <para>因为 <envar>LFS_TGT</envar> 变量中的计算机描述与 <command>config.guess</command> 脚本返回的值略有区别，此开关会告诉 <command>configure</command> 脚本调节 Binutil 的编制系统编制一个交叉链接器。</para>
-        </listitem>
-      </varlistentry>
-
-      <varlistentry>
-        <term><parameter>--prefix=/tools</parameter></term>
-        <listitem>
-          <para>此项告诉配置脚本准备安装 Binutils 程序于 <filename class="directory">/tools</filename> 目录中。</para>
         </listitem>
       </varlistentry>
 
