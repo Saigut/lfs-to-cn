@@ -4,14 +4,14 @@ echo "清理"
 ./clean.sh
 
 echo "创建HTML树"
-make BASEDIR=~/LFS-trans/LFS
+make BASEDIR=~/git/LFS-page
 
 echo "创建其他"
-make BASEDIR=~/LFS-trans other
+make BASEDIR=~/git/LFS-misc other
 
 echo "清理"
 rm *.tar.bz2
 
 echo "创建压缩包"
-cd ~/LFS-trans
-tar -jcf LFS.tar.bz2 LFS
+cd ~/git/LFS-pages
+tar -jcf ~/git/LFS-misc/LFS.tar.bz2 .
