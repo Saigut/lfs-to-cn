@@ -4,7 +4,7 @@ echo "清理"
 ./clean.sh
 
 echo "创建HTML树"
-make BASEDIR=~/git/LFS-page
+make BASEDIR=~/git/LFS-pages
 
 echo "创建其他"
 make BASEDIR=~/git/LFS-misc other
