@@ -10,9 +10,9 @@
 
   <title>LFS 目标架构</title>
 
-<para>LFS 基本的目标架构是 32 位英特尔 CPU。如果你以前没有编制过 LFS 系统，或许你就应该从这里开始。32 位架构是最广泛应用的 Linux 系统，对开源和专有软件兼容性也最好。</para>
+<para>LFS 基本的目标架构是 32 位 Intel CPU。如果你此前没有编制过 LFS 系统，或许你就应该从这个架构开始。这个 32 位架构是最广泛支持的 Linux 系统，对开源和专有软件兼容性也最好。</para>
 
-<para>另一方面，本书中的指令已知可以经过修改用于 Power PC 和 64 位 AMD/英特尔 CPU。要编制一个利用这些 CPU 的系统，主要的前提条件比此后几页提到的多一项，就是一个已存在的 Linux 系统，比如更早安装的 LFS、Ubuntu、红帽子、Fedora、SuSE 或者其他指向这一架构的发行版。此外注意，32 位发行版可以安装于 64 位 AMD/英特尔 CPU 的电脑上并用作宿主系统。</para>
+<para>另一方面，本书中的指令已知可以经过修改后用于 Power PC 和 64 位 AMD/Intel CPU。要编制一个利用这些 CPU 之一的系统，主要的前提条件比此后几页提到的多一项，就是一个已存在的 Linux 系统，比如更早安装的 LFS、Ubuntu、Red Hat、Fedora、SuSE 或者其他指向这一架构的发行版。此外注意，32 位发行版可以安装于 64 位 AMD/Intel CPU 的电脑上并用作宿主系统。</para>
 
 <para>关于 64 位系统还有一些事情要提。与 32 位系统相比，64 位可执行文件的尺寸略大一点，执行速率也只是略快一点。举个例子，某次在基于 Core2Duo CPU 的 LFS-6.5 编制测试中，测得了以下数据：</para>
 
@@ -22,9 +22,9 @@
 
 <para>不难发现，64 位编制只比 32 位快了 4% 却大了 9%。寻求 64 位系统的好处相对不大。当然，如果你有超过 4GB 的 RAM 或者想要修改超过 4GB 的数据，64 位系统还是很有优势的。</para>
 
-<para>LFS 产生的默认 64 位编制是 <quote>纯粹的</quote> 64 位系统。也就是说，它只支持 64 位可执行文件。编制 <quote>多重库的</quote> 系统需要编制很多应用程序两次，32 位和 64 位各一次。LFS 并不直接支持这种方式，因为那会干扰我们提供编制简单基础的 Linux 系统所需指导的教学目标。关于这个更高级的话题可以参考 <ulink url="http://trac.cross-lfs.org/">Cross Linux From Scratch</ulink> 工程。</para>
+<para>LFS 的默认 64 位编制产生的是 <quote>纯粹的</quote> 64 位系统。也就是说，它只支持 64 位可执行文件。编制 <quote>多重库的</quote> 系统需要编制很多应用程序两次，32 位和 64 位各一次。LFS 并不直接支持这种方式，因为那会干扰我们提供编制简单基础的 Linux 系统所需指导的教学目标。关于这个更高级的话题可以参考 <ulink url="http://trac.cross-lfs.org/">Cross Linux From Scratch</ulink> 工程。</para>
 
-<para>关于 64 位系统还有最后一点要说有些程序包当前无法在 <quote>纯粹的</quote> 64 位系统上编制或者需要特定的编制指令。通常这些程序包中嵌入了 32 位特有的汇编指令，在64位系统上编制会失败。这样的程序包括 <ulink url="http://www.linuxfromscratch.org/blfs/view/svn/">Beyond Linux From Scratch (BLFS)</ulink> 中用到的一些 Xorg 驱动。这些问题多数可以解决，但可能需要特定的过程或补丁。</para>
+<para>关于 64 位系统还有最后一点要说，有些程序包当前无法在 <quote>纯粹的</quote> 64 位系统上编制或者需要特定的编制指令。通常这些程序包中嵌入了 32 位特有的汇编指令，在64位系统上编制会失败。这样的程序包括 <ulink url="http://www.linuxfromscratch.org/blfs/view/svn/">Beyond Linux From Scratch (BLFS)</ulink> 中用到的一些 Xorg 驱动。这些问题多数可以解决，但可能需要特定的过程或补丁。</para>
 
 </sect1>
 
