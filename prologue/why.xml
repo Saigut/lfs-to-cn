@@ -10,20 +10,20 @@
 
   <title>对本书中程序包的解释</title>
 
-    <para>前面提到过，LFS 的目的是构建一个完整可用的基础系统。这包括一些能够复制自身并提供相对最小的工作环境的软件包，用户在此之上定制自己的系统。这并不意味着LFS是最小的操作系统。几个重要的软件包在其他系统上并不严格需求。下面列出了对本书中每个程序包的解释。</para>
+    <para>前面提到过，LFS 的目的是构建一个完整并且可用的基础系统。这包括一些能够复制自身并提供相对最小的工作环境的软件包，用户在此之上定制自己的系统。这并不意味着 LFS 是最小的操作系统。几个重要的软件包在其他系统上并不严格需求。下面列出了对本书中每个程序包的解释。</para>
 
     <itemizedlist>
 
       <listitem>
         <para>Autoconf</para>
 
-        <para>此程序包包含用于根据开发者的模板生成可以自动配置源代码的 shell 脚本的程序。当编制过成更新的时候通常要用它重新编制程序包。</para>
+        <para>此程序包包含用于根据开发者的模板生成可以自动配置源代码的 shell 脚本的程序。当编制过程更新的时候通常要用它重新编制程序包。</para>
       </listitem>
 
       <listitem>
         <para>Automake</para>
 
-        <para>此程序包包含用于根据模板生成 Make 文件的程序。当编制过成更新的时候通常要用它重新编制程序包。</para>
+        <para>此程序包包含用于根据模板生成 Make 文件的程序。当编制过程更新的时候通常要用它重新编制程序包。</para>
       </listitem>
 
       <listitem>
@@ -41,7 +41,7 @@
       <listitem>
         <para>Bison</para>
 
-        <para>此程序包包含 GNU 版本的 yacc (又一个编译器代码生成器)，用于编制其他几个 LFS 系统中的程序。</para>
+        <para>此程序包包含 GNU 版本的 yacc (又一个编译器代码生成器)，用于编制 LFS 系统中的其他几个程序。</para>
       </listitem>
 
       <listitem>
@@ -49,23 +49,29 @@
 
         <para>此程序包包含用于压缩和解压缩文件的程序，用于解压许多 LFS 程序包。</para>
       </listitem>
+      
+      <listitem>
+        <para>Check</para>
+
+        <para>此程序包包含一个用于其他程序的测试套件。它只安装于临时工具链中。</para>
+      </listitem>
 
       <listitem>
         <para>Coreutils</para>
 
-        <para>此程序包包含大量用于查看和操作文件和目录的必要工具。这些程序用于命令行文件管理，被 LFS 中每个程序包的安装过程需求。</para>
+        <para>此程序包包含大量用于查看和操作文件和目录的必要工具。这些程序用于命令行文件管理，对 LFS 中每个程序包的安装过程都是必要的。</para>
       </listitem>
 
       <listitem>
         <para>DejaGNU</para>
 
-        <para>此程序包包含一个用于测试其他程序的框架，只安装于临时工具链中。</para>
+        <para>此程序包包含一个用于测试其他程序的框架。它只安装于临时工具链中。</para>
       </listitem>
 
       <listitem>
         <para>Diffutils</para>
 
-        <para>此程序包包含用于显示文件和文件夹差异的程序。这些程序可以用于生成补丁，也用在许多程序包编制过程中。</para>
+        <para>此程序包包含用于显示文件或目录之间差异的程序。这些程序可以用于生成补丁，也用在许多程序包的编制过程中。</para>
       </listitem>
 
       <listitem>
@@ -77,13 +83,13 @@
       <listitem>
         <para>E2fsprogs</para>
 
-        <para>此程序包包含用于处理 ext2、ext3 和 ext4 文件系统的工具。这些是 Linux支持的最广泛使用并且经过彻底测试的文件系统。</para>
+        <para>此程序包包含用于处理 ext2、ext3 和 ext4 文件系统的工具。这些是 Linux 支持的最广泛使用并且经过彻底测试的文件系统。</para>
       </listitem>
 
       <listitem>
         <para>File</para>
 
-        <para>此程序包包含一个用于检测文件类型的工具，被几个程序包的编制需求。</para>
+        <para>此程序包包含一个用于检测文件类型的工具。有几个程序包需要用它来编制。</para>
       </listitem>
 
       <listitem>
@@ -95,7 +101,7 @@
       <listitem>
         <para>Flex</para>
 
-        <para>此程序包包含一个用于生成识别文本样式的程序的工具，是 GNU 版本的 lex (词汇分析器)，被用于几个程序包的编制需求。</para>
+        <para>此程序包包含一个用于生成识别文本样式的程序的工具，是 GNU 版本的 lex (词汇分析器)。它被几个 LFS 程序包的编制需求。</para>
       </listitem>
 
       <listitem>
@@ -174,13 +180,13 @@
       <listitem>
         <para>IProute2</para>
 
-        <para>此程序包包含用于基本和高级的 IPv4 和 IPv6 网络的程序，因为 IPv6 兼容性被选用</para>
+        <para>此程序包包含用于基本和高级的 IPv4 和 IPv6 网络的程序，因为 IPv6 兼容性被选用。</para>
       </listitem>
 
       <listitem>
         <para>Kbd</para>
 
-        <para>此程序包包含键盘映射表文件和用于非标准 US 键盘的键盘工具，还有一些控制台字体。</para>
+        <para>此程序包包含键盘映射表文件和用于非标准美式键盘的键盘工具，还有一些控制台字体。</para>
       </listitem>
 
       <listitem>
@@ -216,7 +222,7 @@
       <listitem>
         <para>Make</para>
 
-        <para>此程序包包含一个指导程序包编制的程序，被 LFS 中几乎每个程序包需求。</para>
+        <para>此程序包包含一个指导程序包编制的程序，被 LFS 中几乎所有程序包需求。</para>
       </listitem>
 
       <listitem>
@@ -252,7 +258,7 @@
       <listitem>
         <para>Patch</para>
 
-        <para>此程序包包含一个根据由 <application>diff</application> 程序创建的 <emphasis>补丁</emphasis> 修改或创建文件的程序，被几个 LFS 程序包的编制过成需求。</para>
+        <para>此程序包包含一个根据由 <application>diff</application> 程序创建的 <emphasis>补丁</emphasis> 修改或创建文件的程序，被几个 LFS 程序包的编制过程需求。</para>
       </listitem>
 <!--
       <listitem>
@@ -265,11 +271,23 @@
         <para>Perl</para>
         <para>此程序包包含解释型语言 PERL 的解释器，被几个 LFS 程序包的安装和测试套件需求。</para>
       </listitem>
+      
+      <listitem>
+        <para>Pkg-config</para>
+
+        <para>此程序包提供了一个程序，能够返回已安装库或程序包的元数据。</para>
+      </listitem>
+      
+      <listitem>
+        <para>Popt</para>
+
+        <para>此程序包是一个库，被某些程序用于分析命令行输入。</para>
+      </listitem>
 
       <listitem>
         <para>Procps</para>
 
-        <para>此程序包包含用于监视进程的工具。这些工具对系统管理非常有用，并被 LFS 系统启动脚本使用。</para>
+        <para>此程序包包含用于监视进程的工具。这些工具对系统管理非常有用，并被 LFS 系统引导脚本使用。</para>
       </listitem>
 
       <listitem>
@@ -317,7 +335,7 @@
       <listitem>
         <para>Tcl</para>
 
-        <para>此程序包包含 LFS 很多程序包测试套件用到的工具命令语言。只安装于临时工具链。</para>
+        <para>此程序包包含 LFS 很多程序包测试套件用到的工具命令语言。它只安装于临时工具链中。</para>
       </listitem>
 
       <listitem>
