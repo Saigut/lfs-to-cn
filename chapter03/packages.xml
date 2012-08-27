@@ -565,7 +565,7 @@
     </varlistentry>
 
     <varlistentry>
-      <term>Udev-lfs Tarball (&systemd-version;) - <token>&udev-lfs-size;</token>:</term>
+      <term>Udev-lfs 压缩包 (&systemd-version;) - <token>&udev-lfs-size;</token>:</term>
       <listitem>
         <para>下载：<ulink url="&udev-lfs-url;"/></para>
         <para>MD5 指纹码：<literal>&udev-lfs-md5;</literal></para>

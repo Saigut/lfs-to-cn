@@ -43,28 +43,20 @@
   <sect2 role="installation">
     <title>安装 Glibc</title>
 
-    <para>修复一个因为现在不完整的编译环境所造成的头文件检测失败：</para>
-
-    <screen><userinput remap="pre">sed -i 's#$ac_includes_default#\n\n#' sysdeps/i386/configure</userinput></screen>
-
-    <para>修复一个不可更改路径：</para>
-
-    <screen><userinput remap="pre">sed -i 's#/var/db#/tools/var/db#' Makeconfig</userinput></screen>
-    
-    <para>修复一个阻止 Glibc 以 GCC-&gcc-version; 编制的漏洞：</para>
-    
-<screen><userinput remap="pre">patch -Np1 -i ../&glibc-gcc_fix-patch;</userinput></screen>
-
     <para>Glibc 文档推荐在源代码目录外另建目录编译 Glibc：</para>
 
 <screen><userinput remap="pre">mkdir -v ../glibc-build
 cd ../glibc-build</userinput></screen>
-
+<!--
     <para>因为 Glibc 不再支持 i386，所以Glibc的开发者提出使用 <parameter>-march=i486</parameter> 参数在 x86 平台上进行编译。这里有几种不同的实现方法，但测试表明将这个参数加到 <quote>CFLAGS</quote> 中会比较好。我们通过将这个参数加入到 <filename>configparms</filename> 文件中来达到目的，而不是彻底覆盖 Glibc 的内部 CFLAGS。-mtune=native 参数也很重要，当重新设定 -march 的值时，可以得到一个合理的 -mtune 的值。</para>
 
 <screen><userinput remap="configure">case `uname -m` in
   i?86) echo "CFLAGS += -march=i486 -mtune=native" &gt; configparms ;;
 esac</userinput></screen>
+-->
+    <para>修复一个以 GCC-&gcc-version; 编译 Glibc-&glibc-version; 时的问题：</para>
+
+<screen><userinput remap="pre">sed -i 's/ -lgcc_s//' ../glibc-&glibc-version;/Makeconfig</userinput></screen>
 
     <para>接下来，准备编译 Glibc：</para>
 
