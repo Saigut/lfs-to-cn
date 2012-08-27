@@ -58,7 +58,7 @@
 
   </sect2>  -->
 
-  <sect2 id="ch-intro-mirrors" xreflabel="Chapter 1 - Mirror sites">
+  <sect2 id="ch-intro-mirrors" xreflabel="第一章 - 镜像站点">
     <title>镜像站点</title>
 
     <para>LFS 项目在全世界有许多镜像站点。你可以在这些镜像站点更方便地下载一些资源。请登录 <ulink url="&lfs-root;mirrors.html"/> 查看当前可用的镜像站点。</para>
