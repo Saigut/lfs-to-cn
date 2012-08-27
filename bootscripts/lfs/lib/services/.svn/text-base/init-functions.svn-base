@@ -457,7 +457,7 @@ pidofproc()
         kill -0 ${pid} 2> /dev/null
 
         if [ "${?}" -eq "0" ]; then
-            lpids="${pids}${pid} "
+            lpids="${lpids}${pid} "
         else
             exitstatus="1"
         fi
@@ -490,7 +490,7 @@ statusproc()
    local pidlist
 
    if [ "${#}" = "0" ]; then
-      echo "Usage: [-p pidfle] statusproc {program}"
+      echo "Usage: statusproc [-p pidfle] {program}"
       exit 1
    fi
 
@@ -514,7 +514,7 @@ statusproc()
        esac
    done
 
-   if [ -z "${pidfile}" ]; then
+   if [ -n "${pidfile}" ]; then
       pidlist=`pidofproc -p "${pidfile}" $@`
    else
       pidlist=`pidofproc $@`
@@ -776,6 +776,18 @@ wait_for_user()
    # Wait for the user by default
    [ "${HEADLESS=0}" = "0" ] && read ENTER
    return 0
+}
+
+################################################################################
+# is_true()                                                                    #
+#                                                                              #
+# Purpose: Utility to test if a variable is true | yes | 1                     #
+#                                                                              #
+################################################################################
+is_true()
+{
+   [ "$1" = "1" ] || [ "$1" = "yes" ] || [ "$1" = "true" ] ||  [ "$1" = "y" ] ||
+   [ "$1" = "t" ]
 }
 
 # End /lib/lsb/init-functions
