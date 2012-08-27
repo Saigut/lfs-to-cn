@@ -123,7 +123,6 @@ bash --version | head -n1 | cut -d" " -f2-4
 echo "/bin/sh -&gt; `readlink -f /bin/sh`"
 echo -n "Binutils: "; ld --version | head -n1 | cut -d" " -f3-
 bison --version | head -n1
-
 if [ -e /usr/bin/yacc ];
   then echo "/usr/bin/yacc -&gt; `readlink -f /usr/bin/yacc`"; 
   else echo "yacc not found"; fi
@@ -133,7 +132,6 @@ echo -n "Coreutils: "; chown --version | head -n1 | cut -d")" -f2
 diff --version | head -n1
 find --version | head -n1
 gawk --version | head -n1
-
 if [ -e /usr/bin/awk ];
   then echo "/usr/bin/awk -&gt; `readlink -f /usr/bin/awk`"; 
   else echo "awk not found"; fi
@@ -153,10 +151,10 @@ echo "Texinfo: `makeinfo --version | head -n1`"
 xz --version | head -n1
 
 echo 'main(){}' &gt; dummy.c &amp;&amp; gcc -o dummy dummy.c
-if [ -x dummy ]; then echo "gcc compilation OK";
+if [ -x dummy ] 
+  then echo "gcc compilation OK";
   else echo "gcc compilation failed"; fi
-rm -f dummy.c dummy
-</literal>
+rm -f dummy.c dummy</literal>
 EOF
 
 bash version-check.sh</userinput></screen>
