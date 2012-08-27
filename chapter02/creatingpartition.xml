@@ -33,9 +33,9 @@
 
   <para>使用磁盘分区工具 <command>cfdisk</command> 或者 <command>fdisk</command> 并将你希望使用的硬盘作为命令行参数传入&mdash;例如，<filename class="devicefile">/dev/hda</filename> 代表第一块 IDE 硬盘。请根据需要创建一个 Linux 分区，或者 <systemitem class="filesystem">swap</systemitem> 分区。如果你不知道如何使用这两个工具，请查阅 man 手册 <filename>cfdisk(8)</filename> 或者 <filename>fdisk(8)</filename> 了解更多使用方法。</para>
 
-  <note><para>对于有经验的用户来说，还可以选择其他的分区方案。新的 LFS 系统可以存在于软件 <ulink url="&blfs-root;/view/svn/postlfs/raid.html">RAID</ulink> 阵列或者 <ulink url="&blfs-root;/view/svn/postlfs/aboutlvm.html">LVM</ulink> 逻辑卷上。然而，其中某些选项需求 <ulink url="&blfs-root;/view/svn/postlfs/initramfs.html">initramfs</ulink>， 这就是高级的话题了。这些分区方法对于第一次接触 LFS 的用户并不推荐。</para></note>
+  <note><para>对于有经验的用户来说，还可以选择其他的分区方案。新的 LFS 系统可以存在于软件 <ulink url="&blfs-root;/view/svn/postlfs/raid.html">RAID</ulink> 阵列或者 <ulink url="&blfs-root;/view/svn/postlfs/aboutlvm.html">LVM</ulink> 逻辑卷上。然而，其中某些选项需求 <ulink url="&blfs-root;/view/svn/postlfs/initramfs.html">initramfs</ulink>，这就是高级的话题了。这些分区方法对于第一次接触 LFS 的用户并不推荐。</para></note>
 
-  <para>请记住你将使用的分区 (例如<filename class="devicefile">hda5</filename>)。这本书将这个分区称作 LFS 分区。同样记住 <systemitem class="filesystem">swap</systemitem> 分区的名称。这些名称会在 <filename>/etc/fstab</filename> 文件中用到。</para>
+  <para>请记住你将使用的分区 (例如<filename class="devicefile">hda5</filename>)。本书将此分区称作 LFS 分区。同样记住 <systemitem class="filesystem">swap</systemitem> 分区的名称。这些名称会在 <filename>/etc/fstab</filename> 文件中用到。</para>
 
   <sect2>
   <title>其他分区问题</title>
