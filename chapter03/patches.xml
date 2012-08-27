@@ -17,56 +17,40 @@
     <varlistentry>
       <term>Bash 上游修复补丁 - <token>&bash-fixes-patch-size;</token>：</term>
       <listitem>
-        <para>下载： <ulink url="&patches-root;&bash-fixes-patch;"/></para>
-        <para>MD5 指纹码： <literal>&bash-fixes-patch-md5;</literal></para>
+        <para>下载：<ulink url="&patches-root;&bash-fixes-patch;"/></para>
+        <para>MD5 指纹码：<literal>&bash-fixes-patch-md5;</literal></para>
       </listitem>
     </varlistentry>
 
     <varlistentry>
       <term>Binutils 编制修复补丁 - <token>&binutils-build-patch-size;</token>：</term>
       <listitem>
-        <para>下载： <ulink url="&patches-root;&binutils-build-patch;"/></para>
-        <para>MD5 指纹码： <literal>&binutils-build-patch-md5;</literal></para>
+        <para>下载：<ulink url="&patches-root;&binutils-build-patch;"/></para>
+        <para>MD5 指纹码：<literal>&binutils-build-patch-md5;</literal></para>
       </listitem>
     </varlistentry>
 
     <varlistentry>
       <term>Bzip2 文档补丁 - <token>&bzip2-docs-patch-size;</token>：</term>
       <listitem>
-        <para>下载： <ulink url="&patches-root;&bzip2-docs-patch;"/></para>
-        <para>MD5 指纹码： <literal>&bzip2-docs-patch-md5;</literal></para>
+        <para>下载：<ulink url="&patches-root;&bzip2-docs-patch;"/></para>
+        <para>MD5 指纹码：<literal>&bzip2-docs-patch-md5;</literal></para>
       </listitem>
     </varlistentry>
 
     <varlistentry>
       <term>Coreutils 国际化修复补丁 - <token>&coreutils-i18n-patch-size;</token>：</term>
       <listitem>
-        <para>下载： <ulink url="&patches-root;&coreutils-i18n-patch;"/></para>
-        <para>MD5 指纹码： <literal>&coreutils-i18n-patch-md5;</literal></para>
+        <para>下载：<ulink url="&patches-root;&coreutils-i18n-patch;"/></para>
+        <para>MD5 指纹码：<literal>&coreutils-i18n-patch-md5;</literal></para>
       </listitem>
     </varlistentry>
 
     <varlistentry>
-      <term>Flex GCC-4.4.x 补丁 - <token>&flex-gcc-patch-size;</token>：</term>
+      <term>Flex 回归测试补丁 - <token>&flex-bison-patch-size;</token>：</term>
       <listitem>
-        <para>下载： <ulink url="&patches-root;&flex-gcc-patch;"/></para>
-        <para>MD5 指纹码： <literal>&flex-gcc-patch-md5;</literal></para>
-      </listitem>
-    </varlistentry>
-
-    <varlistentry>
-      <term>Glibc 修复补丁 - <token>&glibc-fixes-patch-size;</token>:</term>
-      <listitem>
-        <para>Download: <ulink url="&patches-root;&glibc-fixes-patch;"/></para>
-        <para>MD5 sum: <literal>&glibc-fixes-patch-md5;</literal></para>
-      </listitem>
-    </varlistentry>
-
-    <varlistentry>
-      <term>Glibc GCC 修复补丁 - <token>&glibc-gcc_fix-patch-size;</token>：</term>
-      <listitem>
-        <para>下载： <ulink url="&patches-root;&glibc-gcc_fix-patch;"/></para>
-        <para>MD5 指纹码： <literal>&glibc-gcc_fix-patch-md5;</literal></para>
+        <para>下载：<ulink url="&patches-root;&flex-bison-patch;"/></para>
+        <para>MD5 指纹码：<literal>&flex-bison-patch-md5;</literal></para>
       </listitem>
     </varlistentry>
 
@@ -74,16 +58,16 @@
     <varlistentry>
       <term>GRUB Disk Geometry Patch - <token>&grub-geometry-patch-size;</token>：</term>
       <listitem>
-        <para>下载： <ulink url="&patches-root;&grub-geometry-patch;"/></para>
-        <para>MD5 指纹码： <literal>&grub-geometry-patch-md5;</literal></para>
+        <para>下载：<ulink url="&patches-root;&grub-geometry-patch;"/></para>
+        <para>MD5 指纹码：<literal>&grub-geometry-patch-md5;</literal></para>
       </listitem>
     </varlistentry>
 
     <varlistentry>
       <term>GRUB 256-Byte Inodes Patch - <token>&grub-inode-patch-size;</token>：</term>
       <listitem>
-        <para>下载： <ulink url="&patches-root;&grub-inode-patch;"/></para>
-        <para>MD5 指纹码： <literal>&grub-inode-patch-md5;</literal></para>
+        <para>下载：<ulink url="&patches-root;&grub-inode-patch;"/></para>
+        <para>MD5 指纹码：<literal>&grub-inode-patch-md5;</literal></para>
       </listitem>
     </varlistentry>
 -->
@@ -98,80 +82,80 @@
     <varlistentry>
       <term>Kbd 退格/删除修复补丁 - <token>&kbd-backspace-patch-size;</token>：</term>
       <listitem>
-        <para>下载： <ulink url="&patches-root;&kbd-backspace-patch;"/></para>
-        <para>MD5 指纹码： <literal>&kbd-backspace-patch-md5;</literal></para>
+        <para>下载：<ulink url="&patches-root;&kbd-backspace-patch;"/></para>
+        <para>MD5 指纹码：<literal>&kbd-backspace-patch-md5;</literal></para>
+      </listitem>
+    </varlistentry>
+    
+    <varlistentry>
+      <term>Kmod 测试套件补丁 - <token>&kmod-testsuite-patch-size;</token>：</term>
+      <listitem>
+        <para>下载：<ulink url="&patches-root;&kmod-testsuite-patch;"/></para>
+        <para>MD5 指纹码：<literal>&kmod-testsuite-patch-md5;</literal></para>
       </listitem>
     </varlistentry>
 
     <varlistentry>
-      <term>MPFR 修复补丁 - <token>&mpfr-fixes-patch-size;</token>：</term>
+      <term>Make 上游修复补丁 - <token>&make-fixes-patch-size;</token>：</term>
       <listitem>
-        <para>下载： <ulink url="&patches-root;&mpfr-fixes-patch;"/></para>
-        <para>MD5 指纹码： <literal>&mpfr-fixes-patch-md5;</literal></para>
+        <para>下载：<ulink url="&patches-root;&make-fixes-patch;"/></para>
+        <para>MD5 指纹码：<literal>&make-fixes-patch-md5;</literal></para>
       </listitem>
     </varlistentry>
 
     <varlistentry>
       <term>Patch 测试套件修复补丁 - <token>&patch-test-patch-size;</token>：</term>
       <listitem>
-        <para>下载： <ulink url="&patches-root;&patch-test-patch;"/></para>
-        <para>MD5 指纹码： <literal>&patch-test-patch-md5;</literal></para>
+        <para>下载：<ulink url="&patches-root;&patch-test-patch;"/></para>
+        <para>MD5 指纹码：<literal>&patch-test-patch-md5;</literal></para>
       </listitem>
     </varlistentry>
 
     <varlistentry>
       <term>Perl Libc 补丁 - <token>&perl-libc-patch-size;</token>：</term>
       <listitem>
-        <para>下载： <ulink url="&patches-root;&perl-libc-patch;"/></para>
-        <para>MD5 指纹码： <literal>&perl-libc-patch-md5;</literal></para>
-      </listitem>
-    </varlistentry>
-
-    <varlistentry>
-      <term>Perl 安全补丁 - <token>&perl-security-patch-size;</token>：</term>
-      <listitem>
-        <para>下载： <ulink url="&patches-root;&perl-security-patch;"/></para>
-        <para>MD5 指纹码： <literal>&perl-security-patch-md5;</literal></para>
+        <para>下载：<ulink url="&patches-root;&perl-libc-patch;"/></para>
+        <para>MD5 指纹码：<literal>&perl-libc-patch-md5;</literal></para>
       </listitem>
     </varlistentry>
 
     <varlistentry>
       <term>Procps HZ 错误补丁 - <token>&procps-hz_fixes-patch-size;</token>：</term>
       <listitem>
-        <para>下载： <ulink url="&patches-root;&procps-hz_fixes-patch;"/></para>
-        <para>MD5 指纹码： <literal>&procps-hz_fixes-patch-md5;</literal></para>
+        <para>下载：<ulink url="&patches-root;&procps-hz_fixes-patch;"/></para>
+        <para>MD5 指纹码：<literal>&procps-hz_fixes-patch-md5;</literal></para>
       </listitem>
     </varlistentry>
 
     <varlistentry>
       <term>Procps Watch 补丁 - <token>&procps-watch-patch-size;</token>：</term>
       <listitem>
-        <para>下载： <ulink url="&patches-root;&procps-watch-patch;"/></para>
-        <para>MD5 指纹码： <literal>&procps-watch-patch-md5;</literal></para>
+        <para>下载：<ulink url="&patches-root;&procps-watch-patch;"/></para>
+        <para>MD5 指纹码：<literal>&procps-watch-patch-md5;</literal></para>
       </listitem>
     </varlistentry>
 
     <varlistentry>
       <term>Readline 上游修复补丁 - <token>&readline-fixes-patch-size;</token>：</term>
       <listitem>
-        <para>下载： <ulink url="&patches-root;&readline-fixes-patch;"/></para>
-        <para>MD5 指纹码： <literal>&readline-fixes-patch-md5;</literal></para>
+        <para>下载：<ulink url="&patches-root;&readline-fixes-patch;"/></para>
+        <para>MD5 指纹码：<literal>&readline-fixes-patch-md5;</literal></para>
       </listitem>
     </varlistentry>
 
     <varlistentry>
-      <term>Shadow nscd 补丁 - <token>&shadow-nscd-patch-size;</token>：</term>
+      <term>Sed 回归测试补丁 - <token>&sed-testsuite-patch-size;</token>：</term>
       <listitem>
-        <para>下载： <ulink url="&patches-root;&shadow-nscd-patch;"/></para>
-        <para>MD5 指纹码： <literal>&shadow-nscd-patch-md5;</literal></para>
+        <para>下载：<ulink url="&patches-root;&sed-testsuite-patch;"/></para>
+        <para>MD5 指纹码：<literal>&sed-testsuite-patch-md5;</literal></para>
       </listitem>
     </varlistentry>
 
     <!--<varlistentry>
       <term>Zlib fPIC Patch - <token>&zlib-fpic-patch-size;</token>：</term>
       <listitem>
-        <para>下载： <ulink url="&patches-root;&zlib-fpic-patch;"/></para>
-        <para>MD5 指纹码： <literal>&zlib-fpic-patch-md5;</literal></para>
+        <para>下载：<ulink url="&patches-root;&zlib-fpic-patch;"/></para>
+        <para>MD5 指纹码：<literal>&zlib-fpic-patch-md5;</literal></para>
       </listitem>
     </varlistentry>-->
 
