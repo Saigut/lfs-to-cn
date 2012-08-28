@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
   "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
   <!ENTITY % general-entities SYSTEM "../general.ent">
@@ -23,7 +23,7 @@
   <sect2 role="package">
     <title/>
 
-    <para>The Grep package contains programs for searching through files.</para>
+    <para>Grep 程序包包含用于搜索文件内容的程序。</para>
 
     <segmentedlist>
       <segtitle>&buildtime;</segtitle>
@@ -59,7 +59,7 @@
   </sect2>
 
   <sect2 id="contents-grep" role="content">
-    <title>Contents of Grep</title>
+    <title>Grep 的内容</title>
 
     <segmentedlist>
       <segtitle>Installed programs</segtitle>
