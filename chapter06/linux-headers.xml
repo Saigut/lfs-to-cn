@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
   "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
   <!ENTITY % general-entities SYSTEM "../general.ent">
@@ -24,8 +24,7 @@
   <sect2 role="package">
     <title/>
 
-    <para>The Linux API Headers (in linux-&linux-version;.tar.xz) expose the
-    kernel's API for use by Glibc.</para>
+    <para>Linux API 头文件 (位于 linux-&linux-version;.tar.xz) 暴露内核的 API 供 Glibc 使用。</para>
 
     <segmentedlist>
       <segtitle>&buildtime;</segtitle>
@@ -67,7 +66,7 @@ find dest/include \( -name .install -o -name ..install.cmd \) -delete
   </sect2>
 
   <sect2 id="contents-linux-headers" role="content">
-    <title>Contents of Linux API Headers</title>
+    <title>Linux API Headers 的内容</title>
 
     <segmentedlist>
       <segtitle>Installed headers</segtitle>
