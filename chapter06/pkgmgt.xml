@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
   "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
   <!ENTITY % general-entities SYSTEM "../general.ent">
@@ -8,100 +8,55 @@
 <sect1 id="ch-system-pkgmgt">
   <?dbhtml filename="pkgmgt.html"?>
 
-  <title>Package Management</title>
+  <title>程序包管理</title>
 
-  <para>Package Management is an often requested addition to the LFS Book. A
-  Package Manager allows tracking the installation of files making it easy to
-  remove and upgrade packages. As well as the binary and library files, a
-  package manager will handle the installation of configuration files.  Before
-  you begin to wonder, NO&mdash;this section will not talk about nor recommend
-  any particular package manager. What it provides is a roundup of the more
-  popular techniques and how they work. The perfect package manager for you may
-  be among these techniques or may be a combination of two or more of these
-  techniques. This section briefly mentions issues that may arise when upgrading
-  packages.</para>
+  <para>经常有人要求向 LFS 中加入程序包管理。程序包管理器允许跟踪文件的安装，使得移除和升级程序包变得容易。程序包管理器不仅会处理二进制和库文件，还会处理配置文件的安装。不要纠结&mdash;这一节既不会讲解也不会推荐任何一个程序包管理器。我们只是概述一下热门的技巧及其工作方式。对你来说完美的包管理器可能就在其中或者是其中几种的组合。这一节简要提及升级程序包时可能出现的问题。</para>
 
-  <para>Some reasons why no package manager is mentioned in LFS or BLFS
-  include:</para>
+  <para>LFS 或者 BLFS 中不提及程序包管理器的原因包括：</para>
 
   <itemizedlist>
     <listitem>
-      <para>Dealing with package management takes the focus away from the goals
-      of these books&mdash;teaching how a Linux system is built.</para>
+      <para>进行程序包管理会减少对本书目标&mdash;讲解 Linux 系统如何搭建&mdash;的关注。</para>
     </listitem>
 
     <listitem>
-      <para>There are multiple solutions for package management, each having
-      its strengths and drawbacks.  Including one that satisfies all audiences
-      is difficult.</para>
+      <para>程序包管理有多种解决方案，它们有各自的强项和缺点。要选出一个来满足所有读者十分困难。</para>
     </listitem>
   </itemizedlist>
 
-  <para>There are some hints written on the topic of package management. Visit
-  the <ulink url="&hints-index;">Hints Project</ulink> and see if one of them
-  fits your need.</para>
+  <para>有关程序包管理有一些提示。访问 <ulink url="&hints-index;">Hints 工程</ulink> 看看能否满足你的需求。</para>
 
   <sect2>
-    <title>Upgrade Issues</title>
+    <title>升级问题</title>
 
-    <para>A Package Manager makes it easy to upgrade to newer versions when they
-    are released. Generally the instructions in the LFS and BLFS Book can be
-    used to upgrade to the newer versions. Here are some points that you should
-    be aware of when upgrading packages, especially on a running system.</para>
+    <para>程序包管理器使得在新版本发布时升级更简单。通常可以使用 LFS 和 BLFS 中的指令来升级到新版本。以下是在升级程序包，尤其是在运行的系统上如此做时需要注意的事项。</para>
 
     <itemizedlist>
       <listitem>
-        <para>If one of the toolchain packages (Glibc, GCC or Binutils) needs
-        to be upgraded to a newer minor version, it is safer to rebuild LFS.
-        Though you <emphasis>may</emphasis> be able to get by rebuilding all
-        the packages in their dependency order, we do not recommend it. For
-        example, if glibc-2.2.x needs to be updated to glibc-2.3.x, it is safer
-        to rebuild. For micro version updates, a simple reinstallation usually
-        works, but is not guaranteed. For example, upgrading from glibc-2.3.4
-        to glibc-2.3.5 will not usually cause any problems.</para>
+        <para>如果工具链程序包之一 (Glibc、GCC 或 Binutils) 需要升级到一个新的小版本，重新编制 LFS 会更安全。虽然你<emphasis>可能</emphasis>能够通过按照依赖关系顺序重新编制所有程序包来解决问题，我们并不推荐这种方式。例如要升级 glibc-2.2.x 到 glibc-2.3.x，重新编制更加安全。对于微小版本升级，简单地重新安装通常就能工作，但是只是通常。例如将 glibc-2.3.4 升级为 glibc-2.3.5 通常不会产生任何问题。</para>
       </listitem>
 
       <listitem>
-        <para>If a package containing a shared library is updated, and if the
-        name of the library changes, then all the packages dynamically linked
-        to the library need to be recompiled to link against the newer library.
-        (Note that there is no correlation between the package version and the
-        name of the library.) For example, consider a package foo-1.2.3 that
-        installs a shared library with name
-        <filename class='libraryfile'>libfoo.so.1</filename>. Say you upgrade
-        the package to a newer version foo-1.2.4 that installs a shared library
-        with name <filename class='libraryfile'>libfoo.so.2</filename>. In this
-        case, all packages that are dynamically linked to
-        <filename class='libraryfile'>libfoo.so.1</filename> need to be
-        recompiled to link against
-        <filename class='libraryfile'>libfoo.so.2</filename>. Note that you
-        should not remove the previous libraries until the dependent packages
-        are recompiled.</para>
+        <para>如果一个包含共享库的程序包升级了并且库的名称改变，那么所有动态链接到这个库的程序包都要重新编译以链接到新的库。(注意程序包版本和库名称之间并没有必然联系。) 例如，假设程序包 foo-1.2.3 安装的共享库名为 <filename class='libraryfile'>libfoo.so.1</filename>。其新版本 foo-1.2.4 将安装的共享库名为 <filename class='libraryfile'>libfoo.so.2</filename>。这种情况下所有动态链接到 <filename class='libraryfile'>libfoo.so.1</filename> 的程序包都要重新编译以链接到 <filename class='libraryfile'>libfoo.so.2</filename>。注意，在所有的依赖程序包重新编译完成之前你不应该移除先前的库。</para>
       </listitem>
     </itemizedlist>
 
   </sect2>
 
   <sect2>
-    <title>Package Management Techniques</title>
+    <title>程序包管理技巧</title>
 
-    <para>The following are some common package management techniques. Before
-    making a decision on a package manager, do some research on the various
-    techniques, particularly the drawbacks of the particular scheme.</para>
+    <para>以下是一些常见的程序包管理技巧。在选择程序包管理器之前，了解一下不同技巧，尤其是它们的缺点。</para>
 
     <sect3>
-      <title>It is All in My Head!</title>
+      <title>我自己能够搞定！</title>
 
-      <para>Yes, this is a package management technique. Some folks do not find
-      the need for a package manager because they know the packages intimately
-      and know what files are installed by each package. Some users also do not
-      need any package management because they plan on rebuilding the entire
-      system when a package is changed.</para>
+      <para>是的，这也是一种程序包管理技巧。有些人因为非常了解程序包，知道每个包安装了什么文件所以不需要程序包管理器。还有一些用户也不需要程序包管理，因为他们打算在有程序包改动的时候重新编制整个系统。</para>
 
     </sect3>
 
     <sect3>
-      <title>Install in Separate Directories</title>
+      <title>安装到分立目录中</title>
 
       <para>This is a simplistic package management that does not need any extra
       package to manage the installations. Each package is installed in a
