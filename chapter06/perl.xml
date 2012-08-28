@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
   "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
   <!ENTITY % general-entities SYSTEM "../general.ent">
@@ -23,7 +23,8 @@
   <sect2 role="package">
     <title/>
 
-    <para>Perl 程序包包含实用抽取和报表语言。</para>
+    <para>The Perl package contains the Practical Extraction and Report
+    Language.</para>
 
     <segmentedlist>
       <segtitle>&buildtime;</segtitle>
@@ -121,7 +122,7 @@
   </sect2>
 
   <sect2 id="contents-perl" role="content">
-    <title>Perl 的内容</title>
+    <title>Contents of Perl</title>
 
     <segmentedlist>
       <segtitle>Installed programs</segtitle>

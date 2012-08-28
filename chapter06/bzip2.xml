@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
   "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
   <!ENTITY % general-entities SYSTEM "../general.ent">
@@ -23,7 +23,10 @@
   <sect2 role="package">
     <title/>
 
-    <para>Bzip2 程序包包含用于压缩和解压缩文件的程序。用 <command>bzip2</command> 压缩文本文件比传统的 <command>gzip</command> 压缩率更好。</para>
+    <para>The Bzip2 package contains programs for compressing and decompressing
+    files. Compressing text files with <command>bzip2</command> yields a much
+    better compression percentage than with the traditional
+    <command>gzip</command>.</para>
 
     <segmentedlist>
       <segtitle>&buildtime;</segtitle>
@@ -47,6 +50,10 @@
    <para>The following command ensures installation of symbolic links are relative:</para>
 
 <screen><userinput remap="pre">sed -i 's@\(ln -s -f \)$(PREFIX)/bin/@\1@' Makefile</userinput></screen>
+
+    <para>Ensure the man pages are installed into the correct location:</para>
+
+<screen><userinput remap="pre">sed -i "s@(PREFIX)/man@(PREFIX)/share/man@g" Makefile</userinput></screen>
 
     <para>Prepare Bzip2 for compilation with:</para>
 
@@ -91,7 +98,7 @@ ln -sv bzip2 /bin/bzcat</userinput></screen>
   </sect2>
 
   <sect2 id="contents-bzip2" role="content">
-    <title>Bzip2 的内容</title>
+    <title>Contents of Bzip2</title>
 
     <segmentedlist>
       <segtitle>Installed programs</segtitle>

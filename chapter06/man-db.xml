@@ -41,12 +41,13 @@
   <sect2 role="installation">
     <title>Installation of Man-DB</title>
 
+    <para>Fix an incompatibility between this package and Glibc-&glibc-version;</para>
+
+<screen><userinput remap="pre">sed -i -e '/gets is a/d' gnulib/lib/stdio.in.h</userinput></screen>
+
     <para>Prepare Man-DB for compilation:</para>
 
-<screen><userinput remap="configure">PKG_CONFIG=/tools/bin/true                       \
-libpipeline_CFLAGS=''                            \
-libpipeline_LIBS='-lpipeline'                    \
-./configure --prefix=/usr                        \
+<screen><userinput remap="configure">./configure --prefix=/usr                        \
             --libexecdir=/usr/lib                \
             --docdir=/usr/share/doc/man-db-&man-db-version; \
             --sysconfdir=/etc                    \
@@ -57,15 +58,6 @@ libpipeline_LIBS='-lpipeline'                    \
 
     <variablelist>
       <title>The meaning of the configure options:</title>
-
-      <varlistentry>
-        <term><parameter>PKG_CONFIG=, libpipeline_ ...</parameter></term>
-        <listitem>
-          <para>These environment variables allow the configuration 
-          process to complete without the external <command>pkg-config</command> 
-          program.</para>
-        </listitem>
-      </varlistentry>
 
       <varlistentry>
         <term><parameter>--disable-setuid</parameter></term>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
   "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
   <!ENTITY % general-entities SYSTEM "../general.ent">
@@ -23,7 +23,10 @@
   <sect2 role="package">
     <title/>
 
-    <para>Findutils 程序包包含用于查找文件的程序。这些程序能够递归搜索目录树并创建、维护和搜索一个数据库 (通常比递归搜索快，但如果数据库最近没有更新可能会不不可靠)。</para>
+    <para>The Findutils package contains programs to find files. These programs
+    are provided to recursively search through a directory tree and to
+    create, maintain, and search a database (often faster than the recursive
+    find, but unreliable if the database has not been recently updated).</para>
 
     <segmentedlist>
       <segtitle>&buildtime;</segtitle>
@@ -84,7 +87,7 @@ sed -i 's/find:=${BINDIR}/find:=\/bin/' /usr/bin/updatedb</userinput></screen>
   </sect2>
 
   <sect2 id="contents-findutils" role="content">
-    <title>Findutils 的内容</title>
+    <title>Contents of Findutils</title>
 
     <segmentedlist>
       <segtitle>Installed programs</segtitle>

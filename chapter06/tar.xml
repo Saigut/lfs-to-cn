@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
   "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
   <!ENTITY % general-entities SYSTEM "../general.ent">
@@ -23,7 +23,7 @@
   <sect2 role="package">
     <title/>
 
-    <para>Tar 程序包包含一个归档程序。</para>
+    <para>The Tar package contains an archiving program.</para>
 
     <segmentedlist>
       <segtitle>&buildtime;</segtitle>
@@ -39,6 +39,10 @@
 
   <sect2 role="installation">
     <title>Installation of Tar</title>
+
+    <para>Fix an incompatibility between this package and Glibc-&glibc-version;:</para>
+
+<screen><userinput remap="pre">sed -i -e '/gets is a/d' gnu/stdio.in.h</userinput></screen>
 
     <para>Prepare Tar for compilation:</para>
 
@@ -78,7 +82,7 @@ make -C doc install-html docdir=/usr/share/doc/tar-&tar-version;</userinput></sc
 
 
   <sect2 id="contents-tar" role="content">
-    <title>Tar 的内容</title>
+    <title>Contents of Tar</title>
 
     <segmentedlist>
       <segtitle>Installed programs</segtitle>

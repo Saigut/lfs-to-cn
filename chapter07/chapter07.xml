@@ -1,15 +1,15 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
   "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
   <!ENTITY % general-entities SYSTEM "../general.ent">
   %general-entities;
 ]>
 
-<chapter id="chapter-bootscripts" xreflabel="第七章">
+<chapter id="chapter-bootscripts" xreflabel="Chapter 7">
   <?dbhtml dir="chapter07"?>
   <?dbhtml filename="chapter07.html"?>
 
-  <title>设置系统启动脚本</title>
+  <title>Setting Up System Bootscripts</title>
 
   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="introduction.xml"/>
   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="network.xml"/>

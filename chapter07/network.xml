@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
   "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
   <!ENTITY % general-entities SYSTEM "../general.ent">
@@ -8,47 +8,79 @@
 <sect1 id="ch-scripts-network">
   <?dbhtml filename="network.html"?>
 
-  <title>通用网络配置</title>
+  <title>General Network Configuration</title>
 
   <indexterm zone="ch-scripts-network">
     <primary sortas="d-network">network</primary>
   <secondary>configuring</secondary></indexterm>
 
-  <para>这一章节仅在需要配置网卡的时候有用。</para>
+  <para>This section only applies if a network card is to be
+  configured.</para>
 
-  <para>如果不需要使用一个网卡，那么似乎不需要创建任何跟网卡相关的配置文件。如果真的是这样，请删除所有启动级别文件夹 (<filename
-  class="directory">/etc/rc.d/rc*.d</filename>) 中的 <filename class="symlink">network</filename>符号链接.</para>
+  <para>If a network card will not be used, there is likely no need to
+  create any configuration files relating to network cards. If that is
+  the case, remove the <filename class="symlink">network</filename>
+  symlinks from all run-level directories (<filename
+  class="directory">/etc/rc.d/rc*.d</filename>).</para>
 
-  <sect2>
-    <title>给网络接口创建稳定的名称</title>
+  <sect2 id='stable-net-names'>
+    <title>Creating stable names for network interfaces</title>
 
-    <para>如果这个系统只需要设置一个网络接口，这一节是可选的，即时这永远也不会出错。在许多情况下 (例如一个有无线接口和有线接口的笔记本电脑)，完成本节的配置是很重要的。</para>  
+    <para>If there is only one network interface in the system to be
+    configured, this section is optional, although it will never be wrong to do
+    it.  In many cases (e.g. a laptop with a wireless and a wired interface),
+    accomplishing the configuration in this section is necessary.</para>  
 
-    <para>通过 Udev 和网卡驱动模块，网络接口的编号在重启之后并不是不变的，因为这些驱动会并行加载，也就是说是顺序随机。例如，一个拥有两块分别由 Intel 和 Realtek 制造的网卡的电脑，Intel 网卡可能会成为 <filename class="devicefile">eth0</filename>，Realtek 网卡会成为<filename class="devicefile">eth1</filename>。在某些情况下，重启之后他们的标号会互换。为了避免这种情况，Udev 使用一个脚本和一些规则，根据网卡的 MAC 地址来分配稳定的名称。</para>
+    <para>With Udev and modular network drivers, the network interface numbering
+    is not persistent across reboots by default, because the drivers are loaded
+    in parallel and, thus, in random order. For example, on a computer having
+    two network cards made by Intel and Realtek, the network card manufactured
+    by Intel may become <filename class="devicefile">eth0</filename> and the
+    Realtek card becomes  <filename class="devicefile">eth1</filename>. In some
+    cases, after a reboot the cards get renumbered the other way around. To
+    avoid this, Udev comes with a script and some rules to assign stable names
+    to network cards based on their MAC address.</para>
 
-    <para>提前设定好规则来确保同一个设备分配到同一个名称，首先：</para>
-
-<screen><userinput>for NIC in /sys/class/net/* ; do
-    INTERFACE=${NIC##*/} udevadm test --action=add $NIC
-done</userinput></screen>
-
-    <para>现在，查看 <filename>/etc/udev/rules.d/70-persistent-net.rules</filename> 文件，查看你的网络设备们分别对应到哪些名称：</para>
+    <para>The rules were pre-generated in the build instructions for
+    <application>udev (systemd)</application> in the last chapter.  Inspect the
+    <filename>/etc/udev/rules.d/70-persistent-net.rules</filename> file, to
+    find out which name was assigned to which network device:</para>
 
 <screen role="nodump"><userinput>cat /etc/udev/rules.d/70-persistent-net.rules</userinput></screen>
 
-    <para>这个文件中，每个 NIC 由一行注释紧接两行内容表示。第一行是对硬件 ID 的描述 (例如，如果是一张 PCI 卡，它的 PCI 销售方和设备 ID)，如果他的驱动程序可以找到，会写在圆括号中。硬件 ID 和驱动程序都不是如何分配标识符的标准，他们仅供参考。第二行是 Udev 用来匹配 NIC 的规则，以此来分配标识符。</para>
+    <note><para>In some cases such as when MAC addresess have been assigned to
+    a network card manually or in a virtual envirnment such as Xen,
+    the network rules file may not have been generated because addresses 
+    are not consistently assigned.  In these cases, just continue to
+    the next section.</para></note>
 
-    <para>Udev 的所有规则由关键字，由逗号和可选的空格隔开。如下是这些关键字和其说明：</para>
+    <para>The file begins with a comment block followed by two lines for each
+    NIC. The first line for each NIC is a commented description showing its
+    hardware IDs (e.g. its PCI vendor and device IDs, if it's a PCI card),
+    along with its driver in parentheses, if the driver can be found. Neither
+    the hardware ID nor the driver is used to determine which name to give an
+    interface; this information is only for reference. The second line is the
+    Udev rule that matches this NIC and actually assigns it a name.</para>
+
+    <para>All Udev rules are made up of several keys, separated by commas and
+    optional whitespace. This rule's keys and an explanation of each of them
+    are as follows:</para>
 
     <itemizedlist>
       <listitem>
-        <para><literal>SUBSYSTEM=="net"</literal> - 此项告诉 Udev 忽略不是网卡的设备。</para>
+        <para><literal>SUBSYSTEM=="net"</literal> - This tells Udev to ignore
+        devices that are not network cards.</para>
       </listitem>
       <listitem>
-        <para><literal>ACTION=="add"</literal> - 此项告诉 Udev 对非添加操作的 Udev 事件 (uevent) 忽略此规则 (“移除” 和 “改动” 事件依然会被触发，但是不需要重命名网卡接口)。</para>
+        <para><literal>ACTION=="add"</literal> - This tells Udev to ignore this
+        rule for a uevent that isn't an add ("remove" and "change" uevents also
+        happen, but don't need to rename network interfaces).</para>
       </listitem>
       <listitem>
-        <para><literal>DRIVERS=="?*"</literal> - 此项存在使得 Udev 忽略 VLAN 或者桥接子接口 (因为这些子接口没有驱动)。这些子接口会被跳过以防名称与父设备冲突。</para>
+        <para><literal>DRIVERS=="?*"</literal> - This exists so that Udev will
+        ignore VLAN or bridge sub-interfaces (because these sub-interfaces do
+        not have drivers). These sub-interfaces are skipped because the name
+        that would be assigned would collide with their parent devices.</para>
       </listitem>
       <listitem>
         <para><literal>ATTR{address}</literal> - The value of this key is the
@@ -134,7 +166,7 @@ EOF</userinput></screen>
     gateway IP address, if one is present. If not, then comment out the
     variable entirely.</para>
 
-    <para>The <envar>PREFIX</envar> variable containis the number of
+    <para>The <envar>PREFIX</envar> variable contains the number of
     bits used in the subnet. Each octet in an IP address is 8 bits. If the
     subnet's netmask is 255.255.255.0, then it is using the first three octets
     (24 bits) to specify the network number. If the netmask is 255.255.255.240,

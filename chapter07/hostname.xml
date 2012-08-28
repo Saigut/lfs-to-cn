@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
   "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
   <!ENTITY % general-entities SYSTEM "../general.ent">
@@ -8,19 +8,24 @@
 <sect1 id="ch-scripts-hostname">
   <?dbhtml filename="hostname.html"?>
 
-  <title>配置系统的主机名称</title>
+  <title>Configuring the system hostname</title>
 
   <indexterm zone="ch-scripts-hostname">
     <primary sortas="d-hostname">hostname</primary>
     <secondary>configuring</secondary>
   </indexterm>
 
-  <para>脚本 <command>localnet</command> 中，有一部分是用来设置主机名称。这需要在 <filename>/etc/sysconfig/network</filename> 文件中配置。</para>
+  <para>Part of the job of the <command>localnet</command> script is setting the
+  system's hostname. This needs to be configured in the
+  <filename>/etc/sysconfig/network</filename> file.</para>
 
-  <para>创建 <filename>/etc/sysconfig/network</filename> 文件并输入主机名称：</para>
+  <para>Create the <filename>/etc/sysconfig/network</filename> file and enter a
+  hostname by running:</para>
 
 <screen><userinput>echo "HOSTNAME=<replaceable>&lt;lfs&gt;</replaceable>" &gt; /etc/sysconfig/network</userinput></screen>
 
-  <para><replaceable>&lt;lfs&gt;</replaceable> 需要替换成你想要的主机名称。不要在这里输入你的全称域名（FQDN）。全称域名应该写入 <filename>/etc/hosts</filename> 文件中。</para>
+  <para><replaceable>&lt;lfs&gt;</replaceable> needs to be replaced with the name given
+  to the computer. Do not enter the Fully Qualified Domain Name (FQDN) here. That
+  information is put in the <filename>/etc/hosts</filename> file.</para>
 
 </sect1>

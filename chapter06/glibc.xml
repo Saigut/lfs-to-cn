@@ -72,7 +72,7 @@
 <screen><userinput remap="pre">sed -i '/vi_VN.TCVN/d' localedata/SUPPORTED</userinput></screen>
 -->
 
-    <para>Fix a bug that causes the build to fail:</para>
+    <para>Fix a problem that causes the build to fail in the LFS environment:</para>
 
 <screen><userinput remap="pre">sed -i 's#&lt;rpc/types.h&gt;#"rpc/types.h"#' sunrpc/rpc_clntout.c</userinput></screen>
 
@@ -86,7 +86,7 @@
 <screen><userinput remap="pre">DL=$(readelf -l /bin/sh | sed -n 's@.*interpret.*/tools\(.*\)]$@\1@p')
 sed -i &quot;s|libs -o|libs -L/usr/lib -Wl,-dynamic-linker=$DL -o|&quot; \
         scripts/test-installation.pl
-unset DL</userinput></screen>
+unset DL</userinput></screen>-->
 
     <para>When running <command>make install</command>, a script called
     <filename>test-installation.pl</filename> performs a small sanity test on
@@ -103,12 +103,17 @@ unset DL</userinput></screen>
 
 <screen><userinput remap="pre">sed -i 's|@BASH@|/bin/bash|' elf/ldd.bash.in</userinput></screen>
 
+    <para>Now fix a problem that causes some applications to crash when 
+    utilizing problem nameservers:</para>
+
+<screen><userinput remap="pre">patch -Np1 -i ../&glibc-fix-resolv-patch;</userinput></screen>
+
     <para>The Glibc documentation recommends building Glibc outside of the source
     directory in a dedicated build directory:</para>
 
 <screen><userinput remap="pre">mkdir -v ../glibc-build
 cd ../glibc-build</userinput></screen>
-
+<!--
     <para>As in Chapter 5, add the needed compiler flags to CFLAGS for x86 machines.
     Here, the optimization of the library is also set for the gcc compiler to
     enhance compilation speed (-pipe) and package performance (-O3).</para>
@@ -223,7 +228,8 @@ grep Error glibc-check-log</userinput></screen>
 <screen><userinput remap="install">make install</userinput></screen>
 
     <para>Install NIS and RPC related headers that are not installed by
-    default; these are required by several BLFS packages:</para>
+    default; these are required ito rebuild glibc and by several BLFS 
+    packages:</para>
 
 <screen><userinput remap="install">cp -v ../glibc-&glibc-version;/sunrpc/rpc/*.h /usr/include/rpc
 cp -v ../glibc-&glibc-version;/sunrpc/rpcsvc/*.h /usr/include/rpcsvc
@@ -463,7 +469,7 @@ mkdir /etc/ld.so.conf.d</userinput></screen>
   </sect2>
 
   <sect2 id="contents-glibc" role="content">
-    <title>Glibc 的内容</title>
+    <title>Contents of Glibc</title>
 
     <segmentedlist>
       <segtitle>Installed programs</segtitle>

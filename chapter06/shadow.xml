@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
   "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
   <!ENTITY % general-entities SYSTEM "../general.ent">
@@ -54,10 +54,6 @@
 
 <screen><userinput remap="pre">sed -i 's/groups$(EXEEXT) //' src/Makefile.in
 find man -name Makefile.in -exec sed -i 's/groups\.1 / /' {} \;</userinput></screen>
-
-    <para>Fix an issue with the installation of Russian man pages:</para>
-
-<screen><userinput remap="pre">sed -i 's/man_MANS = $(man_nopam) /man_MANS = /' man/ru/Makefile.in</userinput></screen>
 
     <para id="shadow-login_defs">Instead of using the default
     <emphasis>crypt</emphasis> method, use the more secure

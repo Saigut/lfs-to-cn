@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
   "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
   <!ENTITY % general-entities SYSTEM "../general.ent">
@@ -23,7 +23,8 @@
   <sect2 role="package">
     <title/>
 
-    <para>Ncurses 程序包包含用于不依赖终端处理字符屏幕的库。</para>
+    <para>The Ncurses package contains libraries for terminal-independent
+    handling of character screens.</para>
 
     <segmentedlist>
       <segtitle>&buildtime;</segtitle>
@@ -52,7 +53,8 @@
 
     <para>Prepare Ncurses for compilation:</para>
 
-<screen><userinput remap="configure">./configure --prefix=/usr --with-shared --without-debug --enable-widec</userinput></screen>
+<screen><userinput remap="configure">./configure --prefix=/usr --mandir=/usr/share/man --with-shared \
+            --without-debug --enable-widec</userinput></screen>
 
     <variablelist>
       <title>The meaning of the configure option:</title>
@@ -152,7 +154,7 @@ cp -av lib/lib*.so.5* /usr/lib</userinput></screen>
   </sect2>
 
   <sect2 id="contents-ncurses" role="content">
-    <title>Ncurses 的内容</title>
+    <title>Contents of Ncurses</title>
 
     <segmentedlist>
       <segtitle>Installed programs</segtitle>

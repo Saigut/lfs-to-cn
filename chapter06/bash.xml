@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
   "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
   <!ENTITY % general-entities SYSTEM "../general.ent">
@@ -23,7 +23,7 @@
   <sect2 role="package">
     <title/>
 
-    <para>Bash 程序包包含 Bourne-Again Shell。</para>
+    <para>The Bash package contains the Bourne-Again SHell.</para>
 
     <segmentedlist>
       <segtitle>&buildtime;</segtitle>
@@ -89,7 +89,7 @@
     <para>Now, run the tests as the <systemitem
     class="username">nobody</systemitem> user:</para>
 
-<screen><userinput remap="test">su nobody -s /bin/bash -c "make tests"</userinput></screen>
+<screen><userinput remap="test">su nobody -s /bin/bash -c "PATH=$PATH make tests"</userinput></screen>
 
     <para>Install the package:</para>
 
@@ -109,7 +109,7 @@
   </sect2>
 
   <sect2 id="contents-bash" role="content">
-    <title>Bash 的内容</title>
+    <title>Contents of Bash</title>
 
     <segmentedlist>
       <segtitle>Installed programs</segtitle>

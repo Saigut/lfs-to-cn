@@ -5,46 +5,43 @@
   %general-entities;
 ]>
 
-<sect1 id="ch-system-make" role="wrap">
-  <?dbhtml filename="make.html"?>
+<sect1 id="ch-system-popt" role="wrap">
+  <?dbhtml filename="popt.html"?>
 
   <sect1info condition="script">
-    <productname>make</productname>
-    <productnumber>&make-version;</productnumber>
-    <address>&make-url;</address>
+    <productname>popt</productname>
+    <productnumber>&popt-version;</productnumber>
+    <address>&popt-url;</address>
   </sect1info>
 
-  <title>Make-&make-version;</title>
+  <title>Popt-&popt-version;</title>
 
-  <indexterm zone="ch-system-make">
-    <primary sortas="a-Make">Make</primary>
+  <indexterm zone="ch-system-popt">
+    <primary sortas="a-popt">popt</primary>
   </indexterm>
 
   <sect2 role="package">
     <title/>
 
-    <para>The Make package contains a program for compiling packages.</para>
+    <para>The Popt package contains a library used by some programs 
+    to parse command-line options.</para>
 
     <segmentedlist>
       <segtitle>&buildtime;</segtitle>
       <segtitle>&diskspace;</segtitle>
 
       <seglistitem>
-        <seg>&make-ch6-sbu;</seg>
-        <seg>&make-ch6-du;</seg>
+        <seg>&popt-ch6-sbu;</seg>
+        <seg>&popt-ch6-du;</seg>
       </seglistitem>
     </segmentedlist>
 
   </sect2>
 
   <sect2 role="installation">
-    <title>Installation of Make</title>
+    <title>Installation of Popt</title>
 
-    <para>First apply some upstream patches:</para>
-
-<screen><userinput remap="configure">patch -Np1 -i ../&make-fixes-patch;</userinput></screen>
-
-    <para>Prepare Make for compilation:</para>
+    <para>Prepare Popt4 for compilation:</para>
 
 <screen><userinput remap="configure">./configure --prefix=/usr</userinput></screen>
 
@@ -63,14 +60,14 @@
   </sect2>
 
 
-  <sect2 id="contents-make" role="content">
-    <title>Contents of Make</title>
+  <sect2 id="contents-popt" role="content">
+    <title>Contents of Popt</title>
 
     <segmentedlist>
-      <segtitle>Installed program</segtitle>
+      <segtitle>Installed libraries:</segtitle>
 
       <seglistitem>
-        <seg>make</seg>
+        <seg>libpopt.{a,so}</seg>
       </seglistitem>
     </segmentedlist>
 
@@ -79,13 +76,13 @@
       <?dbfo list-presentation="list"?>
       <?dbhtml list-presentation="table"?>
 
-      <varlistentry id="make">
-        <term><command>make</command></term>
+      <varlistentry id="libpopt">
+         <!-- Don't remove the extra space, it prevet a FOP warning. -->
+        <term><filename class="libraryfile">libpopt</filename></term>
         <listitem>
-          <para>Automatically determines which pieces of a package need to
-          be (re)compiled and then issues the relevant commands</para>
-          <indexterm zone="ch-system-make make">
-            <primary sortas="b-make">make</primary>
+          <para>is used to parse command-line options.</para>
+          <indexterm zone="ch-system-popt libpopt">
+            <primary sortas="b-libpopt">libpopt</primary>
           </indexterm>
         </listitem>
       </varlistentry>

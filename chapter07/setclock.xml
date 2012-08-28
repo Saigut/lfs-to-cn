@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
   "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
   <!ENTITY % general-entities SYSTEM "../general.ent">
@@ -8,21 +8,43 @@
 <sect1 id="ch-scripts-setclock">
   <?dbhtml filename="setclock.html"?>
 
-  <title>配置setclock脚本</title>
+  <title>Configuring the setclock Script</title>
 
   <indexterm zone="ch-scripts-setclock">
     <primary sortas="d-setclock">setclock</primary>
   <secondary>configuring</secondary></indexterm>
 
-  <para><command>setclock</command> 从硬件时钟读取时间，通常是 BIOS 或者 CMOS。如果你的硬件时钟设置成 UTC，这个脚本会将硬件时间根据 <filename>/etc/localtime</filename> 文件（这个文件告诉 <command>hwclock</command> 程序用户所在的时区）转化成本地时间。没有方法能检测出你的时钟是否被设置成 UTC，所以需要用户自己设置。</para>
+  <para>The <command>setclock</command> script reads the time from the hardware
+  clock, also known as the BIOS or the Complementary Metal Oxide Semiconductor
+  (CMOS) clock. If the hardware clock is set to UTC, this script will convert the
+  hardware clock's time to the local time using the
+  <filename>/etc/localtime</filename> file (which tells the
+  <command>hwclock</command> program which timezone the user is in). There is no
+  way to detect whether or not the hardware clock is set to UTC, so this
+  needs to be configured manually.</para>
 
-  <para>当内核在启动后检测硬件时 <command>setclock</command> 程序被 <application>udev</application> 调用。用户也可以用stop参数执行该命令，这样会将系统时间保存在CMOS中。</para>
+  <para>The <command>setclock</command> is run via
+  <application>udev</application> when the kernel detects the hardware
+  capability upon boot.  It can also be run manually with the stop parameter to
+  store the system time to the CMOS clock.</para>
 
-  <para>如果你想不起来你的时钟是否被设置成 UTC，可以通过执行 <userinput>hwclock --localtime --show</userinput> 命令查看。如果输出的时间是你的手表上的时间，那么硬件时间被设置成了本地时间。如果 <command>hwclock</command> 输出的不是本地时间，那么基本上它被设置成UTC时间。</para>
+  <para>If you cannot remember whether or not the hardware clock is set to UTC,
+  find out by running the <userinput>hwclock --localtime --show</userinput>
+  command. This will display what the current time is according to the hardware
+  clock. If this time matches whatever your watch says, then the hardware clock is
+  set to local time. If the output from <command>hwclock</command> is not local
+  time, chances are it is set to UTC time. Verify this by adding or subtracting
+  the proper amount of hours for the timezone to the time shown by
+  <command>hwclock</command>. For example, if you are currently in the MST
+  timezone, which is also known as GMT -0700, add seven hours to the local
+  time.</para>
 
-  <para>更改下面变量 <envar>UTC</envar> 的值为 <parameter>0</parameter> 如果你的硬件时钟没有被设置成UTC时间。</para>
+  <para>Change the value of the <envar>UTC</envar> variable below
+  to a value of <parameter>0</parameter> (zero) if the hardware clock
+  is <emphasis>not</emphasis> set to UTC time.</para>
 
-  <para>可以使用下面的命令创建一个新的文件 <filename>/etc/sysconfig/clock</filename>：</para>
+  <para>Create a new file <filename>/etc/sysconfig/clock</filename> by running
+  the following:</para>
 
 <screen><userinput>cat &gt; /etc/sysconfig/clock &lt;&lt; "EOF"
 <literal># Begin /etc/sysconfig/clock
@@ -36,8 +58,11 @@ CLOCKPARAMS=
 # End /etc/sysconfig/clock</literal>
 EOF</userinput></screen>
 
-  <para>这里有一个很好的关于如何处理LFS系统中的时间的提示<ulink url="&hints-root;time.txt"/>。它解释了时区，UTC，还有 <envar>TZ</envar> 环境变量等等。</para>
+  <para>A good hint explaining how to deal with time on LFS is available
+  at <ulink url="&hints-root;time.txt"/>. It explains issues such as
+  time zones, UTC, and the <envar>TZ</envar> environment variable.</para>
 
-  <note><para>参数 CLOCKPARAMS 和 UTC 也可以在 <filename>/etc/sysconfig/rc.site</filename> 文件中设置。</para></note>
+  <note><para>The CLOCKPARAMS and UTC paramaters may be alternatively set
+  in the <filename>/etc/sysconfig/rc.site</filename> file.</para></note>
 
 </sect1>

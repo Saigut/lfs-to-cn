@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
   "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
   <!ENTITY % general-entities SYSTEM "../general.ent">
@@ -8,7 +8,7 @@
 <sect1 id="ch-scripts-usage">
   <?dbhtml filename="usage.html"?>
 
-  <title>启动脚本如何工作？</title>
+  <title>How Do These Bootscripts Work?</title>
 
   <indexterm zone="ch-scripts-usage">
     <primary sortas="a-Bootscripts">Bootscripts</primary>
@@ -160,41 +160,45 @@ EOF</userinput></screen>
     <varlistentry>
       <term><parameter>start</parameter></term>
       <listitem>
-        <para>这项服务已经开启。</para>
+        <para>The service is started.</para>
       </listitem>
     </varlistentry>
 
     <varlistentry>
       <term><parameter>stop</parameter></term>
       <listitem>
-        <para>这项服务被停止。</para>
+        <para>The service is stopped.</para>
       </listitem>
     </varlistentry>
 
     <varlistentry>
       <term><parameter>restart</parameter></term>
       <listitem>
-        <para>这项服务会被重新启动。</para>
+        <para>The service is stopped and then started again.</para>
       </listitem>
     </varlistentry>
 
     <varlistentry>
       <term><parameter>reload</parameter></term>
       <listitem>
-        <para>关于这项服务的配置文件被更新。当这个服务的配置文件已经被修改，但是服务本身不需要重启的可以使用这个。</para>
+        <para>The configuration of the service is updated.
+        This is used after the configuration file of a service was modified, when
+        the service does not need to be restarted.</para>
       </listitem>
     </varlistentry>
 
     <varlistentry>
       <term><parameter>status</parameter></term>
       <listitem>
-        <para>报告这个服务是否被开启。如果被开启，列出它的PID。</para>
+        <para>Tells if the service is running and with which PIDs.</para>
       </listitem>
     </varlistentry>
 
   </variablelist>
 
-  <para>你可以自由修改启动流程（毕竟，这是你自己的LFS系统）。这里的文件仅仅是示例。</para>
+  <para>Feel free to modify the way the boot process works (after all,
+  it is your own LFS system). The files given here are an example of how
+  it can be done.</para>
 
   </sect2>
 

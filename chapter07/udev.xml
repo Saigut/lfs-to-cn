@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
   "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
   <!ENTITY % general-entities SYSTEM "../general.ent">
@@ -132,7 +132,7 @@
     <sect3>
       <title>Device Node Creation</title>
 
-      <para>As of Udev-&udev-version;, <command>udevd</command> no longer
+      <para>In recent version of udev, <command>udevd</command> no longer
       creates device files in <filename class="directory">/dev</filename>.
       Instead, this must be handled in the kernel, by the <systemitem
       class="filesystem">devtmpfs</systemitem> filesystem.  Any driver that
