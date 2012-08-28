@@ -42,6 +42,10 @@
 
   <sect2 role="installation">
     <title>安装 Diffutils</title>
+    
+    <para>修复此程序包和 Glibc-&glibc-version; 不兼容的问题：</para>
+
+<screen><userinput remap="pre">sed -i -e '/gets is a/d' lib/stdio.in.h</userinput></screen>
 
     <para>准备编译 Diffutils：</para>
 
