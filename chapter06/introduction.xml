@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
   "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
   <!ENTITY % general-entities SYSTEM "../general.ent">
@@ -8,51 +8,18 @@
 <sect1 id="ch-system-introduction">
   <?dbhtml filename="introduction.html"?>
 
-  <title>Introduction</title>
+  <title>介绍</title>
 
-  <para>In this chapter, we enter the building site and start constructing the
-  LFS system in earnest. That is, we chroot into the temporary mini Linux system,
-  make a few final preparations, and then begin installing the packages.</para>
+  <para>在本章中，我们将进入编制环境，真正开始搭建 LFS 系统。也就是说，我们 chroot 到临时的 Linux 系统中，做几项最后的准备工作，然后开始安装程序包。</para>
 
-  <para>The installation of this software is straightforward. Although in many
-  cases the installation instructions could be made shorter and more generic,
-  we have opted to provide the full instructions for every package to minimize
-  the possibilities for mistakes.  The key to learning what makes a Linux system
-  work is to know what each package is used for and why you (or the system)
-  may need it.</para>
+  <para>安装这些软件是很简单的。虽然在很多情况下安装指令可以更加简短和通用，我们决定给每个程序包提供完整的指令以最小化出错的可能。学习 Linux 系统如何工作的关键就是了解每个程序包的用途，还有你 (或者系统) 为什么会需要它。</para>
 
-  <para>We do not recommend using optimizations.  They can make
-  a program run slightly faster, but they may also cause compilation
-  difficulties and problems when running the program.  If a package refuses to
-  compile when using optimization, try to compile it without optimization and
-  see if that fixes the problem. Even if the package does compile when using
-  optimization, there is the risk it may have been compiled incorrectly because
-  of the complex interactions between the code and build tools.  Also note that
-  the <option>-march</option> and <option>-mtune</option> options using values
-  not specified in the book have not been tested. This may cause problems with
-  the toolchain packages (Binutils, GCC and Glibc).  The small potential gains
-  achieved in using compiler optimizations are often outweighed by the risks.
-  First-time builders of LFS are encouraged to build without custom
-  optimizations. The subsequent system will still run very fast and be stable
-  at the same time.</para>
+  <para>我们不推荐使用优化。它们能够使程序运行速率略微加快，但也可能导致编译难度和运行时的问题。如果一个程序包使用了优化无法编译，请尝试关闭优化并编译之，看能否解决问题。即使一个程序能够在使用优化的条件下编译，它也有编译不正确的风险。代码和编制工具之间的交互是非常复杂的。还要注意，给 <option>-march</option> 和 <option>-mtune</option> 选项使用本书中没有指定的值是未经测试的。这可能导致工具链程序包 (Binutils、GCC 和 Glibc) 出现问题。使用编译器优化的潜在优势通常没有风险突出。我们鼓励首次编制 LFS 的用户不要自定义优化。产生的系统仍然会运行速率很快并且还很稳定。</para>
 
-  <para>The order that packages are installed in this chapter needs to be
-  strictly followed to ensure that no program accidentally acquires a path
-  referring to <filename class="directory">/tools</filename> hard-wired into
-  it.  For the same reason, do not compile separate packages in parallel.
-  Compiling in parallel may save time (especially on dual-CPU machines), but it
-  could result in a program containing a hard-wired path to <filename
-  class="directory">/tools</filename>, which will cause the program to stop
-  working when that directory is removed.</para>
+  <para>本章中安装程序包的顺序要严格遵守，以确保不会有程序偶然获得一个到 <filename class="directory">/tools</filename> 中的路径并嵌入其中。出于某些原因，不要并行编译不同的程序包。并行编译可能会节省一些时间 (尤其在多线程计算机上)，但可能导致程序嵌入到 <filename class="directory">/tools</filename> 的路径，一旦此目录被移除，这个程序就会停止工作。(译注：并行 make 参数依然可以安全使用。)</para>
 
-  <para>Before the installation instructions, each installation page provides
-  information about the package, including a concise description of what it
-  contains, approximately how long it will take to build, and how much disk
-  space is required during this building process. Following the installation
-  instructions, there is a list of programs and libraries (along with brief
-  descriptions of these) that the package installs.</para>
+  <para>在安装指令之前，每个程序包都提供了有关该程序包的信息，简要描述了它包含的内容，编制的预计时间和编制过程需要的磁盘空间。在安装指令之后还列出并简单介绍了该程序包安装的程序和库。</para>
 
-  <note><para>The SBU values and required disk space includes
-  test suite data for all applicable packages in Chapter 6.</para></note>
+  <note><para>第六章中的 SBU 值和需求磁盘空间包含了测试套件数据。对所有可用的程序包都是如此。</para></note>
 
 </sect1>
