@@ -54,6 +54,14 @@
       </listitem>
     </varlistentry>
 
+    <varlistentry>
+      <term>Glibc DNS 解析补丁 - <token>&glibc-fix-resolv-patch-size;</token>:</term>
+      <listitem>
+        <para>下载：<ulink url="&patches-root;&glibc-fix-resolv-patch;"/></para>
+        <para>MD5 指纹码：<literal>&glibc-fix-resolv-patch-md5;</literal></para>
+      </listitem>
+    </varlistentry>
+
 <!--
     <varlistentry>
       <term>GRUB Disk Geometry Patch - <token>&grub-geometry-patch-size;</token>：</term>

@@ -33,6 +33,18 @@
 
 -->
     <listitem>
+      <para>2012-08-27</para>
+      <itemizedlist>
+        <listitem>
+          <para>[bdubbs] - 加入一个补丁，修复 glibc 偶尔在名称服务器有问题的条件下崩溃的问题。修复 <ulink url="&lfs-ticket-root;3172">#3172</ulink>。</para>
+        </listitem>
+        <listitem>
+          <para>[bdubbs] - 给第五章的 glibc 加入指令，如果宿主系统中没有 rpc 头文件则添加之。</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
       <para>2012-08-26</para>
       <itemizedlist>
         <listitem>

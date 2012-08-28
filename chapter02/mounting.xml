@@ -12,11 +12,11 @@
 
   <para>新的文件已经创建，现在要让它可以被我们读写。为此，我们需要将这个分区挂载到一个指定的挂载点。根据本书中的需求，我门假定这个文件系统被挂载到 <filename class="directory">/mnt/lfs</filename>，但是这个可以自己选择。</para>
 
-  <para>选择一个挂载点并将其赋值给环境变量 <envar>LFS</envar>， 可以使用：</para>
+  <para>选择一个挂载点并将其赋值给环境变量 <envar>LFS</envar>，运行：</para>
 
 <screen role="nodump"><userinput>export LFS=/mnt/lfs</userinput></screen>
 
-  <para>接下来，使用如下命令创建挂载点并将 LFS 文件系统挂载到其上：</para>
+  <para>接下来，运行如下命令创建挂载点并将 LFS 文件系统挂载到其上：</para>
 
 <screen role="nodump"><userinput>mkdir -pv $LFS
 mount -v -t ext3 /dev/<replaceable>&lt;xxx&gt;</replaceable> $LFS</userinput></screen>
