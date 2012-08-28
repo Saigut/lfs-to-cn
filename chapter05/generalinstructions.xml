@@ -49,7 +49,7 @@
           <para>变更至源代码目录。</para>
         </listitem>
         <listitem id='buildinstr' xreflabel='程序包编制指令'>
-          <para>For each package:</para>
+          <para>对于每个程序包：</para>
           <orderedlist numeration="loweralpha" spacing="compact">
             <listitem>
               <para>使用 <command>tar</command> 程序，提取要编制的程序包。在第五章中，确保作为 <emphasis>lfs</emphasis> 用户提取程序包。</para>
