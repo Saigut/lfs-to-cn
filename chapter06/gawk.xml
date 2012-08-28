@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
   "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
   <!ENTITY % general-entities SYSTEM "../general.ent">
@@ -23,7 +23,7 @@
   <sect2 role="package">
     <title/>
 
-    <para>The Gawk package contains programs for manipulating text files.</para>
+    <para>Gawk 程序包包含用于操作文本文件的程序。</para>
 
     <segmentedlist>
       <segtitle>&buildtime;</segtitle>
@@ -64,7 +64,7 @@ cp    -v doc/{awkforai.txt,*.{eps,pdf,jpg}} /usr/share/doc/gawk-&gawk-version;</
   </sect2>
 
   <sect2 id="contents-gawk" role="content">
-    <title>Contents of Gawk</title>
+    <title>Gawk 的内容</title>
 
     <segmentedlist>
       <segtitle>Installed programs</segtitle>
