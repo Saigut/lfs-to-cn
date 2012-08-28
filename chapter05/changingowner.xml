@@ -23,7 +23,7 @@
   <para>虽然 <filename class="directory">$LFS/tools</filename> 目录一旦 LFS 系统完成就可以删除，也可以留着用来编制额外的<emphasis>相同版本的</emphasis> LFS 系统。是否要备份 <filename class="directory">$LFS/tools</filename> 是个人偏好。</para>
 
   <caution>
-    <para>如果你想要保留临时工具用于编制未来的 LFS 系统，<emphasis>n现在</emphasis>就该备份了。此后第六章中的命令会改变现在到位的工具，使它们对以后的编制毫无用处。</para>
+    <para>如果你想要保留临时工具用于编制未来的 LFS 系统，<emphasis>现在</emphasis>就该备份了。此后第六章中的命令会改变现在到位的工具，使它们对以后的编制毫无用处。</para>
   </caution>
 
 </sect1>

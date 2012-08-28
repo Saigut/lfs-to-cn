@@ -23,7 +23,7 @@
   <sect2 role="package">
     <title/>
 
-    <para>Sed 程序包包含一个流编辑器</para>
+    <para>Sed 程序包包含一个流编辑器。</para>
 
     <segmentedlist>
       <segtitle>&buildtime;</segtitle>

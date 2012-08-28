@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
   "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
   <!ENTITY % general-entities SYSTEM "../general.ent">
@@ -23,8 +23,7 @@
   <sect2 role="package">
     <title/>
 
-    <para>The Texinfo package contains programs for reading, writing, and
-    converting info pages.</para>
+    <para>Texinfo 程序包包含用于读写和转码信息页面的程序。</para>
 
     <segmentedlist>
       <segtitle>&buildtime;</segtitle>
@@ -93,7 +92,7 @@ done</userinput></screen>
   </sect2>
 
   <sect2 id="contents-texinfo" role="content">
-    <title>Contents of Texinfo</title>
+    <title>Texinfo 的内容</title>
 
     <segmentedlist>
       <segtitle>Installed programs</segtitle>

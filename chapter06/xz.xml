@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
   "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
   <!ENTITY % general-entities SYSTEM "../general.ent">
@@ -23,11 +23,7 @@
   <sect2 role="package">
     <title/>
 
-    <para>The Xz package contains programs for compressing and decompressing
-    files. It provides capabilities for the lzma and the newer xz compression
-    formats.  Compressing text files with <command>xz</command> yields a better
-    compression percentage than with the traditional <command>gzip</command> or
-    <command>bzip2</command> commands.</para>
+    <para>Xz 程序包包含用于压缩和解压缩文件的程序。它兼容 lzma 和更新的 xz 压缩格式。以 <command>xz</command> 压缩文本文件的压缩率比传统的 <command>gzip</command> 或 <command>bzip2</command> 命令更好。</para>
 
     <segmentedlist>
       <segtitle>&buildtime;</segtitle>
@@ -63,7 +59,7 @@
   </sect2>
 
   <sect2 id="contents-xz" role="content">
-    <title>Contents of Xz</title>
+    <title>Xz 的内容</title>
 
     <segmentedlist>
       <segtitle>Installed programs</segtitle>
