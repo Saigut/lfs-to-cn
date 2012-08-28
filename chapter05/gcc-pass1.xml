@@ -47,7 +47,7 @@
 
     <note><para>关于这一节经常出现误解。此过程与其他每一节都是一样的，就像之前在<xref linkend='buildinstr'/>中解释的那样。首先从源代码目录中提取 gcc 压缩包然后改变到创建的目录，到这个时候再继续运行以下指令。</para></note>
 
-<screen><userinput remap="pre">tar -jxf ../mpfr-&mpfr-version;.tar.bz2
+<screen><userinput remap="pre">tar -Jxf ../mpfr-&mpfr-version;.tar.xz
 mv -v mpfr-&mpfr-version; mpfr
 tar -Jxf ../gmp-&gmp-version;.tar.xz
 mv -v gmp-&gmp-version; gmp
@@ -71,6 +71,10 @@ do
 done</userinput></screen>
 
     <para>由于上文似乎很难跟进，我们把它拆解开来。首先我们找到 <filename class="directory">gcc/config</filename> 目录中所有名为 <filename>linux.h</filename>、<filename>linux64.h</filename> 或者 <filename>sysv4.h</filename> 的文件。对于找到的每个文件，我们把它复制为一个有同样名字但是加上 <quote>.orig</quote> 后缀。然后第一个 sed 表达式将出现的所有 <quote>/lib/ld</quote>、<quote>/lib64/ld</quote> 或 <quote>/lib32/ld</quote> 替换为 <quote>/tools</quote>，第二个替换不可更改的 <quote>/usr</quote>。然后我们在文件末尾添加我们的声明，调节包含搜索路径和起始文件前缀。最后我们用 <command>touch</command> 来更新复制的文件的时间戳。在与 <command>cp -u</command> 联用时这可以防止由于误操作将命令运行两次而改变原有文件。</para>
+    
+    <para>不能正确检测堆栈保护，会导致 Glibc-&glibc-version; 编制时出现问题。应用以下命令修复之：</para>
+
+<screen><userinput remap="pre">sed -i '/k prot/agcc_cv_libc_provides_ssp=yes' gcc/configure</userinput></screen>
 
     <para>GCC 文档推荐在源代码目录外创建目录编制 GCC：</para>
 
