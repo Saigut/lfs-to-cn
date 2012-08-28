@@ -54,19 +54,19 @@ cd ../binutils-build</userinput></screen>
 
     <para>准备编译 Binutils：</para>
 
-<screen><userinput remap="configure">CC="$LFS_TGT-gcc -B/tools/lib/" \
-AR=$LFS_TGT-ar                  \
-RANLIB=$LFS_TGT-ranlib          \
-../binutils-&binutils-version;/configure      \
-        --prefix=/tools         \
-        --disable-nls           \
-        --with-lib-path=/tools/lib</userinput></screen>
+<screen><userinput remap="configure">CC=$LFS_TGT-gcc            \
+AR=$LFS_TGT-ar             \
+RANLIB=$LFS_TGT-ranlib     \
+../binutils-&binutils-version;/configure \
+    --prefix=/tools        \
+    --disable-nls          \
+    --with-lib-path=/tools/lib</userinput></screen>
 
     <variablelist>
       <title>新的配置选项的含义：</title>
 
       <varlistentry>
-        <term><parameter>CC="$LFS_TGT-gcc -B/tools/lib/" AR=$LFS_TGT-ar RANLIB=$LFS_TGT-ranlib</parameter></term>
+        <term><parameter>CC=$LFS_TGT-gcc AR=$LFS_TGT-ar RANLIB=$LFS_TGT-ranlib</parameter></term>
         <listitem>
           <para>因为这一次是原生编制 Binutils，设置这些变量可以确保编制系统使用交叉编译器和相关工具而不是宿主系统上的工具。</para>
         </listitem>
