@@ -142,7 +142,7 @@ make DESTDIR=/usr/pkg/libfoo/1.1 install</userinput></screen>
 
     <para>可能还要给新系统编制一个新内核，这取决于原有内核的配置和系统硬件之间的差异。</para>
 
-    <para>最后要通过<xref linkend="ch-bootable-grub"/>使新系统能够启动。</para>
+    <para>最后要通过<xref linkend="ch-bootable-grub"/>使新系统能够引导。</para>
 
   </sect2>
 

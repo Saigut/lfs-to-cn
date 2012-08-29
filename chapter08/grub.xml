@@ -14,7 +14,7 @@
     <address>&grub-url;</address>
   </sect1info>
 
-  <title>Using GRUB to Set Up the Boot Process</title>
+  <title>使用 GRUB 设置引导过程</title>
 
   <sect2>
     <title>Introduction</title>
