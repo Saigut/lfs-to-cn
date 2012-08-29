@@ -126,13 +126,13 @@ make DESTDIR=/usr/pkg/libfoo/1.1 install</userinput></screen>
   </sect2>
 
   <sect2>
-    <title>在多计算机上部署 LFS</title>
+    <title>在多台计算机上部署 LFS</title>
 
     <para>LFS 系统的一大优势就是没有文件依赖在磁盘系统中的位置。复制 LFS 系统到另一台架构相似的计算机上只要用 <command>tar</command> 打包包含根目录的 LFS 分区 (基础 LFS 副本压缩之前大约 250 MB)，并通过网络或光盘复制到新系统上解压缩即可。然后要更改几个配置文件。要更新的配置文件包括：
     <filename>/etc/hosts</filename>、
     <filename>/etc/fstab</filename>、
     <filename>/etc/passwd</filename>、
-    <filename>/etc/group</filename>,、
+    <filename>/etc/group</filename>、
     <filename>/etc/shadow</filename>、
     <filename>/etc/ld.so.conf</filename>、
     <filename>/etc/scsi_id.config</filename>、
