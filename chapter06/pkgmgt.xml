@@ -86,117 +86,63 @@ make DESTDIR=/usr/pkg/libfoo/1.1 install</userinput></screen>
     </sect3>
 
     <sect3>
-      <title>Timestamp Based</title>
+      <title>基于时间戳</title>
 
-      <para>In this technique, a file is timestamped before the installation of
-      the package. After the installation, a simple use of the
-      <command>find</command> command with the appropriate options can generate
-      a log of all the files installed after the timestamp file was created. A
-      package manager written with this approach is install-log.</para>
+      <para>在这种技巧中，程序包安装之前先给一个文件打上时间戳。安装过后简单地使用 <command>find</command> 命令的恰当选项就可以创建此时间戳文件创建之后安装的所有文件的日志。install-log 就是用这种方式写成的程序包管理器。</para>
 
-      <para>Though this scheme has the advantage of being simple, it has two
-      drawbacks. If, during installation, the files are installed with any
-      timestamp other than the current time, those files will not be tracked by
-      the package manager. Also, this scheme can only be used when one package
-      is installed at a time. The logs are not reliable if two packages are
-      being installed on two different consoles.</para>
+      <para>虽然这种方式具有操作简单的优势，它也有两个缺点。如果在安装过程中有某些文件不是以当前时间作为时间戳安装的，这些文件就不会被程序包管理器追踪。另外，这种方式只能在每次安装一个程序包的条件下使用。如果在两个不同的控制台上同时安装两个程序包，日志就会不可靠。</para>
 
     </sect3>
 
     <sect3>
-      <title>Tracing Installation Scripts</title>
+      <title>追踪安装脚本</title>
 
-      <para>In this approach, the commands that the installation scripts perform
-      are recorded.  There are two techniques that one can use:</para>
+      <para>在这种方法记录安装脚本运行的操作。有两种技巧可以使用：</para>
 
-      <para>The <envar>LD_PRELOAD</envar> environment variable can be set to
-      point to a library to be preloaded before installation.  During
-      installation, this library tracks the packages that are being installed by
-      attaching itself to various executables such as <command>cp</command>,
-      <command>install</command>, <command>mv</command> and tracking the system
-      calls that modify the filesystem. For this approach to work, all the
-      executables need to be dynamically linked without the suid or sgid bit.
-      Preloading the library may cause some unwanted side-effects during
-      installation. Therefore, it is advised that one performs some tests to
-      ensure that the package manager does not break anything and logs all the
-      appropriate files.</para>
+      <para>可以设置 <envar>LD_PRELOAD</envar> 环境变量指向一个在安装之前预加载的库。在安装过程中，这个库将自己与多个可执行文件，如 <command>cp</command>、<command>install</command> 和 <command>mv</command>，来跟踪修改文件系统的系统调用。要让这种方式工作，所有的可执行文件都要不带 suid 和 sgid 位动态链接。预加载库可能在安装过程中产生你不想要的副作用。所以我们推荐进行一些测试来确保程序包管理器不会影响正常工作并记录所有的对应文件。</para>
 
-      <para>The second technique is to use <command>strace</command>, which
-      logs all system calls made during the execution of the installation
-      scripts.</para>
+      <para>第二种技巧就是使用 <command>strace</command>，它会记录安装脚本执行过程中所有的系统调用。</para>
     </sect3>
 
     <sect3>
-      <title>Creating Package Archives</title>
+      <title>创建程序包归档</title>
 
-      <para>In this scheme, the package installation is faked into a separate
-      tree as described in the Symlink style package management. After the
-      installation, a package archive is created using the installed files.
-      This archive is then used to install the package either on the local
-      machine or can even be used to install the package on other machines.</para>
+      <para>在这种方式中，程序包安装被伪装到一个独立的目录，与符号链接式程序包管理相同。在安装过后，用安装的文件创建一个程序包归档。这个归档可以用于安装这个程序包到本机甚至其他计算机。</para>
 
-      <para>This approach is used by most of the package managers found in the
-      commercial distributions. Examples of package managers that follow this
-      approach are RPM (which, incidentally, is required by the <ulink
-      url="http://www.linux-foundation.org/en/Specifications">Linux
-      Standard Base Specification</ulink>), pkg-utils, Debian's apt, and
-      Gentoo's Portage system.  A hint describing how to adopt this style of
-      package management for LFS systems is located at <ulink
-      url="&hints-root;fakeroot.txt"/>.</para>
+      <para>这种方式被多数商业发行版中的程序包管理器应用。以这种方式工作的程序包管理器包括 RPM (被 <ulink url="http://www.linux-foundation.org/en/Specifications">Linux 基础标准</ulink>顺带要求)、pkg-utils、Debian 的 apt 和 Gentoo 的 Portage 系统。有关如何在 LFS 系统中应用这种程序包管理方式的提示位于 <ulink url="&hints-root;fakeroot.txt"/>。</para>
 
-      <para>Creation of package files that include dependency information is
-      complex and is beyond the scope of LFS.</para>
+      <para>创建包含依赖关系信息的程序包文件是很复杂的，在 LFS 的考虑范围之外。</para>
 
-      <para>Slackware uses a <command>tar</command> based system for package 
-      archives.  This system purposely does not handle package dependencies
-      as more complex package managers do.  For details of Slackware package
-      management, see <ulink
-      url="http://www.slackbook.org/html/package-management.html"/>.</para>
+      <para>Slackware 使用一种基于 <command>tar</command> 的程序包归档系统。这个系统并没有像复杂的程序包管理器那样处理程序包依赖关系。有关 Slackware 程序包管理的细节，参考 <ulink  url="http://www.slackbook.org/html/package-management.html"/>。</para>
     </sect3>
 
     <sect3>
-      <title>User Based Management</title>
+      <title>基于用户管理</title>
 
-      <para>This scheme, unique to LFS, was devised by Matthias Benkmann, and is
-      available from the <ulink url="&hints-index;">Hints Project</ulink>. In
-      this scheme, each package is installed as a separate user into the
-      standard locations. Files belonging to a package are easily identified by
-      checking the user ID. The features and shortcomings of this approach are
-      too complex to describe in this section. For the details please see the
-      hint at <ulink url="&hints-root;more_control_and_pkg_man.txt"/>.</para>
+      <para>这种方式是 LFS 特有的，由 Matthias Benkmann 提出，在 <ulink url="&hints-index;">Hints 工程</ulink>中可用。这种方式要求每个程序包都作为独立的用户安装到标准位置。属于某一个程序包的文件可以通过检查用户 ID 来简单识别。这种方法的特点和缺陷过于复杂，在本章中不详细列举。其细节请参考 <ulink url="&hints-root;more_control_and_pkg_man.txt"/>。</para>
 
     </sect3>
 
   </sect2>
 
   <sect2>
-    <title>Deploying LFS on Multiple Systems</title>
+    <title>在多计算机上部署 LFS</title>
 
-    <para>One of the advantages of an LFS system is that there are no files that
-    depend on the position of files on a disk system.  Cloning an LFS build to
-    another computer with an architecture similar to the base system is as
-    simple as using <command>tar</command> on the LFS partition that contains
-    the root directory (about 250MB uncompressed for a base LFS build), copying
-    that file via network transfer or CD-ROM to the new system and expanding
-    it.  From that point, a few configuration files will have to be changed.
-    Configuration files that may need to be updated include: 
-    <filename>/etc/hosts</filename>,
-    <filename>/etc/fstab</filename>,
-    <filename>/etc/passwd</filename>,
-    <filename>/etc/group</filename>,
-    <filename>/etc/shadow</filename>,
-    <filename>/etc/ld.so.conf</filename>,
-    <filename>/etc/scsi_id.config</filename>,
-    <filename>/etc/sysconfig/network</filename> and
+    <para>LFS 系统的一大优势就是没有文件依赖在磁盘系统中的位置。复制 LFS 系统到另一台架构相似的计算机上只要用 <command>tar</command> 打包包含根目录的 LFS 分区 (基础 LFS 副本压缩之前大约 250 MB)，并通过网络或光盘复制到新系统上解压缩即可。然后要更改几个配置文件。要更新的配置文件包括：
+    <filename>/etc/hosts</filename>、
+    <filename>/etc/fstab</filename>、
+    <filename>/etc/passwd</filename>、
+    <filename>/etc/group</filename>,、
+    <filename>/etc/shadow</filename>、
+    <filename>/etc/ld.so.conf</filename>、
+    <filename>/etc/scsi_id.config</filename>、
+    <filename>/etc/sysconfig/network</filename> 和
     <filename>/etc/sysconfig/network-devices/ifconfig.eth0/ipv4</filename>.    
     </para>
 
-    <para>A custom kernel may need to be built for the new system depending on
-    differences in system hardware and the original kernel
-    configuration.</para>
+    <para>可能还要给新系统编制一个新内核，这取决于原有内核的配置和系统硬件之间的差异。</para>
 
-    <para>Finally the new system has to be made bootable via <xref
-    linkend="ch-bootable-grub"/>.</para>
+    <para>最后要通过<xref linkend="ch-bootable-grub"/>使新系统能够启动。</para>
 
   </sect2>
 
