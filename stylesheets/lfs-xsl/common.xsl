@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='ISO-8859-1'?>
 
 <!--
-$LastChangedBy: manuel $
-$Date: 2007-07-06 05:18:33 +0800 (五, 2007-07-06) $
+$LastChangedBy: bdubbs $
+$Date: 2012-08-30 04:45:23 +0800 (四, 2012-08-30) $
 -->
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
@@ -27,7 +27,7 @@ $Date: 2007-07-06 05:18:33 +0800 (五, 2007-07-06) $
            We create this param to can have gentext support in both
            the Index page title and links that point to the Index page.
            It also allow us to change the title, if wanted.
-           Note: To change the title involves creating the appropiate
+           Note: To change the title involves creating the appropriate
            entries in lfs-l10n.xml -->
   <xsl:param name="index-title">Index</xsl:param>
 

@@ -33,6 +33,18 @@
 
 -->
     <listitem>
+      <para>2012-08-29</para>
+      <itemizedlist>
+        <listitem>
+          <para>[bdubbs] - 修复拼写错误。感谢 Gilles Espinasse。/para>
+        </listitem>
+        <listitem>
+          <para>[bdubbs] - 给时区安装、udev 和网络配置加入新的解释。</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
       <para>2012-08-27</para>
       <itemizedlist>
         <listitem>

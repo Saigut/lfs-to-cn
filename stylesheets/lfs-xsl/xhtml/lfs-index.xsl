@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='ISO-8859-1'?>
 
 <!--
-$LastChangedBy: manuel $
-$Date: 2007-07-06 05:18:33 +0800 (五, 2007-07-06) $
+$LastChangedBy: bdubbs $
+$Date: 2012-08-30 04:45:23 +0800 (四, 2012-08-30) $
 -->
 
 <!DOCTYPE xsl:stylesheet [
@@ -48,7 +48,7 @@ $Date: 2007-07-06 05:18:33 +0800 (五, 2007-07-06) $
   </xsl:template>
 
     <!--Divisions:
-          Translate alphabetical divisons titles to by-type titles.
+          Translate alphabetical divisions titles to by-type titles.
           Added gentext support to divisions titles.
           Using h2 for divisions titles.
           Changed output from dl format to ul format. -->

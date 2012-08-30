@@ -10,7 +10,7 @@
 
   <title>创建一个新分区</title>
 
-  <para>像大多数操作系统一样，LFS 系统通常被安装在一个磁盘分区上。我们建议使用一个空的分区构建一个 LFS 系统，或者，如果你有足够多的未分配空间，新建一个分区。</para>
+  <para>像大多数操作系统一样，LFS 系统通常被安装在一个指定的磁盘分区上。我们建议使用一个空的分区构建一个 LFS 系统，或者，如果你有足够多的未分配空间，新建一个分区。</para>
 
 <!--
 
@@ -35,7 +35,7 @@
 
   <note><para>对于有经验的用户来说，还可以选择其他的分区方案。新的 LFS 系统可以存在于软件 <ulink url="&blfs-root;/view/svn/postlfs/raid.html">RAID</ulink> 阵列或者 <ulink url="&blfs-root;/view/svn/postlfs/aboutlvm.html">LVM</ulink> 逻辑卷上。然而，其中某些选项需求 <ulink url="&blfs-root;/view/svn/postlfs/initramfs.html">initramfs</ulink>，这就是高级的话题了。这些分区方法对于第一次接触 LFS 的用户并不推荐。</para></note>
 
-  <para>请记住你将使用的分区 (例如<filename class="devicefile">hda5</filename>)。本书将此分区称作 LFS 分区。同样记住 <systemitem class="filesystem">swap</systemitem> 分区的名称。这些名称会在 <filename>/etc/fstab</filename> 文件中用到。</para>
+  <para>请记住你将使用的分区 (例如 <filename class="devicefile">hda5</filename>)。本书将此分区称作 LFS 分区。同样记住 <systemitem class="filesystem">swap</systemitem> 分区的名称。这些名称会在 <filename>/etc/fstab</filename> 文件中用到。</para>
 
   <sect2>
   <title>其他分区问题</title>

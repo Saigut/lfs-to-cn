@@ -4,7 +4,7 @@
 <!-- This file is generated from param.xweb -->
 
 <!-- ********************************************************************
-     $Id: param.xsl 8369 2007-09-09 08:55:14Z manuel $
+     $Id: param.xsl 9967 2012-08-29 20:45:23Z bdubbs $
      ********************************************************************
 
      This file is part of the XSL DocBook Stylesheet distribution.
@@ -81,7 +81,7 @@
 <xsl:attribute name="space-after.optimum">1em</xsl:attribute>
 <xsl:attribute name="space-after.maximum">2em</xsl:attribute>
 </xsl:attribute-set>
-<xsl:param name="body.font.family">AR PL UKai CN</xsl:param>
+<xsl:param name="body.font.family">serif</xsl:param>
 <xsl:param name="body.font.master">10</xsl:param>
 <xsl:param name="body.font.size">
  <xsl:value-of select="$body.font.master"/><xsl:text>pt</xsl:text>
@@ -351,7 +351,7 @@ set       toc,title
   
 
 <xsl:param name="keep.relative.image.uris" select="0"/>
-<xsl:param name="l10n.gentext.default.language">zh_cn</xsl:param>
+<xsl:param name="l10n.gentext.default.language">en</xsl:param>
 <xsl:param name="l10n.gentext.language"/>
 <xsl:param name="l10n.gentext.use.xref.language" select="0"/>
 <xsl:param name="l10n.lang.value.rfc.compliant" select="1"/>
@@ -823,7 +823,7 @@ set       toc,title
 <xsl:param name="tex.math.delims" select="1"/>
 <xsl:param name="tex.math.in.alt"/>
   <xsl:param name="textinsert.extension" select="1"/>
-<xsl:param name="title.font.family">AR PL UMing CN</xsl:param>
+<xsl:param name="title.font.family">sans-serif</xsl:param>
 <xsl:param name="title.margin.left">
   <xsl:choose>
     <xsl:when test="$fop.extensions != 0">-4pc</xsl:when>
@@ -832,7 +832,7 @@ set       toc,title
   </xsl:choose>
 </xsl:param>
 <xsl:param name="toc.indent.width">24</xsl:param>
-<!-- inconsistant point specification? -->
+<!-- inconsistent point specification? -->
 <xsl:attribute-set name="toc.line.properties">
   <xsl:attribute name="text-align-last">justify</xsl:attribute>
   <xsl:attribute name="text-align">start</xsl:attribute>
