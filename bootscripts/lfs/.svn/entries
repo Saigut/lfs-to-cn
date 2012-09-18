@@ -1,40 +1,0 @@
-10
-
-dir
-9962
-svn://svn.linuxfromscratch.org/LFS/trunk/BOOK/bootscripts/lfs
-svn://svn.linuxfromscratch.org/LFS
-
-
-
-2012-08-24T03:23:34.095784Z
-9960
-bdubbs
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-4aa44e1e-78dd-0310-a6d2-fbcd4c07a689
-
-sysconfig
-dir
-
-init.d
-dir
-
-lib
-dir
-
-sbin
-dir
-
