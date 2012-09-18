@@ -38,17 +38,10 @@
   </sect2>
 
   <sect2 role="installation">
-    <title>Installation of Glibc</title>
+    <title>安装 Glibc</title>
 
     <note>
-      <para>Some packages outside of LFS suggest installing GNU libiconv in
-      order to translate data from one encoding to another. The project's
-      home page (<ulink url="http://www.gnu.org/software/libiconv/"/>) says
-      <quote>This library provides an <function>iconv()</function>
-      implementation, for use on systems which don't have one, or whose
-      implementation cannot convert from/to Unicode.</quote> Glibc provides
-      an <function>iconv()</function> implementation and can convert from/to
-      Unicode, therefore libiconv is not required on an LFS system.</para>
+      <para>LFS 之外的某些程序包推荐安装 GNU libiconv 用于转换文本编码。此工程的主页 (<ulink url="http://www.gnu.org/software/libiconv/"/>) 表示 <quote>此库提供一个 <function>iconv()</function> 实现，用于没有提供此实现或无法操作 Unicode 的系统。</quote> Glibc 提供一个 <function>iconv()</function> 实现并且可以操作 Unicode，所以在 LFS 系统上不必安装 libiconv。</para>
     </note>
 
     <para>The Glibc build system is self-contained and will install
