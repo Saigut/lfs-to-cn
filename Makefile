@@ -13,10 +13,9 @@ else
   Q = @
 endif
 
-lfs: validate profile-html md5sums
+lfs: validate profile-html
 	@echo "Generating chunked XHTML files..."
-	$(Q)xsltproc --nonet -stringparam chunk.output.encoding UTF-8 \
-	  -stringparam chunk.quietly $(CHUNK_QUIET) \
+	$(Q)xsltproc --nonet -stringparam chunk.output.encoding UTF-8  -stringparam chunk.quietly $(CHUNK_QUIET) \
 	  -stringparam rootid "$(ROOT_ID)" -stringparam base.dir $(BASEDIR)/ \
 	  stylesheets/lfs-chunked.xsl $(RENDERTMP)/lfs-html.xml
 
@@ -41,7 +40,7 @@ lfs: validate profile-html md5sums
 	done;
 
 	$(Q)$(MAKE) wget-list
-	
+
 pdf: validate
 	@echo "Generating profiled XML for PDF..."
 	$(Q)xsltproc --nonet --stringparam profile.condition pdf \
@@ -59,7 +58,7 @@ pdf: validate
 	$(Q)if [ ! -e $(BASEDIR) ]; then \
 	  mkdir -p $(BASEDIR); \
 	fi;
-	$(Q)fop -c ./stylesheets/fop.xconf $(RENDERTMP)/lfs-pdf.fo $(BASEDIR)/$(PDF_OUTPUT)
+	$(Q)fop $(RENDERTMP)/lfs-pdf.fo $(BASEDIR)/$(PDF_OUTPUT)
 
 nochunks: validate profile-html
 	@echo "Generating non chunked XHTML file..."
@@ -112,7 +111,7 @@ md5sums:
 	  stylesheets/md5sum.xsl chapter03/chapter03.xml
 	$(Q)sed -i -e "s/BOOTSCRIPTS-MD5SUM/$(shell md5sum lfs-bootscripts*.tar.bz2 | cut -d' ' -f1)/" \
       $(BASEDIR)/md5sums
-	
+
 #$(Q)sed -i -e "s/UDEV-MD5SUM/$(shell md5sum udev-config*.tar.bz2 | cut -d' ' -f1)/" \
 #$(BASEDIR)/md5sums
 
@@ -121,6 +120,7 @@ dump-commands: validate
 	@echo "Dumping book commands..."
 	$(Q)xsltproc --output $(DUMPDIR)/ \
 	   stylesheets/dump-commands.xsl $(RENDERTMP)/lfs-full.xml
+
 
 all: lfs nochunks pdf dump-commands md5sums
 

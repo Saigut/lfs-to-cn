@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
   "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
   <!ENTITY % general-entities SYSTEM "../general.ent">
@@ -8,7 +8,7 @@
 <sect1 id="ch-system-createfiles">
   <?dbhtml filename="createfiles.html"?>
 
-  <title>Creating Essential Files and Symlinks</title>
+  <title>创建必要的文件和符号链接</title>
 
   <indexterm zone="ch-system-createfiles">
     <primary sortas="e-/etc/passwd">/etc/passwd</primary>
@@ -34,10 +34,7 @@
     <primary sortas="e-/var/log/wtmp">/var/log/wtmp</primary>
   </indexterm>
 
-  <para>Some programs use hard-wired paths to programs which do not exist yet. In
-  order to satisfy these programs, create a number of symbolic links which will be
-  replaced by real files throughout the course of this chapter after the software
-  has been installed:</para>
+  <para>有些程序使用不可更改的路径指向现在还没有到位的程序。为了满足这些程序，创建一些符号链接，在本章中安装对应的软件之后它们会被真正的文件替代：</para>
 
 <screen><userinput>ln -sv /tools/bin/{bash,cat,echo,pwd,stty} /bin
 ln -sv /tools/bin/perl /usr/bin
@@ -46,21 +43,13 @@ ln -sv /tools/lib/libstdc++.so{,.6} /usr/lib
 sed 's/tools/usr/' /tools/lib/libstdc++.la > /usr/lib/libstdc++.la
 ln -sv bash /bin/sh</userinput></screen>
 
-  <para>A proper Linux system maintains a list of the mounted file systems in
-  the file <filename>/etc/mtab</filename>.  Normally, this file would be
-  created when we mount a new file system. Since we will not be mounting any
-  file systems inside our chroot environment, create an empty file for
-  utilities that expect the presence of <filename>/etc/mtab</filename>:</para>
+  <para>正确的 Linux 系统在 <filename>/etc/mtab</filename> 文件中维护一个列表，列出挂载的文件系统。通常它会在我们挂载新的文件系统的时候创建。因为我们不会在 chroot 环境中挂载任何文件系统，创建一个空文件供要求 <filename>/etc/mtab</filename> 存在的工具使用：</para>
 
 <screen><userinput>touch /etc/mtab</userinput></screen>
 
-  <para>In order for user <systemitem class="username">root</systemitem> to be
-  able to login and for the name <quote>root</quote> to be recognized, there
-  must be relevant entries in the <filename>/etc/passwd</filename> and
-  <filename>/etc/group</filename> files.</para>
+  <para>为了让 <systemitem class="username">root</systemitem> 用户能够登录并且要 <quote>root</quote> 这个名字被识别，在 <filename>/etc/passwd</filename> 和 <filename>/etc/group</filename> 这两个文件中就要有对应的条目存在。</para>
 
-  <para>Create the <filename>/etc/passwd</filename> file by running the following
-  command:</para>
+  <para>运行一下命令创建 <filename>/etc/passwd</filename> 文件：</para>
 
 <screen><userinput>cat &gt; /etc/passwd &lt;&lt; "EOF"
 <literal>root:x:0:0:root:/root:/bin/bash
@@ -68,11 +57,9 @@ bin:x:1:1:bin:/dev/null:/bin/false
 nobody:x:99:99:Unprivileged User:/dev/null:/bin/false</literal>
 EOF</userinput></screen>
 
-  <para>The actual password for <systemitem class="username">root</systemitem>
-  (the <quote>x</quote> used here is just a placeholder) will be set later.</para>
+  <para><systemitem class="username">root</systemitem> 用户的实际密码 (这里的 <quote>x</quote> 只用作占位符) 稍后再设置。</para>
 
-  <para>Create the <filename>/etc/group</filename> file by running the following
-  command:</para>
+  <para>运行以下命令创建 <filename>/etc/group</filename> 文件：</para>
 
 <screen><userinput>cat &gt; /etc/group &lt;&lt; "EOF"
 <literal>root:x:0:
@@ -95,18 +82,9 @@ mail:x:34:
 nogroup:x:99:</literal>
 EOF</userinput></screen>
 
-  <para>The created groups are not part of any standard&mdash;they are groups
-  decided on in part by the requirements of the Udev configuration in this
-  chapter, and in part by common convention employed by a number of existing
-  Linux distributions. The Linux Standard Base (LSB, available at <ulink
-  url="http://www.linuxbase.org"/>) recommends only that, besides the group
-  <systemitem class="groupname">root</systemitem> with a Group ID (GID) of 0,
-  a group <systemitem class="groupname">bin</systemitem> with a GID of 1 be
-  present. All other group names and GIDs can be chosen freely by the system
-  administrator since well-written programs do not depend on GID numbers, but
-  rather use the group's name.</para>
+  <para>创建的组并不是任何标准的一部分&mdash;&mdash;它们一部分是本章中 Udev 配置的要求，另一部分是一些已有发行版的惯例。Linux 基础标准 (LSB，位于 <ulink url="http://www.linuxbase.org"/>) 只推荐 <systemitem class="groupname">root</systemitem> 组的 ID 为 0 并且 <systemitem class="groupname">bin</systemitem> 组的 ID 为 1。所有其他组的名称和 ID 都可以由系统管理员自由选择，因为写得好的程序会使用组的名字而不是 ID。</para>
 
-  <para>To remove the <quote>I have no name!</quote> prompt, start a new
+  <para>要移除 <quote>I have no name!</quote> 这个提示符，启动一个新的prompt, start a new
   shell. Since a full Glibc was installed in <xref
   linkend="chapter-temporary-tools"/> and the
   <filename>/etc/passwd</filename> and <filename>/etc/group</filename>

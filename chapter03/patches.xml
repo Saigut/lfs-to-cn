@@ -55,10 +55,18 @@
     </varlistentry>
 
     <varlistentry>
-      <term>Glibc DNS 解析补丁 - <token>&glibc-fix-resolv-patch-size;</token>:</term>
+      <term>Glibc DNS 解析补丁 - <token>&glibc-fix-resolv-patch-size;</token>：</term>
       <listitem>
         <para>下载：<ulink url="&patches-root;&glibc-fix-resolv-patch;"/></para>
         <para>MD5 指纹码：<literal>&glibc-fix-resolv-patch-md5;</literal></para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term>Glibc test-installation.pl 补丁 - <token>&glibc-installation-patch-size;</token>：</term>
+      <listitem>
+        <para>下载：<ulink url="&patches-root;&glibc-installation-patch;"/></para>
+        <para>MD5 指纹码：<literal>&glibc-installation-patch-md5;</literal></para>
       </listitem>
     </varlistentry>
 
@@ -80,7 +88,7 @@
     </varlistentry>
 -->
     <varlistentry>
-      <term>Kbd 加载按键修复补丁 - <token>&kbd-fixes-patch-size;</token>:</term>
+      <term>Kbd 加载按键修复补丁 - <token>&kbd-fixes-patch-size;</token>：</term>
       <listitem>
         <para>Download: <ulink url="&patches-root;&kbd-fixes-patch;"/></para>
         <para>MD5 sum: <literal>&kbd-fixes-patch-md5;</literal></para>
@@ -92,14 +100,6 @@
       <listitem>
         <para>下载：<ulink url="&patches-root;&kbd-backspace-patch;"/></para>
         <para>MD5 指纹码：<literal>&kbd-backspace-patch-md5;</literal></para>
-      </listitem>
-    </varlistentry>
-    
-    <varlistentry>
-      <term>Kmod 测试套件补丁 - <token>&kmod-testsuite-patch-size;</token>：</term>
-      <listitem>
-        <para>下载：<ulink url="&patches-root;&kmod-testsuite-patch;"/></para>
-        <para>MD5 指纹码：<literal>&kmod-testsuite-patch-md5;</literal></para>
       </listitem>
     </varlistentry>
 

@@ -1,8 +1,8 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version='1.0' encoding='ISO-8859-1'?>
 
 <!--
-$LastChangedBy: manuel $
-$Date: 2007-07-06 05:18:33 +0800 (五, 2007-07-06) $
+$LastChangedBy: matthew $
+$Date: 2012-09-05 02:29:02 +0800 (三, 2012-09-05) $
 -->
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
@@ -16,7 +16,7 @@ $Date: 2007-07-06 05:18:33 +0800 (五, 2007-07-06) $
   <xsl:import href="docbook-xsl-snapshot/xhtml/docbook.xsl"/>
 
     <!-- Use ISO-8859-1 for output instead of default UTF-8 -->
-  <xsl:param name="chunker.output.encoding" select="'UTF-8'"/>
+  <xsl:param name="chunker.output.encoding" select="'ISO-8859-1'"/>
 
     <!-- Including our customized elements templates -->
   <xsl:include href="common.xsl"/>

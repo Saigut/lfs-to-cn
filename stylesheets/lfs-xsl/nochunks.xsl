@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='ISO-8859-1'?>
 
 <!--
-$LastChangedBy: manuel $
-$Date: 2007-07-11 03:06:15 +0800 (三, 2007-07-11) $
+$LastChangedBy: matthew $
+$Date: 2012-09-05 02:29:02 +0800 (三, 2012-09-05) $
 -->
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
@@ -16,7 +16,7 @@ $Date: 2007-07-11 03:06:15 +0800 (三, 2007-07-11) $
   <xsl:import href="docbook-xsl-snapshot/xhtml/docbook.xsl"/>
 
     <!-- Fix encoding issues with default UTF-8 output of the xhtml stylesheet -->
-  <xsl:output method="html" encoding="UTF-8" indent="no" />
+  <xsl:output method="html" encoding="ISO-8859-1" indent="no" />
 
    <!-- Including our others customized templates -->
   <xsl:include href="common.xsl"/>

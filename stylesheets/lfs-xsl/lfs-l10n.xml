@@ -1,8 +1,8 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version='1.0' encoding='ISO-8859-1'?>
 
 <!--
 $LastChangedBy: bdubbs $
-$Date: 2008-11-17 02:44:52 +0800 (一, 2008-11-17) $
+$Date: 2012-09-09 05:41:53 +0800 (日, 2012-09-09) $
 -->
 
 <l:i18n xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0">
@@ -36,6 +36,22 @@ $Date: 2008-11-17 02:44:52 +0800 (一, 2008-11-17) $
     <l:gentext key="Others" text="Others"/>
     <l:gentext key="Packages" text="Packages"/>
     <l:gentext key="Programs" text="Programs"/>
+    <l:gentext key="Scripts" text="Scripts"/>
+
+  </l:l10n>
+
+    <!-- French -->
+  <l:l10n xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0"
+          language="fr" english-language-name="French">
+
+    <l:gentext key="description" text="description"/>
+    <l:gentext key="Bootscripts" text="Scripts de démarrage"/>
+    <l:gentext key="Configuration Files" text="Fichiers de configuration"/>
+    <l:gentext key="Kernel Configuration" text="Configuration du noyau"/>
+    <l:gentext key="Libraries" text="Bibliothèques"/>
+    <l:gentext key="Others" text="Autres"/>
+    <l:gentext key="Packages" text="Paquets"/>
+    <l:gentext key="Programs" text="Programmes"/>
     <l:gentext key="Scripts" text="Scripts"/>
 
   </l:l10n>
