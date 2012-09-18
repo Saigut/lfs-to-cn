@@ -112,14 +112,6 @@
     </varlistentry>
 
     <varlistentry>
-      <term>Patch 测试套件修复补丁 - <token>&patch-test-patch-size;</token>：</term>
-      <listitem>
-        <para>下载：<ulink url="&patches-root;&patch-test-patch;"/></para>
-        <para>MD5 指纹码：<literal>&patch-test-patch-md5;</literal></para>
-      </listitem>
-    </varlistentry>
-
-    <varlistentry>
       <term>Perl Libc 补丁 - <token>&perl-libc-patch-size;</token>：</term>
       <listitem>
         <para>下载：<ulink url="&patches-root;&perl-libc-patch;"/></para>

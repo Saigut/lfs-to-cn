@@ -124,7 +124,7 @@ dump-commands: validate
 
 all: lfs nochunks pdf dump-commands md5sums
 
-other: pdf nochunks wget-list md5sums
+other: nochunks wget-list md5sums
 
 .PHONY : all dump-commands lfs nochunks pdf profile-html tmpdir validate \
 	 wget-list maketar md5sums
