@@ -44,12 +44,7 @@
       <para>LFS 之外的某些程序包推荐安装 GNU libiconv 用于转换文本编码。此工程的主页 (<ulink url="http://www.gnu.org/software/libiconv/"/>) 表示 <quote>此库提供一个 <function>iconv()</function> 实现，用于没有提供此实现或无法操作 Unicode 的系统。</quote> Glibc 提供一个 <function>iconv()</function> 实现并且可以操作 Unicode，所以在 LFS 系统上不必安装 libiconv。</para>
     </note>
 
-    <para>The Glibc build system is self-contained and will install
-    perfectly, even though the compiler specs file and linker are still
-    pointing at <filename class="directory">/tools</filename>. The specs
-    and linker cannot be adjusted before the Glibc install because the
-    Glibc autoconf tests would give false results and defeat the goal
-    of achieving a clean build.</para>
+    <para>Glibc 编制系统是很完备的，即使编译器的 specs 文件和链接器仍然指向 <filename class="directory">/tools</filename> 也能完美地编制。specs 和链接器不能在 Glibc 安装之前进行，因为 Glibc 的 autoconf 测试会给出不正确的结果，也就无法实现清洁的编制。</para>
 
 <!--
     This should have been fixed a long time ago.
@@ -62,7 +57,7 @@
 <screen><userinput remap="pre">sed -i '/vi_VN.TCVN/d' localedata/SUPPORTED</userinput></screen>
 -->
 
-    <para>Fix a problem that causes the build to fail in the LFS environment:</para>
+    <para>修复一个导致在 LFS 环境中导致编制失败的问题：</para>
 
 <screen><userinput remap="pre">sed -i 's#&lt;rpc/types.h&gt;#"rpc/types.h"#' sunrpc/rpc_clntout.c</userinput></screen>
 
@@ -78,28 +73,19 @@ sed -i &quot;s|libs -o|libs -L/usr/lib -Wl,-dynamic-linker=$DL -o|&quot; \
         scripts/test-installation.pl
 unset DL</userinput></screen>-->
 
-    <para>When running <command>make install</command>, a script called
-    <filename>test-installation.pl</filename> performs a small sanity test on
-    our newly installed Glibc. Use a patch to fix the bug that causes it to
-    fail:</para>
+    <para>在运行 <command>make install</command> 的时候，一个叫做 <filename>test-installation.pl</filename> 的脚本会对新安装的 Glibc 进行一个小的稳定性测试。用一个补丁修复导致它失败的漏洞：</para>
 
 <screen><userinput remap="pre">patch -Np1 -i ../&glibc-installation-patch;</userinput></screen>
 
-    <para>The <command>ldd</command> shell script contains Bash-specific
-    syntax. Change its default program interpreter to <command>/bin/bash</command>
-    in case another <command>/bin/sh</command> is installed as described in the
-    <ulink url="&blfs-root;view/svn/postlfs/shells.html">Shells</ulink>
-    chapter of the BLFS book:</para>
+    <para><command>ldd</command> 这个 shell 脚本包含 Bash 特有的语法。如果按照 BLFS 中 <ulink url="&blfs-root;view/svn/postlfs/shells.html">Shells</ulink> 一章中的介绍安装了另外的 <command>/bin/sh</command>，将其默认解释器改为 <command>/bin/bash</command>：</para>
 
 <screen><userinput remap="pre">sed -i 's|@BASH@|/bin/bash|' elf/ldd.bash.in</userinput></screen>
 
-    <para>Now fix a problem that causes some applications to crash when 
-    utilizing problem nameservers:</para>
+    <para>现在修复一个在使用有问题的名称服务器时导致某些程序崩溃的问题：</para>
 
 <screen><userinput remap="pre">patch -Np1 -i ../&glibc-fix-resolv-patch;</userinput></screen>
 
-    <para>The Glibc documentation recommends building Glibc outside of the source
-    directory in a dedicated build directory:</para>
+    <para>Glibc 文档推荐在源代码目录外另建目录编译 Glibc：</para>
 
 <screen><userinput remap="pre">mkdir -v ../glibc-build
 cd ../glibc-build</userinput></screen>
@@ -112,7 +98,7 @@ cd ../glibc-build</userinput></screen>
   i?86) echo "CFLAGS += -march=i486 -mtune=native -O3 -pipe" &gt; configparms ;;
 esac</userinput></screen>
 -->
-    <para>Prepare Glibc for compilation:</para>
+    <para>准备编译 Glibc：</para>
 
 <screen><userinput remap="configure">../glibc-&glibc-version;/configure  \
     --prefix=/usr          \
@@ -122,42 +108,33 @@ esac</userinput></screen>
     --libexecdir=/usr/lib/glibc</userinput></screen>
 
     <variablelist>
-      <title>The meaning of the new configure options:</title>
+      <title>配置选项的含义：</title>
 
       <varlistentry>
         <term><parameter>--libexecdir=/usr/lib/glibc</parameter></term>
         <listitem>
-          <para>This changes the location of the <command>pt_chown</command>
-          program from its default of <filename
-          class="directory">/usr/libexec</filename> to <filename
-          class="directory">/usr/lib/glibc</filename>.</para>
+          <para>此项将 <command>pt_chown</command> 程序的位置从默认的 <filename class="directory">/usr/libexec</filename> 改为 <filename class="directory">/usr/lib/glibc</filename>。</para>
         </listitem>
       </varlistentry>
 
     </variablelist>
 
-    <para>Compile the package:</para>
+    <para>编译程序包：</para>
 
 <screen><userinput remap="make">make</userinput></screen>
 
     <important>
-      <para>In this section, the test suite for Glibc is considered critical.
-      Do not skip it under any circumstance.</para>
+      <para>这一节中，Glibc 的测试套件是十分重要的。无论如何都不要跳过它。</para>
     </important>
 
-    <para>Generally a few tests do not pass, but you can generally ignore
-    any of the test failures listed below. Now test the build results:</para>
+    <para>通常有些测试无法通过，但你可以忽略以下列出的测试失败。现在测试结果：</para>
 
 <!-- cp -v ../glibc-&glibc-version;/iconvdata/gconv-modules iconvdata -->
 
 <screen><userinput remap="test">make -k check 2&gt;&amp;1 | tee glibc-check-log
 grep Error glibc-check-log</userinput></screen>
 
-    <para>You will probably see an expected (ignored) failure in the
-    <emphasis>posix/annexc</emphasis> and
-    <emphasis>conform/run-conformtest</emphasis> tests.  In addition the Glibc
-    test suite is somewhat dependent on the host system.  This is a list of the
-    most common issues:</para>
+    <para>你很可能会在 <emphasis>posix/annexc</emphasis> 和 <emphasis>conform/run-conformtest</emphasis> 测试中看到期待的 (被忽略的) 测试失败。另外，Glibc 略微依赖宿主系统。以下列出最常见的问题：</para>
 
     <itemizedlist>
       <!-- Check again after updating from gcc-4.1.x -->
@@ -168,19 +145,11 @@ grep Error glibc-check-log</userinput></screen>
       <!-- Was true in glibc-2.3.6, rt/tst-cpuclock2 in glibc-2.11.1 -->
 
       <listitem>
-        <para>The <emphasis>nptl/tst-clock2</emphasis>,
-        <emphasis>nptl/tst-attr3</emphasis>, 
-        <emphasis>tst/tst-cputimer1</emphasis>, and 
-        <emphasis>rt/tst-cpuclock2</emphasis>
-        tests have been known to fail.  The
-        reason is not completely understood, but indications are that minor
-        timing issues can trigger these failures.</para>
+        <para><emphasis>nptl/tst-clock2</emphasis>、<emphasis>nptl/tst-attr3</emphasis>、<emphasis>tst/tst-cputimer1</emphasis> 和 <emphasis>rt/tst-cpuclock2</emphasis> 已知无法通过。原因尚不完全明确，但可能是由于细微的时钟问题导致。</para>
       </listitem>
 
       <listitem>
-        <para>The math tests sometimes fail when running on
-        systems where the CPU is not a relatively new genuine Intel or
-        authentic AMD processor.</para>
+        <para>在不太新的 Intel/AMD CPU 上数学测试有时会无法通过。</para>
       </listitem>
       
       <!--
@@ -193,53 +162,32 @@ grep Error glibc-check-log</userinput></screen>
       -->
       
       <listitem>
-        <para>When running on older and slower hardware or on systems under
-        load, some tests can fail because of test timeouts being exceeded.
-        Modifying the make check command to set a TIMEOUTFACTOR is reported to 
-        help eliminate these errors (e.g. <command>TIMEOUTFACTOR=16
-        make -k check</command>).</para>
+        <para>在运行于较古老，较缓慢或者负荷很重的系统上时，有些测试会由于超时而无法通过。改动 make check 命令，设置一个 TIMEOUTFACTOR 已知可以减少这些错误 (例如 <command>TIMEOUTFACTOR=16 make -k check</command>。</para>
       </listitem>
       
       <listitem>
-        <para>Other tests known to fail on some architectures are posix/bug-regex32, 
-        misc/tst-writev, elf/check-textrel, nptl/tst-getpid2, and stdio-common/bug22.</para>
+        <para>在某些架构上已知可能失败的测试包括 posix/bug-regex32、misc/tst-writev、elf/check-textrel、nptl/tst-getpid2 和 stdio-common/bug22。</para>
       </listitem>
     
     </itemizedlist>
 
-    <para>Though it is a harmless message, the install stage of Glibc will
-    complain about the absence of <filename>/etc/ld.so.conf</filename>.
-    Prevent this warning with:</para>
+    <para>虽然只是一个无害的消息，Glibc 的安装步骤会因为不存在 <filename>/etc/ld.so.conf</filename> 而报错。如此防止此警告：</para>
 
 <screen><userinput remap="install">touch /etc/ld.so.conf</userinput></screen>
 
-    <para>Install the package:</para>
+    <para>安装程序包：</para>
 
 <screen><userinput remap="install">make install</userinput></screen>
 
-    <para>Install NIS and RPC related headers that are not installed by
-    default; these are required to rebuild glibc and by several BLFS 
-    packages:</para>
+    <para>安装默认没有安装的 NIS 和 RPC 相关的头文件；重新编制 glibc 和几个 BLFS 程序包要求它们：</para>
 
 <screen><userinput remap="install">cp -v ../glibc-&glibc-version;/sunrpc/rpc/*.h /usr/include/rpc
 cp -v ../glibc-&glibc-version;/sunrpc/rpcsvc/*.h /usr/include/rpcsvc
 cp -v ../glibc-&glibc-version;/nis/rpcsvc/*.h /usr/include/rpcsvc</userinput></screen>
 
-    <para>The locales that can make the system respond in a different language
-    were not installed by the above command. None of the locales are required,
-    but if some of them are missing, test suites of the future packages would
-    skip important testcases.</para>
+    <para>区域数据可以使系统以一种不同的语言响应，但没有被以上的命令安装。这些区域数据都不是必须的，但如果其中存在缺失，未来的程序包的测试套件可能会跳过重要的测试情况。</para>
 
-    <para>Individual locales can be installed using the
-    <command>localedef</command> program. E.g., the first
-    <command>localedef</command> command below combines the
-    <filename>/usr/share/i18n/locales/cs_CZ</filename>
-    charset-independent locale definition with the
-    <filename>/usr/share/i18n/charmaps/UTF-8.gz</filename>
-    charmap definition and appends the result to the
-    <filename>/usr/lib/locale/locale-archive</filename> file.
-    The following instructions will install the minimum set of
-    locales necessary for the optimal coverage of tests:</para>
+    <para>分立的区域数据可以使用 <command>localedef</command> 程序安装。例如，以下第一条 <command>localedef</command> 命令将 <filename>/usr/share/i18n/locales/cs_CZ</filename> 这个独立于字符集的区域数据定义与 <filename>/usr/share/i18n/charmaps/UTF-8.gz</filename> 这个字符集定义组合，并将结果附加到 <filename>/usr/lib/locale/locale-archive</filename> 文件。以下指令会安装覆盖必要测试需要的最少区域数据：</para>
 
 <screen role="nodump"><userinput remap="locale-test">mkdir -pv /usr/lib/locale
 localedef -i cs_CZ -f UTF-8 cs_CZ.UTF-8
@@ -264,27 +212,20 @@ localedef -i ru_RU -f UTF-8 ru_RU.UTF-8
 localedef -i tr_TR -f UTF-8 tr_TR.UTF-8
 localedef -i zh_CN -f GB18030 zh_CN.GB18030</userinput></screen>
 
-    <para>In addition, install the locale for your own country, language and
-    character set.</para>
+    <para>随后，安装你自己国家的区域数据。</para>
 
-    <para>Alternatively, install all locales listed in the
-    <filename>glibc-&glibc-version;/localedata/SUPPORTED</filename> file
-    (it includes every locale listed above and many more) at once with the
-    following time-consuming command:</para>
+    <para>你可以用这样一条很消耗时间的命令一次性安装在 <filename>glibc-&glibc-version;/localedata/SUPPORTED</filename> 文件中列出的所有区域数据 (它包含以上所有，以及很多其他的区域数据)：</para>
 
 <screen><userinput remap="locale-full">make localedata/install-locales</userinput></screen>
 
-    <para>Then use the <command>localedef</command> command to create and
-    install locales not listed in the
-    <filename>glibc-&glibc-version;/localedata/SUPPORTED</filename> file
-    in the unlikely case you need them.</para>
+    <para>然后使用 <command>localedef</command> 命令创建 <filename>glibc-&glibc-version;/localedata/SUPPORTED</filename> 文件中没有列出的区域数据。需要它们的情况并不多见。(译注：简体中文 UTF-8 的用户不需要如此)。</para>
     <!-- The Live CD patches the localedata/SUPPORTED file instead of
     running localedef, the results are equivalent -->
 
   </sect2>
 
   <sect2 id="conf-glibc" role="configuration">
-    <title>Configuring Glibc</title>
+    <title>配置 Glibc</title>
 
     <indexterm zone="conf-glibc">
       <primary sortas="e-/etc/nsswitch.conf">/etc/nsswitch.conf</primary>
@@ -294,13 +235,9 @@ localedef -i zh_CN -f GB18030 zh_CN.GB18030</userinput></screen>
       <primary sortas="e-/etc/localtime">/etc/localtime</primary>
     </indexterm>
 
-    <para>The <filename>/etc/nsswitch.conf</filename> file needs to be created
-    because, although Glibc provides defaults when this file is missing or corrupt,
-    the Glibc defaults do not work well in a networked environment. The time zone
-    also needs to be configured.</para>
+    <para>需要创建 <filename>/etc/nsswitch.conf</filename> 这个文件，因为虽然 Glibc 在此文件缺失或损坏时提供默认值，在联网环境中这些默认值工作的并不好。另外还要配置时区。</para>
 
-    <para>Create a new file <filename>/etc/nsswitch.conf</filename> by running the
-    following:</para>
+    <para>运行以下命令创建 <filename>/etc/nsswitch.conf</filename>：</para>
 
 <screen><userinput>cat &gt; /etc/nsswitch.conf &lt;&lt; "EOF"
 <literal># Begin /etc/nsswitch.conf
@@ -320,7 +257,7 @@ rpc: files
 # End /etc/nsswitch.conf</literal>
 EOF</userinput></screen>
 
-    <para>Install timezone data:</para>
+    <para>安装时区数据：</para>
 <screen><userinput>tar -xf ../tzdata&tzdata-version;.tar.gz
 
 ZONEINFO=/usr/share/zoneinfo
@@ -339,22 +276,12 @@ zic -d $ZONEINFO -p America/New_York
 unset ZONEINFO</userinput></screen>
 
     <variablelist>
-      <title>The meaning of the zic commands:</title>
+      <title>zic 命令的含义：</title>
 
       <varlistentry>
         <term><parameter>zic -L /dev/null ...</parameter></term>
         <listitem>
-          <para>This creates posix timezones, without any leap seconds.  It is
-          conventional to put these in both
-          <filename class="directory">zoneinfo</filename> and
-          <filename class="directory">zoneinfo/posix</filename>. It is
-          necessary to put the POSIX timezones in
-          <filename class="directory">zoneinfo</filename>, otherwise various
-          test-suites will report errors. On an embedded system, where space is
-          tight and you do not intend to ever update the timezones, you could save
-          1.9MB by not using the <filename class="directory">posix</filename>
-          directory, but some applications or test-suites might give less good
-          results</para>
+          <para>此项创建 posix 时区，不包含闰秒。将它们置于 <filename class="directory">zoneinfo</filename> 和 <filename class="directory">zoneinfo/posix</filename> 是一种惯例。将 POSIX 时区置于 <filename class="directory">zoneinfo</filename> 中是必要的，否则有的测试套件就会报错。在嵌入式系统中，空间并不充足，你也不会想要更新时区，就可以不使用 <filename class="directory">posix</filename> 目录，能够节省 1.9MB，但是某些应用程序或者测试套件的结果可能不会很理想</para>
         </listitem>
       </varlistentry>
       <varlistentry>
