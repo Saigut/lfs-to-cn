@@ -281,63 +281,44 @@ unset ZONEINFO</userinput></screen>
       <varlistentry>
         <term><parameter>zic -L /dev/null ...</parameter></term>
         <listitem>
-          <para>此项创建 posix 时区，不包含闰秒。将它们置于 <filename class="directory">zoneinfo</filename> 和 <filename class="directory">zoneinfo/posix</filename> 是一种惯例。将 POSIX 时区置于 <filename class="directory">zoneinfo</filename> 中是必要的，否则有的测试套件就会报错。在嵌入式系统中，空间并不充足，你也不会想要更新时区，就可以不使用 <filename class="directory">posix</filename> 目录，能够节省 1.9MB，但是某些应用程序或者测试套件的结果可能不会很理想</para>
+          <para>此项创建 posix 时区，不包含闰秒。将它们置于 <filename class="directory">zoneinfo</filename> 和 <filename class="directory">zoneinfo/posix</filename> 是一种惯例。将 POSIX 时区置于 <filename class="directory">zoneinfo</filename> 中是必要的，否则有的测试套件就会报错。在嵌入式系统中，空间并不充足，你也不会想要更新时区，就可以忽略 <filename class="directory">posix</filename> 目录，能够节省 1.9MB，但是某些应用程序或者测试套件的结果可能不会很理想。</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term><parameter>zic -L leapseconds ...</parameter></term>
         <listitem>
-          <para>This creates right timezones, including leap seconds. On an
-          embedded system, where space is tight and you do not intend to
-          ever update the timezones, or care about the correct time, you could
-          save 1.9MB by omitting the <filename class="directory">right</filename>
-          directory.</para>
+          <para>此项创建正确的时区，包括闰秒。在嵌入式系统中，空间并不充足，你也不会想要更新时区，也不在意精确的时间，就可以忽略 <filename class="directory">right</filename> 目录，能够节省 1.9MB。</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term><parameter>zic ... -p ...</parameter></term>
         <listitem>
-          <para>This creates the <filename>posixrules</filename> file. We use
-          New York because POSIX requires the daylight savings time rules
-          to be in accordance with US rules,</para>
+          <para>此项创建 <filename>posixrules</filename> 文件。我们使用纽约是因为 POSIX 要求有正确的、与美国规则协调的夏令时规则。</para>
         </listitem>
       </varlistentry>
     </variablelist>
 
 
-    <para>One way to determine the local time zone is to run the following
-    script:</para>
+    <para>获知本地时区的一种方式是运行以下脚本：</para>
 
 <screen role="nodump"><userinput>tzselect</userinput></screen>
 
-    <para>After answering a few questions about the location, the script will
-    output the name of the time zone (e.g.,
-    <emphasis>America/Edmonton</emphasis>). There are also some other possible
-    timezones listed in <filename
-    class='directory'>/usr/share/zoneinfo</filename> such as
-    <emphasis>Canada/Eastern</emphasis> or <emphasis>EST5EDT</emphasis> that
-    are not identified by the script but can be used.</para>
+    <para>在回答几个有关位置的问题之后，脚本将会输出时区的名称 (例如 <emphasis>Asia/Shanghai</emphasis>)。还有一些可用的时区位于 <filename class='directory'>/usr/share/zoneinfo</filename>，比如 <emphasis>Canada/Eastern</emphasis> 和 <emphasis>EST5EDT</emphasis>，它们不会被脚本识别但仍然可以使用。</para>
 
-    <para>Then create the <filename>/etc/localtime</filename> file by
-    running:</para>
+    <para>接下来运行以下命令创建 <filename>/etc/localtime</filename> 文件：</para>
 
 <screen><userinput>cp -v --remove-destination /usr/share/zoneinfo/<replaceable>&lt;xxx&gt;</replaceable> \
     /etc/localtime</userinput></screen>
 
-    <para>Replace <replaceable>&lt;xxx&gt;</replaceable> with the name of the
-    time zone selected (e.g., Canada/Eastern).</para>
+    <para>将 <replaceable>&lt;xxx&gt;</replaceable> 替换为选中的时区 (例如 Asia/Shanghai)。</para>
 
     <variablelist>
-      <title>The meaning of the cp option:</title>
+      <title>cp 选项的含义</title>
 
       <varlistentry>
         <term><parameter>--remove-destination</parameter></term>
         <listitem>
-          <para>This is needed to force removal of the already existing symbolic
-          link. The reason for copying the file instead of using a symlink is to
-          cover the situation where <filename class="directory">/usr</filename>
-          is on a separate partition. This could be important when booted into
-          single user mode.</para>
+          <para>用此项来强制移除已经存在的符号链接。要复制文件而不使用符号链接是为了处理 <filename class="directory">/usr</filename> 在独立分区上的情况。在引导到单用户模式时这非常重要。</para>
         </listitem>
       </varlistentry>
 
@@ -346,28 +327,15 @@ unset ZONEINFO</userinput></screen>
   </sect2>
 
   <sect2 id="conf-ld" role="configuration">
-    <title>Configuring the Dynamic Loader</title>
+    <title>配置动态加载器</title>
 
     <indexterm zone="conf-ld">
       <primary sortas="e-/etc/ld.so.conf">/etc/ld.so.conf</primary>
     </indexterm>
 
-    <para>By default, the dynamic loader (<filename
-    class="libraryfile">/lib/ld-linux.so.2</filename>) searches through
-    <filename class="directory">/lib</filename> and <filename
-    class="directory">/usr/lib</filename> for dynamic libraries that are
-    needed by programs as they are run. However, if there are libraries in
-    directories other than <filename class="directory">/lib</filename> and
-    <filename class="directory">/usr/lib</filename>, these need to be added
-    to the <filename>/etc/ld.so.conf</filename> file in order for the
-    dynamic loader to find them. Two directories that are commonly known
-    to contain additional libraries are <filename
-    class="directory">/usr/local/lib</filename> and <filename
-    class="directory">/opt/lib</filename>, so add those directories to the
-    dynamic loader's search path.</para>
+    <para>默认地，动态加载器 (<filename class="libraryfile">/lib/ld-linux.so.2</filename>) 在程序运行时搜索 <filename class="directory">/lib</filename> 和 <filename class="directory">/usr/lib</filename>，寻找需要的动态库。然而，如果在 <filename class="directory">/lib</filename> 和 <filename class="directory">/usr/lib</filename> 以外有库存在，就要将其添加到 <filename>/etc/ld.so.conf</filename> 文件，使得动态加载器能够找到它们。包含额外库的最常见的两个目录是 <filename class="directory">/usr/local/lib</filename> 和 <filename class="directory">/opt/lib</filename>，所以将其添加到动态加载器的搜索路径中。</para>
 
-    <para>Create a new file <filename>/etc/ld.so.conf</filename> by running the
-    following:</para>
+    <para>运行以下命令创建 <filename>/etc/ld.so.conf</filename>：</para>
 
 <screen><userinput>cat &gt; /etc/ld.so.conf &lt;&lt; "EOF"
 <literal># Begin /etc/ld.so.conf
@@ -376,10 +344,7 @@ unset ZONEINFO</userinput></screen>
 </literal>
 EOF</userinput></screen>
 
-  <para>If desired, the dynamic loader can also search a directory and
-  include the contents of files found there.  Generally the files in 
-  this include directory are one line specifying the desired library path.
-  To add this capability run the following commands:</para>
+  <para>如果需要，动态链接器也可以搜索其他目录并包含其中的文件。通常此处的文件是一行，指定需要的库路径。要添加这种兼容性，运行以下命令：</para>
 
 <screen role="nodump"><userinput>cat &gt;&gt; /etc/ld.so.conf &lt;&lt; "EOF"
 <literal># Add an include directory
@@ -394,44 +359,26 @@ mkdir /etc/ld.so.conf.d</userinput></screen>
     <title>Glibc 的内容</title>
 
     <segmentedlist>
-      <segtitle>Installed programs</segtitle>
-      <segtitle>Installed libraries</segtitle>
-      <segtitle>Installed directories</segtitle>
+      <segtitle>安装的程序</segtitle>
+      <segtitle>安装的库</segtitle>
+      <segtitle>安装的目录</segtitle>
 
       <seglistitem>
-        <seg>catchsegv, gencat, getconf, getent, iconv, iconvconfig, ldconfig,
-        ldd, lddlibc4, locale, localedef, mtrace, nscd, pcprofiledump,
-        pt_chown, rpcgen, sln, sotruss, sprof, tzselect, xtrace,
-        zdump, and zic</seg>
-        <seg>ld.so, libBrokenLocale.{a,so}, libSegFault.so, libanl.{a,so},
-        libbsd-compat.a, libc.{a,so}, libc_nonshared.a, libcidn.so,
-        libcrypt.{a,so}, libdl.{a,so}, libg.a, libieee.a, libm.{a,so},
-        libmcheck.a, libmemusage.so, libnsl.{a,so}, libnss_compat.so,
-        libnss_dns.so, libnss_files.so, libnss_hesiod.so, libnss_nis.so,
-        libnss_nisplus.so, libpcprofile.so, libpthread.{a,so},
-        libpthread_nonshared.a, libresolv.{a,so}, librpcsvc.a, librt.{a,so},
-        libthread_db.so, and libutil.{a,so}</seg>
-        <seg>/usr/include/arpa, /usr/include/bits, /usr/include/gnu,
-        /usr/include/net, /usr/include/netash, /usr/include/netatalk,
-        /usr/include/netax25, /usr/include/neteconet, /usr/include/netinet,
-        /usr/include/netipx, /usr/include/netiucv, /usr/include/netpacket,
-        /usr/include/netrom, /usr/include/netrose, /usr/include/nfs,
-        /usr/include/protocols, /usr/include/rpc, /usr/include/rpcsvc,
-        /usr/include/sys, /usr/lib/audit, /usr/lib/gconv, /usr/lib/glibc,
-        /usr/lib/locale, /usr/share/i18n, /usr/share/zoneinfo</seg>
+        <seg>catchsegv、gencat、getconf、getent、iconv、iconvconfig、ldconfig、ldd、lddlibc4、locale、localedef、mtrace、nscd、pcprofiledump、pt_chown、rpcgen、sln、sotruss、sprof、tzselect、xtrace、dump 和 zic</seg>
+        <seg>ld.so、libBrokenLocale.{a,so}、libSegFault.so、libanl.{a,so}、libbsd-compat.a、libc.{a,so}、libc_nonshared.a、libcidn.so、libcrypt.{a,so}、libdl.{a,so}、libg.a、libieee.a、libm.{a,so}、libmcheck.a、libmemusage.so、libnsl.{a,so}、libnss_compat.so、libnss_dns.so、libnss_files.so、libnss_hesiod.so、libnss_nis.so、libnss_nisplus.so、libpcprofile.so、libpthread.{a,so}、libpthread_nonshared.a、libresolv.{a,so}、librpcsvc.a、librt.{a,so}、libthread_db.so 和 libutil.{a,so}</seg>
+        <seg>/usr/include/arpa、/usr/include/bits、/usr/include/gnu、/usr/include/net、/usr/include/netash、/usr/include/netatalk、/usr/include/netax25、/usr/include/neteconet、/usr/include/netinet、/usr/include/netipx、/usr/include/netiucv、/usr/include/netpacket、/usr/include/netrom、/usr/include/netrose、/usr/include/nfs、/usr/include/protocols、/usr/include/rpc、/usr/include/rpcsvc、/usr/include/sys、/usr/lib/audit、/usr/lib/gconv、/usr/lib/glibc、/usr/lib/locale、/usr/share/i18n、/usr/share/zoneinfo</seg>
       </seglistitem>
     </segmentedlist>
 
     <variablelist>
-      <bridgehead renderas="sect3">Short Descriptions</bridgehead>
+      <bridgehead renderas="sect3">简介</bridgehead>
       <?dbfo list-presentation="list"?>
       <?dbhtml list-presentation="table"?>
 
       <varlistentry id="catchsegv">
         <term><command>catchsegv</command></term>
         <listitem>
-          <para>Can be used to create a stack trace when a program
-          terminates with a segmentation fault</para>
+          <para>可以用于在程序发生段错误而结束时创建堆栈追踪</para>
           <indexterm zone="ch-system-glibc catchsegv">
             <primary sortas="b-catchsegv">catchsegv</primary>
           </indexterm>
@@ -441,7 +388,7 @@ mkdir /etc/ld.so.conf.d</userinput></screen>
       <varlistentry id="gencat">
         <term><command>gencat</command></term>
         <listitem>
-          <para>Generates message catalogues</para>
+          <para>创建消息目录</para>
           <indexterm zone="ch-system-glibc gencat">
             <primary sortas="b-gencat">gencat</primary>
           </indexterm>
@@ -451,8 +398,7 @@ mkdir /etc/ld.so.conf.d</userinput></screen>
       <varlistentry id="getconf">
         <term><command>getconf</command></term>
         <listitem>
-          <para>Displays the system configuration values for file system
-          specific variables</para>
+          <para>显示文件系统指定的变量的系统配置值</para>
           <indexterm zone="ch-system-glibc getconf">
             <primary sortas="b-getconf">getconf</primary>
           </indexterm>
@@ -462,7 +408,7 @@ mkdir /etc/ld.so.conf.d</userinput></screen>
       <varlistentry id="getent">
         <term><command>getent</command></term>
         <listitem>
-          <para>Gets entries from an administrative database</para>
+          <para>获取管理数据库中的条目</para>
           <indexterm zone="ch-system-glibc getent">
             <primary sortas="b-getent">getent</primary>
           </indexterm>
@@ -472,7 +418,7 @@ mkdir /etc/ld.so.conf.d</userinput></screen>
       <varlistentry id="iconv">
         <term><command>iconv</command></term>
         <listitem>
-          <para>Performs character set conversion</para>
+          <para>进行字符集转换</para>
           <indexterm zone="ch-system-glibc iconv">
             <primary sortas="b-iconv">iconv</primary>
           </indexterm>
@@ -482,8 +428,7 @@ mkdir /etc/ld.so.conf.d</userinput></screen>
       <varlistentry id="iconvconfig">
         <term><command>iconvconfig</command></term>
         <listitem>
-          <para>Creates fastloading <command>iconv</command> module configuration
-          files</para>
+          <para>创建快速加载的 <command>iconv</command> 模块配置文件</para>
           <indexterm zone="ch-system-glibc iconvconfig">
             <primary sortas="b-iconvconfig">iconvconfig</primary>
           </indexterm>
@@ -493,7 +438,7 @@ mkdir /etc/ld.so.conf.d</userinput></screen>
       <varlistentry id="ldconfig">
         <term><command>ldconfig</command></term>
         <listitem>
-          <para>Configures the dynamic linker runtime bindings</para>
+          <para>配置动态链接器的运行时约束</para>
           <indexterm zone="ch-system-glibc ldconfig">
             <primary sortas="b-ldconfig">ldconfig</primary>
           </indexterm>
@@ -503,8 +448,7 @@ mkdir /etc/ld.so.conf.d</userinput></screen>
       <varlistentry id="ldd">
         <term><command>ldd</command></term>
         <listitem>
-          <para>Reports which shared libraries are required
-          by each given program or shared library</para>
+          <para>报告给定程序或者共享库需求的共享库</para>
           <indexterm zone="ch-system-glibc ldd">
             <primary sortas="b-ldd">ldd</primary>
           </indexterm>
@@ -514,7 +458,7 @@ mkdir /etc/ld.so.conf.d</userinput></screen>
       <varlistentry id="lddlibc4">
         <term><command>lddlibc4</command></term>
         <listitem>
-          <para>Assists <command>ldd</command> with object files</para>
+          <para>协助 <command>ldd</command> 处理对象文件</para>
           <indexterm zone="ch-system-glibc lddlibc4">
             <primary sortas="b-lddlibc4">lddlibc4</primary>
           </indexterm>
@@ -524,7 +468,7 @@ mkdir /etc/ld.so.conf.d</userinput></screen>
       <varlistentry id="locale">
         <term><command>locale</command></term>
         <listitem>
-          <para>Prints various information about the current locale</para>
+          <para>打印出当前区域数据的信息</para>
           <indexterm zone="ch-system-glibc locale">
             <primary sortas="b-locale">locale</primary>
           </indexterm>
@@ -534,7 +478,7 @@ mkdir /etc/ld.so.conf.d</userinput></screen>
       <varlistentry id="localedef">
         <term><command>localedef</command></term>
         <listitem>
-          <para>Compiles locale specifications</para>
+          <para>编译区域数据</para>
           <indexterm zone="ch-system-glibc localedef">
             <primary sortas="b-localedef">localedef</primary>
           </indexterm>
@@ -544,8 +488,7 @@ mkdir /etc/ld.so.conf.d</userinput></screen>
       <varlistentry id="mtrace">
         <term><command>mtrace</command></term>
         <listitem>
-          <para>Reads and interprets a memory trace file and displays a summary
-          in human-readable format</para>
+          <para>读取并且翻译内存追踪文件并以可读格式显示摘要</para>
           <indexterm zone="ch-system-glibc mtrace">
             <primary sortas="b-mtrace">mtrace</primary>
           </indexterm>
