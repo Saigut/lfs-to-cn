@@ -48,60 +48,33 @@ EOF</userinput></screen>
   source tree.</para>
 -->
 
-  <para>Filesystems with MS-DOS or Windows origin (i.e.: vfat, ntfs, smbfs, cifs,
-  iso9660, udf) need the <quote>iocharset</quote> mount option in order for
-  non-ASCII characters in file names to be interpreted properly. The value
-  of this option should be the same as the character set of your locale,
-  adjusted in such a way that the kernel understands it. This works if the
-  relevant character set definition (found under File systems -&gt;
-  Native Language Support) has been compiled into the kernel
-  or built as a module. The <quote>codepage</quote> option is also needed for
-  vfat and smbfs filesystems. It should be set to the codepage number used
-  under MS-DOS in your country. E.g., in order to mount USB flash drives, a
-  ru_RU.KOI8-R user would need the following in the options portion of its
-  mount line in <filename>/etc/fstab</filename>:</para>
+  <para>源自 MS-DOS 或者 Windows 的文件系统 (例如：vfat、ntfs、smbfs、cifs、iso9660、udf) 需要使用挂载选项 <quote>iocharset</quote> 使得文件名中的非 ASCII 字符能够正确转码。此选项的值应该与你的区域数据的字符集相同，内核才能够理解。如果对应的字符集定义 (位于 File systems -&gt; Native Language Support，即文件系统 -&gt; 原生语言支持) 编译到内核中或者编译成一个模块，它就能正常工作。vfat 和 smbfs 文件系统还需要 <quote>codepage</quote> 这个选项。它应该设置为你所在的国家在 MS-DOS 下使用的编码页号码。例如，为了挂载 USB 闪存驱动器，zh_CN.GB2312 用户的 <filename>/etc/fstab</filename> 文件中会需要：</para>
 
-<screen><literal>noauto,user,quiet,showexec,iocharset=koi8r,codepage=866</literal></screen>
+<screen><literal>noauto,user,quiet,showexec,iocharset=gb2312,codepage=936</literal></screen>
 
-  <para>The corresponding options fragment for ru_RU.UTF-8 users is:</para>
+  <para>对应的 zh_CN.UTF-8 用户会需要：</para>
 
-<screen><literal>noauto,user,quiet,showexec,iocharset=utf8,codepage=866</literal></screen>
+<screen><literal>noauto,user,quiet,showexec,iocharset=utf8,codepage=936</literal></screen>
 
   <note>
-    <para>In the latter case, the kernel emits the following message:</para>
+    <para>后面一种情况中，内核会产生以下消息：</para>
 
-<screen><computeroutput>FAT: utf8 is not a recommended IO charset for FAT filesystems,
-    filesystem will be case sensitive!</computeroutput></screen>
+<screen><computeroutput>FAT: utf8 is not a recommended IO charset for FAT filesystems, filesystem will be case sensitive! </computeroutput></screen>
+<screen><computeroutput>(FAT: utf8 并不是 FAT 文件系统推荐的 IO 字符集，会导致该文件系统大小写敏感！)</computeroutput></screen>
 
-    <para>This negative recommendation should be ignored, since all other values
-    of the <quote>iocharset</quote> option result in wrong display of filenames in
-    UTF-8 locales.</para>
+    <para>这个消极的推荐可以忽略，因为其他所有的 <quote>iocharset</quote> 选项都会导致 UTF-8 区域数据中文件名显示不正确。</para>
   </note>
 
-  <para>It is also possible to specify default codepage and iocharset values for
-  some filesystems during kernel configuration. The relevant parameters
-  are named
-  <quote>Default NLS Option</quote> (<option>CONFIG_NLS_DEFAULT)</option>,
-  <quote>Default Remote NLS Option</quote> (<option>CONFIG_SMB_NLS_DEFAULT</option>),
-  <quote>Default codepage for FAT</quote> (<option>CONFIG_FAT_DEFAULT_CODEPAGE</option>), and
-  <quote>Default iocharset for FAT</quote> (<option>CONFIG_FAT_DEFAULT_IOCHARSET</option>).
-  There is no way to specify these settings for the
-  ntfs filesystem at kernel compilation time.</para>
+  <para>还可以在内核配置的过程中为某些文件系统指定默认的编码页和 iocharset 值。对应的参数名为 <quote>Default NLS Option</quote> (<option>CONFIG_NLS_DEFAULT</option>，默认 NLS 选项)、<quote>Default Remote NLS Option</quote> (<option>CONFIG_SMB_NLS_DEFAULT</option>，默认远程 NLS 选项) <quote>Default codepage for FAT</quote> (<option>CONFIG_FAT_DEFAULT_CODEPAGE</option>，FAT 默认编码页) 和 <quote>Default iocharset for FAT</quote> (<option>CONFIG_FAT_DEFAULT_IOCHARSET</option>，FAT 默认 iocharset)。在内核编译期间无法为 ntfs 文件系统指定这些设置。</para>
   <!-- Personally, I find it more foolproof to always specify the iocharset and
   codepage in /etc/fstab for MS-based filesystems - Alexander E. Patrakov -->
 
-  <para>It is possible to make the ext3 filesystem reliable across power
-  failures for some hard disk types.  To do this, add the
-  <option>barrier=1</option> mount option to the appropriate entry in
-  <filename>/etc/fstab</filename>.  To check if the disk drive supports
-  this option, run 
-  <ulink url="http://www.linuxfromscratch.org/blfs/view/cvs/general/hdparm.html">hdparm</ulink>
-  on the applicable disk drive.  For example, if:</para>
+  <para>在某些硬盘上可以使 ext3 文件系统在突然断电时依然可靠。若要如此，给 <filename>/etc/fstab</filename> 中对应的条目添加 <option>barrier=1</option> 挂载选项。要检查磁盘驱动器是否支持此选项，给对应的磁盘驱动器运行 <ulink url="http://www.linuxfromscratch.org/blfs/view/cvs/general/hdparm.html">hdparm</ulink>。例如，如果：</para>
 
 <screen role="nodump"><userinput>hdparm -I /dev/sda | grep NCQ</userinput></screen>
 
   <para>返回非空的值表示支持这一选项。</para>
 
-  <para>注意：基于逻辑卷管理(LVM)的分区不能使用<option>barrier</option>选项。</para>
+  <para>注意：基于逻辑卷管理 (LVM) 的分区不能使用 <option>barrier</option> 选项。</para>
 
 </sect1>
