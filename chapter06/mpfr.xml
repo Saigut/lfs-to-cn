@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
   "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
   <!ENTITY % general-entities SYSTEM "../general.ent">
@@ -23,8 +23,7 @@
   <sect2 role="package">
     <title/>
 
-    <para>The MPFR package contains functions for multiple precision
-    math.</para>
+    <para>MPFR 程序包包含用于多精度数学的函数。</para>
 
     <segmentedlist>
       <segtitle>&buildtime;</segtitle>
@@ -39,32 +38,31 @@
   </sect2>
 
   <sect2 role="installation">
-    <title>Installation of MPFR</title>
+    <title>安装 MPFR</title>
 
-    <para>Prepare MPFR for compilation:</para>
+    <para>准备编译 MPFR：</para>
 
 <screen><userinput remap="configure">./configure  --prefix=/usr        \
              --enable-thread-safe \
              --docdir=/usr/share/doc/mpfr-&mpfr-version;</userinput></screen>
 
-    <para>Compile the package:</para>
+    <para>编译程序包：</para>
 
 <screen><userinput remap="make">make</userinput></screen>
 
     <important>
-      <para>The test suite for MPFR in this section is considered critical.
-      Do not skip it under any circumstances.</para>
+      <para>本节中 MPFR 的测试套件是十分重要的，任何情况下都不要跳过。</para>
     </important>
 
-    <para>Test the results and ensure that all tests passed:</para>
+    <para>测试结果，确保所有测试通过：</para>
 
 <screen><userinput remap="test">make check</userinput></screen>
 
-    <para>Install the package:</para>
+    <para>安装程序包：</para>
 
 <screen><userinput remap="install">make install</userinput></screen>
 
-    <para>Install the documentation:</para>
+    <para>安装文档：</para>
 
 <screen><userinput remap="make">make html
 </userinput><userinput remap="install">make install-html</userinput></screen>
@@ -73,11 +71,11 @@
 
 
   <sect2 id="contents-mpfr" role="content">
-    <title>Contents of MPFR</title>
+    <title>MPFR 的内容</title>
 
     <segmentedlist>
-      <segtitle>Installed Libraries</segtitle>
-      <segtitle>Installed directory</segtitle>
+      <segtitle>安装的库</segtitle>
+      <segtitle>安装的目录</segtitle>
 
       <seglistitem>
         <seg>libmpfr.{a,so}</seg>
@@ -86,14 +84,14 @@
     </segmentedlist>
 
     <variablelist>
-      <bridgehead renderas="sect3">Short Descriptions</bridgehead>
+      <bridgehead renderas="sect3">简介</bridgehead>
       <?dbfo list-presentation="list"?>
       <?dbhtml list-presentation="table"?>
 
       <varlistentry id="libmpfr">
         <term><filename class="libraryfile">libmpfr</filename></term>
         <listitem>
-          <para>Contains multiple-precision math functions.</para>
+          <para>包含多精度数学函数。</para>
           <indexterm zone="ch-system-mpfr libmpfr">
             <primary sortas="c-libmpfr">libmpfr</primary>
           </indexterm>
