@@ -41,13 +41,11 @@
     <title>安装 GMP</title>
 
     <note>
-      <para>如果你想要编制 32 位 x86 系统, 却有支持 64 位代码运行的 CPU<emphasis>且</emphasis> 有特定的
-      <envar>CFLAGS</envar> 在环境中, 认证脚本将会尝试配置 64 位并失败。
-          要避免该错误，调用以下配置命令
+      <para>如果你想要编制 32 位 x86 系统, 却有支持 64 位代码运行的 CPU <emphasis>且</emphasis>环境中有指定的 <envar>CFLAGS</envar> 存在, 配置脚本将会尝试配置 64 位并失败。要避免该错误，调用以下配置命令
 <screen role="nodump"><userinput><parameter>ABI=32</parameter> ./configure ...</userinput></screen></para>
     </note>
 
-    <para>编译准备 GMP：</para>
+    <para>准备编译 GMP：</para>
 
 <screen><userinput remap="configure">./configure --prefix=/usr --enable-cxx --enable-mpbsd</userinput></screen>
 
@@ -57,14 +55,14 @@
       <varlistentry>
         <term><parameter>--enable-cxx</parameter></term>
         <listitem>
-          <para>这个变量使 C++ 支持有效</para>
+          <para>此变量使 C++ 支持有效</para>
         </listitem>
       </varlistentry>
 
       <varlistentry>
         <term><parameter>--enable-mpbsd</parameter></term>
         <listitem>
-          <para>它编制 Berkeley MP 兼容库</para>
+          <para>此项编制 Berkeley MP 兼容库</para>
         </listitem>
       </varlistentry>
 
@@ -75,14 +73,14 @@
 <screen><userinput remap="make">make</userinput></screen>
 
     <important>
-      <para>这一部分中针对 GMP 的测试套件被认为是关键的。无论如何都不要跳过。</para>
+      <para>本节中 GMP 的测试套件被是关十分重要的，无论如何都不要跳过。</para>
     </important>
 
     <para>测试结果：</para>
 
 <screen><userinput remap="test">make check 2>&amp;1 | tee gmp-check-log</userinput></screen>
 
-    <para>确保套间中所有166个测试都通过。要确认结果，执行以下命令：</para>
+    <para>确保套件中全部 166 个测试都通过。要确认结果，执行以下命令：</para>
 
 <screen><userinput remap="test">awk '/tests passed/{total+=$2} ; END{print total}' gmp-check-log</userinput></screen>
 
@@ -112,14 +110,14 @@ cp    -v doc/{isa_abi_headache,configuration} doc/*.html \
     </segmentedlist>
 
     <variablelist>
-      <bridgehead renderas="sect3">Short Descriptions</bridgehead>
+      <bridgehead renderas="sect3">简介</bridgehead>
       <?dbfo list-presentation="list"?>
       <?dbhtml list-presentation="table"?>
 
       <varlistentry id="libgmp">
         <term><filename class="libraryfile">libgmp</filename></term>
         <listitem>
-          <para>包含精确算数函数。</para>
+          <para>包含精确算术函数。</para>
           <indexterm zone="ch-system-gmp libgmp">
             <primary sortas="c-libgmp">libgmp</primary>
           </indexterm>

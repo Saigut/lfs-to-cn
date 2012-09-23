@@ -152,14 +152,7 @@ cd ../gcc-build</userinput></screen>
 /usr/lib/gcc/i686-pc-linux-gnu/&gcc-version;/../../../crti.o succeeded
 /usr/lib/gcc/i686-pc-linux-gnu/&gcc-version;/../../../crtn.o succeeded</computeroutput></screen>
 
-  <para>Depending on your machine architecture, the above may differ slightly,
-  the difference usually being the name of the directory
-  after <filename class="directory">/usr/lib/gcc</filename>. If your machine is
-  a 64-bit system, you may also see a directory named <filename class="directory">lib64</filename>
-  towards the end of the string. The important thing to
-  look for here is that <command>gcc</command> has found all three
-  <filename>crt*.o</filename> files under the
-  <filename class="directory">/usr/lib</filename> directory.</para>
+  <para>取决于你的计算机架构，以上信息可能会有轻微差异，差异通常位于 <filename class="directory">/usr/lib/gcc</filename> 之后的目录名称。如果你的计算机是 64 位系统，你还可能看到字符串末尾出现一个名为 <filename class="directory">lib64</filename> 的目录。此处的重点是 <command>gcc</command> 在 <filename class="directory">/usr/lib</filename> 目录中找到了全部三个 <filename>crt*.o</filename> 文件。</para>
 
     <xi:include xmlns:xi="http://www.w3.org/2001/XInclude"
     href="adjusting.xml"
@@ -177,7 +170,7 @@ cd ../gcc-build</userinput></screen>
  /usr/lib/gcc/i686-pc-linux-gnu/&gcc-version;/include-fixed
  /usr/include</computeroutput></screen>
 
-   <para>Again, note that the directory named after your target triplet may be
+   <para>再次注意，以你的目标三联字串命名的目录可能会不同。取决于Again, note that the directory named after your target triplet may be
    different than the above, depending on your architecture.</para>
 
     <note><para>As of version 4.3.0, GCC now unconditionally installs the
