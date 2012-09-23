@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
   "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
   <!ENTITY % general-entities SYSTEM "../general.ent">
@@ -23,9 +23,7 @@
   <sect2 role="package">
     <title/>
 
-    <para> The pkg-config package contains a tool for passing the include path
-    and/or library paths to build tools during the configure and make file
-    execution.</para>
+    <para> pkg-config 包包含一个工具，在配置时传递包含路径和/或库路径给编制工具和 make 文件执行</para>
 
     <segmentedlist>
       <segtitle>&buildtime;</segtitle>
@@ -40,34 +38,34 @@
   </sect2>
 
   <sect2 role="installation">
-    <title>Installation of Pkg-config</title>
+    <title>安装 Pkg-config</title>
 
-    <para>Prepare Pkg-config for compilation:</para>
+    <para>准备编译 Pkg-config：</para>
 
 <screen><userinput remap="configure">./configure --prefix=/usr         \
             --with-internal-glib  \
             --docdir=/usr/share/doc/pkg-config-&pkgconfig-version;</userinput></screen>
 
-    <para>Compile the package:</para>
+    <para>编译程序包：</para>
 
 <screen><userinput remap="make">make</userinput></screen>
 
-    <para>To test the results, issue:</para>
+    <para>要测试结果，执行：</para>
 
 <screen><userinput remap="test">make check</userinput></screen>
 
-    <para>Install the package:</para>
+    <para>安装程序包：</para>
 
 <screen><userinput remap="install">make install</userinput></screen>
 
   </sect2>
 
   <sect2 id="contents-pkgconfig" role="content">
-    <title>Contents of Pkg-config</title>
+    <title>Pkg-config 的内容</title>
 
     <segmentedlist>
-      <segtitle>Installed program</segtitle>
-      <segtitle>Installed directory</segtitle>
+      <segtitle>安装的程序</segtitle>
+      <segtitle>安装的目录</segtitle>
 
       <seglistitem>
         <seg>pkg-config</seg>
@@ -76,7 +74,7 @@
     </segmentedlist>
 
     <variablelist>
-      <bridgehead renderas="sect3">Short Descriptions</bridgehead>
+      <bridgehead renderas="sect3">简介</bridgehead>
       <?dbfo list-presentation="list"?>
       <?dbhtml list-presentation="table"?>
 
@@ -84,7 +82,7 @@
          <!-- Don't remove the extra space, it prevents a FOP warning. -->
         <term><command>pkg-config </command></term>
         <listitem>
-          <para>returns meta information for the specified library or package.
+          <para>返回改变的信息给指定的库或包。
           </para>
           <indexterm zone="ch-system-pkgconfig pkgconfig">
             <primary sortas="b-pkgconfig">pkg-config</primary>
