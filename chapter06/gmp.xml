@@ -43,11 +43,11 @@
     <note>
       <para>如果你想要编制 32 位 x86 系统, 却有支持 64 位代码运行的 CPU<emphasis>且</emphasis> 有特定的
       <envar>CFLAGS</envar> 在环境中, 认证脚本将会尝试配置 64 位并失败。
-          调用以下配置命令以避免该错误
+          要避免该错误，调用以下配置命令
 <screen role="nodump"><userinput><parameter>ABI=32</parameter> ./configure ...</userinput></screen></para>
     </note>
 
-    <para>为编译准备 GMP：</para>
+    <para>编译准备 GMP：</para>
 
 <screen><userinput remap="configure">./configure --prefix=/usr --enable-cxx --enable-mpbsd</userinput></screen>
 
@@ -70,7 +70,7 @@
 
     </variablelist>
 
-    <para>编译包：</para>
+    <para>编译程序包：</para>
 
 <screen><userinput remap="make">make</userinput></screen>
 
@@ -82,11 +82,11 @@
 
 <screen><userinput remap="test">make check 2>&amp;1 | tee gmp-check-log</userinput></screen>
 
-    <para>确保套间中所有166个测试都通过。执行以下命令来确认结果：</para>
+    <para>确保套间中所有166个测试都通过。要确认结果，执行以下命令：</para>
 
 <screen><userinput remap="test">awk '/tests passed/{total+=$2} ; END{print total}' gmp-check-log</userinput></screen>
 
-    <para>安装包：</para>
+    <para>安装程序包：</para>
 
 <screen><userinput remap="install">make install</userinput></screen>
 
