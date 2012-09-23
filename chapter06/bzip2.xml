@@ -44,11 +44,11 @@
 
 <screen><userinput remap="pre">patch -Np1 -i ../&bzip2-docs-patch;</userinput></screen>
 
-   <para>以下命令确保符号链接的安装是相对应的：</para>
+   <para>以下命令确保符号链接的安装是相对的：</para>
 
 <screen><userinput remap="pre">sed -i 's@\(ln -s -f \)$(PREFIX)/bin/@\1@' Makefile</userinput></screen>
 
-    <para>确保这个手册页被安装到了正确的位置：</para>
+    <para>确保此手册页被安装到了正确的位置：</para>
 
 <screen><userinput remap="pre">sed -i "s@(PREFIX)/man@(PREFIX)/share/man@g" Makefile</userinput></screen>
 
@@ -58,26 +58,26 @@
 make clean</userinput></screen>
 
     <variablelist>
-      <title>make 变量的含义：</title>
+      <title>make 参数的含义：</title>
 
       <varlistentry>
         <term><parameter>-f Makefile-libbz2_so</parameter></term>
         <listitem>
-          <para>这将使 Bzip2 被用一个不同的<filename>Makefile</filename> 文件编制，此处是<filename>Makefile-libbz2_so</filename> 文件，它创建一个动态的<filename class="libraryfile">libbz2.so</filename> 库和链接 Bzip2 工具到这里。</para>
+          <para>此项将使 Bzip2 被用一个不同的<filename>Makefile</filename> 文件编制，此处是<filename>Makefile-libbz2_so</filename> 文件，它创建一个动态的<filename class="libraryfile">libbz2.so</filename> 库和链接 Bzip2 工具到这里。</para>
         </listitem>
       </varlistentry>
 
     </variablelist>
 
-    <para>编译和测试数据包：</para>
+    <para>编译和测试程序包：</para>
 
 <screen><userinput remap="make">make</userinput></screen>
 
-    <para>安装程序：</para>
+    <para>安装程序包：</para>
 
 <screen><userinput remap="install">make PREFIX=/usr install</userinput></screen>
 
-    <para>安装共用的 <command>bzip2</command> 二进制到 <filename class="directory">/bin</filename> 目录，make一些必要的符号链接并整理：</para>
+    <para>安装共享的 <command>bzip2</command> 二进制到 <filename class="directory">/bin</filename> 目录，制作一些必要的符号链接并整理：</para>
 
 <screen><userinput remap="install">cp -v bzip2-shared /bin/bzip2
 cp -av libbz2.so* /lib
@@ -97,9 +97,7 @@ ln -sv bzip2 /bin/bzcat</userinput></screen>
       <segtitle>安装的目录</segtitle>
 
       <seglistitem>
-        <seg>bunzip2 (link to bzip2), bzcat (link to bzip2), bzcmp (link to
-        bzdiff), bzdiff, bzegrep (link to bzgrep), bzfgrep (link to bzgrep),
-        bzgrep, bzip2, bzip2recover, bzless (link to bzmore), and bzmore</seg>
+        <seg>bunzip2 (到 bzip2 的链接)、bzcat (到 bzip2 的链接)、bzcmp (到 bzdiff 的链接)、bzdiff、bzegrep (到 bzgrep 的链接)、bzfgrep (到 bzgrep 的链接)、bzgrep、bzip2、bzip2recover、bzless (到 bzmore 的链接) 和 bzmore</seg>
         <seg>libbz2.{a,so}</seg>
         <seg>/usr/share/doc/bzip2-&bzip2-version;</seg>
       </seglistitem>
@@ -123,7 +121,7 @@ ln -sv bzip2 /bin/bzcat</userinput></screen>
       <varlistentry id="bzcat">
         <term><command>bzcat</command></term>
         <listitem>
-          <para>解压为标准输出</para>
+          <para>解压到标准输出</para>
           <indexterm zone="ch-system-bzip2 bzcat">
             <primary sortas="b-bzcat">bzcat</primary>
           </indexterm>
@@ -183,7 +181,7 @@ ln -sv bzip2 /bin/bzcat</userinput></screen>
       <varlistentry id="bzip2">
         <term><command>bzip2</command></term>
         <listitem>
-          <para>用 Huffman 代码编写的 Burrows-Wheeler 块分类文本压缩算法压缩文件；压缩率好于使用 <quote>Lempel-Ziv</quote> 算法的更传统的压缩器，比如  <command>gzip</command></para>
+          <para>用哈夫曼编码编写的 Burrows-Wheeler 块排序文本压缩算法压缩文件；压缩率好于使用 <quote>Lempel-Ziv</quote> 算法的更传统的压缩器，比如  <command>gzip</command></para>
           <indexterm zone="ch-system-bzip2 bzip2">
             <primary sortas="b-bzip2">bzip2</primary>
           </indexterm>
@@ -223,7 +221,7 @@ ln -sv bzip2 /bin/bzcat</userinput></screen>
       <varlistentry id="libbz2">
         <term><filename class="libraryfile">libbz2*</filename></term>
         <listitem>
-          <para>这个库执行无损的，块分类的数据压缩，使用 Burrows-Wheeler 算法</para>
+          <para>此库使用 Burrows-Wheeler 块排序算法执行无损数据压缩</para>
           <indexterm zone="ch-system-bzip2 libbz2">
             <primary sortas="c-libbz2*">libbz2*</primary>
           </indexterm>
