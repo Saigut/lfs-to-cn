@@ -38,51 +38,45 @@
   </sect2>
 
   <sect2 role="installation">
-    <title>Installation of Binutils</title>
+    <title>安装 Binutils</title>
 
-    <para>Verify that the PTYs are working properly inside the chroot
-    environment by performing a simple test:</para>
+    <para>运行一个简单的测试确认 PTY 在 chroot 环境中正常工作：</para>
 
 <screen><userinput remap="test">expect -c "spawn ls"</userinput></screen>
 
-    <para>This command should output the following:</para>
+    <para>此命令应该输出以下信息：</para>
 
 <screen><computeroutput>spawn ls</computeroutput></screen>
 
-    <para>If, instead, the output includes the message below, then the environment
-    is not set up for proper PTY operation.  This issue needs to be resolved before
-    running the test suites for Binutils and GCC:</para>
+    <para>如果输出包含以下消息，那就意味着环境没有为 PTY 操作设置好。此问题需要在运行 Binutils 和 GCC 的测试套件之前解决：</para>
 
 <screen><computeroutput>The system has no more ptys.
 Ask your system administrator to create more.</computeroutput></screen>
 
-    <para>Suppress the installation of an outdated
-    <filename>standards.info</filename> file as a newer one is installed later
-    on in the Autoconf instructions:</para>
+    <para>阻止安装一个过时的 <filename>standards.info</filename> 文件，因为稍后在 Autoconf 指令中会安装一个更新的：</para>
 
 <screen><userinput remap="pre">rm -fv etc/standards.info
 sed -i.bak '/^INFO/s/standards.info //' etc/Makefile.in</userinput></screen>
 
-    <para>Apply a patch to prevent a build failure when using compiler optimizations:</para>
+    <para>应用一个补丁防止在使用编译器优化是编制失败：</para>
 
 <screen><userinput remap="pre">patch -Np1 -i ../&binutils-build-patch;</userinput></screen>
 
-    <para>The Binutils documentation recommends building Binutils outside of the
-    source directory in a dedicated build directory:</para>
+    <para>Binutils 文档推荐在源代码目录外另建目录编制 Binutils：</para>
 
 <screen><userinput remap="pre">mkdir -v ../binutils-build
 cd ../binutils-build</userinput></screen>
 
-    <para>Prepare Binutils for compilation:</para>
+    <para>准备编译 Binutils：</para>
 
 <screen><userinput remap="configure">../binutils-&binutils-version;/configure --prefix=/usr --enable-shared</userinput></screen>
 
-    <para>Compile the package:</para>
+    <para>编译程序包：</para>
 
 <screen><userinput remap="make">make tooldir=/usr</userinput></screen>
 
     <variablelist>
-      <title>The meaning of the make parameter:</title>
+      <title>make 参数的含义：</title>
 
       <varlistentry>
         <term><parameter>tooldir=/usr</parameter></term>
