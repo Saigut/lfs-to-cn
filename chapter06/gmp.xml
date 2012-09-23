@@ -38,63 +38,59 @@
   </sect2>
 
   <sect2 role="installation">
-    <title>Installation of GMP</title>
+    <title>安装 GMP</title>
 
     <note>
-      <para>If you are building for 32-bit x86, but you have a CPU which is
-      capable of running 64-bit code <emphasis>and</emphasis> you have specified
-      <envar>CFLAGS</envar> in the environment, the configure script will
-      attempt to configure for 64-bits and fail.
-      Avoid this by invoking the configure command below with
+      <para>如果你想要编制 32 位 x86 系统, 却有支持 64 位代码运行的 CPU<emphasis>且</emphasis> 有特定的
+      <envar>CFLAGS</envar> 在环境中, 认证脚本将会尝试配置 64 位并失败。
+          调用以下配置命令以避免该错误
 <screen role="nodump"><userinput><parameter>ABI=32</parameter> ./configure ...</userinput></screen></para>
     </note>
 
-    <para>Prepare GMP for compilation:</para>
+    <para>为编译准备 GMP：</para>
 
 <screen><userinput remap="configure">./configure --prefix=/usr --enable-cxx --enable-mpbsd</userinput></screen>
 
     <variablelist>
-      <title>The meaning of the new configure options:</title>
+      <title>新的配置选项的含义：</title>
 
       <varlistentry>
         <term><parameter>--enable-cxx</parameter></term>
         <listitem>
-          <para>This parameter enables C++ support</para>
+          <para>这个变量使 C++ 支持有效</para>
         </listitem>
       </varlistentry>
 
       <varlistentry>
         <term><parameter>--enable-mpbsd</parameter></term>
         <listitem>
-          <para>This builds the Berkeley MP compatibility library</para>
+          <para>它编制 Berkeley MP 兼容库</para>
         </listitem>
       </varlistentry>
 
     </variablelist>
 
-    <para>Compile the package:</para>
+    <para>编译包：</para>
 
 <screen><userinput remap="make">make</userinput></screen>
 
     <important>
-      <para>The test suite for GMP in this section is considered critical.
-      Do not skip it under any circumstances.</para>
+      <para>这一部分中针对 GMP 的测试套件被认为是关键的。无论如何都不要跳过。</para>
     </important>
 
-    <para>Test the results:</para>
+    <para>测试结果：</para>
 
 <screen><userinput remap="test">make check 2>&amp;1 | tee gmp-check-log</userinput></screen>
 
-    <para>Ensure that all 166 tests in the test suite passed.
-    Check the results by issuing the following command:</para>
+    <para>确保套间中所有166个测试都通过。执行以下命令来确认结果：</para>
 
 <screen><userinput remap="test">awk '/tests passed/{total+=$2} ; END{print total}' gmp-check-log</userinput></screen>
 
-    <para>Install the package:</para>
+    <para>安装包：</para>
 
 <screen><userinput remap="install">make install</userinput></screen>
 
-    <para>If desired, install the documentation:</para>
+    <para>如果需要，安装文档：</para>
 
 <screen><userinput remap="install">mkdir -v /usr/share/doc/gmp-&gmp-version;
 cp    -v doc/{isa_abi_headache,configuration} doc/*.html \
@@ -103,11 +99,11 @@ cp    -v doc/{isa_abi_headache,configuration} doc/*.html \
   </sect2>
 
   <sect2 id="contents-gmp" role="content">
-    <title>Contents of GMP</title>
+    <title>GMP 的内容</title>
 
     <segmentedlist>
-      <segtitle>Installed Libraries</segtitle>
-      <segtitle>Installed directory</segtitle>
+      <segtitle>安装的库</segtitle>
+      <segtitle>安装的目录</segtitle>
 
       <seglistitem>
         <seg>libgmp.{a,so}, libgmpxx.{a,so}, and libmp.{a,so}</seg>
@@ -123,7 +119,7 @@ cp    -v doc/{isa_abi_headache,configuration} doc/*.html \
       <varlistentry id="libgmp">
         <term><filename class="libraryfile">libgmp</filename></term>
         <listitem>
-          <para>Contains precision math functions.</para>
+          <para>包含精确算数函数。</para>
           <indexterm zone="ch-system-gmp libgmp">
             <primary sortas="c-libgmp">libgmp</primary>
           </indexterm>
@@ -133,7 +129,7 @@ cp    -v doc/{isa_abi_headache,configuration} doc/*.html \
       <varlistentry id="libgmpxx">
         <term><filename class="libraryfile">libgmpxx</filename></term>
         <listitem>
-          <para>Contains C++ precision math functions.</para>
+          <para>包含 C++ 精确算术函数。</para>
           <indexterm zone="ch-system-gmp libgmpxx">
             <primary sortas="c-libgmpxx">libgmpxx</primary>
           </indexterm>
@@ -143,7 +139,7 @@ cp    -v doc/{isa_abi_headache,configuration} doc/*.html \
       <varlistentry id="libmp">
         <term><filename class="libraryfile">libmp</filename></term>
         <listitem>
-          <para>Contains the Berkeley MP math functions.</para>
+          <para>包含 Berkeley MP 算术函数。</para>
           <indexterm zone="ch-system-gmp libmp">
             <primary sortas="c-libmp">libmp</primary>
           </indexterm>
