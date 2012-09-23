@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
   "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
   <!ENTITY % general-entities SYSTEM "../general.ent">
@@ -23,8 +23,7 @@
   <sect2 role="package">
     <title/>
 
-    <para>The GMP package contains math libraries. These have useful functions
-    for arbitrary precision arithmetic.</para>
+    <para>GMP 程序包包含数学库。其中包含用于任意精度算数的实用函数。</para>
 
     <segmentedlist>
       <segtitle>&buildtime;</segtitle>
