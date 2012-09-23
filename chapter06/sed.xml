@@ -40,7 +40,7 @@
   <sect2 role="installation">
     <title>安装 Sed</title>
 
-    <para>首先，修复一些回归测试</para>
+    <para>首先，修复一些回归测试:</para>
 
 <screen><userinput remap="pre">patch -Np1 -i ../&sed-testsuite-patch;</userinput></screen>
 
