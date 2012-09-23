@@ -170,13 +170,9 @@ cd ../gcc-build</userinput></screen>
  /usr/lib/gcc/i686-pc-linux-gnu/&gcc-version;/include-fixed
  /usr/include</computeroutput></screen>
 
-   <para>再次注意，以你的目标三联字串命名的目录可能会不同。取决于Again, note that the directory named after your target triplet may be
-   different than the above, depending on your architecture.</para>
+   <para>再次注意，以你的目标三联字串命名的目录可能会不同。取决于你的架构。</para>
 
-    <note><para>As of version 4.3.0, GCC now unconditionally installs the
-    <filename>limits.h</filename> file into the private
-    <filename class="directory">include-fixed</filename> directory, and that
-    directory is required to be in place.</para></note>
+    <note><para>对于版本 4.3.0，GCC 现在无条件安装 <filename>limits.h</filename> 文件至私有的 <filename class="directory">include-fixed</filename> 目录，这个目录需要到位。</para></note>
 
     <xi:include xmlns:xi="http://www.w3.org/2001/XInclude"
     href="adjusting.xml"
@@ -195,8 +191,7 @@ SEARCH_DIR("/usr/local/lib")
 SEARCH_DIR("/lib")
 SEARCH_DIR("/usr/lib");</computeroutput></screen>
 
-   <para>A 64-bit system may see a few more directories. For example, here
-   is the output from an x86_64 machine:</para>
+   <para>64 位系统会有几个额外的目录。例如这是 x86_64 计算机的输出：</para>
 
 <screen><computeroutput>SEARCH_DIR("/usr/x86_64-unknown-linux-gnu/lib64")
 SEARCH_DIR("/usr/local/lib64")
@@ -251,7 +246,7 @@ SEARCH_DIR("/usr/lib");</computeroutput></screen>
     href="adjusting.xml"
     xpointer="xpointer(//*[@os='v'])"/>
 
-    <para>Finally, move a misplaced file:</para>
+    <para>最后，移动一个位置不正确的文件：</para>
 
 <screen><userinput remap="install">mkdir -pv /usr/share/gdb/auto-load/usr/lib
 mv -v /usr/lib/*gdb.py /usr/share/gdb/auto-load/usr/lib</userinput></screen>
@@ -262,29 +257,26 @@ mv -v /usr/lib/*gdb.py /usr/share/gdb/auto-load/usr/lib</userinput></screen>
     <title>GCC 的内容</title>
 
     <segmentedlist>
-      <segtitle>Installed programs</segtitle>
-      <segtitle>Installed libraries</segtitle>
-      <segtitle>Installed directories</segtitle>
+      <segtitle>安装的程序</segtitle>
+      <segtitle>安装的库</segtitle>
+      <segtitle>安装的目录</segtitle>
 
       <seglistitem>
-        <seg>c++, cc (link to gcc), cpp, g++, gcc, gccbug, and gcov</seg>
-        <seg>libgcc.a, libgcc_eh.a, libgcc_s.so, libgcov.a, libgomp.{a,so},
-        liblto_plugin.so, libmudflap.{a,so}, libmudflapth.{a,so},
-        libquadmath.{a,so}, libssp.{a,so},
-        libssp_nonshared.a, libstdc++.{a,so} and libsupc++.a</seg>
-        <seg>/usr/include/c++, /usr/lib/gcc, /usr/share/gcc-&gcc-version;</seg>
+        <seg>c++、cc (到 gcc 的链接)、cpp、g++、gcc、gccbug 和 gcov</seg>
+        <seg>libgcc.a、libgcc_eh.a、libgcc_s.so、libgcov.a、libgomp.{a,so}、liblto_plugin.so、libmudflap.{a,so}、libmudflapth.{a,so}、libquadmath.{a,so}、libssp.{a,so}、libssp_nonshared.a、libstdc++.{a,so} 和 libsupc++.a</seg>
+        <seg>/usr/include/c++、/usr/lib/gcc、/usr/share/gcc-&gcc-version;</seg>
       </seglistitem>
     </segmentedlist>
 
     <variablelist>
-      <bridgehead renderas="sect3">Short Descriptions</bridgehead>
+      <bridgehead renderas="sect3">简介</bridgehead>
       <?dbfo list-presentation="list"?>
       <?dbhtml list-presentation="table"?>
 
       <varlistentry id="c">
         <term><command>c++</command></term>
         <listitem>
-          <para>The C++ compiler</para>
+          <para>C++ 编译器</para>
           <indexterm zone="ch-system-gcc c">
             <primary sortas="b-c++">c++</primary>
           </indexterm>
@@ -294,7 +286,7 @@ mv -v /usr/lib/*gdb.py /usr/share/gdb/auto-load/usr/lib</userinput></screen>
       <varlistentry id="cc">
         <term><command>cc</command></term>
         <listitem>
-          <para>The C compiler</para>
+          <para>C 编译器</para>
           <indexterm zone="ch-system-gcc cc">
             <primary sortas="b-cc">cc</primary>
           </indexterm>
@@ -304,8 +296,7 @@ mv -v /usr/lib/*gdb.py /usr/share/gdb/auto-load/usr/lib</userinput></screen>
       <varlistentry id="cpp">
         <term><command>cpp</command></term>
         <listitem>
-          <para>The C preprocessor; it is used by the compiler to expand the
-          #include, #define, and similar statements in the source files</para>
+          <para>C 预处理器；被编译器用于扩展源文件中的 #include、#define 和类似的声明</para>
           <indexterm zone="ch-system-gcc cpp">
             <primary sortas="b-cpp">cpp</primary>
           </indexterm>
@@ -315,7 +306,7 @@ mv -v /usr/lib/*gdb.py /usr/share/gdb/auto-load/usr/lib</userinput></screen>
       <varlistentry id="g">
         <term><command>g++</command></term>
         <listitem>
-          <para>The C++ compiler</para>
+          <para>C++ 编译器</para>
           <indexterm zone="ch-system-gcc g">
             <primary sortas="b-g++">g++</primary>
           </indexterm>
@@ -325,7 +316,7 @@ mv -v /usr/lib/*gdb.py /usr/share/gdb/auto-load/usr/lib</userinput></screen>
       <varlistentry id="gcc">
         <term><command>gcc</command></term>
         <listitem>
-          <para>The C compiler</para>
+          <para>C 编译器</para>
           <indexterm zone="ch-system-gcc gcc">
             <primary sortas="b-gcc">gcc</primary>
           </indexterm>
@@ -335,7 +326,7 @@ mv -v /usr/lib/*gdb.py /usr/share/gdb/auto-load/usr/lib</userinput></screen>
       <varlistentry id="gccbug">
         <term><command>gccbug</command></term>
         <listitem>
-          <para>A shell script used to help create useful bug reports</para>
+          <para>一个 shell 脚本用来协助创建漏洞报告</para>
           <indexterm zone="ch-system-gcc gccbug">
             <primary sortas="b-gccbug">gccbug</primary>
           </indexterm>
@@ -345,8 +336,7 @@ mv -v /usr/lib/*gdb.py /usr/share/gdb/auto-load/usr/lib</userinput></screen>
       <varlistentry id="gcov">
         <term><command>gcov</command></term>
         <listitem>
-          <para>A coverage testing tool; it is used to analyze programs to
-          determine where optimizations will have the most effect</para>
+          <para>一个覆盖测试工具；用于分析程序获知优化在何处效果最好</para>
           <indexterm zone="ch-system-gcc gcov">
             <primary sortas="b-gcov">gcov</primary>
           </indexterm>
@@ -356,7 +346,7 @@ mv -v /usr/lib/*gdb.py /usr/share/gdb/auto-load/usr/lib</userinput></screen>
       <varlistentry id="libgcc">
         <term><filename class="libraryfile">libgcc</filename></term>
         <listitem>
-          <para>Contains run-time support for <command>gcc</command></para>
+          <para>包含用于 <command>gcc</command> 的运行时支持</para>
           <indexterm zone="ch-system-gcc libgcc">
             <primary sortas="c-libgcc*">libgcc*</primary>
           </indexterm>
@@ -366,8 +356,7 @@ mv -v /usr/lib/*gdb.py /usr/share/gdb/auto-load/usr/lib</userinput></screen>
       <varlistentry id="libgcov">
         <term><filename class="libraryfile">libgcov</filename></term>
         <listitem>
-          <para>This library is linked in to a program when GCC is instructed
-          to enable profiling</para>
+          <para>在 GCC 获得启用分析的指令时此库链接到程序</para>
           <indexterm zone="ch-system-gcc libgcov">
             <primary sortas="c-libgcov">libgcov</primary>
           </indexterm>
@@ -377,8 +366,7 @@ mv -v /usr/lib/*gdb.py /usr/share/gdb/auto-load/usr/lib</userinput></screen>
       <varlistentry id="libgomp">
         <term><filename class="libraryfile">libgomp</filename></term>
         <listitem>
-          <para>GNU implementation of the OpenMP API for multi-platform
-          shared-memory parallel programming in C/C++ and Fortran</para>
+          <para>GNU 实现的多平台 OpenMP 共享内存并行编程，用于 C/C++ 和 Fortran</para>
           <indexterm zone="ch-system-gcc libgomp">
             <primary sortas="c-libgomp">libgomp</primary>
           </indexterm>
@@ -388,8 +376,7 @@ mv -v /usr/lib/*gdb.py /usr/share/gdb/auto-load/usr/lib</userinput></screen>
       <varlistentry id="liblto_plugin">
         <term><filename class="libraryfile">liblto_plugin</filename></term>
         <listitem>
-          <para>GCC's Link Time Optimization (LTO) plugin allows GCC to perform
-          optimizations across compilation units.</para>
+          <para>GCC 的链接时优化插件，允许 GCC 在多个编译单元之间进行优化</para>
           <indexterm zone="ch-system-gcc liblto_plugin">
             <primary sortas="c-liblto_plugin*">liblto_plugin*</primary>
           </indexterm>
@@ -399,8 +386,7 @@ mv -v /usr/lib/*gdb.py /usr/share/gdb/auto-load/usr/lib</userinput></screen>
       <varlistentry id="libmudflap">
         <term><filename class="libraryfile">libmudflap</filename></term>
         <listitem>
-          <para>Contains routines that support GCC's bounds checking
-          functionality</para>
+          <para>包含支持 GCC 的边界检查功能的途径</para>
           <indexterm zone="ch-system-gcc libmudflap">
             <primary sortas="c-libmudflap*">libmudflap*</primary>
           </indexterm>
@@ -410,7 +396,7 @@ mv -v /usr/lib/*gdb.py /usr/share/gdb/auto-load/usr/lib</userinput></screen>
       <varlistentry id="libquadmath">
         <term><filename class="libraryfile">libquadmath</filename></term>
         <listitem>
-          <para>GCC Quad Precision Math Library API</para>
+          <para>GCC 四精度数学库 API</para>
           <indexterm zone="ch-system-gcc libquadmath">
             <primary sortas="c-libquadmath*">libquadmath*</primary>
           </indexterm>
@@ -420,8 +406,7 @@ mv -v /usr/lib/*gdb.py /usr/share/gdb/auto-load/usr/lib</userinput></screen>
       <varlistentry id="libssp">
         <term><filename class="libraryfile">libssp</filename></term>
         <listitem>
-          <para>Contains routines supporting GCC's stack-smashing protection
-          functionality</para>
+          <para>包含支持 GCC 防爆栈保护功能的途径</para>
           <indexterm zone="ch-system-gcc libssp">
             <primary sortas="c-libssp*">libssp*</primary>
           </indexterm>
@@ -431,7 +416,7 @@ mv -v /usr/lib/*gdb.py /usr/share/gdb/auto-load/usr/lib</userinput></screen>
       <varlistentry id="libstdc">
         <term><filename class="libraryfile">libstdc++</filename></term>
         <listitem>
-          <para>The standard C++ library</para>
+          <para>标准 C++ 库</para>
           <indexterm zone="ch-system-gcc libstdc">
             <primary sortas="c-libstdc++">libstdc++</primary>
           </indexterm>
@@ -441,8 +426,7 @@ mv -v /usr/lib/*gdb.py /usr/share/gdb/auto-load/usr/lib</userinput></screen>
       <varlistentry id="libsupc">
         <term><filename class="libraryfile">libsupc++</filename></term>
         <listitem>
-          <para>Provides supporting routines for the C++ programming
-          language</para>
+          <para>为 C++ 程序设计语言提供支持的途径</para>
           <indexterm zone="ch-system-gcc libsupc">
             <primary sortas="c-libsupc++">libsupc++</primary>
           </indexterm>
