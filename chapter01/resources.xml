@@ -20,7 +20,7 @@
   <sect2 id="ch-intro-maillists" xreflabel="第一章 - 邮件列表">
     <title>邮件列表</title>
 
-    <para>你可以在 <uri>linuxfromscratch.org</uri> 找到大量关于 LFS 项目开发的邮件列表。这些列表包括主要开发团队，相关支持等等。如果常见问题列表 (FAQ) 没有解决你的问题，请查找这些邮件列表 <ulink url="&lfs-root;search.html"/> 。</para>
+    <para>你可以在 <uri>linuxfromscratch.org</uri> 找到大量关于 LFS 项目开发的邮件列表。这些列表包括主要开发团队，相关支持等等。如果常见问题列表 (FAQ) 没有解决你的问题，请查找这些邮件列表 <ulink url="&lfs-root;search.html"/>。</para>
 
     <para>关于如何使用邮件列表，请查看 <ulink url="&lfs-root;mail.html"/>。</para>
 
