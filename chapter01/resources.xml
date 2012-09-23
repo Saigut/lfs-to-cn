@@ -13,7 +13,7 @@
   <sect2 id="ch-intro-faq">
     <title>常见问题</title>
 
-    <para>如果你在构建 LFS 系统的时候遭遇任何错误，有任何问题，或者是认为本文当有排版问题，请查看 <ulink url="&faq-root;"/>。</para>
+    <para>如果你在构建 LFS 系统的时候遭遇任何错误，有任何问题，或者是认为本文当有排版问题，请查看 <ulink url="&faq-root;"/>。(译注：如果你遇到描述性问题，请先提供给翻译工程 <ulink url="https://github.com/davidgao/LFSCN"/>。)</para>
 
   </sect2>
 
