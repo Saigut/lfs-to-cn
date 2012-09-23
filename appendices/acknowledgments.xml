@@ -1,15 +1,15 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE appendix PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
   "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
   <!ENTITY % general-entities SYSTEM "../general.ent">
   %general-entities;
 ]>
 
-<appendix id="appendixb" xreflabel="Appendix B">
+<appendix id="appendixb" xreflabel="附录 B">
   <?dbhtml dir="appendices"?>
   <?dbhtml filename="acknowledgements.html"?>
 
-  <title>Acknowledgments</title>
+  <title>鸣谢</title>
 
   <para>We would like to thank the following people and organizations
   for their contributions to the Linux From Scratch Project.</para>
@@ -392,6 +392,18 @@
     </listitem>
 
   </itemizedlist>
+  
+  <bridgehead renderas="sect2">简体中文翻译参与者</bridgehead>
+
+  <itemizedlist>
+
+    <listitem>
+      <para><ulink url="mailto:davidgao1001@163.com">高建</ulink> &lt;davidgao1001@163.com&gt;</para>
+    </listitem>
+    
+    <listitem>
+      <para><ulink url="mailto:12307130177@fudan.edu.cn">富元杰</ulink> &lt;12307130177@fudan.edu.cn&gt;</para>
+    </listitem>
 
 <!--
   <bridgehead renderas="sect2">A very special thank you to our

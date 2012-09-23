@@ -38,35 +38,28 @@
   </sect2>
 
   <sect2 role="installation">
-    <title>Installation of GCC</title>
+    <title>安装 GCC</title>
 
-    <para>Apply a <command>sed</command> substitution that will suppress the
-    installation of <filename class="libraryfile">libiberty.a</filename>. The
-    version of <filename class="libraryfile">libiberty.a</filename> provided by
-    Binutils will be used instead:</para>
+    <para>应用一次 <command>sed</command> 替换，禁止安装 <filename class="libraryfile">libiberty.a</filename>。我们将会使用 Binutils 提供的 <filename class="libraryfile">libiberty.a</filename>：</para>
 
 <screen><userinput remap="pre">sed -i 's/install_to_$(INSTALL_DEST) //' libiberty/Makefile.in</userinput></screen>
 
-    <para>As in <xref linkend="ch-tools-gcc-pass2"/>, apply the following
-    <command>sed</command> to force the build to use the
-    <option>-fomit-frame-pointer</option> compiler flag in order to ensure
-    consistent compiler builds:</para> 
+    <para>与<xref linkend="ch-tools-gcc-pass2"/> 相同，应用以下 <command>sed</command> 命令强制编制使用 <option>-fomit-frame-pointer</option> 编译器标记以确保编译器编制稳定：</para> 
 
 <screen><userinput remap="pre">case `uname -m` in
   i?86) sed -i 's/^T_CFLAGS =$/&amp; -fomit-frame-pointer/' gcc/Makefile.in ;;
 esac</userinput></screen>
 
-    <para>Also fix an error in one of the check Makefiles:</para>
+    <para>还要修复一个测试 Makefile 中的错误：</para>
 
 <screen><userinput remap="pre">sed -i -e /autogen/d -e /check.sh/d fixincludes/Makefile.in</userinput></screen>
 
-    <para>The GCC documentation recommends building GCC outside of the source
-    directory in a dedicated build directory:</para>
+    <para>GCC 文档推荐在源代码目录外另建目录编制 GCC：</para>
 
 <screen><userinput remap="pre">mkdir -v ../gcc-build
 cd ../gcc-build</userinput></screen>
 
-    <para>Prepare GCC for compilation:</para>
+    <para>准备编译 GCC：</para>
 
 <screen><userinput remap="configure">../gcc-&gcc-version;/configure --prefix=/usr            \
                        --libexecdir=/usr/lib    \
@@ -79,76 +72,57 @@ cd ../gcc-build</userinput></screen>
                        --disable-bootstrap      \
                        --with-system-zlib</userinput></screen>
 
-    <para>Note that for other languages, there are some prerequisites that
-    are not available. See the BLFS Book for instructions on how to
-    build all the GCC supported languages.</para>
+    <para>注意对于其他语言，还有一些没有满足的前提条件。编译所有 GCC 支持语言的指令见 BLFS。</para>
 
     <variablelist>
-      <title>The meaning of the new configure option:</title>
+      <title>新的配置选项的含义：</title>
 
       <varlistentry>
         <term><parameter>--with-system-zlib</parameter></term>
         <listitem>
-          <para>This switch tells GCC to link to the system installed copy of
-          the Zlib library, rather than its own internal copy.</para>
+          <para>此开关告诉 GCC 链接至系统上安装的 Zlib 副本而不是其内部的副本。</para>
         </listitem>
       </varlistentry>
     </variablelist>
 
-    <para>Compile the package:</para>
+    <para>编译程序包：</para>
 
 <screen><userinput remap="make">make</userinput></screen>
 
     <important>
-      <para>In this section, the test suite for GCC is considered
-      critical. Do not skip it under any circumstance.</para>
+      <para>本节中 GCC 的测试套件是十分重要的，任何情况下都不要跳过。</para>
     </important>
-
-   <para>One set of tests in the GCC test suite is known to exhaust the stack,
-   so increase the stack size prior to running the tests:</para>
+   <para>GCC 的测试套件中有一组测试已知会爆栈。在运行测试之前增大栈尺寸:</para>
 
 <screen><userinput remap="test">ulimit -s 32768</userinput></screen>
 
-    <para>Test the results, but do not stop at errors:</para>
+    <para>测试结果，但在出错时不停止：</para>
 
 <screen><userinput remap="test">make -k check</userinput></screen>
 
-    <para>To receive a summary of the test suite results, run:</para>
+    <para>要获取测试套件结果的摘要，运行：</para>
 
 <screen><userinput remap="test">../gcc-&gcc-version;/contrib/test_summary</userinput></screen>
 
-    <para>For only the summaries, pipe the output through
-    <userinput>grep -A7 Summ</userinput>.</para>
+    <para>如果只要摘要，将结果以管道传送给 <userinput>grep -A7 Summ</userinput>。</para>
 
-    <para>Results can be compared with those located at <ulink
-    url="&test-results;"/> and <ulink url="http://gcc.gnu.org/ml/gcc-testresults/"/>.</para>
+    <para>可以将结果与位于 <ulink url="&test-results;"/> 和 <ulink url="http://gcc.gnu.org/ml/gcc-testresults/"/> 的样例进行比对。</para>
 
-    <para>A few unexpected failures cannot always be avoided. The GCC developers
-    are usually aware of these issues, but have not resolved them yet. In
-    particular, the <filename class="libraryfile">libmudflap</filename> tests
-    are known to be particularly problematic as a result of a bug in GCC
-    (<ulink url="http://gcc.gnu.org/bugzilla/show_bug.cgi?id=20003"/>).
-    Unless the test results are vastly different from those at the above URL,
-    it is safe to continue.</para>
+    <para>总是会有几个非期待的失败无法避免。GCC 开发者通常了解这些问题，但还没有解决。特别地，<filename class="libraryfile">libmudflap</filename> 测试已知由于 GCC 中的一个漏洞 (<ulink url="http://gcc.gnu.org/bugzilla/show_bug.cgi?id=20003"/>) 而特别麻烦。只要测试结果没有与以上 URL 中的相差过于悬殊，都可以安全继续。</para>
 
-    <para>Install the package:</para>
+    <para>安装程序包：</para>
 
 <screen><userinput remap="install">make install</userinput></screen>
 
-    <para>Some packages expect the C preprocessor to be installed in the
-    <filename class="directory">/lib</filename> directory.
-    To support those packages, create this symlink:</para>
+    <para>有些程序包要求 C 预处理器安装到 <filename class="directory">/lib</filename> 目录中。要支持这些程序包，创建这个符号链接：</para>
 
 <screen><userinput remap="install">ln -sv ../usr/bin/cpp /lib</userinput></screen>
 
-    <para>Many packages use the name <command>cc</command> to call the C
-    compiler. To satisfy those packages, create a symlink:</para>
+    <para>很多程序包使用 <command>cc</command> 这个名字调用 C 编译器。要支持这些程序包，创建一个符号链接：</para>
 
 <screen><userinput remap="install">ln -sv gcc /usr/bin/cc</userinput></screen>
 
-    <para>Now that our final toolchain is in place, it is important to again ensure
-    that compiling and linking will work as expected. We do this by performing
-    the same sanity checks as we did earlier in the chapter:</para>
+    <para>现在我们最终的工具链到位了，再次确保编译和链接正常工作就十分重要。我们要进行与本章中进行过的相同的稳定性测试：</para>
 
     <xi:include xmlns:xi="http://www.w3.org/2001/XInclude"
     href="adjusting.xml"
