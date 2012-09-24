@@ -38,7 +38,7 @@
   </sect2>
 
   <sect2 role="installation">
-    <title>Installation of Ncurses</title>
+    <title>安装 Ncurses</title>
 
     <!-- FIXME: Uncomment if using a dated ncurses release instead of a numbered
          one.
@@ -50,25 +50,19 @@
 <screen><userinput>bzcat ../&ncurses-rollup-patch; | patch -Np1</userinput></screen>
     -->
 
-    <para>Prepare Ncurses for compilation:</para>
+      <para>准备编译 Ncurses：</para>
 
 <screen><userinput remap="configure">./configure --prefix=/usr --mandir=/usr/share/man --with-shared \
             --without-debug --enable-widec</userinput></screen>
 
     <variablelist>
-      <title>The meaning of the configure option:</title>
+      <title>配置选项的含义：</title>
 
       <varlistentry>
         <term><parameter>--enable-widec</parameter></term>
         <listitem>
-          <para>This switch causes wide-character libraries (e.g., <filename
-          class="libraryfile">libncursesw.so.&ncurses-version;</filename>)
-          to be built instead of normal ones (e.g., <filename
-          class="libraryfile">libncurses.so.&ncurses-version;</filename>).
-          These wide-character libraries are usable in both multibyte and
-          traditional 8-bit locales, while normal libraries work properly
-          only in 8-bit locales. Wide-character and normal libraries are
-          source-compatible, but not binary-compatible.</para>
+            <para>这个开关使长字符库 (e.g.，<filename
+                class="libraryfile">libncursesw.so.&ncurses-version;</filename>)被编制而非普通的库 (e.g.， <filename》class="libraryfile">libncurses.so.&ncurses-version;</filename>)这些长字符库在多字节和传统 8 位区域数据下都可用，而普通的库只在 8 位区域数据下正常工作。宽字符库和普通库是源兼容的，但不二进制兼容。</para>
         </listitem>
       </varlistentry>
 
@@ -85,34 +79,25 @@
 
     </variablelist>
 
-    <para>Compile the package:</para>
+    <para>编译程序包：</para>
 
 <screen><userinput remap="make">make</userinput></screen>
 
-    <para>This package has a test suite, but it can only be run after the
-    package has been installed.  The tests reside in the
-    <filename class="directory">test/</filename> directory.  See the
-    <filename>README</filename> file in that directory for further details.
-    </para>
+    <para>这个程序包有一个测试套件，但它只能在程序包安装完毕后运行。该测试存在于 <filename class="directory">test/</filename> 目录。 查阅此目录下的 <filename>README</filename> 文件来获得更多细节。</para>
 
-    <para>Install the package:</para>
+    <para>安装程序包：</para>
 
 <screen><userinput remap="install">make install</userinput></screen>
 
-    <para>Move the shared libraries to the
-    <filename class="directory">/lib</filename> directory, where they are
-    expected to reside:</para>
+    <para>移动共用库到 <filename class="directory">/lib</filename> 目录，这里是它要求的位置：</para>
 
 <screen><userinput remap="install">mv -v /usr/lib/libncursesw.so.5* /lib</userinput></screen>
 
-    <para>Because the libraries have been moved, one symlink points to
-    a non-existent file. Recreate it:</para>
+    <para>因为库被移动了，一个符号链接指向了一个不存在的文件夹。重新创建它：</para>
 
 <screen><userinput remap="install">ln -sfv ../../lib/libncursesw.so.5 /usr/lib/libncursesw.so</userinput></screen>
 
-    <para>Many applications still expect the linker to be able to find
-    non-wide-character Ncurses libraries. Trick such applications into linking with
-    wide-character libraries by means of symlinks and linker scripts:</para>
+    <para>许多应用程序依然要求链接器能够找到非宽字符的 Ncurses 库。以符号链接和链接器脚本的方法欺骗这些应用程序链接到宽字符库：</para>
 
 <screen><userinput remap="install">for lib in ncurses form panel menu ; do \
     rm -vf /usr/lib/lib${lib}.so ; \
@@ -121,9 +106,7 @@
 done
 ln -sfv libncurses++w.a /usr/lib/libncurses++.a</userinput></screen>
 
-    <para>Finally, make sure that old applications that look for
-    <filename class="libraryfile">-lcurses</filename> at build time are still
-    buildable:</para>
+    <para>最后，确保在编制时需要 <filename class="libraryfile">-lcurses</filename> 的旧应用程序仍可以正常编制：</para>
 
 <screen><userinput remap="install">rm -vf /usr/lib/libcursesw.so
 echo "INPUT(-lncursesw)" &gt;/usr/lib/libcursesw.so
@@ -131,17 +114,13 @@ ln -sfv libncurses.so /usr/lib/libcurses.so
 ln -sfv libncursesw.a /usr/lib/libcursesw.a
 ln -sfv libncurses.a /usr/lib/libcurses.a</userinput></screen>
 
-    <para>If desired, install the Ncurses documentation:</para>
+    <para>如果需要，安装 Ncurses 文档：</para>
 
 <screen><userinput remap="install">mkdir -v       /usr/share/doc/ncurses-&ncurses-version;
 cp -v -R doc/* /usr/share/doc/ncurses-&ncurses-version;</userinput></screen>
 
     <note>
-      <para>The instructions above don't create non-wide-character Ncurses
-      libraries since no package installed by compiling from sources would
-      link against them at runtime. If you must have such libraries because
-      of some binary-only application or to be compliant with LSB, build 
-      the package again with the following commands:</para>
+      <para>上面的向导不创建非宽字符 Ncurses 库，因为没有通过编译源代码安装的程序包会在运行时链接它们。如果你因为某些只提供二进制的应用程序或为了兼容LSB而必需这些库，按以下命令再次编制程序包：</para>
 
 <screen role="nodump"><userinput>make distclean
 ./configure --prefix=/usr --with-shared --without-normal \
@@ -156,30 +135,26 @@ cp -av lib/lib*.so.5* /usr/lib</userinput></screen>
     <title>Ncurses 的内容</title>
 
     <segmentedlist>
-      <segtitle>Installed programs</segtitle>
-      <segtitle>Installed libraries</segtitle>
-      <segtitle>Installed directories</segtitle>
+      <segtitle>安装的程序</segtitle>
+      <segtitle>安装的库</segtitle>
+      <segtitle>安装的目录</segtitle>
 
       <seglistitem>
-        <seg>captoinfo (link to tic), clear, infocmp, infotocap (link to tic),
-        ncursesw5-config, reset (link to tset), tabs, tic, toe, tput, and tset</seg>
-        <seg>libcursesw.{a,so} (symlink and linker script to libncursesw.{a,so}),
-        libformw.{a,so}, libmenuw.{a,so}, libncurses++w.a, libncursesw.{a,so},
-        libpanelw.{a,so} and their non-wide-character counterparts without "w"
-        in the library names.</seg>
+        <seg>captoinfo (link to tic)、clear、infocmp、infotocap (link to tic)、ncursesw5-config、reset (link to tset)、tabs、tic、toe、tput、and tset</seg>
+        <seg>libcursesw.{a,so} (symlink and linker script to libncursesw.{a,so})、libformw.{a,so}、libmenuw.{a,so}、libncurses++w.a、libncursesw.{a,so}、libpanelw.{a,so} 和 their non-wide-character counterparts without "w" in the library names.</seg>
         <seg>/usr/share/tabset, /usr/share/terminfo</seg>
       </seglistitem>
     </segmentedlist>
 
     <variablelist>
-      <bridgehead renderas="sect3">Short Descriptions</bridgehead>
+      <bridgehead renderas="sect3">简介s</bridgehead>
       <?dbfo list-presentation="list"?>
       <?dbhtml list-presentation="table"?>
 
       <varlistentry id="captoinfo">
         <term><command>captoinfo</command></term>
         <listitem>
-          <para>Converts a termcap description into a terminfo description</para>
+          <para>将 termcap 描述转换成 terminfo 描述</para>
           <indexterm zone="ch-system-ncurses captoinfo">
             <primary sortas="b-captoinfo">captoinfo</primary>
           </indexterm>
@@ -189,7 +164,7 @@ cp -av lib/lib*.so.5* /usr/lib</userinput></screen>
       <varlistentry id="clear">
         <term><command>clear</command></term>
         <listitem>
-          <para>Clears the screen, if possible</para>
+          <para>如果可能，刷新屏幕</para>
           <indexterm zone="ch-system-ncurses clear">
             <primary sortas="b-clear">clear</primary>
           </indexterm>
@@ -199,7 +174,7 @@ cp -av lib/lib*.so.5* /usr/lib</userinput></screen>
       <varlistentry id="infocmp">
         <term><command>infocmp</command></term>
         <listitem>
-          <para>Compares or prints out terminfo descriptions</para>
+          <para>比对或打印 terminfo 描述</para>
           <indexterm zone="ch-system-ncurses infocmp">
             <primary sortas="b-infocmp">infocmp</primary>
           </indexterm>
@@ -209,7 +184,7 @@ cp -av lib/lib*.so.5* /usr/lib</userinput></screen>
       <varlistentry id="infotocap">
         <term><command>infotocap</command></term>
         <listitem>
-          <para>Converts a terminfo description into a termcap description</para>
+          <para>将 terminfo 描述转换成 termcap 描述</para>
           <indexterm zone="ch-system-ncurses infotocap">
             <primary sortas="b-infotocap">infotocap</primary>
           </indexterm>
@@ -219,7 +194,7 @@ cp -av lib/lib*.so.5* /usr/lib</userinput></screen>
       <varlistentry id="ncursesw5-config">
         <term><command>ncursesw5-config</command></term>
         <listitem>
-          <para>Provides configuration information for ncurses</para>
+          <para>提供 Ncurses 的配置信息</para>
           <indexterm zone="ch-system-ncurses ncursesw5-config">
             <primary sortas="b-ncursesw5-config">ncursesw5-config</primary>
           </indexterm>
@@ -229,7 +204,7 @@ cp -av lib/lib*.so.5* /usr/lib</userinput></screen>
       <varlistentry id="reset">
         <term><command>reset</command></term>
         <listitem>
-          <para>Reinitializes a terminal to its default values</para>
+          <para>将一个终端再初始化到它的默认值</para>
           <indexterm zone="ch-system-ncurses reset">
             <primary sortas="b-reset">reset</primary>
           </indexterm>
@@ -239,7 +214,7 @@ cp -av lib/lib*.so.5* /usr/lib</userinput></screen>
       <varlistentry id="tabs">
         <term><command>tabs</command></term>
         <listitem>
-          <para>Clears and sets tab stops on a terminal</para>
+          <para>在一个终端上刷新和设置停止跳格</para>
           <indexterm zone="ch-system-ncurses tabs">
             <primary sortas="b-tabs">tabs</primary>
           </indexterm>
@@ -249,10 +224,7 @@ cp -av lib/lib*.so.5* /usr/lib</userinput></screen>
       <varlistentry id="tic">
         <term><command>tic</command></term>
         <listitem>
-          <para>The terminfo entry-description compiler that translates a
-          terminfo file from source format into the binary format needed for the
-          ncurses library routines. A terminfo file contains information on the
-          capabilities of a certain terminal</para>
+          <para>将一个 terminfo 文件从源格式翻译成二进制格式的 terminfo 条目描述编译器需要 ncurses 库路径。一个 terminfo 文件包含有关某一特定终端的兼容性信息</para>
           <indexterm zone="ch-system-ncurses tic">
             <primary sortas="b-tic">tic</primary>
           </indexterm>
@@ -262,8 +234,7 @@ cp -av lib/lib*.so.5* /usr/lib</userinput></screen>
       <varlistentry id="toe">
         <term><command>toe</command></term>
         <listitem>
-          <para>Lists all available terminal types, giving the primary name and
-          description for each</para>
+          <para>列出所有可用的终端类型，给出每一个的原名和描述</para>
           <indexterm zone="ch-system-ncurses toe">
             <primary sortas="b-toe">toe</primary>
           </indexterm>
@@ -273,9 +244,7 @@ cp -av lib/lib*.so.5* /usr/lib</userinput></screen>
       <varlistentry id="tput">
         <term><command>tput</command></term>
         <listitem>
-          <para>Makes the values of terminal-dependent capabilities available to
-          the shell; it can also be used to reset or initialize a terminal or
-          report its long name</para>
+          <para>使依赖终端兼容性的值可被 shell 使用；它同样可以被用来重设或初始化某一终端或报告其长名</para>
           <indexterm zone="ch-system-ncurses tput">
             <primary sortas="b-tput">tput</primary>
           </indexterm>
@@ -285,7 +254,7 @@ cp -av lib/lib*.so.5* /usr/lib</userinput></screen>
       <varlistentry id="tset">
         <term><command>tset</command></term>
         <listitem>
-          <para>Can be used to initialize terminals</para>
+          <para>可以被用来初始化终端</para>
           <indexterm zone="ch-system-ncurses tset">
             <primary sortas="b-tset">tset</primary>
           </indexterm>
@@ -295,7 +264,7 @@ cp -av lib/lib*.so.5* /usr/lib</userinput></screen>
       <varlistentry id="libcurses">
         <term><filename class="libraryfile">libcurses</filename></term>
         <listitem>
-          <para>A link to <filename>libncurses</filename></para>
+          <para>一个到 <filename>libncurses</filename> 的链接</para>
           <indexterm zone="ch-system-ncurses libcurses">
             <primary sortas="c-libcurses">libcurses</primary>
           </indexterm>
@@ -305,10 +274,7 @@ cp -av lib/lib*.so.5* /usr/lib</userinput></screen>
       <varlistentry id="libncurses">
         <term><filename class="libraryfile">libncurses</filename></term>
         <listitem>
-          <para>Contains functions to display text in many complex ways on a
-          terminal screen; a good example of the use of these functions is the
-          menu displayed during the kernel's <command>make
-          menuconfig</command></para>
+            <para>包含了可以多种复合方式在终端屏幕上显示文本的函数；一个较好的函数使用案例是在 kernel 的 <command>make menuconfig</command> 中显示的菜单</para>
           <indexterm zone="ch-system-ncurses libncurses">
             <primary sortas="c-libncurses">libncurses</primary>
           </indexterm>
@@ -318,7 +284,7 @@ cp -av lib/lib*.so.5* /usr/lib</userinput></screen>
       <varlistentry id="libform">
         <term><filename class="libraryfile">libform</filename></term>
         <listitem>
-          <para>Contains functions to implement forms</para>
+          <para>包含了实现表格的函数</para>
           <indexterm zone="ch-system-ncurses libform">
             <primary sortas="c-libform">libform</primary>
           </indexterm>
@@ -328,7 +294,7 @@ cp -av lib/lib*.so.5* /usr/lib</userinput></screen>
       <varlistentry id="libmenu">
         <term><filename class="libraryfile">libmenu</filename></term>
         <listitem>
-          <para>Contains functions to implement menus</para>
+          <para>包含了实现菜单的函数</para>
           <indexterm zone="ch-system-ncurses libmenu">
             <primary sortas="c-libmenu">libmenu</primary>
           </indexterm>
@@ -338,7 +304,7 @@ cp -av lib/lib*.so.5* /usr/lib</userinput></screen>
       <varlistentry id="libpanel">
         <term><filename class="libraryfile">libpanel</filename></term>
         <listitem>
-          <para>Contains functions to implement panels</para>
+          <para>包含了实现面板的函数</para>
           <indexterm zone="ch-system-ncurses libpanel">
             <primary sortas="c-libpanel">libpanel</primary>
           </indexterm>
