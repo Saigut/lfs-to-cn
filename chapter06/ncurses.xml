@@ -38,7 +38,7 @@
   </sect2>
 
   <sect2 role="installation">
-    <title>Installation of Ncurses</title>
+    <title>安装 Ncurses</title>
 
     <!-- FIXME: Uncomment if using a dated ncurses release instead of a numbered
          one.
@@ -50,7 +50,7 @@
 <screen><userinput>bzcat ../&ncurses-rollup-patch; | patch -Np1</userinput></screen>
     -->
 
-    <para>Prepare Ncurses for compilation:</para>
+    <para>准备编译 Ncurses：</para>
 
 <screen><userinput remap="configure">./configure --prefix=/usr --mandir=/usr/share/man --with-shared \
             --without-debug --enable-widec</userinput></screen>
