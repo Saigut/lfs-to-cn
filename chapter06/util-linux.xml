@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
   "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
   <!ENTITY % general-entities SYSTEM "../general.ent">
@@ -23,9 +23,7 @@
   <sect2 role="package">
     <title/>
 
-    <para>The Util-linux package contains miscellaneous utility programs.
-    Among them are utilities for handling file systems, consoles, partitions,
-    and messages.</para>
+    <para>Util-linux 程序包包含大量工具程序。其中有处理文件系统、控制台、分区和消息的程序。</para>
 
     <segmentedlist>
       <segtitle>&buildtime;</segtitle>
@@ -40,14 +38,9 @@
   </sect2>
 
   <sect2 role="installation">
-    <title>FHS compliance notes</title>
+    <title>FHS 兼容注记</title>
 
-    <para>The FHS recommends using the <filename
-    class="directory">/var/lib/hwclock</filename> directory instead of the
-    usual <filename class="directory">/etc</filename> directory as the
-    location for the <filename>adjtime</filename> file. To make the
-    <command>hwclock</command> program FHS-compliant, run the
-    following:</para>
+    <para>FHS 推荐使用 <filename class="directory">/var/lib/hwclock</filename> 目录而不是通常的 <filename class="directory">/etc</filename> 目录作为 <filename>adjtime</filename> 文件的位置。要使 <command>hwclock</command> 程序兼容 FHS，运行以下：</para>
 
 <screen><userinput remap="pre">sed -i -e 's@etc/adjtime@var/lib/hwclock/adjtime@g' \
      $(grep -rl '/etc/adjtime' .)
@@ -57,74 +50,59 @@ mkdir -pv /var/lib/hwclock</userinput></screen>
   </sect2>
 
   <sect2 role="installation">
-    <title>Installation of Util-linux</title>
+    <title>安装 Util-linux</title>
 
 <screen><userinput remap="configure">./configure --disable-su --disable-sulogin --disable-login</userinput></screen>
 
     <variablelist>
-      <title>The meaning of the configure option:</title>
+      <title>配置选项的含义：</title>
 
       <varlistentry>
         <term><parameter>--disable-*</parameter></term>
         <listitem>
-          <para>These switches disable building su, sulogin, and login.  They
-          duplicate the same programs provided by <xref
-          linkend='ch-system-shadow'/>.  They also require <ulink
-          url="&blfs-root;/view/svn/postlfs/linux-pam.html">Linux-PAM</ulink>
-          which is not available in LFS.</para>
+          <para>这些开关禁用编制 su、sulogin 和 login。它们与 <xref linkend='ch-system-shadow'/> 提供的副本重复了，并且需求 LFS 中不可用的 <ulink url="&blfs-root;/view/svn/postlfs/linux-pam.html">Linux-PAM</ulink>。</para>
         </listitem>
       </varlistentry>
     </variablelist>
 
-    <para>Compile the package:</para>
+    <para>编译程序包：</para>
 
 <screen><userinput remap="make">make</userinput></screen>
 
-    <para>This package does not come with a test suite.</para>
+    <para>此程序包不包含测试套件。</para>
 
-    <para>Install the package:</para>
+    <para>安装程序包</para>
 
 <screen><userinput remap="install">make install</userinput></screen>
 
   </sect2>
 
   <sect2 id="contents-utillinux" role="content">
-    <title>Contents of Util-linux</title>
+    <title>Util-linux 的内容</title>
 
     <segmentedlist>
-      <segtitle>Installed programs</segtitle>
-      <segtitle>Installed libraries</segtitle>
-      <segtitle>Installed directories</segtitle>
+      <segtitle>安装的程序</segtitle>
+      <segtitle>安装的库</segtitle>
+      <segtitle>安装的目录</segtitle>
 
       <seglistitem>
-        <seg>addpart, agetty, blkid, blockdev, cal, cfdisk, chcpu, chkdupexe,
-        chrt, col, colcrt, colrm, column, ctrlaltdel, cytune, delpart,
-        dmesg, fallocate, fdformat, fdisk, findfs, findmnt, flock, fsck,
-        fsck.cramfs, fsck.minix, fsfreeze, fstrim, getopt, hexdump, hwclock, i386,
-        ionice, ipcmk, ipcrm, ipcs, isosize, ldattach, linux32, linux64,
-        logger, look, losetup, lsblk, lscpu, mcookie, mkfs, mkfs.bfs, mkfs.cramfs,
-        mkfs.minix, mkswap, more, mount, mountpoint, namei, partx, pg, pivot_root,
-        prlimit, raw, readprofile, rename, renice, rev, rtcwake, script, scriptreplay,
-        setarch, setsid, setterm, sfdisk, swaplabel, swapoff (link to swapon),
-        swapon, switch_root, tailf, taskset, tunelp, ul, umount, unshare,
-        uuidd, uuidgen, wall, whereis, wipefs, and x86_64</seg>
+        <seg>addpart、agetty、blkid、blockdev、cal、cfdisk、chcpu、chkdupexe、chrt、col、colcrt、colrm、column、ctrlaltdel、cytune、delpart、dmesg、fallocate、fdformat、fdisk、findfs、findmnt、flock、fsck、fsck.cramfs、fsck.minix、fsfreeze、fstrim、getopt、hexdump、hwclock、i386、ionice、ipcmk、ipcrm、ipcs、isosize、ldattach、linux32、linux64、logger、look、losetup、lsblk、lscpu、mcookie、mkfs、mkfs.bfs、mkfs.cramfs、mkfs.minix、mkswap、more、mount、mountpoint、namei、partx、pg、pivot_root、prlimit、raw、readprofile、rename、renice、rev、rtcwake、script、scriptreplay、setarch、setsid、setterm、sfdisk、swaplabel、swapoff (到 swapon 的链接)、swapon、switch_root、tailf、taskset、tunelp、ul、umount、unshare、uuidd、uuidgen、wall、whereis、wipefs 和 x86_64</seg>
 
-        <seg>libblkid.{a,so}, libmount.{a,so}, libuuid.{a,so}</seg>
+        <seg>libblkid.{a,so}、libmount.{a,so}、libuuid.{a,so}</seg>
         
-        <seg>/usr/include/blkid, /usr/include/libmount, /usr/include/uuid,
-        /usr/share/getopt, /var/lib/hwclock</seg>
+        <seg>/usr/include/blkid、/usr/include/libmount、/usr/include/uuid、/usr/share/getopt、/var/lib/hwclock</seg>
       </seglistitem>
     </segmentedlist>
 
     <variablelist>
-      <bridgehead renderas="sect3">Short Descriptions</bridgehead>
+      <bridgehead renderas="sect3">简介</bridgehead>
       <?dbfo list-presentation="list"?>
       <?dbhtml list-presentation="table"?>
 
       <varlistentry id="addpart">
         <term><command>addpart</command></term>
         <listitem>
-          <para>Informs the Linux kernel of new partitions</para>
+          <para>通知内核有新的分区</para>
           <indexterm zone="ch-system-util-linux addpart">
             <primary sortas="b-addpart">addpart</primary>
           </indexterm>
@@ -134,8 +112,7 @@ mkdir -pv /var/lib/hwclock</userinput></screen>
       <varlistentry id="agetty">
         <term><command>agetty</command></term>
         <listitem>
-          <para>Opens a tty port, prompts for a login name,
-          and then invokes the <command>login</command> program</para>
+          <para>打开一个 tty 端口，提示输入登录名然后调用 <command>login</command> 程序</para>
           <indexterm zone="ch-system-util-linux agetty">
             <primary sortas="b-agetty">agetty</primary>
           </indexterm>
@@ -145,8 +122,7 @@ mkdir -pv /var/lib/hwclock</userinput></screen>
       <varlistentry id="blkid">
         <term><command>blkid</command></term>
         <listitem>
-          <para>A command line utility to locate and print block device
-          attributes</para>
+          <para>一个命令行工具，定位并打印块设备属性</para>
           <indexterm zone="ch-system-util-linux blkid">
             <primary sortas="b-blkid">blkid</primary>
           </indexterm>
@@ -156,8 +132,7 @@ mkdir -pv /var/lib/hwclock</userinput></screen>
       <varlistentry id="blockdev">
         <term><command>blockdev</command></term>
         <listitem>
-          <para>Allows users to call block device ioctls from the command
-          line</para>
+          <para>允许用户从命令行调用块设备 ioctls</para>
           <indexterm zone="ch-system-util-linux blockdev">
             <primary sortas="b-blockdev">blockdev</primary>
           </indexterm>
@@ -167,7 +142,7 @@ mkdir -pv /var/lib/hwclock</userinput></screen>
       <varlistentry id="cal">
         <term><command>cal</command></term>
         <listitem>
-          <para>Displays a simple calendar</para>
+          <para>显示一个简单的日历</para>
           <indexterm zone="ch-system-util-linux cal">
             <primary sortas="b-cal">cal</primary>
           </indexterm>
@@ -177,7 +152,7 @@ mkdir -pv /var/lib/hwclock</userinput></screen>
       <varlistentry id="cfdisk">
         <term><command>cfdisk</command></term>
         <listitem>
-          <para>Manipulates the partition table of the given device</para>
+          <para>修改给定设备的分区表</para>
           <indexterm zone="ch-system-util-linux cfdisk">
             <primary sortas="b-cfdisk">cfdisk</primary>
           </indexterm>
@@ -187,7 +162,7 @@ mkdir -pv /var/lib/hwclock</userinput></screen>
       <varlistentry id="chcpu">
         <term><command>chcpu</command></term>
         <listitem>
-          <para>Modifies the state of CPUs</para>
+          <para>修改 CPU 状态</para>
           <indexterm zone="ch-system-util-linux chcpu">
             <primary sortas="b-chcpu">chcpu</primary>
           </indexterm>
@@ -197,7 +172,7 @@ mkdir -pv /var/lib/hwclock</userinput></screen>
       <varlistentry id="chkdupexe">
         <term><command>chkdupexe</command></term>
         <listitem>
-          <para>Finds duplicate executables</para>
+          <para>查找重复的可执行文件</para>
           <indexterm zone="ch-system-util-linux chkdupexe">
             <primary sortas="b-chkdupexe">chkdupexe</primary>
           </indexterm>
@@ -207,7 +182,7 @@ mkdir -pv /var/lib/hwclock</userinput></screen>
       <varlistentry id="chrt">
         <term><command>chrt</command></term>
         <listitem>
-          <para>Manipulates real-time attributes of a process</para>
+          <para>修改进程的实时属性</para>
           <indexterm zone="ch-system-util-linux chrt">
             <primary sortas="b-chrt">chrt</primary>
           </indexterm>
@@ -217,7 +192,7 @@ mkdir -pv /var/lib/hwclock</userinput></screen>
       <varlistentry id="col">
         <term><command>col</command></term>
         <listitem>
-          <para>Filters out reverse line feeds</para>
+          <para>筛选反向换行</para>
           <indexterm zone="ch-system-util-linux col">
             <primary sortas="b-col">col</primary>
           </indexterm>
@@ -227,8 +202,7 @@ mkdir -pv /var/lib/hwclock</userinput></screen>
       <varlistentry id="colcrt">
         <term><command>colcrt</command></term>
         <listitem>
-          <para>Filters <command>nroff</command> output for terminals
-          that lack some capabilities, such as overstriking and half-lines</para>
+          <para>为缺乏重叠字符和半行等兼容性的终端筛选 <command>nroff</command> 输出</para>
           <indexterm zone="ch-system-util-linux colcrt">
             <primary sortas="b-colcrt">colcrt</primary>
           </indexterm>
@@ -238,7 +212,7 @@ mkdir -pv /var/lib/hwclock</userinput></screen>
       <varlistentry id="colrm">
         <term><command>colrm</command></term>
         <listitem>
-          <para>Filters out the given columns</para>
+          <para>筛选指定的栏目</para>
           <indexterm zone="ch-system-util-linux colrm">
             <primary sortas="b-colrm">colrm</primary>
           </indexterm>
@@ -248,7 +222,7 @@ mkdir -pv /var/lib/hwclock</userinput></screen>
       <varlistentry id="column">
         <term><command>column</command></term>
         <listitem>
-          <para>Formats a given file into multiple columns</para>
+          <para>将指定文件格式化分成多栏</para>
           <indexterm zone="ch-system-util-linux column">
             <primary sortas="b-column">column</primary>
           </indexterm>
@@ -258,8 +232,7 @@ mkdir -pv /var/lib/hwclock</userinput></screen>
       <varlistentry id="ctrlaltdel">
         <term><command>ctrlaltdel</command></term>
         <listitem>
-          <para>Sets the function of the Ctrl+Alt+Del key combination to a
-          hard or a soft reset</para>
+          <para>将 Ctrl+Alt+Del 组合键的功能设置为硬重启或软重启</para>
           <indexterm zone="ch-system-util-linux ctrlaltdel">
             <primary sortas="b-ctrlaltdel">ctrlaltdel</primary>
           </indexterm>
@@ -269,8 +242,7 @@ mkdir -pv /var/lib/hwclock</userinput></screen>
       <varlistentry id="cytune">
         <term><command>cytune</command></term>
         <listitem>
-          <para>Tunes the parameters of the serial line drivers for
-          Cyclades cards</para>
+          <para>调节 Cyclades 卡的串行线路驱动参数</para>
           <indexterm zone="ch-system-util-linux cytune">
             <primary sortas="b-cytune">cytune</primary>
           </indexterm>
@@ -280,7 +252,7 @@ mkdir -pv /var/lib/hwclock</userinput></screen>
       <varlistentry id="delpart">
         <term><command>delpart</command></term>
         <listitem>
-          <para>Asks the Linux kernel to remove a partition</para>
+          <para>要求 Linux 内核移除一个分区</para>
           <indexterm zone="ch-system-util-linux delpart">
             <primary sortas="b-delpart">delpart</primary>
           </indexterm>
@@ -290,7 +262,7 @@ mkdir -pv /var/lib/hwclock</userinput></screen>
       <varlistentry id="dmesg">
         <term><command>dmesg</command></term>
         <listitem>
-          <para>Dumps the kernel boot messages</para>
+          <para>转储内核引导消息</para>
           <indexterm zone="ch-system-util-linux dmesg">
             <primary sortas="b-dmesg">dmesg</primary>
           </indexterm>
@@ -300,7 +272,7 @@ mkdir -pv /var/lib/hwclock</userinput></screen>
       <varlistentry id="fallocate">
         <term><command>fallocate</command></term>
         <listitem>
-          <para>Preallocates space to a file</para>
+          <para>给文件预先分配空间</para>
           <indexterm zone="ch-system-util-linux fallocate">
             <primary sortas="b-fallocate">fallocate</primary>
           </indexterm>
@@ -310,7 +282,7 @@ mkdir -pv /var/lib/hwclock</userinput></screen>
       <varlistentry id="fdformat">
         <term><command>fdformat</command></term>
         <listitem>
-          <para>Low-level formats a floppy disk</para>
+          <para>低级格式化软盘</para>
           <indexterm zone="ch-system-util-linux fdformat">
             <primary sortas="b-fdformat">fdformat</primary>
           </indexterm>
@@ -320,7 +292,7 @@ mkdir -pv /var/lib/hwclock</userinput></screen>
       <varlistentry id="fdisk">
         <term><command>fdisk</command></term>
         <listitem>
-          <para>Manipulates the paritition table of the given device</para>
+          <para>修改给定设备的分区表</para>
           <indexterm zone="ch-system-util-linux fdisk">
             <primary sortas="b-fdisk">fdisk</primary>
           </indexterm>
@@ -330,8 +302,7 @@ mkdir -pv /var/lib/hwclock</userinput></screen>
       <varlistentry id="findfs">
         <term><command>findfs</command></term>
         <listitem>
-          <para>Finds a file system by label or Universally Unique Identifier
-          (UUID)</para>
+          <para>按标签或通用唯一识别码 (UUID) 寻找文件系统</para>
           <indexterm zone="ch-system-util-linux findfs">
             <primary sortas="b-findfs">findfs</primary>
           </indexterm>
@@ -341,8 +312,7 @@ mkdir -pv /var/lib/hwclock</userinput></screen>
       <varlistentry id="findmnt">
         <term><command>findmnt</command></term>
         <listitem>
-          <para>Is a command line interface to the libmount library 
-          for work with mountinfo, fstab and mtab files</para>
+          <para>是 libmount 库的一个命令行界面，用于与 mountinfo、fstab 和 mtab 文件一同工作</para>
           <indexterm zone="ch-system-util-linux findmnt">
             <primary sortas="b-findmnt">findmnt</primary>
           </indexterm>
@@ -352,8 +322,7 @@ mkdir -pv /var/lib/hwclock</userinput></screen>
       <varlistentry id="flock">
         <term><command>flock</command></term>
         <listitem>
-          <para>Acquires a file lock and then executes a command with the lock
-          held</para>
+          <para>获得一个文件锁然后在保持之的状态下运行一条命令</para>
           <indexterm zone="ch-system-util-linux flock">
             <primary sortas="b-flock">flock</primary>
           </indexterm>
@@ -363,7 +332,7 @@ mkdir -pv /var/lib/hwclock</userinput></screen>
       <varlistentry id="fsck">
         <term><command>fsck</command></term>
         <listitem>
-          <para>Is used to check, and optionally repair, file systems</para>
+          <para>用于检查或者修复文件系统</para>
           <indexterm zone="ch-system-util-linux fsck">
             <primary sortas="b-fsck">fsck</primary>
           </indexterm>
@@ -373,8 +342,7 @@ mkdir -pv /var/lib/hwclock</userinput></screen>
       <varlistentry id="fsck.cramfs">
         <term><command>fsck.cramfs</command></term>
         <listitem>
-          <para>Performs a consistency check on the Cramfs file system on the
-          given device</para>
+          <para>对给定设备上的 Cramfs 文件系统进行容量检查</para>
           <indexterm zone="ch-system-util-linux fsck.cramfs">
             <primary sortas="b-fsck.cramfs">fsck.cramfs</primary>
           </indexterm>
@@ -384,8 +352,7 @@ mkdir -pv /var/lib/hwclock</userinput></screen>
       <varlistentry id="fsck.minix">
         <term><command>fsck.minix</command></term>
         <listitem>
-          <para>Performs a consistency check on the Minix file system on the
-          given device</para>
+          <para>对给定设备上的 Minix 文件系统进行容量检查</para>
           <indexterm zone="ch-system-util-linux fsck.minix">
             <primary sortas="b-fsck.minix">fsck.minix</primary>
           </indexterm>
@@ -395,8 +362,7 @@ mkdir -pv /var/lib/hwclock</userinput></screen>
       <varlistentry id="fsfreeze">
         <term><command>fsfreeze</command></term>
         <listitem>
-          <para>Is a very simple wrapper around FIFREEZE/FITHAW ioctl 
-          kernel driver operations</para>
+          <para>一个非常简单的 FIFREEZE/FITHAW ioctl 内核驱动操作包裹</para>
           <indexterm zone="ch-system-util-linux fsfreeze">
             <primary sortas="b-fsfreeze">fsfreeze</primary>
           </indexterm>
@@ -406,7 +372,7 @@ mkdir -pv /var/lib/hwclock</userinput></screen>
       <varlistentry id="fstrim">
         <term><command>fstrim</command></term>
         <listitem>
-          <para>Discards unused blocks on a mounted filesystem</para>
+          <para>在挂载的文件系统上弃置未使用的块</para>
           <indexterm zone="ch-system-util-linux fstrim">
             <primary sortas="b-fstrim">fstrim</primary>
           </indexterm>
@@ -416,7 +382,7 @@ mkdir -pv /var/lib/hwclock</userinput></screen>
       <varlistentry id="getopt">
         <term><command>getopt</command></term>
         <listitem>
-          <para>Parses options in the given command line</para>
+          <para>解析给定命令行的选项</para>
           <indexterm zone="ch-system-util-linux getopt">
             <primary sortas="b-getopt">getopt</primary>
           </indexterm>
@@ -426,8 +392,7 @@ mkdir -pv /var/lib/hwclock</userinput></screen>
       <varlistentry id="hexdump">
         <term><command>hexdump</command></term>
         <listitem>
-          <para>Dumps the given file in hexadecimal or in another given
-          format</para>
+          <para>以十六进制或其他给定格式转储给定文件</para>
           <indexterm zone="ch-system-util-linux hexdump">
             <primary sortas="b-hexdump">hexdump</primary>
           </indexterm>
@@ -437,8 +402,7 @@ mkdir -pv /var/lib/hwclock</userinput></screen>
       <varlistentry id="hwclock">
         <term><command>hwclock</command></term>
         <listitem>
-          <para>Reads or sets the system's hardware clock, also called
-          the Real-Time Clock (RTC) or Basic Input-Output System (BIOS)
+          <para>读取或者设置系统的硬件时钟，也叫做实时时钟 (RTC) 或者基本输入输出系统 (BIOS)
           clock</para>
           <indexterm zone="ch-system-util-linux hwclock">
             <primary sortas="b-hwclock">hwclock</primary>
@@ -449,7 +413,7 @@ mkdir -pv /var/lib/hwclock</userinput></screen>
       <varlistentry id="i386">
         <term><command>i386</command></term>
         <listitem>
-          <para>A symbolic link to setarch</para>
+          <para>到 setarch 的符号链接</para>
           <indexterm zone="ch-system-util-linux i386">
             <primary sortas="b-i386">i386</primary>
           </indexterm>
@@ -459,7 +423,7 @@ mkdir -pv /var/lib/hwclock</userinput></screen>
       <varlistentry id="ionice">
         <term><command>ionice</command></term>
         <listitem>
-          <para>Gets or sets the io scheduling class and priority for a program</para>
+          <para>获取或设置一个程序的时间表类别和优先级</para>
           <indexterm zone="ch-system-util-linux ionice">
             <primary sortas="b-ionice">ionice</primary>
           </indexterm>
@@ -469,7 +433,7 @@ mkdir -pv /var/lib/hwclock</userinput></screen>
       <varlistentry id="ipcmk">
         <term><command>ipcmk</command></term>
         <listitem>
-          <para>Creates various IPC resources</para>
+          <para>创建多种 IPC 资源</para>
           <indexterm zone="ch-system-util-linux ipcmk">
             <primary sortas="b-ipcmk">ipcmk</primary>
           </indexterm>
@@ -479,7 +443,7 @@ mkdir -pv /var/lib/hwclock</userinput></screen>
       <varlistentry id="ipcrm">
         <term><command>ipcrm</command></term>
         <listitem>
-          <para>Removes the given Inter-Process Communication (IPC) resource</para>
+          <para>移除给定的 IPC 资源</para>
           <indexterm zone="ch-system-util-linux ipcrm">
             <primary sortas="b-ipcrm">ipcrm</primary>
           </indexterm>
@@ -489,7 +453,7 @@ mkdir -pv /var/lib/hwclock</userinput></screen>
       <varlistentry id="ipcs">
         <term><command>ipcs</command></term>
         <listitem>
-          <para>Provides IPC status information</para>
+          <para>提供 IPC 状态信息</para>
           <indexterm zone="ch-system-util-linux ipcs">
             <primary sortas="b-ipcs">ipcs</primary>
           </indexterm>
@@ -499,7 +463,7 @@ mkdir -pv /var/lib/hwclock</userinput></screen>
       <varlistentry id="isosize">
         <term><command>isosize</command></term>
         <listitem>
-          <para>Reports the size of an iso9660 file system</para>
+          <para>报告 iso9660 文件系统的尺寸</para>
           <indexterm zone="ch-system-util-linux isosize">
             <primary sortas="b-isosize">isosize</primary>
           </indexterm>
@@ -509,7 +473,7 @@ mkdir -pv /var/lib/hwclock</userinput></screen>
       <varlistentry id="ldattach">
         <term><command>ldattach</command></term>
         <listitem>
-          <para>Attaches a line discipline to a serial line</para>
+          <para>给串行线路附加一个行约束</para>
           <indexterm zone="ch-system-util-linux ldattach">
             <primary sortas="b-ldattach">ldattach</primary>
           </indexterm>
@@ -519,7 +483,7 @@ mkdir -pv /var/lib/hwclock</userinput></screen>
       <varlistentry id="linux32">
         <term><command>linux32</command></term>
         <listitem>
-          <para>A symbolic link to setarch</para>
+          <para>到 setarch 的符号链接</para>
           <indexterm zone="ch-system-util-linux linux32">
             <primary sortas="b-linux32">linux32</primary>
           </indexterm>
@@ -529,7 +493,7 @@ mkdir -pv /var/lib/hwclock</userinput></screen>
       <varlistentry id="linux64">
         <term><command>linux64</command></term>
         <listitem>
-          <para>A symbolic link to setarch</para>
+          <para>到 setarch 的符号链接</para>
           <indexterm zone="ch-system-util-linux linux64">
             <primary sortas="b-linux64">linux64</primary>
           </indexterm>
@@ -539,7 +503,7 @@ mkdir -pv /var/lib/hwclock</userinput></screen>
       <varlistentry id="logger">
         <term><command>logger</command></term>
         <listitem>
-          <para>Enters the given message into the system log</para>
+          <para>将给定的消息写入系统日志</para>
           <indexterm zone="ch-system-util-linux logger">
             <primary sortas="b-logger">logger</primary>
           </indexterm>
@@ -549,7 +513,7 @@ mkdir -pv /var/lib/hwclock</userinput></screen>
       <varlistentry id="look">
         <term><command>look</command></term>
         <listitem>
-          <para>Displays lines that begin with the given string</para>
+          <para>显示以给定字符串开始的行</para>
           <indexterm zone="ch-system-util-linux look">
             <primary sortas="b-look">look</primary>
           </indexterm>
@@ -559,7 +523,7 @@ mkdir -pv /var/lib/hwclock</userinput></screen>
       <varlistentry id="losetup">
         <term><command>losetup</command></term>
         <listitem>
-          <para>Sets up and controls loop devices</para>
+          <para>设置并控制回环设备</para>
           <indexterm zone="ch-system-util-linux losetup">
             <primary sortas="b-losetup">losetup</primary>
           </indexterm>
@@ -569,8 +533,7 @@ mkdir -pv /var/lib/hwclock</userinput></screen>
       <varlistentry id="lsblk">
         <term><command>lsblk</command></term>
         <listitem>
-          <para>Lists information about all or selected block devices in
-           a tree-like format.</para>
+          <para>树形列出所有或者选中的块设备的信息</para>
           <indexterm zone="ch-system-util-linux lsblk">
             <primary sortas="b-lsblk">lsblk</primary>
           </indexterm>
@@ -580,7 +543,7 @@ mkdir -pv /var/lib/hwclock</userinput></screen>
       <varlistentry id="lscpu">
         <term><command>lscpu</command></term>
         <listitem>
-          <para>Prints CPU architecture information</para>
+          <para>打印出 CPU 架构信息</para>
           <indexterm zone="ch-system-util-linux lscpu">
             <primary sortas="b-lscpu">lscpu</primary>
           </indexterm>
@@ -590,8 +553,7 @@ mkdir -pv /var/lib/hwclock</userinput></screen>
       <varlistentry id="mcookie">
         <term><command>mcookie</command></term>
         <listitem>
-          <para>Generates magic cookies (128-bit random hexadecimal numbers) for
-          <command>xauth</command></para>
+          <para>创建 magic cookies (128 位十六进制数) 供 <command>xauth</command> 使用</para>
           <indexterm zone="ch-system-util-linux mcookie">
             <primary sortas="b-mcookie">mcookie</primary>
           </indexterm>
@@ -601,8 +563,7 @@ mkdir -pv /var/lib/hwclock</userinput></screen>
       <varlistentry id="mkfs">
         <term><command>mkfs</command></term>
         <listitem>
-          <para>Builds a file system on a device (usually a hard disk
-          partition)</para>
+          <para>在设备 (通常是硬盘) 上创建文件系统</para>
           <indexterm zone="ch-system-util-linux mkfs">
             <primary sortas="b-mkfs">mkfs</primary>
           </indexterm>
@@ -612,7 +573,7 @@ mkdir -pv /var/lib/hwclock</userinput></screen>
       <varlistentry id="mkfs.bfs">
         <term><command>mkfs.bfs</command></term>
         <listitem>
-          <para>Creates a Santa Cruz Operations (SCO) bfs file system</para>
+          <para>创建 Santa Cruz Operations (SCO) bfs 文件系统</para>
           <indexterm zone="ch-system-util-linux mkfs.bfs">
             <primary sortas="b-mkfs.bfs">mkfs.bfs</primary>
           </indexterm>
@@ -622,7 +583,7 @@ mkdir -pv /var/lib/hwclock</userinput></screen>
       <varlistentry id="mkfs.cramfs">
         <term><command>mkfs.cramfs</command></term>
         <listitem>
-          <para>Creates a cramfs file system</para>
+          <para>创建 cramfs 文件系统</para>
           <indexterm zone="ch-system-util-linux mkfs.cramfs">
             <primary sortas="b-mkfs.cramfs">mkfs.cramfs</primary>
           </indexterm>
@@ -632,7 +593,7 @@ mkdir -pv /var/lib/hwclock</userinput></screen>
       <varlistentry id="mkfs.minix">
         <term><command>mkfs.minix</command></term>
         <listitem>
-          <para>Creates a Minix file system</para>
+          <para>创建 Minix 文件系统</para>
           <indexterm zone="ch-system-util-linux mkfs.minix">
             <primary sortas="b-mkfs.minix">mkfs.minix</primary>
           </indexterm>
@@ -642,8 +603,7 @@ mkdir -pv /var/lib/hwclock</userinput></screen>
       <varlistentry id="mkswap">
         <term><command>mkswap</command></term>
         <listitem>
-          <para>Initializes the given device or file to be used as a swap
-          area</para>
+          <para>将给定的设备或者文件初始化并用于交换区</para>
           <indexterm zone="ch-system-util-linux mkswap">
             <primary sortas="b-mkswap">mkswap</primary>
           </indexterm>
@@ -653,7 +613,7 @@ mkdir -pv /var/lib/hwclock</userinput></screen>
       <varlistentry id="more">
         <term><command>more</command></term>
         <listitem>
-          <para>A filter for paging through text one screen at a time</para>
+          <para>一个筛选器，在屏幕上分页显示文本</para>
           <indexterm zone="ch-system-util-linux more">
             <primary sortas="b-more">more</primary>
           </indexterm>
@@ -663,8 +623,7 @@ mkdir -pv /var/lib/hwclock</userinput></screen>
       <varlistentry id="mount">
         <term><command>mount</command></term>
         <listitem>
-          <para>Attaches the file system on the given device to a specified
-          directory in the file-system tree</para>
+          <para>将给定设备上的文件系统挂载到文件系统树中的指定目录</para>
           <indexterm zone="ch-system-util-linux mount">
             <primary sortas="b-mount">mount</primary>
           </indexterm>
@@ -674,7 +633,7 @@ mkdir -pv /var/lib/hwclock</userinput></screen>
       <varlistentry id="mountpoint">
         <term><command>mountpoint</command></term>
         <listitem>
-          <para>Checks if the directory is a mountpoint</para>
+          <para>检查目录是否是挂载点</para>
           <indexterm zone="ch-system-util-linux mountpoint">
             <primary sortas="b-mountpoint">mountpoint</primary>
           </indexterm>
@@ -684,7 +643,7 @@ mkdir -pv /var/lib/hwclock</userinput></screen>
       <varlistentry id="namei">
         <term><command>namei</command></term>
         <listitem>
-          <para>Shows the symbolic links in the given pathnames</para>
+          <para>显示给定路径名中的符号链接</para>
           <indexterm zone="ch-system-util-linux namei">
             <primary sortas="b-namei">namei</primary>
           </indexterm>
@@ -694,8 +653,7 @@ mkdir -pv /var/lib/hwclock</userinput></screen>
       <varlistentry id="partx">
         <term><command>partx</command></term>
         <listitem>
-          <para>Tells the kernel about the presence and numbering of on-disk
-          partitions</para>
+          <para>将磁盘上分区的存在和编号告知内核</para>
           <indexterm zone="ch-system-util-linux partx">
             <primary sortas="b-partx">partx</primary>
           </indexterm>
@@ -705,7 +663,7 @@ mkdir -pv /var/lib/hwclock</userinput></screen>
       <varlistentry id="pg">
         <term><command>pg</command></term>
         <listitem>
-          <para>Displays a text file one screen full at a time</para>
+          <para>显示文本文件，每次一整个屏幕</para>
           <indexterm zone="ch-system-util-linux pg">
             <primary sortas="b-pg">pg</primary>
           </indexterm>
@@ -715,8 +673,7 @@ mkdir -pv /var/lib/hwclock</userinput></screen>
       <varlistentry id="pivot_root">
         <term><command>pivot_root</command></term>
         <listitem>
-          <para>Makes the given file system the new root file system of the
-          current process</para>
+          <para>使给定的文件成为当前进程新的根文件系统</para>
           <indexterm zone="ch-system-util-linux pivot_root">
             <primary sortas="b-pivot_root">pivot_root</primary>
           </indexterm>
@@ -726,7 +683,7 @@ mkdir -pv /var/lib/hwclock</userinput></screen>
       <varlistentry id="prlimit">
         <term><command>prlimit</command></term>
         <listitem>
-          <para>Get and set a process' resource limits</para>
+          <para>获取并设置一个进程的资源限制</para>
           <indexterm zone="ch-system-util-linux prlimit">
             <primary sortas="b-prlimit">prlimit</primary>
           </indexterm>
@@ -736,7 +693,7 @@ mkdir -pv /var/lib/hwclock</userinput></screen>
       <varlistentry id="raw">
         <term><command>raw</command></term>
         <listitem>
-          <para>Bind a Linux raw character device to a block device</para>
+          <para>将一个 Linux 字符设备捆绑到一个块设备上</para>
           <indexterm zone="ch-system-util-linux raw">
             <primary sortas="b-raw">raw</primary>
           </indexterm>
@@ -746,7 +703,7 @@ mkdir -pv /var/lib/hwclock</userinput></screen>
       <varlistentry id="readprofile">
         <term><command>readprofile</command></term>
         <listitem>
-          <para>Reads kernel profiling information</para>
+          <para>如去内核分析信息</para>
           <indexterm zone="ch-system-util-linux readprofile">
             <primary sortas="b-readprofile">readprofile</primary>
           </indexterm>
@@ -756,8 +713,7 @@ mkdir -pv /var/lib/hwclock</userinput></screen>
       <varlistentry id="rename">
         <term><command>rename</command></term>
         <listitem>
-          <para>Renames the given files, replacing a given string with
-          another</para>
+          <para>重命名给定文件，将给定字符串替换为另一个</para>
           <indexterm zone="ch-system-util-linux rename">
             <primary sortas="b-rename">rename</primary>
           </indexterm>
@@ -767,7 +723,7 @@ mkdir -pv /var/lib/hwclock</userinput></screen>
       <varlistentry id="renice">
         <term><command>renice</command></term>
         <listitem>
-          <para>Alters the priority of running processes</para>
+          <para>调节运行中进程的优先级</para>
           <indexterm zone="ch-system-util-linux renice">
             <primary sortas="b-renice">renice</primary>
           </indexterm>
@@ -777,7 +733,7 @@ mkdir -pv /var/lib/hwclock</userinput></screen>
       <varlistentry id="rev">
         <term><command>rev</command></term>
         <listitem>
-          <para>Reverses the lines of a given file</para>
+          <para>将给定文件按行倒序输出</para>
           <indexterm zone="ch-system-util-linux rev">
             <primary sortas="b-rev">rev</primary>
           </indexterm>
@@ -787,8 +743,7 @@ mkdir -pv /var/lib/hwclock</userinput></screen>
       <varlistentry id="rtcwake">
         <term><command>rtcwake</command></term>
         <listitem>
-          <para>Used to enter a system sleep state until specified wakeup
-          time</para>
+          <para>用于进入系统睡眠状态直到指定的唤醒时间</para>
           <indexterm zone="ch-system-util-linux rtcwake">
             <primary sortas="b-rtcwake">rtcwake</primary>
           </indexterm>
@@ -798,7 +753,7 @@ mkdir -pv /var/lib/hwclock</userinput></screen>
       <varlistentry id="script">
         <term><command>script</command></term>
         <listitem>
-          <para>Makes a typescript of a terminal session</para>
+          <para>为一个终端会话制作打字稿</para>
           <indexterm zone="ch-system-util-linux script">
             <primary sortas="b-script">script</primary>
           </indexterm>
@@ -808,7 +763,7 @@ mkdir -pv /var/lib/hwclock</userinput></screen>
       <varlistentry id="scriptreplay">
         <term><command>scriptreplay</command></term>
         <listitem>
-          <para>Plays back typescripts using timing information</para>
+          <para>使用计时信息回放打字稿</para>
           <indexterm zone="ch-system-util-linux scriptreplay">
             <primary sortas="b-scriptreplay">scriptreplay</primary>
           </indexterm>
@@ -818,8 +773,7 @@ mkdir -pv /var/lib/hwclock</userinput></screen>
       <varlistentry id="setarch">
         <term><command>setarch</command></term>
         <listitem>
-          <para>Changes reported architecture in a new program environment and
-          sets personality flags</para>
+          <para>在新的程序环境中改变报告的架构并设置个性标记</para>
           <indexterm zone="ch-system-util-linux setarch">
             <primary sortas="b-setarch">setarch</primary>
           </indexterm>
@@ -829,7 +783,7 @@ mkdir -pv /var/lib/hwclock</userinput></screen>
       <varlistentry id="setsid">
         <term><command>setsid</command></term>
         <listitem>
-          <para>Runs the given program in a new session</para>
+          <para>在新的会话中运行指定程序</para>
           <indexterm zone="ch-system-util-linux setsid">
             <primary sortas="b-setsid">setsid</primary>
           </indexterm>
@@ -839,7 +793,7 @@ mkdir -pv /var/lib/hwclock</userinput></screen>
       <varlistentry id="setterm">
         <term><command>setterm</command></term>
         <listitem>
-          <para>Sets terminal attributes</para>
+          <para>设置终端属性</para>
           <indexterm zone="ch-system-util-linux setterm">
             <primary sortas="b-setterm">setterm</primary>
           </indexterm>
@@ -849,7 +803,7 @@ mkdir -pv /var/lib/hwclock</userinput></screen>
       <varlistentry id="sfdisk">
         <term><command>sfdisk</command></term>
         <listitem>
-          <para>A disk partition table manipulator</para>
+          <para>一个磁盘分区表修改工具</para>
           <indexterm zone="ch-system-util-linux sfdisk">
             <primary sortas="b-sfdisk">sfdisk</primary>
           </indexterm>
@@ -859,7 +813,7 @@ mkdir -pv /var/lib/hwclock</userinput></screen>
       <varlistentry id="swaplabel">
         <term><command>swaplabel</command></term>
         <listitem>
-          <para>Allows to change swaparea UUID and label</para>
+          <para>允许改变交换空间的 UUID 和标签</para>
           <indexterm zone="ch-system-util-linux swaplabel">
             <primary sortas="b-swaplabel">swaplabel</primary>
           </indexterm>
@@ -869,7 +823,7 @@ mkdir -pv /var/lib/hwclock</userinput></screen>
       <varlistentry id="swapoff">
         <term><command>swapoff</command></term>
         <listitem>
-          <para>Disables devices and files for paging and swapping</para>
+          <para>禁用文件和设备的交换和分页</para>
           <indexterm zone="ch-system-util-linux swapoff">
             <primary sortas="b-swapoff">swapoff</primary>
           </indexterm>
@@ -879,8 +833,7 @@ mkdir -pv /var/lib/hwclock</userinput></screen>
       <varlistentry id="swapon">
         <term><command>swapon</command></term>
         <listitem>
-          <para>Enables devices and files for paging and swapping and
-          lists the devices and files currently in use</para>
+          <para>启用文件和设备的交换和分页并列出正在使用的文件和设备</para>
           <indexterm zone="ch-system-util-linux swapon">
             <primary sortas="b-swapon">swapon</primary>
           </indexterm>
@@ -890,7 +843,7 @@ mkdir -pv /var/lib/hwclock</userinput></screen>
       <varlistentry id="switch_root">
         <term><command>switch_root</command></term>
         <listitem>
-          <para>Switches to another filesystem as the root of the mount tree</para>
+          <para>切换到另一个文件系统作为挂载树的根</para>
           <indexterm zone="ch-system-util-linux switch_root">
             <primary sortas="b-switch_root">switch_root</primary>
           </indexterm>
@@ -900,9 +853,7 @@ mkdir -pv /var/lib/hwclock</userinput></screen>
       <varlistentry id="tailf">
         <term><command>tailf</command></term>
         <listitem>
-          <para>Tracks the growth of a log file. Displays the last 10 lines
-          of a log file, then continues displaying any new entries in the
-          log file as they are created</para>
+          <para>追踪一个日志文件的膨胀；显示其最后 10 行然后每当有新条目创建时显示之</para>
           <indexterm zone="ch-system-util-linux tailf">
             <primary sortas="b-tailf">tailf</primary>
           </indexterm>
@@ -912,7 +863,7 @@ mkdir -pv /var/lib/hwclock</userinput></screen>
       <varlistentry id="taskset">
         <term><command>taskset</command></term>
         <listitem>
-          <para>Retrieves or sets a process' CPU affinity</para>
+          <para>取回或者设置一个进程的 CPU 亲和力</para>
           <indexterm zone="ch-system-util-linux taskset">
             <primary sortas="b-taskset">taskset</primary>
           </indexterm>
@@ -922,7 +873,7 @@ mkdir -pv /var/lib/hwclock</userinput></screen>
       <varlistentry id="tunelp">
         <term><command>tunelp</command></term>
         <listitem>
-          <para>Tunes the parameters of the line printer</para>
+          <para>调节行打印机的参数</para>
           <indexterm zone="ch-system-util-linux tunelp">
             <primary sortas="b-tunelp">tunelp</primary>
           </indexterm>
@@ -932,8 +883,7 @@ mkdir -pv /var/lib/hwclock</userinput></screen>
       <varlistentry id="ul">
         <term><command>ul</command></term>
         <listitem>
-          <para>A filter for translating underscores into escape sequences
-          indicating underlining for the terminal in use</para>
+          <para>一个筛选器，将下划线翻译成供当前终端使用的转义序列</para>
           <indexterm zone="ch-system-util-linux ul">
             <primary sortas="b-ul">ul</primary>
           </indexterm>
@@ -943,7 +893,7 @@ mkdir -pv /var/lib/hwclock</userinput></screen>
       <varlistentry id="umount">
         <term><command>umount</command></term>
         <listitem>
-          <para>Disconnects a file system from the system's file tree</para>
+          <para>将一个文件系统从系统的文件树上断开</para>
           <indexterm zone="ch-system-util-linux umount">
             <primary sortas="b-umount">umount</primary>
           </indexterm>
@@ -953,7 +903,7 @@ mkdir -pv /var/lib/hwclock</userinput></screen>
       <varlistentry id="unshare">
         <term><command>unshare</command></term>
         <listitem>
-          <para>Runs a program with some namespaces unshared from parent</para>
+          <para>运行一个程序，使其某些命名空间独立于父进程</para>
           <indexterm zone="ch-system-util-linux unshare">
             <primary sortas="b-unshare">unshare</primary>
           </indexterm>
@@ -963,8 +913,7 @@ mkdir -pv /var/lib/hwclock</userinput></screen>
       <varlistentry id="uuidd">
         <term><command>uuidd</command></term>
         <listitem>
-          <para>A daemon used by the UUID library to generate time-based
-          UUIDs in a secure and guranteed-unique fashion.</para>
+          <para>一个 daemon，被 UUID 库用于以安全并保证不同的方法创建基于时间的 UUID。</para>
           <indexterm zone="ch-system-util-linux uuidd">
             <primary sortas="b-uuidd">uuidd</primary>
           </indexterm>
@@ -974,9 +923,7 @@ mkdir -pv /var/lib/hwclock</userinput></screen>
       <varlistentry id="uuidgen">
         <term><command>uuidgen</command></term>
         <listitem>
-          <para>Creates new UUIDs. Each new UUID can reasonably be considered
-          unique among all UUIDs created, on the local system and on other
-          systems, in the past and in the future</para>
+          <para>创建新的 UUID。每个新的 UUID 都可以认为是唯一的，无论在本机系统上还是其他系统上，无论过去还是未来</para>
           <indexterm zone="ch-system-util-linux uuidgen">
             <primary sortas="b-uuidgen">uuidgen</primary>
           </indexterm>
@@ -986,8 +933,7 @@ mkdir -pv /var/lib/hwclock</userinput></screen>
       <varlistentry id="wall">
         <term><command>wall</command></term>
         <listitem>
-          <para>Displays the contents of a file or, by default, its standard
-          input, on the terminals of all currently logged in users</para>
+          <para>在当前登录的所有用户的终端上显示文件内容，默认显示标准输入</para>
           <indexterm zone="ch-system-util-linux wall">
             <primary sortas="b-wall">wall</primary>
           </indexterm>
@@ -997,8 +943,7 @@ mkdir -pv /var/lib/hwclock</userinput></screen>
       <varlistentry id="whereis">
         <term><command>whereis</command></term>
         <listitem>
-          <para>Reports the location of the binary, source, and man page
-          for the given command</para>
+          <para>报告给定命令的二进制、源代码和手册页的位置</para>
           <indexterm zone="ch-system-util-linux whereis">
             <primary sortas="b-whereis">whereis</primary>
           </indexterm>
@@ -1008,7 +953,7 @@ mkdir -pv /var/lib/hwclock</userinput></screen>
       <varlistentry id="wipefs">
         <term><command>wipefs</command></term>
         <listitem>
-          <para>Wipes a filesystem signature from a device</para>
+          <para>从设备擦除文件系统签名</para>
           <indexterm zone="ch-system-util-linux wipefs">
             <primary sortas="b-wipefs">wipefs</primary>
           </indexterm>
@@ -1018,7 +963,7 @@ mkdir -pv /var/lib/hwclock</userinput></screen>
       <varlistentry id="x86_64">
         <term><command>x86_64</command></term>
         <listitem>
-          <para>A symbolic link to setarch</para>
+          <para>到 setarch 的符号链接</para>
           <indexterm zone="ch-system-util-linux x86_64">
             <primary sortas="b-x86_64">x86_64</primary>
           </indexterm>
@@ -1028,8 +973,7 @@ mkdir -pv /var/lib/hwclock</userinput></screen>
       <varlistentry id="libblkid">
         <term><filename class="libraryfile">libblkid</filename></term>
         <listitem>
-          <para>Contains routines for device identification and token
-          extraction</para>
+          <para>包含用于设备识别和标记提取的途径</para>
           <indexterm zone="ch-system-util-linux libblkid">
             <primary sortas="c-libblkid">libblkid</primary>
           </indexterm>
@@ -1039,8 +983,7 @@ mkdir -pv /var/lib/hwclock</userinput></screen>
       <varlistentry id="libmount">
         <term><filename class="libraryfile">libmount</filename></term>
         <listitem>
-          <para>Contains routines for block device mounting and
-          unmounting</para>
+          <para>包含用于块设备挂载和卸载的途径</para>
           <indexterm zone="ch-system-util-linux libmount">
             <primary sortas="c-libmount">libmount</primary>
           </indexterm>
@@ -1050,8 +993,7 @@ mkdir -pv /var/lib/hwclock</userinput></screen>
       <varlistentry id="libuuid">
         <term><filename class="libraryfile">libuuid</filename></term>
         <listitem>
-          <para>Contains routines for generating unique identifiers for objects
-          that may be accessible beyond the local system</para>
+          <para>包含用于创建可能在本地系统以外能够访问的对象的唯一标识符的途径</para>
           <indexterm zone="ch-system-util-linux libuuid">
             <primary sortas="c-libuuid">libuuid</primary>
           </indexterm>
