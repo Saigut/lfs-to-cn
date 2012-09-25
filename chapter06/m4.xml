@@ -38,27 +38,27 @@
   </sect2>
 
   <sect2 role="installation">
-    <title>Installation of M4</title>
+    <title>安装 M4</title>
 
-    <para>Fix an incompatibility between this package and Glibc-&glibc-version;:</para>
+    <para>修复此程序包和 Glibc-&glibc-version; 不兼容的问题：</para>
 
 <screen><userinput remap="pre">sed -i -e '/gets is a/d' lib/stdio.in.h</userinput></screen>
 
-    <para>Prepare M4 for compilation:</para>
+    <para>准备编译 M4：</para>
 
 <screen><userinput remap="configure">./configure --prefix=/usr</userinput></screen>
 
-    <para>Compile the package:</para>
+    <para>编译程序包：</para>
 
 <screen><userinput remap="make">make</userinput></screen>
 
     <!--<para>To test the results, issue:</para>-->
-    <para>To test the results, first fix a test program and then run the test programs:</para>
+    <para>要测试结果，修复一个测试程序然后运行：</para>
 
 <screen><userinput remap="test">sed -i -e '41s/ENOENT/&amp; || errno == EINVAL/' tests/test-readlink.h
 make check</userinput></screen>
 
-    <para>Install the package:</para>
+    <para>安装程序包：</para>
 
 <screen><userinput remap="install">make install</userinput></screen>
 
@@ -69,7 +69,7 @@ make check</userinput></screen>
     <title>M4 的内容</title>
 
     <segmentedlist>
-      <segtitle>Installed program</segtitle>
+      <segtitle>安装的程序</segtitle>
 
       <seglistitem>
         <seg>m4</seg>
@@ -77,7 +77,7 @@ make check</userinput></screen>
     </segmentedlist>
 
     <variablelist>
-      <bridgehead renderas="sect3">Short Descriptions</bridgehead>
+      <bridgehead renderas="sect3">简介</bridgehead>
       <?dbfo list-presentation="list"?>
       <?dbhtml list-presentation="table"?>
 
@@ -85,14 +85,7 @@ make check</userinput></screen>
          <!-- Don't remove the extra space, it prevet a FOP warning. -->
         <term><command>m4 </command></term>
         <listitem>
-          <para>copies the given files while expanding the macros that they
-          contain. These macros are either built-in or user-defined and can
-          take any number of arguments. Besides performing macro expansion,
-          <command>m4</command> has built-in functions for including named
-          files, running Unix commands, performing integer arithmetic,
-          manipulating text, recursion, etc. The <command>m4</command> program
-          can be used either as a front-end to a compiler or as a macro processor
-          in its own right.</para>
+          <para>复制给定的文件并展开其中的宏。这些宏可以是内建的也可以是用户定义的，可以包含任意数量的参数。初次之外 <command>m4</command> 还有内建的包含文件、运行 Unix 命令、进行整数运算、修改文本、递归等功能。<command>m4</command> 程序可以用作编译器前端或者独立的宏处理器。</para>
           <indexterm zone="ch-system-m4 m4">
             <primary sortas="b-m4">m4</primary>
           </indexterm>
