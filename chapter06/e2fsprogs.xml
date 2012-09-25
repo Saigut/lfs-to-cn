@@ -93,7 +93,7 @@ cd build</userinput></screen>
 
 <screen><userinput remap="make">make</userinput></screen>
 
-    <para>要测试结果，执行：/para>
+    <para>要测试结果，执行：</para>
 
 <screen><userinput remap="test">make -k check</userinput></screen>
 
