@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
   "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
   <!ENTITY % general-entities SYSTEM "../general.ent">
@@ -23,7 +23,7 @@
   <sect2 role="package">
     <title/>
 
-    <para>The Procps package contains programs for monitoring processes.</para>
+    <para>Procps 程序包包含用于监控进程的程序。</para>
 
     <segmentedlist>
       <segtitle>&buildtime;</segtitle>
@@ -38,59 +38,54 @@
   </sect2>
 
   <sect2 role="installation">
-    <title>Installation of Procps</title>
+    <title>安装 Procps</title>
 
-    <para>Apply a patch to prevent an error message from being displayed when
-    determining the kernel clock tick rate:</para>
+    <para>应用一个补丁，防止获取内核时钟频率时显示错误信息：</para>
 
 <screen><userinput remap="pre">patch -Np1 -i ../&procps-hz_fixes-patch;</userinput></screen>
 
-    <para>Apply a patch to fix a unicode related issue in the
-    <command>watch</command> program:</para>
+    <para>应用一个补丁修复 <command>watch</command> 程序中一个和 unicode 有关的漏洞：</para>
 
 <screen><userinput remap="pre">patch -Np1 -i ../&procps-watch-patch;</userinput></screen>
 
-    <para>Fix a bug in the Makefile, which prevents procps from building with
-    make-&make-version;:</para>
+    <para>修复 Makefile 中的一个问题，此问题使 procps 无法以 make-&make-version; 编制：</para>
 
 <screen><userinput remap="pre">sed -i -e 's@\*/module.mk@proc/module.mk ps/module.mk@' Makefile</userinput></screen>
 
-    <para>Compile the package:</para>
+    <para>编译程序包：</para>
 
 <screen><userinput remap="make">make</userinput></screen>
 
-    <para>This package does not come with a test suite.</para>
+    <para>此程序包不包含测试套件。</para>
 
-    <para>Install the package:</para>
+    <para>安装程序包：</para>
 
 <screen><userinput remap="install">make install</userinput></screen>
 
   </sect2>
 
   <sect2 id="contents-procps" role="content">
-    <title>Contents of Procps</title>
+    <title>Procps 的内容</title>
 
     <segmentedlist>
-      <segtitle>Installed programs</segtitle>
-      <segtitle>Installed library</segtitle>
+      <segtitle>安装的程序</segtitle>
+      <segtitle>安装的库</segtitle>
 
       <seglistitem>
-        <seg>free, kill, pgrep, pkill, pmap, ps, pwdx, skill, slabtop, snice,
-        sysctl, tload, top, uptime, vmstat, w, and watch</seg>
+        <seg>free、kill、pgrep、pkill、pmap、ps、pwdx、skill、slabtop、snice、sysctl、tload、top、uptime、vmstat、w 和 watch</seg>
         <seg>libproc.so</seg>
       </seglistitem>
     </segmentedlist>
 
     <variablelist>
-      <bridgehead renderas="sect3">Short Descriptions</bridgehead>
+      <bridgehead renderas="sect3">简介</bridgehead>
       <?dbfo list-presentation="list"?>
       <?dbhtml list-presentation="table"?>
 
       <varlistentry id="free">
         <term><command>free</command></term>
         <listitem>
-          <para>Reports the amount of free and used memory (both physical and
-          swap memory) in the system</para>
+          <para>报告系统中已用和可用内存的数量 (包括物理内存和交换)</para>
           <indexterm zone="ch-system-procps free">
             <primary sortas="b-free">free</primary>
           </indexterm>
@@ -100,7 +95,7 @@
       <varlistentry id="kill">
         <term><command>kill</command></term>
         <listitem>
-          <para>Sends signals to processes</para>
+          <para>给进程发信号</para>
           <indexterm zone="ch-system-procps kill">
             <primary sortas="b-kill">kill</primary>
           </indexterm>
@@ -110,7 +105,7 @@
       <varlistentry id="pgrep">
         <term><command>pgrep</command></term>
         <listitem>
-          <para>Looks up processes based on their name and other attributes</para>
+          <para>按名称和其他属性查找进程</para>
           <indexterm zone="ch-system-procps pgrep">
             <primary sortas="b-pgrep">pgrep</primary>
           </indexterm>
@@ -120,7 +115,7 @@
       <varlistentry id="pkill">
         <term><command>pkill</command></term>
         <listitem>
-          <para>Signals processes based on their name and other attributes</para>
+          <para>按名称和其他属性给进程发信号</para>
           <indexterm zone="ch-system-procps pkill">
             <primary sortas="b-pkill">pkill</primary>
           </indexterm>
@@ -130,7 +125,7 @@
       <varlistentry id="pmap">
         <term><command>pmap</command></term>
         <listitem>
-          <para>Reports the memory map of the given process</para>
+          <para>报告给定进程的内存映射</para>
           <indexterm zone="ch-system-procps pmap">
             <primary sortas="b-pmap">pmap</primary>
           </indexterm>
@@ -140,7 +135,7 @@
       <varlistentry id="ps">
         <term><command>ps</command></term>
         <listitem>
-          <para>Lists the current running processes</para>
+          <para>列出当前正在运行的进程</para>
           <indexterm zone="ch-system-procps ps">
             <primary sortas="b-ps">ps</primary>
           </indexterm>
@@ -150,7 +145,7 @@
       <varlistentry id="pwdx">
         <term><command>pwdx</command></term>
         <listitem>
-          <para>Reports the current working directory of a process</para>
+          <para>报告一个进程的当前工作目录</para>
           <indexterm zone="ch-system-procps pwdx">
             <primary sortas="b-pwdx">pwdx</primary>
           </indexterm>
@@ -160,7 +155,7 @@
       <varlistentry id="skill">
         <term><command>skill</command></term>
         <listitem>
-          <para>Sends signals to processes matching the given criteria</para>
+          <para>给匹配给定标准的进程发信号</para>
           <indexterm zone="ch-system-procps skill">
             <primary sortas="b-skill">skill</primary>
           </indexterm>
@@ -170,7 +165,7 @@
       <varlistentry id="slabtop">
         <term><command>slabtop</command></term>
         <listitem>
-          <para>Displays detailed kernel slap cache information in real time</para>
+          <para>实时显示详细的内核 slap 缓存信息</para>
           <indexterm zone="ch-system-procps slabtop">
             <primary sortas="b-slabtop">slabtop</primary>
           </indexterm>
@@ -180,8 +175,7 @@
       <varlistentry id="snice">
         <term><command>snice</command></term>
         <listitem>
-          <para>Changes the scheduling priority of processes matching the given
-          criteria</para>
+          <para>改变匹配指定标准的进程的调度优先级</para>
           <indexterm zone="ch-system-procps snice">
             <primary sortas="b-snice">snice</primary>
           </indexterm>
@@ -191,7 +185,7 @@
       <varlistentry id="sysctl">
         <term><command>sysctl</command></term>
         <listitem>
-          <para>Modifies kernel parameters at run time</para>
+          <para>运行时修改内核参数</para>
           <indexterm zone="ch-system-procps sysctl">
             <primary sortas="b-sysctl">sysctl</primary>
           </indexterm>
@@ -201,7 +195,7 @@
       <varlistentry id="tload">
         <term><command>tload</command></term>
         <listitem>
-          <para>Prints a graph of the current system load average</para>
+          <para>显示当前系统平均负载的图表</para>
           <indexterm zone="ch-system-procps tload">
             <primary sortas="b-tload">tload</primary>
           </indexterm>
@@ -211,8 +205,7 @@
       <varlistentry id="top">
         <term><command>top</command></term>
         <listitem>
-          <para>Displays a list of the most CPU intensive processes; it
-          provides an ongoing look at processor activity in real time</para>
+          <para>列出最 CPU 密集的进程；实时监测处理器活动</para>
           <indexterm zone="ch-system-procps top">
             <primary sortas="b-top">top</primary>
           </indexterm>
@@ -222,8 +215,7 @@
       <varlistentry id="uptime">
         <term><command>uptime</command></term>
         <listitem>
-          <para>Reports how long the system has been running, how many users are
-          logged on, and the system load averages</para>
+          <para>报告系统已经运行的时间、登录的优化和系统平均负载</para>
           <indexterm zone="ch-system-procps uptime">
             <primary sortas="b-uptime">uptime</primary>
           </indexterm>
@@ -233,9 +225,7 @@
       <varlistentry id="vmstat">
         <term><command>vmstat</command></term>
         <listitem>
-          <para>Reports virtual memory statistics, giving information about
-          processes, memory, paging, block Input/Output (IO), traps, and CPU
-          activity</para>
+          <para>报告虚拟内存统计数据，给出有关进程、内存、分页、块 IO、陷阱和 CPU 活动的信息</para>
           <indexterm zone="ch-system-procps vmstat">
             <primary sortas="b-vmstat">vmstat</primary>
           </indexterm>
@@ -245,8 +235,7 @@
       <varlistentry id="w">
         <term><command>w</command></term>
         <listitem>
-          <para>Shows which users are currently logged on, where, and since
-          when</para>
+          <para>显示当前登录的用户以及他们何时在何处登录</para>
           <indexterm zone="ch-system-procps w">
             <primary sortas="b-w">w</primary>
           </indexterm>
@@ -256,9 +245,7 @@
       <varlistentry id="watch">
         <term><command>watch</command></term>
         <listitem>
-          <para>Runs a given command repeatedly, displaying the first
-          screen-full of its output; this allows a user to watch the output
-          change over time</para>
+          <para>重复运行一个给定命令，显示第一屏幕的输出；允许用户贯彻输出如何随时间变化</para>
           <indexterm zone="ch-system-procps watch">
             <primary sortas="b-watch">watch</primary>
           </indexterm>
@@ -268,8 +255,7 @@
       <varlistentry id="libproc">
         <term><filename class="libraryfile">libproc</filename></term>
         <listitem>
-          <para>Contains the functions used by most programs in this
-          package</para>
+          <para>包含此程序包中多数程序使用的函数</para>
           <indexterm zone="ch-system-procps libproc">
             <primary sortas="c-libproc">libproc</primary>
           </indexterm>
