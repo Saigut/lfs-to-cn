@@ -22,7 +22,7 @@
 <!ENTITY automake-md5 "0df082825f8f41087eb70c5088f4515e">
 <!ENTITY automake-home "&gnu-software;automake/">
 <!ENTITY automake-ch6-du "100 MB">
-<!ENTITY automake-ch6-sbu "少于 0.1 SBU (34.1 SBU with tests)">
+<!ENTITY automake-ch6-sbu "少于 0.1 SBU (含测试 34.1 SBU)">
 
 <!ENTITY bash-version "4.2">
 <!ENTITY bash-size "6,845 KB">
