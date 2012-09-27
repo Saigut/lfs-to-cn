@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
   "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
   <!ENTITY % general-entities SYSTEM "../general.ent">
@@ -23,8 +23,7 @@
   <sect2 role="package">
     <title/>
 
-    <para>The Autoconf package contains programs for producing shell scripts that
-    can automatically configure source code.</para>
+    <para>Autoconf 程序包包含用于产生可以自动配置源代码的 shell 脚本的程序。</para>
 
     <segmentedlist>
       <segtitle>&buildtime;</segtitle>
@@ -39,56 +38,50 @@
   </sect2>
 
   <sect2 role="installation">
-    <title>Installation of Autoconf</title>
+    <title>安装 Autoconf</title>
 
-    <para>Prepare Autoconf for compilation:</para>
+    <para>准备编译 Autoconf：</para>
 
 <screen><userinput remap="configure">./configure --prefix=/usr</userinput></screen>
 
-    <para>Compile the package:</para>
+    <para>编译程序包：</para>
 
 <screen><userinput remap="make">make</userinput></screen>
 
-    <para>To test the results, issue:</para>
+    <para>要测试结果，执行：</para>
 
 <screen><userinput remap="test">make check</userinput></screen>
 
-    <para>This takes a long time, about 4.7 SBUs. In addition, 6 tests are skipped
-    that use Automake. For full test coverage, Autoconf can be re-tested
-    after Automake has been installed.</para>
+    <para>这一步会占用很长时间，大约要 4.7 SBU，而且有 6 个使用 Automake 的测试被跳过了。要完整覆盖之，可以在 Automake 安装之后重新测试。</para>
 
-    <para>Install the package:</para>
+    <para>安装程序包：</para>
 
 <screen><userinput remap="install">make install</userinput></screen>
 
   </sect2>
 
   <sect2 id="contents-autoconf" role="content">
-    <title>Contents of Autoconf</title>
+    <title>Autoconf 的内容</title>
 
     <segmentedlist>
-      <segtitle>Installed programs</segtitle>
-      <segtitle>Installed directory</segtitle>
+      <segtitle>安装的程序</segtitle>
+      <segtitle>安装的目录</segtitle>
 
       <seglistitem>
-        <seg>autoconf, autoheader, autom4te, autoreconf, autoscan, autoupdate,
-        and ifnames</seg>
+        <seg>autoconf、autoheader、autom4te、autoreconf、autoscan、autoupdate 和 ifnames</seg>
         <seg>/usr/share/autoconf</seg>
       </seglistitem>
     </segmentedlist>
 
     <variablelist>
-      <bridgehead renderas="sect3">Short Descriptions</bridgehead>
+      <bridgehead renderas="sect3">简介</bridgehead>
       <?dbfo list-presentation="list"?>
       <?dbhtml list-presentation="table"?>
 
       <varlistentry id="autoconf">
         <term><command>autoconf</command></term>
         <listitem>
-          <para>Produces shell scripts that automatically configure software
-          source code packages to adapt to many kinds of Unix-like systems.
-          The configuration scripts it produces are independent&mdash;running
-          them does not require the <command>autoconf</command> program.</para>
+          <para>产生可以自动配置软件源代码包以移植到多种类 Unix 系统上；产生的脚本是独立的&mdash;&mdash;运行时不再需要 <command>autoconf</command> 程序</para>
           <indexterm zone="ch-system-autoconf autoconf">
             <primary sortas="b-autoconf">autoconf</primary>
           </indexterm>
@@ -98,8 +91,7 @@
       <varlistentry id="autoheader">
         <term><command>autoheader</command> </term>
         <listitem>
-          <para>A tool for creating template files of C
-          <emphasis>#define</emphasis> statements for configure to use</para>
+          <para>用于创建 C 语言的 <emphasis>#define</emphasis> 声明的模板文件供 configure 使用</para>
           <indexterm zone="ch-system-autoconf autoheader">
             <primary sortas="b-autoheader">autoheader</primary>
           </indexterm>
@@ -109,7 +101,7 @@
       <varlistentry id="autom4te">
         <term><command>autom4te</command></term>
         <listitem>
-          <para>A wrapper for the M4 macro processor</para>
+          <para>M4 宏处理器的一个打包</para>
           <indexterm zone="ch-system-autoconf autom4te">
             <primary sortas="b-autom4te">autom4te</primary>
           </indexterm>
@@ -119,12 +111,7 @@
       <varlistentry id="autoreconf">
         <term><command>autoreconf</command></term>
         <listitem>
-          <para>Automatically runs <command>autoconf</command>,
-          <command>autoheader</command>, <command>aclocal</command>,
-          <command>automake</command>, <command>gettextize</command>, and
-          <command>libtoolize</command> in the correct order to save time
-          when changes are made to <command>autoconf</command> and
-          <command>automake</command> template files</para>
+          <para>自动按顺序运行 <command>autoconf</command>、<command>autoheader</command>、<command>aclocal</command>、<command>automake</command>、<command>gettextize</command> 和 <command>libtoolize</command>，在 <command>autoconf</command> 和 <command>automake</command> 的模板文件有改动时可以节省时间</para>
           <indexterm zone="ch-system-autoconf autoreconf">
             <primary sortas="b-autoreconf">autoreconf</primary>
           </indexterm>
@@ -134,12 +121,7 @@
       <varlistentry id="autoscan">
         <term><command>autoscan</command> </term>
         <listitem>
-          <para>Helps to create a <filename>configure.in</filename> file for a
-          software package; it examines the source files in a directory tree,
-          searching them for common portability issues, and creates a
-          <filename>configure.scan</filename> file that serves as as a
-          preliminary <filename>configure.in</filename> file for the
-          package</para>
+          <para>协助给程序包创建一个 <filename>configure.in</filename> 文件；它检查目录树中的源代码文件，搜索常见可移植性问题，然后创建一个 <filename>configure.scan</filename> 文件作为程序包预备的 <filename>configure.in</filename> 文件</para>
           <indexterm zone="ch-system-autoconf autoscan">
             <primary sortas="b-autoscan">autoscan</primary>
           </indexterm>
@@ -149,9 +131,7 @@
       <varlistentry id="autoupdate">
         <term><command>autoupdate</command></term>
         <listitem>
-          <para>Modifies a <filename>configure.in</filename> file that still
-          calls <command>autoconf</command> macros by their old names to use the
-          current macro names</para>
+          <para>修改仍然用旧的宏调用 <command>autoconf</command> 的 <filename>configure.in</filename> 文件，使其使用新的宏名称</para>
           <indexterm zone="ch-system-autoconf autoupdate">
             <primary sortas="b-autoupdate">autoupdate</primary>
           </indexterm>
@@ -161,13 +141,7 @@
       <varlistentry id="ifnames">
         <term><command>ifnames</command> </term>
         <listitem>
-          <para>Helps when writing <filename>configure.in</filename> files
-          for a software package; it prints the identifiers that the package
-          uses in C preprocessor conditionals. If a package has already been set
-          up to have some portability, this program can help determine what
-          <command>configure</command> needs to check for. It can also fill in
-          gaps in a <filename>configure.in</filename> file generated by
-          <command>autoscan</command></para>
+          <para>协助编写程序包的 <filename>configure.in</filename> 文件；它打印出程序在 C 预处理条件中使用的标识符；如果一个程序包已经设置为有一定的可移植性，此程序可以协助分析 <command>configure</command> 需要检查什么。它还可以填满 <command>autoscan</command> 出样建的 <filename>configure.in</filename> 文件中的空格</para>
           <indexterm zone="ch-system-autoconf ifnames">
             <primary sortas="b-ifnames">ifnames</primary>
           </indexterm>
