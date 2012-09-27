@@ -56,7 +56,7 @@
     --disable-servers</userinput></screen>
 
     <variablelist>
-      <title>配置选项的含义：/title>
+      <title>配置选项的含义：</title>
 
       <varlistentry>
         <term><parameter>--disable-ifconfig</parameter></term>
