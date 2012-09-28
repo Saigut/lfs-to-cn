@@ -52,8 +52,11 @@
 
       <para>准备编译 Ncurses：</para>
 
-<screen><userinput remap="configure">./configure --prefix=/usr --mandir=/usr/share/man --with-shared \
-            --without-debug --enable-widec</userinput></screen>
+<screen><userinput remap="configure">./configure --prefix=/usr           \
+            --mandir=/usr/share/man \
+            --with-shared           \
+            --without-debug         \
+            --enable-widec</userinput></screen>
 
     <variablelist>
       <title>配置选项的含义：</title>

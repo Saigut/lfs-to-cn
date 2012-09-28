@@ -543,7 +543,7 @@
 <!ENTITY udev-lfs        "udev-lfs-&systemd-version;"> 
 <!ENTITY udev-lfs-size   "17 KB">   
 <!ENTITY udev-lfs-url    "&anduin-other;&udev-lfs;.tar.bz2">
-<!ENTITY udev-lfs-md5    "2840cd8c5fa91617efd36123486a7ac5">    
+<!ENTITY udev-lfs-md5    "e4244e62828d3c71bb95d1e88c8e1e10">    
 <!ENTITY udev-lfs-home   " ">
 
 <!ENTITY util-linux-version "2.22">
