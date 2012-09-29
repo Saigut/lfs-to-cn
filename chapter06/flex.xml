@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
   "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
   <!ENTITY % general-entities SYSTEM "../general.ent">
@@ -23,8 +23,7 @@
   <sect2 role="package">
     <title/>
 
-    <para>The Flex package contains a utility for generating programs that
-    recognize patterns in text.</para>
+    <para>Flex 程序包包含用于创建识别文本样式的程序的工具。</para>
 
     <segmentedlist>
       <segtitle>&buildtime;</segtitle>
@@ -39,46 +38,38 @@
   </sect2>
 
   <sect2 role="installation">
-    <title>Installation of Flex</title>
+    <title>安装 Flex</title>
 
-    <para>First, fix some regression tests:</para>
+    <para>首先修复一些回归测试：</para>
 
 <screen><userinput remap="pre">patch -Np1 -i ../&flex-bison-patch;</userinput></screen>
 
-    <para>Prepare Flex for compilation:</para>
+    <para>准备编译 Flex：</para>
 
 <screen><userinput remap="configure">./configure --prefix=/usr             \
             --mandir=/usr/share/man   \
             --infodir=/usr/share/info \
             --docdir=/usr/share/doc/flex-&flex-version;</userinput></screen>
 
-    <para>Compile the package:</para>
+    <para>编译程序包：</para>
 
 <screen><userinput remap="make">make</userinput></screen>
 
-    <para>To test the results (about 0.5 SBU), issue:</para>
+    <para>要测试结果 (大约 0.5 SBU)，执行：</para>
 
 <screen><userinput remap="test">make -k check</userinput></screen>
 
-    <para>There are two tests that fail due to incompatibilities
-    with the most recent version of bison.</para>
+    <para>有两个测试会因为与最新版本的 bison 不兼容而失败。</para>
 
-    <para>Install the package:</para>
+    <para>安装程序包：</para>
 
 <screen><userinput remap="install">make install</userinput></screen>
 
-    <para>There are some packages that expect to find the
-    <filename class="libraryfile">lex</filename> library in <filename
-    class="directory">/usr/lib</filename>. Create a symlink to account for
-    this:</para>
+    <para>有一些程序包会在 <filename class="directory">/usr/lib</filename> 中寻找 <filename class="libraryfile">lex</filename> 库。创建一个符号链接解决此问题：</para>
 
 <screen><userinput remap="install">ln -sv libfl.a /usr/lib/libl.a</userinput></screen>
 
-    <para>A few programs do not know about <command>flex</command> yet and
-    try to run its predecessor, <command>lex</command>. To support those
-    programs, create a wrapper script named <filename>lex</filename> that
-    calls <filename>flex</filename> in <command>lex</command> emulation
-    mode:</para>
+    <para>有几个程序还不知道 <command>flex</command>，会试图运行它的前身 <command>lex</command>。要支持这些程序，创建一个打包脚本，命名为 <filename>lex</filename>，以 <command>lex</command> 模拟模式调用 <filename>flex</filename>：</para>
 
 <screen><userinput remap="install">cat &gt; /usr/bin/lex &lt;&lt; "EOF"
 <literal>#!/bin/sh
@@ -90,8 +81,7 @@ exec /usr/bin/flex -l "$@"
 EOF
 chmod -v 755 /usr/bin/lex</userinput></screen>
 
-    <para>If desired, install the <filename>flex.pdf</filename> documentation
-    file:</para>
+    <para>如果需要，安装 <filename>flex.pdf</filename> 这个文档：</para>
 
 <screen><userinput remap="install">mkdir -v /usr/share/doc/flex-&flex-version;
 cp    -v doc/flex.pdf /usr/share/doc/flex-&flex-version;</userinput></screen>
@@ -99,27 +89,27 @@ cp    -v doc/flex.pdf /usr/share/doc/flex-&flex-version;</userinput></screen>
   </sect2>
 
   <sect2 id="contents-flex" role="content">
-    <title>Contents of Flex</title>
+    <title>Flex 的内容</title>
 
     <segmentedlist>
-      <segtitle>Installed programs</segtitle>
-      <segtitle>Installed libraries</segtitle>
+      <segtitle>安装的程序</segtitle>
+      <segtitle>安装的库</segtitle>
 
       <seglistitem>
-        <seg>flex and lex</seg>
-        <seg>libfl.a and libfl_pic.a</seg>
+        <seg>flex 和 lex</seg>
+        <seg>libfl.a 和 libfl_pic.a</seg>
       </seglistitem>
     </segmentedlist>
 
     <variablelist>
-      <bridgehead renderas="sect3">Short Descriptions</bridgehead>
+      <bridgehead renderas="sect3">简介</bridgehead>
       <?dbfo list-presentation="list"?>
       <?dbhtml list-presentation="table"?>
 
       <varlistentry id="flex">
         <term><command>flex</command></term>
         <listitem>
-          <para>A tool for generating programs that recognize patterns in text;
+          <para>一个工具，用于A tool for generating programs that recognize patterns in text;
           it allows for the versatility to specify the rules for pattern-finding,
           eradicating the need to develop a specialized program</para>
           <indexterm zone="ch-system-flex flex">
