@@ -109,9 +109,7 @@ cp    -v doc/flex.pdf /usr/share/doc/flex-&flex-version;</userinput></screen>
       <varlistentry id="flex">
         <term><command>flex</command></term>
         <listitem>
-          <para>一个工具，用于A tool for generating programs that recognize patterns in text;
-          it allows for the versatility to specify the rules for pattern-finding,
-          eradicating the need to develop a specialized program</para>
+          <para>一个工具，用于创建能够识别文本样式的程序；它允许指定样式查找的规则，消除了开发特定程序的需求</para>
           <indexterm zone="ch-system-flex flex">
             <primary sortas="b-flex">flex</primary>
           </indexterm>
@@ -121,8 +119,7 @@ cp    -v doc/flex.pdf /usr/share/doc/flex-&flex-version;</userinput></screen>
       <varlistentry id="lex">
         <term><command>lex</command></term>
         <listitem>
-          <para>A script that runs <command>flex</command> in
-          <command>lex</command> emulation mode</para>
+          <para>一个脚本，以 <command>lex</command> 模拟模式运行 <command>flex</command></para>
           <indexterm zone="ch-system-flex lex">
             <primary sortas="b-lex">lex</primary>
           </indexterm>
@@ -132,7 +129,7 @@ cp    -v doc/flex.pdf /usr/share/doc/flex-&flex-version;</userinput></screen>
       <varlistentry id="libfl.a">
         <term><filename class="libraryfile">libfl.a</filename></term>
         <listitem>
-          <para>The <filename class="libraryfile">flex</filename> library</para>
+          <para><filename class="libraryfile">flex</filename> 库</para>
           <indexterm zone="ch-system-flex libfl.a">
             <primary sortas="c-libfl.a">libfl.a</primary>
           </indexterm>
