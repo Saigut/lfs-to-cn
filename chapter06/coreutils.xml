@@ -311,7 +311,7 @@ sed -i s/\"1\"/\"8\"/1 /usr/share/man/man8/chroot.8</userinput></screen>
       <varlistentry id="dircolors">
         <term><command>dircolors</command></term>
         <listitem>
-          <para>输出命令来设置 <envar>LS_COLOR</envar> 环境变量以改变 <command>ls</command></para> 使用的色彩方案</para>
+          <para>输出命令来设置 <envar>LS_COLOR</envar> 环境变量以改变 <command>ls</command> 使用的色彩方案</para>
           <indexterm zone="ch-system-coreutils dircolors">
             <primary sortas="b-dircolors">dircolors</primary>
           </indexterm>
