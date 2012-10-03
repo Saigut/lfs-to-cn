@@ -32,6 +32,46 @@
     </listitem>
 
 -->
+
+    <listitem>
+      <para>2012-10-02</para>
+      <itemizedlist>
+        <listitem>
+          <para>[matthew] - 升级至 IPRoute2-3.6.0。修复 <ulink url="&lfs-ticket-root;3196">#3196</ulink>。</para>
+        </listitem>
+        <listitem>
+          <para>[matthew] - 升级至 Linux-3.6。修复 <ulink url="&lfs-ticket-root;3195">#3195</ulink>。</para>
+        </listitem>
+        <listitem>
+          <para>[matthew] - 升级至 Psmisc-22.20。修复 <ulink url="&lfs-ticket-root;3194">#3194</ulink>。</para>
+        </listitem>
+        <listitem>
+          <para>[matthew] - 升级至 Patch-2.7.1。修复 <ulink url="&lfs-ticket-root;3193">#3193</ulink>。</para>
+        </listitem>
+        <listitem>
+          <para>[matthew] - 添加一个补丁，允许 Kmod 的测试套件在 32 位系统上通过。修复 <ulink url="&lfs-ticket-root;3191">#3191</ulink>。</para>
+        </listitem>
+        <listitem>
+          <para>[matthew] - 升级至 GCC-4.7.2。修复 <ulink url="&lfs-ticket-root;3190">#3190</ulink>。</para>
+        </listitem>
+        <listitem>
+          <para>[matthew] - 使用 Make 的最新上游修复补丁，在并行编制时允许编制 WebKitGtk。修复 <ulink url="&lfs-ticket-root;3188">#3188</ulink>。</para>
+        </listitem>
+        <listitem>
+          <para>[matthew] - 升级至 Man-DB-2.6.3。修复 <ulink url="&lfs-ticket-root;3187">#3187</ulink>。</para>
+        </listitem>
+        <listitem>
+          <para>[matthew] - 升级至 Libpipeline-1.2.2。修复 <ulink url="&lfs-ticket-root;3186">#3186</ulink>。</para>
+        </listitem>
+        <listitem>
+          <para>[matthew] - 升级至 Automake-1.12.4。修复 <ulink url="&lfs-ticket-root;3185">#3185</ulink>。</para>
+        </listitem>
+        <listitem>
+          <para>[matthew] - 修复 Flex 指令；为其文档创建目录在 r9999 之后由其 Makefile 完成。</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+    
     <listitem>
       <para>2012-09-28</para>
       <itemizedlist>

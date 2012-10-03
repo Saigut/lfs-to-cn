@@ -72,7 +72,7 @@ done</userinput></screen>
 
     <para>与第一次编译 GCC 相同，它需要 GMP、MPFR 和 MPC 程序包。解开压缩包并将它们移动到指定名称的目录中：</para>
 
-<screen><userinput remap="pre">tar -jxf ../mpfr-&mpfr-version;.tar.bz2
+<screen><userinput remap="pre">tar -Jxf ../mpfr-&mpfr-version;.tar.xz
 mv -v mpfr-&mpfr-version; mpfr
 tar -Jxf ../gmp-&gmp-version;.tar.xz
 mv -v gmp-&gmp-version; gmp

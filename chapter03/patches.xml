@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
-  "http：//www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+  "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
   <!ENTITY % general-entities SYSTEM "../general.ent">
   %general-entities;
 ]>
@@ -70,28 +70,19 @@
       </listitem>
     </varlistentry>
 
-<!--
     <varlistentry>
-      <term>GRUB Disk Geometry Patch - <token>&grub-geometry-patch-size;</token>：</term>
+      <term>IPRoute2 ipset 补丁 - <token>&iproute2-ipset-patch-size;</token>:</term>
       <listitem>
-        <para>下载：<ulink url="&patches-root;&grub-geometry-patch;"/></para>
-        <para>MD5 指纹码：<literal>&grub-geometry-patch-md5;</literal></para>
+        <para>下载：<ulink url="&patches-root;&iproute2-ipset-patch;"/></para>
+        <para>MD5 指纹码：<literal>&iproute2-ipset-patch-md5;</literal></para>
       </listitem>
     </varlistentry>
 
     <varlistentry>
-      <term>GRUB 256-Byte Inodes Patch - <token>&grub-inode-patch-size;</token>：</term>
-      <listitem>
-        <para>下载：<ulink url="&patches-root;&grub-inode-patch;"/></para>
-        <para>MD5 指纹码：<literal>&grub-inode-patch-md5;</literal></para>
-      </listitem>
-    </varlistentry>
--->
-    <varlistentry>
       <term>Kbd 加载按键修复补丁 - <token>&kbd-fixes-patch-size;</token>：</term>
       <listitem>
-        <para>Download: <ulink url="&patches-root;&kbd-fixes-patch;"/></para>
-        <para>MD5 sum: <literal>&kbd-fixes-patch-md5;</literal></para>
+        <para>下载：<ulink url="&patches-root;&kbd-fixes-patch;"/></para>
+        <para>MD5 指纹码：<literal>&kbd-fixes-patch-md5;</literal></para>
       </listitem>
     </varlistentry>
 
@@ -100,6 +91,14 @@
       <listitem>
         <para>下载：<ulink url="&patches-root;&kbd-backspace-patch;"/></para>
         <para>MD5 指纹码：<literal>&kbd-backspace-patch-md5;</literal></para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term>Kmod 测试套件修复补丁 - <token>&kmod-test_fix-patch-size;</token>:</term>
+      <listitem>
+        <para>下载：<ulink url="&patches-root;&kmod-test_fix-patch;"/></para>
+        <para>MD5 指纹码：<literal>&kmod-test_fix-patch-md5;</literal></para>
       </listitem>
     </varlistentry>
 
@@ -152,7 +151,7 @@
     </varlistentry>
 
     <!--<varlistentry>
-      <term>Zlib fPIC Patch - <token>&zlib-fpic-patch-size;</token>：</term>
+      <term>Zlib fPIC 补丁 - <token>&zlib-fpic-patch-size;</token>：</term>
       <listitem>
         <para>下载：<ulink url="&patches-root;&zlib-fpic-patch;"/></para>
         <para>MD5 指纹码：<literal>&zlib-fpic-patch-md5;</literal></para>

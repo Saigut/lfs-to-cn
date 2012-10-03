@@ -83,8 +83,7 @@ chmod -v 755 /usr/bin/lex</userinput></screen>
 
     <para>如果需要，安装 <filename>flex.pdf</filename> 这个文档：</para>
 
-<screen><userinput remap="install">mkdir -v /usr/share/doc/flex-&flex-version;
-cp    -v doc/flex.pdf /usr/share/doc/flex-&flex-version;</userinput></screen>
+<screen><userinput remap="install">cp -v doc/flex.pdf /usr/share/doc/flex-&flex-version;</userinput></screen>
 
   </sect2>
 

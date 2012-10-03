@@ -15,11 +15,11 @@
 <!ENTITY autoconf-ch6-du "17.1 MB">
 <!ENTITY autoconf-ch6-sbu "4.5 SBU">
 
-<!ENTITY automake-version "1.12.3">
+<!ENTITY automake-version "1.12.4">
 <!ENTITY am-minor-version "1.12">
-<!ENTITY automake-size "1,352 KB">
+<!ENTITY automake-size "1,350 KB">
 <!ENTITY automake-url "&gnu;automake/automake-&automake-version;.tar.xz">
-<!ENTITY automake-md5 "0df082825f8f41087eb70c5088f4515e">
+<!ENTITY automake-md5 "7395a0420ecb5c9bc43e5fcf4824df36">
 <!ENTITY automake-home "&gnu-software;automake/">
 <!ENTITY automake-ch6-du "100 MB">
 <!ENTITY automake-ch6-sbu "少于 0.1 SBU (含测试 34.1 SBU)">
@@ -166,10 +166,10 @@
 <!ENTITY gawk-ch6-du "30 MB">
 <!ENTITY gawk-ch6-sbu "0.2 SBU">
 
-<!ENTITY gcc-version "4.7.1">
-<!ENTITY gcc-size "80,703 KB">
+<!ENTITY gcc-version "4.7.2">
+<!ENTITY gcc-size "80,942 KB">
 <!ENTITY gcc-url "&gnu;gcc/gcc-&gcc-version;/gcc-&gcc-version;.tar.bz2">
-<!ENTITY gcc-md5 "933e6f15f51c031060af64a9e14149ff">
+<!ENTITY gcc-md5 "cc308a0891e778cfda7a151ab8a6e762">
 <!ENTITY gcc-home "http://gcc.gnu.org/">
 <!ENTITY gcc-ch5p1-du "1.4 GB">
 <!ENTITY gcc-ch5p1-sbu "5.5 SBU">
@@ -270,10 +270,10 @@
 <!ENTITY inetutils-ch6-du "27 MB">
 <!ENTITY inetutils-ch6-sbu "0.4 SBU">
 
-<!ENTITY iproute2-version "3.5.1">
-<!ENTITY iproute2-size "379 KB">
+<!ENTITY iproute2-version "3.6.0">
+<!ENTITY iproute2-size "386 KB">
 <!ENTITY iproute2-url "&kernel;linux/utils/net/iproute2/iproute2-&iproute2-version;.tar.xz">
-<!ENTITY iproute2-md5 "d4425b44edd5eacd6099e672e4baacbf">
+<!ENTITY iproute2-md5 "a19e30c8e0099d3197414c96bea6d6f8">
 <!ENTITY iproute2-home "&kernel;linux/utils/net/iproute2/">
 <!ENTITY iproute2-ch6-du "7.3 MB">
 <!ENTITY iproute2-ch6-sbu "0.1 SBU">
@@ -310,10 +310,10 @@
 <!ENTITY lfs-bootscripts-ch7-du "BOOTSCRIPTS-INSTALL-KB KB"> <!-- Updated in Makefile -->
 <!ENTITY lfs-bootscripts-ch7-sbu "少于 0.1 SBU">
 
-<!ENTITY libpipeline-version "1.2.1">
-<!ENTITY libpipeline-size "723 KB">
+<!ENTITY libpipeline-version "1.2.2">
+<!ENTITY libpipeline-size "733 KB">
 <!ENTITY libpipeline-url "http://download.savannah.gnu.org/releases/libpipeline/libpipeline-&libpipeline-version;.tar.gz">
-<!ENTITY libpipeline-md5 "20896c919eca4acb3d2f13012fb7ba02">
+<!ENTITY libpipeline-md5 "4367a3f598d171fd43dfa8620ed16d55">
 <!ENTITY libpipeline-home "http://libpipeline.nongnu.org/">
 <!ENTITY libpipeline-ch6-du "7.4 MB">
 <!ENTITY libpipeline-ch6-sbu "0.2 SBU">
@@ -327,13 +327,13 @@
 <!ENTITY libtool-ch6-sbu "3.0 SBU">
 
 <!ENTITY linux-major-version "3">
-<!ENTITY linux-minor-version "5">
-<!ENTITY linux-patch-version "4">
-<!ENTITY linux-version "&linux-major-version;.&linux-minor-version;.&linux-patch-version;">
-<!--<!ENTITY linux-version "&linux-major-version;.&linux-minor-version;">-->
-<!ENTITY linux-size "65,991 KB">
+<!ENTITY linux-minor-version "6">
+<!--<!ENTITY linux-patch-version "4">-->
+<!--<!ENTITY linux-version "&linux-major-version;.&linux-minor-version;.&linux-patch-version;">-->
+<!ENTITY linux-version "&linux-major-version;.&linux-minor-version;">
+<!ENTITY linux-size "67,058 KB">
 <!ENTITY linux-url "&kernel;linux/kernel/v&linux-major-version;.x/linux-&linux-version;.tar.xz">
-<!ENTITY linux-md5 "d806cb4cbadba05cc4d1bd208d1546ef">
+<!ENTITY linux-md5 "1a1760420eac802c541a20ab51a093d1">
 <!ENTITY linux-home "http://www.kernel.org/">
 <!ENTITY linux-ch8-du "540 - 800 MB">
 <!ENTITY linux-ch8-sbu "1.0 - 5.0 SBU">
@@ -363,10 +363,10 @@
 <!ENTITY make-ch6-du "11.3 MB">
 <!ENTITY make-ch6-sbu "0.4 SBU">
 
-<!ENTITY man-db-version "2.6.2">
-<!ENTITY man-db-size "1,353 KB">
+<!ENTITY man-db-version "2.6.3">
+<!ENTITY man-db-size "1,356 KB">
 <!ENTITY man-db-url "http://download.savannah.gnu.org/releases/man-db/man-db-&man-db-version;.tar.xz">
-<!ENTITY man-db-md5 "647c48d46c464419185d031d04481ee5">
+<!ENTITY man-db-md5 "a593a095599ae97bcacf8d038659a146">
 <!ENTITY man-db-home "http://www.nongnu.org/man-db/">
 <!ENTITY man-db-ch6-du "27 MB">
 <!ENTITY man-db-ch6-sbu "0.5 SBU">
@@ -409,10 +409,10 @@
 <!ENTITY ncurses-ch6-du "40 MB">
 <!ENTITY ncurses-ch6-sbu "0.6 SBU">
 
-<!ENTITY patch-version "2.7">
-<!ENTITY patch-size "659 KB">
+<!ENTITY patch-version "2.7.1">
+<!ENTITY patch-size "660 KB">
 <!ENTITY patch-url "&gnu;patch/patch-&patch-version;.tar.xz">
-<!ENTITY patch-md5 "d443f9d9a7d1bf1715831883917699d9">
+<!ENTITY patch-md5 "e9ae5393426d3ad783a300a338c09b72">
 <!ENTITY patch-home "http://savannah.gnu.org/projects/patch/">
 <!ENTITY patch-ch5-du "3.4 MB">
 <!ENTITY patch-ch5-sbu "0.1 SBU">
@@ -445,10 +445,10 @@
 <!ENTITY procps-ch6-du "2.6 MB">
 <!ENTITY procps-ch6-sbu "0.1 SBU">
 
-<!ENTITY psmisc-version "22.19">
-<!ENTITY psmisc-size "481 KB">
+<!ENTITY psmisc-version "22.20">
+<!ENTITY psmisc-size "422 KB">
 <!ENTITY psmisc-url "&sourceforge;psmisc/psmisc-&psmisc-version;.tar.gz">
-<!ENTITY psmisc-md5 "38563b4760ffce54b0eadf99cb5b16e8">
+<!ENTITY psmisc-md5 "a25fc99a6dc7fa7ae6e4549be80b401f">
 <!ENTITY psmisc-home "http://psmisc.sourceforge.net/">
 <!ENTITY psmisc-ch6-du "4.2 MB">
 <!ENTITY psmisc-ch6-sbu "少于 0.1 SBU">
@@ -524,12 +524,12 @@
 <!ENTITY texinfo-ch6-du "24 MB">
 <!ENTITY texinfo-ch6-sbu "0.2 SBU">
 
-<!ENTITY systemd-version "189">
-<!ENTITY systemd-size    "1,344 KB">
+<!ENTITY systemd-version "193">
+<!ENTITY systemd-size    "1,388 KB">
 <!ENTITY systemd-url     "http://www.freedesktop.org/software/systemd/systemd-&systemd-version;.tar.xz">
-<!ENTITY systemd-md5     "ac2eb313f5dce79622f60aac56bca66d">
+<!ENTITY systemd-md5     "732a9de2b1d2a15cab639c987ff9e90e">
 <!ENTITY systemd-home    "http://www.freedesktop.org/wiki/Software/systemd/">
-<!ENTITY systemd-ch6-du  "17.4 MB">
+<!ENTITY systemd-ch6-du  "18 MB">
 <!ENTITY systemd-ch6-sbu "0.1 SBU">
 
 <!ENTITY tzdata-version "2012e">

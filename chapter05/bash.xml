@@ -78,7 +78,7 @@
 
     <para>为使用 <command>sh</command> 作为 Shell 的程序做一个链接：</para>
 
-<screen><userinput remap="install">ln -vs bash /tools/bin/sh</userinput></screen>
+<screen><userinput remap="install">ln -sv bash /tools/bin/sh</userinput></screen>
 
   </sect2>
 
