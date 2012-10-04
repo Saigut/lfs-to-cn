@@ -23,7 +23,7 @@
   <sect2 role="package">
     <title/>
 
-    <para>GRUB 程序包包含 GRand Unified Bootloader 。</para>
+    <para>GRUB 程序包包含大一统引导加载器。</para>
 
     <segmentedlist>
       <segtitle>&buildtime;</segtitle>
