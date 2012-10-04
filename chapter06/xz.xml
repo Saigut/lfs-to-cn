@@ -261,7 +261,7 @@
       <varlistentry id="xzegrep">
         <term><command>xzegrep</command></term>
         <listitem>
-          <para>对 XZ 格式压缩的文件运行 command>egrep</command></para>
+          <para>对 XZ 格式压缩的文件运行 <command>egrep</command></para>
           <indexterm zone="ch-system-xz xzegrep">
             <primary sortas="b-xzegrep">xzegrep</primary>
           </indexterm>
