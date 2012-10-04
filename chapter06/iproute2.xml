@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
   "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
   <!ENTITY % general-entities SYSTEM "../general.ent">
@@ -23,8 +23,7 @@
   <sect2 role="package">
     <title/>
 
-    <para>The IPRoute2 package contains programs for basic and advanced IPV4-based
-    networking.</para>
+    <para>IPRoute2 程序包包含用于 IPv4 网络的基本和高级程序。</para>
 
     <segmentedlist>
       <segtitle>&buildtime;</segtitle>
@@ -39,53 +38,38 @@
   </sect2>
 
   <sect2 role="installation">
-    <title>Installation of IPRoute2</title>
+    <title>安装 IPRoute2</title>
 
-    <para>Apply a patch to fix a compilation issue caused by the absence of the
-    iptables package:</para>
+    <para>应用一个补丁修复一个由 iptables 程序包缺失造成的编译问题：</para>
 
 <screen><userinput remap="pre">patch -Np1 -i ../&iproute2-ipset-patch;</userinput></screen>
 
-    <para>The <command>arpd</command> binary included in this package is
-    dependent on Berkeley DB.  Because <command>arpd</command> is not a very
-    common requirement on a base Linux system, remove the dependency on Berkeley
-    DB by applying the commands below.  If the <command>arpd</command> binary is
-    needed, instructions for compiling Berkeley DB can be found in the BLFS Book
-    at <ulink url="&blfs-root;view/svn/server/databases.html#db"/>.
+    <para>此程序包包含的 <command>arpd</command> 二进制依赖 Berkeley DB。因为 <command>arpd</command> 对于基本 Linux 系统来说不是必要的，应用以下命令移除对 Berkeley DB 的依赖。如果需要 <command>arpd</command> 这个二进制，编译 Berkeley DB 的指令位于 BLFS 中的 <ulink url="&blfs-root;view/svn/server/databases.html#db"/>。
     </para>
 
 <screen><userinput remap="pre">sed -i '/^TARGETS/s@arpd@@g' misc/Makefile
 sed -i /ARPD/d Makefile
 sed -i 's/arpd.8//' man/man8/Makefile</userinput></screen>
 
-    <para>Compile the package:</para>
+    <para>编译程序包：</para>
 
 <screen><userinput remap="make">make DESTDIR=</userinput></screen>
 
     <variablelist>
-      <title>The meaning of the make option:</title>
+      <title>make 选项的含义</title>
 
       <varlistentry>
         <term><parameter>DESTDIR=</parameter></term>
         <listitem>
-          <para>This ensures that the IPRoute2 binaries will install into
-          the correct directory. By default, <parameter>DESTDIR</parameter> is
-          set to <filename class="directory">/usr</filename>.</para>
+          <para>此项确保 IPRoute2 的二进制安装到正确的目录。<parameter>DESTDIR</parameter> 默认设置为 <filename class="directory">/usr</filename>。</para>
         </listitem>
       </varlistentry>
 
     </variablelist>
 
-    <para>This package comes with a test suite, but due to assumptions it makes,
-    it is not possible to reliably run these tests from within the chroot
-    environment. If you wish to run these tests after booting into your new LFS
-    system, ensure you select <filename>/proc/config.gz</filename>
-    CONFIG_IKCONFIG_PROC (&quot;General setup&quot; -> &quot;Enable access to
-    .config through /proc/config.gz&quot;) support into your kernel then run
-    'make alltests' from the <filename class="directory">testsuite/</filename>
-    subdirectory.</para>
+    <para>此程序包带有测试套件，但由于它所做的一些假设，在 chroot 环境中可靠运行是不可能的。如果你要在引导到新的 LFS 系统之后运行这些测试，确保你在内核中选中 <filename>/proc/config.gz</filename> CONFIG_IKCONFIG_PROC (位于 &quot;General setup&quot; -> &quot;Enable access to .config through /proc/config.gz&quot;) 支持，然后在 <filename class="directory">testsuite/</filename> 子目录中执行 make alltests.</para>
 
-    <para>Install the package:</para>
+    <para>安装程序包：</para>
 
 <screen><userinput remap="install">make DESTDIR=              \
      MANDIR=/usr/share/man \
@@ -94,30 +78,27 @@ sed -i 's/arpd.8//' man/man8/Makefile</userinput></screen>
   </sect2>
 
   <sect2 id="contents-iproute2" role="content">
-    <title>Contents of IPRoute2</title>
+    <title>IPRoute2 的内容</title>
 
     <segmentedlist>
-      <segtitle>Installed programs</segtitle>
-      <segtitle>Installed directories</segtitle>
+      <segtitle>安装的程序</segtitle>
+      <segtitle>安装的库</segtitle>
 
       <seglistitem>
-        <seg>ctstat (link to lnstat), genl, ifcfg, ifstat, ip, lnstat,
-        nstat, routef, routel, rtacct, rtmon, rtpr, rtstat (link to lnstat), ss,
-        and tc</seg>
-        <seg>/etc/iproute2, /lib/tc, /usr/share/doc/iproute2-&iproute2-version;,
-        /usr/lib/tc</seg>
+        <seg>ctstat (到 lnstat 的链接)、genl、ifcfg、ifstat、ip、lnstat、nstat、routef、routel、rtacct、rtmon、rtpr、rtstat (到 lnstat 的链接)、ss 和 tc</seg>
+        <seg>/etc/iproute2、/lib/tc、/usr/share/doc/iproute2-&iproute2-version;、/usr/lib/tc</seg>
       </seglistitem>
     </segmentedlist>
 
     <variablelist>
-      <bridgehead renderas="sect3">Short Descriptions</bridgehead>
+      <bridgehead renderas="sect3">简介</bridgehead>
       <?dbfo list-presentation="list"?>
       <?dbhtml list-presentation="table"?>
 
       <varlistentry id="ctstat">
         <term><command>ctstat</command></term>
         <listitem>
-          <para>Connection status utility</para>
+          <para>连接状态工具</para>
           <indexterm zone="ch-system-iproute2 ctstat">
             <primary sortas="b-ctstat">ctstat</primary>
           </indexterm>
@@ -137,10 +118,7 @@ sed -i 's/arpd.8//' man/man8/Makefile</userinput></screen>
       <varlistentry id="ifcfg">
         <term><command>ifcfg</command></term>
         <listitem>
-          <para>A shell script wrapper for the <command>ip</command> command. 
-          Note that it requires the <command>arping</command> and 
-          <command>rdisk</command> programs from the 
-          iputils package found at <ulink url="http://www.skbuff.net/iputils/"/>.</para>
+          <para><command>ip</command> 命令的一个 shell 脚本打包；注意它需求 <command>arping</command> 和 <command>rdisk</command> 程序；这些程序来自 iputils 程序包，位于 <ulink url="http://www.skbuff.net/iputils/"/></para>
           <indexterm zone="ch-system-iproute2 ifcfg">
             <primary sortas="b-ifcfg">ifcfg</primary>
           </indexterm>
@@ -150,8 +128,7 @@ sed -i 's/arpd.8//' man/man8/Makefile</userinput></screen>
       <varlistentry id="ifstat">
         <term><command>ifstat</command></term>
         <listitem>
-          <para>Shows the interface statistics, including the amount of
-          transmitted and received packets by interface</para>
+          <para>显示接口统计数据，包括其发送和接收的数据包</para>
           <indexterm zone="ch-system-iproute2 ifstat">
             <primary sortas="b-ifstat">ifstat</primary>
           </indexterm>
@@ -161,35 +138,25 @@ sed -i 's/arpd.8//' man/man8/Makefile</userinput></screen>
       <varlistentry id="ip">
         <term><command>ip</command></term>
         <listitem>
-          <para>The main executable. It has several different functions:</para>
+          <para>主可执行文件，有几个不同的功能：</para>
 
-          <para><command>ip link <replaceable>&lt;device&gt;</replaceable></command>
-          allows users to look at the state of devices and to make changes</para>
+          <para><command>ip link <replaceable>&lt;设备&gt;</replaceable></command> 允许用户查看设备状态并作出改动</para>
 
-          <para><command>ip addr</command> allows users to look at addresses and
-          their properties, add new addresses, and delete old ones</para>
+          <para><command>ip addr</command> 允许用户查看地址和属性、添加地址和删除旧地址</para>
 
-          <para><command>ip neighbor</command> allows users to look at neighbor
-          bindings and their properties, add new neighbor entries, and delete
-          old ones</para>
+          <para><command>ip neighbor</command> 允许用户查看邻居绑定和属性、添加邻居和删除旧邻居</para>
 
-          <para><command>ip rule</command> allows users to look at the routing
-          policies and change them</para>
+          <para><command>ip rule</command> 允许用户查看路由政策并调整之</para>
 
-          <para><command>ip route</command> allows users to look at the routing
-          table and change routing table rules</para>
+          <para><command>ip route</command> 允许用户查看路由表并修改其规则</para>
 
-          <para><command>ip tunnel</command> allows users to look at the IP
-          tunnels and their properties, and change them</para>
+          <para><command>ip tunnel</command> 允许用户查看 IP 隧道及其属性并修改之</para>
 
-          <para><command>ip maddr</command> allows users to look at the multicast
-          addresses and their properties, and change them</para>
+          <para><command>ip maddr</command> 允许用户查看多播地址及其属性并修改之</para>
 
-          <para><command>ip mroute</command> allows users to set, change, or
-          delete the multicast routing</para>
+          <para><command>ip mroute</command> 允许用户设置、修改或删除多播路由</para>
 
-          <para><command>ip monitor</command> allows users to continuously monitor
-          the state of devices, addresses and routes</para>
+          <para><command>ip monitor</command> 允许用户持续监视设备状态、地址和路由</para>
           <indexterm zone="ch-system-iproute2 ip">
             <primary sortas="b-ip">ip</primary>
           </indexterm>
@@ -199,9 +166,7 @@ sed -i 's/arpd.8//' man/man8/Makefile</userinput></screen>
       <varlistentry id="lnstat">
         <term><command>lnstat</command></term>
         <listitem>
-          <para>Provides Linux network statistics.  It is a generalized and more
-          feature-complete replacement for the old <command>rtstat</command>
-          program</para>
+          <para>提供 Linux 网络统计数据；比老式的 <command>rtstat</command> 程序更加通用和完善</para>
           <indexterm zone="ch-system-iproute2 lnstat">
             <primary sortas="b-lnstat">lnstat</primary>
           </indexterm>
@@ -211,7 +176,7 @@ sed -i 's/arpd.8//' man/man8/Makefile</userinput></screen>
       <varlistentry id="nstat">
         <term><command>nstat</command></term>
         <listitem>
-          <para>Shows network statistics</para>
+          <para>显示网络统计数据</para>
           <indexterm zone="ch-system-iproute2 nstat">
             <primary sortas="b-nstat">nstat</primary>
           </indexterm>
@@ -221,8 +186,7 @@ sed -i 's/arpd.8//' man/man8/Makefile</userinput></screen>
       <varlistentry id="routef">
         <term><command>routef</command></term>
         <listitem>
-          <para>A component of <command>ip route</command>. This is for flushing
-          the routing tables</para>
+          <para><command>ip route</command> 的一个组件；用于刷写路由表</para>
           <indexterm zone="ch-system-iproute2 routef">
             <primary sortas="b-routef">routef</primary>
           </indexterm>
@@ -232,8 +196,7 @@ sed -i 's/arpd.8//' man/man8/Makefile</userinput></screen>
       <varlistentry id="routel">
         <term><command>routel</command></term>
         <listitem>
-          <para>A component of <command>ip route</command>. This is for listing
-          the routing tables</para>
+          <para><command>ip route</command> 的一个组件；用于列出路由表</para>
           <indexterm zone="ch-system-iproute2 routel">
             <primary sortas="b-routel">routel</primary>
           </indexterm>
@@ -243,8 +206,7 @@ sed -i 's/arpd.8//' man/man8/Makefile</userinput></screen>
       <varlistentry id="rtacct">
         <term><command>rtacct</command></term>
         <listitem>
-          <para>Displays the contents of
-          <filename>/proc/net/rt_acct</filename></para>
+          <para>显示 <filename>/proc/net/rt_acct</filename> 的内容</para>
           <indexterm zone="ch-system-iproute2 rtacct">
             <primary sortas="b-rtacct">rtacct</primary>
           </indexterm>
@@ -254,7 +216,7 @@ sed -i 's/arpd.8//' man/man8/Makefile</userinput></screen>
       <varlistentry id="rtmon">
         <term><command>rtmon</command></term>
         <listitem>
-          <para>Route monitoring utility</para>
+          <para>路由监视工具</para>
           <indexterm zone="ch-system-iproute2 rtmon">
             <primary sortas="b-rtmon">rtmon</primary>
           </indexterm>
@@ -264,8 +226,7 @@ sed -i 's/arpd.8//' man/man8/Makefile</userinput></screen>
       <varlistentry id="rtpr">
         <term><command>rtpr</command></term>
         <listitem>
-          <para>Converts the output of <command>ip -o</command> back into a
-          readable form</para>
+          <para>将 <command>ip -o</command> 的输出转换为可读格式</para>
           <indexterm zone="ch-system-iproute2 rtpr">
             <primary sortas="b-rtpr">rtpr</primary>
           </indexterm>
@@ -275,7 +236,7 @@ sed -i 's/arpd.8//' man/man8/Makefile</userinput></screen>
       <varlistentry id="rtstat">
         <term><command>rtstat</command></term>
         <listitem>
-          <para>Route status utility</para>
+          <para>路由状态工具</para>
           <indexterm zone="ch-system-iproute2 rtstat">
             <primary sortas="b-rtstat">rtstat</primary>
           </indexterm>
@@ -285,8 +246,7 @@ sed -i 's/arpd.8//' man/man8/Makefile</userinput></screen>
       <varlistentry id="ss">
         <term><command>ss</command></term>
         <listitem>
-          <para>Similar to the <command>netstat</command> command; shows active
-          connections</para>
+          <para>类似 <command>netstat</command> 命令；显示活动的连接</para>
           <indexterm zone="ch-system-iproute2 ss">
             <primary sortas="b-ss">ss</primary>
           </indexterm>
@@ -296,23 +256,17 @@ sed -i 's/arpd.8//' man/man8/Makefile</userinput></screen>
       <varlistentry id="tc">
         <term><command>tc</command></term>
         <listitem>
-          <para>Traffic Controlling Executable; this is for Quality Of Service
-          (QOS) and Class Of Service (COS) implementations</para>
+          <para>流量控制程序；用于 QOS 和 COS 的实现</para>
 
-          <para><command>tc qdisc</command> allows users to setup the queueing
-          discipline</para>
+          <para><command>tc qdisc</command> 允许用户设置队列原则</para>
 
-          <para><command>tc class</command> allows users to setup classes based
-          on the queuing discipline scheduling</para>
+          <para><command>tc class</command> 允许用户基于队列原则设置类</para>
 
-          <para><command>tc estimator</command> allows users to estimate the
-          network flow into a network</para>
+          <para><command>tc estimator</command> 允许用户估计网络上的流量</para>
 
-          <para><command>tc filter</command> allows users to setup the QOS/COS
-          packet filtering</para>
+          <para><command>tc filter</command> 允许用户设置 QOS/COS 数据包筛选</para>
 
-          <para><command>tc policy</command> allows users to setup the QOS/COS
-          policies</para>
+          <para><command>tc policy</command> 允许用户设置 QOS/COS 政策</para>
           <indexterm zone="ch-system-iproute2 ss">
             <primary sortas="b-tc">tc</primary>
           </indexterm>
