@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
   "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
   <!ENTITY % general-entities SYSTEM "../general.ent">
@@ -23,8 +23,7 @@
   <sect2 role="package">
     <title/>
 
-    <para>The Libpipeline package contains a library for manipulating pipelines
-    of subprocesses in a flexible and convenient way.</para>
+    <para>Libpipeline 程序包包含一个以灵活便捷方式修改子进程管线的库。</para>
 
     <segmentedlist>
       <segtitle>&buildtime;</segtitle>
@@ -39,44 +38,43 @@
   </sect2>
 
   <sect2 role="installation">
-    <title>Installation of Libpipeline</title>
+    <title>安装 Libpipeline</title>
 
-    <para>Prepare Libpipeline for compilation:</para>
+    <para>准备编译 Libpipeline：</para>
 
 <screen><userinput remap="configure">PKG_CONFIG_PATH=/tools/lib/pkgconfig ./configure --prefix=/usr</userinput></screen>
 
     <variablelist>
-      <title>The meaning of the configure options:</title>
+      <title>配置脚本的含义：</title>
 
       <varlistentry>
         <term><parameter>PKG_CONFIG_PATH</parameter></term>
         <listitem>
-          <para>Use pkg-config to obtain the location of the test
-          library metadata built in <xref linkend="ch-tools-check"/>.</para>
+          <para>使用 pkg-config 获取在<xref linkend="ch-tools-check"/>中编制的测试库元数据。</para>
         </listitem>
       </varlistentry>
 
     </variablelist>
 
-    <para>Compile the package:</para>
+    <para>编译程序包：</para>
 
 <screen><userinput remap="make">make</userinput></screen>
 
-    <para>To test the results, issue:</para>
+    <para>要测试结果，执行：</para>
 
 <screen><userinput remap="test">make check</userinput></screen>
 
-    <para>Install the package:</para>
+    <para>安装程序包：</para>
 
 <screen><userinput remap="install">make install</userinput></screen>
 
   </sect2>
 
   <sect2 id="contents-libpipeline" role="content">
-    <title>Contents of Libpipeline</title>
+    <title>Libpipeline 的内容</title>
 
     <segmentedlist>
-      <segtitle>Installed libraries</segtitle>
+      <segtitle>安装的库</segtitle>
 
       <seglistitem>
         <seg>libpipeline.so</seg>
@@ -84,15 +82,14 @@
     </segmentedlist>
 
     <variablelist>
-      <bridgehead renderas="sect3">Short Descriptions</bridgehead>
+      <bridgehead renderas="sect3">简介</bridgehead>
       <?dbfo list-presentation="list"?>
       <?dbhtml list-presentation="table"?>
 
       <varlistentry id="libpipeline">
         <term><filename class="libraryfile">libpipeline</filename></term>
         <listitem>
-          <para>This library is used to safely construct pipelines between
-          subprocesses</para>
+          <para>此库用于在子进程之间安全建立管线</para>
           <indexterm zone="ch-system-libpipeline">
             <primary sortas="c-libpipeline">libpipeline</primary>
           </indexterm>
