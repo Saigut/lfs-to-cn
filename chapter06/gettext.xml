@@ -378,7 +378,7 @@
       <varlistentry id="preloadable_libintl.so">
         <term><filename class="libraryfile">preloadable_libintl</filename></term>
         <listitem>
-          <para>一个被 LD_PRELOAD 用以在记录未翻译信息时辅助 <filename class="libraryfile">libintl</filename> 。</para>
+          <para>一个被 LD_PRELOAD 用以在记录未翻译信息时辅助 <filename class="libraryfile">libintl</filename> 的库。</para>
           <indexterm zone="ch-system-gettext preloadable_libintl.so">
             <primary sortas="c-preloadable_libintl.so">preloadable_libintl</primary>
           </indexterm>
