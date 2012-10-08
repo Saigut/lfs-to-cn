@@ -169,7 +169,7 @@ cp -R -v doc/* \
       <varlistentry id="getkeycodes">
         <term><command>getkeycodes</command></term>
         <listitem>
-          <para>打印核心 scancode-to-keycode 映射表</para>
+          <para>打印内核 scancode-to-keycode 映射表</para>
           <indexterm zone="ch-system-kbd getkeycodes">
             <primary sortas="b-getkeycodes">getkeycodes</primary>
           </indexterm>
