@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
   "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
   <!ENTITY % general-entities SYSTEM "../general.ent">
@@ -8,33 +8,21 @@
 <sect1 id="ch-system-revisedchroot">
   <?dbhtml filename="revisedchroot.html"?>
 
-  <title>Cleaning Up</title>
+  <title>清理</title>
 
-  <para>From now on, when reentering the chroot environment after
-  exiting, use the following modified chroot command:</para>
+  <para>从现在开始，如果要重新进入 chroot 环境，使用以下修改过的命令：</para>
 
 <screen><userinput>chroot "$LFS" /usr/bin/env -i \
     HOME=/root TERM="$TERM" PS1='\u:\w\$ ' \
     PATH=/bin:/usr/bin:/sbin:/usr/sbin \
     /bin/bash --login</userinput></screen>
 
-  <para>The reason for this is that the programs in <filename
-  class="directory">/tools</filename> are no longer needed.  Since they are no
-  longer needed you can delete the <filename class="directory">/tools</filename>
-  directory if so desired.</para>
+  <para>原因在于 <filename class="directory">/tools</filename> 中的工具不再需要了。所以 <filename class="directory">/tools</filename> 目录可以移除了。</para>
 
   <note>
-    <para>Removing <filename class="directory">/tools</filename> will also
-    remove the temporary copies of Tcl, Expect, and DejaGNU which were used
-    for running the toolchain tests. If you need these programs later on,
-    they will need to be recompiled and re-installed. The BLFS book has
-    instructions for this (see <ulink url="&blfs-root;"/>).</para>
+    <para>移除 <filename class="directory">/tools</filename> 也会移除 Tcl、Expect 和 DejaGNU 的用于运行工具链测试的临时副本。如果你仍然需要它们，需要重新编译和安装。BLFS 中有相关指令 (参考 <ulink url="&blfs-root;"/>)。</para>
   </note>
 
-  <para>If the virtual kernel file systems have been unmounted, either manually
-  or through a reboot, ensure that the virtual kernel file systems are mounted
-  when reentering the chroot. This process was explained in <xref
-  linkend="ch-system-bindmount"/> and <xref
-  linkend="ch-system-kernfsmount"/>.</para>
+  <para>无论手动还是由于重新引导系统，如果虚拟内核文件系统被卸载了，在进入 chroot 环境时要挂载它们。此过程在 <xref linkend="ch-system-bindmount"/> 和 <xref linkend="ch-system-kernfsmount"/> 中有讲解。</para>
 
 </sect1>
