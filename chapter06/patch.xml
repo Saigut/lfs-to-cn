@@ -40,19 +40,19 @@
   <sect2 role="installation">
     <title>Installation of Patch</title>
 
-    <para>Prepare Patch for compilation:</para>
+    <para>准备编译 Patch：</para>
 
 <screen><userinput remap="configure">./configure --prefix=/usr</userinput></screen>
 
-    <para>Compile the package:</para>
+    <para>编译程序包：</para>
 
 <screen><userinput remap="make">make</userinput></screen>
 
-    <para>To test the results, issue:</para>
+    <para>要测试结果，执行：</para>
 
 <screen><userinput remap="test">make check</userinput></screen>
 
-    <para>Install the package:</para>
+    <para>安装程序包：</para>
 
 <screen><userinput remap="install">make install</userinput></screen>
 
@@ -62,7 +62,7 @@
     <title>Patch 的内容</title>
 
     <segmentedlist>
-      <segtitle>Installed program</segtitle>
+      <segtitle>安装的程序</segtitle>
 
       <seglistitem>
         <seg>patch</seg>
@@ -70,17 +70,14 @@
     </segmentedlist>
 
     <variablelist>
-      <bridgehead renderas="sect3">Short Descriptions</bridgehead>
+      <bridgehead renderas="sect3">简介</bridgehead>
       <?dbfo list-presentation="list"?>
       <?dbhtml list-presentation="table"?>
 
       <varlistentry id="patch">
         <term><command>patch</command></term>
         <listitem>
-          <para>Modifies files according to a patch file. A patch file is
-          normally a difference listing created with the <command>diff</command>
-          program. By applying these differences to the original files,
-          <command>patch</command> creates the patched versions.</para>
+          <para>依据补丁文件修改文件；补丁文件通常是 <command>diff</command> 程序创建的差异列表；将这些差异应用到原始文件上，<command>patch</command> 就创建了打过补丁的版本</para>
           <indexterm zone="ch-system-patch patch">
             <primary sortas="b-patch">patch</primary>
           </indexterm>
