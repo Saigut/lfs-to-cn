@@ -87,8 +87,8 @@ done</userinput></screen>
     <title>Texinfo 的内容</title>
 
     <segmentedlist>
-      <segtitle>安装的程序/segtitle>
-      <segtitle>安装的目录/segtitle>
+      <segtitle>安装的程序</segtitle>
+      <segtitle>安装的目录</segtitle>
 
       <seglistitem>
         <seg>info、infokey、install-info、makeinfo、pdftexi2dvi、texi2dvi、texi2pdf 和 texindex</seg>
