@@ -10,7 +10,7 @@
 
   <title>变更日志</title>
 
-  <para>此 Linux From Scratch 译本对应版本 &version;，发布日期 &releasedate;。如果本书已经超过六个月了，或许会有更新的版本发布。请查看镜像站点 <ulink url="&lfs-root;mirrors.html"/>。(译注：LFSCN 始终对应 LFS 的 开发版本，LFS 中的更新会在几天内进入 LFSCN。)</para>
+  <para>此 Linux From Scratch 译本对应版本 &version;，发布日期为 &releasedate;。如果本书已经超过六个月了，或许会有更新的版本发布。请查看<ulink url="&lfs-root;mirrors.html">镜像站点</ulink>。(译注：LFSCN 始终对应 LFS 的 开发版本，LFS 中的更新会在几天内进入 LFSCN，请确保使用最新版本的 LFSCN。)</para>
 
   <para>以下是本书上次发布以来所做的改动。</para>
 
