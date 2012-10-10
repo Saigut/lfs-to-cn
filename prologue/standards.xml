@@ -24,7 +24,7 @@
 
       </listitem>
       <listitem>
-        <para><ulink url="http://refspecs.freestandards.org/LSB_4.0.0/">LSB-4.0</ulink></para>
+        <para><ulink url="http://refspecs.freestandards.org/LSB_4.0.0/">LSB-4.0.0</ulink></para>
 
         <para>LSB 有五个分立的标准：核心、C++、桌面、解释型语言和打印。除通用要求之外，还有一些架构特有的要求。LFS 试图符合前一节中提及的架构的相关要求。</para>
 

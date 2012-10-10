@@ -21,11 +21,11 @@
 <screen role="nodump"><userinput>CC="gcc -B/usr/bin/" ../binutils-2.18/configure \
   --prefix=/tools --disable-nls --disable-werror</userinput></screen>
 
-  <para>注意反斜线后需要立即换行。其他空字符如空格和tab字符会导致不正缺的结果。</para>
+  <para>注意反斜线后需要立即换行。其他空字符如空格和制表符会导致不正确的结果。</para>
 
 <screen><computeroutput>install-info: unknown option '--dir-file=/mnt/lfs/usr/info/dir'</computeroutput></screen>
 
-  <para>这种形式的文本（等宽文本）显示屏幕输出，通常是执行的命令产生的结果。这种格式也用于表示文件名，如 <filename>/etc/ld.so.conf</filename> 。</para>
+  <para>这种形式的文本 (等宽文本) 显示屏幕输出，通常是执行的命令产生的结果。这种格式也用于表示文件名，如 <filename>/etc/ld.so.conf</filename> 。</para>
 
   <para><emphasis>强调</emphasis></para>
 

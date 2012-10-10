@@ -10,7 +10,7 @@
 
   <title>在新分区上创建文件系统</title>
 
-  <para>现在创建好了空白分区，就可以创建文件系统了。Linux 世界中最常用的系统是第二扩展文件系统 (<systemitem class="filesystem">ext2</systemitem>)，但有了新的大容量硬盘，日志文件系统逐渐受欢迎。第三扩展文件系统 (<systemitem class="filesystem">ext3</systemitem>) 是 <systemitem class="filesystem">ext2</systemitem> 的一种广泛应用的增强，加入了日志兼容性并且与 E2fsprogs 工具兼容。我们将创建 <systemitem class="filesystem">ext3</systemitem> 文件系统。创建其他文件系统的指令位于 <ulink url="&blfs-root;view/svn/postlfs/filesystems.html"/>。</para>
+  <para>现在创建好了空白分区，就可以创建文件系统了。Linux 世界中最常用的系统是第二扩展文件系统 (<systemitem class="filesystem">ext2</systemitem>)，但有了新的大容量硬盘，日志文件系统逐渐受欢迎。第三扩展文件系统 (<systemitem class="filesystem">ext3</systemitem>) 是 <systemitem class="filesystem">ext2</systemitem> 的一种广泛应用的增强，加入了日志兼容性并且与 E2fsprogs 工具兼容。我们将创建 <systemitem class="filesystem">ext3</systemitem> 文件系统。创建其他文件系统的指令位于<ulink url="&blfs-root;view/svn/postlfs/filesystems.html">此处</ulink>。</para>
 
   <para>要在 LFS 分区上创建 <systemitem class="filesystem">ext3</systemitem> 文件系统，运行以下：</para>
 

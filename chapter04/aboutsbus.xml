@@ -18,9 +18,9 @@
 
   <para>通常，SBU 所代表的时间并不是十分精确。它取决于很多因素，包括你的系统中 GCC 的版本。它们仅仅时给你一个大概的描述。一些情况下，会有一些误差。</para>
 
-  <para>要了解某些具体的机器上的具体时间，可以登录 LinuxFromScratch SBU 主页，其位于 <ulink url="&lfs-root;~sbu/"/>。</para>
+  <para>要了解某些具体的机器上的具体时间，可以登录 <ulink url="&lfs-root;~sbu/">SBU 主页</ulink>。</para>
 
-  <note><para>对于现代的许多多处理器系统 (或者多核心)，可以使用 “平行 make” 来减少编译时间 (译注，make 是单进程，“平行” 指打开多个进程进行编译)。为此，可以通过设置环境变量或者给 <command>make</command> 设置参数来实现。例如，一个 Core2Duo 处理器可以用：</para>
+  <note><para>对于现代的许多多处理器 (或者多核心) 系统，可以使用 <quote>并发 make</quote> 来减少编译时间。为此，可以通过设置环境变量或者给 <command>make</command> 设置参数来实现。例如，一个 Core2Duo 处理器可以用：</para>
 
   <screen><userinput>export MAKEFLAGS='-j 2'</userinput></screen>
 

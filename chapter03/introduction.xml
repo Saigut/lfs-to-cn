@@ -12,7 +12,7 @@
 
   <para>本章列出了要编制基本 Linux 系统需要下载的程序包。列出的版本号对应该软件已知能够工作的版本，本书也基于它们。我们非常不推荐使用更新的版本，因为一个版本的编制指令对更新的版本不工作。最新的程序包版本也可能由需要研究处理处理的问题。这些工作在本书的开发版本中会逐步完成。</para>
 
-  <para>下载位置可能不总有效。如果本书发布之后有下载位置改变，Google (<ulink url="http://www.google.com/"/>) 搜索一下。如果搜索不成功，尝试位于 <ulink url="&lfs-root;lfs/packages.html#packages"/> 的替代解决方案之一。</para>
+  <para>下载位置可能不总有效。如果本书发布之后有下载位置改变，使用 <ulink url="http://www.google.com/">Google</ulink> 搜索一下。如果搜索不成功，尝试<ulink url="&lfs-root;lfs/packages.html#packages">此处</ulink>的替代解决方案之一。</para>
 
   <para>下载的程序包和补丁要存储在整个编制过城中都方便可用的地方。还需要一个工作目录来解压缩源代码并编制。<filename class="directory">$LFS/sources</filename> 可以既用作存放压缩包的地方也用作工作目录。通过使用此目录，需要的信息就会位于 LFS 分区上，也就在编制过城中的每一步都可用。</para>
 

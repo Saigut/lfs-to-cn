@@ -18,8 +18,8 @@
     <para>经验显示在<xref linkend="chapter-temporary-tools"/>中运行测试套件收效甚微。宿主系统无法避免都会对这一章中的测试产生影响，经常会导致莫名其妙的失败。因为在<xref linkend="chapter-temporary-tools"/>中编制的工具是临时的，最终会被丢弃掉，所以在<xref linkend="chapter-temporary-tools"/>中不推荐运行测试套件。提供的运行测试套件的指令是针对测试者和开发者的，是可选的。</para>
   </note>
 
-  <para>运行 Binutils 和 GCC 的测试套件时经常出现的一个问题是伪终端 (PTY) 不够用。这可能导致很多测试通不过。这可能有不同的原因，最可能是宿主系统没有正确建立 <systemitem class="filesystem">devpts</systemitem> 文件系统。这个问题在 <ulink url="&lfs-root;lfs/faq.html#no-ptys"/> 中讨论过。</para>
+  <para>运行 Binutils 和 GCC 的测试套件时经常出现的一个问题是伪终端 (PTY) 不够用。这可能导致很多测试通不过。这可能有不同的原因，最可能是宿主系统没有正确建立 <systemitem class="filesystem">devpts</systemitem> 文件系统。这个问题在<ulink url="&lfs-root;lfs/faq.html#no-ptys">此处</ulink>讨论。</para>
 
-  <para>有事程序包的测试套件会通不过，但是其原因开发者清楚并声明无害。查看位于 <ulink url="&test-results;"/> 的日志来查看这些失败是否应该出现。这一站点对本书中所有的测试都有效。</para>
+  <para>有事程序包的测试套件会通不过，但是其原因开发者清楚并声明无害。查看位于<ulink url="&test-results;">此处</ulink>的日志来查看这些失败是否应该出现。这一站点对本书中所有的测试都有效。</para>
 
 </sect1>
