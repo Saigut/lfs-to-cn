@@ -30,7 +30,7 @@
     </listitem>
 
     <listitem>
-      <para><ulink url="&hints-root;essential_prereading.txt"/>必要的阅读前提示</ulink></para>
+      <para><ulink url="&hints-root;essential_prereading.txt">必要的阅读前提示</ulink></para>
 
       <para>这是专为 Linux 新手写的 LFS 提示。它包含到很多主题下信息资源的链接。任何一个试图安装 LFS 的人都应该了解其中的很多话题。</para>
     </listitem>
