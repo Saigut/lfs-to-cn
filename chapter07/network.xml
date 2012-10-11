@@ -64,20 +64,11 @@
   </sect2>
 
   <sect2>
-    <title>Creating Network Interface Configuration Files</title>
+    <title>创建网络接口配置文件</title>
 
-    <para>Which interfaces are brought up and down by the network script
-    depends on the files in <filename
-    class="directory">/etc/sysconfig/</filename>.  This directory should
-    contain a file for each interface to be configured, such as
-    <filename>ifconfig.xyz</filename>, where <quote>xyz</quote> is
-    meaningful to the administrator such as the device name (e.g. eth0).
-    Inside this file are attributes to this interface, such as its IP
-    address(es), subnet masks, and so forth.  It is necessary that 
-    the stem of the filename be <emphasis>ifconfig</emphasis>.</para>
+    <para>网络脚本开关的接口取决于 <filename class="directory">/etc/sysconfig/</filename> 中的文件。要配置的每个接口在此目录中都应该有一个文件，例如 <filename>ifconfig.xyz</filename>，其中 <quote>xyz</quote> 应该是一个对管理员有意义的名称，如设备名 (比如 eth0)。此文件中是该接口的属性，例如 IP 地址、子网掩码等。文件名的主干必须是 <emphasis>ifconfig</emphasis>。</para>
 
-    <para>The following command creates a sample file for the
-    <emphasis>eth0</emphasis> device with a static IP address:</para>
+    <para>以下命令会创建一个样例文件，给 <emphasis>eth0</emphasis> 设备分配一个静态 IP 地址：</para>
 
 <screen><userinput>cd /etc/sysconfig/
 cat &gt; ifconfig.eth0 &lt;&lt; "EOF"
@@ -90,82 +81,46 @@ PREFIX=24
 BROADCAST=192.168.1.255</literal>
 EOF</userinput></screen>
 
-    <para>The values of these variables must be changed in every file to match
-    the proper setup.</para>
+    <para>这些变量的值在每个文件中都要改为正确设置的地址。</para>
 
-    <para>If the <envar>ONBOOT</envar> variable is set to <quote>yes</quote> the
-    network script will bring up the Network Interface Card (NIC) during
-    booting of the system. If set to anything but <quote>yes</quote> the NIC
-    will be ignored by the network script and not be automatically brought up.
-    The interface can be manually started or stopped with the
-    <command>ifup</command> and <command>ifdown</command> commands.</para>
+    <para>如果 <envar>ONBOOT</envar> 变量设置为 <quote>yes</quote>，网络脚本会在系统引导时打开该 NIC，否则网络脚本就会忽略之并且不会自动打开该 NIC。该接口可以使用 <command>ifup</command> 和 <command>ifdown</command> 命令来手动打开和关闭。</para>
 
-    <para>The <envar>IFACE</envar> variable defines the interface name,
-    for example, eth0.  It is required for all network device configuration 
-    files. </para>
+    <para><envar>IFACE</envar> 变量定义接口名称，例如 eth0。所有的网络设备配置文件都需要它。</para>
 
-    <para>The <envar>SERVICE</envar> variable defines the method used for
-    obtaining the IP address. The LFS-Bootscripts package has a modular IP
-    assignment format, and creating additional files in the <filename
-    class="directory">/lib/services/</filename> directory allows other IP
-    assignment methods. This is commonly used for Dynamic Host Configuration
-    Protocol (DHCP), which is addressed in the BLFS book.</para>
+    <para><envar>SERVICE</envar> 变量定义获取 IP 地址的方法。LFS-Bootscripts 程序包有一个模块化的 IP 对应方法，在 <filename class="directory">/lib/services/</filename> 目录中创建额外文件可以允许其他的 IP 对应directory allows other IP 对应方法。此项经常用于 DHCP，在 BLFS 中提到。</para>
 
-    <para>The <envar>GATEWAY</envar> variable should contain the default
-    gateway IP address, if one is present. If not, then comment out the
-    variable entirely.</para>
+    <para>如果有网关，<envar>GATEWAY</envar> 变量应该包含默认网关的 IP 地址，否则注释掉这整个变量。</para>
 
-    <para>The <envar>PREFIX</envar> variable contains the number of
-    bits used in the subnet. Each octet in an IP address is 8 bits. If the
-    subnet's netmask is 255.255.255.0, then it is using the first three octets
-    (24 bits) to specify the network number. If the netmask is 255.255.255.240,
-    it would be using the first 28 bits.  Prefixes longer than 24 bits are
-    commonly used by DSL and cable-based Internet Service Providers (ISPs).
-    In this example (PREFIX=24), the netmask is 255.255.255.0. Adjust the
-    <envar>PREFIX</envar> variable according to your specific subnet.i
-    If omitted, the PREFIX defaults to 24.</para>
+    <para><envar>PREFIX</envar> 比啊量包含子网使用的位数。IP 地址中有 4 个 8 位组。如果子网的掩码是 255.255.255.0，它就使用前 3 个 8 位组指定网络号。如果子网掩码是 255.255.255.240，使用的就是前 28 位。超过 24 位的前缀通常被 DSL 和基于线电缆的 ISP 使用。这一例子 (PREFIX=24) 中，子网掩码是 255.255.255.0。根据你的子网调节 <envar>PREFIX</envar> 变量的值。如果忽略，其默认值为24。</para>
 
-    <para>For more information see the <command>ifup</command> man page.</para>
+    <para>获取更多信息，参考 <command>ifup</command> 的手册页。</para>
 
   </sect2>
 
   <sect2 id="resolv.conf">
-    <title>Creating the /etc/resolv.conf File</title>
+    <title>创建 /etc/resolv.conf 文件</title>
 
     <indexterm zone="resolv.conf">
       <primary sortas="e-/etc/resolv.conf">/etc/resolv.conf</primary>
     </indexterm>
 
-    <para>If the system is going to be connected to the Internet, it will
-    need some means of Domain Name Service (DNS) name resolution to
-    resolve Internet domain names to IP addresses, and vice versa. This is
-    best achieved by placing the IP address of the DNS server, available
-    from the ISP or network administrator, into
-    <filename>/etc/resolv.conf</filename>. Create the file by running the
-    following:</para>
+    <para>如果你的系统要连接到互联网，它需要一种 DNS 名称解析服务来解析互联网域名和 IP 地址，反之亦然。最佳实现方式是将 DNS 服务器的 IP 地址 (从 ISP 或者网络管理员处获取) 置于 <filename>/etc/resolv.conf</filename> 中。运行以下命令创建此文件：</para>
 
 <screen><userinput>cat &gt; /etc/resolv.conf &lt;&lt; "EOF"
 <literal># Begin /etc/resolv.conf
 
-domain <replaceable>&lt;Your Domain Name&gt;</replaceable>
-nameserver <replaceable>&lt;IP address of your primary nameserver&gt;</replaceable>
-nameserver <replaceable>&lt;IP address of your secondary nameserver&gt;</replaceable>
+domain <replaceable>&lt;你的域名&gt;</replaceable>
+nameserver <replaceable>&lt;首选名称服务器地址&gt;</replaceable>
+nameserver <replaceable>&lt;备选名称服务器地址&gt;</replaceable>
 
 # End /etc/resolv.conf</literal>
 EOF</userinput></screen>
 
-    <para>The <varname>domain</varname> statement can be omitted
-    or replaced with a <varname>search</varname> statement.  See the man page for
-    resolv.conf for more details.</para>
+    <para><varname>domain</varname> 声明可以忽略或者以 <varname>search</varname> 声明替换。参考 resolv.conf 的手册页获取更多细节。</para>
 
-    <para>Replace <replaceable>&lt;IP address of the nameserver&gt;</replaceable>
-    with the IP address of the DNS most appropriate for the setup. There will
-    often be more than one entry (requirements demand secondary servers for
-    fallback capability). If you only need or want one DNS server, remove the
-    second <emphasis>nameserver</emphasis> line from the file. The IP address
-    may also be a router on the local network.</para>
+    <para>将 <replaceable>&lt;名称服务器地址&gt;</replaceable> 替换为最适合的 DNS 的 IP 地址。经常会有超过一个条目 (要求备选服务器有相关兼容性)。如果你只想要一个 DNS 服务器，移除文件中 <emphasis>nameserver</emphasis> 的第二行。该 IP 地址可以是本地网络上的一台路由器。</para>
 
-    <note><para>The Google Public IPv4 DNS addresses are 8.8.8.8 and 8.8.4.4.</para></note>
+    <note><para>谷歌公开 IPv4 DNS 地址为 8.8.8.8 和 8.8.4.4。</para></note>
 
   </sect2>
 
