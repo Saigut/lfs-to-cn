@@ -11,8 +11,8 @@
   <title>配置系统主机名</title>
 
   <indexterm zone="ch-scripts-hostname">
-    <primary sortas="d-hostname">hostname</primary>
-    <secondary>configuring</secondary>
+    <primary sortas="d-hostname">主机名</primary>
+    <secondary>配置</secondary>
   </indexterm>
 
   <para>Part of the job of the <command>localnet</command> script is setting the

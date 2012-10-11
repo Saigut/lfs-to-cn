@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
   "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
   <!ENTITY % general-entities SYSTEM "../general.ent">
@@ -8,11 +8,11 @@
 <sect1 id="ch-scripts-console">
   <?dbhtml filename="console.html"?>
 
-  <title>Configuring the Linux Console</title>
+  <title>配置 Linux 控制台</title>
 
   <indexterm zone="ch-scripts-console">
-    <primary sortas="d-console">console</primary>
-    <secondary>configuring</secondary>
+    <primary sortas="d-console">控制台</primary>
+    <secondary>配置</secondary>
   </indexterm>
 
   <para>This section discusses how to configure the <command>console</command>

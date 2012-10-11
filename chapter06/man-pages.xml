@@ -67,7 +67,7 @@
         <listitem>
           <para>描述 C 语言的函数、重要的设备文件和配置文件</para>
           <indexterm zone="ch-system-man-pages man-pages">
-            <primary sortas="e-man-pages">man pages</primary>
+            <primary sortas="e-man-pages">手册页</primary>
           </indexterm>
         </listitem>
       </varlistentry>

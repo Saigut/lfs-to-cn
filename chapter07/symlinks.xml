@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
   "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
   <!ENTITY % general-entities SYSTEM "../general.ent">
@@ -8,7 +8,7 @@
 <sect1 id="ch-scripts-symlinks">
   <?dbhtml filename="symlinks.html"?>
 
-  <title>Creating Custom Symlinks to Devices</title>
+  <title>创建到设备的自定义符号链接</title>
 
   <sect2>
 

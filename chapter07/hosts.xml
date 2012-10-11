@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
   "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
   <!ENTITY % general-entities SYSTEM "../general.ent">
@@ -8,18 +8,18 @@
 <sect1 id="ch-scripts-hosts">
   <?dbhtml filename="hosts.html"?>
 
-  <title>Customizing the /etc/hosts File</title>
+  <title>自定义 /etc/hosts 文件</title>
 
   <indexterm zone="ch-scripts-hosts">
     <primary sortas="e-/etc/hosts">/etc/hosts</primary>
   </indexterm>
 
   <indexterm zone="ch-scripts-hosts">
-    <primary sortas="d-localnet">localnet</primary>
+    <primary sortas="d-localnet">本地网络</primary>
   <secondary>/etc/hosts</secondary></indexterm>
 
   <indexterm zone="ch-scripts-hosts">
-    <primary sortas="d-network">network</primary>
+    <primary sortas="d-network">网络</primary>
   <secondary>/etc/hosts</secondary></indexterm>
 
   <para>If a network card is to be configured, decide on the IP address,
