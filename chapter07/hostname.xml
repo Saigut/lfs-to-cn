@@ -15,17 +15,12 @@
     <secondary>配置</secondary>
   </indexterm>
 
-  <para>Part of the job of the <command>localnet</command> script is setting the
-  system's hostname. This needs to be configured in the
-  <filename>/etc/sysconfig/network</filename> file.</para>
+  <para><command>localnet</command> 脚本的部分工作就是设置系统的主机名。它需要在 <filename>/etc/sysconfig/network</filename> 文件中配置。</para>
 
-  <para>Create the <filename>/etc/sysconfig/network</filename> file and enter a
-  hostname by running:</para>
+  <para>创建 <filename>/etc/sysconfig/network</filename> 文件并输入一个主机名，运行：</para>
 
 <screen><userinput>echo "HOSTNAME=<replaceable>&lt;lfs&gt;</replaceable>" &gt; /etc/sysconfig/network</userinput></screen>
 
-  <para><replaceable>&lt;lfs&gt;</replaceable> needs to be replaced with the name given
-  to the computer. Do not enter the Fully Qualified Domain Name (FQDN) here. That
-  information is put in the <filename>/etc/hosts</filename> file.</para>
+  <para><replaceable>&lt;lfs&gt;</replaceable> 应改为计算机名。不要在此处输入 FDQN，该信息应存入 <filename>/etc/hosts</filename> 文件。</para>
 
 </sect1>
