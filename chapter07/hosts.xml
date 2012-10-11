@@ -15,7 +15,7 @@
   </indexterm>
 
   <indexterm zone="ch-scripts-hosts">
-    <primary sortas="d-localnet">本地网络</primary>
+    <primary sortas="d-localnet">localnet</primary>
   <secondary>/etc/hosts</secondary></indexterm>
 
   <indexterm zone="ch-scripts-hosts">

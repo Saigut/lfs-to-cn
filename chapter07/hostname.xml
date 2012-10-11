@@ -11,7 +11,7 @@
   <title>配置系统主机名</title>
 
   <indexterm zone="ch-scripts-hostname">
-    <primary sortas="d-hostname">主机名</primary>
+    <primary sortas="d-hostname">hostname</primary>
     <secondary>配置</secondary>
   </indexterm>
 

@@ -11,7 +11,7 @@
   <title>通用网络配置</title>
 
   <indexterm zone="ch-scripts-network">
-    <primary sortas="d-network">网络</primary>
+    <primary sortas="d-network">nettwork</primary>
   <secondary>配置</secondary></indexterm>
 
   <para>本节仅在要配置网卡时应用。</para>
