@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
   "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
   <!ENTITY % general-entities SYSTEM "../general.ent">
@@ -8,110 +8,58 @@
 <sect1 id="ch-scripts-network">
   <?dbhtml filename="network.html"?>
 
-  <title>General Network Configuration</title>
+  <title>通用网络配置</title>
 
   <indexterm zone="ch-scripts-network">
-    <primary sortas="d-network">network</primary>
-  <secondary>configuring</secondary></indexterm>
+    <primary sortas="d-network">网络</primary>
+  <secondary>配置</secondary></indexterm>
 
-  <para>This section only applies if a network card is to be
-  configured.</para>
+  <para>本节仅在要配置网卡时应用。</para>
 
-  <para>If a network card will not be used, there is likely no need to create
-  any configuration files relating to network cards. If that is the case, you
-  will need to remove the <filename class="symlink">network</filename> symlinks
-  from all run-level directories (<filename
-  class="directory">/etc/rc.d/rc*.d</filename>) after the bootscripts are
-  installed in <xref linkend="ch-scripts-bootscripts"/>.</para>
+  <para>如果不会使用网卡，似乎就没有必要创建任何有关网卡的配置文件。在这种情况下就应该在<xref linkend="ch-scripts-bootscripts"/>中安装引导脚本之后从运行级别目录 (<filename class="directory">/etc/rc.d/rc*.d</filename>) 中移除所有的 <filename class="symlink">network</filename> 符号链接。</para>
 
   <sect2 id='stable-net-names'>
-    <title>Creating stable names for network interfaces</title>
+    <title>创建网络接口的稳定名称</title>
 
-    <para>If there is only one network interface in the system to be
-    configured, this section is optional, although it will never be wrong to do
-    it.  In many cases (e.g. a laptop with a wireless and a wired interface),
-    accomplishing the configuration in this section is necessary.</para>  
+    <para>如果系统上只有一个网络接口，这一节就不是必须的，但是进行这些操作不会有什么错误。很多情况下 (例如有一台无线和一个有线接口的笔记本) 本节中的配置是必须的。</para>  
 
-    <para>With Udev and modular network drivers, the network interface numbering
-    is not persistent across reboots by default, because the drivers are loaded
-    in parallel and, thus, in random order. For example, on a computer having
-    two network cards made by Intel and Realtek, the network card manufactured
-    by Intel may become <filename class="devicefile">eth0</filename> and the
-    Realtek card becomes  <filename class="devicefile">eth1</filename>. In some
-    cases, after a reboot the cards get renumbered the other way around. To
-    avoid this, Udev comes with a script and some rules to assign stable names
-    to network cards based on their MAC address.</para>
+    <para>有了 Udev 和模块化网络驱动，每次重新引导系统之后网络接口的编号默认不是固定的，因为驱动并发加载，也就是说不计顺序。例如在一台有两块分别由 Intel 和 Realtek 生产的网卡的计算机上，Intel 生产的网卡可能会成为 <filename class="devicefile">eth0</filename> 而 Realtek 生产的成为 <filename class="devicefile">eth1</filename>。有些情况下重新引导之后网卡的重新编号就会颠倒。要防止这种现象产生，Udev 带有一个脚本和一些规则来按照 MAC 地址将网卡对应到稳定的名称。</para>
 
-    <para>The rules were pre-generated in the build instructions for
-    <application>udev (systemd)</application> in the last chapter.  Inspect the
-    <filename>/etc/udev/rules.d/70-persistent-net.rules</filename> file, to
-    find out which name was assigned to which network device:</para>
+    <para>这些规则在上一章 <application>udev (systemd)</application> 的编制指令中已经生成了。检查 <filename>/etc/udev/rules.d/70-persistent-net.rules</filename> 这个文件查找名称和网络设备的对应：</para>
 
 <screen role="nodump"><userinput>cat /etc/udev/rules.d/70-persistent-net.rules</userinput></screen>
 
-    <note><para>In some cases such as when MAC addresess have been assigned to
-    a network card manually or in a virtual environment such as Xen,
-    the network rules file may not have been generated because addresses 
-    are not consistently assigned.  In these cases, just continue to
-    the next section.</para></note>
+    <note><para>在某些情况下，如手动给网卡或 Xen 等虚拟环境分配了 MAC 地址时，网络规则文件可能就不会生成，因为地址不是固定对应的。这种情况下直接跳到下一节。</para></note>
 
-    <para>The file begins with a comment block followed by two lines for each
-    NIC. The first line for each NIC is a commented description showing its
-    hardware IDs (e.g. its PCI vendor and device IDs, if it's a PCI card),
-    along with its driver in parentheses, if the driver can be found. Neither
-    the hardware ID nor the driver is used to determine which name to give an
-    interface; this information is only for reference. The second line is the
-    Udev rule that matches this NIC and actually assigns it a name.</para>
+    <para>此文件以一个注释块开始，接下来每个 NIC 由两行组成。第一行是注释，显示其硬件 ID (例如 PCI 卡的生产商和设备 ID)，如果找到了驱动会写在括号中。硬件 ID 和驱动都不会用来确定接口的名称；这些信息仅供参考。第二行是 Udev 匹配此 NIC 并将其与一个名称实际对应的规则。</para>
 
-    <para>All Udev rules are made up of several keys, separated by commas and
-    optional whitespace. This rule's keys and an explanation of each of them
-    are as follows:</para>
+    <para>所有的 Udev 规则都由几个关键字组成，以逗号和可选的空格隔开。此规则的关键字及其解释如下：</para>
 
     <itemizedlist>
       <listitem>
-        <para><literal>SUBSYSTEM=="net"</literal> - This tells Udev to ignore
-        devices that are not network cards.</para>
+        <para><literal>SUBSYSTEM=="net"</literal> - 此项告诉 Udev 忽略不是网卡的设备。</para>
       </listitem>
       <listitem>
-        <para><literal>ACTION=="add"</literal> - This tells Udev to ignore this
-        rule for a uevent that isn't an add ("remove" and "change" uevents also
-        happen, but don't need to rename network interfaces).</para>
+        <para><literal>ACTION=="add"</literal> - 此项告诉 Udev 对于非添加的 uevent ("移除" 和 "改变" 这两个 uevents 也会发生，但是无需重命名网络接口) 忽略此规则。</para>
       </listitem>
       <listitem>
-        <para><literal>DRIVERS=="?*"</literal> - This exists so that Udev will
-        ignore VLAN or bridge sub-interfaces (because these sub-interfaces do
-        not have drivers). These sub-interfaces are skipped because the name
-        that would be assigned would collide with their parent devices.</para>
+        <para><literal>DRIVERS=="?*"</literal> - 此项存在时 Udev 会忽略 VLAN 或者子接口 (因为子接口没有驱动)。这些子接口要跳过是为了防止名称与其父设备冲突。</para>
       </listitem>
       <listitem>
-        <para><literal>ATTR{address}</literal> - The value of this key is the
-        NIC's MAC address.</para>
+        <para><literal>ATTR{address}</literal> - 此关键字的值是 NIC 的 MAC 地址。</para>
       </listitem>
       <listitem>
-        <para><literal>ATTR{type}=="1"</literal> - This ensures the rule only
-        matches the primary interface in the case of certain wireless drivers,
-        which create multiple virtual interfaces. The secondary interfaces are
-        skipped for the same reason that VLAN and bridge sub-interfaces are
-        skipped: there would be a name collision otherwise.</para>
+        <para><literal>ATTR{type}=="1"</literal> - 此项确保此规则对于某些创建多个虚拟接口的无线驱动只匹配首要接口。跳过次要接口的原因和 VLAN 以及子接口的原因相同：若不如此会出现冲突。</para>
       </listitem>
       <listitem>
-        <para><literal>KERNEL=="eth*"</literal> - This key was added to the
-        Udev rule generator to handle machines that have multiple network
-        interfaces, all with the same MAC address (the PS3 is one such
-        machine).  If the independent interfaces have different basenames,
-        this key will allow Udev to tell them apart.  This is generally not
-        necessary for most Linux From Scratch users, but does not hurt.</para>
+        <para><literal>KERNEL=="eth*"</literal> - 此关键字添加到 Udev 规则创建器以处理具有多个网络接口而且有相同的 MAC 地址的情况 (例如 PS3).如果独立的接口有不同的基础名称，此关键字就将允许 Udev 区分它们。对于多数 LFS 用户而言此项并不必须然而无害。</para>
       </listitem>
       <listitem>
-        <para><literal>NAME</literal> - The value of this key is the name that
-        Udev will assign to this interface.</para>
+        <para><literal>NAME</literal> - 此关键字的值是 Udev 将会给此接口分配的名称。</para>
       </listitem>
     </itemizedlist>
 
-    <para>The value of <literal>NAME</literal> is the important part. Make sure
-    you know which name has been assigned to each of your network cards before
-    proceeding, and be sure to use that <literal>NAME</literal> value when
-    creating your configuration files below.</para>
+    <para><literal>NAME</literal> 的值是最重要的部分。在继续之前要确保你知道每个网卡的名称，在创建以下配置文件时使用这个 <literal>NAME</literal> 值。</para>
 
   </sect2>
 
