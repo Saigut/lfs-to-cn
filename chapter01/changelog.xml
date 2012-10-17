@@ -34,6 +34,42 @@
 -->
 
     <listitem>
+      <para>2012-10-15</para>
+      <itemizedlist>
+        <listitem>
+          <para>[bdubbs] - 给第六章 gcc 和 binutils 两节加入有关链接时优化和 gcc 编制的额外文件的注记。修复 <ulink url="&lfs-ticket-root;3200">#3200</ulink>。</para>
+        </listitem>
+        <listitem>
+          <para>[bdubbs] - 升级至 tzdata-2012f。修复 <ulink url="&lfs-ticket-root;3205">#3205</ulink>。</para>
+        </listitem>
+        <listitem>
+          <para>[bdubbs] - 升级几个已安装程序的介绍。感谢 Chris Staub 提供补丁。修复 <ulink url="&lfs-ticket-root;3203">#3203</ulink>。</para> 
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
+      <para>2012-10-14</para>
+      <itemizedlist>
+        <listitem>
+          <para>[bdubbs] - 从 sysvinit 中移除 utmpdump，它现在由 util-linux 安装。感谢 Chris Staub 提供补丁。修复 <ulink url="&lfs-ticket-root;3202">#3202</ulink>。</para> 
+        </listitem>
+        <listitem>
+          <para>[bdubbs] - 改变 procps，使其不安装 kill 程序，该程序现在由 util-linux 安装。修复 <ulink url="&lfs-ticket-root;3201">#3201</ulink>。</para> 
+        </listitem>
+        <listitem>
+          <para>[bdubbs] - 升级至 util-linux-2.22.1。修复 <ulink url="&lfs-ticket-root;3199">#3199</ulink>。.</para> 
+        </listitem>
+        <listitem>
+          <para>[bdubbs] - 升级至 linux-3.6.2。修复 <ulink url="&lfs-ticket-root;3198">#3198</ulink>。</para> 
+        </listitem>
+        <listitem>
+          <para>[bdubbs] - 添加引导/关机脚本自定义指令。</para> 
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
       <para>2012-10-02</para>
       <itemizedlist>
         <listitem>

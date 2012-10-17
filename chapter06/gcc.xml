@@ -85,6 +85,12 @@ cd ../gcc-build</userinput></screen>
       </varlistentry>
     </variablelist>
 
+    <note>
+      <para><command>configure</command> 还有一个可选参数，<option>--enable-lto</option>，可以用于允许 <command>gcc</command> 在需要的时候进行 <quote>链接时优化</quote>。LFS 和 BLFS 中现在都没有程序包使用此功能。</para>
+    
+      <para>要使用此特性，在 <application>binutils</application> 中也要启用它。</para> 
+    </note>
+
     <para>编译程序包：</para>
 
 <screen><userinput remap="make">make</userinput></screen>
@@ -262,7 +268,7 @@ mv -v /usr/lib/*gdb.py /usr/share/gdb/auto-load/usr/lib</userinput></screen>
       <segtitle>安装的目录</segtitle>
 
       <seglistitem>
-        <seg>c++、cc (到 gcc 的链接)、cpp、g++、gcc、gccbug 和 gcov</seg>
+        <seg>c++、cc (到 gcc 的链接)、cpp、g++、gcc、gcc-ar、gcc-nm、gcc-ranlib、gccbug 和 gcov</seg>
         <seg>libgcc.a、libgcc_eh.a、libgcc_s.so、libgcov.a、libgomp.{a,so}、liblto_plugin.so、libmudflap.{a,so}、libmudflapth.{a,so}、libquadmath.{a,so}、libssp.{a,so}、libssp_nonshared.a、libstdc++.{a,so} 和 libsupc++.a</seg>
         <seg>/usr/include/c++、/usr/lib/gcc、/usr/share/gcc-&gcc-version;</seg>
       </seglistitem>
@@ -319,6 +325,36 @@ mv -v /usr/lib/*gdb.py /usr/share/gdb/auto-load/usr/lib</userinput></screen>
           <para>C 编译器</para>
           <indexterm zone="ch-system-gcc gcc">
             <primary sortas="b-gcc">gcc</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="gcc-ar">
+        <term><command>gcc-ar</command></term>
+        <listitem>
+          <para><command>ar</command> 的一个打包，在命令行中加入一个插件。此程序只用于添加 <quote>链接时优化</quote>，对于默认编制选项并没有什么用处</para>
+          <indexterm zone="ch-system-gcc gcc-ar">
+            <primary sortas="b-gcc-ar">gc-ar</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="gcc-nm">
+        <term><command>gcc-nm</command></term>
+        <listitem>
+          <para><command>nm</command> 的一个打包，在命令行中加入一个插件。此程序只用于添加 <quote>链接时优化</quote>，对于默认编制选项并没有什么用处</para>
+          <indexterm zone="ch-system-gcc gcc-nm">
+            <primary sortas="b-gcc-nm">gc-nm</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="gcc-ranlib">
+        <term><command>gcc-ranlib</command></term>
+        <listitem>
+          <para><command>ranlib/command> 的一个打包，在命令行中加入一个插件。此程序只用于添加 <quote>链接时优化</quote>，对于默认编制选项并没有什么用处</para>
+          <indexterm zone="ch-system-gcc gcc-ranlib">
+            <primary sortas="b-gcc-ranlib">gc-ranlib</primary>
           </indexterm>
         </listitem>
       </varlistentry>

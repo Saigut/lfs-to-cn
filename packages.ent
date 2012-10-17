@@ -302,7 +302,7 @@
 <!ENTITY less-ch6-du "3.8 MB">
 <!ENTITY less-ch6-sbu "少于 0.1 SBU">
 
-<!ENTITY lfs-bootscripts-version "20120905">                 <!-- Scripts depend on this format -->
+<!ENTITY lfs-bootscripts-version "20120913">                 <!-- Scripts depend on this format -->
 <!ENTITY lfs-bootscripts-size "BOOTSCRIPTS-SIZE KB">         <!-- Updated in Makefile -->
 <!ENTITY lfs-bootscripts-url "&downloads-root;lfs-bootscripts-&lfs-bootscripts-version;.tar.bz2">
 <!ENTITY lfs-bootscripts-md5 "BOOTSCRIPTS-MD5SUM">           <!-- Updated in Makefile -->
@@ -328,12 +328,12 @@
 
 <!ENTITY linux-major-version "3">
 <!ENTITY linux-minor-version "6">
-<!--<!ENTITY linux-patch-version "4">-->
-<!--<!ENTITY linux-version "&linux-major-version;.&linux-minor-version;.&linux-patch-version;">-->
-<!ENTITY linux-version "&linux-major-version;.&linux-minor-version;">
-<!ENTITY linux-size "67,058 KB">
+<!ENTITY linux-patch-version "2">
+<!ENTITY linux-version "&linux-major-version;.&linux-minor-version;.&linux-patch-version;">
+<!-- <!ENTITY linux-version "&linux-major-version;.&linux-minor-version;"> -->
+<!ENTITY linux-size "67,136 KB">
 <!ENTITY linux-url "&kernel;linux/kernel/v&linux-major-version;.x/linux-&linux-version;.tar.xz">
-<!ENTITY linux-md5 "1a1760420eac802c541a20ab51a093d1">
+<!ENTITY linux-md5 "c40c4f4ebbd10f4b9e4138957d42d62d">
 <!ENTITY linux-home "http://www.kernel.org/">
 <!ENTITY linux-ch8-du "540 - 800 MB">
 <!ENTITY linux-ch8-sbu "1.0 - 5.0 SBU">
@@ -532,13 +532,13 @@
 <!ENTITY systemd-ch6-du  "18 MB">
 <!ENTITY systemd-ch6-sbu "0.1 SBU">
 
-<!ENTITY tzdata-version "2012e">
+<!ENTITY tzdata-version "2012f">
 <!ENTITY tzdata-size "208 KB">
 <!ENTITY tzdata-url "http://www.iana.org//time-zones/repository/releases/tzdata&tzdata-version;.tar.gz">
-<!ENTITY tzdata-md5 "cb74e1f7bcc9a968a891a471e72e47b8">
+<!ENTITY tzdata-md5 "944ad681a8623336230dcdb306d5c9f6">
 <!ENTITY tzdata-home "http://www.iana.org/time-zones">
-<!ENTITY tzdata-ch6-du "5.6 MB">
-<!ENTITY tzdata-ch6-sbu "0.1 SBU">
+<!ENTITY tzdata-ch6-du "6.4 MB">
+<!ENTITY tzdata-ch6-sbu "少于 0.1 SBU">
 
 <!ENTITY udev-lfs        "udev-lfs-&systemd-version;"> 
 <!ENTITY udev-lfs-size   "17 KB">   
@@ -546,10 +546,10 @@
 <!ENTITY udev-lfs-md5    "3bd58f59ed73a08a7d427ee1fccc91ef">    
 <!ENTITY udev-lfs-home   " ">
 
-<!ENTITY util-linux-version "2.22">
-<!ENTITY util-linux-size "3,116 KB">
+<!ENTITY util-linux-version "2.22.1">
+<!ENTITY util-linux-size "3,124 KB">
 <!ENTITY util-linux-url "&kernel;linux/utils/util-linux/v2.22/util-linux-&util-linux-version;.tar.xz">
-<!ENTITY util-linux-md5 "ba2d8cc12a937231c80a04f7f7149303">
+<!ENTITY util-linux-md5 "730cf9932531ed09b53a04ca30fcb4c9">
 <!ENTITY util-linux-home "http://userweb.kernel.org/~kzak/util-linux/">
 <!ENTITY util-linux-ch6-du "83 MB">
 <!ENTITY util-linux-ch6-sbu "0.7 SBU">

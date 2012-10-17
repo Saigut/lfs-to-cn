@@ -261,10 +261,12 @@
 
     <segmentedlist>
       <segtitle>安装的程序</segtitle>
+      <segtitle>安装的库</segtitle>
       <segtitle>安装的目录</segtitle>
 
       <seglistitem>
         <seg>accessdb、apropos (到 whatis 的链接)、catman、lexgrog、man、mandb、manpath、whatis 和 zsoelim</seg>
+        <seg>libman.so、libmandb.so</seg>
         <seg>/usr/lib/man-db、/usr/share/doc/man-db</seg>
       </seglistitem>
     </segmentedlist>
@@ -360,6 +362,26 @@
           <para>读取文件，将其中的 <emphasis>.so</emphasis> 文件表格替换为文件的内容<emphasis>文件</emphasis></para>
           <indexterm zone="ch-system-man-db zsoelim">
             <primary sortas="b-zsoelim">zsoelim</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="libman">
+        <term><filename class="libraryfile">libman</filename></term>
+        <listitem>
+          <para>包含 <command>man</command> 的运行时支持</para>
+          <indexterm zone="ch-system-man-db libman">
+            <primary sortas="c-libman">libman</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="libmandb">
+        <term><filename class="libraryfile">libmandb</filename></term>
+        <listitem>
+          <para>包含 <command>man</command> 的运行时支持</para>
+          <indexterm zone="ch-system-man-db libmandb">
+            <primary sortas="c-libmandb">libmandb</primary>
           </indexterm>
         </listitem>
       </varlistentry>

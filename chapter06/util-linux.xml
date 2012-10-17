@@ -86,7 +86,7 @@ mkdir -pv /var/lib/hwclock</userinput></screen>
       <segtitle>安装的目录</segtitle>
 
       <seglistitem>
-        <seg>addpart、agetty、blkid、blockdev、cal、cfdisk、chcpu、chkdupexe、chrt、col、colcrt、colrm、column、ctrlaltdel、cytune、delpart、dmesg、fallocate、fdformat、fdisk、findfs、findmnt、flock、fsck、fsck.cramfs、fsck.minix、fsfreeze、fstrim、getopt、hexdump、hwclock、i386、ionice、ipcmk、ipcrm、ipcs、isosize、ldattach、linux32、linux64、logger、look、losetup、lsblk、lscpu、mcookie、mkfs、mkfs.bfs、mkfs.cramfs、mkfs.minix、mkswap、more、mount、mountpoint、namei、partx、pg、pivot_root、prlimit、raw、readprofile、rename、renice、rev、rtcwake、script、scriptreplay、setarch、setsid、setterm、sfdisk、swaplabel、swapoff (到 swapon 的链接)、swapon、switch_root、tailf、taskset、tunelp、ul、umount、unshare、uuidd、uuidgen、wall、whereis、wipefs 和 x86_64</seg>
+        <seg>addpart、agetty、blkid、blockdev、cal、cfdisk、chcpu、chrt、col、colcrt、colrm、column、ctrlaltdel、cytune、delpart、dmesg、eject、fallocate、fdformat、fdisk、findfs、findmnt、flock、fsck、fsck.cramfs、fsck.minix、fsfreeze、fstrim、getopt、hexdump、hwclock、i386、ionice、ipcmk、ipcrm、ipcs、isosize、ldattach、linux32、linux64、logger、look、losetup、lsblk、lscpu、lslocks、mcookie、mkfs、mkfs.bfs、mkfs.cramfs、mkfs.minix、mkswap、more、mount、mountpoint、namei、partx、pg、pivot_root、prlimit、raw、readprofile、rename、renice、resizepart、rev、rtcwake、script、scriptreplay、setarch、setsid、setterm、sfdisk、swaplabel、swapoff (到 swapon 的链接)、swapon、switch_root、tailf、taskset、tunelp、ul、umount、unshare、utmpdump、uuidd、uuidgen、wall、wdctl、whereis、wipefs 和 x86_64</seg>
 
         <seg>libblkid.{a,so}、libmount.{a,so}、libuuid.{a,so}</seg>
         
@@ -165,16 +165,6 @@ mkdir -pv /var/lib/hwclock</userinput></screen>
           <para>修改 CPU 状态</para>
           <indexterm zone="ch-system-util-linux chcpu">
             <primary sortas="b-chcpu">chcpu</primary>
-          </indexterm>
-        </listitem>
-      </varlistentry>
-
-      <varlistentry id="chkdupexe">
-        <term><command>chkdupexe</command></term>
-        <listitem>
-          <para>查找重复的可执行文件</para>
-          <indexterm zone="ch-system-util-linux chkdupexe">
-            <primary sortas="b-chkdupexe">chkdupexe</primary>
           </indexterm>
         </listitem>
       </varlistentry>
@@ -265,6 +255,16 @@ mkdir -pv /var/lib/hwclock</userinput></screen>
           <para>转储内核引导消息</para>
           <indexterm zone="ch-system-util-linux dmesg">
             <primary sortas="b-dmesg">dmesg</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="eject">
+        <term><command>eject</command></term>
+        <listitem>
+          <para>弹出可移动介质</para>
+          <indexterm zone="ch-system-util-linux eject">
+            <primary sortas="b-eject">eject</primary>
           </indexterm>
         </listitem>
       </varlistentry>
@@ -550,6 +550,16 @@ mkdir -pv /var/lib/hwclock</userinput></screen>
         </listitem>
       </varlistentry>
 
+      <varlistentry id="lslocks">
+        <term><command>lslocks</command></term>
+        <listitem>
+          <para>列出本地系统锁</para>
+          <indexterm zone="ch-system-util-linux lslocks">
+            <primary sortas="b-lslocks">lslocks</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
       <varlistentry id="mcookie">
         <term><command>mcookie</command></term>
         <listitem>
@@ -726,6 +736,16 @@ mkdir -pv /var/lib/hwclock</userinput></screen>
           <para>调节运行中进程的优先级</para>
           <indexterm zone="ch-system-util-linux renice">
             <primary sortas="b-renice">renice</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="resizepart">
+        <term><command>resizepart</command></term>
+        <listitem>
+          <para>要求内核调节一个分区的尺寸</para>
+          <indexterm zone="ch-system-util-linux resizepart">
+            <primary sortas="b-resizepart">resizepart</primary>
           </indexterm>
         </listitem>
       </varlistentry>
@@ -910,6 +930,16 @@ mkdir -pv /var/lib/hwclock</userinput></screen>
         </listitem>
       </varlistentry>
 
+      <varlistentry id="utmpdump">
+        <term><command>utmpdump</command></term>
+        <listitem>
+          <para>以更加用户友好的格式显示给定登录文件的内容</para>
+          <indexterm zone="ch-system-util-linux utmpdump">
+            <primary sortas="b-utmpdump">utmpdump</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
       <varlistentry id="uuidd">
         <term><command>uuidd</command></term>
         <listitem>
@@ -936,6 +966,16 @@ mkdir -pv /var/lib/hwclock</userinput></screen>
           <para>在当前登录的所有用户的终端上显示文件内容，默认显示标准输入</para>
           <indexterm zone="ch-system-util-linux wall">
             <primary sortas="b-wall">wall</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="wdctl">
+        <term><command>wdctl</command></term>
+        <listitem>
+          <para>显示硬件监视器状态</para>
+          <indexterm zone="ch-system-util-linux wdctl">
+            <primary sortas="b-wdctl">wdctl</primary>
           </indexterm>
         </listitem>
       </varlistentry>

@@ -26,7 +26,7 @@ so the sed will need attention if that change is not removed before the next rel
   <sect2 role="package">
     <title/>
 
-    <para>Kbd　程序包包含　key-table　文件，控制台字体和键盘工具。</para>
+    <para>Kbd 程序包包含按键表文件、控制台字体和键盘工具。</para>
 
     <segmentedlist>
       <segtitle>&buildtime;</segtitle>
@@ -41,25 +41,25 @@ so the sed will need attention if that change is not removed before the next rel
   </sect2>
 
   <sect2 role="installation">
-    <title>安装　Kbd</title>
+    <title>安装 Kbd</title>
 
-    <para>该发行版中 <command>loadkeys</command> 的运行将会在没有文件名的情况下中断。下面的补丁包修复该问题：</para>
+    <para>此发布版本中 <command>loadkeys</command> 在不带有文件名运行时的行为是不正常的。以下补丁修复之：</para>
 
 <screen><userinput remap="pre">patch -Np1 -i ../&kbd-fixes-patch;</userinput></screen>
 
-    <para>Backspace　与　Delete　键的行为与　Kbd　程序包中的键盘映射不一致。一下补丁包为　i386　键盘映射解决此问题：</para>
+    <para>退格键和删除键的行为在 Kbd 程序包中不同的键盘映射中是不一致的。以下补丁为 i386 键盘映射解决此问题：</para>
 
 <screen><userinput remap="pre">patch -Np1 -i ../&kbd-backspace-patch;</userinput></screen>
 
-    <para>安装补丁后，Backspace　键生成为　127 号字符，而 Delete 键生成广为人知的转义序列。</para>
+    <para>应用补丁后，Backspace 键生成为 127 号字符，而 Delete 键生成广为人知的转义序列。</para>
 
-    <para>修复西班牙语信息翻译阻止 kbd 生成 gettext-&gettext-version; 的一个 bug ：</para>
+    <para>修复西班牙语信息翻译阻止 kbd 与 gettext-&gettext-version; 一同编制的一个漏洞：</para>
 
 <screen><userinput remap="pre">sed -i '/guardado\ el/s/\(^.*en\ %\)\(.*\)/\14\$\2/' po/es.po</userinput></screen>
 
-    <para>移除多余的 <command>resizecons</command> 程序 (只移除 32 位 x86 版本，因为它需要由早于 linux-2.6 且与现代 KMS 不兼容而已不存在的 svgalib 来提供视频模式文件——通常使用 <command>setfont</command> 来重设控制台尺寸) 和它的手册页。</para>
+    <para>移除多余的 <command>resizecons</command> 程序 (只移除 32 位 x86 版本，因为它需要由早于 linux-2.6 且与现代 KMS 不兼容而已不存在的 svgalib 来提供视频模式文件&mdash;&mdash;通常使用 <command>setfont</command> 来重设控制台尺寸) 和它的手册页。</para>
 
-    <para>装载的 <filename>configure.ac</filename> 的版本比 <filename>aclocal.m4</filename> 更新,所以 autotools 会被  <command>make</command> 运行，来改写改变到 <filename>configure</filename>。改变 <filename>configure.ac</filename> 的日期与时间——这用到系统时区，所以我们选择一个在所有时区中足够老的一个。</para>
+    <para>装载的 <filename>configure.ac</filename> 的版本比 <filename>aclocal.m4</filename> 更新,所以 autotools 会被  <command>make</command> 运行，将改变覆盖到 <filename>configure</filename> 中。改变 <filename>configure.ac</filename> 的日期与时间&mdash;&mdash;这用到系统时区，所以我们选择一个在所有时区中足够老的一个。</para>
 
 <screen><userinput remap="pre">sed -i 's/\(RESIZECONS_PROGS=\)yes/\1no/' configure &amp;&amp;
 sed -i 's/resizecons.8 //' man/man8/Makefile.in &amp;&amp;
@@ -75,8 +75,7 @@ touch -d '2011-05-07 08:30' configure.ac</userinput></screen>
       <varlistentry>
         <term><parameter>--datadir=/lib/kbd</parameter></term>
         <listitem>
-          <para>这个选项将键盘输出数据存放在一个总是位于根分区的目录下而非默认的 <filename
-          class="directory">/usr/share/kbd</filename>。</para>
+          <para>此选项将键盘布局数据存置于一个总是位于根分区的目录下而非默认的 <filename class="directory">/usr/share/kbd</filename>。</para>
        </listitem>
       </varlistentry>
 
@@ -86,17 +85,17 @@ touch -d '2011-05-07 08:30' configure.ac</userinput></screen>
 
 <screen><userinput remap="make">make</userinput></screen>
 
-    <para>这个程序包不包含测试套件。</para>
+    <para>此程序包不包含测试套件。</para>
 
     <para>安装程序包：</para>
 
 <screen><userinput remap="install">make install</userinput></screen>
 
     <note>
-      <para>对于有些语言 (e.g.，白俄罗斯语) Kbd 程序包在常规的 <quote>by</quote> 键盘映射认定 ISO-8859-5 编码的情况下不提供一个有效的键盘映射，而 CP1251 键盘映射通常被用与这种情况。这些语言的用户需要下载单独的有效键盘映射。</para>
+      <para>对于有些语言 (如白俄罗斯语)， Kbd 程序包在常规的 <quote>by</quote> 键盘映射认定 ISO-8859-5 编码的情况下无法提供有效的键盘映射，此情况下通常使用 CP1251 键盘映射。这些语言的用户需要单独下载能够工作的效键盘映射。</para>
     </note>
 
-      <para>LFS-Bootscripts 程序包中的一些脚本依赖 <command>kbd_mode</command>，<command>loadkeys</command>，<command>openvt</command>，和 <command>setfont</command>。鉴于 <filename class="directory">/usr</filename> 在早期的引导阶段中可能不可用，那些二进制程序需要位于根分区：</para>
+      <para>LFS-Bootscripts 程序包中的一些脚本依赖 <command>kbd_mode</command>，<command>loadkeys</command>，<command>openvt</command>，和 <command>setfont</command>。鉴于 <filename class="directory">/usr</filename> 在引导早期阶段中可能不可用，这些二进制程序需要位于根分区上：</para>
 
 <screen><userinput remap="install">mv -v /usr/bin/{kbd_mode,loadkeys,openvt,setfont} /bin</userinput></screen>
 
@@ -116,7 +115,7 @@ cp -R -v doc/* \
       <segtitle>安装的目录</segtitle>
 
       <seglistitem>
-        <seg>chvt、deallocvt、dumpkeys、fgconsole、getkeycodes、kbd_mode、kbdrate、loadkeys、loadunimap、mapscrn、openvt、psfaddtable (link to psfxtable)、psfgettable (link to psfxtable)、psfstriptable (link to psfxtable)、psfxtable、<!--resizecons,--> setfont、setkeycodes、setleds、setmetamode、showconsolefont、showkey、unicode_start、and unicode_stop</seg>
+        <seg>chvt、deallocvt、dumpkeys、fgconsole、getkeycodes、kbdinfo、kbd_mode、kbdrate、loadkeys、loadunimap、mapscrn、openvt、psfaddtable (到 psfxtable 的链接)、psfgettable (到 psfxtable 的链接)、psfstriptable (到 psfxtable 的链接)、psfxtable、<!--resizecons,--> setfont、setkeycodes、setleds、setmetamode、showconsolefont、showkey、unicode_start、and unicode_stop</seg>
         <seg>/lib/kbd</seg>
       </seglistitem>
     </segmentedlist>
@@ -139,7 +138,7 @@ cp -R -v doc/* \
       <varlistentry id="deallocvt">
         <term><command>deallocvt</command></term>
         <listitem>
-          <para>重新分配未使用的虚拟终端</para>
+          <para>解除分配未使用的虚拟终端</para>
           <indexterm zone="ch-system-kbd deallocvt">
             <primary sortas="b-deallocvt">deallocvt</primary>
           </indexterm>
@@ -149,7 +148,7 @@ cp -R -v doc/* \
       <varlistentry id="dumpkeys">
         <term><command>dumpkeys</command></term>
         <listitem>
-          <para>转储键盘翻译表格</para>
+          <para>转储键盘翻译表</para>
           <indexterm zone="ch-system-kbd dumpkeys">
             <primary sortas="b-dumpkeys">dumpkeys</primary>
           </indexterm>
@@ -175,6 +174,16 @@ cp -R -v doc/* \
           </indexterm>
         </listitem>
       </varlistentry>
+      
+      <varlistentry id="kbdinfo">
+        <term><command>kbdinfo</command></term>
+        <listitem>
+          <para>获取一个控制台的状态信息</para>
+          <indexterm zone="ch-system-kbd kbdinfo">
+            <primary sortas="b-kbdinfo">kbdinfo</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
 
       <varlistentry id="kbd_mode">
         <term><command>kbd_mode</command></term>
@@ -189,7 +198,7 @@ cp -R -v doc/* \
       <varlistentry id="kbdrate">
         <term><command>kbdrate</command></term>
         <listitem>
-          <para>设置键盘重复和延迟绿率</para>
+          <para>设置键盘重复和延迟率</para>
           <indexterm zone="ch-system-kbd kbdrate">
             <primary sortas="b-kbdrate">kbdrate</primary>
           </indexterm>
@@ -209,7 +218,7 @@ cp -R -v doc/* \
       <varlistentry id="loadunimap">
         <term><command>loadunimap</command></term>
         <listitem>
-          <para>加载核心 unicode-to-font 映射表</para>
+          <para>加载内核 unicode-to-font 映射表</para>
           <indexterm zone="ch-system-kbd loadunimap">
             <primary sortas="b-loadunimap">loadunimap</primary>
           </indexterm>
@@ -219,7 +228,7 @@ cp -R -v doc/* \
       <varlistentry id="mapscrn">
         <term><command>mapscrn</command></term>
         <listitem>
-          <para>一个弃用的被用来加载一个用户定义的输出字符映射表到控制台驱动的程序；这一工作现在由 <command>setfont</command> 完成</para>
+          <para>一个弃用的程序，曾用于向控制台驱动程序中加载用户定义的输出字符映射表；此工作现在由 <command>setfont</command> 完成</para>
           <indexterm zone="ch-system-kbd mapscrn">
             <primary sortas="b-mapscrn">mapscrn</primary>
           </indexterm>
@@ -229,7 +238,7 @@ cp -R -v doc/* \
       <varlistentry id="openvt">
         <term><command>openvt</command></term>
         <listitem>
-          <para>在一个新的虚拟终端 (VT) 上开始一个程序</para>
+          <para>在一个新的虚拟终端 (VT) 上启动一个程序</para>
           <indexterm zone="ch-system-kbd openvt">
             <primary sortas="b-openvt">openvt</primary>
           </indexterm>
@@ -239,7 +248,7 @@ cp -R -v doc/* \
       <varlistentry id="psfaddtable">
         <term><command>psfaddtable</command></term>
         <listitem>
-          <para>一个到 <command>psfxtable</command> 的链接</para>
+          <para>到 <command>psfxtable</command> 的链接</para>
           <indexterm zone="ch-system-kbd psfaddtable">
             <primary sortas="b-psfaddtable">psfaddtable</primary>
           </indexterm>
@@ -249,7 +258,7 @@ cp -R -v doc/* \
       <varlistentry id="psfgettable">
         <term><command>psfgettable</command></term>
         <listitem>
-          <para>一个到 <command>psfxtable</command> 的链接</para>
+          <para>到 <command>psfxtable</command> 的链接</para>
           <indexterm zone="ch-system-kbd psfgettable">
             <primary sortas="b-psfgettable">psfgettable</primary>
           </indexterm>
@@ -259,7 +268,7 @@ cp -R -v doc/* \
       <varlistentry id="psfstriptable">
         <term><command>psfstriptable</command></term>
         <listitem>
-          <para>一个到 <command>psfxtable</command> 的链接</para>
+          <para>到 <command>psfxtable</command> 的链接</para>
           <indexterm zone="ch-system-kbd psfstriptable">
             <primary sortas="b-psfstriptable">psfstriptable</primary>
           </indexterm>
@@ -289,7 +298,7 @@ cp -R -v doc/* \
       <varlistentry id="setfont">
         <term><command>setfont</command></term>
         <listitem>
-          <para>改变改良图像适配器 (EGA) 和 VGA 在控制台上的字体</para>
+          <para>改变控制台上的 EGA 和 VGA 字体</para>
           <indexterm zone="ch-system-kbd setfont">
             <primary sortas="b-setfont">setfont</primary>
           </indexterm>
@@ -299,7 +308,7 @@ cp -R -v doc/* \
       <varlistentry id="setkeycodes">
         <term><command>setkeycodes</command></term>
         <listitem>
-          <para>加载核心 scancode-to-keycode 映射表入口；这键盘上存在非常规的按键时很有用</para>
+          <para>加载核心 scancode-to-keycode 映射表条目；这键盘上存在非常规按键时很有用</para>
           <indexterm zone="ch-system-kbd setkeycodes">
             <primary sortas="b-setkeycodes">setkeycodes</primary>
           </indexterm>
@@ -309,7 +318,7 @@ cp -R -v doc/* \
       <varlistentry id="setleds">
         <term><command>setleds</command></term>
         <listitem>
-          <para>设置键盘上的标识和发光二极管 (LEDs)</para>
+          <para>设置键盘上的标识和 LED</para>
           <indexterm zone="ch-system-kbd setleds">
             <primary sortas="b-setleds">setleds</primary>
           </indexterm>
@@ -319,7 +328,7 @@ cp -R -v doc/* \
       <varlistentry id="setmetamode">
         <term><command>setmetamode</command></term>
         <listitem>
-          <para>定义键盘的 meta-key 处理</para>
+          <para>定义键盘的 meta 按键处理</para>
           <indexterm zone="ch-system-kbd setmetamode">
             <primary sortas="b-setmetamode">setmetamode</primary>
           </indexterm>
@@ -339,7 +348,7 @@ cp -R -v doc/* \
       <varlistentry id="showkey">
         <term><command>showkey</command></term>
         <listitem>
-          <para>报告键盘上按下的键的扫描码，按键码和 ASCII 码</para>
+          <para>报告键盘上按下的键的扫描码、按键码和 ASCII 码</para>
           <indexterm zone="ch-system-kbd showkey">
             <primary sortas="b-showkey">showkey</primary>
           </indexterm>
@@ -349,7 +358,7 @@ cp -R -v doc/* \
       <varlistentry id="unicode_start">
         <term><command>unicode_start</command></term>
         <listitem>
-          <para>令键盘和控制台为 UNICODE 模式。除非你的键盘映射文件是 ISO-8859-1 编码，不要使用此程序。对于其他编码，这个工具造成错误的结果</para>
+          <para>令键盘和控制台为 UNICODE 模式。除非你的键盘映射文件是 ISO-8859-1 编码，不要使用此程序。对于其他编码，此工具会产生错误的结果</para>
           <indexterm zone="ch-system-kbd unicode_start">
             <primary sortas="b-unicode_start">unicode_start</primary>
           </indexterm>

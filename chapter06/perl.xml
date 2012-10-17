@@ -66,7 +66,7 @@
       <varlistentry>
         <term><parameter>-Dvendorprefix=/usr</parameter></term>
         <listitem>
-          <para>此项确保 <command>perl</command> 知道如何告诉程序包将 perl 模块放安装到什么地方。</para>
+          <para>此项确保 <command>perl</command> 知道如何告诉程序包将 perl 模块安装到什么地方。</para>
         </listitem>
       </varlistentry>
 
@@ -117,7 +117,7 @@
       <segtitle>安装的目录</segtitle>
 
       <seglistitem>
-        <seg>a2p、c2ph、config_data、corelist、cpan、cpan2dist、cpanp cpanp-run-perl、dprofpp、enc2xs、find2perl、h2ph、h2xs instmodsh、json_pp、libnetcfg、perl、perl&perl-version; (到 perl 的链接)、perlbug、perldoc、perlivp、perlthanks (link to perlbug)、piconv、pl2pm、pod2html、pod2latex、pod2man、pod2text、pod2usage、podchecker、podselect、prove、psed (link to s2p)、pstruct (link to c2ph)、ptar、ptardiff、ptargrep、s2p、shasum、splain 和 xsubpp</seg>
+        <seg>a2p、c2ph、config_data、corelist、cpan、cpan2dist、cpanp cpanp-run-perl、enc2xs、find2perl、h2ph、h2xs instmodsh、json_pp、libnetcfg、perl、perl&perl-version; (到 perl 的链接)、perlbug、perldoc、perlivp、perlthanks (link to perlbug)、piconv、pl2pm、pod2html、pod2latex、pod2man、pod2text、pod2usage、podchecker、podselect、prove、psed (link to s2p)、pstruct (link to c2ph)、ptar、ptardiff、ptargrep、s2p、shasum、splain、xsubpp 和 zipdetails</seg>
         <seg>数百个，此处无法一一列出</seg>
         <seg>/usr/lib/perl5</seg>
       </seglistitem>
@@ -171,7 +171,7 @@
       <varlistentry id="cpan">
         <term><command>cpan</command></term>
         <listitem>
-          <para>从命令行与 CPAN (Perl综合典藏网) 交互</para>
+          <para>从命令行与 CPAN (Perl 综合典藏网) 交互</para>
           <indexterm zone="ch-system-perl cpan">
             <primary sortas="b-cpan">cpan</primary>
           </indexterm>
@@ -204,16 +204,6 @@
           <para>Perl 脚本，用于启用在生成的进程的每次写入操作之后立即冲掉输出缓存</para>
           <indexterm zone="ch-system-perl cpanp-run-perl">
             <primary sortas="b-cpanp-run-perl">cpanp-run-perl</primary>
-          </indexterm>
-        </listitem>
-      </varlistentry>
-
-      <varlistentry id="dprofpp">
-        <term><command>dprofpp</command></term>
-        <listitem>
-          <para>显示 Perl 分析数据</para>
-          <indexterm zone="ch-system-perl dprofpp">
-            <primary sortas="b-dprofpp">dprofpp</primary>
           </indexterm>
         </listitem>
       </varlistentry>
@@ -534,6 +524,16 @@
           <para>将 Perl XS 代码转换成 C 代码</para>
           <indexterm zone="ch-system-perl xsubpp">
             <primary sortas="b-xsubpp">xsubpp</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="zipdetails">
+        <term><command>zipdetails</command></term>
+        <listitem>
+          <para>显示一 Zip 文件的内在结构细节</para>
+          <indexterm zone="ch-system-perl zipdetails">
+            <primary sortas="b-zipdetails">zipdetails</primary>
           </indexterm>
         </listitem>
       </varlistentry>

@@ -71,6 +71,8 @@ cd ../binutils-build</userinput></screen>
 
 <screen><userinput remap="configure">../binutils-&binutils-version;/configure --prefix=/usr --enable-shared</userinput></screen>
 
+    <note><para><command>configure</command> 还有一个可选参数，<option>--enable-lto</option>，可以用于允许 <command>ar</command>、<command>nm</command> 和 <command>ranlib</command> 命令接受 <option>--plugin</option> 参数，进而允许 <command>gcc</command> 在需要的时候进行 <quote>链接时优化</quote>。LFS 和 BLFS 中现在都没有程序包使用此功能。</para></note>
+
     <para>编译程序包：</para>
 
 <screen><userinput remap="make">make tooldir=/usr</userinput></screen>

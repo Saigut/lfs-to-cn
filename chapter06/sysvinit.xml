@@ -40,15 +40,14 @@
   <sect2 role="installation">
     <title>安装 Sysvinit</title>
 
-      <para>当运行等级改变 (例如终止系统时)， <command>init</command> 传递终止信号到各个由 <command>init</command> 本身启动且不应当在新运行等级下运行的进程。如此做时， <command>init</command> 输出例如 <quote>Sending processes the TERM signal</quote> 的暗示它正在传递这些信号到当前所有运行进程的信息。要避免这一误解，修改源文件中的信息为 <quote>Sending processes configured via /etc/inittab the TERM signal</quote> ：</para>
+      <para>当运行等级改变 (例如终止系统时)， <command>init</command> 传递终止信号到各个由 <command>init</command> 本身启动且不应当在新运行等级下运行的进程。如此做时， <command>init</command> 输出像 <quote>Sending processes the TERM signal</quote> 这样的消息，似乎是暗示它正在传递这些信号到当前所有运行进程的信息。要避免这一误解，修改源文件中的信息为 <quote>Sending processes configured via /etc/inittab the TERM signal</quote>：</para>
 
 <screen><userinput remap="pre">sed -i 's@Sending processes@&amp; configured via /etc/inittab@g' src/init.c</userinput></screen>
 
-    <para><command>wall</command> 和 <command>mountpoint</command> 程序正在维护的版本在此前已由 Util-linux 安装。阻止这些程序和它们的手册页在 Sysvinit 版本中的安装：</para>
+    <para><command>wall</command> 和 <command>mountpoint</command> 程序正在维护的版本在此前已由 Util-linux 安装。阻止这些程序和它们的手册页的 Sysvinit 版本被安装：</para>
 
-<screen><userinput remap="make">sed -i -e 's/utmpdump wall/utmpdump/' \
-       -e '/= mountpoint/d' \
-       -e 's/mountpoint.1 wall.1//' src/Makefile</userinput></screen>
+<screen><userinput remap="make">sed -i -e 's/utmpdump/d' \
+       -e '/mountpoint/d' src/Makefile</userinput></screen>
 
     <para>编译程序包：</para>
 
@@ -69,7 +68,7 @@
       <segtitle>安装的程序</segtitle>
 
       <seglistitem>
-        <seg>bootlogd、fstab-decode、halt、init、killall5、last、lastb (link to last)、mesg、pidof (link to killall5)、poweroff (link to halt), reboot (link to halt)、runlevel、shutdown、sulogin、telinit (link to init) 和 utmpdump</seg>
+        <seg>bootlogd、fstab-decode、halt、init、killall5、last、lastb (到 last 的链接)、mesg、pidof (到 killall5 的链接)、poweroff (到 halt 的链接)、reboot (到 halt 的链接)、runlevel、shutdown、sulogin 和 telinit (到 init 的链接)</seg>
       </seglistitem>
     </segmentedlist>
 
@@ -224,16 +223,6 @@
           <para>通知 <command>init</command> 运行等级被改为何等级</para>
           <indexterm zone="ch-system-sysvinit telinit">
             <primary sortas="b-telinit">telinit</primary>
-          </indexterm>
-        </listitem>
-      </varlistentry>
-
-      <varlistentry id="utmpdump">
-        <term><command>utmpdump</command></term>
-        <listitem>
-          <para>以一种更加用户友好的格式显示给定登入文件的内容</para>
-          <indexterm zone="ch-system-sysvinit utmpdump">
-            <primary sortas="b-utmpdump">utmpdump</primary>
           </indexterm>
         </listitem>
       </varlistentry>
