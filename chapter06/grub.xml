@@ -171,7 +171,7 @@
       <varlistentry id="grub-mklayout">
         <term><command>grub-mklayout</command></term>
         <listitem>
-          <para>生成一个 GRUB　键盘布局文件</para>
+          <para>生成一个 GRUB 键盘布局文件</para>
           <indexterm zone="ch-system-grub grub-mklayout">
             <primary sortas="b-grub-mklayout">grub-mklayout</primary>
           </indexterm>
@@ -181,7 +181,7 @@
       <varlistentry id="grub-mknetdir">
         <term><command>grub-mknetdir</command></term>
         <listitem>
-          <para>准备一个　GRUB　网络引导目录</para>
+          <para>准备一个 GRUB 网络引导目录</para>
           <indexterm zone="ch-system-grub grub-mknetdir">
             <primary sortas="b-grub-mknetdir">grub-mknetdir</primary>
           </indexterm>
@@ -191,7 +191,7 @@
       <varlistentry id="grub-mkpasswd-pbkdf2">
         <term><command>grub-mkpasswd-pbkdf2</command></term>
         <listitem>
-          <para>生成一个加密的　PBKDF2 密码以在引导目录中使用</para>
+          <para>生成一个加密的 PBKDF2 密码以在引导目录中使用</para>
           <indexterm zone="ch-system-grub grub-mkpasswd-pbkdf2">
             <primary sortas="b-grub-mkpasswd-pbkdf2">grub-mkpasswd-pbkdf2</primary>
           </indexterm>
@@ -271,7 +271,7 @@
       <varlistentry id="grub-set-default">
         <term><command>grub-set-default</command></term>
         <listitem>
-          <para>设置　GRUB　的默认驱动入口</para>
+          <para>设置 GRUB 的默认驱动入口</para>
           <indexterm zone="ch-system-grub grub-set-default">
             <primary sortas="b-grub-set-default">grub-set-default</primary>
           </indexterm>
@@ -281,7 +281,7 @@
       <varlistentry id="grub-sparc64-setup">
         <term><command>grub-sparc64-setup</command></term>
         <listitem>
-          <para>是一个　grub-setup　的帮助程序</para>
+          <para>是一个 grub-setup 的帮助程序</para>
           <indexterm zone="ch-system-grub grub-sparc64-setup">
             <primary sortas="b-grub-sparc64-setup">grub-setup</primary>
           </indexterm>
