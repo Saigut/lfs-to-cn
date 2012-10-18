@@ -15,17 +15,10 @@
     <secondary>配置</secondary>
   </indexterm>
 
-  <para>The <filename>sysklogd</filename> script invokes the
-  <command>syslogd</command> program with the <parameter>-m 0</parameter>
-  option.  This option turns off the periodic timestamp mark that
-  <command>syslogd</command> writes to the log files every 20 minutes by
-  default.  If you want to turn on this periodic timestamp mark, edit
-  <filename>/etc/sysconfig/rc.site</filename> and define the variable
-  SYSKLOGD_PARMS to the desired value.  For instance, to remove all parameters,
-  set the variable to a null value:</para>
+  <para><filename>sysklogd</filename> 脚本调用 <command>syslogd</command> 程序，使用 <parameter>-m 0</parameter> 选项。此选项关闭 <command>syslogd</command> 默认每 20 分钟对日志文件写入的周期性时间戳。如果你要打开这个周期性时间标记，编辑 <filename>/etc/sysconfig/rc.site</filename> 并且将 SYSKLOGD_PARMS 变量调整为需要的值。若要移除所有参数，将其设置为空值：</para>
 
 <screen role="nodump">SYSKLOGD_PARMS=</screen>
 
-  <para>See <userinput>man syslogd</userinput> for more options.</para>
+  <para>更多参数参考 <userinput>man syslogd</userinput>。</para>
 
 </sect1>
