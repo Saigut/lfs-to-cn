@@ -14,149 +14,82 @@
     <primary sortas="e-/etc/profile">/etc/profile</primary>
   </indexterm>
 
-  <para>The shell program <command>/bin/bash</command> (hereafter referred to
-  as <quote>the shell</quote>) uses a collection of startup files to help
-  create an environment to run in. Each file has a specific use and may affect
-  login and interactive environments differently. The files in the <filename
-  class="directory">/etc</filename> directory provide global settings. If an
-  equivalent file exists in the home directory, it may override the global
-  settings.</para>
+  <para>shell 程序 <command>/bin/bash</command> (以下简称 <quote>shell</quote>) 使用一系列起始文件协助创建运行的环境。每个文件都有特定的用途，可能会以不同方式影响输入和交互环境。位于 <filename class="directory">/etc</filename> 目录中的文件提供全局设置。如果在主目录中有等价的文件，它可能会覆盖全局设置。</para>
 
-  <para>An interactive login shell is started after a successful login, using
-  <command>/bin/login</command>, by reading the <filename>/etc/passwd</filename>
-  file. An interactive non-login shell is started at the command-line (e.g.,
-  <prompt>[prompt]$</prompt><command>/bin/bash</command>). A non-interactive
-  shell is usually present when a shell script is running. It is non-interactive
-  because it is processing a script and not waiting for user input between
-  commands.</para>
+  <para>一个交互的登录 shell 在成功的以 <command>/bin/login</command> 读取 <filename>/etc/passwd</filename> 文件的登录过后启动。一个交互的非登录 shell 在命令行中启动 (例如 <prompt>[prompt]$</prompt><command>/bin/bash</command>)。在 shell 脚本运行的时候通常会有非交互 shell 出现，因为不等待用户输入命令而成为非交互的。</para>
 
-  <para>For more information, see <command>info bash</command> under the
-  <emphasis>Bash Startup Files and Interactive Shells</emphasis> section.</para>
+  <para>要获取更多信息，参考 <command>info bash</command> 中的 <emphasis>Bash Startup Files and Interactive Shells</emphasis> 一节。</para>
 
-  <para>The files <filename>/etc/profile</filename> and
-  <filename>~/.bash_profile</filename> are read when the shell is
-  invoked as an interactive login shell.</para>
+  <para><filename>/etc/profile</filename> 文件和 <filename>~/.bash_profile</filename> 文件在 shell 作为交互登录 shell 调用的时候会被读取。</para>
 
-  <para>The base <filename>/etc/profile</filename> below sets some
-  environment variables necessary for native language support. Setting
-  them properly results in:</para>
+  <para>以下基础的 <filename>/etc/profile</filename> 文件设置了 NLS 必须的一些环境变量。正确设置之使得：</para>
 
   <itemizedlist>
     <listitem>
-      <para>The output of programs translated into the native language</para>
+      <para>程序的输出翻译为本土语言</para>
     </listitem>
     <listitem>
-      <para>Correct classification of characters into letters, digits and other
-      classes. This is necessary for <command>bash</command> to properly accept
-      non-ASCII characters in command lines in non-English locales</para>
+      <para>正确将字符分类为字母、数字和其他类型。这对于 <command>bash</command> 要正确接受非英语区域数据中的非 ASC 字符来说是必要的</para>
     </listitem>
     <listitem>
-      <para>The correct alphabetical sorting order for the country</para>
+      <para>国家的正确字母表顺序</para>
     </listitem>
     <listitem>
-      <para>Appropriate default paper size</para>
+      <para>合适的默认纸张尺寸</para>
     </listitem>
     <listitem>
-      <para>Correct formatting of monetary, time, and date values</para>
+      <para>正确格式化货币、时间和日期值</para>
     </listitem>
   </itemizedlist>
 
-  <para>Replace <replaceable>&lt;ll&gt;</replaceable> below with the two-letter code
-  for the desired language (e.g., <quote>en</quote>) and
-  <replaceable>&lt;CC&gt;</replaceable> with the two-letter code for the appropriate
-  country (e.g., <quote>GB</quote>). <replaceable>&lt;charmap&gt;</replaceable> should
-  be replaced with the canonical charmap for your chosen locale. Optional
-  modifiers such as <quote>@euro</quote> may also be present.</para>
+  <para>将以下的 <replaceable>&lt;ll&gt;</replaceable> 替换为所在语言和国家的二字码 (例如 <quote>zh</quote>) 和 <replaceable>&lt;CN&gt;</replaceable>。<replaceable>&lt;charmap&gt;</replaceable> 应该替换为选中区域数据的正规字符映射。可选的修改，例如 <quote>@euro</quote> 也可以存在。</para>
 
-  <para>The list of all locales supported by Glibc can be obtained by running
-  the following command:</para>
+  <para>要列出 Glibc 支持的所有区域数据，运行以下命令：</para>
 
 <screen role="nodump"><userinput>locale -a</userinput></screen>
 
-  <para>Charmaps can have a number of aliases, e.g., <quote>ISO-8859-1</quote>
-  is also referred to as <quote>iso8859-1</quote> and <quote>iso88591</quote>.
-  Some applications cannot handle the various synonyms correctly (e.g., require
-  that <quote>UTF-8</quote> is written as <quote>UTF-8</quote>, not
-  <quote>utf8</quote>), so it is safest in most
-  cases to choose the canonical name for a particular locale. To determine
-  the canonical name, run the following command, where <replaceable>&lt;locale
-  name&gt;</replaceable> is the output given by <command>locale -a</command> for
-  your preferred locale (<quote>en_GB.iso88591</quote> in our example).</para>
+  <para>字符映射可能会有多个别名。某些应用程序无法正确处理同义 (例如要求 <quote>UTF-8</quote> 必须写成 <quote>UTF-8</quote> 而不允许写成 <quote>utf8</quote>)，所以大多数情况下选择特定区域数据的正规名称是最安全的。要获知正规名称，运行以下命令，其中 <replaceable>&lt;区域数据名&gt;</replaceable> 要替换为 <command>locale -a</command> 对于需要的区域数据提供的输出。</para>
 
-<screen role="nodump"><userinput>LC_ALL=<replaceable>&lt;locale name&gt;</replaceable> locale charmap</userinput></screen>
+<screen role="nodump"><userinput>LC_ALL=<replaceable>&lt;区域数据名&gt;</replaceable> locale charmap</userinput></screen>
 
-  <para>For the <quote>en_GB.iso88591</quote> locale, the above command
-  will print:</para>
+  <para>对于 <quote>zh_CN.utf8</quote> 这个区域数据，以上命令将会输出：</para>
 
-<screen><computeroutput>ISO-8859-1</computeroutput></screen>
+<screen><computeroutput>UTF-8</computeroutput></screen>
 
-  <para>This results in a final locale setting of <quote>en_GB.ISO-8859-1</quote>.
-  It is important that the locale found using the heuristic above is tested prior
-  to it being added to the Bash startup files:</para>
+  <para>这会导致最终的区域数据设置为 <quote>zh_CN.UTF-8</quote>。以上试探找到的区域数据在添加到 Bash 的起始文件之前要经过测试是很重要的：</para>
 
-<screen role="nodump"><userinput>LC_ALL=&lt;locale name&gt; locale language
-LC_ALL=&lt;locale name&gt; locale charmap
-LC_ALL=&lt;locale name&gt; locale int_curr_symbol
-LC_ALL=&lt;locale name&gt; locale int_prefix</userinput></screen>
+<screen role="nodump"><userinput>LC_ALL=&lt;区域数据名&gt; locale language
+LC_ALL=&lt;区域数据名&gt; locale charmap
+LC_ALL=&lt;区域数据名&gt; locale int_curr_symbol
+LC_ALL=&lt;区域数据名&gt; locale int_prefix</userinput></screen>
 
-  <para>The above commands should print the language name, the character
-  encoding used by the locale, the local currency, and the prefix to dial
-  before the telephone number in order to get into the country. If any of the
-  commands above fail with a message similar to the one shown below, this means
-  that your locale was either not installed in Chapter 6 or is not supported by
-  the default installation of Glibc.</para>
+  <para>以上命令应该打印语言名称、字符编码、本地货币和电话号码前缀。如果其中任何一项失败并且输出类似以下的消息，就意味着你的区域数据要么在第六章中没有安装，要不不被 Glibc 的默认安装支持。</para>
 
 <screen><computeroutput>locale: Cannot set LC_* to default locale: No such file or directory</computeroutput></screen>
 
-  <para>If this happens, you should either install the desired locale using the
-  <command>localedef</command> command, or consider choosing a different locale.
-  Further instructions assume that there are no such error messages from
-  Glibc.</para>
+  <para>如果如此，你应该使用 <command>localedef</command> 命令安装需要的区域数据，否则就应该考虑选择另外一个。以后的指令假定 Glibc 并不会输出类似的错误消息。</para>
 
   <!-- FIXME: the xlib example will became obsolete real soon -->
-  <para>Some packages beyond LFS may also lack support for your chosen locale. One
-  example is the X library (part of the X Window System), which outputs the
-  following error message if the locale does not exactly match one of the character
-  map names in its internal files:</para>
+  <para>LFS 以外的某些程序包可能也缺乏对选中的区域数据的支持。一个例子就是 X 库 (X 窗口系统的一部分)，在区域数据与其内部文件中的任何一个字符集都不准确匹配时会输出以下错误消息：</para>
 
 <screen><computeroutput>Warning: locale not supported by Xlib, locale set to C</computeroutput></screen>
 
-  <para>In several cases Xlib expects that the character map will be listed in
-  uppercase notation with canonical dashes. For instance, "ISO-8859-1" rather
-  than "iso88591". It is also  possible to find an appropriate specification by
-  removing the charmap part of the locale specification.  This can be checked
-  by running the <command>locale charmap</command> command in both locales.
-  For example, one would have to change "de_DE.ISO-8859-15@euro" to
-  "de_DE@euro" in order to get this locale recognized by Xlib.</para>
+  <para>在某些情况下 Xlib 期待字符集以大写和连字符表示。例如 <quote>ISO-8859-1</quote> 而不是 <quote>utf8</quote>。它还可以通过移除区域数据定义中的字符映射部分来指定正确的值。可以通过对两个区域数据分别运行 <command>locale charmap</command> 来检查。例如 <quote>de_DE.ISO-8859-15@euro</quote> 需要改为 <quote>de_DE@euro</quote> 才会被 Xlib 识别。</para>
 
-  <para>Other packages can also function incorrectly (but may not necessarily
-  display any error messages) if the locale name does not meet their expectations.
-  In those cases, investigating how other Linux distributions support your locale
-  might provide some useful information.</para>
+  <para>其他程序包也可能在区域数据名称不合要求时功能不正确 (但不一定会显示错误消息)。这种起那况下，研究一下其他 Linux 发行版如何支持你的区域数据可能会提供一些有用的信息。</para>
 
-  <para>Once the proper locale settings have been determined, create the
-  <filename>/etc/profile</filename> file:</para>
+  <para>一旦正确的区域数据设置确定，创建 <filename>/etc/profile</filename> 文件：</para>
 
 <screen><userinput>cat &gt; /etc/profile &lt;&lt; "EOF"
 <literal># Begin /etc/profile
 
-export LANG=<replaceable>&lt;ll&gt;_&lt;CC&gt;.&lt;charmap&gt;&lt;@modifiers&gt;</replaceable>
+export LANG=<replaceable>&lt;语言&gt;_&lt;国家&gt;.&lt;字符集&gt;&lt;@修改&gt;</replaceable>
 
 # End /etc/profile</literal>
 EOF</userinput></screen>
 
-  <para>The <quote>C</quote> (default) and <quote>en_US</quote> (the recommended
-  one for United States English users) locales are different. <quote>C</quote>
-  uses the US-ASCII 7-bit character set, and treats bytes with the high bit set
-  as invalid characters. That's why, e.g., the <command>ls</command> command
-  substitutes them with question marks in that locale. Also, an attempt to send
-  mail with such characters from Mutt or Pine results in non-RFC-conforming
-  messages being sent (the charset in the outgoing mail is indicated as <quote>unknown
-  8-bit</quote>). So you can use the <quote>C</quote> locale only if you are sure that
-  you will never need 8-bit characters.</para>
+  <para><quote>C</quote> (默认) 和 <quote>en_US</quote> (对美国英语用户的推荐) 区域数据是不同的。<quote>C</quote> 使用 US-ASCII 7 位字符集，会将最高位为 1 的字节视为无效字符。这也就是 <command>ls</command> 等命令在该区域数据中将其替换为问号的原因。另外，试图以 Mutt 或 Pine 发送带有此类字符的邮件会导致发送出不符合 RFC 的消息 (发出的邮件的字符集会被表示为 <quote>unknown 8-bit</quote>)。所以，若不是确定不会需要 8 位字符，就不要使用 <quote>C</quote> 区域数据。</para>
 
-  <para>UTF-8 based locales are not supported well by many programs. 
-  Work is in progress to document and, if possible, fix such problems, see
-  <ulink url="&blfs-root;view/svn/introduction/locale-issues.html"/>.</para>
+  <para>基于 UTF-8 的区域数据在很多程序中的支持都不好。相关工作正在进行，参见 <ulink url="&blfs-root;view/svn/introduction/locale-issues.html"/>。</para>
 
 </sect1>
