@@ -162,7 +162,7 @@ $Date: 2012-08-30 04:45:23 +0800 (四, 2012-08-30) $
       <strong class="segtitle">
         <xsl:apply-templates select="$segtitles[$segnum=position()]"
                               mode="segtitle-in-seg"/>
-        <xsl:text>: </xsl:text>
+        <xsl:text>：</xsl:text>
       </strong>
       <span class="segbody">
         <xsl:if test="@id">
