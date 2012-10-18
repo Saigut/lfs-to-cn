@@ -14,24 +14,13 @@
     <primary sortas="e-/etc/inputrc">/etc/inputrc</primary>
   </indexterm>
 
-  <para>The <filename>inputrc</filename> file handles keyboard mapping for
-  specific situations. This file is the startup file used by Readline &mdash; the
-  input-related library &mdash; used by Bash and most other shells.</para>
+  <para><filename>inputrc</filename> 文件处理指定情况下的键盘映射。此文件是 Readline&mdash;&mdash;有关输入的库&mdash;&mdash;的起始文件，被 Bash 和多数其他 shell 使用。</para>
 
-  <para>Most people do not need user-specific keyboard mappings so the command
-  below creates a global <filename>/etc/inputrc</filename> used by everyone who
-  logs in. If you later decide you need to override the defaults on a per-user
-  basis, you can create a <filename>.inputrc</filename> file in the user's home
-  directory with the modified mappings.</para>
+  <para>很多人不需要用户指定键盘映射，所以以下命令创建全局的 <filename>/etc/inputrc</filename> 文件供多有登录的用户使用。如果你此后决定要基于单一用户覆盖此默认值，可以在用户的主目录中创建一个 <filename>.inputrc</filename> 文件，其中包含修改过的映射。</para>
 
-  <para>For more information on how to edit the <filename>inputrc</filename>
-  file, see <command>info bash</command> under the <emphasis>Readline Init
-  File</emphasis> section. <command>info readline</command> is also a good
-  source of information.</para>
+  <para>有关如何编辑 <filename>inputrc</filename> 文件的更多信息参见 <command>info bash</command> 中的 <emphasis>Readline Init File</emphasis> 一节。<command>info readline</command> 也能提供一些信息。</para>
 
-  <para>Below is a generic global <filename>inputrc</filename> along with comments
-  to explain what the various options do. Note that comments cannot be on the same
-  line as commands. Create the file using the following command:</para>
+  <para>以下为全局通用的 <filename>inputrc</filename> 文件，带有注释，解释了不通选项的功能。注意这些注释不能与命令位于同一行。运行一下命令创建此文件：</para>
 
 <screen><userinput>cat &gt; /etc/inputrc &lt;&lt; "EOF"
 <literal># Begin /etc/inputrc

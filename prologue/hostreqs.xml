@@ -116,7 +116,7 @@
 <!-- ANY additional lines in the script cause a pdf rendering problem-->
 <screen role="nodump"><userinput>cat &gt; version-check.sh &lt;&lt; "EOF"
 <literal>#!/bin/bash
-# 简单的脚本，列出重要开发工具的版本
+# Simple script to list version numbers of critical development tools
 
 export LC_ALL=C
 bash --version | head -n1 | cut -d" " -f2-4
