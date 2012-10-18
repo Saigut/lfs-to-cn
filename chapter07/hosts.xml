@@ -22,33 +22,24 @@
     <primary sortas="d-network">网络</primary>
   <secondary>/etc/hosts</secondary></indexterm>
 
-  <para>If a network card is to be configured, decide on the IP address,
-  fully-qualified domain name (FQDN), and possible aliases for use in the
-  <filename>/etc/hosts</filename> file. The syntax is:</para>
+  <para>如果要配置一个网卡，选定 IP 地址、FQDN 和用于 <filename>/etc/hosts</filename> 文件的可用对应关系。语法为：</para>
 
 <screen><literal>IP_address myhost.example.org aliases</literal></screen>
 
-  <para>Unless the computer is to be visible to the Internet (i.e.,
-  there is a registered domain and a valid block of assigned IP
-  addresses&mdash;most users do not have this), make sure that the IP
-  address is in the private network IP address range. Valid ranges
-  are:</para>
+  <para>除非计算机对互联网可见 (例如有注册的域和可用的 IP 地址块&mdash;&mdash;多数用户没有)，确保 IP 地址在私有 IP 地址区间中。可用的区间包括：</para>
 
-<screen><literal>Private Network Address Range      Normal Prefix
-10.0.0.1 - 10.255.255.254           8
-172.x.0.1 - 172.x.255.254           16
-192.168.y.1 - 192.168.y.254         24</literal></screen>
+<screen><literal>私有网络地址区间             通常的前缀位数
+10.0.0.1 - 10.255.255.254       8
+172.x.0.1 - 172.x.255.254       16
+192.168.y.1 - 192.168.y.254     24</literal></screen>
 
-  <para>x can be any number in the range 16-31. y can be any number in
-  the range 0-255.</para>
+  <para>x 可以是 16-31 的数值，y 可以是 0-255 的数值。</para>
 
-  <para>A valid private IP address could be 192.168.1.1. A valid FQDN for this
-  IP could be lfs.example.org.</para>
+  <para>一个可用的私有 IP 地址可以是 192.168.1.1。对于此 IP 地址可用的 FQDN 可以是 lfs.example.org。</para>
 
-  <para>Even if not using a network card, a valid FQDN is still required.
-  This is necessary for certain programs to operate correctly.</para>
+  <para>即使没有使用网卡，有些程序也需要一个可用的 FQDN 才能正确工作。</para>
 
-  <para>Create the  <filename>/etc/hosts</filename> file by running:</para>
+  <para>运行以下命令创建  <filename>/etc/hosts</filename> 文件：</para>
 
 <screen><userinput>cat &gt; /etc/hosts &lt;&lt; "EOF"
 <literal># Begin /etc/hosts (network card version)
@@ -59,15 +50,9 @@
 # End /etc/hosts (network card version)</literal>
 EOF</userinput></screen>
 
-  <para>The <replaceable>&lt;192.168.1.1&gt;</replaceable> and
-  <replaceable>&lt;HOSTNAME.example.org&gt;</replaceable>
-  values need to be changed for specific uses or requirements (if
-  assigned an IP address by a network/system administrator and the
-  machine will be connected to an existing network). The optional alias
-  name(s) can be omitted.</para>
+  <para><replaceable>&lt;192.168.1.1&gt;</replaceable> 和 <replaceable>&lt;HOSTNAME.example.org&gt;</replaceable> 的值应该按照指定的用途或者需求进行修改 (如果由网络/系统管理员分配了一个 IP 地址并且计算机要链接到已经存在的网络)。可选的对应名称可以忽略。</para>
 
-  <para>If a network card is not going to be configured, create the
-  <filename>/etc/hosts</filename> file by running:</para>
+  <para>如果不配置网卡，运行以下命令创建 <filename>/etc/hosts</filename> 文件：</para>
 
 <screen role="nodump"><userinput>cat &gt; /etc/hosts &lt;&lt; "EOF"
 <literal># Begin /etc/hosts (no network card version)
