@@ -15,85 +15,33 @@
     <primary sortas="a-rc.site">rc.site</primary>
   </indexterm>
 
-  <para>The optional <filename>/etc/sysconfig/rc.site</filename> file contains
-  settings that are automatically set for each boot script.  It can alternatively
-  set the values specified in the <filename>hostname</filename>,
-  <filename>console</filename>, and <filename>clock</filename> files in the
-  <filename class='directory'>/etc/sysconfig/</filename> directory.  If the
-  associated variables are present in both these separate files and
-  <filename>rc.site</filename>, the values in the script specific files have
-  precedence. </para>
+  <para>可选的 <filename>/etc/sysconfig/rc.site</filename> 文件包含给每个引导脚本自动进行的设置。它也可以用于指定 <filename class='directory'>/etc/sysconfig/</filename> 中 <filename>hostname</filename>、<filename>console</filename> 和 <filename>clock</filename> 文件中指定的值。如果关联的变量在这些独立的文件和 <filename>rc.site</filename> 中都存在，以脚本指定的文件为准。</para>
 
-  <para><filename>rc.site</filename> also contains parameters that can 
-  customize other aspects of the boot process.  Setting the IPROMPT variable
-  will enable selective running of bootscripts.  Other options are described
-  in the file comments.  The default version of the file is as follows:</para>
+  <para><filename>rc.site</filename> 还包括可以自定义引导进程其他方面的参数。设置 IPROMPT 变量会启用引导脚本的选择性运行。其他选项在文件中的注释有介绍。此文件的默认版本如下：</para>
 
   <!-- Use role to fix a pdf generation problem -->
   <screen role="auto">&site;</screen>
 
   <sect2>
-    <title>Customizing the Boot and Shutdown Scripts</title>
+    <title>自定义引导和关机脚本</title>
 
-    <para>The LFS boot scripts boot and shut down a system in a fairly
-    efficient manner, but there are a few tweaks that you can make in the
-    rc.site file to improve speed even more and to adjust messages accoring
-    to your preferences. To do this, adjust the settings in
-    the <filename>/etc/sysconfig/rc.site</filename> file above.</para>
+    <para>LFS 引导脚本以比较高效的方式引导和关闭序同，但是你仍然可以在 rc.site 文件中进行几项调校使它更快或者按照你的喜好调节信息。要如此做，调节以上的 <filename>/etc/sysconfig/rc.site</filename> 文件。</para>
 
     <itemizedlist>
 
-    <listitem><para>During the boot script <filename>udev</filename>, there is
-    a call to <command>udev settle</command> that requires some time to
-    complete. This time may or may not be required depending on devices present
-    in the system.  If you only have simple partitions and a single ethernet
-    card, the boot process will probably not need to wait for this command.  To
-    skip it, set the variable OMIT_UDEV_SETTLE=y.</para></listitem>
+    <listitem><para>在引导脚本 <filename>udev</filename> 中调用了 <command>udev settle</command>，需要一定时间才能完成。这个时间是否需要取决于系统上出现的设备。如果你只有简单分区和一块以太网卡，引导进程可能就不必等待这一命令。要跳过之，设置变量 OMIT_UDEV_SETTLE=y。</para></listitem>
 
-    <listitem><para>The boot script <filename>udev_retry</filename> also runs
-    <command>udev settle</command> by default.  This command is only needed by
-    default if the <filename class='directory'>/var</filename> directory is
-    separately mounted.  This is because the clock needs the file
-    <filename>/var/lib/hwclock/adjtime</filename>.  Other customizations may
-    also need to wait for udev to complete, but in many installations it is not
-    needed.  Skip the command by setting the variable OMIT_UDEV_RETRY_SETTLE=y.
-    </para></listitem>
+    <listitem><para>引导脚本 <filename>udev_retry</filename> 默认也会运行 <command>udev settle</command>。此命令只在 <filename class='directory'>/var</filename> 目录独立挂载时必须。这是因为时钟需要 <filename>/var/lib/hwclock/adjtime</filename> 这个文件。其他的自定义可能也要等待 udev 完成，但是在很多安装副本中并不是必须的。要跳过此命令，设置变量 OMIT_UDEV_RETRY_SETTLE=y。</para></listitem>
 
-    <listitem><para>By default, the file system checks are silent.  This can
-    appear to be a delay during the bootup process.  To turn on the
-    <command>fsck</command> output, set the variable VERBOSE_FSCK=y.
-    </para></listitem>
+    <listitem><para>文件系统检查默认是静默的。看起来是在引导过程中出现了一次延迟。要打开 <command>fsck</command> 的输出，设置变量 VERBOSE_FSCK=y。</para></listitem>
 
-    <listitem><para>When rebooting, you may want to skip the filesystem check,
-    <command>fsck</command>, completely.  To do this, either create the file
-    <filename>/fastboot</filename> or reboot the system with the command
-    <command>/sbin/shutdown -f -r now</command>.  On the other hand, you can
-    force all file systems to be checked by creating
-    <filename>/forcefsck</filename> or running <command>shutdown</command> with
-    the <parameter>-F</parameter> parameter instead of <parameter>-f</parameter>.  
-    </para>
+    <listitem><para>在重新引导过程中你可能会想要完全跳过文件系统检查，即 <command>fsck</command>。要如此做，要么创建文件 <filename>/fastboot</filename>，要么在重新引导系统时使用命令 <command>/sbin/shutdown -f -r now</command>。另一方面，你也可以强制检查所有的文件系统，创建 <filename>/forcefsck</filename> 或者运行 <command>shutdown</command> 时传递 <parameter>-F</parameter> 参数而不是 <parameter>-f</parameter>。</para>
     
-    <para>Setting the variable FASTBOOT=y will disable <command>fsck</command>
-    during the boot process until it is removed.  This is not recommended 
-    on a permanent basis.</para></listitem>
+    <para>设置变量 FASTBOOT=y 会在引导过程中禁用 <command>fsck</command> 直到被移除为止。不推荐长期如此。</para></listitem>
 
-    <listitem><para>Normally, all files in the <filename
-    class='directory'>/tmp</filename> directory are deleted at boot time.
-    Depending on the number of files or directories present, this can cause a
-    noticible delay in the boot process.  To skip removing these files set the
-    variable SKIPTMPCLEAN=y.</para></listitem>
+    <listitem><para>通常在 <filename class='directory'>/tmp</filename> 目录中的所有文件在引导时都会删除。由于出现的文件或目录的数量不同，这一步会在引导过程中产生明显延迟。要跳过移除这些文件，设置变量 SKIPTMPCLEAN=y。</para></listitem>
 
-    <listitem><para>During shutdown, the <command>init</command> program sends
-    a TERM signal to each program it has started (e.g. agetty), waits for a set
-    time (default 3 seconds), and sends each process a KILL signal and waits
-    again.  This process is repeated in the <command>sendsignals</command>
-    script for any processes that are not shut down by their own scripts.  The
-    delay for <command>init</command> can be set by passing a parameter.  For
-    example to remove the delay in <command>init</command>, pass the -t0
-    parameter when shutting down or rebooting (e.g.  <command>/sbin/shutdown
-    -t0 -r now</command>).  The delay for the  <command>sendsignals</command>
-    script can be skipped by setting the parameter
-    KILLDELAY=0.</para></listitem>
+    <listitem><para>在关机过程中 <command>init</command> 程序会给它启动的每个程序 (例如 agetty) 发送一个 TERM 信号，等待一个设置的时间 (默认 3 秒)，然后给每个进程发送一个 KILL 信号并且再次等待。此进程在 <command>sendsignals</command> 中对于每个没有被自己的脚本关闭的程序循环进行。<command>init</command> 的延迟可以通过传递一个参数来设置。例如要移除 <command>init</command> 的延迟，在关机护着重新引导时传递 -t0 参数 (如 <command>/sbin/shutdown -t0 -r now</command>)。<command>sendsignals</command> 脚本的延迟可以通过设置参数 KILLDELAY=0 来跳过。</para></listitem>
 
     </itemizedlist>
 
