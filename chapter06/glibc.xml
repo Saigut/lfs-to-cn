@@ -528,7 +528,7 @@ mkdir /etc/ld.so.conf.d</userinput></screen>
       <varlistentry id="pldd">
         <term><command>pldd</command></term>
         <listitem>
-          <para>列出运行中的进程使用的动态共享对象/para>
+          <para>列出运行中的进程使用的动态共享对象</para>
           <indexterm zone="ch-system-glibc pldd">
             <primary sortas="b-pldd">pldd</primary>
           </indexterm>

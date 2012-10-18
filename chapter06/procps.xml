@@ -50,7 +50,8 @@
 
     <para>修复 Makefile 中的一个问题，此问题使 procps 无法以 make-&make-version; 编制：</para>
 
-<screen><userinput remap="pre">sed -i -e 's@\*/module.mk@proc/module.mk ps/module.mk@' Makefile</userinput></screen>
+<screen><userinput remap="pre">sed -i -e 's@\*/module.mk@proc/module.mk ps/module.mk@' \
+       -e 's@^#SKIP@SKIP@' Makefile</userinput></screen>
 
     <para>编译程序包：</para>
 

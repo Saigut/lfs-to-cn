@@ -93,10 +93,12 @@ chmod -v 755 /usr/bin/lex</userinput></screen>
     <segmentedlist>
       <segtitle>安装的程序</segtitle>
       <segtitle>安装的库</segtitle>
+      <segtitle>安装的目录</segtitle>
 
       <seglistitem>
-        <seg>flex 和 lex</seg>
+        <seg>flex、lex++ (到 flex 的链接) 和 lex</seg>
         <seg>libfl.a 和 libfl_pic.a</seg>
+        <seg>/usr/share/doc/flex-&flex-version;</seg>
       </seglistitem>
     </segmentedlist>
 
@@ -111,6 +113,16 @@ chmod -v 755 /usr/bin/lex</userinput></screen>
           <para>一个工具，用于创建能够识别文本样式的程序；它允许指定样式查找的规则，消除了开发特定程序的需求</para>
           <indexterm zone="ch-system-flex flex">
             <primary sortas="b-flex">flex</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="flexpp">
+        <term><command>flex++</command></term>
+        <listitem>
+          <para>flex 的一个扩展，用于创建 C++ 代码和类。是到 <command>flex</command> 的链接</para>
+          <indexterm zone="ch-system-flex flexpp">
+            <primary sortas="b-flex++">flex++</primary>
           </indexterm>
         </listitem>
       </varlistentry>

@@ -85,7 +85,7 @@ sed -i 's/arpd.8//' man/man8/Makefile</userinput></screen>
       <segtitle>安装的库</segtitle>
 
       <seglistitem>
-        <seg>ctstat (到 lnstat 的链接)、genl、ifcfg、ifstat、ip、lnstat、nstat、routef、routel、rtacct、rtmon、rtpr、rtstat (到 lnstat 的链接)、ss 和 tc</seg>
+        <seg>bridge、ctstat (到 lnstat 的链接)、genl、ifcfg、ifstat、ip、lnstat、nstat、routef、routel、rtacct、rtmon、rtpr、rtstat (到 lnstat 的链接)、ss 和 tc</seg>
         <seg>/etc/iproute2、/lib/tc、/usr/share/doc/iproute2-&iproute2-version;、/usr/lib/tc</seg>
       </seglistitem>
     </segmentedlist>
@@ -94,6 +94,16 @@ sed -i 's/arpd.8//' man/man8/Makefile</userinput></screen>
       <bridgehead renderas="sect3">简介</bridgehead>
       <?dbfo list-presentation="list"?>
       <?dbhtml list-presentation="table"?>
+
+      <varlistentry id="bridge">
+        <term><command>bridge</command></term>
+        <listitem>
+          <para>配置网络桥</para>
+          <indexterm zone="ch-system-iproute2 bridge">
+            <primary sortas="b-bridge">bridge</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
 
       <varlistentry id="ctstat">
         <term><command>ctstat</command></term>

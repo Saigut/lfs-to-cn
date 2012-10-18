@@ -352,7 +352,7 @@ mv -v /usr/lib/*gdb.py /usr/share/gdb/auto-load/usr/lib</userinput></screen>
       <varlistentry id="gcc-ranlib">
         <term><command>gcc-ranlib</command></term>
         <listitem>
-          <para><command>ranlib/command> 的一个打包，在命令行中加入一个插件。此程序只用于添加 <quote>链接时优化</quote>，对于默认编制选项并没有什么用处</para>
+          <para><command>ranlib</command> 的一个打包，在命令行中加入一个插件。此程序只用于添加 <quote>链接时优化</quote>，对于默认编制选项并没有什么用处</para>
           <indexterm zone="ch-system-gcc gcc-ranlib">
             <primary sortas="b-gcc-ranlib">gc-ranlib</primary>
           </indexterm>
