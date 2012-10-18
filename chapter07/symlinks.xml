@@ -12,121 +12,49 @@
 
   <sect2>
 
-    <title>CD-ROM symlinks</title>
+    <title>CD-ROM 符号链接</title>
 
-    <para>Some software that you may want to install later (e.g., various
-    media players) expect the <filename class="symlink">/dev/cdrom</filename>
-    and <filename class="symlink">/dev/dvd</filename> symlinks to exist, and
-    to point to a CD-ROM or DVD-ROM device. Also, it may be convenient to put
-    references to those symlinks into <filename>/etc/fstab</filename>. Udev
-    comes with a script that will generate rules files to create these symlinks
-    for you, depending on the capabilities of each device, but you need to
-    decide which of two modes of operation you wish to have the script use.</para>
+    <para>你之后可能想要安装的某些软件 (例如各种媒体播放器) 期待 <filename class="symlink">/dev/cdrom</filename> 和 <filename class="symlink">/dev/dvd</filename> 这两个符号链接存在，并且指向一个 CD-ROM 或者 DVD-ROM 设备。将这些符号链接的引用写入 <filename>/etc/fstab</filename> 文件可能会比较方便。 Udev 带有一个脚本，会产生规则文件并依据每个设备的能力创建这些符号链接，但是你需要决定此脚本以两种操作模式中的哪一种进行工作。</para>
 
-    <para>First, the script can operate in <quote>by-path</quote> mode (used by
-    default for USB and FireWire devices), where the rules it creates depend on
-    the physical path to the CD or DVD device. Second, it can operate in
-    <quote>by-id</quote> mode (default for IDE and SCSI devices), where the
-    rules it creates depend on identification strings stored in the CD or DVD
-    device itself. The path is determined by Udev's <command>path_id</command>
-    script, and the identification strings are read from the hardware by its
-    <command>ata_id</command> or <command>scsi_id</command> programs, depending
-    on which type of device you have.</para>
+    <para>首先，此脚本可以工作于 <quote>by-path</quote> 模式下 (默认用于 USB 和火线设备)，其创建的规则依赖到 CD 或 DVD 设备的物理路径。它也可一工作于 <quote>by-id</quote> 模式下 (默认用于 IDE 和 SCSI 设备)，创建个规则依赖 CD 或 DVD 设备本身存储的识别字符串。路径由 Udev 的 <command>path_id</command> 脚本获知，识别字符串由 <command>ata_id</command> 或者 <command>scsi_id</command> 程序从硬件中读取，具体使用哪一个取决于你的设备类型。</para>
 
-    <para>There are advantages to each approach; the correct approach to use
-    will depend on what kinds of device changes may happen. If you expect the
-    physical path to the device (that is, the ports and/or slots that it plugs
-    into) to change, for example because you plan on moving the drive to a
-    different IDE port or a different USB connector, then you should use the
-    <quote>by-id</quote> mode. On the other hand, if you expect the device's
-    identification to change, for example because it may die, and you would
-    replace it with a different device with the same capabilities and which
-    is plugged into the same connectors, then you should use the
-    <quote>by-path</quote> mode.</para>
+    <para>两种方法都有各自的优点；正确的方法取决于可能发生的设备改动的种类。如果你认为到设备的物理路径 (也就是它占用的接口或者插槽) 改变，例如你计划将驱动器移动到一个不同的 IDE 接口或者 USB 链接器，那么就应当使用 <quote>by-id</quote> 模式。另一方面，如果你认为设备的身份可能有改动，例如由于损坏而被一个相同功能的设备在同一连接器替换，那么就应当使用 <quote>by-path</quote> 模式。</para>
 
-    <para>If either type of change is possible with your drive, then choose a
-    mode based on the type of change you expect to happen more often.</para>
+    <para>如果你的驱动器可能会发生其中至少一种变动，基于你认为会相对经常发生的那一种来选择模式。</para>
 
 <!-- If you use by-id mode, the symlinks will survive even the transition
      to libata for IDE drives, but that is not for the book. -->
 
-    <important><para>External devices (for example, a USB-connected CD drive)
-    should not use by-path persistence, because each time the device is plugged
-    into a new external port, its physical path will change. All
-    externally-connected devices will have this problem if you write Udev rules
-    to recognize them by their physical path; the problem is not limited to CD
-    and DVD drives.</para></important>
+    <important><para>外置设备 (例如 USB 接口的 CD 驱动器) 不应使用 <quote>by-path</quote> 模式，因为每次设备被插入一个不同的接口，它的物理路径就会改变。Udev 规则以物理路径识别的任何外置设备都会有这个问题，并不局限于 CD 和 DVD 驱动器。</para></important>
 
-    <para>If you wish to see the values that the Udev scripts will use, then
-    for the appropriate CD-ROM device, find the corresponding directory under
-    <filename class="directory">/sys</filename> (e.g., this can be
-    <filename class="directory">/sys/block/hdd</filename>) and
-    run a command similar to the following:</para>
+    <para>如果你想要查看 Udev 脚本使用的值，那么对于一个 CD-ROM 驱动器，找到它在 <filename class="directory">/sys</filename> 中对应的目录 (例如 <filename class="directory">/sys/block/hdd</filename>) 并运行类似以下的命令：</para>
 
 <screen role="nodump"><userinput>udevadm test /sys/block/hdd</userinput></screen>
 
-    <para>Look at the lines containing the output of various *_id programs.
-    The <quote>by-id</quote> mode will use the ID_SERIAL value if it exists and
-    is not empty, otherwise it will use a combination of ID_MODEL and
-    ID_REVISION. The <quote>by-path</quote> mode will use the ID_PATH value.</para>
+    <para>查看输出中包含 *_id 程序的行。如果存在并且非空，<quote>by-id</quote> 模式会使用 ID_SERIAL 值，否则就会使用 ID_MODEL 和 ID_REVISION 的组合。<quote>by-path</quote> 模式会使用 ID_PATH 值</para>
 
-    <para>If the default mode is not suitable for your situation, then the
-    following modification can be made to the
-    <filename>/lib/udev/rules.d/75-cd-aliases-generator.rules</filename> file,
-    as follows (where <replaceable>mode</replaceable> is one of
-    <quote>by-id</quote> or <quote>by-path</quote>):</para>
+    <para>如果默认模式不适合你的情况，那么可以对 <filename>/lib/udev/rules.d/75-cd-aliases-generator.rules</filename> 文件进行以下修改 (其中 <replaceable>mode</replaceable> 为 <quote>by-id</quote> 或者 <quote>by-path</quote>)：</para>
 
 <screen role="nodump"><userinput>sed -i -e 's/"write_cd_rules"/"write_cd_rules <replaceable>mode</replaceable>"/' \
     /lib/udev/rules.d/75-cd-aliases-generator.rules</userinput></screen>
 
-    <para>Note that it is not necessary to create the rules files or symlinks
-    at this time, because you have bind-mounted the host's
-    <filename class="directory">/dev</filename> directory into the LFS system,
-    and we assume the symlinks exist on the host. The rules and symlinks will
-    be created the first time you boot your LFS system.</para>
+    <para>注意现在还不必创建规则文件或者符号链接，因为你在 LFS 系统中已经捆绑挂载了宿主的 <filename class="directory">/dev</filename> 目录，我们假设宿主上存在这些符号链接。规则和符号链接会在首次引导 LFS 系统时创建。</para>
 
-    <para>However, if you have multiple CD-ROM devices, then the symlinks
-    generated at that time may point to different devices than they point to on
-    your host, because devices are not discovered in a predictable order. The
-    assignments created when you first boot the LFS system will be stable, so
-    this is only an issue if you need the symlinks on both systems to point to
-    the same device. If you need that, then inspect (and possibly edit) the
-    generated <filename>/etc/udev/rules.d/70-persistent-cd.rules</filename>
-    file after booting, to make sure the assigned symlinks match what you need.</para>
+    <para>然而如果你有多个 CD-ROM 设备，那时创建的符号链接可能会指向与宿主上不同的设备，因为设备发现的顺序是不可预测的。首次引导 LFS 系统时进行的分配会是稳定的，所以只有你需要两个设备上的符号链接指向相同设备时会是个问题。如果需要如此，在引导之后查看 (很可能还要编辑) 创建的 <filename>/etc/udev/rules.d/70-persistent-cd.rules</filename> 文件，确保分配的符号链接与你所需要的匹配。</para>
 
   </sect2>
 
   <sect2>
 
-    <title>Dealing with duplicate devices</title>
+    <title>处理重复设备</title>
 
-    <para>As explained in <xref linkend="ch-scripts-udev"/>, the order in
-    which devices with the same function appear in
-    <filename class="directory">/dev</filename> is essentially random.
-    E.g., if you have a USB web camera and a TV tuner, sometimes
-    <filename>/dev/video0</filename> refers to the camera and
-    <filename>/dev/video1</filename> refers to the tuner, and sometimes
-    after a reboot the order changes to the opposite one.
-    For all classes of hardware except sound cards and network cards, this is
-    fixable by creating udev rules for custom persistent symlinks.
-    The case of network cards is covered separately in
-    <xref linkend="ch-scripts-network"/>, and sound card configuration can
-    be found in <ulink url="&blfs-root;view/svn/postlfs/devices.html">BLFS</ulink>.</para>
+    <para>如同 <xref linkend="ch-scripts-udev"/> 中解释的那样，具有相同功能的设备在 <filename class="directory">/dev</filename> 中出现的顺序是随机的。例如，如果你有一个 USB 摄像头和一个电视调谐器，有时 <filename>/dev/video0</filename> 会指向摄像头，<filename>/dev/video1</filename> 指向调谐器，有时在重新引导之后就会颠倒。除了声卡和网卡之外，这类问题都可以通过为自定义的固定符号链接创建 udev 规则来解决。网卡的问题在 <xref linkend="ch-scripts-network"/> 中单独讨论，声卡的配置位于 <ulink url="&blfs-root;view/svn/postlfs/devices.html">BLFS</ulink> 中。</para>
 
-    <para>For each of your devices that is likely to have this problem
-    (even if the problem doesn't exist in your current Linux distribution),
-    find the corresponding directory under
-    <filename class="directory">/sys/class</filename> or
-    <filename class="directory">/sys/block</filename>.
-    For video devices, this may be
-    <filename
-    class="directory">/sys/class/video4linux/video<replaceable>X</replaceable></filename>.
-    Figure out the attributes that identify the device uniquely (usually,
-    vendor and product IDs and/or serial numbers work):</para>
+    <para>对于你的每个可能出现此问题的设备 (即使该问题在你当前的 Linux 发行版上并不存在)，在 <filename class="directory">/sys/class</filename> 或 <filename class="directory">/sys/block</filename> 中找到对应的目录。对于视频设备可能是 <filename class="directory">/sys/class/video4linux/video<replaceable>X</replaceable></filename>。找到能独立识别该设备的属性 (通常生产商、产品 ID 和/或序列号即可)：</para>
 
 <screen role="nodump"><userinput>udevadm info -a -p /sys/class/video4linux/video0</userinput></screen>
 
-    <para>Then write rules that create the symlinks, e.g.:</para>
+    <para>然后写出创建符号链接的规则，例如：</para>
 
 <screen role="nodump"><userinput>cat &gt; /etc/udev/rules.d/83-duplicate_devs.rules &lt;&lt; "EOF"
 <literal>
@@ -138,12 +66,7 @@ KERNEL=="video*", ATTRS{device}=="0x036f", ATTRS{vendor}=="0x109e", \
 </literal>
 EOF</userinput></screen>
 
-    <para>The result is that <filename>/dev/video0</filename> and
-    <filename>/dev/video1</filename> devices still refer randomly to the tuner
-    and the web camera (and thus should never be used directly), but there are
-    symlinks <filename>/dev/tvtuner</filename> and
-    <filename>/dev/webcam</filename> that always point to the correct
-    device.</para>
+    <para>结果就是 <filename>/dev/video0</filename> 和 <filename>/dev/video1</filename> 仍然随机指向调谐器和摄像头 (也就不能直接使用)，但是有 <filename>/dev/tvtuner</filename> 和 <filename>/dev/webcam</filename> 这两个符号链接始终指向正确的设备。</para>
 
  </sect2>
 
