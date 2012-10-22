@@ -58,7 +58,7 @@ pdf: validate
 	$(Q)if [ ! -e $(BASEDIR) ]; then \
 	  mkdir -p $(BASEDIR); \
 	fi;
-	$(Q)fop $(RENDERTMP)/lfs-pdf.fo $(BASEDIR)/$(PDF_OUTPUT)
+	$(Q)fop -c stylesheets/fop.xconf $(RENDERTMP)/lfs-pdf.fo $(BASEDIR)/$(PDF_OUTPUT)
 
 nochunks: validate profile-html
 	@echo "Generating non chunked XHTML file..."
@@ -124,7 +124,7 @@ dump-commands: validate
 
 all: lfs nochunks pdf dump-commands md5sums
 
-other: nochunks wget-list md5sums
+other: nochunks wget-list md5sums pdf
 
 .PHONY : all dump-commands lfs nochunks pdf profile-html tmpdir validate \
 	 wget-list maketar md5sums

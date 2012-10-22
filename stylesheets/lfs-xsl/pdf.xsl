@@ -39,7 +39,7 @@ $Date: 2012-09-05 02:29:02 +0800 (三, 2012-09-05) $
   <xsl:param name="draft.mode" select="'no'"/>
 
    <!-- Paper size -->
-  <xsl:param name="paper.type" select="'USletter'"/>
+  <xsl:param name="paper.type" select="'A4'"/>
 
     <!-- Paper size required by the publisher
   <xsl:param name="paper.type" select="'Customized'"/>

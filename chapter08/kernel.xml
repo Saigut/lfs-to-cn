@@ -82,7 +82,7 @@
 
 <screen><userinput remap="make">make</userinput></screen>
 
-      <para>如果使用内核模块， <filename class="directory">/etc/modprobe.d</filename> 中的模块配置可能被需要。关于模块和内核配置的信息位于 <xref linkend="ch-scripts-udev"/>linux-&linux-version;/Documentation</filename> 目录。同时， <filename>modprobe.conf(5)</filename> 可能包含需要的信息。</para>
+      <para>如果使用内核模块，<filename class="directory">/etc/modprobe.d</filename> 中的模块配置可能被需要。关于模块和内核配置的信息位于 <xref linkend="ch-scripts-udev"/> 和 <filename class="directory">linux-&linux-version;/Documentation</filename> 目录的内核文档中。同时， <filename>modprobe.conf(5)</filename> 可能包含需要的信息。</para>
 
     <para>如果内核配置需要，安装这些模块：</para>
 
