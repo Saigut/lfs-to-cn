@@ -60,7 +60,6 @@ EOF</userinput></screen>
     <para>后面一种情况中，内核会产生以下消息：</para>
 
 <screen><computeroutput>FAT: utf8 is not a recommended IO charset for FAT filesystems, filesystem will be case sensitive! </computeroutput></screen>
-<screen><computeroutput>(FAT: utf8 并不是 FAT 文件系统推荐的 IO 字符集，会导致该文件系统大小写敏感！)</computeroutput></screen>
 
     <para>这个消极的推荐可以忽略，因为其他所有的 <quote>iocharset</quote> 选项都会导致 UTF-8 区域数据中文件名显示不正确。</para>
   </note>

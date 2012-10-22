@@ -64,7 +64,7 @@
               <para>变更回源代码目录。</para>
             </listitem>
             <listitem>
-              <para>除非另外说明，删除提取出的源代码目录和任何在编制进程中创建的 <filename class="directory"><replaceable>&lt;程序包&gt;</replaceable>-build</filename> 目录。</para>
+              <para>除非另外说明，删除提取出的源代码目录和任何在编制进程中创建的 <filename class="directory"><replaceable>&lt;package&gt;</replaceable>-build</filename> 目录。</para>
             </listitem>
           </orderedlist>
         </listitem>

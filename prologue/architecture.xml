@@ -14,9 +14,14 @@
 
 <para>关于 64 位系统还有一些事情要提。与 32 位系统相比，64 位可执行文件的尺寸略大一点，执行速率也只是略快一点。举个例子，某次在基于 Core2Duo CPU 的 LFS-6.5 编制测试中，测得了以下数据：</para>
 
-<screen><computeroutput>架构      编制时间      编制尺寸 
-32 位     198.5 分钟    648 MB 
-64 位     190.6 分钟    709 MB</computeroutput></screen>
+<itemizedlist spacing="compact">
+  <listitem>
+    <para>32 位架构编制时间为 198.5 分钟，编制尺寸为 648 MB。</para>
+  </listitem>
+  <listitem>
+    <para>64 位架构编制时间为 190.6 分钟，编制尺寸为 709 MB。</para>
+  </listitem>
+</itemizedlist>
 
 <para>不难发现，64 位编制只比 32 位快了 4% 却大了 9%。寻求 64 位系统的好处相对不大。当然，如果你有超过 4GB 的 RAM 或者想要修改超过 4GB 的数据，64 位系统还是很有优势的。</para>
 

@@ -48,9 +48,9 @@
 
 <screen role="nodump"><userinput>locale -a</userinput></screen>
 
-  <para>字符映射可能会有多个别名。某些应用程序无法正确处理同义 (例如要求 <quote>UTF-8</quote> 必须写成 <quote>UTF-8</quote> 而不允许写成 <quote>utf8</quote>)，所以大多数情况下选择特定区域数据的正规名称是最安全的。要获知正规名称，运行以下命令，其中 <replaceable>&lt;区域数据名&gt;</replaceable> 要替换为 <command>locale -a</command> 对于需要的区域数据提供的输出。</para>
+  <para>字符映射可能会有多个别名。某些应用程序无法正确处理同义 (例如要求 <quote>UTF-8</quote> 必须写成 <quote>UTF-8</quote> 而不允许写成 <quote>utf8</quote>)，所以大多数情况下选择特定区域数据的正规名称是最安全的。要获知正规名称，运行以下命令，其中 <replaceable>&lt;locale&gt;</replaceable> 要替换为 <command>locale -a</command> 对于需要的区域数据提供的输出。</para>
 
-<screen role="nodump"><userinput>LC_ALL=<replaceable>&lt;区域数据名&gt;</replaceable> locale charmap</userinput></screen>
+<screen role="nodump"><userinput>LC_ALL=<replaceable>&lt;locale&gt;</replaceable> locale charmap</userinput></screen>
 
   <para>对于 <quote>zh_CN.utf8</quote> 这个区域数据，以上命令将会输出：</para>
 
@@ -58,10 +58,10 @@
 
   <para>这会导致最终的区域数据设置为 <quote>zh_CN.UTF-8</quote>。以上试探找到的区域数据在添加到 Bash 的起始文件之前要经过测试是很重要的：</para>
 
-<screen role="nodump"><userinput>LC_ALL=&lt;区域数据名&gt; locale language
-LC_ALL=&lt;区域数据名&gt; locale charmap
-LC_ALL=&lt;区域数据名&gt; locale int_curr_symbol
-LC_ALL=&lt;区域数据名&gt; locale int_prefix</userinput></screen>
+<screen role="nodump"><userinput>LC_ALL=&lt;locale&gt; locale language
+LC_ALL=&lt;locale&gt; locale charmap
+LC_ALL=&lt;locale&gt; locale int_curr_symbol
+LC_ALL=&lt;locale&gt; locale int_prefix</userinput></screen>
 
   <para>以上命令应该打印语言名称、字符编码、本地货币和电话号码前缀。如果其中任何一项失败并且输出类似以下的消息，就意味着你的区域数据要么在第六章中没有安装，要不不被 Glibc 的默认安装支持。</para>
 
@@ -83,7 +83,7 @@ LC_ALL=&lt;区域数据名&gt; locale int_prefix</userinput></screen>
 <screen><userinput>cat &gt; /etc/profile &lt;&lt; "EOF"
 <literal># Begin /etc/profile
 
-export LANG=<replaceable>&lt;语言&gt;_&lt;国家&gt;.&lt;字符集&gt;&lt;@修改&gt;</replaceable>
+export LANG=<replaceable>&lt;ll&gt;_&lt;CC&gt;.&lt;charmap&gt;&lt;@modifier&gt;</replaceable>
 
 # End /etc/profile</literal>
 EOF</userinput></screen>

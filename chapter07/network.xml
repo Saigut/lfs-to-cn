@@ -109,16 +109,16 @@ EOF</userinput></screen>
 <screen><userinput>cat &gt; /etc/resolv.conf &lt;&lt; "EOF"
 <literal># Begin /etc/resolv.conf
 
-domain <replaceable>&lt;你的域名&gt;</replaceable>
-nameserver <replaceable>&lt;首选名称服务器地址&gt;</replaceable>
-nameserver <replaceable>&lt;备选名称服务器地址&gt;</replaceable>
+domain <replaceable>&lt;domain&gt;</replaceable>
+nameserver <replaceable>&lt;address&gt;</replaceable>
+nameserver <replaceable>&lt;address&gt;</replaceable>
 
 # End /etc/resolv.conf</literal>
 EOF</userinput></screen>
 
     <para><varname>domain</varname> 声明可以忽略或者以 <varname>search</varname> 声明替换。参考 resolv.conf 的手册页获取更多细节。</para>
 
-    <para>将 <replaceable>&lt;名称服务器地址&gt;</replaceable> 替换为最适合的 DNS 的 IP 地址。经常会有超过一个条目 (要求备选服务器有相关兼容性)。如果你只想要一个 DNS 服务器，移除文件中 <emphasis>nameserver</emphasis> 的第二行。该 IP 地址可以是本地网络上的一台路由器。</para>
+    <para>将 <replaceable>&lt;address&gt;</replaceable> 替换为最适合的 DNS 的 IP 地址。经常会有超过一个条目 (要求备选服务器有相关兼容性)。如果你只想要一个 DNS 服务器，移除文件中 <emphasis>nameserver</emphasis> 的第二行。该 IP 地址可以是本地网络上的一台路由器。</para>
 
     <note><para>谷歌公开 IPv4 DNS 地址为 8.8.8.8 和 8.8.4.4。</para></note>
 

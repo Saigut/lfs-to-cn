@@ -150,7 +150,7 @@ sed -i 's/arpd.8//' man/man8/Makefile</userinput></screen>
         <listitem>
           <para>主可执行文件，有几个不同的功能：</para>
 
-          <para><command>ip link <replaceable>&lt;设备&gt;</replaceable></command> 允许用户查看设备状态并作出改动</para>
+          <para><command>ip link <replaceable>&lt;dev&gt;</replaceable></command> 允许用户查看设备状态并作出改动</para>
 
           <para><command>ip addr</command> 允许用户查看地址和属性、添加地址和删除旧地址</para>
 

@@ -81,7 +81,7 @@ EOF</userinput></screen>
   <sect2 id="init-levels" >
   <title>改变运行级别</title>
 
-  <para>改变运行级别通过 <command>init <replaceable>&lt;运行级别&gt;</replaceable></command> 完成，其中 <replaceable>&lt;运行级别&gt;</replaceable> 就是目标运行级别了。例如要重新引导计算机，用户可以执行 <command>init 6</command> 命令，也就是 <command>reboot</command> 命令的别名。相似地， <command>init 0</command> 也是 <command>halt</command> 的别名。</para>
+  <para>改变运行级别通过 <command>init <replaceable>&lt;level&gt;</replaceable></command> 完成，其中 <replaceable>&lt;level&gt;</replaceable> 就是目标运行级别了。例如要重新引导计算机，用户可以执行 <command>init 6</command> 命令，也就是 <command>reboot</command> 命令的别名。相似地， <command>init 0</command> 也是 <command>halt</command> 的别名。</para>
 
   <para>在 <filename class="directory">/etc/rc.d</filename> 和 <filename class="directory">rcsysinit.d</filename> 中有一些与 <filename class="directory">rc?.d</filename> 相似的目录 (其中问号是运行级别号码)，都包含一些符号链接，有些以 <emphasis>K</emphasis> 开头，其他的以 <emphasis>S</emphasis> 开头，在开头字母之后都有两位数字。K 代表停止 (kill) 服务，S 代表开始服务。数字表示脚本的运行顺序，从 00 到 99&mdash;&mdash;数字越小执行越早。当 <command>init</command> 切换至另一个运行级别时，对应的服务就会开始或者停止，这取决于选定的运行级别。</para>
 

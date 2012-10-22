@@ -31,7 +31,7 @@ cd e2fsprogs-&e2fsprogs-version;
 mkdir -v build
 cd build
 ../configure
-make #注意我们在这里并不 make install！
+make #not make install
 ./misc/mke2fs -jv /dev/<replaceable>&lt;xxx&gt;</replaceable>
 cd /tmp
 rm -rfv e2fsprogs-&e2fsprogs-version;</userinput></screen>

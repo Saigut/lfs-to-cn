@@ -38,7 +38,7 @@ mkdir -pv /var/{opt,cache,lib/{misc,locate},local}</userinput></screen>
   <sect2>
     <title>FHS 兼容注记</title>
 
-    <para>目录树基于文件系统层级标准 (FHS) (位于 <ulink url="http://www.pathname.com/fhs/"/>)。在 FHS 之外我们还给 <filename class="directory">man</filename>、<filename class="directory">doc</filename> 和 <filename class="directory">info</filename> 目录创建了兼容性符号链接，因为很多程序包依然试图将文档安装到 <filename class="directory">/usr/&lt;目录&gt;</filename> 或 <filename class="directory">/usr/local/&lt;目录&gt;</filename> 中而不是 <filename class="directory">/usr/share/&lt;目录&gt;</filename> 或 <filename class="directory">/usr/local/share/&lt;目录&gt;</filename> 中。FHS 还要求 <filename class="directory">/usr/local/games</filename> 和 <filename class="directory">/usr/share/games</filename> 存在。FHS 对于 <filename class="directory">/usr/local/share</filename> 子目录的要求并不严格，所以我们之创建了需要的目录。不过，如果要严格遵守 FHS 标准，亦可创建之。</para>
+    <para>目录树基于文件系统层级标准 (FHS) (位于 <ulink url="http://www.pathname.com/fhs/"/>)。在 FHS 之外我们还给 <filename class="directory">man</filename>、<filename class="directory">doc</filename> 和 <filename class="directory">info</filename> 目录创建了兼容性符号链接，因为很多程序包依然试图将文档安装到 <filename class="directory">/usr/&lt;dir&gt;</filename> 或 <filename class="directory">/usr/local/&lt;dir&gt;</filename> 中而不是 <filename class="directory">/usr/share/&lt;dir&gt;</filename> 或 <filename class="directory">/usr/local/share/&lt;dir&gt;</filename> 中。FHS 还要求 <filename class="directory">/usr/local/games</filename> 和 <filename class="directory">/usr/share/games</filename> 存在。FHS 对于 <filename class="directory">/usr/local/share</filename> 子目录的要求并不严格，所以我们之创建了需要的目录。不过，如果要严格遵守 FHS 标准，亦可创建之。</para>
 
   </sect2>
 

@@ -28,7 +28,7 @@
 
   <para>除非计算机对互联网可见 (例如有注册的域和可用的 IP 地址块&mdash;&mdash;多数用户没有)，确保 IP 地址在私有 IP 地址区间中。可用的区间包括：</para>
 
-<screen><literal>私有网络地址区间             通常的前缀位数
+<screen><literal>Address Range                   Normal Prefix
 10.0.0.1 - 10.255.255.254       8
 172.x.0.1 - 172.x.255.254       16
 192.168.y.1 - 192.168.y.254     24</literal></screen>
