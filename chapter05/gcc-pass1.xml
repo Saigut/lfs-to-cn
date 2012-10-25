@@ -45,7 +45,7 @@
 
     <para>GCC 现在需求 GMP、MPFR 和 MPC 程序包。由于这些程序包可能未包含与你的宿主发行版中，它们将与 GCC 一同编制。将每个程序包解包至 GCC 源代码目录并重命名产生的文件夹使得 GCC 编制过程能够自动使用他们：</para>
 
-    <note><para>关于这一节经常出现误解。此过程与其他每一节都是一样的，就像之前在<xref linkend='buildinstr'/>中解释的那样。首先从源代码目录中提取 gcc 压缩包然后改变到创建的目录，到这个时候再继续运行以下指令。</para></note>
+    <note><para>关于这一节经常出现误解。此过程与其他每一节都是一样的，就像之前在 <xref linkend='buildinstr'/> 中解释的那样。首先从源代码目录中提取 GCC 压缩包然后改变到创建的目录，再继续运行以下指令。</para></note>
 
 <screen><userinput remap="pre">tar -Jxf ../mpfr-&mpfr-version;.tar.xz
 mv -v mpfr-&mpfr-version; mpfr
@@ -70,7 +70,7 @@ do
   touch $file.orig
 done</userinput></screen>
 
-    <para>由于上文似乎很难跟进，我们把它拆解开来。首先我们找到 <filename class="directory">gcc/config</filename> 目录中所有名为 <filename>linux.h</filename>、<filename>linux64.h</filename> 或者 <filename>sysv4.h</filename> 的文件。对于找到的每个文件，我们把它复制为一个有同样名字但是加上 <quote>.orig</quote> 后缀。然后第一个 sed 表达式将出现的所有 <quote>/lib/ld</quote>、<quote>/lib64/ld</quote> 或 <quote>/lib32/ld</quote> 替换为 <quote>/tools</quote>，第二个替换不可更改的 <quote>/usr</quote>。然后我们在文件末尾添加我们的声明，调节包含搜索路径和起始文件前缀。最后我们用 <command>touch</command> 来更新复制的文件的时间戳。在与 <command>cp -u</command> 联用时这可以防止由于误操作将命令运行两次而改变原有文件。</para>
+    <para>由于上文似乎很难跟进，我们把它拆解开来。首先我们找到 <filename class="directory">gcc/config</filename> 目录中所有名为 <filename>linux.h</filename>、<filename>linux64.h</filename> 或者 <filename>sysv4.h</filename> 的文件。对于找到的每个文件，我们把它复制为一个有同样名字但是加上 <quote>.orig</quote> 后缀。然后第一个 <command>sed</command> 表达式将出现的所有 <filename>/lib/ld</filename>、<filename>/lib64/ld</filename> 或 <filename>/lib32/ld</filename> 替换为 <filename class="directory">/tools</filename>，第二个替换不可更改的 <filename class="directory">/usr</filename>。然后我们在文件末尾添加我们的声明，调节包含搜索路径和起始文件前缀。最后我们用 <command>touch</command> 来更新复制的文件的时间戳。在与 <command>cp -u</command> 联用时这可以防止由于误操作将命令运行两次而改变原有文件。</para>
     
     <para>GCC 不能正确检测堆栈保护，会导致 Glibc-&glibc-version; 编制时出现问题。应用以下命令修复之：</para>
 
@@ -110,7 +110,7 @@ cd ../gcc-build</userinput></screen>
       <varlistentry>
         <term><parameter>--with-newlib</parameter></term>
         <listitem>
-          <para>由于现在还没有能够工作的 C 库可用，此项确保编制 libgcc 时 inhibit_libc 常量是已经定义了的。此项防止编译任何需要 libc 支持的代码。</para>
+          <para>由于现在还没有能够工作的 C 库可用，此项确保编制 <filename class="libraryfile">libgcc</filename> 时 inhibit_libc 常量是已经定义了的。此项防止编译任何需要 libc 支持的代码。</para>
         </listitem>
       </varlistentry>
 
@@ -131,7 +131,7 @@ cd ../gcc-build</userinput></screen>
       <varlistentry>
         <term><parameter>--with-native-system-header-dir=/tools/include</parameter></term>
         <listitem>
-          <para>GCC 默认搜索 <filename>/usr/include</filename> 寻找系统头文件。与 sysroot 开关联用时，它通常会被翻译为 <filename>$LFS/usr/include</filename>。然而下两节将要安装的头文件会去往 <filename>$LFS/tools/include</filename>。此开关确保 gcc 会正确地找到他们。在第二遍的 GCC 中，相同的开关将会确保不会找到宿主上的头文件。</para>
+          <para>GCC 默认搜索 <filename class="directory">/usr/include</filename> 寻找系统头文件。与 <parameter>sysroot</parameter> 开关联用时，它通常会被翻译为 <filename class="directory">$LFS/usr/include</filename>。然而下两节将要安装的头文件会去往 <filename class="directory">$LFS/tools/include</filename>。此开关确保 gcc 会正确地找到他们。在第二遍的 GCC 中，相同的开关将会确保不会找到宿主上的头文件。</para>
         </listitem>
       </varlistentry>
 
@@ -145,7 +145,7 @@ cd ../gcc-build</userinput></screen>
       <varlistentry>
         <term><parameter>--disable-decimal-float, --disable-threads, --disable-libmudflap, --disable-libssp, --disable-libgomp, --disable-libquadmath</parameter></term>
         <listitem>
-          <para>这些开关禁用十进制浮点扩展、线程、libmudflap、libssp 和 libgomp 和 libquadmath  的支持。这些特性在编制交叉编译器时会编译失败，而且对于交叉编译临时的 libc 没有必要。</para>
+          <para>这些开关禁用十进制浮点扩展、线程、<filename class="libraryfile">libmudflap</filename>、<filename class="libraryfile">libssp</filename>、<filename class="libraryfile">libgomp</filename> 和 <filename class="libraryfile">libquadmath</filename> 的支持。这些特性在编制交叉编译器时会编译失败，而且对于交叉编译临时的 libc 没有必要。</para>
         </listitem>
       </varlistentry>
 
@@ -175,7 +175,7 @@ cd ../gcc-build</userinput></screen>
 
 <screen><userinput remap="install">make install</userinput></screen>
 
-    <para>使用 <parameter>--disable-shared</parameter> 意味着 <filename>libgcc_eh.a</filename> 文件不会创建和安装。Glibc 程序包因为在自己的编制系统中使用了 <parameter>-lgcc_eh</parameter> 而依赖这个库。此项依赖关系可以通过创建一个到 <filename>libgcc.a</filename> 的符号链接来满足，因为这个文件最后会包含通常包含在 <filename>libgcc_eh.a</filename> 中的对象。</para>
+    <para>使用 <parameter>--disable-shared</parameter> 意味着 <filename class="libraryfile">libgcc_eh.a</filename> 文件不会创建和安装。Glibc 程序包因为在自己的编制系统中使用了 <parameter>-lgcc_eh</parameter> 而依赖这个库。此项依赖关系可以通过创建一个到 <filename>libgcc.a</filename> 的符号链接来满足，因为这个文件最后会包含通常包含在 <filename>libgcc_eh.a</filename> 中的对象。</para>
 
 <screen><userinput remap="install">ln -sv libgcc.a `$LFS_TGT-gcc -print-libgcc-file-name | \
 sed 's/libgcc/&amp;_eh/'`</userinput></screen>
@@ -185,7 +185,7 @@ sed 's/libgcc/&amp;_eh/'`</userinput></screen>
   <sect2 role="content">
     <title/>
 
-    <para>有关此程序包的细节位于<xref linkend="contents-gcc"/>。</para>
+    <para>有关此程序包的细节位于 <xref linkend="contents-gcc"/>。</para>
 
   </sect2>
 

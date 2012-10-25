@@ -18,7 +18,7 @@
 
   <indexterm zone="ch-tools-glibc">
     <primary sortas="a-Glibc">Glibc</primary>
-    <secondary>tools</secondary>
+    <secondary>工具</secondary>
   </indexterm>
 
   <sect2 role="package">
@@ -54,7 +54,7 @@ fi</userinput></screen>
 
 <screen><userinput remap="pre">sed -i 's/ -lgcc_s//' Makeconfig</userinput></screen>
 
-    <para>Glibc 文档推荐在源代码目录外另建目录编译 Glibc：</para>
+    <para>Glibc 文档推荐在源代码目录外创建目录编译 Glibc：</para>
 
 <screen><userinput remap="pre">mkdir -v ../glibc-build
 cd ../glibc-build</userinput></screen>
@@ -114,26 +114,26 @@ esac</userinput></screen>
       <varlistentry>
         <term><parameter>--with-headers=/tools/include</parameter></term>
         <listitem>
-          <para>告诉 Glibc 使用 tools 文件夹里的头文件编译自身，这样可以让 Glibc 根据新的内核进行优化。</para>
+          <para>告诉 Glibc 使用 <filename class="directory">tools</filename> 文件夹里的头文件编译自身，这样可以让 Glibc 根据新的内核进行优化。</para>
         </listitem>
       </varlistentry>
 
       <varlistentry>
         <term><parameter>libc_cv_forced_unwind=yes</parameter></term>
         <listitem>
-          <para>在<xref linkend="ch-tools-binutils-pass1"/>安装的链接器是交叉编译得到的，在Glibc安装好之前，它不能正常工作。这意味着 configure 对 force-unwind 的检查会失败。libc_cv_forced_unwind=yes 告诉 <command>configure</command> 脚本不进行这项检查。</para>
+          <para>在 <xref linkend="ch-tools-binutils-pass1"/> 安装的链接器是交叉编译得到的，在 Glibc 安装好之前，它不能正常工作。这意味着 <command>configure</comand> 对 force-unwind 的检查会失败。libc_cv_forced_unwind=yes 告诉 <command>configure</command> 脚本不进行这项检查。</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term><parameter>libc_cv_c_cleanup=yes</parameter></term>
         <listitem>
-          <para>同样，我们传递 libc_cv_c_cleanup=yes 给 <command>configure</command> 脚本跳过检查但仍配置 C 清理控制支持。</para>
+          <para>同样，我们传递 <parameter>libc_cv_c_cleanup=yes</parameter> 给 <command>configure</command> 脚本跳过检查但仍配置 C 清理控制支持。</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term><parameter>libc_cv_ctors_header=yes</parameter></term>
         <listitem>
-          <para>同样，我们传递 libc_cv_ctors_header=yes 给 <command>configure</command> 脚本跳过检查但仍配置 gcc 构造函数支持。</para>
+          <para>同样，我们传递 <parameter>libc_cv_ctors_header=yes</parameter> 给 <command>configure</command> 脚本跳过检查但仍配置 GCC 构造函数支持。</para>
         </listitem>
       </varlistentry>
 
@@ -149,7 +149,7 @@ esac</userinput></screen>
 *** Check the INSTALL file for required versions.</computeroutput></screen>
     </blockquote>
 
-    <para>这个丢失或不合适的 <command>msgfmt</command> 程序在这里是无害的。这个 <command>msgfmt</command> 是 gettext 的一部分，宿主系统应该提供这个。</para>
+    <para>这个丢失或不合适的 <command>msgfmt</command> 程序在这里是无害的。这个 <command>msgfmt</command> 是 Gettext 的一部分，宿主系统应该会提供。</para>
 
     <para>编译程序包：</para>
 
@@ -193,7 +193,7 @@ readelf -l a.out | grep ': /tools'</userinput></screen>
   <sect2 role="content">
     <title/>
 
-    <para>有关此程序包的细节位于<xref linkend="contents-glibc"/>。</para>
+    <para>有关此程序包的细节位于 <xref linkend="contents-glibc"/>。</para>
 
   </sect2>
 

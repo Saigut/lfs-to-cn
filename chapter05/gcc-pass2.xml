@@ -84,7 +84,7 @@ mv -v mpc-&mpc-version; mpc</userinput></screen>
 <screen><userinput remap="pre">mkdir -v ../gcc-build
 cd ../gcc-build</userinput></screen>
 
-    <para>在开始编制 GCC 之前，记得解除所有覆盖默认调节标记的环境变量。</para>
+    <para>在开始编制 GCC 之前，记得解除所有覆盖默认优化标记的环境变量。</para>
 
     <para>现在准备编译 GCC：</para>
 
@@ -179,7 +179,7 @@ readelf -l a.out | grep ': /tools'</userinput></screen>
 
     <para>留意 <filename class="directory">/tools/lib</filename> 或者 64 位计算机上的 <filename class="directory">/tools/lib64</filename> 作为动态链接器的前缀出现。</para>
 
-    <para>如果输出不如上文所示或者根本没有输出，那就有什么地方出错了。研究回溯刚才的步骤，查出问题并修正它。在继续之前必须解决这一问题。首先，使用 <command>gcc</command> 而不是 <command>cc</command> 再做一次完整性检查。如果能够工作，那就是 <filename class="symlink">/tools/bin/cc</filename> 这个符号链接丢失了。重做这个链接。下一步，确保 <envar>PATH</envar> 正确。可以运行 <command>echo $PATH</command> 并检查 <filename class="directory">/tools/bin</filename> 是否在列表首位。如果 <envar>PATH</envar> 错误可能就是你未作为 <systemitem class="username">lfs</systemitem> 用户登录或者早在<xref linkend="ch-tools-settingenviron"/>就出现了错误。</para>
+    <para>如果输出不如上文所示或者根本没有输出，那就有什么地方出错了。研究回溯刚才的步骤，查出问题并修正它。在继续之前必须解决这一问题。首先，使用 <command>gcc</command> 而不是 <command>cc</command> 再做一次完整性检查。如果能够工作，那就是 <filename class="symlink">/tools/bin/cc</filename> 这个符号链接丢失了。重做这个链接。下一步，确保 <envar>PATH</envar> 正确。可以运行 <command>echo $PATH</command> 并检查 <filename class="directory">/tools/bin</filename> 是否在列表首位。如果 <envar>PATH</envar> 错误可能就是你未作为 <systemitem class="username">lfs</systemitem> 用户登录或者早在 <xref linkend="ch-tools-settingenviron"/> 就出现了错误。</para>
 
     <para>一切正常之后，清理测试文件：</para>
 

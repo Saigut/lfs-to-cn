@@ -47,7 +47,7 @@ checking what linker to use... /tools/i686-lfs-linux-gnu/bin/ld</computeroutput>
 
   <para>详细信息可以通过在编译伪程序时传递 <parameter>-v</parameter> 命令行选项给 <command>gcc</command> 来获取。比如，<userinput>gcc -v dummy.c</userinput> 就会显示关于预处理器、编译和汇编步骤的详细信息，包括 <command>gcc</command> 的搜索路径和顺序。</para>
 
-  <para>下一个安装的是稳定化的 Linux API 头文件。它们允许标准 C 库 (Glibc) 与 Linux 内核将会提供的特性交互。</para>
+  <para>下一个安装的是净化的 Linux API 头文件。它们允许标准 C 库 (Glibc) 与 Linux 内核将会提供的特性交互。</para>
 
   <para>接下来安装的程序包是 Glibc。编制 Glibc 是最重要的是要考虑到编译器、二进制工具和内核头文件。编译器通常不是问题，因为 Glibc 会总是使用与传递给它的配置脚本的 <parameter>--host</parameter> 参数相关的编译器，在我们的例子中是 <command>i686-lfs-linux-gnu-gcc</command>。二进制工具和内核头文件就有一点复杂了。所以，不要冒险，使用可用的配置开关来强制正确的选择。运行 <command>configure</command> 之后，检查  <filename class="directory">glibc-build</filename> 目录中的 <filename>config.make</filename> 文件来查看所有重要的细节。注意使用 <parameter>CC="i686-lfs-gnu-gcc"</parameter> 来控制要使用的二进制工具，并用 <parameter>-nostdinc</parameter> 和 <parameter>-isystem</parameter> 标记来控制编译器的包含搜索路径。这些事项就是 Glibc 的要点&mdash;&mdash;它在编制机理上非常自我高效，通常不会依赖工具链默认设置。</para>
 

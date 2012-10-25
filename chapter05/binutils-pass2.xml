@@ -119,7 +119,7 @@ cp -v ld/ld-new /tools/bin</userinput></screen>
   <sect2 role="content">
     <title/>
 
-    <para>有关此程序包的细节位于<xref linkend="contents-binutils"/>。</para>
+    <para>有关此程序包的细节位于 <xref linkend="contents-binutils"/>。</para>
 
   </sect2>
 

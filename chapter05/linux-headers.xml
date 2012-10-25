@@ -45,7 +45,7 @@
 
     <para>Linux 内核需要暴露一套应用程序编程接口 (API) 供系统的 C 库 (LFS 中为 Glibc) 使用。通过净化 Linux 内核源代码压缩包中的多个 C 头文件来完成。</para>
 
-    <para>确保不存在之前的活动产生的旧的文件和依赖关系：</para>
+    <para>确保不存在任何先前活动产生的旧的文件和依赖关系：</para>
 
 <screen><userinput remap="pre">make mrproper</userinput></screen>
 
@@ -60,7 +60,7 @@ make INSTALL_HDR_PATH=dest headers_install
   <sect2 role="content">
     <title/>
 
-    <para>有关此程序包的细节位于<xref linkend="contents-linux-headers"/>。</para>
+    <para>有关此程序包的细节位于 <xref linkend="contents-linux-headers"/>。</para>
 
   </sect2>
 
