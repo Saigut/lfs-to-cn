@@ -10,13 +10,13 @@
 
   <title>设置工作环境</title>
 
-  <para>给 <command>bash</command> shell 创建两个新的起始文件来创建一个好的工作环境。作为用户 <systemitem class="username">lfs</systemitem> 登录后运行以下命令来创建新的 <filename>.bash_profile</filename> 文件：</para>
+  <para>给 <command>bash</command> Shell 创建两个新的起始文件来创建一个好的工作环境。作为用户 <systemitem class="username">lfs</systemitem> 登录后运行以下命令来创建新的 <filename>.bash_profile</filename> 文件：</para>
 
 <screen><userinput>cat &gt; ~/.bash_profile &lt;&lt; "EOF"
 <literal>exec env -i HOME=$HOME TERM=$TERM PS1='\u:\w\$ ' /bin/bash</literal>
 EOF</userinput></screen>
 
-  <para>作为用户 <systemitem class="username">lfs</systemitem> 登录时，初始 Shell 通常是一个<emphasis role="strong">登录</emphasis> Shell，会先读取宿主的 <filename>/etc/profile</filename> 文件 (可能包含一些设置和环境变量) 然后是 <filename>.bash_profile</filename>。<filename>.bash_profile</filename> 文件中的 <command>exec env -i.../bin/bash</command> 这条命令用全空的环境替换运行中的 shell，只保留 <envar>HOME</envar>、<envar>TERM</envar> 和 <envar>PS1</envar> 变量。这样就确保了不会有不想要的或有害的环境变量从宿主系统泄漏到编制环境中。这样就实现了确保环境干净的目标。</para>
+  <para>作为用户 <systemitem class="username">lfs</systemitem> 登录时，初始 Shell 通常是一个<emphasis role="strong">登录</emphasis> Shell，会先读取宿主的 <filename>/etc/profile</filename> 文件 (可能包含一些设置和环境变量) 然后是 <filename>.bash_profile</filename>。<filename>.bash_profile</filename> 文件中的 <command>exec env -i.../bin/bash</command> 这条命令用全空的环境替换运行中的 Shell，只保留 <envar>HOME</envar>、<envar>TERM</envar> 和 <envar>PS1</envar> 变量。这样就确保了不会有不想要的或有害的环境变量从宿主系统泄漏到编制环境中。这样就实现了确保环境干净的目标。</para>
 
   <para>新的 shell 是<emphasis role="strong">非登录</emphasis> Shell，不读 <filename>/etc/profile</filename> 和 <filename>.bash_profile</filename> 这两个文件，而去读 <filename>.bashrc</filename> 文件。现在创建 <filename>.bashrc</filename> 文件：</para>
 
@@ -30,19 +30,19 @@ PATH=/tools/bin:/bin:/usr/bin
 export LFS LC_ALL LFS_TGT PATH</literal>
 EOF</userinput></screen>
 
-  <para><command>set +h</command> 命令关闭 <command>bash</command> 的哈希功能。哈希通常是很有用的功能 &mdash;<command>bash</command> 使用哈希表来记忆可执行文件的完整路径以防每次为了同样的可执行文件搜索 <envar>PATH</envar>。然而，新的工具应该一旦安装就被使用。通过关闭哈希功能，Shell 在要运行程序的时候就总会搜索 <envar>PATH</envar>。这样，Shell 就会找到 <filename class="directory">$LFS/tools</filename> 中新编译的工具而不会记住另外一个位置的以前版本的相同程序。</para>
+  <para><command>set +h</command> 命令关闭 <command>bash</command> 的哈希功能。哈希通常是很有用的功能 &mdash;&mdash; <command>bash</command> 使用哈希表来记忆可执行文件的完整路径以防每次为了同样的可执行文件搜索 <envar>PATH</envar>。然而，新的工具应该一旦安装就被使用。通过关闭哈希功能，Shell 在要运行程序的时候就总会搜索 <envar>PATH</envar>。这样，Shell 就会找到 <filename class="directory">$LFS/tools</filename> 中新编译的工具而不会记住另外一个位置的以前版本的相同程序。</para>
 
-  <para>设置用户的文件创建蒙版为 022 可以确保新创建的文件和目录只有所有者可写，但对所有人可读可执行 (假定 <function>open(2)</function> 系统调用默认模式，新文件最后会带上权限模式644，新文件夹为755)。</para>
+  <para>设置用户的文件创建掩码为 022 可以确保新创建的文件和目录只有所有者可写，但所有人都可读可执行 (假定 <function>open(2)</function> 系统调用默认模式，新文件最后会带上权限模式644，新文件夹为755)。</para>
 
   <para><envar>LFS</envar> 变量应设置为选定的挂载点。</para>
 
-  <para><envar>LC_ALL</envar> 变量控制某些程序的本地化，使得它们的消息遵从特定国家的规则。如果宿主系统使用的 Glibc 版本晚于 2.2.4，把 <envar>LC_ALL</envar> 设置为不是 <quote>POSIX</quote> 或者 <quote>C</quote> (这一章) 的值在退出 chroot 环境然后重新进入时可能产生问题。设置 <envar>LC_ALL</envar> 为 <quote>POSIX</quote> 或 <quote>C</quote> (两者等价) 确保在 chroot 环境中一切都正常工作。</para>
+  <para><envar>LC_ALL</envar> 变量控制某些程序的本地化，使得它们的消息遵从特定国家的规则。如果宿主系统使用的 Glibc 版本晚于 2.2.4，把 <envar>LC_ALL</envar> 设置为不是 <quote>POSIX</quote> 或者 <quote>C</quote> (这一章) 的值在退出 chroot 环境然后重新进入时可能产生问题。设置 <envar>LC_ALL</envar> 为 <quote>POSIX</quote> 或 <quote>C</quote> (两者等价) 确保在 <command>chroot</command> 环境中一切都正常工作。</para>
 
-  <para><envar>LFS_TGT</envar> 变量设置一个非默认但兼容的计算机描述，用在编制交叉编译器和链接器并交叉编译我们的临时工具链的时候。更多信息位于<xref linkend="ch-tools-toolchaintechnotes" role=""/>。</para>
+  <para><envar>LFS_TGT</envar> 变量设置一个非默认但兼容的计算机描述，用在编制交叉编译器和链接器并交叉编译我们的临时工具链的时候。更多信息位于 <xref linkend="ch-tools-toolchaintechnotes" role=""/>。</para>
 
-  <para>通过把 <filename class="directory">/tools/bin</filename> 放在标准 <envar>PATH</envar> 之前，<xref linkend="chapter-temporary-tools"/>中安装的所有程序在安装过后就会立刻被 shell 找到。此项与关闭哈希联用，就限制了第五章环境中有程序却使用宿主程序的风险。</para>
+  <para>通过把 <filename class="directory">/tools/bin</filename> 放在标准 <envar>PATH</envar> 之前，<xref linkend="chapter-temporary-tools"/> 中安装的所有程序在安装过后就会立刻被 Shell 找到。此项与关闭哈希联用，就限制了第五章环境中有程序却使用宿主程序的风险。</para>
 
-  <para>最后，为了完成编制临时工具的环境，把刚创建的用户配置文件 source 一下：</para>
+  <para>最后，为了完成编制临时工具的环境，对刚创建的用户配置文件进行一次 source：</para>
 
 <screen><userinput>source ~/.bash_profile</userinput></screen>
 

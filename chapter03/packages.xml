@@ -130,7 +130,7 @@
         <para>MD5 指纹码：<literal>&file-md5;</literal></para>
 
         <note>
-          <para>File (&file-version;) 可能在列出的地方不可用。主下载位置的站点管理员偶尔会在新版本发布时移除旧版本。在这里可以找到替代地址：<ulink url="http://www.linuxfromscratch.org/lfs/download.html#ftp"/></para>
+          <para>File (&file-version;) 可能在列出的地方不可用。主下载位置的站点管理员偶尔会在新版本发布时移除旧版本。在 <ulink url="http://www.linuxfromscratch.org/lfs/download.html#ftp">这里</ulink> 可以找到替代地址：</para>
         </note>
       </listitem>
     </varlistentry>
