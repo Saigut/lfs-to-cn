@@ -10,13 +10,13 @@
 
   <title>创建 $LFS/tools 目录</title>
 
-  <para>在<xref linkend="chapter-temporary-tools"/>中编译的所有程序都将安装于 <filename class="directory">$LFS/tools</filename> 以与<xref linkend="chapter-building-system"/>中编译的程序分离。此处编译的程序是临时工具，并不会成为最终 LFS 系统的一部分。通过将它们至于独立目录，在使用过后就很容易将它们丢弃。这也能防止这些程序进入宿主开发目录 (在<xref linkend="chapter-temporary-tools"/>中很容易误操作致此)。</para>
+  <para>在 <xref linkend="chapter-temporary-tools"/> 中编译的所有程序都将安装于 <filename class="directory">$LFS/tools</filename> 以与 <xref linkend="chapter-building-system"/> 中编译的程序分离。此处编译的程序是临时工具，并不会成为最终 LFS 系统的一部分。通过将它们置于独立目录，在使用过后就很容易丢弃。这也能防止这些程序进入宿主开发目录 (在 <xref linkend="chapter-temporary-tools"/> 中很容易误操作致此)。</para>
 
   <para>作为 <systemitem class="username">root</systemitem> 创建所需目录：</para>
 
 <screen><userinput>mkdir -v $LFS/tools</userinput></screen>
 
-  <para>下一步是在宿主系统上要创建一个 <filename class="symlink">/tools</filename> 符号链接。他将指向 LFS 分区上新创建的目录。同样作为 <systemitem class="username">root</systemitem>运行以下命令：</para>
+  <para>下一步是在宿主系统上创建一个 <filename class="symlink">/tools</filename> 符号链接。它将指向 LFS 分区上新创建的目录。同样作为 <systemitem class="username">root</systemitem> 运行以下命令：</para>
 
 <screen><userinput>ln -sv $LFS/tools /</userinput></screen>
 

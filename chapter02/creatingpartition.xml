@@ -10,7 +10,7 @@
 
   <title>创建一个新分区</title>
 
-  <para>像大多数操作系统一样，LFS 系统通常被安装在一个指定的磁盘分区上。我们建议使用一个空的分区构建一个 LFS 系统，或者，如果你有足够多的未分配空间，新建一个分区。</para>
+  <para>与大多数操作系统相同，LFS 系统通常安装在一个指定的磁盘分区上。我们建议使用一个空的分区构建 LFS 系统，或者，如果有足够多的未分配空间，新建一个分区。</para>
 
 <!--
 
@@ -27,56 +27,56 @@
 
 -->
 
-  <para>一个最小的系统需要一个至少 2.8GB 大的分区。这使得我们有足够的空间存储我们的软件包并进行编译。然而，如果你想要在这个 LFS 系统之上安装其他的软件，额外的空间必不可少。一个 10GB 的分区是比较合理的。LFS 系统本身并不使用这么大的空间，但是编译一些软件的时候需要比较大的临时空间，这些空间在程序包安装后可以释放掉。</para>
+  <para>一个最小的系统分区至少要有 2.8GB 大。这些空间足够我们存储软件包并进行编译。然而，如果你想要在这个 LFS 系统之上安装其他的软件，就需要更大的空间。一个 10GB 的分区是比较合理的。LFS 系统本身并不使用这么大的空间，但是编译一些软件的时候会占用比较大的临时空间，这些空间在程序包安装后可以释放。</para>
 
-  <para>如果没有足够大的 RAM 进行编译，一个比较好的解决方法是使用 <systemitem class="filesystem">swap</systemitem> 空间。内核用它存储不常用的数据并将更多内存留给活动进程使用。LFS 系统可以与宿主系统使用同一个 <systemitem class="filesystem">swap</systemitem> 分区，这种情况下就没有必要重新创建一个。</para>
+  <para>如果没有足够大的 RAM 进行编译，一个比较好的解决方法是使用 <systemitem class="filesystem">swap</systemitem> 空间。内核用它存储不常用的数据并将更多内存留给活动进程使用。LFS 系统可以与宿主系统使用同一个 <systemitem class="filesystem">swap</systemitem> 分区，没有必要重新创建一个。</para>
 
-  <para>使用磁盘分区工具 <command>cfdisk</command> 或者 <command>fdisk</command> 并将你希望使用的硬盘作为命令行参数传入&mdash;&mdash;例如，<filename class="devicefile">/dev/hda</filename> 代表第一块 IDE 硬盘。请根据需要创建 Linux 分区和 <systemitem class="filesystem">swap</systemitem> 分区。如果你不知道如何使用这两个工具，请查阅 man 手册 <filename>cfdisk(8)</filename> 或者 <filename>fdisk(8)</filename>。</para>
+  <para>使用磁盘分区工具 <command>cfdisk</command> 或者 <command>fdisk</command> 并将你希望使用的硬盘作为命令行参数传入&mdash;&mdash;例如，<filename class="devicefile">/dev/hda</filename> 代表第一块 IDE 硬盘。请根据需要创建 Linux 分区和 <systemitem class="filesystem">swap</systemitem> 分区。如果你不知道如何使用这两个工具，请查阅手册 <filename>cfdisk(8)</filename> 或者 <filename>fdisk(8)</filename>。</para>
 
-  <note><para>对于有经验的用户来说，还可以选择其他的分区方案。新的 LFS 系统可以存在于软件 <ulink url="&blfs-root;/view/svn/postlfs/raid.html">RAID</ulink> 阵列或者 <ulink url="&blfs-root;/view/svn/postlfs/aboutlvm.html">LVM</ulink> 逻辑卷上。然而，其中某些选项需求 <ulink url="&blfs-root;/view/svn/postlfs/initramfs.html">initramfs</ulink>，这就是高级的话题了。这些分区方法对于第一次接触 LFS 的用户并不推荐。</para></note>
+  <note><para>对有经验的用户来说，还有其他分区方案可供选择。新的 LFS 系统可以存在于软件 <ulink url="&blfs-root;/view/svn/postlfs/raid.html">RAID</ulink> 阵列或者 <ulink url="&blfs-root;/view/svn/postlfs/aboutlvm.html">LVM</ulink> 逻辑卷上。然而，其中某些选项需要使用 <ulink url="&blfs-root;/view/svn/postlfs/initramfs.html">initramfs</ulink>，这就是高级的话题了。这些分区方法对于第一次接触 LFS 的用户并不推荐。</para></note>
 
-  <para>请记住你将使用的分区 (例如 <filename class="devicefile">hda5</filename>)。本书将此分区称作 LFS 分区。同样记住 <systemitem class="filesystem">swap</systemitem> 分区的名称。这些名称会在 <filename>/etc/fstab</filename> 文件中用到。</para>
+  <para>请记住你将使用的分区 (例如 <filename class="devicefile">hda5</filename>)。本书将此分区称作 LFS 分区。同样，记住 <systemitem class="filesystem">swap</systemitem> 分区的名称。这些名称会在 <filename>/etc/fstab</filename> 文件中用到。</para>
 
   <sect2>
   <title>其他分区问题</title>
 
-  <para>LFS 邮件列表中经常有人寻求系统分区建议。这是一个很主观的话题。多数发行版默认扣出一个小的交换分区然后使用整个驱动器。出于如下原因，这种做法对 LFS 并不理想。它减弱了灵活性，使得在多个发行版或 LFS 编制之间共享数据更困难，使备份更消耗时间，还会因为低效率的文件系统结构分布浪费磁盘空间。</para>
+  <para>LFS 邮件列表中经常有人寻求系统分区建议。这是一个很主观的话题。多数发行版默认扣出一个小的交换分区然后使用整个驱动器。出于如下原因，这种做法对 LFS 并不理想：它会削弱灵活性、使得在多个发行版或 LFS 编制之间共享数据变得困难、使备份消耗更多时间并且把磁盘空间浪费在低效率的文件系统结构分布上。</para>
 
     <sect3>
     <title>根分区</title>
    
-    <para>LFS 根分区 (不要与 <filename class="directory">/root</filename> 目录混淆) 有 10GB 对多数系统够用。它提供足够空间来编制 LFS 和 BLFS 的大部分，又小到可以很容易地创建多个分区用于实验。</para> </sect3>
+    <para>LFS 根分区 (不要与 <filename class="directory">/root</filename> 目录混淆) 有 10GB 对多数系统已经足够了。它提供足够空间来编制 LFS 和 BLFS 的大部分，又小到可以很容易地创建多个分区用于实验。</para> </sect3>
    
     <sect3>
-    <title>交换分区</title>
+    <title><systemitem class="filesystem">swap</systemitem> 分区</title>
    
-    <para>很多发行版会自动创建交换分区。通常推荐交换分区相当于 RAM 的两倍大，但这其实很少用到。如果磁盘空间有限，将交换分区的尺寸限制到 2GB，并监视磁盘交换用量。</para>
+    <para>很多发行版会自动创建 <systemitem class="filesystem">swap</systemitem> 分区。通常推荐 <systemitem class="filesystem">swap</systemitem> 分区相当于 RAM 的两倍大，但这其实很少用到。如果磁盘空间有限，将其尺寸限制到 2GB，并监视其用量。</para>
    
-    <para>交换从来就不是好现象。通常只要听磁盘活动并观察系统对命令的响应即可判断它是否在交换。发现交换的第一反应应该是检查是否有没道理的命令，比如试图编辑 5GB 大的文件。如果交换经常发生，最好的解决方式应该是给电脑加内存。</para> </sect3>
+    <para>交换从来就不是好现象。通常只要听磁盘活动并观察系统对命令的响应即可判断它是否在交换。发现交换的第一反应应该是检查是否在运行没有道理的命令，比如试图编辑 5GB 大的文件。如果交换经常发生，最好的解决方式应该是给电脑加装 RAM。</para> </sect3>
    
     <sect3>
     <title>便捷分区</title>
    
-    <para>还有几个不强制要求的分区，在设计磁盘布局的时候应该考虑一下。以下列表可能不全面，只作向导用。</para>
+    <para>还有几个不强制要求的分区，在设计磁盘布局的时候应该考虑一下。以下列表可能不全面，仅供参考。</para>
    
     <itemizedlist>
       
-      <listitem><para>/boot &ndash; 高度推荐。用这个分区来存放内核和其他启动信息。为了减少大磁盘的间歇启动问题，把此分区作为磁盘上的第一个物理分区。有 100MB 就足够了。</para></listitem>
+      <listitem><para><filename role="directory">/boot</filename> &ndash;&ndash; 高度推荐。用这个分区来存放内核和其他引导信息。为了减少大磁盘的间歇引导问题，把此分区作为磁盘上的第一个物理分区。有 100MB 就足够了。</para></listitem>
       
-      <listitem><para>/home &ndash; 高度推荐。在多个发行版或 LFS 编制之间共享主目录和用户自定义配置。通常尺寸很大，取决与可用磁盘空间。</para></listitem>
+      <listitem><para><filename role="directory">/home</filename> &ndash;&ndash; 高度推荐。在多个发行版或 LFS 编制之间共享主目录和用户自定义配置。通常尺寸很大，取决与可用磁盘空间。</para></listitem>
       
-      <listitem><para>/usr &ndash; 独立的 /usr 分区通常用于给小客户端或无磁盘工作站作服务器。LFS 中通常不需要。5GB 的尺寸可以容纳多数安装。</para></listitem>
+      <listitem><para><filename role="directory">/usr</filename> &ndash;&ndash; 独立的 <filename role="directory">/usr</filename> 分区通常用于小客户端或无磁盘工作站的服务器。LFS 中通常不需要。5GB 的尺寸可以容纳多数安装。</para></listitem>
       
-      <listitem><para>/opt &ndash; 此目录在 BLFS 中多重安装 Gnome、KDE 等大程序包而不用将文件嵌入 /usr 目录时最有用。如果要用， 5-10GB 通常很适宜。</para>
+      <listitem><para><filename role="directory">/opt</filename> &ndash;&ndash; 此目录在 BLFS 中多重安装 Gnome、KDE 等大程序包而不用将文件嵌入 <filename role="directory">/usr</filename> 目录时最有用。如果需要，5-10GB 通常很适宜。</para>
       </listitem>
       
-      <listitem><para>/tmp &ndash; 独立的 /tmp 目录很少见，但是在配置小客户端时很有用。此分区如果使用，通常不必超过几 GB。</para></listitem>
+      <listitem><para><filename role="directory">/tmp</filename> &ndash;&ndash; 独立的 /tmp 目录很少见，但是在配置小客户端时很有用。此分区如果使用，通常不必超过几 GB。</para></listitem>
       
-      <listitem><para>/usr/src &ndash; 此分区非常有用，可以提供一个位置来存放 BLFS 源文件并在 LFS 编制之间共享。它也可以用作编译 BLFS 程序包的位置。大到 30-50GB 不无道理，可以提供充足的空间。</para></listitem>
+      <listitem><para><filename role="directory">/usr/src</filename> &ndash;&ndash; 此分区非常有用，可以提供一个位置来存放 BLFS 源文件并在 LFS 编制之间共享。它也可以用作编译 BLFS 程序包的位置。大到 30-50GB 不无道理，此处需要充足的空间。</para></listitem>
    
     </itemizedlist>
    
-    <para>你想在启动时自动挂载的任何分区都要在 <filename>/etc/fstab</filename> 中指定。关于如何指定分区的细节位于 <xref linkend="ch-bootable-fstab"/>。</para>
+    <para>你想在引导时自动挂载的任何分区都要在 <filename>/etc/fstab</filename> 中指定。关于如何指定分区的细节位于 <xref linkend="ch-bootable-fstab"/>。</para>
    
     </sect3>
   </sect2>

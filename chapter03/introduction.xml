@@ -10,17 +10,17 @@
 
   <title>介绍</title>
 
-  <para>本章列出了要编制基本 Linux 系统需要下载的程序包。列出的版本号对应该软件已知能够工作的版本，本书也基于它们。我们非常不推荐使用更新的版本，因为一个版本的编制指令对更新的版本不工作。最新的程序包版本也可能由需要研究处理处理的问题。这些工作在本书的开发版本中会逐步完成。</para>
+  <para>本章列出了要编制基本 Linux 系统需要的程序包。列出的版本号对应该软件已知能够工作的版本，本书会直接使用之。我们非常不推荐使用更新的版本，因为一个版本的编制指令对更新的版本很可能不工作。最新的程序包版本也可能存在需要研究处理的问题。这些工作在本书的开发版本中会逐步完成。</para>
 
-  <para>下载位置可能不总有效。如果本书发布之后有下载位置改变，使用 <ulink url="http://www.google.com/">Google</ulink> 搜索一下。如果搜索不成功，尝试<ulink url="&lfs-root;lfs/packages.html#packages">此处</ulink>的替代解决方案之一。</para>
+  <para>下载位置可能会失效。如果本书发布之后有下载位置改变，使用 <ulink url="http://www.google.com/">Google</ulink> 搜索一下。如果搜索不成功，尝试 <ulink url="&lfs-root;lfs/packages.html#packages">此处</ulink> 的替代解决方案。</para>
 
-  <para>下载的程序包和补丁要存储在整个编制过城中都方便可用的地方。还需要一个工作目录来解压缩源代码并编制。<filename class="directory">$LFS/sources</filename> 可以既用作存放压缩包的地方也用作工作目录。通过使用此目录，需要的信息就会位于 LFS 分区上，也就在编制过城中的每一步都可用。</para>
+  <para>下载的程序包和补丁要存储在整个编制过程中都方便可用的地方。还需要一个工作目录来解压缩源代码并编制。<filename class="directory">$LFS/sources</filename> 可以既用作存放压缩包的地方也用作工作目录。通过使用此目录，需要的信息就会位于 LFS 分区上，也就在编制过程中的每一步都可用。</para>
 
   <para>要创建这个目录，在开始下载前作为用户 <systemitem class="username">root</systemitem> 运行此命令：</para>
 
 <screen role="nodump"><userinput>mkdir -v $LFS/sources</userinput></screen>
 
-  <para>使此目录可写并且粘滞。<quote>粘滞</quote> 是说即使多个用户对目录拥有写权限，粘滞目录中的文件只有所有者能够删除。以下命令将启用可写和粘滞模式：</para>
+  <para>使此目录可写并且粘滞。<quote>粘滞</quote> 是说即使多个用户对目录拥有写权限，粘滞目录中的文件只有所有者能够删除。以下命令将如此做：</para>
 
 <screen role="nodump"><userinput>chmod -v a+wt $LFS/sources</userinput></screen>
 
@@ -28,7 +28,7 @@
 
 <screen role="nodump"><userinput>wget -i wget-list -P $LFS/sources</userinput></screen> 
 
-  <para>另外，从 LFS-7.0 开始，还有一个独立的文件 <ulink url="../md5sums">md5sums</ulink>，可以用来在进行下去之前检验是否所有程序包都可用。将此文件置于 <filename class="directory">$LFS/sources</filename> 并运行：</para>
+  <para>另外，从 LFS-7.0 开始，还有一个独立的文件 <ulink url="../md5sums">md5sums</ulink>，可以用来在继续之前检验是否所有程序包都可用。将此文件置于 <filename class="directory">$LFS/sources</filename> 并运行：</para>
 
 <screen role="nodump"><userinput>pushd  $LFS/sources
 md5sum -c md5sums

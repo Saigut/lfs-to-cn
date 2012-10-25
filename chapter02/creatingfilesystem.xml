@@ -10,20 +10,20 @@
 
   <title>在新分区上创建文件系统</title>
 
-  <para>现在创建好了空白分区，就可以创建文件系统了。Linux 世界中最常用的系统是第二扩展文件系统 (<systemitem class="filesystem">ext2</systemitem>)，但有了新的大容量硬盘，日志文件系统逐渐受欢迎。第三扩展文件系统 (<systemitem class="filesystem">ext3</systemitem>) 是 <systemitem class="filesystem">ext2</systemitem> 的一种广泛应用的增强，加入了日志兼容性并且与 E2fsprogs 工具兼容。我们将创建 <systemitem class="filesystem">ext3</systemitem> 文件系统。创建其他文件系统的指令位于<ulink url="&blfs-root;view/svn/postlfs/filesystems.html">此处</ulink>。</para>
+  <para>现在创建好了空白分区，就可以创建文件系统了。Linux 中最常用的是 <systemitem class="filesystem">ext2</systemitem> 文件系统，但有了新的大容量硬盘，日志文件系统越来越受欢迎。<systemitem class="filesystem">ext3</systemitem> 文件系统是 <systemitem class="filesystem">ext2</systemitem> 的一种广泛应用的增强，加入了日志兼容性并且与 E2fsprogs 工具兼容。我们将创建 <systemitem class="filesystem">ext3</systemitem> 文件系统。创建其他文件系统的指令位于 <ulink url="&blfs-root;view/svn/postlfs/filesystems.html">此处</ulink>。</para>
 
-  <para>要在 LFS 分区上创建 <systemitem class="filesystem">ext3</systemitem> 文件系统，运行以下：</para>
+  <para>要在 LFS 分区上创建 <systemitem class="filesystem">ext3</systemitem> 文件系统，运行以下命令：</para>
 
 <screen role="nodump"><userinput>mke2fs -jv /dev/<replaceable>&lt;xxx&gt;</replaceable></userinput></screen>
 
   <para>将 <replaceable>&lt;xxx&gt;</replaceable> 替换为 LFS 分区名 (前面的例子中是<filename class="devicefile">hda5</filename>)。</para>
 
   <note>
-    <para>有些发行版在他们的文件系统创建工具 (E2fsprogs) 中使用了自定义特性，这可能导致在第九章启动到新的 LFS 系统时遇到麻烦，因为 LFS 安装的 E2fsprogs 不支持这些特性；你会收到类似 <quote>unsupported filesystem features, upgrade your e2fsprogs</quote> 的错误消息。要检查你的宿主系统是否使用了自定义增强，运行以下命令：</para>
+    <para>有些发行版在他们的文件系统创建工具 (E2fsprogs) 中使用了自定义特性，这可能导致在第九章引导到新的 LFS 系统时遇到麻烦，因为 LFS 安装的 E2fsprogs 不支持这些特性；你会收到类似 <quote>unsupported filesystem features, upgrade your e2fsprogs</quote> 的错误消息。要检查你的宿主系统是否使用了自定义增强，运行以下命令：</para>
 
 <screen role="nodump"><userinput>debugfs -R feature /dev/<replaceable>&lt;xxx&gt;</replaceable></userinput></screen>
 
-    <para>如果输出包含除 <option>has_journal</option>、<option>ext_attr</option>、<option>resize_inode</option>、<option>dir_index</option>、<option>filetype</option>、<option>sparse_super</option>、<option>large_file</option> 或 <option>needs_recovery</option> 之外的选项，你的宿主可能就有自定义增强。这样的话，为了防止以后出问题，你应该编译一下 E2fsprogs 程序包并使用产生的二进制来重新创建 LFS 分区上的文件系统：</para>
+    <para>如果输出包含除 <option>has_journal</option>、<option>ext_attr</option>、<option>resize_inode</option>、<option>dir_index</option>、<option>filetype</option>、<option>sparse_super</option>、<option>large_file</option> 或 <option>needs_recovery</option> 之外的选项，你的宿主就可能有自定义增强。这种情况下，为了防止以后出问题，你应该编译一下 E2fsprogs 程序包并使用产生的二进制来重新创建 LFS 分区上的文件系统：</para>
 
 <screen role="nodump"><userinput>cd /tmp
 tar -xzvf /path/to/sources/e2fsprogs-&e2fsprogs-version;.tar.gz
@@ -37,7 +37,7 @@ cd /tmp
 rm -rfv e2fsprogs-&e2fsprogs-version;</userinput></screen>
   </note>
 
-  <para>如果你要使用已存在的 <systemitem class="filesystem">swap</systemitem>分区，就不必再创建一个。如果创建了新的 <systemitem class="filesystem">swap</systemitem> 分区，需要用以下命令初始化之：</para>
+  <para>如果你要使用已存在的 <systemitem class="filesystem">swap</systemitem> 分区，就不必再创建一个。如果创建了新的 <systemitem class="filesystem">swap</systemitem> 分区，需要用以下命令初始化之：</para>
 
 <screen role="nodump"><userinput>mkswap /dev/<replaceable>&lt;yyy&gt;</replaceable></userinput></screen>
 
