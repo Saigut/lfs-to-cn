@@ -121,7 +121,7 @@ esac</userinput></screen>
       <varlistentry>
         <term><parameter>libc_cv_forced_unwind=yes</parameter></term>
         <listitem>
-          <para>在 <xref linkend="ch-tools-binutils-pass1"/> 安装的链接器是交叉编译得到的，在 Glibc 安装好之前，它不能正常工作。这意味着 <command>configure</comand> 对 force-unwind 的检查会失败。libc_cv_forced_unwind=yes 告诉 <command>configure</command> 脚本不进行这项检查。</para>
+          <para>在 <xref linkend="ch-tools-binutils-pass1"/> 安装的链接器是交叉编译得到的，在 Glibc 安装好之前，它不能正常工作。这意味着 <command>configure</command> 对 force-unwind 的检查会失败。libc_cv_forced_unwind=yes 告诉 <command>configure</command> 脚本不进行这项检查。</para>
         </listitem>
       </varlistentry>
       <varlistentry>
