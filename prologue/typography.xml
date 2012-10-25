@@ -27,7 +27,7 @@
 
   <para>这种形式的文本 (等宽文本) 显示屏幕输出，通常是执行的命令产生的结果。这种格式也用于表示文件名，如 <filename>/etc/ld.so.conf</filename> 。</para>
 
-  <para><emphasis>强调</emphasis></para>
+  <para><emphasis role="strong">强调</emphasis></para>
 
   <para>这种形式的文本在本书中用于多种目的，主要是强调要点或重要事物。</para>
 
@@ -53,7 +53,7 @@ EOF</userinput></screen>
 
   <para><filename>passwd(5)</filename></para>
 
-  <para>此格式用于指向特定的手册页。括号中的数字指手册中特定的章节。举个例子， <command>passwd</command> 有两页手册。 每次 LFS 安装，这两页手册会位于 <filename>/usr/share/man/man1/passwd.1</filename> 和 <filename>/usr/share/man/man5/passwd.5</filename> 。当本书使用 <filename>passwd(5)</filename> 的时候指的就是 <filename>/usr/share/man/man5/passwd.5</filename> 。<command>man passwd</command> 会印出找到的第一个符合 <quote>passwd</quote> 的页面,也就是 <filename>/usr/share/man/man1/passwd.1</filename> 。此例中，你需要运行 <command>man 5 passwd</command> 来阅读制定的页面。要注意多数手册页不会在不同章节有相同的文件名，因此 <command>man <replaceable>&lt;name&gt;</replaceable></command> 通常是有效的。</para>
+  <para>此格式用于指向特定的手册页。括号中的数字指手册中特定的章节。举个例子，<command>passwd</command> 有两页手册。 每次 LFS 安装，这两页手册会位于 <filename>/usr/share/man/man1/passwd.1</filename> 和 <filename>/usr/share/man/man5/passwd.5</filename>。当本书使用 <filename>passwd(5)</filename> 的时候指的就是 <filename>/usr/share/man/man5/passwd.5</filename>。<command>man passwd</command> 会印出找到的第一个符合 <quote>passwd</quote> 的页面,也就是 <filename>/usr/share/man/man1/passwd.1</filename>。此例中，你需要运行 <command>man 5 passwd</command> 来阅读制定的页面。要注意多数手册页不会在不同章节有相同的文件名，因此 <command>man <replaceable>&lt;name&gt;</replaceable></command> 通常是有效的。</para>
 
 </sect1>
 

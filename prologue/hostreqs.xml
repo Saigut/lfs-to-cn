@@ -25,7 +25,7 @@
     </listitem>
 
     <listitem>
-      <para><emphasis role="strong">Bison-2.3</emphasis> (/usr/bin/yacc 应为到 bison 的链接或运行 bison 的小脚本)</para>
+      <para><emphasis role="strong">Bison-2.3</emphasis> (/usr/bin/yacc 应为到 bison 的链接或运行 bison 的脚本)</para>
     </listitem>
 
     <listitem>
@@ -49,7 +49,7 @@
     </listitem>
 
     <listitem>
-      <para><emphasis role="strong">Gcc-4.1.2</emphasis> (高于 &gcc-version; 的版本因未经测试而不推荐)</para>
+      <para><emphasis role="strong">GCC-4.1.2</emphasis> (高于 &gcc-version; 的版本因未经测试而不推荐)</para>
     </listitem>
 
     <listitem>
@@ -65,12 +65,11 @@
     </listitem>
 
     <listitem>
-      <para><emphasis role="strong">Linux Kernel-2.6.25</emphasis>
-      (以 GCC-4.1.2 或更高版本编译)</para>
+      <para><emphasis role="strong">Linux-2.6.25</emphasis> (以 GCC-4.1.2 或更高版本编译)</para>
 
-      <para>有内核版本需求的原因是根据开发人员推荐，在第六章编译 <application>glibc</application> 时指定此版本。udev 也需求此版本。</para>
+      <para>有内核版本需求的原因是根据开发人员推荐，在 <xref linkend="chapter-building-system"/> 编译 Glibc 时指定此版本。Udev 也要求此版本。</para>
 
-      <para>如果宿主内核早于 2.6.25 或并非以 GCC-4.1.2 (或更高版本) 编译，你就需要用一个符合要求的内核来替换。有两种方法。其一，看看你的发行版是否提供 2.6.25 或更高版本的内核程序包。如果有，直接安装即可。如果没有，或者你不想安装，也可以自己编译一个。编译内核并配置引导加载器 (确保宿主系统使用 GRUB) 位于<xref linkend="chapter-bootable"/>。</para>
+      <para>如果宿主内核早于 2.6.25 或并非以 GCC-4.1.2 (或更高版本) 编译，你就需要用一个符合要求的内核来替换。有两种方法。其一，查看你的发行版是否提供 2.6.25 或更高版本的内核程序包。如果有，直接安装即可。如果没有，或者你不想安装，也可以自己编译一个。编译内核并配置引导加载器的方法 (请确保宿主系统使用 Grub) 位于 <xref linkend="chapter-bootable"/>。</para>
 
     </listitem>
 
@@ -111,7 +110,7 @@
 
   <para>注意上文提到的符号链接是按本书指令编制 LFS 必需的。指向其他软件 (比如 dash、mawk 等) 的符号链接可能工作，但未被 LFS 开发团队测试和支持，并可能与指令有偏差或需要某些程序包的额外补丁。</para>
 
-  <para id="version-check">要查看你的宿主系统是否有所有正确版本并有能力编译程序，运行以下：</para>
+  <para id="version-check">要查看你的宿主系统是否有所有正确版本并有能力编译程序，运行以下命令：</para>
 
 <!-- ANY additional lines in the script cause a pdf rendering problem-->
 <screen role="nodump"><userinput>cat &gt; version-check.sh &lt;&lt; "EOF"

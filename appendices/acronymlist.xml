@@ -77,6 +77,13 @@
         <para>change root</para>
       </listitem>
     </varlistentry>
+    
+    <varlistentry>
+      <term><emphasis role="bold">CLFS</emphasis></term>
+      <listitem>
+        <para>Cross Linux From Scratch</para>
+      </listitem>
+    </varlistentry>
 
     <varlistentry>
       <term><emphasis role="bold">CMOS</emphasis></term>
@@ -165,21 +172,21 @@
     <varlistentry>
       <term><emphasis role="bold">ext2</emphasis></term>
       <listitem>
-        <para>second extended file system</para>
+        <para>second extended file system，第二扩展文件系统</para>
       </listitem>
     </varlistentry>
 
     <varlistentry>
       <term><emphasis role="bold">ext3</emphasis></term>
       <listitem>
-        <para>third extended file system</para>
+        <para>third extended file system，第三扩展文件系统</para>
       </listitem>
     </varlistentry>
 
     <varlistentry>
       <term><emphasis role="bold">ext4</emphasis></term>
       <listitem>
-        <para>fourth extended file system</para>
+        <para>fourth extended file system，第四扩展文件系统</para>
       </listitem>
     </varlistentry>
 
@@ -193,7 +200,7 @@
     <varlistentry>
       <term><emphasis role="bold">FHS</emphasis></term>
       <listitem>
-        <para>Filesystem Hierarchy Standard</para>
+        <para>Filesystem Hierarchy Standard，文件系统层次结构标准</para>
       </listitem>
     </varlistentry>
 
@@ -221,7 +228,7 @@
     <varlistentry>
       <term><emphasis role="bold">GB</emphasis></term>
       <listitem>
-        <para>Gigabytes</para>
+        <para>Gigabyte，千兆字节</para>
       </listitem>
     </varlistentry>
 
@@ -284,7 +291,7 @@
     <varlistentry>
       <term><emphasis role="bold">IP</emphasis></term>
       <listitem>
-        <para>Internet Protocol</para>
+        <para>Internet Protocol，互联网协议</para>
       </listitem>
     </varlistentry>
 
@@ -340,14 +347,14 @@
     <varlistentry>
       <term><emphasis role="bold">LSB</emphasis></term>
       <listitem>
-        <para>Linux Standard Base</para>
+        <para>Linux Standard Base，Linux 基础标准</para>
       </listitem>
     </varlistentry>
 
     <varlistentry>
       <term><emphasis role="bold">MB</emphasis></term>
       <listitem>
-        <para>Megabytes</para>
+        <para>兆字节</para>
       </listitem>
     </varlistentry>
 
@@ -410,7 +417,14 @@
     <varlistentry>
       <term><emphasis role="bold">PCRE</emphasis></term>
       <listitem>
-        <para>Perl Compatible Regular Expression</para>
+        <para>Perl Compatible Regular Expression，与 PERL 兼容的正则表达式</para>
+      </listitem>
+    </varlistentry>
+    
+    <varlistentry>
+      <term><emphasis role="bold">PERL</emphasis></term>
+      <listitem>
+        <para>Practical Extraction and Repoeting Language，实用摘要与报告语言</para>
       </listitem>
     </varlistentry>
 
@@ -425,6 +439,13 @@
       <term><emphasis role="bold">PLFS</emphasis></term>
       <listitem>
         <para>Pure Linux From Scratch</para>
+      </listitem>
+    </varlistentry>
+    
+    <varlistentry>
+      <term><emphasis role="bold">POSIX</emphasis></term>
+      <listitem>
+        <para>Portable Operating System Interface of Unix，Unix 可移植操作系统接口</para>
       </listitem>
     </varlistentry>
 
@@ -452,7 +473,7 @@
     <varlistentry>
       <term><emphasis role="bold">RAM</emphasis></term>
       <listitem>
-        <para>Random Access Memory</para>
+        <para>Random Access Memory，随机访问存储器 (内存)</para>
       </listitem>
     </varlistentry>
 

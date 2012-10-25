@@ -28,7 +28,7 @@
       <para>Autoconf &autoconf-version;</para>
     </listitem>-->
     <listitem>
-      <para>Automake &automake-version;</para>
+      <para>Automake-&automake-version;</para>
     </listitem>
     <!--<listitem>
       <para>Bash &bash-version;</para>
@@ -73,7 +73,7 @@
       <para>Gawk &gawk-version;</para>
     </listitem>-->
     <listitem>
-      <para>GCC &gcc-version;</para>
+      <para>GCC-&gcc-version;</para>
     </listitem>
     <!--<listitem>
       <para>GDBM &gdbm-version;</para>
@@ -106,28 +106,28 @@
       <para>Inetutils &inetutils-version;</para>
     </listitem>-->
     <listitem>
-      <para>IPRoute2 &iproute2-version;</para>
+      <para>IPRoute2-&iproute2-version;</para>
     </listitem>
     <!--<listitem>
       <para>Kbd &kbd-version;</para>
     </listitem>-->
     <listitem>
-      <para>Kmod &kmod-version;</para>
+      <para>Kmod-&kmod-version;</para>
     </listitem>
     <listitem>
-      <para>Less &less-version;</para>
+      <para>Less-&less-version;</para>
     </listitem>
     <!--<listitem>
       <para>LFS-Bootscripts &lfs-bootscripts-version;</para>
     </listitem>-->
     <listitem>
-      <para>Libpipeline &libpipeline-version;</para>
+      <para>Libpipeline-&libpipeline-version;</para>
     </listitem>
     <!--<listitem>
       <para>Libtool &libtool-version;</para>
     </listitem>-->
     <listitem>
-      <para>Linux &linux-version;</para>
+      <para>Linux-&linux-version;</para>
     </listitem>
     <!--<listitem>
       <para>M4 &m4-version;</para>
@@ -136,13 +136,13 @@
       <para>Make &make-version;</para>
     </listitem>-->
     <listitem>
-      <para>Man-DB &man-db-version;</para>
+      <para>Man-DB-&man-db-version;</para>
     </listitem>
     <!--<listitem>
       <para>Man-pages &man-pages-version;</para>
     </listitem>-->
     <listitem>
-      <para>MPC &mpc-version;</para>
+      <para>MPC-&mpc-version;</para>
     </listitem>
     <!--<listitem>
       <para>MPFR &mpfr-version;</para>
@@ -151,19 +151,19 @@
       <para>Ncurses &ncurses-version;</para>
     </listitem>-->
     <listitem>
-      <para>Patch &patch-version;</para>
+      <para>Patch-&patch-version;</para>
     </listitem>
     <!--<listitem>
       <para>Perl &perl-version;</para>
     </listitem>-->
     <listitem>
-      <para>Pkg-config &pkgconfig-version;</para>
+      <para>Pkg-config-&pkgconfig-version;</para>
     </listitem>
     <!--<listitem>
       <para>Procps &procps-version;</para>
     </listitem>-->
     <listitem>
-      <para>Psmisc &psmisc-version;</para>
+      <para>Psmisc-&psmisc-version;</para>
     </listitem>
     <!--<listitem>
       <para>Readline &readline-version;</para>
@@ -190,13 +190,13 @@
       <para>Texinfo &texinfo-version;</para>
     </listitem>-->
     <listitem>
-      <para>Udev &systemd-version; (extracted from systemd-&systemd-version;)</para>
+      <para>Udev-&systemd-version; (提取自 systemd-&systemd-version;)</para>
     </listitem>
     <!--<listitem>
       <para>&udev-config;</para>
     </listitem>-->
     <listitem>
-      <para>Util-Linux &util-linux-version;</para>
+      <para>Util-Linux-&util-linux-version;</para>
     </listitem>
     <!--<listitem>
       <para>Vim &vim-version;</para>

@@ -10,7 +10,7 @@
 
   <title>变更日志</title>
 
-  <para>此 Linux From Scratch 译本对应版本 &version;，发布日期为 &releasedate;。如果本书已经超过六个月了，或许会有更新的版本发布。请查看<ulink url="&lfs-root;mirrors.html">镜像站点</ulink>。(译注：LFSCN 始终对应 LFS 的 开发版本，LFS 中的更新会在几天内进入 LFSCN，请确保使用最新版本的 LFSCN。)</para>
+  <para>此 Linux From Scratch 译本对应版本 &version;，发布日期为 &releasedate;。如果本书已经超过六个月了，或许会有更新的版本发布。请查看 <ulink url="&lfs-root;mirrors.html">镜像站点</ulink>。(译注：LFSCN 始终对应 LFS 的 开发版本，LFS 中的更新会在几天内进入 LFSCN，请确保使用最新版本的 LFSCN。)</para>
 
   <para>以下是本书上次发布以来所做的改动。</para>
 
@@ -37,10 +37,10 @@
       <para>2012-10-15</para>
       <itemizedlist>
         <listitem>
-          <para>[bdubbs] - 给第六章 gcc 和 binutils 两节加入有关链接时优化和 gcc 编制的额外文件的注记。修复 <ulink url="&lfs-ticket-root;3200">#3200</ulink>。</para>
+          <para>[bdubbs] - 给第六章 GCC 和 Binutils 两节加入有关链接时优化和 GCC 编制的额外文件的注记。修复 <ulink url="&lfs-ticket-root;3200">#3200</ulink>。</para>
         </listitem>
         <listitem>
-          <para>[bdubbs] - 升级至 tzdata-2012f。修复 <ulink url="&lfs-ticket-root;3205">#3205</ulink>。</para>
+          <para>[bdubbs] - 升级至 TZData-2012f。修复 <ulink url="&lfs-ticket-root;3205">#3205</ulink>。</para>
         </listitem>
         <listitem>
           <para>[bdubbs] - 升级几个已安装程序的介绍。感谢 Chris Staub 提供补丁。修复 <ulink url="&lfs-ticket-root;3203">#3203</ulink>。</para> 
@@ -52,16 +52,16 @@
       <para>2012-10-14</para>
       <itemizedlist>
         <listitem>
-          <para>[bdubbs] - 从 sysvinit 中移除 utmpdump，它现在由 util-linux 安装。感谢 Chris Staub 提供补丁。修复 <ulink url="&lfs-ticket-root;3202">#3202</ulink>。</para> 
+          <para>[bdubbs] - 从 Sysvinit 中移除 <command>utmpdump</command>，它现在由 Util-Linux 安装。感谢 Chris Staub 提供补丁。修复 <ulink url="&lfs-ticket-root;3202">#3202</ulink>。</para> 
         </listitem>
         <listitem>
-          <para>[bdubbs] - 改变 procps，使其不安装 kill 程序，该程序现在由 util-linux 安装。修复 <ulink url="&lfs-ticket-root;3201">#3201</ulink>。</para> 
+          <para>[bdubbs] - 改变 Procps，使其不安装 <command>kill</command> 程序，该程序现在由 Util-Linux 安装。修复 <ulink url="&lfs-ticket-root;3201">#3201</ulink>。</para> 
         </listitem>
         <listitem>
-          <para>[bdubbs] - 升级至 util-linux-2.22.1。修复 <ulink url="&lfs-ticket-root;3199">#3199</ulink>。.</para> 
+          <para>[bdubbs] - 升级至 Util-Linux-2.22.1。修复 <ulink url="&lfs-ticket-root;3199">#3199</ulink>。.</para> 
         </listitem>
         <listitem>
-          <para>[bdubbs] - 升级至 linux-3.6.2。修复 <ulink url="&lfs-ticket-root;3198">#3198</ulink>。</para> 
+          <para>[bdubbs] - 升级至 Linux-3.6.2。修复 <ulink url="&lfs-ticket-root;3198">#3198</ulink>。</para> 
         </listitem>
         <listitem>
           <para>[bdubbs] - 添加引导/关机脚本自定义指令。</para> 
@@ -112,7 +112,7 @@
       <para>2012-09-28</para>
       <itemizedlist>
         <listitem>
-          <para>[bdubbs] - 升级至 systemd/udev-lfs-193。修复 <ulink url="&lfs-ticket-root;3192">#3192</ulink>。</para>
+          <para>[bdubbs] - 升级至 Systemd/Udev-lfs-193。修复 <ulink url="&lfs-ticket-root;3192">#3192</ulink>。</para>
         </listitem>
       </itemizedlist>
     </listitem>
@@ -121,7 +121,7 @@
       <para>2012-09-27</para>
       <itemizedlist>
         <listitem>
-          <para>[bdubbs] - 升级至 systemd/udev-lfs-192。修复 <ulink url="&lfs-ticket-root;3189">#3189</ulink>。</para>
+          <para>[bdubbs] - 升级至 Systemd/Udev-lfs-192。修复 <ulink url="&lfs-ticket-root;3189">#3189</ulink>。</para>
         </listitem>
       </itemizedlist>
     </listitem>
@@ -160,7 +160,7 @@
       <para>2012-09-05</para>
       <itemizedlist>
         <listitem>
-          <para>[bdubbs] - 向 Udev 脚本中加入 udevadm trigger --action=change 这一行，以更好地支持 initramfs。</para>
+          <para>[bdubbs] - 向 Udev 脚本中加入 <parameter>udevadm trigger --action=change</parameter> 这一行，以更好地支持 initramfs。</para>
         </listitem>
       </itemizedlist>
     </listitem>
@@ -169,10 +169,10 @@
       <para>2012-09-04</para>
       <itemizedlist>
         <listitem>
-          <para>[bdubbs] - 升级 grub 程序包并给传统例子命名。</para>
+          <para>[bdubbs] - 升级 Grub 程序包并给传统例子命名。</para>
         </listitem>
         <listitem>
-          <para>[bdubbs] - 升级至 Util-linux-2.22。修复 <ulink url="&lfs-ticket-root;3145">#3145</ulink>。</para>
+          <para>[bdubbs] - 升级至 Util-Linux-2.22。修复 <ulink url="&lfs-ticket-root;3145">#3145</ulink>。</para>
         </listitem>
       </itemizedlist>
     </listitem>
@@ -181,10 +181,10 @@
       <para>2012-09-02</para>
       <itemizedlist>
         <listitem>
-          <para>[bdubbs] - 给第六章的 glibc 加入一个补丁修复 test-installation.pl 脚本而不是阻止其运行。修复 <ulink url="&lfs-ticket-root;3175">#3175</ulink>。</para>
+          <para>[bdubbs] - 给第六章的 Glibc 加入一个补丁修复 <filename>test-installation.pl</filename> 脚本而不是阻止其运行。修复 <ulink url="&lfs-ticket-root;3175">#3175</ulink>。</para>
         </listitem>
         <listitem>
-          <para>[bdubbs] - 升级至 systemd-189。修复 <ulink url="&lfs-ticket-root;3167">#3167</ulink>。</para>
+          <para>[bdubbs] - 升级至 Systemd-189。修复 <ulink url="&lfs-ticket-root;3167">#3167</ulink>。</para>
         </listitem>
       </itemizedlist>
     </listitem>
