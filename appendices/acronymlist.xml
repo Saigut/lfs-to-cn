@@ -67,7 +67,7 @@
     <varlistentry>
       <term><emphasis role="bold">BSD</emphasis></term>
       <listitem>
-        <para>Berkeley Software Distribution，伯克利软件套件</para>
+        <para>Berkeley Software Distribution，伯克利软件发行版</para>
       </listitem>
     </varlistentry>
 
@@ -151,7 +151,7 @@
     <varlistentry>
       <term><emphasis role="bold">EOF</emphasis></term>
       <listitem>
-        <para>End of File，文件末尾 (无更多数据可读)</para>
+        <para>End of File，文件末尾</para>
       </listitem>
     </varlistentry>
 
@@ -235,14 +235,14 @@
     <varlistentry>
       <term><emphasis role="bold">GCC</emphasis></term>
       <listitem>
-        <para>GNU Compiler Collection，GNU 集成编译器</para>
+        <para>GNU Compiler Collection，GNU 编译器集</para>
       </listitem>
     </varlistentry>
 
     <varlistentry>
       <term><emphasis role="bold">GID</emphasis></term>
       <listitem>
-        <para>Group Identifier，组ID</para>
+        <para>Group Identifier，组 ID</para>
       </listitem>
     </varlistentry>
 
@@ -396,14 +396,14 @@
     <varlistentry>
       <term><emphasis role="bold">NPTL</emphasis></term>
       <listitem>
-        <para>Native POSIX Threading Library，本地 POSIX 线程库</para>
+        <para>Native POSIX Threading Library，原生 POSIX 线程库</para>
       </listitem>
     </varlistentry>
 
     <varlistentry>
       <term><emphasis role="bold">OSS</emphasis></term>
       <listitem>
-        <para>Open Sound System，声音开放系统</para>
+        <para>Open Sound System，开放声音系统</para>
       </listitem>
     </varlistentry>
 

@@ -15,15 +15,15 @@
   <itemizedlist>
 
   <listitem>
-    <para>有几个程序包在编译之前要打补丁，但是只是在需要它来解决问题时才要求如此做。在本章和下一章中通常都会用到补丁，有时只有一章用到。因此，如果下载的某个补丁对应的指令似乎丢失，不要困扰。有关 <emphasis>offset</emphasis> 或者 <emphasis>fuzz</emphasis> 的警告信息可能在应用补丁的时候也会遇到。不要担心，补丁依然成功应用了。</para>
+    <para>有几个程序包在编译之前要打补丁，但是只是在需要它来解决问题时才要求如此做。在本章和下一章中通常都会用到补丁。因此，如果下载的某个补丁对应的指令似乎丢失，不要困扰。有关 <emphasis>offset</emphasis> 或者 <emphasis>fuzz</emphasis> 的警告信息可能在应用补丁的时候也会遇到。不要担心，补丁依然成功应用了。</para>
   </listitem>
 
   <listitem>
-    <para>编译多数程序包时，会有一些警告在屏幕上滚动。这很正常，可以安全地忽略。这些警告如它们所说&mdash;有关不推荐但并非不可用的 C 或 C++ 语法。C 标准经常变更，有的程序包仍然使用旧的标准。这不是问题，但确实会产生警告。</para>
+    <para>编译多数程序包时，会有一些警告在屏幕上滚动。这很正常，可以安全地忽略。这些警告如它们所说&mdash;&mdash;有关不推荐但并非不可用的 C 或 C++ 语法。C 标准经常变更，有的程序包仍然使用旧的标准。这不是问题，但确实会产生警告。</para>
   </listitem>
 
   <listitem>
-    <para>最后检查一次 <envar>LFS</envar> 环境变量是否正确设置：</para>
+    <para>最后检查一次 <envar>LFS</envar> 环境变量是否设置正确：</para>
 
 <screen role="nodump"><userinput>echo $LFS</userinput></screen>
 
@@ -43,7 +43,7 @@
 
       <orderedlist numeration="arabic" spacing="compact">
         <listitem>
-          <para>把所有的源代码和补丁放在 chroot 环境以内的一个目录，比如 <filename class="directory">/mnt/lfs/sources/</filename>。<emphasis>不要</emphasis>把源代码放在 <filename class="directory">/mnt/lfs/tools/</filename> 中。</para>
+          <para>把所有的源代码和补丁放在 <command>chroot</command> 环境以内的一个目录，比如 <filename class="directory">/mnt/lfs/sources/</filename>。<emphasis role="strong">不要</emphasis>把源代码放在 <filename class="directory">/mnt/lfs/tools/</filename> 中。</para>
         </listitem>
         <listitem>
           <para>变更至源代码目录。</para>
