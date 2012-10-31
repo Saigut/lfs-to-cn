@@ -68,7 +68,7 @@ cp -Rv lib/* /tools/lib/perl5/&perl-version;</userinput></screen>
   <sect2 role="content">
     <title/>
 
-    <para>有关此程序包的细节位于<xref linkend="contents-perl"/>。</para>
+    <para>有关此程序包的细节位于 <xref linkend="contents-perl"/>。</para>
 
   </sect2>
 

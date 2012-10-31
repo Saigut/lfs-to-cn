@@ -74,7 +74,7 @@
       <varlistentry id="runtest">
         <term><command>runtest</command></term>
         <listitem>
-          <para>一个包装脚本，定位正确的 <command>expect</command> shell 然后运行 DejaGNU</para>
+          <para>一个打包脚本，定位正确的 <command>expect</command> Shell 然后运行 DejaGNU</para>
           <indexterm zone="ch-tools-dejagnu runtest">
             <primary sortas="b-runtest">runtest</primary>
           </indexterm>

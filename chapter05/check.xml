@@ -52,7 +52,7 @@
 
 <screen><userinput remap="test">make check</userinput></screen>
 
-    <para>注意 Check 的测试套件可能占用相对较长的时间 (至多 4 SBU)。</para>
+    <para>注意 Check 的测试套件可能占用相对较长的时间 (可达 4 SBU)。</para>
 
     <para>安装程序包：</para>
 

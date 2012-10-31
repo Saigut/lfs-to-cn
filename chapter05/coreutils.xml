@@ -53,7 +53,7 @@
       <varlistentry>
         <term><envar>--enable-install-program=hostname</envar></term>
         <listitem>
-          <para>此项启用编制和安装 <command>hostname</command> 二进制文件 &ndash; 它默认被禁用，但被 Perl 的测试套件需求。</para>
+          <para>此项启用编制和安装 <command>hostname</command> 二进制文件&ndash;&ndash;它默认禁用，但 Perl 的测试套件需要。</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -81,7 +81,7 @@
   <sect2 role="content">
     <title/>
 
-    <para>有关此程序包的细节位于<xref linkend="contents-coreutils"/>。</para>
+    <para>有关此程序包的细节位于 <xref linkend="contents-coreutils"/>。</para>
 
   </sect2>
 

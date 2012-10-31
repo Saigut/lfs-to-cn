@@ -77,7 +77,7 @@ sed 's:/usr/local/bin:/bin:' configure.orig &gt; configure</userinput></screen>
 
 <screen><userinput remap="test">make test</userinput></screen>
 
-    <para>注意 Expect 的测试套件已知会在某些我们无法控制的宿主条件下通不过。因此这里出现测试套件挂掉不要惊奇，那无关紧要。</para>
+    <para>注意 Expect 的测试套件已知会在某些我们无法控制的宿主条件下无法通过。因此这里出现测试套件失败不要惊奇，那无关紧要。</para>
 
     <para>安装程序包：</para>
 

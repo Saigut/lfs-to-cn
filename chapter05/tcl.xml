@@ -40,14 +40,14 @@
   <sect2 role="installation">
     <title>安装 Tcl</title>
 
-    <para>安装此程序包与接下来的三个 (Expect、DejaGNU 和 Check) 是为了支持运行 GCC、Binutils 和其他程序包的测试套件。似乎为了测试目的安装四个程序包有点过分，但是获知重要的工具工作正常即使不是必要的也很能让人放心。虽然这一章不运行测试套件 (不必要)，<xref linkend="chapter-building-system"/>中也需要这些程序包来运行。</para>
+    <para>安装此程序包与接下来的三个 (Expect、DejaGNU 和 Check) 是为了支持运行 GCC、Binutils 和其他程序包的测试套件。似乎为了测试目的安装四个程序包有点过分，但是获知重要的工具工作正常即使不是必要的也很能让人放心。虽然这一章不运行测试套件 (不必要)， <xref linkend="chapter-building-system"/> 中也需要这些程序包来运行。</para>
 
     <para>准备编译 Tcl：</para>
 
 <screen><userinput remap="configure">cd unix
 ./configure --prefix=/tools</userinput></screen>
 
-    <para>编制程序包：</para>
+    <para>编译程序包：</para>
 
 <screen><userinput remap="make">make</userinput></screen>
 
@@ -55,17 +55,17 @@
 
 <screen><userinput remap="test">TZ=UTC make test</userinput></screen>
 
-    <para>Tcl 测试套件再某些特定的宿主条件下会通不过，原因还不明确。因此这里出现测试套件挂掉不要惊奇，那无关紧要。 <parameter>TZ=UTC</parameter> 参数设置时区为协调世界时 (UTC)，也叫格林尼治标准时间 (GMT)，但是仅再测试套件运行期间有效。这确保了时钟测试正常运行。有关 <envar>TZ</envar> 环境变量的细节位于<xref linkend="chapter-bootscripts"/>。</para>
+    <para>Tcl 测试套件再某些特定的宿主条件下会不能通过，原因还不明确。因此这里出现测试套件失败不要惊奇，那无关紧要。<parameter>TZ=UTC</parameter> 参数设置时区为 UTC，也叫 GMT，但是仅在测试套件运行期间有效。这确保了时钟测试正常运行。有关 <envar>TZ</envar> 环境变量的细节位于 <xref linkend="chapter-bootscripts"/>。</para>
 
     <para>安装程序包：</para>
 
 <screen><userinput remap="install">make install</userinput></screen>
 
-    <para>使得安装的库可写，这样以后就可以移除调试标志：</para>
+    <para>使得安装的库可写，这样以后就可以移除调试符号：</para>
 
 <screen><userinput remap="install">chmod -v u+w /tools/lib/libtcl8.5.so</userinput></screen>
 
-    <para>安装 Tcl 的头文件。下一个程序包 Expect 需要它们来编制。</para>
+    <para>安装 Tcl 的头文件。下一个程序包 Expect 需要它们才能编制。</para>
 
 <screen><userinput remap="install">make install-private-headers</userinput></screen>
 
@@ -83,7 +83,7 @@
       <segtitle>安装的库</segtitle>
 
       <seglistitem>
-        <seg>tclsh (到 tclsh8.5 的链接) and tclsh8.5</seg>
+        <seg>tclsh (到 tclsh8.5 的链接) 和 tclsh8.5</seg>
         <seg>libtcl8.5.so, libtclstub8.5.a</seg>
       </seglistitem>
     </segmentedlist>
@@ -96,7 +96,7 @@
       <varlistentry id="tclsh8.5">
         <term><command>tclsh8.5</command></term>
         <listitem>
-          <para>Tcl 命令 shell</para>
+          <para>Tcl 命令行</para>
           <indexterm zone="ch-tools-tcl tclsh8.5">
             <primary sortas="b-tclsh8.5">tclsh8.5</primary>
           </indexterm>
@@ -106,7 +106,7 @@
       <varlistentry id="tclsh">
         <term><command>tclsh</command></term>
         <listitem>
-          <para>到 tclsh8.5 的链接</para>
+          <para>到 <command>tclsh8.5</command> 的链接</para>
           <indexterm zone="ch-tools-tcl tclsh">
             <primary sortas="b-tclsh">tclsh</primary>
           </indexterm>
