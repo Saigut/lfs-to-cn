@@ -312,7 +312,7 @@
         <segtitle>&testsuites;</segtitle>
 
         <seglistitem>
-          <seg>Diffutils, Perl</seg>
+          <seg>Diffutils 和 Perl</seg>
         </seglistitem>
       </segmentedlist>
 
@@ -838,7 +838,7 @@
         <segtitle>&testsuites;</segtitle>
 
         <seglistitem>
-          <seg>Diffutils, Less</seg>
+          <seg>Diffutils 和 Less</seg>
         </seglistitem>
       </segmentedlist>
 
