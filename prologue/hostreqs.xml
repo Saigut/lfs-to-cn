@@ -17,7 +17,7 @@
   <itemizedlist spacing="compact">
 
     <listitem>
-      <para><emphasis role="strong">Bash-3.2</emphasis> (/bin/sh 应为到 bash 的符号或硬链接)</para>
+      <para><emphasis role="strong">Bash-3.2</emphasis> (<filename>/bin/sh</filename> 应为到 <command>bash</command> 的符号或硬链接)</para>
     </listitem>
 
     <listitem>
@@ -25,7 +25,7 @@
     </listitem>
 
     <listitem>
-      <para><emphasis role="strong">Bison-2.3</emphasis> (/usr/bin/yacc 应为到 bison 的链接或运行 bison 的脚本)</para>
+      <para><emphasis role="strong">Bison-2.3</emphasis> (<filename>/usr/bin/yacc</filename> 应为到 <command>bison</command> 的链接或运行 <command>bison</command> 的脚本)</para>
     </listitem>
 
     <listitem>
@@ -45,7 +45,7 @@
     </listitem>
 
     <listitem>
-      <para><emphasis role="strong">Gawk-3.1.5</emphasis> (/usr/bin/awk 应为到 gawk 的链接)</para>
+      <para><emphasis role="strong">Gawk-3.1.5</emphasis> (<filename>/usr/bin/awk</filename> 应为到 <command>gawk</command> 的链接)</para>
     </listitem>
 
     <listitem>
@@ -108,7 +108,7 @@
 
   </itemizedlist>
 
-  <para>注意上文提到的符号链接是按本书指令编制 LFS 必需的。指向其他软件 (比如 dash、mawk 等) 的符号链接可能工作，但未被 LFS 开发团队测试和支持，并可能与指令有偏差或需要某些程序包的额外补丁。</para>
+  <para>注意上文提到的符号链接是按本书指令编制 LFS 必需的。指向其他软件 (比如 <command>dash</command>、<command>mawk</command> 等) 的符号链接可能工作，但未被 LFS 开发团队测试和支持，并可能与指令有偏差或需要某些程序包的额外补丁。</para>
 
   <para id="version-check">要查看你的宿主系统是否有所有正确版本并有能力编译程序，运行以下命令：</para>
 
