@@ -15,7 +15,7 @@
   <para><xref linkend="chapter-temporary-tools"/> 的总体目的是产生一个临时区域，要包含已知可用的、能从宿主独立出来的工具集。通过使用 <command>chroot</command>，余下章节中的命令就会被限制在此环境内，确保目标 LFS 系统编制干净而且没有麻烦。编制进程按照最小化新读者风险并同时提供最大的教育价值设计。</para>
 
   <note>
-    <para>在继续之前，注意工作平台的名字，也叫做目标三联字串。获知目标三联字串的简单方法是运行 <command>config.guess</command> 脚本，它随很多程序包的源代码出现。解包 Binutils 源代码并运行脚本：<userinput>./config.guess</userinput> 并注意输出。举个例子，对于一个现代的 32 位英特尔处理器来说输出可能会是 <emphasis>i686-pc-linux-gnu</emphasis>。</para>
+    <para>在继续之前，注意工作平台的名字，也叫做目标三联字串。获知目标三联字串的简单方法是运行 <command>config.guess</command> 脚本，它随很多程序包的源代码出现。解包 Binutils 源代码并运行脚本：<userinput>./config.guess</userinput> 并注意输出。举个例子，对于一个现代的 32 位英特尔处理器来说输出可能会是 <computeroutput>i686-pc-linux-gnu</computeroutput>。</para>
 
     <para>也要注意平台的动态链接器名称，通常叫做动态加载器 (以防与作为 Binutils 的一部分的标准链接器 <command>ld</command> 混淆)。动态链接器由 Glibc 提供，会寻找并加载程序需要的共享库，准备并运行程序。32 位英特尔处理器使用的动态链接器名应为 <filename class="libraryfile">ld-linux.so.2</filename>。在宿主系统中随意查看一个二进制就可以获知动态链接器名：<userinput>readelf -l &lt;binary&gt; | grep interpreter</userinput> 留意其输出。官方的覆盖了所有平台的参考位于 Glibc 源代码树中的 <filename>shlib-versions</filename> 文件中。</para>
   </note>

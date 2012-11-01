@@ -77,7 +77,7 @@ unset DL</userinput></screen>-->
 
 <screen><userinput remap="pre">patch -Np1 -i ../&glibc-installation-patch;</userinput></screen>
 
-    <para><command>ldd</command> 这个 shell 脚本包含 Bash 特有的语法。如果按照 BLFS 中 <ulink url="&blfs-root;view/svn/postlfs/shells.html">Shells</ulink> 一章中的介绍安装了另外的 <command>/bin/sh</command>，将其默认解释器改为 <command>/bin/bash</command>：</para>
+    <para><command>ldd</command> 这个 Shell 脚本包含 Bash 特有的语法。如果按照 BLFS 中 <ulink url="&blfs-root;view/svn/postlfs/shells.html">Shells</ulink> 一章中的介绍安装了另外的 <command>/bin/sh</command>，将其默认解释器改为 <command>/bin/bash</command>：</para>
 
 <screen><userinput remap="pre">sed -i 's|@BASH@|/bin/bash|' elf/ldd.bash.in</userinput></screen>
 
@@ -166,7 +166,7 @@ grep Error glibc-check-log</userinput></screen>
       </listitem>
       
       <listitem>
-        <para>在某些架构上已知可能失败的测试包括 posix/bug-regex32、misc/tst-writev、elf/check-textrel、nptl/tst-getpid2 和 stdio-common/bug22。</para>
+        <para>在某些架构上已知可能失败的测试包括 <emphasis>posix/bug-regex32</emphasis>、<emphasis>misc/tst-writev</emphasis>、<emphasis>elf/check-textrel</emphasis>、<emphasis>nptl/tst-getpid2</emphasis> 和 <emphasis>stdio-common/bug22</emphasis>。</para>
       </listitem>
     
     </itemizedlist>
@@ -364,9 +364,9 @@ mkdir /etc/ld.so.conf.d</userinput></screen>
       <segtitle>安装的目录</segtitle>
 
       <seglistitem>
-        <seg>catchsegv、gencat、getconf、getent、iconv、iconvconfig、ldconfig、ldd、lddlibc4、locale、localedef、makedb、mtrace、nscd、pcprofiledump、pldd、pt_chown、rpcgen、sln、sotruss、sprof、tzselect、xtrace、dump 和 zic</seg>
-        <seg>ld.so、libBrokenLocale.{a,so}、libSegFault.so、libanl.{a,so}、libbsd-compat.a、libc.{a,so}、libc_nonshared.a、libcidn.so、libcrypt.{a,so}、libdl.{a,so}、libg.a、libieee.a、libm.{a,so}、libmcheck.a、libmemusage.so、libnsl.{a,so}、libnss_compat.so、libnss_dns.so、libnss_files.so、libnss_hesiod.so、libnss_nis.so、libnss_nisplus.so、libpcprofile.so、libpthread.{a,so}、libpthread_nonshared.a、libresolv.{a,so}、librpcsvc.a、librt.{a,so}、libthread_db.so 和 libutil.{a,so}</seg>
-        <seg>/usr/include/arpa、/usr/include/bits、/usr/include/gnu、/usr/include/net、/usr/include/netash、/usr/include/netatalk、/usr/include/netax25、/usr/include/neteconet、/usr/include/netinet、/usr/include/netipx、/usr/include/netiucv、/usr/include/netpacket、/usr/include/netrom、/usr/include/netrose、/usr/include/nfs、/usr/include/protocols、/usr/include/rpc、/usr/include/rpcsvc、/usr/include/sys、/usr/lib/audit、/usr/lib/gconv、/usr/lib/glibc、/usr/lib/locale、/usr/share/i18n、/usr/share/zoneinfo</seg>
+        <seg>catchsegv, gencat, getconf, getent, iconv, iconvconfig, ldconfig, ldd, lddlibc4, locale, localedef, makedb, mtrace, nscd, pcprofiledump, pldd, pt_chown, rpcgen, sln, sotruss, sprof, tzselect, xtrace, dump 和 zic</seg>
+        <seg>ld.so, libBrokenLocale.{a,so}, libSegFault.so, libanl.{a,so}, libbsd-compat.a, libc.{a,so}, libc_nonshared.a, libcidn.so, libcrypt.{a,so}, libdl.{a,so}, libg.a, libieee.a, libm.{a,so}, libmcheck.a, libmemusage.so, libnsl.{a,so}, libnss_compat.so, libnss_dns.so, libnss_files.so, libnss_hesiod.so, libnss_nis.so, libnss_nisplus.so, libpcprofile.so, libpthread.{a,so}, libpthread_nonshared.a, libresolv.{a,so}, librpcsvc.a, librt.{a,so}, libthread_db.so 和 libutil.{a,so}</seg>
+        <seg>/usr/include/arpa, /usr/include/bits, /usr/include/gnu, /usr/include/net, /usr/include/netash, /usr/include/netatalk, /usr/include/netax25, /usr/include/neteconet, /usr/include/netinet, /usr/include/netipx, /usr/include/netiucv, /usr/include/netpacket, /usr/include/netrom, /usr/include/netrose, /usr/include/nfs, /usr/include/protocols, /usr/include/rpc, /usr/include/rpcsvc, /usr/include/sys, /usr/lib/audit, /usr/lib/gconv, /usr/lib/glibc, /usr/lib/locale, /usr/share/i18n 和 /usr/share/zoneinfo</seg>
       </seglistitem>
     </segmentedlist>
 

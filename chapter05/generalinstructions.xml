@@ -15,7 +15,7 @@
   <itemizedlist>
 
   <listitem>
-    <para>有几个程序包在编译之前要打补丁，但是只是在需要它来解决问题时才要求如此做。在本章和下一章中通常都会用到补丁。因此，如果下载的某个补丁对应的指令似乎丢失，不要困扰。有关 <emphasis>offset</emphasis> 或者 <emphasis>fuzz</emphasis> 的警告信息可能在应用补丁的时候也会遇到。不要担心，补丁依然成功应用了。</para>
+    <para>有几个程序包在编译之前要打补丁，但是只是在需要它来解决问题时才要求如此做。在本章和下一章中通常都会用到补丁。因此，如果下载的某个补丁对应的指令似乎丢失，不要困扰。有关 <emphasis role="strong">offset</emphasis> 或者 <emphasis role="strong">fuzz</emphasis> 的警告信息可能在应用补丁的时候也会遇到。不要担心，补丁依然成功应用了。</para>
   </listitem>
 
   <listitem>

@@ -43,7 +43,7 @@
   <sect2 role="installation">
     <title>安装 Glibc</title>
     
-    <para>在某些情况下，尤其是在 LFS 7.1 中，rpc 头文件并没有正确安装。检测它们在宿主系统上是否已经安装，如果没有则安装之：</para>
+    <para>在某些情况下，尤其是在 LFS 7.1 中，<filename>rpc</filename> 头文件并没有正确安装。检测它们在宿主系统上是否已经安装，如果没有则安装之：</para>
 
 <screen><userinput remap="pre">if [ ! -r /usr/include/rpc/types.h ]; then 
   su -c 'mkdir -p /usr/include/rpc'
@@ -166,7 +166,7 @@ esac</userinput></screen>
 <screen><userinput remap="install">make install</userinput></screen>
 
   <caution>
-    <para>在这里，停下来确保新工具链的基本功能 (编译和链接) 能正常工作很重要。要进行完整性检查，运行以下命令：</para>
+    <para>在这里，停下来确保新工具链的基本功能 (编译和链接) 能正常工作很重要。要进行稳定性检查，运行以下命令：</para>
 
 <screen><userinput>echo 'main(){}' &gt; dummy.c
 $LFS_TGT-gcc dummy.c

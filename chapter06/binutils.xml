@@ -58,7 +58,7 @@ Ask your system administrator to create more.</computeroutput></screen>
 <screen><userinput remap="pre">rm -fv etc/standards.info
 sed -i.bak '/^INFO/s/standards.info //' etc/Makefile.in</userinput></screen>
 
-    <para>应用一个补丁防止在使用编译器优化是编制失败：</para>
+    <para>应用一个补丁防止在使用编译器优化时编制失败：</para>
 
 <screen><userinput remap="pre">patch -Np1 -i ../&binutils-build-patch;</userinput></screen>
 
@@ -118,8 +118,8 @@ cd ../binutils-build</userinput></screen>
       <segtitle>安装的目录</segtitle>
 
       <seglistitem>
-        <seg>addr2line、ar、as、c++filt、elfedit、gprof、ld、ld.bfd、nm、objcopy、objdump、ranlib、readelf、size、strings 和 strip</seg>
-        <seg>libiberty.a、libbfd.{a,so} 和 libopcodes.{a,so}</seg>
+        <seg>addr2line, ar, as, c++filt, elfedit, gprof, ld, ld.bfd, nm, objcopy, objdump, ranlib, readelf, size, strings 和 strip</seg>
+        <seg>libiberty.a, libbfd.{a,so} 和 libopcodes.{a,so}</seg>
         <seg>/usr/lib/ldscripts</seg>
       </seglistitem>
     </segmentedlist>

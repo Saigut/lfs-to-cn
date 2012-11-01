@@ -19,7 +19,7 @@ mv -v /tools/$(gcc -dumpmachine)/bin/{ld,ld-old}
 mv -v /tools/bin/{ld-new,ld}
 ln -sv /tools/bin/ld /tools/$(gcc -dumpmachine)/bin/ld</userinput></screen>
 
-  <para>下一步，修改 GCC 的 specs 文件指向新的动态链接器。简单地删除所有存在的 <quote>/tools</quote> 就可以剩下到动态链接器的正确路径。另外要使 GCC 知道去哪里寻找正确的头文件和 Glibc 起始文件。应用一条 <command>sed</command> 命令完成此任务：</para>
+  <para>下一步，修改 GCC 的 <filename>specs</filename> 文件指向新的动态链接器。简单地删除所有存在的 <quote>/tools</quote> 就可以剩下到动态链接器的正确路径。另外要使 GCC 知道去哪里寻找正确的头文件和 Glibc 起始文件。应用一条 <command>sed</command> 命令完成此任务：</para>
 
 <screen><userinput>gcc -dumpspecs | sed -e 's@/tools@@g' \
     -e '/\*startfile_prefix_spec:/{n;s@.*@/usr/lib/ @}' \
@@ -73,7 +73,7 @@ SEARCH_DIR("/lib");</computeroutput></screen>
 
 <screen os="m"><userinput>grep "/lib.*/libc.so.6 " dummy.log</userinput></screen>
 
-  <para os="n">如果一切工作正常，就不应改出错，最后一条命令的输出 (允许 64 位宿主上有 lib64 目录) 应为：</para>
+  <para os="n">如果一切工作正常，就不应改出错，最后一条命令的输出 (允许 64 位宿主上有 <filename class="directory">lib64</filename> 目录) 应为：</para>
 
 <screen os="o"><computeroutput>attempt to open /lib/libc.so.6 succeeded</computeroutput></screen>
 
@@ -81,7 +81,7 @@ SEARCH_DIR("/lib");</computeroutput></screen>
 
 <screen os="q"><userinput>grep found dummy.log</userinput></screen>
 
-  <para os="r">如果一切工作正常，就不应改出错，最后一条命令的输出 (允许动态链接器名称中有针对平台的差异、64 位宿主上有 lib64 目录) 应为：</para>
+  <para os="r">如果一切工作正常，就不应改出错，最后一条命令的输出 (允许动态链接器名称中有针对平台的差异、64 位宿主上有 <filename class="directory">lib64</filename> 目录) 应为：</para>
 
 <screen os="s"><computeroutput>found ld-linux.so.2 at /lib/ld-linux.so.2</computeroutput></screen>
 

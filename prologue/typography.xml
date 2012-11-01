@@ -10,7 +10,7 @@
 
   <title>版式</title>
 
-  <para>为了让内容容易跟进，本书中用到了几种版式惯例。这一节包含了 Linux From Scratch 所用到的版式。</para>
+  <para>为了让内容容易跟进，本书中用到了几种版式惯例。这一节包含了 LFS 中用到的版式。</para>
 
 <screen role="nodump"><userinput>./configure --prefix=/usr</userinput></screen>
 

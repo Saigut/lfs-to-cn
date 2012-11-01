@@ -20,7 +20,7 @@
 
   <para>设置好这一变量很有用，这样如同 <command>mkdir $LFS/tools</command> 的命令就可以逐字键入不必改动。Shell 会在处理命令行的时候自动把 <quote>$LFS</quote> 替换为 <quote>/mnt/lfs</quote> (此变量的值) 。</para>
 
-  <para>在离开或重新进入当前工作环境 (比如 <command>su</command> 到 <systemitem class="username">root</systemitem> 或者其他用户) 时不要忘记检查 <envar>$LFS</envar> 是否设置好。</para>
+  <para>在离开或重新进入当前工作环境 (比如 <command>su</command> 成为 <systemitem class="username">root</systemitem> 或者其他用户) 时不要忘记检查 <envar>$LFS</envar> 是否设置好。</para>
 
 </sect1>
 

@@ -167,7 +167,7 @@ RANLIB=$LFS_TGT-ranlib          \
 <screen><userinput remap="install">ln -vs gcc /tools/bin/cc</userinput></screen>
 
   <caution>
-    <para>在这里，停下来确保新工具链的基本功能 (编译和链接) 能正常工作很重要。要进行完整性检查，运行以下命令：</para>
+    <para>在这里，停下来确保新工具链的基本功能 (编译和链接) 能正常工作很重要。要进行稳定性检查，运行以下命令：</para>
 
 <screen><userinput>echo 'main(){}' &gt; dummy.c
 cc dummy.c
