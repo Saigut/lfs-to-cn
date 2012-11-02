@@ -34,6 +34,15 @@
 -->
 
     <listitem>
+      <para>2012-11-01</para>
+      <itemizedlist>
+        <listitem>
+          <para>[bdubbs] - 升级至 systemd/lfs-udev-195。修复 <ulink url="&lfs-ticket-root;3197">#3197</ulink>。</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
       <para>2012-10-15</para>
       <itemizedlist>
         <listitem>
