@@ -39,12 +39,15 @@
     <!--<listitem>
       <para>Binutils &binutils-version;</para>
     </listitem>-->
-    <!--<listitem>
-      <para>Bison &bison-version;</para>
-    </listitem>-->
+    <listitem>
+      <para>Bison-&bison-version;</para>
+    </listitem>
     <!--<listitem>
       <para>Bzip2 &bzip2-version;</para>
     </listitem>-->
+    <listitem>
+      <para>Check-&check-version;</para>
+    </listitem>
     <!--<listitem>
       <para>Coreutils &coreutils-version;</para>
     </listitem>-->
@@ -138,9 +141,9 @@
     <listitem>
       <para>Man-DB-&man-db-version;</para>
     </listitem>
-    <!--<listitem>
+    <listitem>
       <para>Man-pages &man-pages-version;</para>
-    </listitem>-->
+    </listitem>
     <listitem>
       <para>MPC-&mpc-version;</para>
     </listitem>
@@ -189,6 +192,9 @@
     <!--<listitem>
       <para>Texinfo &texinfo-version;</para>
     </listitem>-->
+    <listitem>
+      <para>Tzdata-&tzdata-version;</para>
+    </listitem>
     <listitem>
       <para>Udev-&systemd-version; (提取自 systemd-&systemd-version;)</para>
     </listitem>

@@ -34,6 +34,33 @@
 -->
 
     <listitem>
+      <para>2012-11-02</para>
+      <itemizedlist>
+        <listitem>
+          <para>[matthew] - 将 Freshmeat.net 参考改为 Freecode。感谢 Chris Staub 提供报告和补丁。修复 <ulink url="&lfs-ticket-root;3216">#3216</ulink>.</para>
+        </listitem>
+        <listitem>
+          <para>[matthew] - 升级至 Check-0.9.9。修复 <ulink url="&lfs-ticket-root;3214">#3214</ulink>.</para>
+        </listitem>
+        <listitem>
+          <para>[matthew] - 升级至 Bison-2.6.4。修复 <ulink url="&lfs-ticket-root;3212">#3212</ulink>.</para>
+        </listitem>
+        <listitem>
+          <para>[matthew] - 升级至 Linux-3.6.5。修复 <ulink url="&lfs-ticket-root;3211">#3211</ulink>.</para>
+        </listitem>
+        <listitem>
+          <para>[matthew] - 升级至 Tzdata-2012h。修复 <ulink url="&lfs-ticket-root;3209">#3209</ulink>.</para>
+        </listitem>
+        <listitem>
+          <para>[matthew] - 升级至 Man-Pages-3.43。修复 <ulink url="&lfs-ticket-root;3208">#3208</ulink>.</para>
+        </listitem>
+        <listitem>
+          <para>[matthew] - 清理 Flex 的一些指令，自升级至 Flex-2.5.37 可用。修复 <ulink url="&lfs-ticket-root;3206">3206</ulink> 和 <ulink url="&lfs-ticket-root;3210">3210</ulink>.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
       <para>2012-11-01</para>
       <itemizedlist>
         <listitem>
