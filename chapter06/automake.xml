@@ -69,8 +69,8 @@
       <segtitle>安装的目录</segtitle>
 
       <seglistitem>
-        <seg>acinstall、aclocal、aclocal-&am-minor-version;、automake、automake-&am-minor-version;、compile、config.guess、config.sub、depcomp、elisp-comp、install-sh、mdate-sh、missing、mkinstalldirs、py-compile、symlink-tree 和 ylwrap</seg>
-        <seg>/usr/share/aclocal-&am-minor-version;、/usr/share/automake-&am-minor-version;、/usr/share/doc/automake-&automake-version;</seg>
+        <seg>acinstall, aclocal, aclocal-&am-minor-version;, automake, automake-&am-minor-version;, compile, config.guess, config.sub, depcomp, elisp-comp, install-sh, mdate-sh, missing, mkinstalldirs, py-compile, symlink-tree 和 ylwrap</seg>
+        <seg>/usr/share/aclocal-&am-minor-version;, /usr/share/automake-&am-minor-version;, /usr/share/doc/automake-&automake-version;</seg>
       </seglistitem>
     </segmentedlist>
 

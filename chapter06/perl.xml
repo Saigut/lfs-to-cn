@@ -117,7 +117,7 @@
       <segtitle>安装的目录</segtitle>
 
       <seglistitem>
-        <seg>a2p、c2ph、config_data、corelist、cpan、cpan2dist、cpanp cpanp-run-perl、enc2xs、find2perl、h2ph、h2xs instmodsh、json_pp、libnetcfg、perl、perl&perl-version; (到 perl 的链接)、perlbug、perldoc、perlivp、perlthanks (link to perlbug)、piconv、pl2pm、pod2html、pod2latex、pod2man、pod2text、pod2usage、podchecker、podselect、prove、psed (link to s2p)、pstruct (link to c2ph)、ptar、ptardiff、ptargrep、s2p、shasum、splain、xsubpp 和 zipdetails</seg>
+        <seg>a2p, c2ph, config_data, corelist, cpan, cpan2dist, cpanp cpanp-run-perl, enc2xs, find2perl, h2ph, h2xs instmodsh, json_pp, libnetcfg, perl, perl&perl-version; (到 perl 的链接), perlbug, perldoc, perlivp, perlthanks (到 perlbug 的链接), piconv, pl2pm, pod2html, pod2latex, pod2man, pod2text, pod2usage, podchecker, podselect, prove, psed (到 s2p 的链接), pstruct (到 c2ph 的链接), ptar, ptardiff, ptargrep, s2p, shasum, splain, xsubpp 和 zipdetails</seg>
         <seg>数百个，此处无法一一列出</seg>
         <seg>/usr/lib/perl5</seg>
       </seglistitem>

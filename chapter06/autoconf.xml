@@ -68,7 +68,7 @@
       <segtitle>安装的目录</segtitle>
 
       <seglistitem>
-        <seg>autoconf、autoheader、autom4te、autoreconf、autoscan、autoupdate 和 ifnames</seg>
+        <seg>autoconf, autoheader, autom4te, autoreconf, autoscan, autoupdate 和 ifnames</seg>
         <seg>/usr/share/autoconf</seg>
       </seglistitem>
     </segmentedlist>

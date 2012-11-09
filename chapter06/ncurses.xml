@@ -143,9 +143,9 @@ cp -av lib/lib*.so.5* /usr/lib</userinput></screen>
       <segtitle>安装的目录</segtitle>
 
       <seglistitem>
-        <seg>captoinfo (到 tic 的链接)、clear、infocmp、infotocap (到 tic 的链接)、ncursesw5-config、reset (到 tset 的链接)、tabs、tic、toe、tput 和 tset</seg>
-        <seg>libcursesw.{a,so} (符号链接以及链接脚本，指向 libncursesw.{a,so})、libformw.{a,so}、libmenuw.{a,so}、libncurses++w.a、libncursesw.{a,so}、libpanelw.{a,so} 及其非宽字符组件，名称中不带 <quote>w</quote>。</seg>
-        <seg>/usr/share/tabset、/usr/share/terminfo</seg>
+        <seg>captoinfo (到 tic 的链接), clear, infocmp, infotocap (到 tic 的链接), ncursesw5-config, reset (到 tset 的链接), tabs, tic, toe, tput 和 tset</seg>
+        <seg>libcursesw.{a,so} (符号链接以及链接脚本，指向 libncursesw.{a,so}), libformw.{a,so}, libmenuw.{a,so}, libncurses++w.a, libncursesw.{a,so}, libpanelw.{a,so} 及其非宽字符组件，名称中不带 <quote>w</quote>。</seg>
+        <seg>/usr/share/tabset, /usr/share/terminfo</seg>
       </seglistitem>
     </segmentedlist>
 

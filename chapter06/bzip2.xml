@@ -97,7 +97,7 @@ ln -sv bzip2 /bin/bzcat</userinput></screen>
       <segtitle>安装的目录</segtitle>
 
       <seglistitem>
-        <seg>bunzip2 (到 bzip2 的链接)、bzcat (到 bzip2 的链接)、bzcmp (到 bzdiff 的链接)、bzdiff、bzegrep (到 bzgrep 的链接)、bzfgrep (到 bzgrep 的链接)、bzgrep、bzip2、bzip2recover、bzless (到 bzmore 的链接) 和 bzmore</seg>
+        <seg>bunzip2 (到 bzip2 的链接), bzcat (到 bzip2 的链接), bzcmp (到 bzdiff 的链接), bzdiff, bzegrep (到 bzgrep 的链接), bzfgrep (到 bzgrep 的链接), bzgrep, bzip2, bzip2recover, bzless (到 bzmore 的链接) 和 bzmore</seg>
         <seg>libbz2.{a,so}</seg>
         <seg>/usr/share/doc/bzip2-&bzip2-version;</seg>
       </seglistitem>

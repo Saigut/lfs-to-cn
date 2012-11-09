@@ -268,9 +268,9 @@ mv -v /usr/lib/*gdb.py /usr/share/gdb/auto-load/usr/lib</userinput></screen>
       <segtitle>安装的目录</segtitle>
 
       <seglistitem>
-        <seg>c++、cc (到 gcc 的链接)、cpp、g++、gcc、gcc-ar、gcc-nm、gcc-ranlib、gccbug 和 gcov</seg>
-        <seg>libgcc.a、libgcc_eh.a、libgcc_s.so、libgcov.a、libgomp.{a,so}、liblto_plugin.so、libmudflap.{a,so}、libmudflapth.{a,so}、libquadmath.{a,so}、libssp.{a,so}、libssp_nonshared.a、libstdc++.{a,so} 和 libsupc++.a</seg>
-        <seg>/usr/include/c++、/usr/lib/gcc、/usr/share/gcc-&gcc-version;</seg>
+        <seg>c++, cc (到 gcc 的链接), cpp, g++, gcc, gcc-ar, gcc-nm, gcc-ranlib, gccbug 和 gcov</seg>
+        <seg>libgcc.a, libgcc_eh.a, libgcc_s.so, libgcov.a, libgomp.{a,so}, liblto_plugin.so, libmudflap.{a,so}, libmudflapth.{a,so}, libquadmath.{a,so}, libssp.{a,so}, libssp_nonshared.a, libstdc++.{a,so} 和 libsupc++.a</seg>
+        <seg>/usr/include/c++, /usr/lib/gcc, /usr/share/gcc-&gcc-version;</seg>
       </seglistitem>
     </segmentedlist>
 

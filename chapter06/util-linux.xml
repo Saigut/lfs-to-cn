@@ -86,11 +86,11 @@ mkdir -pv /var/lib/hwclock</userinput></screen>
       <segtitle>安装的目录</segtitle>
 
       <seglistitem>
-        <seg>addpart、agetty、blkid、blockdev、cal、cfdisk、chcpu、chrt、col、colcrt、colrm、column、ctrlaltdel、cytune、delpart、dmesg、eject、fallocate、fdformat、fdisk、findfs、findmnt、flock、fsck、fsck.cramfs、fsck.minix、fsfreeze、fstrim、getopt、hexdump、hwclock、i386、ionice、ipcmk、ipcrm、ipcs、isosize、ldattach、linux32、linux64、logger、look、losetup、lsblk、lscpu、lslocks、mcookie、mkfs、mkfs.bfs、mkfs.cramfs、mkfs.minix、mkswap、more、mount、mountpoint、namei、partx、pg、pivot_root、prlimit、raw、readprofile、rename、renice、resizepart、rev、rtcwake、script、scriptreplay、setarch、setsid、setterm、sfdisk、swaplabel、swapoff (到 swapon 的链接)、swapon、switch_root、tailf、taskset、tunelp、ul、umount、unshare、utmpdump、uuidd、uuidgen、wall、wdctl、whereis、wipefs 和 x86_64</seg>
+        <seg>addpart, agetty, blkid, blockdev, cal, cfdisk, chcpu, chrt, col, colcrt, colrm, column, ctrlaltdel, cytune, delpart, dmesg, eject, fallocate, fdformat, fdisk, findfs, findmnt, flock, fsck, fsck.cramfs, fsck.minix, fsfreeze, fstrim, getopt, hexdump, hwclock, i386, ionice, ipcmk, ipcrm, ipcs, isosize, ldattach, linux32, linux64, logger, look, losetup, lsblk, lscpu, lslocks, mcookie, mkfs, mkfs.bfs, mkfs.cramfs, mkfs.minix, mkswap, more, mount, mountpoint, namei, partx, pg, pivot_root, prlimit, raw, readprofile, rename, renice, resizepart, rev, rtcwake, script, scriptreplay, setarch, setsid, setterm, sfdisk, swaplabel, swapoff (到 swapon 的链接), swapon, switch_root, tailf, taskset, tunelp, ul, umount, unshare, utmpdump, uuidd, uuidgen, wall, wdctl, whereis, wipefs 和 x86_64</seg>
 
-        <seg>libblkid.{a,so}、libmount.{a,so}、libuuid.{a,so}</seg>
+        <seg>libblkid.{a,so}, libmount.{a,so}, libuuid.{a,so}</seg>
         
-        <seg>/usr/include/blkid、/usr/include/libmount、/usr/include/uuid、/usr/share/getopt、/var/lib/hwclock</seg>
+        <seg>/usr/include/blkid, /usr/include/libmount, /usr/include/uuid, /usr/share/getopt、/var/lib/hwclock</seg>
       </seglistitem>
     </segmentedlist>
 

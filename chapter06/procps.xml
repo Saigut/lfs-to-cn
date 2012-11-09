@@ -73,7 +73,7 @@
       <segtitle>安装的库</segtitle>
 
       <seglistitem>
-        <seg>free、kill、pgrep、pkill、pmap、ps、pwdx、skill、slabtop、snice、sysctl、tload、top、uptime、vmstat、w 和 watch</seg>
+        <seg>free, kill, pgrep, pkill, pmap, ps, pwdx, skill, slabtop, snice, sysctl, tload, top, uptime, vmstat, w 和 watch</seg>
         <seg>libproc.so</seg>
       </seglistitem>
     </segmentedlist>

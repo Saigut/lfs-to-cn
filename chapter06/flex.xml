@@ -90,7 +90,7 @@ chmod -v 755 /usr/bin/lex</userinput></screen>
       <segtitle>安装的目录</segtitle>
 
       <seglistitem>
-        <seg>flex、lex++ (到 flex 的链接) 和 lex</seg>
+        <seg>flex, lex++ (到 flex 的链接) 和 lex</seg>
         <seg>libfl.a 和 libfl_pic.a</seg>
         <seg>/usr/share/doc/flex-&flex-version;</seg>
       </seglistitem>

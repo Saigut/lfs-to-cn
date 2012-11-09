@@ -85,7 +85,7 @@ sed -i 's/find:=${BINDIR}/find:=\/bin/' /usr/bin/updatedb</userinput></screen>
       <segtitle>安装的目录</segtitle>
 
       <seglistitem>
-        <seg>bigram、code、find、frcode、locate、oldfind、updatedb 和 xargs</seg>
+        <seg>bigram, code, find, frcode, locate, oldfind, updatedb 和 xargs</seg>
         <seg>/usr/lib/findutils</seg>
       </seglistitem>
     </segmentedlist>
