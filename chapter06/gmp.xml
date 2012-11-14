@@ -104,7 +104,7 @@ cp    -v doc/{isa_abi_headache,configuration} doc/*.html \
       <segtitle>安装的目录</segtitle>
 
       <seglistitem>
-        <seg>libgmp.{a,so}, libgmpxx.{a,so}, and libmp.{a,so}</seg>
+        <seg>libgmp.{a,so}, libgmpxx.{a,so} 和 libmp.{a,so}</seg>
         <seg>/usr/share/doc/gmp-&gmp-version;</seg>
       </seglistitem>
     </segmentedlist>

@@ -34,6 +34,30 @@
 -->
 
     <listitem>
+      <para>2012-11-13</para>
+      <itemizedlist>
+        <listitem>
+          <para>[matthew] - 升级至 Tcl-8.5.13。修复 <ulink url="&lfs-ticket-root;3224">#3224</ulink>。</para>
+        </listitem>
+        <listitem>
+          <para>[matthew] - 升级至 Kmod-11。修复 <ulink url="&lfs-ticket-root;3223">#3223</ulink>。</para>
+        </listitem>
+        <listitem>
+          <para>[matthew] - 升级至 Man-Pages-3.44。修复 <ulink url="&lfs-ticket-root;3222">#3222</ulink>。</para>
+        </listitem>
+        <listitem>
+          <para>[matthew] - 升级至 Bison-2.6.5。修复 <ulink url="&lfs-ticket-root;3221">#3221</ulink>。</para>
+        </listitem>
+        <listitem>
+          <para>[matthew] - 升级至 Tzdata-2012i。修复 <ulink url="&lfs-ticket-root;3220">#3220</ulink>。</para>
+        </listitem>
+        <listitem>
+          <para>[matthew] - 升级至 Linux-3.6.6。修复 <ulink url="&lfs-ticket-root;3218">#3219</ulink>。</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
       <para>2012-11-03</para>
       <itemizedlist>
         <listitem>

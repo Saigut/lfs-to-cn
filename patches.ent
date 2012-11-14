@@ -2,9 +2,9 @@
 
 <!-- Start of Common Patches -->
 
-<!ENTITY bash-fixes-patch "bash-&bash-version;-fixes-9.patch">
-<!ENTITY bash-fixes-patch-md5 "db330dd98d829792aca1b463ba47d63b">
-<!ENTITY bash-fixes-patch-size "53 KB">
+<!ENTITY bash-fixes-patch "bash-&bash-version;-fixes-10.patch">
+<!ENTITY bash-fixes-patch-md5 "739056302cfbb5675ceb87b29cd898e5">
+<!ENTITY bash-fixes-patch-size "54 KB">
 
 
 <!ENTITY binutils-build-patch "binutils-&binutils-version;-build_fix-1.patch">
@@ -67,17 +67,12 @@
 <!ENTITY kbd-fixes-patch-size "1.6 KB">
 
 
-<!ENTITY kmod-test_fix-patch "kmod-&kmod-version;-testsuite-1.patch">
-<!ENTITY kmod-test_fix-patch-md5 "ac03d29f6c2fcfd455c10618c3515d05">
-<!ENTITY kmod-test_fix-patch-size "1.3 KB">
-
-
 <!ENTITY make-fixes-patch "make-&make-version;-upstream_fixes-3.patch">
 <!ENTITY make-fixes-patch-md5 "95027ab5b53d01699845d9b7e1dc878d">
 <!ENTITY make-fixes-patch-size "10 KB">
 
 
-<!ENTITY perl-libc-patch "perl-&perl-version;-libc-2.patch">
+<!ENTITY perl-libc-patch "perl-&perl-version;-libc-1.patch">
 <!ENTITY perl-libc-patch-md5 "daf5c64fd7311e924966842680535f8f">
 <!ENTITY perl-libc-patch-size "1.6 KB">
 
