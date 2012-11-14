@@ -40,16 +40,13 @@
   <sect2 role="installation">
     <title>安装 Kmod</title>
 
-    <para>应用一个补丁修复 32 位计算机上的一个测试套件问题：</para>
-
-<screen><userinput remap="pre">patch -Np1 -i ../&kmod-test_fix-patch;</userinput></screen>
-
     <para>准备编译 Kmod：</para>
 
 <screen><userinput remap="configure">./configure --prefix=/usr       \
             --bindir=/bin       \
             --libdir=/lib       \
             --sysconfdir=/etc   \
+            --disable-manpages  \
             --with-xz           \
             --with-zlib</userinput></screen>
 
@@ -63,6 +60,13 @@
         </listitem>
       </varlistentry>
 
+      <varlistentry>
+        <term><parameter>--disable-manpages</parameter></term>
+        <listitem>
+            <para>这一选项防止手册页被编制，因为它们依赖于在 chroot 环境下不可用的 libxsit。</para>
+        </listitem>
+      </varlistentry>
+        
     </variablelist>
 
     <para>编译程序包：</para>
