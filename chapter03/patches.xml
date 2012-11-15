@@ -23,14 +23,6 @@
     </varlistentry>
 
     <varlistentry>
-      <term>Binutils 编制修复补丁 - <token>&binutils-build-patch-size;</token>：</term>
-      <listitem>
-        <para>下载：<ulink url="&patches-root;&binutils-build-patch;"/></para>
-        <para>MD5 指纹码：<literal>&binutils-build-patch-md5;</literal></para>
-      </listitem>
-    </varlistentry>
-
-    <varlistentry>
       <term>Bzip2 文档补丁 - <token>&bzip2-docs-patch-size;</token>：</term>
       <listitem>
         <para>下载：<ulink url="&patches-root;&bzip2-docs-patch;"/></para>
