@@ -58,10 +58,6 @@ Ask your system administrator to create more.</computeroutput></screen>
 <screen><userinput remap="pre">rm -fv etc/standards.info
 sed -i.bak '/^INFO/s/standards.info //' etc/Makefile.in</userinput></screen>
 
-    <para>应用一个补丁防止在使用编译器优化时编制失败：</para>
-
-<screen><userinput remap="pre">patch -Np1 -i ../&binutils-build-patch;</userinput></screen>
-
     <para>Binutils 文档推荐在源代码目录外另建目录编制 Binutils：</para>
 
 <screen><userinput remap="pre">mkdir -v ../binutils-build

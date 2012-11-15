@@ -47,10 +47,6 @@
 
     <para>Binutils 作为第一个编译的程序包很重要，因为 GCC 和 Glibc 都会对汇编器和链接器进行特性测试来决定要启用还是禁用他们自己的每个特性。</para>
     
-    <para>应用一个补丁防止使用编译器优化时编制失败：</para>
-
-<screen><userinput remap="pre">patch -Np1 -i ../&binutils-build-patch;</userinput></screen>
-
     <para>Binutils 文档推荐在源代码目录外创建目录编制 Binutils：</para>
 
 <screen><userinput remap="pre">mkdir -v ../binutils-build
