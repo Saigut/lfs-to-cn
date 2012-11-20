@@ -48,7 +48,7 @@
 
 <screen><userinput remap="pre">patch -Np1 -i ../&procps-watch-patch;</userinput></screen>
 
-    <para>修复 Makefile 中的一个问题，此问题使 procps 无法以 make-&make-version; 编制：</para>
+    <para>不安装 kill 程序，它已由 util-linux 安装过。还要修复 Makefile 中的一个问题，此问题使 procps 无法以 make-&make-version; 编制：</para>
 
 <screen><userinput remap="pre">sed -i -e 's@\*/module.mk@proc/module.mk ps/module.mk@' \
        -e 's@^#SKIP@SKIP@' Makefile</userinput></screen>
@@ -73,7 +73,7 @@
       <segtitle>安装的库</segtitle>
 
       <seglistitem>
-        <seg>free, kill, pgrep, pkill, pmap, ps, pwdx, skill, slabtop, snice, sysctl, tload, top, uptime, vmstat, w 和 watch</seg>
+        <seg>free, pgrep, pkill, pmap, ps, pwdx, skill, slabtop, snice, sysctl, tload, top, uptime, vmstat, w 和 watch</seg>
         <seg>libproc.so</seg>
       </seglistitem>
     </segmentedlist>
@@ -89,16 +89,6 @@
           <para>报告系统中已用和可用内存的数量 (包括物理内存和交换)</para>
           <indexterm zone="ch-system-procps free">
             <primary sortas="b-free">free</primary>
-          </indexterm>
-        </listitem>
-      </varlistentry>
-
-      <varlistentry id="kill">
-        <term><command>kill</command></term>
-        <listitem>
-          <para>给进程发信号</para>
-          <indexterm zone="ch-system-procps kill">
-            <primary sortas="b-kill">kill</primary>
           </indexterm>
         </listitem>
       </varlistentry>

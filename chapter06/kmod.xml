@@ -54,7 +54,7 @@
       <title>配置选项的含义：</title>
 
       <varlistentry>
-        <term><parameter>lib* and --with-*</parameter></term>
+        <term><parameter>--with-*</parameter></term>
         <listitem>
           <para>这些选项允许 Kmod 处理压缩的内核模块。这些 shell 变量用于在 pkg-config 缺失时使 xz 和 zlib 头文件能够被找到。</para>
         </listitem>
@@ -66,7 +66,7 @@
             <para>这一选项防止手册页被编制，因为它们依赖于在 chroot 环境下不可用的 libxsit。</para>
         </listitem>
       </varlistentry>
-        
+
     </variablelist>
 
     <para>编译程序包：</para>

@@ -30,8 +30,19 @@
         </listitem>
       </itemizedlist>
     </listitem>
-
 -->
+
+    <listitem>
+      <para>2012-11-18</para>
+      <itemizedlist>
+        <listitem>
+          <para>[matthew] - 升级至 Linux-3.6.7。修复 <ulink url="&lfs-ticket-root;3232">#3232</ulink>.</para>
+        </listitem>
+        <listitem>
+          <para>[matthew] - 升级至 Automake-1.12.5。修复 <ulink url="&lfs-ticket-root;3231">#3231</ulink>.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
 
     <listitem>
         <para>2012-11-14</para>
