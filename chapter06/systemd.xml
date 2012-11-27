@@ -45,6 +45,10 @@
 
 <screen><userinput remap="pre">tar -xvf ../&udev-lfs;.tar.bz2</userinput></screen>
 
+    <para>修复 <userinput>udevadm</userinput> 用途输出中的一处错误：</para>
+
+<screen><userinput remap="pre">sed -i -e 's/create/update/' src/udev/udevadm-hwdb.c</userinput></screen>
+
     <para>编译程序包：</para>
 
 <screen><userinput remap="make">make -f udev-lfs-&systemd-version;/Makefile.lfs</userinput></screen>

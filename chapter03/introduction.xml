@@ -30,7 +30,7 @@
 
   <para>另外，从 LFS-7.0 开始，还有一个独立的文件 <ulink url="../md5sums">md5sums</ulink>，可以用来在继续之前检验是否所有程序包都可用。将此文件置于 <filename class="directory">$LFS/sources</filename> 并运行：</para>
 
-<screen role="nodump"><userinput>pushd  $LFS/sources
+<screen role="nodump"><userinput>pushd $LFS/sources
 md5sum -c md5sums
 popd</userinput></screen> 
 
