@@ -35,7 +35,19 @@
     <para>最后强调两点：</para>
 
     <important>
-      <para>编制指令要求使用 <command>bash</command> shell。</para>
+        <para>编制指令认为 <xref linkend='pre-hostreqs'/>，包括符号链接，已经被正确设置：</para>
+        
+        <itemizedlist role='important'>
+            
+            <listitem override='bullet'><para><command>bash</command> 是正在使用的 shell。</para></listitem>
+            
+            <listitem override='bullet'><para><command>sh</command> 是一个到 <command>bash</command> 的符号链接。</para></listitem>
+            
+            <listitem override='bullet'><para><command>/usr/bin/awk</command> 是一个到 <command>gawk</command> 的符号链接。</para></listitem>
+            
+            <listitem override='bullet'><para><command>/usr/bin/yacc</command> 是一个到 <command>bison</command> 或一个运行 bison 的小脚本的符号链接。</para></listitem>
+            
+        </itemizedlist>
     </important>
 
     <important>
