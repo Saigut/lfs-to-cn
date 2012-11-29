@@ -51,15 +51,21 @@
 
     <para>编译程序包：</para>
 
-<screen><userinput remap="make">make -f udev-lfs-&systemd-version;/Makefile.lfs</userinput></screen>
+<screen><userinput remap="make">make -f &udev-lfs;/Makefile.lfs</userinput></screen>
 
     <para>安装程序包：</para>
 
-<screen><userinput remap="install">make -f udev-lfs-&systemd-version;/Makefile.lfs install</userinput></screen>
+<screen><userinput remap="install">make -f &udev-lfs;/Makefile.lfs install</userinput></screen>
+
+    <caution><para>在 <application>systemd</application> 源代码中有几处嵌入了明确的目录路径。例如硬件数据库二进制版本的路径和文件名 <filename>/etc/udev/hwdb.bin</filename>，运行时使用，不直接改动源代码无法更改。</para></caution>
+
+    <para>现在初始化硬件数据库：</para>
+
+<screen><userinput remap="install">build/udevadm hwdb --update</userinput></screen>
 
     <para>最后设置稳定的 udev 网络规则。此任务在<xref linkend='stable-net-names'/>中具体讲解。注意 <filename class='directory'>/sys</filename> 和 <filename class='directory'>/proc</filename> 文件系统必须按本章开始处说明的方式挂载于 chroot 环境中，以下脚本才能够工作。</para>
 
-<screen><userinput remap="install">bash udev-lfs-&systemd-version;/init-net-rules.sh</userinput></screen>
+<screen><userinput remap="install">bash &udev-lfs;/init-net-rules.sh</userinput></screen>
   </sect2>
 
   <sect2 id="contents-udev" role="content">

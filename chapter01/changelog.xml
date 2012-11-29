@@ -33,15 +33,33 @@
 -->
 
     <listitem>
+      <para>2012-11-28</para>
+      <itemizedlist>
+        <listitem>
+          <para>[bdubbs] - 升级 systemd-196/udev-lfs-196 的 makefile 和指令。</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
+      <para>2012-11-27</para>
+      <itemizedlist>
+        <listitem>
+          <para>[matthew] - 升级至 Linux-3.6.8。修复 <ulink url="&lfs-ticket-root;3234">#3234</ulink>。</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
         <para>2012-11-26</para>
         <itemizedlist>
             <listitem>
-                <para>[bdubbs] - 在第五章的 通用编译指令 中再次强调了 host 系统要求。</para>
+                <para>[bdubbs] - 在第五章的 通用编译指令 中再次强调了宿主系统要求。</para>
             </listitem>
         </itemizedlist>
     </listitem>
       
-    </listitem>
+    <listitem>
       <para>2012-11-22</para>
       <itemizedlist>
         <listitem>
