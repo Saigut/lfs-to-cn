@@ -33,6 +33,15 @@
 -->
 
     <listitem>
+        <para>2012-13-03</para>
+        <itemizedlist>
+            <listitem>
+                <para>[bdubbs] - 修复 systemd-196/udev-lfs-196 的 makefile 中的编制问题。</para>
+            </listitem>
+        </itemizedlist>
+    </listitem>
+      
+    <listitem>
       <para>2012-11-28</para>
       <itemizedlist>
         <listitem>
