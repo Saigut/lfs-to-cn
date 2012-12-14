@@ -31,9 +31,38 @@
       </itemizedlist>
     </listitem>
 -->
+    <listitem>
+        <para>2012-12-12</para>
+        <itemizedlist>
+            <listitem>
+                <para>[matthew] - 升级至 IPRoute2-3.7.0。修复 <ulink url="&lfs-ticket-root;3246">#3246</ulink>。</para>
+            </listitem>
+            <listitem>
+                <para>[matthew] - 更新已安装程序的 Check's 列表。修复 <ulink url="&lfs-ticket-root;3245">#3245</ulink>。感谢 Chris Staub 提供的补丁。</para>
+            </listitem>
+            <listitem>
+                <para>[matthew] - 所有 Flex 的测试通过，因此迁移 &quot;-k&quot; 选项到它的测试套件调用。修复 <ulink url="&lfs-ticket-root;3244">#3244</ulink>。</para>
+            </listitem>
+            <listitem>
+                <para>[matthew] - 升级至 E2fsprogs-1.42.6。修复 <ulink url="&lfs-ticket-root;3243">#3243</ulink>。</para>
+            </listitem>
+            <listitem>
+                <para>[matthew] - 将冗余的 --enable-addons 参数移至 Glibc 的配置脚本。修复 <ulink url="&lfs-ticket-root;3241">#3241</ulink>。</para>
+            </listitem>
+            <listitem>
+                <para>[matthew] - 更新 IRC 服务器信息。修复 <ulink url="&lfs-ticket-root;3240">#3240</ulink>。感谢 Chris Staub 提供的补丁。</para>
+            </listitem>
+            <listitem>
+                <para>[matthew] - 升级至 Kmod-12。修复 <ulink url="&lfs-ticket-root;3238">#3238</ulink>。</para>
+            </listitem>
+            <listitem>
+                <para>[matthew] - 升级至 Linux-3.7。修复 <ulink url="&lfs-ticket-root;3237">#3237</ulink>。</para>
+            </listitem>
+        </itemizedlist>
+    </listitem>
 
     <listitem>
-        <para>2012-13-03</para>
+        <para>2012-12-03</para>
         <itemizedlist>
             <listitem>
                 <para>[bdubbs] - 修复 systemd-196/udev-lfs-196 的 makefile 中的编制问题。</para>

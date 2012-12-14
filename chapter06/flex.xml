@@ -55,9 +55,7 @@
 
     <para>要测试结果 (大约 0.5 SBU)，执行：</para>
 
-<screen><userinput remap="test">make -k check</userinput></screen>
-
-    <para>有两个测试会因为与最新版本的 bison 不兼容而失败。</para>
+<screen><userinput remap="test">make check</userinput></screen>
 
     <para>安装程序包：</para>
 

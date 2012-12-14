@@ -64,6 +64,7 @@
     <title>Check 的内容</title>
 
     <segmentedlist>
+      <segtitle>安装的程序</segtitle>
       <segtitle>安装的库</segtitle>
 
       <seglistitem>
@@ -75,6 +76,17 @@
       <bridgehead renderas="sect3">简介</bridgehead>
       <?dbfo list-presentation="list"?>
       <?dbhtml list-presentation="table"?>
+        
+    <varlistentry id="checkmk">
+        <term><command>checkmk</command></term>
+        <listitem>
+            <para>用于为使用 Check 单元测试框架生成 C 单元测试的 Awk 脚本。</para>
+            <indexterm zone="ch-tools-check checkmk">
+                <primary sortas="b-checmk">checkmk</primary>
+            </indexterm>
+        </listitem>
+    </varlistentry>
+
 
       <varlistentry id="libcheck">
         <term><filename class="libraryfile">libcheck.{a,so}</filename></term>

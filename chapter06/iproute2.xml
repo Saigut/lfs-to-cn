@@ -40,10 +40,6 @@
   <sect2 role="installation">
     <title>安装 IPRoute2</title>
 
-    <para>应用一个补丁修复一个由 iptables 程序包缺失造成的编译问题：</para>
-
-<screen><userinput remap="pre">patch -Np1 -i ../&iproute2-ipset-patch;</userinput></screen>
-
     <para>此程序包包含的 <command>arpd</command> 二进制依赖 Berkeley DB。因为 <command>arpd</command> 对于基本 Linux 系统来说不是必要的，应用以下命令移除对 Berkeley DB 的依赖。如果需要 <command>arpd</command> 这个二进制，编译 Berkeley DB 的指令位于 BLFS 中的 <ulink url="&blfs-root;view/svn/server/databases.html#db"/>。
     </para>
 

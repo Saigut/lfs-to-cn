@@ -55,7 +55,7 @@
 
     <para>安装程序包：</para>
 
-<screen><userinput remap="install">make -f &udev-lfs;/Makefile.lfs install</userinput></screen>
+<screen><userinput remap="make">make -f &udev-lfs;/Makefile.lfs</userinput></screen>
 
     <caution><para>在 <application>systemd</application> 源代码中有几处嵌入了明确的目录路径。例如硬件数据库二进制版本的路径和文件名 <filename>/etc/udev/hwdb.bin</filename>，运行时使用，不直接改动源代码无法更改。</para></caution>
 

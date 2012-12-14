@@ -44,7 +44,7 @@
   <sect2 id="ch-intro-irc">
     <title>IRC</title>
 
-    <para>在确定 FAQ 和邮件列表无法解决你的问题时，可以向我们的 IRC 频道求助。我们的 IRC 地址是 <uri>irc.linuxfromscratch.org</uri>，频道名称为 #LFS-support。</para>
+    <para>数个 LFS 社区成员在 IRC 频道提供帮助。在确定 FAQ 和邮件列表无法解决你的问题时，可以向我们的 IRC 频道求助。你可以在 <uri>irc.freenode.net</uri> 找到我们的 IRC 地址，频道名称为 #LFS-support。</para>
 
   </sect2>
 
