@@ -63,14 +63,6 @@
     </varlistentry>
 
     <varlistentry>
-      <term>IPRoute2 ipset 补丁 - <token>&iproute2-ipset-patch-size;</token>:</term>
-      <listitem>
-        <para>下载：<ulink url="&patches-root;&iproute2-ipset-patch;"/></para>
-        <para>MD5 指纹码：<literal>&iproute2-ipset-patch-md5;</literal></para>
-      </listitem>
-    </varlistentry>
-
-    <varlistentry>
       <term>Kbd 加载按键修复补丁 - <token>&kbd-fixes-patch-size;</token>：</term>
       <listitem>
         <para>下载：<ulink url="&patches-root;&kbd-fixes-patch;"/></para>

@@ -73,7 +73,6 @@ esac</userinput></screen>
       --host=$LFS_TGT                                 \
       --build=$(../glibc-&glibc-version;/scripts/config.guess) \
       --disable-profile                               \
-      --enable-add-ons                                \
       --enable-kernel=2.6.25                          \
       --with-headers=/tools/include                   \
       libc_cv_forced_unwind=yes                       \
@@ -94,13 +93,6 @@ esac</userinput></screen>
         <term><parameter>--disable-profile</parameter></term>
         <listitem>
           <para>不使用检测的信息进行编译。当需要检测信息时，去掉这个参数。</para>
-        </listitem>
-      </varlistentry>
-
-      <varlistentry>
-        <term><parameter>--enable-add-ons</parameter></term>
-        <listitem>
-          <para>告诉 Glibc 使用附加的 NPTL 作为线程库。</para>
         </listitem>
       </varlistentry>
 
