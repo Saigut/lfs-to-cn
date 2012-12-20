@@ -31,6 +31,34 @@
       </itemizedlist>
     </listitem>
 -->
+      
+    <listitem>
+        <para>2012-12-18</para>
+        <itemizedlist>
+            <listitem>
+                <para>[bdubbs] - 升级至 Automake-1.12.6。修复 <ulink url="&lfs-ticket-root;3253">#3253</ulink>。</para>
+            </listitem>
+            <listitem>
+                <para>[bdubbs] - 升级至 Linux-3.7.1。 修复 <ulink url="&lfs-ticket-root;3254">#3254</ulink>。</para>
+            </listitem>
+        </itemizedlist>
+    </listitem>
+      
+    <listitem>
+        <para>2012-12-16</para>
+        <itemizedlist>
+            <listitem>
+                <para>[matthew] - 升级至 Util-Linux-2.22.2。修复 <ulink url="&lfs-ticket-root;3250">#3250</ulink>。</para>
+            </listitem>
+            <listitem>
+                <para>[matthew] - 移除了一些缩写列表中不再被本书提及的条目。修复 <ulink url="&lfs-ticket-root;3249">#3249</ulink>。感谢 Chris Staub 提供的不定。</para>
+            </listitem>
+            <listitem>
+                <para>[matthew] - 升级至 Bison-2.7。修复 <ulink url="&lfs-ticket-root;3247">#3247</ulink>。</para>
+            </listitem>
+        </itemizedlist>
+    </listitem>
+      
     <listitem>
         <para>2012-12-12</para>
         <itemizedlist>
