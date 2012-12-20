@@ -15,11 +15,11 @@
 <!ENTITY autoconf-ch6-du "17.1 MB">
 <!ENTITY autoconf-ch6-sbu "4.5 SBU">
 
-<!ENTITY automake-version "1.12.5">
+<!ENTITY automake-version "1.12.6">
 <!ENTITY am-minor-version "1.12">
-<!ENTITY automake-size "1,356 KB">
+<!ENTITY automake-size "1,368 KB">
 <!ENTITY automake-url "&gnu;automake/automake-&automake-version;.tar.xz">
-<!ENTITY automake-md5 "2bc1aef898712c7e56320f264040972d">
+<!ENTITY automake-md5 "140e084223bf463a24c1a28427c6aec7">
 <!ENTITY automake-home "&gnu-software;automake/">
 <!ENTITY automake-ch6-du "100 MB">
 <!ENTITY automake-ch6-sbu "少于 0.1 SBU (含测试 34.1 SBU)">
@@ -46,10 +46,10 @@
 <!ENTITY binutils-ch6-du "343 MB">
 <!ENTITY binutils-ch6-sbu "1.9 SBU">
 
-<!ENTITY bison-version "2.6.5">
-<!ENTITY bison-size "1,630 KB">
+<!ENTITY bison-version "2.7">
+<!ENTITY bison-size "1,735 KB">
 <!ENTITY bison-url "&gnu;bison/bison-&bison-version;.tar.xz">
-<!ENTITY bison-md5 "75c8508e0a9e5c68f608658672d6bda4">
+<!ENTITY bison-md5 "234cdfac99257cf99ac4a03c898f37b9">
 <!ENTITY bison-home "&gnu-software;bison/">
 <!--
 <!ENTITY bison-ch5-du "">
@@ -273,7 +273,7 @@
 <!ENTITY iproute2-version "3.7.0">
 <!ENTITY iproute2-size "391 KB">
 <!ENTITY iproute2-url "&kernel;linux/utils/net/iproute2/iproute2-&iproute2-version;.tar.xz">
-<!ENTITY iproute2-md5 "bea92f26c8cc04e79f4db02dc1d258d3">
+<!ENTITY iproute2-md5 "b07241b267036de9a79ca5b69acf8593">
 <!ENTITY iproute2-home "&kernel;linux/utils/net/iproute2/">
 <!ENTITY iproute2-ch6-du "7.3 MB">
 <!ENTITY iproute2-ch6-sbu "0.1 SBU">
@@ -328,12 +328,12 @@
 
 <!ENTITY linux-major-version "3">
 <!ENTITY linux-minor-version "7">
-<!--<!ENTITY linux-patch-version "10">-->
-<!--<!ENTITY linux-version "&linux-major-version;.&linux-minor-version;.&linux-patch-version;">-->
-<!ENTITY linux-version "&linux-major-version;.&linux-minor-version;">
-<!ENTITY linux-size "68,102 KB">
+<!ENTITY linux-patch-version "1">
+<!ENTITY linux-version "&linux-major-version;.&linux-minor-version;.&linux-patch-version;">
+<!-- <!ENTITY linux-version "&linux-major-version;.&linux-minor-version;"> -->
+<!ENTITY linux-size "68,432 KB">
 <!ENTITY linux-url "&kernel;linux/kernel/v&linux-major-version;.x/linux-&linux-version;.tar.xz">
-<!ENTITY linux-md5 "21223369d682bcf44bcdfe1521095983">
+<!ENTITY linux-md5 "b3f99fb945b270b503b2a0996b8b29e7">
 <!ENTITY linux-home "http://www.kernel.org/">
 <!ENTITY linux-ch8-du "540 - 800 MB">
 <!ENTITY linux-ch8-sbu "1.0 - 5.0 SBU">
@@ -547,10 +547,10 @@
 <!ENTITY udev-lfs-md5    "0dbcb1731ee2b74b34ab4f1a65e66c30">    
 <!ENTITY udev-lfs-home   " ">
 
-<!ENTITY util-linux-version "2.22.1">
-<!ENTITY util-linux-size "3,124 KB">
+<!ENTITY util-linux-version "2.22.2">
+<!ENTITY util-linux-size "3,028 KB">
 <!ENTITY util-linux-url "&kernel;linux/utils/util-linux/v2.22/util-linux-&util-linux-version;.tar.xz">
-<!ENTITY util-linux-md5 "730cf9932531ed09b53a04ca30fcb4c9">
+<!ENTITY util-linux-md5 "eeacbfdd2556acd899a2d0ffdb446185">
 <!ENTITY util-linux-home "http://userweb.kernel.org/~kzak/util-linux/">
 <!ENTITY util-linux-ch6-du "83 MB">
 <!ENTITY util-linux-ch6-sbu "0.7 SBU">

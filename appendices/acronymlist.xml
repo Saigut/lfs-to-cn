@@ -30,13 +30,6 @@
     </varlistentry>
 
     <varlistentry>
-      <term><emphasis role="bold">ALSA</emphasis></term>
-      <listitem>
-        <para>Advanced Linux Sound Architecture，高级 Linux 声音架构</para>
-      </listitem>
-    </varlistentry>
-
-    <varlistentry>
       <term><emphasis role="bold">API</emphasis></term>
       <listitem>
         <para>Application Programming Interface，应用程序编程接口</para>
@@ -163,13 +156,6 @@
     </varlistentry>
 
     <varlistentry>
-      <term><emphasis role="bold">EVMS</emphasis></term>
-      <listitem>
-        <para>Enterprise Volume Management System，计划存储管理系统</para>
-      </listitem>
-    </varlistentry>
-
-    <varlistentry>
       <term><emphasis role="bold">ext2</emphasis></term>
       <listitem>
         <para>second extended file system，第二扩展文件系统</para>
@@ -250,13 +236,6 @@
       <term><emphasis role="bold">GMT</emphasis></term>
       <listitem>
         <para>Greenwich Mean Time，格林尼治时间</para>
-      </listitem>
-    </varlistentry>
-
-    <varlistentry>
-      <term><emphasis role="bold">GPG</emphasis></term>
-      <listitem>
-        <para>GNU Privacy Guard，GNU 加密软件</para>
       </listitem>
     </varlistentry>
 
@@ -436,30 +415,9 @@
     </varlistentry>
 
     <varlistentry>
-      <term><emphasis role="bold">PLFS</emphasis></term>
-      <listitem>
-        <para>Pure Linux From Scratch，纯 LFS</para>
-      </listitem>
-    </varlistentry>
-    
-    <varlistentry>
-      <term><emphasis role="bold">POSIX</emphasis></term>
-      <listitem>
-        <para>Portable Operating System Interface of Unix，Unix 可移植操作系统接口</para>
-      </listitem>
-    </varlistentry>
-
-    <varlistentry>
       <term><emphasis role="bold">PTY</emphasis></term>
       <listitem>
         <para>pseudo terminal，伪终端</para>
-      </listitem>
-    </varlistentry>
-
-    <varlistentry>
-      <term><emphasis role="bold">QA</emphasis></term>
-      <listitem>
-        <para>Quality Assurance，质量保证</para>
       </listitem>
     </varlistentry>
 
@@ -506,23 +464,9 @@
     </varlistentry>
 
     <varlistentry>
-      <term><emphasis role="bold">SGR</emphasis></term>
-      <listitem>
-        <para>Select Graphic Rendition，选择图形再现</para>
-      </listitem>
-    </varlistentry>
-
-    <varlistentry>
       <term><emphasis role="bold">SHA1</emphasis></term>
       <listitem>
         <para>Secure-Hash Algorithm 1，加密哈希算法 1</para>
-      </listitem>
-    </varlistentry>
-
-    <varlistentry>
-      <term><emphasis role="bold">SMP</emphasis></term>
-      <listitem>
-        <para>Symmetric Multi-Processor，对称多处理机</para>
       </listitem>
     </varlistentry>
 
