@@ -20,7 +20,15 @@
   <para>然后，卸载我们先前挂载的虚拟文件系统：</para>
 
 <screen><userinput>umount -v $LFS/dev/pts
-umount -v $LFS/dev/shm
+    
+if [ -h $LFS/dev/shm ]; then
+  link=$(readlink $LFS/dev/shm)
+  umount -v $LFS/$link
+  unset link
+else
+  umount -v $LFS/dev/shm
+fi
+    
 umount -v $LFS/dev
 umount -v $LFS/proc
 umount -v $LFS/sys</userinput></screen>

@@ -48,14 +48,16 @@ mknod -m 666 $LFS/dev/null c 1 3</userinput></screen>
 mount -vt proc proc $LFS/proc
 mount -vt sysfs sysfs $LFS/sys</userinput></screen>
 
-      <para>在某些宿主系统上，<filename>/dev/shm</filename> 是到<filename class="directory">/run/shm</filename> 的符号链接。在 chroot 环境中，这个符号链接需要在挂载为临时文件系统之前改为一个普通目录：</para>
+      <para>在某些宿主系统上，<filename>/dev/shm</filename> 是到<filename class="directory">/run/shm</filename> 的符号链接。在一个 chroot 环境中，这个临时文件需要被从宿主文件系统分别挂载：</para>
 
-<screen><userinput>if [ -h /dev/shm ]; then
-   rm -f $LFS/dev/shm
-   mkdir $LFS/dev/shm
-fi
-
-mount -vt tmpfs shm $LFS/dev/shm</userinput></screen>
+<screen><userinput>if [ -h $LFS/dev/shm ]; then
+  link=$(readlink $LFS/dev/shm)
+  mkdir -p $LFS/$link
+  mount -vt tmpfs shm $LFS/$link
+  unset link
+else
+  mount -vt tmpfs shm $LFS/dev/shm
+fi</userinput></screen>
 
   </sect2>
 

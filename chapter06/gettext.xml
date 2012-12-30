@@ -40,10 +40,6 @@
   <sect2 role="installation">
     <title>安装 Gettext</title>
 
-    <para>修复此程序包和 Glibc-&glibc-version; 间的一个不兼容问题：</para>
-
-<screen><userinput remap="pre">sed -i -e '/gets is a/d' gettext-*/*/stdio.in.h</userinput></screen>
-
     <para>准备编译 Gettext ：</para>
 
 <screen><userinput remap="configure">./configure --prefix=/usr \

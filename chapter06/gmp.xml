@@ -80,7 +80,7 @@
 
 <screen><userinput remap="test">make check 2>&amp;1 | tee gmp-check-log</userinput></screen>
 
-    <para>确保套件中全部 166 个测试都通过。要确认结果，执行以下命令：</para>
+    <para>确保套件中全部 184 个测试都通过。要确认结果，执行以下命令：</para>
 
 <screen><userinput remap="test">awk '/tests passed/{total+=$2} ; END{print total}' gmp-check-log</userinput></screen>
 
