@@ -46,58 +46,11 @@
 
     <para>Glibc 编制系统是很完备的，即使编译器的 specs 文件和链接器仍然指向 <filename class="directory">/tools</filename> 也能完美地编制。specs 和链接器不能在 Glibc 安装之前进行，因为 Glibc 的 autoconf 测试会给出不正确的结果，也就无法实现清洁的编制。</para>
 
-<!--
-    This should have been fixed a long time ago.
-
-    <para>In the vi_VN.TCVN locale, <command>bash</command> enters an infinite
-    loop at startup. It is unknown whether this is a <command>bash</command>
-    bug or a Glibc problem. Disable installation of this locale in order to
-    avoid the problem:</para>
-
-<screen><userinput remap="pre">sed -i '/vi_VN.TCVN/d' localedata/SUPPORTED</userinput></screen>
--->
-
-    <para>修复一个导致在 LFS 环境中导致编制失败的问题：</para>
-
-<screen><userinput remap="pre">sed -i 's#&lt;rpc/types.h&gt;#"rpc/types.h"#' sunrpc/rpc_clntout.c</userinput></screen>
-
-<!--    <para>When running <command>make install</command>, a script called
-    <filename>test-installation.pl</filename> performs a small sanity test on
-    our newly installed Glibc. However, because our toolchain still points to
-    the <filename class="directory">/tools</filename> directory, the sanity
-    test would be carried out against the wrong Glibc. We can force the script
-    to check the Glibc we have just installed with the following:</para>
-
-<screen><userinput remap="pre">DL=$(readelf -l /bin/sh | sed -n 's@.*interpret.*/tools\(.*\)]$@\1@p')
-sed -i &quot;s|libs -o|libs -L/usr/lib -Wl,-dynamic-linker=$DL -o|&quot; \
-        scripts/test-installation.pl
-unset DL</userinput></screen>-->
-
-    <para>在运行 <command>make install</command> 的时候，一个叫做 <filename>test-installation.pl</filename> 的脚本会对新安装的 Glibc 进行一个小的稳定性测试。用一个补丁修复导致它失败的漏洞：</para>
-
-<screen><userinput remap="pre">patch -Np1 -i ../&glibc-installation-patch;</userinput></screen>
-
-    <para><command>ldd</command> 这个 Shell 脚本包含 Bash 特有的语法。如果按照 BLFS 中 <ulink url="&blfs-root;view/svn/postlfs/shells.html">Shells</ulink> 一章中的介绍安装了另外的 <command>/bin/sh</command>，将其默认解释器改为 <command>/bin/bash</command>：</para>
-
-<screen><userinput remap="pre">sed -i 's|@BASH@|/bin/bash|' elf/ldd.bash.in</userinput></screen>
-
-    <para>现在修复一个在使用有问题的名称服务器时导致某些程序崩溃的问题：</para>
-
-<screen><userinput remap="pre">patch -Np1 -i ../&glibc-fix-resolv-patch;</userinput></screen>
-
     <para>Glibc 文档推荐在源代码目录外另建目录编译 Glibc：</para>
 
 <screen><userinput remap="pre">mkdir -v ../glibc-build
 cd ../glibc-build</userinput></screen>
-<!--
-    <para>As in Chapter 5, add the needed compiler flags to CFLAGS for x86 machines.
-    Here, the optimization of the library is also set for the gcc compiler to
-    enhance compilation speed (-pipe) and package performance (-O3).</para>
 
-<screen><userinput remap="configure">case `uname -m` in
-  i?86) echo "CFLAGS += -march=i486 -mtune=native -O3 -pipe" &gt; configparms ;;
-esac</userinput></screen>
--->
     <para>准备编译 Glibc：</para>
 
 <screen><userinput remap="configure">../glibc-&glibc-version;/configure  \
@@ -128,20 +81,12 @@ esac</userinput></screen>
 
     <para>通常有些测试无法通过，但你可以忽略以下列出的测试失败。现在测试结果：</para>
 
-<!-- cp -v ../glibc-&glibc-version;/iconvdata/gconv-modules iconvdata -->
-
 <screen><userinput remap="test">make -k check 2&gt;&amp;1 | tee glibc-check-log
 grep Error glibc-check-log</userinput></screen>
 
     <para>你很可能会在 <emphasis>posix/annexc</emphasis> 和 <emphasis>conform/run-conformtest</emphasis> 测试中看到期待的 (被忽略的) 测试失败。另外，Glibc 略微依赖宿主系统。以下列出最常见的问题：</para>
 
     <itemizedlist>
-      <!-- Check again after updating from gcc-4.1.x -->
-      <!-- Haven;t seen this in quite a while <listitem>
-        <para>The <emphasis>nptl/tst-cancel1</emphasis> test will fail when
-        using the 4.1 series of GCC.</para>
-      </listitem> -->
-      <!-- Was true in glibc-2.3.6, rt/tst-cpuclock2 in glibc-2.11.1 -->
 
       <listitem>
         <para><emphasis>nptl/tst-clock2</emphasis>、<emphasis>nptl/tst-attr3</emphasis>、<emphasis>tst/tst-cputimer1</emphasis> 和 <emphasis>rt/tst-cpuclock2</emphasis> 已知无法通过。原因尚不完全明确，但可能是由于细微的时钟问题导致。</para>
@@ -150,15 +95,6 @@ grep Error glibc-check-log</userinput></screen>
       <listitem>
         <para>在不太新的 Intel/AMD CPU 上数学测试有时会无法通过。</para>
       </listitem>
-      
-      <!--
-      <listitem>
-        <para>If you have mounted the LFS partition with the
-        <parameter>noatime</parameter> option, the <emphasis>atime</emphasis>
-        test will fail. As mentioned in <xref linkend="space-mounting"/>, do not
-        use the <parameter>noatime</parameter> option while building LFS.</para>
-      </listitem>
-      -->
       
       <listitem>
         <para>在运行于较古老，较缓慢或者负荷很重的系统上时，有些测试会由于超时而无法通过。改动 make check 命令，设置一个 TIMEOUTFACTOR 已知可以减少这些错误 (例如 <command>TIMEOUTFACTOR=16 make -k check</command>。</para>
@@ -218,9 +154,7 @@ localedef -i zh_CN -f GB18030 zh_CN.GB18030</userinput></screen>
 <screen><userinput remap="locale-full">make localedata/install-locales</userinput></screen>
 
     <para>然后使用 <command>localedef</command> 命令创建 <filename>glibc-&glibc-version;/localedata/SUPPORTED</filename> 文件中没有列出的区域数据。需要它们的情况并不多见。(译注：简体中文 UTF-8 的用户不需要如此)。</para>
-    <!-- The Live CD patches the localedata/SUPPORTED file instead of
-    running localedef, the results are equivalent -->
-
+      
   </sect2>
 
   <sect2 id="conf-glibc" role="configuration">

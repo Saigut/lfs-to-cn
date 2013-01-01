@@ -47,22 +47,6 @@
     </varlistentry>
 
     <varlistentry>
-      <term>Glibc DNS 解析补丁 - <token>&glibc-fix-resolv-patch-size;</token>：</term>
-      <listitem>
-        <para>下载：<ulink url="&patches-root;&glibc-fix-resolv-patch;"/></para>
-        <para>MD5 指纹码：<literal>&glibc-fix-resolv-patch-md5;</literal></para>
-      </listitem>
-    </varlistentry>
-
-    <varlistentry>
-      <term>Glibc test-installation.pl 补丁 - <token>&glibc-installation-patch-size;</token>：</term>
-      <listitem>
-        <para>下载：<ulink url="&patches-root;&glibc-installation-patch;"/></para>
-        <para>MD5 指纹码：<literal>&glibc-installation-patch-md5;</literal></para>
-      </listitem>
-    </varlistentry>
-
-    <varlistentry>
       <term>Kbd 加载按键修复补丁 - <token>&kbd-fixes-patch-size;</token>：</term>
       <listitem>
         <para>下载：<ulink url="&patches-root;&kbd-fixes-patch;"/></para>
@@ -115,14 +99,6 @@
       <listitem>
         <para>下载：<ulink url="&patches-root;&readline-fixes-patch;"/></para>
         <para>MD5 指纹码：<literal>&readline-fixes-patch-md5;</literal></para>
-      </listitem>
-    </varlistentry>
-
-    <varlistentry>
-      <term>Sed 回归测试补丁 - <token>&sed-testsuite-patch-size;</token>：</term>
-      <listitem>
-        <para>下载：<ulink url="&patches-root;&sed-testsuite-patch;"/></para>
-        <para>MD5 指纹码：<literal>&sed-testsuite-patch-md5;</literal></para>
       </listitem>
     </varlistentry>
 

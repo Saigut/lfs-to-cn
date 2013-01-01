@@ -109,10 +109,9 @@
 make -C doc html
 make -C doc install-html docdir=/usr/share/doc/inetutils-&inetutils-version;</userinput></screen>
 
-    <para>将某些程序移动到与 FHS 兼容的位置：</para>
+      <para>如果 <filename class='directory'>/usr</filename> 不可使用，移动一些程序来让他们可用：</para>
 
-<screen><userinput remap="install">mv -v /usr/bin/{hostname,ping,ping6} /bin
-mv -v /usr/bin/traceroute /sbin</userinput></screen>
+<screen><userinput remap="install">mv -v /usr/bin/{hostname,ping,ping6,traceroute} /bin</userinput></screen>
 
   </sect2>
 

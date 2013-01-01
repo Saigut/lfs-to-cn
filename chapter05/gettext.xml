@@ -44,10 +44,6 @@
     <title>安装 Gettext</title>
 
     <para>对于我们的临时工具，我们只需要编制安装 Gettext 的一个二进制。</para>
-    
-    <para>修复此程序包与 Glibc-&glibc-version; 不兼容的问题：</para>
-
-<screen><userinput remap="pre">sed -i -e '/gets is a/d' gettext-*/*/stdio.in.h</userinput></screen>
 
     <para>准备编译 Gettext：</para>
 

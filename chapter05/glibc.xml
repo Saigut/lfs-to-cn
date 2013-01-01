@@ -50,10 +50,6 @@
   su -c 'cp -v sunrpc/rpc/*.h /usr/include/rpc'
 fi</userinput></screen>
 
-    <para>修复一个以 GCC-&gcc-version; 编制 Glibc-&glibc-version; 时出现的问题：</para>
-
-<screen><userinput remap="pre">sed -i 's/ -lgcc_s//' Makeconfig</userinput></screen>
-
     <para>Glibc 文档推荐在源代码目录外创建目录编译 Glibc：</para>
 
 <screen><userinput remap="pre">mkdir -v ../glibc-build
