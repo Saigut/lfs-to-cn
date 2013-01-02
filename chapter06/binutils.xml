@@ -58,6 +58,10 @@ Ask your system administrator to create more.</computeroutput></screen>
 <screen><userinput remap="pre">rm -fv etc/standards.info
 sed -i.bak '/^INFO/s/standards.info //' etc/Makefile.in</userinput></screen>
 
+    <para>修复一些测试套件脚本确保所有测试通过：</para>
+
+<screen><userinput remap="pre">patch -Np1 -i ../&binutils-testsuite-fixes-patch;</userinput></screen>
+
     <para>Binutils 文档推荐在源代码目录外另建目录编制 Binutils：</para>
 
 <screen><userinput remap="pre">mkdir -v ../binutils-build
@@ -91,7 +95,7 @@ cd ../binutils-build</userinput></screen>
 
     <para>测试结果：</para>
 
-<screen><userinput remap="test">make -k check</userinput></screen>
+<screen><userinput remap="test">make check</userinput></screen>
 
     <para>安装程序包：</para>
 

@@ -61,7 +61,7 @@
       <varlistentry>
         <term><parameter>--disable-ifconfig</parameter></term>
         <listitem>
-          <para>此许想阻止 Inetutils 安装 <command>ifconfig</command> 程序，此程序用于配置网络接口。LFS 使用 IPRoute2 中的 <command>ip</command> 完成此任务。</para>
+          <para>此选项阻止 Inetutils 安装 <command>ifconfig</command> 程序，此程序用于配置网络接口。LFS 使用 IPRoute2 中的 <command>ip</command> 完成此任务。</para>
         </listitem>
       </varlistentry>
 

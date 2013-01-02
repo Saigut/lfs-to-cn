@@ -28,7 +28,7 @@
       <para>Autoconf &autoconf-version;</para>
     </listitem>-->
     <listitem>
-      <para>Automake-&automake-version;</para>
+      <para>Automake &automake-version;</para>
     </listitem>
     <!--<listitem>
       <para>Bash &bash-version;</para>
@@ -40,13 +40,13 @@
       <para>Binutils &binutils-version;</para>
     </listitem>
     <listitem>
-      <para>Bison-&bison-version;</para>
+      <para>Bison &bison-version;</para>
     </listitem>
     <!--<listitem>
       <para>Bzip2 &bzip2-version;</para>
     </listitem>-->
     <listitem>
-      <para>Check-&check-version;</para>
+      <para>Check &check-version;</para>
     </listitem>
     <!--<listitem>
       <para>Coreutils &coreutils-version;</para>
@@ -76,15 +76,15 @@
       <para>Gawk &gawk-version;</para>
     </listitem>
     <listitem>
-      <para>GCC-&gcc-version;</para>
+      <para>GCC &gcc-version;</para>
     </listitem>
     <!--<listitem>
       <para>GDBM &gdbm-version;</para>
     </listitem>-->
-    <<listitem>
+    <listitem>
       <para>Gettext &gettext-version;</para>
     </listitem>
-    <<listitem>
+    <listitem>
       <para>Glibc &glibc-version;</para>
     </listitem>
     <listitem>
@@ -109,28 +109,28 @@
       <para>Inetutils &inetutils-version;</para>
     </listitem>-->
     <listitem>
-      <para>IPRoute2-&iproute2-version;</para>
+      <para>IPRoute2 &iproute2-version;</para>
     </listitem>
-    <!--<listitem>
+    <listitem>
       <para>Kbd &kbd-version;</para>
-    </listitem>-->
-    <listitem>
-      <para>Kmod-&kmod-version;</para>
     </listitem>
     <listitem>
-      <para>Less-&less-version;</para>
+      <para>Kmod &kmod-version;</para>
+    </listitem>
+    <listitem>
+      <para>Less &less-version;</para>
     </listitem>
     <!--<listitem>
       <para>LFS-Bootscripts &lfs-bootscripts-version;</para>
     </listitem>-->
     <listitem>
-      <para>Libpipeline-&libpipeline-version;</para>
+      <para>Libpipeline &libpipeline-version;</para>
     </listitem>
     <!--<listitem>
       <para>Libtool &libtool-version;</para>
     </listitem>-->
     <listitem>
-      <para>Linux-&linux-version;</para>
+      <para>Linux &linux-version;</para>
     </listitem>
     <!--<listitem>
       <para>M4 &m4-version;</para>
@@ -139,13 +139,13 @@
       <para>Make &make-version;</para>
     </listitem>-->
     <listitem>
-      <para>Man-DB-&man-db-version;</para>
+      <para>Man-DB &man-db-version;</para>
     </listitem>
     <listitem>
       <para>Man-pages &man-pages-version;</para>
     </listitem>
     <listitem>
-      <para>MPC-&mpc-version;</para>
+      <para>MPC &mpc-version;</para>
     </listitem>
     <!--<listitem>
       <para>MPFR &mpfr-version;</para>
@@ -154,19 +154,19 @@
       <para>Ncurses &ncurses-version;</para>
     </listitem>-->
     <listitem>
-      <para>Patch-&patch-version;</para>
+      <para>Patch &patch-version;</para>
     </listitem>
     <!--<listitem>
       <para>Perl &perl-version;</para>
     </listitem>-->
     <listitem>
-      <para>Pkg-config-&pkgconfig-version;</para>
+      <para>Pkg-config &pkgconfig-version;</para>
     </listitem>
     <!--<listitem>
       <para>Procps &procps-version;</para>
     </listitem>-->
     <listitem>
-      <para>Psmisc-&psmisc-version;</para>
+      <para>Psmisc &psmisc-version;</para>
     </listitem>
     <!--<listitem>
       <para>Readline &readline-version;</para>
@@ -193,16 +193,16 @@
       <para>Texinfo &texinfo-version;</para>
     </listitem>-->
     <listitem>
-      <para>Tzdata-&tzdata-version;</para>
+      <para>Tzdata &tzdata-version;</para>
     </listitem>
     <listitem>
-      <para>Udev-&systemd-version; (提取自 systemd-&systemd-version;)</para>
+      <para>Udev &systemd-version; (提取自 systemd &systemd-version;)</para>
     </listitem>
     <!--<listitem>
       <para>&udev-config;</para>
     </listitem>-->
     <listitem>
-      <para>Util-Linux-&util-linux-version;</para>
+      <para>Util-Linux &util-linux-version;</para>
     </listitem>
     <!--<listitem>
       <para>Vim &vim-version;</para>
@@ -232,6 +232,14 @@
     </listitem>
 
     <listitem>
+      <para>&binutils-testsuite-fixes-patch;</para>
+    </listitem>
+
+    <listitem>
+      <para>&kbd-backspace-patch;</para>
+    </listitem>
+
+    <listitem>
       <para>&make-fixes-patch;</para>
     </listitem>
 
@@ -247,17 +255,25 @@
     <listitem>
       <para>binutils-2.22-build_fix-1.patch</para>
     </listitem>
-      
+
     <listitem>
       <para>gcc-4.7.1-startfiles_fix-1.patch</para>
     </listitem>
 
     <listitem>
-        <para>glibc-2.16.0-fix_test_installation-1.patch</para>
+      <para>glibc-2.16.0-fix_test_installation-1.patch</para>
     </listitem>
-      
+
     <listitem>
-        <para>glibc-2.16.0-res_query_fix-1.patch</para>
+      <para>glibc-2.16.0-res_query_fix-1.patch</para>
+    </listitem>
+
+    <listitem>
+      <para>kbd-1.15.3-backspace-1.patch</para>
+    </listitem>
+
+    <listitem>
+      <para>kbd-1.15.3-upstream_fixes-1.patch</para>
     </listitem>
 
     <listitem>
@@ -271,7 +287,7 @@
     <listitem>
       <para>patch-2.6.1-test_fix-1.patch</para>
     </listitem>
-      
+
     <listitem>
       <para>sed-4.2.1-testsuite_fixes-1.patch</para>
     </listitem>

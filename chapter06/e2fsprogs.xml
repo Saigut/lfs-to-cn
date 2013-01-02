@@ -95,7 +95,7 @@ cd build</userinput></screen>
 
     <para>要测试结果，执行：</para>
 
-<screen><userinput remap="test">make -k check</userinput></screen>
+<screen><userinput remap="test">make check</userinput></screen>
 
     <para>有一个 E2fsprogs 测试会试图分配 256 MB内存。如果你的内存容量没有比这个数值大很多，推荐启用足够的交换空间。参考 <xref linkend="space-creatingfilesystem"/>  和 <xref linkend="space-mounting"/>。</para>
 

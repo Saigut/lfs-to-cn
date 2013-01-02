@@ -10,8 +10,25 @@
 
   <title>重启系统</title>
 
-  <para>现在已经安装了所有的软件，该是重启系统的时候了。然而，你需要知道一些事情。根据本书创建的系统相当精简，可能没有足够的功能让你继续下去。通过在 chroot 环境安装一些 BLFS 书中提到的软件，你可以准备充足的进入新安装的 LFS 系统。安装一个像 Lynx 的文本模式网页浏览器，你可以同时在两个虚拟终端查看 BLFS 边安装。GPM 可以让你在虚拟终端中进行复制/粘贴操作。最后，如果静态 IP 不适合你的网络状况，安装 Dhcpd 或者 PPP 会非常有用 (译注：ADSL用户应该安装 PPP 和 rp-pppoe 或其他命令行拨号软件，这样联网比较方便)。</para>
+  <para>现在已经安装了所有的软件，该是重启系统的时候了。然而，你需要知道一些事情。根据本书创建的系统相当精简，可能没有足够的功能让你继续下去。通过在 chroot 环境安装一些 BLFS 书中提到的软件，你可以准备充足的进入新安装的 LFS 系统。以下给出一些建议：</para>
+  
+  <itemizedlist>
 
+    <listitem><para>一个文本模式浏览器，例如 <ulink url='&blfs-root;/view/svn/basicnet/lynx.html'>Lynx</ulink>，可以允许你在一个虚拟终端中阅读 BLFS 同时在另一个中编制程序包。</para></listitem>
+
+    <listitem><para><ulink url='&blfs-root;/view/svn/general/gpm.html'>GPM</ulink> 程序包允许你在虚拟终端中进行复制/粘贴操作。</para></listitem>
+
+    <listitem><para>如果你的网络环境中静态 IP 地址不能满足需求，安装 <ulink url='&blfs-root;/view/svn/basicnet/dhcpcd.html'>dhcpcd</ulink> 等程序包或者 <ulink url='&blfs-root;/view/svn/basicnet/dhcp.html'>dhcp</ulink> 的客户端可能会有帮助。</para></listitem>
+
+    <listitem><para>安装 <ulink url='&blfs-root;/view/svn/postlfs/sudo.html'>sudo</ulink> 对于作为非特权用户编制和安装程序包可能会有用。</para></listitem>
+
+    <listitem><para>如果你想在一个有舒适图形界面的远程访问你的新系统，安装 <ulink url='&blfs-root;/view/svn/postlfs/openssh.html'>openssh</ulink> 和它的前提条件 <ulink url='&blfs-root;/view/svn/postlfs/openssl.html'>openssl</ulink>。</para></listitem>
+
+    <listitem><para>如果你的磁盘使用了 GUID 分区表 (GPT)，<ulink url='&blfs-root;/view/svn/postlfs/gptfdisk.html'>gptfdisk</ulink> 或者 <ulink url='&blfs-root;/view/svn/postlfs/parted.html'>parted</ulink> 会很有用。</para></listitem>
+
+    <listitem><para>最后检查一遍配置文件，例如 /etc/vimrc, /etc/dircolors, /etc/profile, /etc/bashrc, /etc/hosts, /etc/inputrc, /etc/resolv.conf, /root/.bash_profile 和 /root/.bashrc。</para></listitem>
+
+  </itemizedlist>
 
   <para>现在我们要首次进入我们安装的 LFS 系统。首先，退出 chroot 环境：</para>
 

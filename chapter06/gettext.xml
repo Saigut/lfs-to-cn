@@ -40,7 +40,7 @@
   <sect2 role="installation">
     <title>安装 Gettext</title>
 
-    <para>准备编译 Gettext ：</para>
+    <para>准备编译 Gettext：</para>
 
 <screen><userinput remap="configure">./configure --prefix=/usr \
             --docdir=/usr/share/doc/gettext-&gettext-version;</userinput></screen>

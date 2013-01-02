@@ -31,6 +31,40 @@
       </itemizedlist>
     </listitem>
 -->
+
+    <listitem>
+      <para>2013-01-01</para>
+      <itemizedlist>
+        <listitem>
+          <para>[bdubbs] - 在 &quot;重启系统&quot;一节添加推荐的程序包。</para>
+        </listitem>
+        <listitem>
+          <para>[bdubbs] - 从 gmp 的指令中移除废弃的 --enable-mpbsd。感谢 hauradou 提供报告。</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
+      <para>2012-12-31</para>
+      <itemizedlist>
+        <listitem>
+          <para>[bdubbs] - 添加一个补丁修复 binutils 的测试套件。其所有测试现在都能通过，所以移除调用时使用的 &quot;-k&quot; 标记。感谢 Pierre Labastie 提供补丁。</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
+      <para>2012-12-30</para>
+      <itemizedlist>
+        <listitem>
+          <para>[matthew] - 升级至 Kbd-1.15.5。修复 <ulink url="&lfs-ticket-root;3239">#3239</ulink>。</para>
+        </listitem>
+        <listitem>
+          <para>[matthew] - 现在 E2fsprogs 所有的测试都能通过，所以移除调用时使用的 &quot;-k&quot; 标记。</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
     <listitem>
         <para>2012-12-28</para>
         <itemizedlist>

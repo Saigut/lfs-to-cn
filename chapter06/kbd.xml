@@ -43,31 +43,20 @@ so the sed will need attention if that change is not removed before the next rel
   <sect2 role="installation">
     <title>安装 Kbd</title>
 
-    <para>此发布版本中 <command>loadkeys</command> 在不带有文件名运行时的行为是不正常的。以下补丁修复之：</para>
-
-<screen><userinput remap="pre">patch -Np1 -i ../&kbd-fixes-patch;</userinput></screen>
-
     <para>退格键和删除键的行为在 Kbd 程序包中不同的键盘映射中是不一致的。以下补丁为 i386 键盘映射解决此问题：</para>
 
 <screen><userinput remap="pre">patch -Np1 -i ../&kbd-backspace-patch;</userinput></screen>
 
     <para>应用补丁后，Backspace 键生成为 127 号字符，而 Delete 键生成广为人知的转义序列。</para>
 
-    <para>修复西班牙语信息翻译阻止 kbd 与 gettext-&gettext-version; 一同编制的一个漏洞：</para>
+    <para>修复一个漏洞，此漏洞会导致某些按键表不能正确加载：</para>
 
-<screen><userinput remap="pre">sed -i '/guardado\ el/s/\(^.*en\ %\)\(.*\)/\14\$\2/' po/es.po</userinput></screen>
-
-    <para>移除多余的 <command>resizecons</command> 程序 (只移除 32 位 x86 版本，因为它需要由早于 linux-2.6 且与现代 KMS 不兼容而已不存在的 svgalib 来提供视频模式文件&mdash;&mdash;通常使用 <command>setfont</command> 来重设控制台尺寸) 和它的手册页。</para>
-
-    <para>装载的 <filename>configure.ac</filename> 的版本比 <filename>aclocal.m4</filename> 更新,所以 autotools 会被  <command>make</command> 运行，将改变覆盖到 <filename>configure</filename> 中。改变 <filename>configure.ac</filename> 的日期与时间&mdash;&mdash;这用到系统时区，所以我们选择一个在所有时区中足够老的一个。</para>
-
-<screen><userinput remap="pre">sed -i 's/\(RESIZECONS_PROGS=\)yes/\1no/' configure &amp;&amp;
-sed -i 's/resizecons.8 //' man/man8/Makefile.in &amp;&amp;
-touch -d '2011-05-07 08:30' configure.ac</userinput></screen>
+<screen><userinput remap="pre">sed -i -e '326 s/if/while/' src/loadkeys.analyze.l</userinput></screen>
 
     <para>准备编译 Kbd ：</para>
 
-<screen><userinput remap="configure">./configure --prefix=/usr --datadir=/lib/kbd</userinput></screen>
+<screen><userinput remap="configure">./configure --prefix=/usr --datadir=/lib/kbd \
+  --disable-vlock</userinput></screen>
 
     <variablelist>
       <title>配置选项的含义：</title>
@@ -76,6 +65,13 @@ touch -d '2011-05-07 08:30' configure.ac</userinput></screen>
         <term><parameter>--datadir=/lib/kbd</parameter></term>
         <listitem>
           <para>此选项将键盘布局数据存置于一个总是位于根分区的目录下而非默认的 <filename class="directory">/usr/share/kbd</filename>。</para>
+       </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><parameter>--disable-vlock</parameter></term>
+        <listitem>
+          <para>此选项阻止编制 vlock 工具，它需求的 PAM 库在 chroot 环境中不可用。</para>
        </listitem>
       </varlistentry>
 
@@ -115,7 +111,7 @@ cp -R -v doc/* \
       <segtitle>安装的目录</segtitle>
 
       <seglistitem>
-        <seg>chvt、deallocvt、dumpkeys、fgconsole、getkeycodes、kbdinfo、kbd_mode、kbdrate、loadkeys、loadunimap、mapscrn、openvt、psfaddtable (到 psfxtable 的链接)、psfgettable (到 psfxtable 的链接)、psfstriptable (到 psfxtable 的链接)、psfxtable、<!--resizecons,--> setfont、setkeycodes、setleds、setmetamode、showconsolefont、showkey、unicode_start、and unicode_stop</seg>
+        <seg>chvt, deallocvt, dumpkeys, fgconsole, getkeycodes, kbdinfo, kbd_mode, kbdrate, loadkeys, loadunimap, mapscrn, openvt, psfaddtable (到 psfxtable 的链接), psfgettable (到 psfxtable 的链接), psfstriptable (到 psfxtable 的链接), psfxtable, setfont, setkeycodes, setleds, setmetamode, showconsolefont, showkey, unicode_start 和 unicode_stop</seg>
         <seg>/lib/kbd</seg>
       </seglistitem>
     </segmentedlist>
@@ -174,7 +170,7 @@ cp -R -v doc/* \
           </indexterm>
         </listitem>
       </varlistentry>
-      
+
       <varlistentry id="kbdinfo">
         <term><command>kbdinfo</command></term>
         <listitem>

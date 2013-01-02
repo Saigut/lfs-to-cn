@@ -47,7 +47,7 @@
 
     <para>准备编译 GMP：</para>
 
-<screen><userinput remap="configure">./configure --prefix=/usr --enable-cxx --enable-mpbsd</userinput></screen>
+<screen><userinput remap="configure">./configure --prefix=/usr --enable-cxx</userinput></screen>
 
     <variablelist>
       <title>新的配置选项的含义：</title>
@@ -56,13 +56,6 @@
         <term><parameter>--enable-cxx</parameter></term>
         <listitem>
           <para>此变量使 C++ 支持有效</para>
-        </listitem>
-      </varlistentry>
-
-      <varlistentry>
-        <term><parameter>--enable-mpbsd</parameter></term>
-        <listitem>
-          <para>此项编制 Berkeley MP 兼容库</para>
         </listitem>
       </varlistentry>
 

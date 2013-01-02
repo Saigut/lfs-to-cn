@@ -61,7 +61,7 @@
 
 <screen><userinput remap="install">make install</userinput></screen>
 
-    <para>使得安装的库可写，这样以后就可以移除调试符号：</para>
+    <para>使得安装的库可写，这样稍后就可以移除调试符号：</para>
 
 <screen><userinput remap="install">chmod -v u+w /tools/lib/libtcl&tcl-major-version;.so</userinput></screen>
 
