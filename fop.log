@@ -1,0 +1,84 @@
+三月 08, 2013 3:54:34 下午 org.apache.fop.events.LoggingEventListener processEvent
+WARNING: Font "Symbol,normal,700" not found. Substituting with "Symbol,normal,400".
+三月 08, 2013 3:54:34 下午 org.apache.fop.events.LoggingEventListener processEvent
+WARNING: Font "ZapfDingbats,normal,700" not found. Substituting with "ZapfDingbats,normal,400".
+三月 08, 2013 3:54:34 下午 org.apache.fop.events.LoggingEventListener processEvent
+WARNING: Glyph "L" (0x4c, L) not available in font "Symbol".
+三月 08, 2013 3:54:34 下午 org.apache.fop.events.LoggingEventListener processEvent
+WARNING: Glyph "i" (0x69, i) not available in font "Symbol".
+三月 08, 2013 3:54:34 下午 org.apache.fop.events.LoggingEventListener processEvent
+WARNING: Glyph "n" (0x6e, n) not available in font "Symbol".
+三月 08, 2013 3:54:34 下午 org.apache.fop.events.LoggingEventListener processEvent
+WARNING: Glyph "u" (0x75, u) not available in font "Symbol".
+三月 08, 2013 3:54:34 下午 org.apache.fop.events.LoggingEventListener processEvent
+WARNING: Glyph "x" (0x78, x) not available in font "Symbol".
+三月 08, 2013 3:54:34 下午 org.apache.fop.events.LoggingEventListener processEvent
+WARNING: Glyph "F" (0x46, F) not available in font "Symbol".
+三月 08, 2013 3:54:34 下午 org.apache.fop.events.LoggingEventListener processEvent
+WARNING: Glyph "r" (0x72, r) not available in font "Symbol".
+三月 08, 2013 3:54:34 下午 org.apache.fop.events.LoggingEventListener processEvent
+WARNING: Glyph "o" (0x6f, o) not available in font "Symbol".
+三月 08, 2013 3:54:35 下午 org.apache.fop.events.LoggingEventListener processEvent
+WARNING: Font "WenQuanYi Micro Hei,normal,700" not found. Substituting with "any,normal,700".
+三月 08, 2013 3:54:35 下午 org.apache.fop.events.LoggingEventListener processEvent
+WARNING: Glyph "前" (0x524d) not available in font "Times-Bold".
+三月 08, 2013 3:54:35 下午 org.apache.fop.events.LoggingEventListener processEvent
+WARNING: Glyph "言" (0x8a00) not available in font "Times-Bold".
+三月 08, 2013 3:54:35 下午 org.apache.fop.events.LoggingEventListener processEvent
+WARNING: Glyph "读" (0x8bfb) not available in font "Times-Bold".
+三月 08, 2013 3:54:35 下午 org.apache.fop.events.LoggingEventListener processEvent
+WARNING: Glyph "者" (0x8005) not available in font "Times-Bold".
+三月 08, 2013 3:54:35 下午 org.apache.fop.events.LoggingEventListener processEvent
+WARNING: Glyph "目" (0x76ee) not available in font "Times-Bold".
+三月 08, 2013 3:54:35 下午 org.apache.fop.events.LoggingEventListener processEvent
+WARNING: Glyph "标" (0x6807) not available in font "Times-Bold".
+三月 08, 2013 3:54:35 下午 org.apache.fop.events.LoggingEventListener processEvent
+WARNING: Glyph "架" (0x67b6) not available in font "Times-Bold".
+三月 08, 2013 3:54:35 下午 org.apache.fop.events.LoggingEventListener processEvent
+WARNING: Glyph "构" (0x6784) not available in font "Times-Bold".
+三月 08, 2013 3:54:35 下午 org.apache.fop.events.LoggingEventListener processEvent
+WARNING: Font "WenQuanYi Micro Hei,italic,400" not found. Substituting with "any,italic,400".
+三月 08, 2013 3:54:35 下午 org.apache.fop.events.LoggingEventListener processEvent
+WARNING: Font "Symbol,italic,400" not found. Substituting with "Symbol,normal,400".
+三月 08, 2013 3:54:35 下午 org.apache.fop.events.LoggingEventListener processEvent
+WARNING: Font "ZapfDingbats,italic,400" not found. Substituting with "ZapfDingbats,normal,400".
+三月 08, 2013 3:54:35 下午 org.apache.fop.events.LoggingEventListener processEvent
+WARNING: Glyph "工" (0x5de5) not available in font "Times-Italic".
+三月 08, 2013 3:54:35 下午 org.apache.fop.events.LoggingEventListener processEvent
+WARNING: Glyph "程" (0x7a0b) not available in font "Times-Italic".
+三月 08, 2013 3:54:35 下午 org.apache.fop.events.LoggingEventListener processEvent
+WARNING: Glyph "此" (0x6b64) not available in font "Times-Italic".
+三月 08, 2013 3:54:35 下午 org.apache.fop.events.LoggingEventListener processEvent
+WARNING: Glyph "处" (0x5904) not available in font "Times-Italic".
+三月 08, 2013 3:54:36 下午 org.apache.fop.events.LoggingEventListener processEvent
+WARNING: Glyph "软" (0x8f6f) not available in font "Times-Italic".
+三月 08, 2013 3:54:36 下午 org.apache.fop.events.LoggingEventListener processEvent
+WARNING: Glyph "件" (0x4ef6) not available in font "Times-Italic".
+三月 08, 2013 3:54:36 下午 org.apache.fop.events.LoggingEventListener processEvent
+WARNING: Glyph "编" (0x7f16) not available in font "Times-Italic".
+三月 08, 2013 3:54:36 下午 org.apache.fop.events.LoggingEventListener processEvent
+WARNING: Glyph "制" (0x5236) not available in font "Times-Italic".
+三月 08, 2013 3:54:39 下午 org.apache.fop.events.LoggingEventListener processEvent
+WARNING: Line 1 of a paragraph overflows the available area by 7605 millipoints. (See position 469:3330)
+三月 08, 2013 3:54:39 下午 org.apache.fop.events.LoggingEventListener processEvent
+WARNING: Line 1 of a paragraph overflows the available area by 14805 millipoints. (See position 489:3356)
+三月 08, 2013 3:54:39 下午 org.apache.fop.events.LoggingEventListener processEvent
+WARNING: Line 6 of a paragraph overflows the available area by more than 50 points. (See position 544:1269)
+三月 08, 2013 3:54:39 下午 org.apache.fop.events.LoggingEventListener processEvent
+WARNING: Line 4 of a paragraph overflows the available area by more than 50 points. (See position 544:1269)
+三月 08, 2013 3:54:39 下午 org.apache.fop.events.LoggingEventListener processEvent
+WARNING: Line 2 of a paragraph overflows the available area by more than 50 points. (See position 544:1269)
+三月 08, 2013 3:54:39 下午 org.apache.fop.events.LoggingEventListener processEvent
+WARNING: Line 2 of a paragraph overflows the available area by more than 50 points. (See position 555:1300)
+三月 08, 2013 3:54:39 下午 org.apache.fop.events.LoggingEventListener processEvent
+WARNING: Line 1 of a paragraph overflows the available area by 24405 millipoints. (See position 599:18641)
+三月 08, 2013 3:54:39 下午 org.apache.fop.events.LoggingEventListener processEvent
+WARNING: Line 1 of a paragraph overflows the available area by more than 50 points. (See position 663:5025)
+三月 08, 2013 3:54:39 下午 org.apache.fop.events.LoggingEventListener processEvent
+WARNING: Line 1 of a paragraph overflows the available area by more than 50 points. (See position 975:4536)
+三月 08, 2013 3:54:39 下午 org.apache.fop.events.LoggingEventListener processEvent
+WARNING: Line 1 of a paragraph overflows the available area by 7605 millipoints. (See position 978:5188)
+三月 08, 2013 3:54:39 下午 org.apache.fop.events.LoggingEventListener processEvent
+WARNING: Line 1 of a paragraph overflows the available area by 7605 millipoints. (See position 978:5188)
+三月 08, 2013 3:54:40 下午 org.apache.fop.events.LoggingEventListener processEvent
+WARNING: Line 1 of a paragraph overflows the available area by 3000 millipoints. (See position 4834:296)
