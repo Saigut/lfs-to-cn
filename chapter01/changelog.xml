@@ -33,13 +33,202 @@
 -->
 
     <listitem>
-      <para>2013-01-01</para>
+      <para>2013-02-26</para>
       <itemizedlist>
         <listitem>
-          <para>[bdubbs] - 在 &quot;重启系统&quot;一节添加推荐的程序包。</para>
+          <para>[bdubbs] - 升级至 File-5.13。修复 <ulink url="&lfs-ticket-root;3292">#3292</ulink>。</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
+      <para>2013-02-26</para>
+      <itemizedlist>
+        <listitem>
+          <para>[ken] - 再次从 kbd 中移除移除废弃的 resizecons 程序。</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
+      <para>2013-02-24</para>
+      <itemizedlist>
+        <listitem>
+          <para>[matthew] - 升级至 IPRoute2-3.8.0。修复 <ulink url="&lfs-ticket-root;3291">#3291</ulink>。</para>
         </listitem>
         <listitem>
-          <para>[bdubbs] - 从 gmp 的指令中移除废弃的 --enable-mpbsd。感谢 hauradou 提供报告。</para>
+          <para>[matthew] - 升级至 Linux-3.8。修复 <ulink url="&lfs-ticket-root;3290">#3290</ulink>。</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
+      <para>2013-02-19</para>
+      <itemizedlist>
+        <listitem>
+          <para>[bdubbs] - 更新 7.5.1 节中调整 CD-ROM 规则中的文件名。</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
+      <para>2013-02-18</para>
+      <itemizedlist>
+        <listitem>
+          <para>[bdubbs] - 升级至 Coreutils-8.21。修复 <ulink url="&lfs-ticket-root;3286">#3286</ulink>。</para>
+        </listitem>
+        <listitem>
+          <para>[bdubbs] - 升级至 Texinfo-5.0。修复 <ulink url="&lfs-ticket-root;3289">#3284</ulink>。</para>
+        </listitem>
+        <listitem>
+          <para>[bdubbs] - 升级至 Linux-3.7.9。修复 <ulink url="&lfs-ticket-root;3287">#3281</ulink>。</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
+      <para>2013-02-13</para>
+      <itemizedlist>
+        <listitem>
+          <para>[matthew] - 升级至 Man-pages-3.47。修复 <ulink url="&lfs-ticket-root;3284">#3284</ulink>。</para>
+        </listitem>
+        <listitem>
+          <para>[matthew] - 升级至 GMP-5.1.1。修复 <ulink url="&lfs-ticket-root;3283">#3283</ulink>。</para>
+        </listitem>
+        <listitem>
+          <para>[matthew] - 使用来自 Fedora 的最新的 Coreutils-i18n 补丁。修复 <ulink url="&lfs-ticket-root;3282">#3282</ulink>。</para>
+        </listitem>
+        <listitem>
+          <para>[matthew] - 升级至 Linux-3.7.7。修复 <ulink url="&lfs-ticket-root;3281">#3281</ulink>。</para>
+        </listitem>
+        <listitem>
+          <para>[matthew] - 升级至 Groff-1.22.2。修复 <ulink url="&lfs-ticket-root;3280">#3280</ulink>。</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
+      <para>2013-01-30</para>
+      <itemizedlist>
+        <listitem>
+          <para>[bdubbs] - 改变 ncurses 指令，创建并安装 .pc 文件。</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
+      <para>2013-01-29</para>
+      <itemizedlist>
+        <listitem>
+          <para>[matthew] - 升级至 Man-Pages-3.46。修复 <ulink url="&lfs-ticket-root;3278">#3278</ulink>。</para>
+        </listitem>
+        <listitem>
+          <para>[matthew] - 升级至 Linux-3.7.5。修复 <ulink url="&lfs-ticket-root;3277">#3277</ulink>。</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
+      <para>2013-01-27</para>
+      <itemizedlist>
+        <listitem>
+          <para>[bdubbs] - 升级至 pkg-config-0.28。修复 <ulink url="&lfs-ticket-root;3276">#3276</ulink>。</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
+      <para>2013-01-25</para>
+      <itemizedlist>
+        <listitem>
+          <para>[bdubbs] - 修订 procps-ng 安装指令，将文件置于正确的位置。</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
+      <para>2013-01-24</para>
+      <itemizedlist>
+        <listitem>
+          <para>[bdubbs] - 移除引导脚本中 init-functions 文件中的 bash 语句。</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
+      <para>2013-01-24</para>
+      <itemizedlist>
+        <listitem>
+          <para>[bdubbs] - 升级至 e2fsprogs-1.42.7。修复 <ulink url="&lfs-ticket-root;3274">#3274</ulink>。</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
+      <para>2013-01-22</para>
+      <itemizedlist>
+        <listitem>
+          <para>[bdubbs] - 升级至 Linux-3.7.4。修复 <ulink url="&lfs-ticket-root;3273">#3273</ulink>。</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
+      <para>2013-01-21</para>
+      <itemizedlist>
+        <listitem>
+          <para>[bdubbs] - 升级至 Procps-ng-3.3.6。修复 <ulink url="&lfs-ticket-root;3095">#3095</ulink>。</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
+      <para>2013-01-20</para>
+      <itemizedlist>
+        <listitem>
+          <para>[matthew] - 升级至 Linux-3.7.3。修复 <ulink url="&lfs-ticket-root;3272">#3272</ulink>。</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
+      <para>2013-01-11</para>
+      <itemizedlist>
+        <listitem>
+          <para>[bdubbs] - 修订 /etc/modprobe.conf 的解释。修复 <ulink url="&lfs-ticket-root;3270">#3270</ulink>。</para>
+        </listitem>
+        <listitem>
+          <para>[bdubbs] - 升级 udev-lfs 中的 init-net-rules.sh 脚本处理 systemd-197 中引入的 <quote>en*</quote> 设备。</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
+      <para>2013-01-09</para>
+      <itemizedlist>
+        <listitem>
+          <para>[bdubbs] - 重新格式化 <quote>重新格式化系统</quote> 推荐。</para>
+        </listitem>
+        <listitem>
+          <para>[bdubbs] - 升级 udev-lfs 脚本。升级至 systemd-197。</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
+      <para>2013-01-02</para>
+      <itemizedlist>
+        <listitem>
+          <para>[matthew] - 升级至 Bash-4.2.42。修复 <ulink url="&lfs-ticket-root;3268">#3268</ulink>。</para>
+        </listitem>
+        <listitem>
+          <para>[matthew] - 升级至 Groff-1.22.1。修复 <ulink url="&lfs-ticket-root;3266">#3266</ulink>。</para>
+        </listitem>
+        <listitem>
+          <para>[matthew] - 升级至 Automake-1.13.1。修复 <ulink url="&lfs-ticket-root;3265">#3265</ulink>。</para>
+        </listitem>
+        <listitem>
+          <para>[matthew] - 升级至 Coreutils-8.20。修复 <ulink url="&lfs-ticket-root;3215">#3215</ulink>。</para>
         </listitem>
       </itemizedlist>
     </listitem>
@@ -267,25 +456,25 @@
       <para>2012-11-02</para>
       <itemizedlist>
         <listitem>
-          <para>[matthew] - 将 Freshmeat.net 参考改为 Freecode。感谢 Chris Staub 提供报告和补丁。修复 <ulink url="&lfs-ticket-root;3216">#3216</ulink>.</para>
+          <para>[matthew] - 将 Freshmeat.net 参考改为 Freecode。感谢 Chris Staub 提供报告和补丁。修复 <ulink url="&lfs-ticket-root;3216">#3216</ulink>。</para>
         </listitem>
         <listitem>
-          <para>[matthew] - 升级至 Check-0.9.9。修复 <ulink url="&lfs-ticket-root;3214">#3214</ulink>.</para>
+          <para>[matthew] - 升级至 Check-0.9.9。修复 <ulink url="&lfs-ticket-root;3214">#3214</ulink>。</para>
         </listitem>
         <listitem>
-          <para>[matthew] - 升级至 Bison-2.6.4。修复 <ulink url="&lfs-ticket-root;3212">#3212</ulink>.</para>
+          <para>[matthew] - 升级至 Bison-2.6.4。修复 <ulink url="&lfs-ticket-root;3212">#3212</ulink>。</para>
         </listitem>
         <listitem>
-          <para>[matthew] - 升级至 Linux-3.6.5。修复 <ulink url="&lfs-ticket-root;3211">#3211</ulink>.</para>
+          <para>[matthew] - 升级至 Linux-3.6.5。修复 <ulink url="&lfs-ticket-root;3211">#3211</ulink>。</para>
         </listitem>
         <listitem>
-          <para>[matthew] - 升级至 Tzdata-2012h。修复 <ulink url="&lfs-ticket-root;3209">#3209</ulink>.</para>
+          <para>[matthew] - 升级至 Tzdata-2012h。修复 <ulink url="&lfs-ticket-root;3209">#3209</ulink>。</para>
         </listitem>
         <listitem>
-          <para>[matthew] - 升级至 Man-Pages-3.43。修复 <ulink url="&lfs-ticket-root;3208">#3208</ulink>.</para>
+          <para>[matthew] - 升级至 Man-Pages-3.43。修复 <ulink url="&lfs-ticket-root;3208">#3208</ulink>。</para>
         </listitem>
         <listitem>
-          <para>[matthew] - 清理 Flex 的一些指令，自升级至 Flex-2.5.37 可用。修复 <ulink url="&lfs-ticket-root;3206">3206</ulink> 和 <ulink url="&lfs-ticket-root;3210">3210</ulink>.</para>
+          <para>[matthew] - 清理 Flex 的一些指令，自升级至 Flex-2.5.37 可用。修复 <ulink url="&lfs-ticket-root;3206">3206</ulink> 和 <ulink url="&lfs-ticket-root;3210">3210</ulink>。</para>
         </listitem>
       </itemizedlist>
     </listitem>

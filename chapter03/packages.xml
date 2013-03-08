@@ -447,11 +447,11 @@
     </varlistentry>
 
     <varlistentry>
-      <term>Procps (&procps-version;) - <token>&procps-size;</token>:</term>
+      <term>Procps-ng (&procps-ng-version;) - <token>&procps-ng-size;</token>:</term>
       <listitem>
-        <para>主页：<ulink url="&procps-home;"/></para>
-        <para>下载：<ulink url="&procps-url;"/></para>
-        <para>MD5 指纹码：<literal>&procps-md5;</literal></para>
+        <para>主页：<ulink url="&procps-ng-home;"/></para>
+        <para>下载：<ulink url="&procps-ng-url;"/></para>
+        <para>MD5 指纹码：<literal>&procps-ng-md5;</literal></para>
       </listitem>
     </varlistentry>
 

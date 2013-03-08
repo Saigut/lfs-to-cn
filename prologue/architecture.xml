@@ -10,7 +10,7 @@
 
   <title>LFS 目标架构</title>
 
-<para>LFS 基本的目标架构是 AMD/Intel x86 (32 位) 和 x86_64 (64 位) CPU。另一方面，本书中的指令已知可以经过修改后用于 PowerPC CPU。要编制一个使用这些 CPU 之一的系统，主要的前提条件比此后几页提到的多一项，就是一个已存在的 Linux 系统，比如更早安装的 LFS、Ubuntu、Red Hat、Fedora、SuSE 或者其他指定对应架构的发行版。此外注意，32 位发行版可以安装于 64 位 AMD/Intel CPU 的电脑上并用作宿主系统。</para>
+<para>LFS 基本的目标架构是 AMD/Intel x86 (32 位) 和 x86_64 (64 位) CPU，但本书中的指令已知可以经过修改后用于 PowerPC CPU。要编制一个使用这些 CPU 之一的系统，主要的前提条件比此后几页提到的多一项，就是一个已存在的 Linux 系统，比如更早安装的 LFS、Ubuntu、Red Hat/Fedora、SuSE 或者其他指定对应架构的发行版。此外，32 位发行版可以安装于 64 位 AMD/Intel CPU 的计算机上并用作宿主系统。</para>
 
 <para>关于 64 位系统还有一些事情要提。与 32 位系统相比，64 位可执行文件的尺寸略大一点，执行速率也只是略快一点。举个例子，某次在基于 Core2Duo CPU 的 LFS-6.5 编制测试中，测得了以下数据：</para>
 
@@ -23,11 +23,11 @@
   </listitem>
 </itemizedlist>
 
-<para>不难发现，64 位编制只比 32 位快了 4% 却大了 9%。寻求 64 位系统的好处相对不大。当然，如果你有超过 4GB 的 RAM 或者想要修改超过 4GB 的数据，64 位系统还是很有优势的。(译注：32 位操作系统能够使用的内存无法超过 4 GB)</para>
+<para>不难发现，64 位编制只比 32 位快了 4% 却大了 9%。寻求 64 位系统的好处相对不大。当然，如果你有超过 4GB 的 RAM 或者想要操作超过 4GB 的数据，64 位系统还是很有优势的。</para>
 
-<para>LFS 的默认 64 位编制产生的是 <quote>纯粹的</quote> 64 位系统。也就是说，它只支持 64 位可执行文件。编制 <quote>多重库的</quote> 系统需要编制很多应用程序两次，32 位和 64 位各一次。LFS 并不直接支持这种方式，因为那会干扰我们提供编制简单基础的 Linux 系统所需指导的教学目标。关于这个更高级的话题可以参考 <ulink url="http://trac.cross-lfs.org/">CLFS 工程</ulink>。</para>
+<para>LFS 的默认 64 位编制产生的是 <quote>纯粹的</quote> 64 位系统。也就是说，它只支持 64 位可执行文件。编制 <quote>multi-lib</quote> 系统需要编制很多应用程序两次，32 位和 64 位各一次。LFS 并不直接支持这种方式，因为那会干扰我们提供编制简单基础的 Linux 系统所需指令的教学目标。关于这个更高级的话题可以参考 <ulink url="http://trac.cross-lfs.org/">CLFS 工程</ulink>。</para>
 
-<para>关于 64 位系统还有最后一点要说，有些程序包当前无法在 <quote>纯粹的</quote> 64 位系统上编制或者需要特定的编制指令。通常这些程序包中嵌入了 32 位特有的汇编指令，在 64 位系统上编制会失败。这样的程序包括 <ulink url="http://xorg.freedesktop.org/releases/individual/driver/">此处</ulink> 的一些传统图形卡的 Xorg 驱动。这些问题多数可以解决，但可能需要特定的过程或补丁。</para>
+<para>关于 64 位系统还有最后一点要说，有些比较旧的程序包当前无法在 <quote>纯粹的</quote> 64 位系统上编制或者需要特有的编制指令。通常这些程序包中嵌入了 32 位特有的汇编指令，在 64 位系统上编制会失败。这样的程序包括 <ulink url="http://xorg.freedesktop.org/releases/individual/driver/">此处</ulink> 的一些传统图形卡的 Xorg 驱动。这些问题多数可以解决，但可能需要特定的过程或补丁。</para>
 
 </sect1>
 

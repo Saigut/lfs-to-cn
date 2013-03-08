@@ -27,18 +27,18 @@
     drives.</para>
   </note> -->
 
-  <para>本书的 <xref linkend="chapter-partitioning"/> 介绍了如何创建一个原生的 Linux 分区和文件系统。这是编译安装新的 LFS 系统的地方。<xref linkend="chapter-getting-materials"/> 解释了编制 LFS 系统要下载哪些程序包和补丁，如何将它们存入新的文件系统。<xref linkend="chapter-final-preps"/> 讨论了正确工作环境的设置。请仔细阅读 <xref linkend="chapter-final-preps"/>，其中解释了你在通过 <xref linkend="chapter-temporary-tools"/> 需要明白的一些重要问题。</para>
+  <para>本书的 <xref linkend="chapter-partitioning"/> 介绍了如何创建一个原生的 Linux 分区和文件系统。这是编译安装新的 LFS 系统的地方。<xref linkend="chapter-getting-materials"/> 解释了编制 LFS 系统要下载哪些程序包和补丁，如何将它们存入新的文件系统。<xref linkend="chapter-final-preps"/> 讨论了正确工作环境的设置。请仔细阅读 <xref linkend="chapter-final-preps"/>，其中解释了您在通过 <xref linkend="chapter-temporary-tools"/> 需要明白的一些重要问题。</para>
 
   <para><xref linkend="chapter-temporary-tools"/> 解释了构成基本开发套件 (或工具链) 的一些程序包的安装，它们用于在 <xref linkend="chapter-building-system"/> 编制实际的系统。其中一些程序包用于解决循环依赖关系&mdash;&mdash;比如编译编译器需要编译器。</para>
 
-  <para><xref linkend="chapter-temporary-tools"/> 也教你如何编制第一遍工具链，包括 Binutils 和 GCC (第一遍是说这两个核心程序包会被重新安装)。下一步是编制 Glibc，即 C 库。Glibc 会被第一遍编译的工具链中的程序编译。此后第二遍编译工具链。这一遍的工具链会动态链接到新编译的 Glibc。<xref linkend="chapter-temporary-tools"/> 余下的程序包就是用这第二遍工具链编制的。这一步完成后，LFS 安装进程就不再依赖宿主发行版，但运行中的内核除外。</para>
+  <para><xref linkend="chapter-temporary-tools"/> 也教您如何编制第一遍工具链，包括 Binutils 和 GCC (第一遍是说这两个核心程序包会被重新安装)。下一步是编制 Glibc，即 C 库。Glibc 会被第一遍编译的工具链中的程序编译。此后第二遍编译工具链。这一遍的工具链会动态链接到新编译的 Glibc。<xref linkend="chapter-temporary-tools"/> 余下的程序包就是用这第二遍工具链编制的。这一步完成后，LFS 安装进程就不再依赖宿主发行版，但运行中的内核除外。</para>
 
   <para>为了从宿主系统中独立出新系统付出如此多努力可能看起来比较过分。关于为什么要这样做的完整技术解释位于 <xref linkend="ch-tools-toolchaintechnotes"/>。</para>
 
-  <para>在<xref linkend="chapter-building-system"/> 中，编制完整的 LFS 系统。用 <command>chroot</command> 程序进入一个虚拟环境，启动新的 Shell 并将根目录设置到 LFS 分区。这与重启并引导内核挂载 LFS 分区为根分区很相似。不重启却 <command>chroot</command> 是因为创建可引导的系统需要额外工作，现在还没必要。主要优点是 <quote>chroot</quote> 允许你在编制 LFS 的时候继续使用宿主系统。在等待程序包编译完成的时候，你可以正常使用计算机。</para>
+  <para>在<xref linkend="chapter-building-system"/> 中，编制完整的 LFS 系统。用 <command>chroot</command> 程序进入一个虚拟环境，启动新的 Shell 并将根目录设置到 LFS 分区。这与重启并引导内核挂载 LFS 分区为根分区很相似。不重启却 <command>chroot</command> 是因为创建可引导的系统需要额外工作，现在还没必要。主要优点是 <quote>chroot</quote> 允许您在编制 LFS 的时候继续使用宿主系统。在等待程序包编译完成的时候，您可以正常使用计算机。</para>
 
   <para>在 <xref linkend="chapter-bootscripts"/> 设置引导与引导脚本，在 <xref linkend="chapter-bootable"/> 设置内核和引导加载器。<xref linkend="chapter-finalizing"/> 包含有关在本书以外继续 LFS 体验的信息。实现了这些步骤之后，计算机就可以引导到新的 LFS 系统了。</para>
 
-  <para>这是总体上的过程。每一步得细节在后面章节和程序包介绍中讨论。看起来很复杂的东西会被解释清楚，你开工的时候一切都会就位。</para>
+  <para>这是总体上的过程。每一步得细节在后面章节和程序包介绍中讨论。看起来很复杂的东西会被解释清楚，您开工的时候一切都会就位。</para>
 
 </sect1>

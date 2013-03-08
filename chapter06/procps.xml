@@ -6,58 +6,79 @@
 ]>
 
 <sect1 id="ch-system-procps" role="wrap">
-  <?dbhtml filename="procps.html"?>
+  <?dbhtml filename="procps-ng.html"?>
 
   <sect1info condition="script">
-    <productname>procps</productname>
-    <productnumber>&procps-version;</productnumber>
-    <address>&procps-url;</address>
+    <productname>procps-ng</productname>
+    <productnumber>&procps-ng-version;</productnumber>
+    <address>&procps-ng-url;</address>
   </sect1info>
 
-  <title>Procps-&procps-version;</title>
+  <title>Procps-ng-&procps-ng-version;</title>
 
   <indexterm zone="ch-system-procps">
-    <primary sortas="a-Procps">Procps</primary>
+    <primary sortas="a-Procps">Procps-ng</primary>
   </indexterm>
 
   <sect2 role="package">
     <title/>
 
-    <para>Procps 程序包包含用于监控进程的程序。</para>
+    <para>Procps-ng 程序包包含用于监控进程的程序。</para>
 
     <segmentedlist>
       <segtitle>&buildtime;</segtitle>
       <segtitle>&diskspace;</segtitle>
 
       <seglistitem>
-        <seg>&procps-ch6-sbu;</seg>
-        <seg>&procps-ch6-du;</seg>
+        <seg>&procps-ng-ch6-sbu;</seg>
+        <seg>&procps-ng-ch6-du;</seg>
       </seglistitem>
     </segmentedlist>
 
   </sect2>
 
   <sect2 role="installation">
-    <title>安装 Procps</title>
+    <title>安装 Procps-ng</title>
 
-    <para>应用一个补丁，防止获取内核时钟频率时显示错误信息：</para>
+    <para>现在准备编译 procps-ng：</para>
 
-<screen><userinput remap="pre">patch -Np1 -i ../&procps-hz_fixes-patch;</userinput></screen>
+<screen><userinput remap="configure">./configure --prefix=/usr                           \
+            --exec-prefix=                          \
+            --libdir=/usr/lib                       \
+            --docdir=/usr/share/doc/procps-ng-&procps-ng-version; \
+            --disable-static                        \
+            --disable-skill                         \
+            --disable-kill</userinput></screen>
 
-    <para>应用一个补丁修复 <command>watch</command> 程序中一个和 unicode 有关的漏洞：</para>
+    <variablelist>
+      <title>配置脚本的含义：</title>
 
-<screen><userinput remap="pre">patch -Np1 -i ../&procps-watch-patch;</userinput></screen>
-
-    <para>不安装 kill 程序，它已由 util-linux 安装过。还要修复 Makefile 中的一个问题，此问题使 procps 无法以 make-&make-version; 编制：</para>
-
-<screen><userinput remap="pre">sed -i -e 's@\*/module.mk@proc/module.mk ps/module.mk@' \
-       -e 's@^#SKIP@SKIP@' Makefile</userinput></screen>
+      <varlistentry>
+        <term><parameter>--disable-skill</parameter></term>
+        <listitem>
+          <para>此开关禁用废弃且无法移植的 skill 和 snice 命令。</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><parameter>--disable-kill</parameter></term>
+        <listitem>
+          <para>此开关禁用编制 kill 命令，它已由 util-linux 程序包安装过。</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
 
     <para>编译程序包：</para>
 
 <screen><userinput remap="make">make</userinput></screen>
 
-    <para>此程序包不包含测试套件。</para>
+    <para>测试套件需要一些 LFS 特有的修改。<command>which</command> 命令现在不可用，<command>pmap</command> 的测试中有两个测试不匹配一个新行字符。要运行测试套件，运行以下命令：</para>
+
+<screen><userinput remap="test">pushd testsuite
+  sed -i 's|exec which sleep|exec echo /tools/bin/sleep|' config/unix.exp
+  sed -i 's|pmap_initname\\\$|pmap_initname|'             pmap.test/pmap.exp
+  make site.exp
+  DEJAGNU=global-conf.exp runtest
+popd</userinput></screen>
 
     <para>安装程序包：</para>
 
@@ -73,7 +94,7 @@
       <segtitle>安装的库</segtitle>
 
       <seglistitem>
-        <seg>free, pgrep, pkill, pmap, ps, pwdx, skill, slabtop, snice, sysctl, tload, top, uptime, vmstat, w 和 watch</seg>
+        <seg>free, pgrep, pkill, pmap, ps, pwdx, skill, slabtop, sysctl, tload, top, uptime, vmstat, w 和 watch</seg>
         <seg>libproc.so</seg>
       </seglistitem>
     </segmentedlist>
@@ -139,16 +160,6 @@
           <para>报告一个进程的当前工作目录</para>
           <indexterm zone="ch-system-procps pwdx">
             <primary sortas="b-pwdx">pwdx</primary>
-          </indexterm>
-        </listitem>
-      </varlistentry>
-
-      <varlistentry id="skill">
-        <term><command>skill</command></term>
-        <listitem>
-          <para>给匹配给定标准的进程发信号</para>
-          <indexterm zone="ch-system-procps skill">
-            <primary sortas="b-skill">skill</primary>
           </indexterm>
         </listitem>
       </varlistentry>

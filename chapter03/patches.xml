@@ -46,6 +46,16 @@
       </listitem>
     </varlistentry>
 
+<!--
+    <varlistentry>
+      <term>Coreutils Test Fixes Patch - <token>&coreutils-test-patch-size;</token>:</term>
+      <listitem>
+        <para>Download: <ulink url="&patches-root;&coreutils-test-patch;"/></para>
+        <para>MD5 sum: <literal>&coreutils-test-patch-md5;</literal></para>
+      </listitem>
+    </varlistentry>
+-->
+
     <varlistentry>
       <term>Flex 回归测试补丁 - <token>&flex-bison-patch-size;</token>：</term>
       <listitem>
@@ -78,6 +88,7 @@
       </listitem>
     </varlistentry>
 
+    <!--
     <varlistentry>
       <term>Procps HZ 错误补丁 - <token>&procps-hz_fixes-patch-size;</token>：</term>
       <listitem>
@@ -93,6 +104,7 @@
         <para>MD5 指纹码：<literal>&procps-watch-patch-md5;</literal></para>
       </listitem>
     </varlistentry>
+    -->
 
     <varlistentry>
       <term>Readline 上游修复补丁 - <token>&readline-fixes-patch-size;</token>：</term>

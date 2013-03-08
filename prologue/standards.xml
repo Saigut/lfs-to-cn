@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
-  "http：//www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+  "http//www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
   <!ENTITY % general-entities SYSTEM "../general.ent">
   %general-entities;
 ]>
@@ -43,14 +43,14 @@
       <varlistentry>
         <term><emphasis role="strong">LSB 核心：</emphasis></term>
         <listitem>
-          <para>Bash, Binutils, Coreutils, Diffutils, File, Findutils, Gawk, Grep, Gzip, M4, Man-DB, Ncurses, Procps, Psmisc, Sed, Shadow, Tar, Util-linux, Zlib</para>
+          <para>Bash, Binutils, Coreutils, Diffutils, File, Findutils, Gawk, Grep, Gzip, M4, Man-DB, Ncurses, Procps, Psmisc, Sed, Shadow, Tar, Util-linux 和 Zlib</para>
         </listitem>
       </varlistentry>
 
       <varlistentry>
         <term><emphasis role="strong">LSB C++：</emphasis></term>
         <listitem>
-          <para>GCC</para>
+          <para>Gcc</para>
         </listitem>
       </varlistentry>
 
@@ -87,12 +87,12 @@
     <variablelist> 
       <bridgehead renderas="sect3">LSB 需求且 BLFS 支持的程序包</bridgehead>
       <?dbfo list-presentation="list"?>
-      <?dbhtml list-presentation="table"?> 
+      <?dbhtml list-presentation="table"?>
 
       <varlistentry>
         <term><emphasis role="strong">LSB 核心：</emphasis></term>
         <listitem>
-          <para>At, Batch (作为 At 的一部分), Bc, Cpio, Ed, Fcrontab, Initd-tools, PAM, Sendmail (或 Postfix 或 Exim)</para>
+          <para>At, Batch (作为 At 的一部分), Bc, Cpio, Ed, Fcrontab, Initd-tools, PAM 和 Sendmail (或 Postfix 或 Exim)</para>
         </listitem>
       </varlistentry>
 
@@ -106,7 +106,7 @@
       <varlistentry>
         <term><emphasis role="strong">LSB 桌面：</emphasis></term>
         <listitem>
-          <para>ATK, Cairo, Desktop-file-utils, Freetype, Fontconfig, Glib2, GTK+2, Icon-naming-utils, Libjpeg, Libpng, Libxml2, MesaLib, Pango, Qt3, Qt4, Xorg</para>
+          <para>ATK, Cairo, Desktop-file-utils, Freetype, Fontconfig, Glib2, GTK+2, Icon-naming-utils, Libjpeg, Libpng, Libxml2, MesaLib, Pango, Qt3, Qt4 和 Xorg</para>
         </listitem>
       </varlistentry>
 
@@ -127,7 +127,7 @@
       <varlistentry>
         <term><emphasis role="strong">LSB 多媒体：</emphasis></term>
         <listitem>
-          <para>Alsa 库, NSPR, NSS, OpenSSL, Java, Xdg-utils</para>
+          <para>Alsa 库, NSPR, NSS, OpenSSL, Java 和 Xdg-utils</para>
         </listitem>
       </varlistentry>
 
