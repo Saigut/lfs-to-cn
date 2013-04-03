@@ -391,7 +391,7 @@ sed -i s/\"1\"/\"8\"/1 /usr/share/man/man8/chroot.8</userinput></screen>
       <varlistentry id="false">
         <term><command>false</command></term>
         <listitem>
-          <para>什么都不做；这个命令总返回标示失败的数据码</para>
+          <para>什么都不做；它总返回一个表示失败的状态码</para>
           <indexterm zone="ch-system-coreutils false">
             <primary sortas="b-false">false</primary>
           </indexterm>
@@ -461,7 +461,7 @@ sed -i s/\"1\"/\"8\"/1 /usr/share/man/man8/chroot.8</userinput></screen>
       <varlistentry id="install">
         <term><command>install</command> </term>
         <listitem>
-          <para>复制文件，同时设置它们的许可模式，所有人和组 (可能的话)</para>
+          <para>复制文件，同时设置它们的许可模式、所属用户和组 (可能的话)</para>
           <indexterm zone="ch-system-coreutils install">
             <primary sortas="b-install">install</primary>
           </indexterm>
@@ -561,7 +561,7 @@ sed -i s/\"1\"/\"8\"/1 /usr/share/man/man8/chroot.8</userinput></screen>
       <varlistentry id="mktemp">
         <term><command>mktemp</command></term>
         <listitem>
-          <para>以一个安全的惯例创建一个临时文件；它在脚本中被使用</para>
+          <para>以一个安全的方式创建一个临时文件；它在脚本中被使用</para>
         <indexterm zone="ch-system-coreutils mktemp">
           <primary sortas="b-mktemp">mktemp</primary>
         </indexterm>
@@ -671,7 +671,7 @@ sed -i s/\"1\"/\"8\"/1 /usr/share/man/man8/chroot.8</userinput></screen>
       <varlistentry id="printenv">
         <term><command>printenv</command></term>
         <listitem>
-          <para>打印环境</para>
+          <para>输出环境变量</para>
           <indexterm zone="ch-system-coreutils printenv">
             <primary sortas="b-printenv">printenv</primary>
           </indexterm>
@@ -911,7 +911,7 @@ sed -i s/\"1\"/\"8\"/1 /usr/share/man/man8/chroot.8</userinput></screen>
       <varlistentry id="sync">
         <term><command>sync</command></term>
         <listitem>
-          <para>冲洗文件系统缓冲；它强制改变硬盘的程序块和更新超级块</para>
+          <para>刷新文件系统缓冲区；它会强制改变磁盘的数据块并更新超级块</para>
           <indexterm zone="ch-system-coreutils sync">
             <primary sortas="b-sync">sync</primary>
           </indexterm>
@@ -991,7 +991,7 @@ sed -i s/\"1\"/\"8\"/1 /usr/share/man/man8/chroot.8</userinput></screen>
       <varlistentry id="true">
         <term><command>true</command></term>
         <listitem>
-          <para>什么也不做；它总存在于一个正确的数据编码中以表示成功</para>
+          <para>什么也不做；它总返回一个表示成功的状态码</para>
           <indexterm zone="ch-system-coreutils true">
             <primary sortas="b-true">true</primary>
           </indexterm>
