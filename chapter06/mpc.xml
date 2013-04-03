@@ -23,7 +23,7 @@
   <sect2 role="package">
     <title/>
 
-    <para>MPC 程序包包含用于复数算数的库，精度高而且可变，结果也会被正确近似。</para>
+    <para>MPC 程序包包含用于复数算术的库，精度高而且可变，结果也会被正确近似。</para>
 
     <segmentedlist>
       <segtitle>&buildtime;</segtitle>

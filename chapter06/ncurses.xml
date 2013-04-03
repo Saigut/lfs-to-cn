@@ -64,7 +64,7 @@
       <varlistentry>
         <term><parameter>--enable-widec</parameter></term>
         <listitem>
-            <para>这个开关使长字符库 (e.g.，<filename class="libraryfile">libncursesw.so.&ncurses-version;</filename>)被编制而非普通的库 (例如 <filename class="libraryfile">libncurses.so.&ncurses-version;</filename>) 这些长字符库在多字节和传统 8 位区域数据下都可用，而普通的库只在 8 位区域数据下正常工作。宽字符库和普通库是源兼容的，但不二进制兼容。</para>
+            <para>这个开关使长字符库 (e.g.，<filename class="libraryfile">libncursesw.so.&ncurses-version;</filename>)被编制而非普通的库 (例如 <filename class="libraryfile">libncurses.so.&ncurses-version;</filename>) 这些长字符库在多字节和传统 8 位区域数据下都可用，而普通的库只在 8 位区域数据下正常工作。宽字符库和普通库是源代码兼容的，但二进制不兼容。</para>
         </listitem>
       </varlistentry>
 

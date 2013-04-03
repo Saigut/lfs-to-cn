@@ -14,9 +14,9 @@
     <primary sortas="d-setclock">setclock</primary>
   <secondary>配置</secondary></indexterm>
 
-  <para><command>setclock</command> 脚本从硬件时钟 (又称 BIOS 或 CMOS) 读取时间。如果硬件时钟设置为 UTC，此脚本会将其转换为 <filename>/etc/localtime</filename> 文件 (告知 <command>hwclock</command> 程序用户所在的时区) 中时区的时间。无法探测硬件时钟是否设置为 UTC，所以此项应收工配置。</para>
+  <para><command>setclock</command> 脚本从硬件时钟 (又称 BIOS 或 CMOS) 读取时间。如果硬件时钟设置为 UTC，此脚本会将其转换为 <filename>/etc/localtime</filename> 文件 (告知 <command>hwclock</command> 程序用户所在的时区) 中时区的时间。无法探测硬件时钟是否设置为 UTC，所以此项应手工配置。</para>
 
-  <para><command>setclock</command> 在引导时内核检测到硬件支持时通过 <application>udev</application> 运行。还可以手工不带参数运行麻将系统时间写入 CMOS 时钟。</para>
+  <para><command>setclock</command> 在引导时内核检测到硬件支持时通过 <application>udev</application> 运行。还可以手工不带参数运行将系统时间写入 CMOS 时钟。</para>
 
   <para>如果你无法记住硬件时钟是否设置为 UTC，运行 <userinput>hwclock --localtime --show</userinput> 命令。它会显示你硬件时钟的当前时间。如果这个时间和你手表上的时间相同，那就表示硬件时钟设置为本地时间。如果其输出不是本地时间，它有可能是一定可能设置为 UTC。将 <command>hwclock</command> 输出的时间加减正确的小时数。例如，位于中国大陆的 GMT +0800 时区的用户应该将 <command>hwclock</command> 的输出减去 8 小时。</para>
 

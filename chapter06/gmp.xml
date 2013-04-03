@@ -23,7 +23,7 @@
   <sect2 role="package">
     <title/>
 
-    <para>GMP 程序包包含数学库。其中包含用于任意精度算数的实用函数。</para>
+    <para>GMP 程序包包含数学库。其中包含用于任意精度算术的实用函数。</para>
 
     <segmentedlist>
       <segtitle>&buildtime;</segtitle>

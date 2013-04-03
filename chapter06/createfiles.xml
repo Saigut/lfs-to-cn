@@ -49,7 +49,7 @@ ln -sv bash /bin/sh</userinput></screen>
 
   <para>为了让 <systemitem class="username">root</systemitem> 用户能够登录并且要 <quote>root</quote> 这个名字被识别，在 <filename>/etc/passwd</filename> 和 <filename>/etc/group</filename> 这两个文件中就要有对应的条目存在。</para>
 
-  <para>运行一下命令创建 <filename>/etc/passwd</filename> 文件：</para>
+  <para>运行以下命令创建 <filename>/etc/passwd</filename> 文件：</para>
 
 <screen><userinput>cat &gt; /etc/passwd &lt;&lt; "EOF"
 <literal>root:x:0:0:root:/root:/bin/bash
@@ -97,8 +97,8 @@ chgrp -v utmp /var/log/lastlog
 chmod -v 664  /var/log/lastlog
 chmod -v 600  /var/log/btmp</userinput></screen>
 
-  <para><filename>/var/log/wtmp</filename> 文件记录所偶的登入登出。<filename>/var/log/lastlog</filename> 文件记录每个用户上次登录的时间。<filename>/var/log/btmp</filename> 文件记录失败的登录尝试。</para>
+  <para><filename>/var/log/wtmp</filename> 文件记录所有的登入登出。<filename>/var/log/lastlog</filename> 文件记录每个用户上次登录的时间。<filename>/var/log/btmp</filename> 文件记录失败的登录尝试。</para>
 
-  <note><para><filename>/run/utmp</filename> 文件记录当前登录的用户。此文件在引导脚本种动态创建。</para></note>
+  <note><para><filename>/run/utmp</filename> 文件记录当前登录的用户。此文件在引导脚本中动态创建。</para></note>
 
 </sect1>

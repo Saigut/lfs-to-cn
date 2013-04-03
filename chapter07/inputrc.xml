@@ -20,7 +20,7 @@
 
   <para>有关如何编辑 <filename>inputrc</filename> 文件的更多信息参见 <command>info bash</command> 中的 <emphasis>Readline Init File</emphasis> 一节。<command>info readline</command> 也能提供一些信息。</para>
 
-  <para>以下为全局通用的 <filename>inputrc</filename> 文件，带有注释，解释了不通选项的功能。注意这些注释不能与命令位于同一行。运行一下命令创建此文件：</para>
+  <para>以下为全局通用的 <filename>inputrc</filename> 文件，带有注释，解释了不同选项的功能。注意这些注释不能与命令位于同一行。运行以下命令创建此文件：</para>
 
 <screen><userinput>cat &gt; /etc/inputrc &lt;&lt; "EOF"
 <literal># Begin /etc/inputrc
