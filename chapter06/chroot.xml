@@ -23,7 +23,7 @@
 
   <para>从这里开始就不再需要使用 <envar>LFS</envar> 变量了，因为所有的工作都被限制在 LFS 文件系统中。这是因为 Bash shell 被告知 <filename class="directory">$LFS</filename> 现在是根 (<filename class="directory">/</filename>) 目录。</para>
 
-  <para>主意 <filename class="directory">/tools/bin</filename> 位于 <envar>PATH</envar> 的最后。这意味着一旦有最终版本安装，临时工具就不会再被使用。这只在 shell 不会 <quote>记住</quote> 运行过的二进制的位置时生效&mdash;&mdash;因此，通过给 <command>bash</command> 传递一个 <parameter>+h</parameter> 选项来关闭哈希。</para>
+  <para>注意 <filename class="directory">/tools/bin</filename> 位于 <envar>PATH</envar> 的最后。这意味着一旦有最终版本安装，临时工具就不会再被使用。这只在 shell 不会 <quote>记住</quote> 运行过的二进制的位置时生效&mdash;&mdash;因此，通过给 <command>bash</command> 传递一个 <parameter>+h</parameter> 选项来关闭哈希。</para>
 
   <para>注意 <command>bash</command> 的提示符会说 <computeroutput>I have no name!</computeroutput> (我还没有名字！)。这很正常，因为 <filename>/etc/passwd</filename> 文件还没有创建。</para>
 

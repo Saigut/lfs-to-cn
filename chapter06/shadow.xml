@@ -132,7 +132,7 @@ ln -sfv ../../lib/libshadow.so.0 /usr/lib/libshadow.so</userinput></screen> -->
   </sect2>
 
   <sect2 role="configuration">
-    <title>设置根目录密码</title>
+    <title>设置 root 密码</title>
 
     <para>为用户 <emphasis>root</emphasis> 选择一个密码并运行以下代码来设置它：</para>
 
@@ -473,7 +473,7 @@ ln -sfv ../../lib/libshadow.so.0 /usr/lib/libshadow.so</userinput></screen> -->
         <term><command>vipw</command></term>
         <listitem>
           <para>编辑 <filename>/etc/passwd</filename> 或
-          <filename>/etc/shadow</filename> files</para>
+          <filename>/etc/shadow</filename> 文件</para>
           <indexterm zone="ch-system-shadow vipw">
             <primary sortas="b-vipw">vipw</primary>
           </indexterm>

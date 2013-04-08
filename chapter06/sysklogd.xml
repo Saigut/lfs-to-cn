@@ -64,7 +64,7 @@
       <primary sortas="e-/etc/syslog.conf">/etc/syslog.conf</primary>
     </indexterm>
 
-    <para>运行一下命令来创建一个新的 <filename>/etc/syslog.conf</filename> 文件：</para>
+    <para>运行以下命令来创建一个新的 <filename>/etc/syslog.conf</filename> 文件：</para>
 
 <screen><userinput>cat &gt; /etc/syslog.conf &lt;&lt; "EOF"
 <literal># Begin /etc/syslog.conf

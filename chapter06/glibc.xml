@@ -23,7 +23,7 @@
   <sect2 role="package">
     <title/>
 
-    <para>Glibc 程序包包含主要的 C 库。这个库提供用于分配内存、搜索目录、开关读写文件、字符串处理、表达式匹配和算数等的基本途径。</para>
+    <para>Glibc 程序包包含主要的 C 库。这个库提供用于分配内存、搜索目录、开关读写文件、字符串处理、表达式匹配和算术等的基本途径。</para>
 
     <segmentedlist>
       <segtitle>&buildtime;</segtitle>
