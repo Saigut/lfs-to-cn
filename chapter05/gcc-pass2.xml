@@ -79,6 +79,10 @@ mv -v gmp-&gmp-version; gmp
 tar -zxf ../mpc-&mpc-version;.tar.gz
 mv -v mpc-&mpc-version; mpc</userinput></screen>
 
+	<para>这次同样不要构建 .info 文件。这些文件在新版 <command>makeinfo</command> 下无法正常编译，而且我们也不会用到。</para>
+
+<screen><userinput remap="pre">sed -i 's/BUILD_INFO=info/BUILD_INFO=/' gcc/configure</userinput></screen>
+
     <para>再创建一个独立的编制目录：</para>
 
 <screen><userinput remap="pre">mkdir -v ../gcc-build
