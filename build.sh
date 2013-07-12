@@ -7,7 +7,7 @@ echo "创建HTML树"
 make BASEDIR=~/git/LFS-pages
 
 echo "创建其他"
-make BASEDIR=~/git/LFS-misc pdf nochunks md5sums wget-list
+make BASEDIR=~/git/LFS-misc pdf nochunks
 
 echo "清理"
 rm *.tar.bz2

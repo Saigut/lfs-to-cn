@@ -226,29 +226,18 @@
 
   <itemizedlist>
     <title>加入：</title>
+    <listitem><para></para></listitem>  <!-- satisfy build -->
+
+    <listitem>
+      <para>bc &bc-version;</para>
+    </listitem>
 
     <listitem>
       <para>&bash-fixes-patch;</para>
     </listitem>
 
     <listitem>
-      <para>&binutils-testsuite-fixes-patch;</para>
-    </listitem>
-
-    <listitem>
-      <para>&coreutils-i18n-patch;</para>
-    </listitem>
-<!--
-    <listitem>
-      <para>&coreutils-test-patch;</para>
-    </listitem>
--->
-    <listitem>
-      <para>&kbd-backspace-patch;</para>
-    </listitem>
-
-    <listitem>
-      <para>&make-fixes-patch;</para>
+      <para>&perl-libc-patch;</para>
     </listitem>
 
   </itemizedlist>

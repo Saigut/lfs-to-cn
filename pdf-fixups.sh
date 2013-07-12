@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if [ $# -lt 1 ] ; then 
-  echo "This script needs the location of the fo file to update"
+  echo "此脚本需要文件位置才能更新"
   exit 1
 fi
 

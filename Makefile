@@ -39,7 +39,7 @@ lfs: validate profile-html
 	  sed -i -e "s@text/html@application/xhtml+xml@g" $$filename; \
 	done;
 
-	$(Q)$(MAKE) wget-list
+	$(Q)$(MAKE) $(BASEDIR)/wget-list $(BASEDIR)/md5sums
 
 pdf: validate
 	@echo "Generating profiled XML for PDF..."
@@ -58,7 +58,7 @@ pdf: validate
 	$(Q)if [ ! -e $(BASEDIR) ]; then \
 	  mkdir -p $(BASEDIR); \
 	fi;
-	$(Q)fop -c stylesheets/fop.xconf -q  $(RENDERTMP)/lfs-pdf.fo $(BASEDIR)/$(PDF_OUTPUT) 2>fop.log
+	$(Q)fop -q  $(RENDERTMP)/lfs-pdf.fo $(BASEDIR)/$(PDF_OUTPUT) 2>fop.log
 	@echo "$(BASEDIR)/$(PDF_OUTPUT) created"
 	@echo "fop.log created"
 
@@ -71,12 +71,10 @@ nochunks: validate profile-html
 	@echo "Running Tidy..."
 	$(Q)tidy -config tidy.conf $(BASEDIR)/$(NOCHUNKS_OUTPUT) || true
 	@echo "Running obfuscate.sh..."
-	$(Q)bash obfuscate.sh $(BASEDIR)/$(NOCHUNKS_OUTPUT)
-	$(Q)sed -i -e "s@text/html@application/xhtml+xml@g"  \
-	  $(BASEDIR)/$(NOCHUNKS_OUTPUT)
-	$(Q)sed -i -e "s@../wget-list@wget-list@"  \
-	  $(BASEDIR)/$(NOCHUNKS_OUTPUT)
-	$(Q)$(MAKE) wget-list
+	$(Q)bash obfuscate.sh                                $(BASEDIR)/$(NOCHUNKS_OUTPUT)
+	$(Q)sed -i -e "s@text/html@application/xhtml+xml@g"  $(BASEDIR)/$(NOCHUNKS_OUTPUT)
+	$(Q)sed -i -e "s@../wget-list@wget-list@"            $(BASEDIR)/$(NOCHUNKS_OUTPUT)
+	$(Q)$(MAKE) $(BASEDIR)/wget-list $(BASEDIR)/md5sums
 
 tmpdir:
 	@echo "Creating and cleaning $(RENDERTMP)"
@@ -97,26 +95,23 @@ validate: tmpdir
 profile-html: validate
 	@echo "Generating profiled XML for XHTML..."
 	$(Q)xsltproc --nonet --stringparam profile.condition html \
-	  --output $(RENDERTMP)/lfs-html.xml stylesheets/lfs-xsl/profile.xsl \
-	  $(RENDERTMP)/lfs-full.xml
+	    --output $(RENDERTMP)/lfs-html.xml stylesheets/lfs-xsl/profile.xsl \
+	    $(RENDERTMP)/lfs-full.xml
 
-wget-list:
+$(BASEDIR)/wget-list: stylesheets/wget-list.xsl chapter03/chapter03.xml packages.ent
 	@echo "Generating wget list..."
 	$(Q)mkdir -p $(BASEDIR)
 	$(Q)xsltproc --xinclude --nonet --output $(BASEDIR)/wget-list \
-	  stylesheets/wget-list.xsl chapter03/chapter03.xml
+	    stylesheets/wget-list.xsl chapter03/chapter03.xml
 
-md5sums:
+$(BASEDIR)/md5sums: stylesheets/wget-list.xsl chapter03/chapter03.xml packages.ent
 	@echo "Generating md5sum file..."
 	$(Q)mkdir -p $(BASEDIR)
 	$(Q)xsltproc --xinclude --nonet --output $(BASEDIR)/md5sums \
-	  stylesheets/md5sum.xsl chapter03/chapter03.xml
-	$(Q)sed -i -e "s/BOOTSCRIPTS-MD5SUM/$(shell md5sum lfs-bootscripts*.tar.bz2 | cut -d' ' -f1)/" \
-      $(BASEDIR)/md5sums
-
-#$(Q)sed -i -e "s/UDEV-MD5SUM/$(shell md5sum udev-config*.tar.bz2 | cut -d' ' -f1)/" \
-#$(BASEDIR)/md5sums
-
+	    stylesheets/md5sum.xsl chapter03/chapter03.xml
+	$(Q)sed -i -e \
+       "s/BOOTSCRIPTS-MD5SUM/$(shell md5sum lfs-bootscripts*.tar.bz2 | cut -d' ' -f1)/" \
+       $(BASEDIR)/md5sums
 
 dump-commands: validate
 	@echo "Dumping book commands..."
@@ -124,9 +119,7 @@ dump-commands: validate
 	   stylesheets/dump-commands.xsl $(RENDERTMP)/lfs-full.xml
 
 
-all: lfs nochunks pdf dump-commands md5sums
+all: lfs nochunks pdf dump-commands
 
-other: nochunks wget-list md5sums pdf
+.PHONY : all dump-commands lfs nochunks pdf profile-html tmpdir validate
 
-.PHONY : all dump-commands lfs nochunks pdf profile-html tmpdir validate \
-	 wget-list maketar md5sums
