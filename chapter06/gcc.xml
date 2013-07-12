@@ -44,6 +44,10 @@
 
 <screen><userinput remap="pre">sed -i 's/install_to_$(INSTALL_DEST) //' libiberty/Makefile.in</userinput></screen>
 
+<para>一样不要构建 .info 文件。这些文件在新版 <command>makeinfo</command> 下无法正常编译，而且我们也不会用到。</para>
+
+<screen><userinput remap="pre">sed -i 's/BUILD_INFO=info/BUILD_INFO=/' gcc/configure</userinput></screen>
+
     <para>与<xref linkend="ch-tools-gcc-pass2"/> 相同，应用以下 <command>sed</command> 命令强制编制使用 <option>-fomit-frame-pointer</option> 编译器标记以确保编译器编制稳定：</para> 
 
 <screen><userinput remap="pre">case `uname -m` in
