@@ -25,7 +25,7 @@
 
 <screen><computeroutput>install-info: unknown option '--dir-file=/mnt/lfs/usr/info/dir'</computeroutput></screen>
 
-  <para>这种形式的文本 (等宽文本) 显示屏幕输出，通常是执行的命令产生的结果。这种格式也用于表示文件名，如 <filename>/etc/ld.so.conf</filename> 。</para>
+  <para>这种形式的文本 (等宽文本) 显示屏幕输出，通常是执行的命令产生的结果。这种格式也用于表示文件名，如 <filename>/etc/ld.so.conf</filename>。</para>
 
   <para><emphasis role="strong">强调</emphasis></para>
 
@@ -47,7 +47,7 @@ EOF</userinput></screen>
 
   <para>此格式用于封装不必键入或复制粘贴的文本。</para>
 
-  <para><replaceable>text</replaceable></para>
+  <para><replaceable>[text]</replaceable></para>
 
   <para>此格式用于封装可选的文本。</para>
 

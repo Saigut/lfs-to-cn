@@ -12,7 +12,7 @@
 
   <para>编制 LFS 系统不是一项简单的任务。它需要一定水平的 Unix 系统管理知识来解决问题并正确执行列出的命令。通常，您至少应该有能力用命令行 (Shell) 来复制或移动文件和目录、列出文件和目录的内容和改变当前工作目录。同时推荐您具有一定的使用和安装 Linux 软件的知识。</para>
 
-  <para>因为 LFS 系统需要<emphasis role="strong">至少</emphasis>这样的基础水平技能，LFS 支持论坛可能无法在这些领域提供很多帮助。您会发现您此类基础知识问题很可能无人回答，或者有人会给您指出 LFS 必要预阅读列表。</para>
+  <para>因为 LFS 系统需要<emphasis role="strong">至少</emphasis>这样的基础技能水平，LFS 支持论坛可能无法在这些领域提供很多帮助。您很可能会发现此类基础问题无人回答，或者有人会给您指出 LFS 必要预阅读列表。</para>
 
   <para>在编制 LFS 系统之前，我们推荐阅读以下指南：</para>
 
@@ -20,7 +20,7 @@
     <listitem>
       <para><ulink url="http://www.tldp.org/HOWTO/Software-Building-HOWTO.html">软件编制指南</ulink></para>
 
-      <para>这是关于在 Linux 下编制和安装 <quote>泛</quote> Unix 程序包的综合向导。虽然写出来有些日子了，它仍能提供编制和安装 Linux 软件基本技术的很好总结。</para>
+      <para>这是关于在 Linux 下编制和安装 Unix 程序包的综合向导。虽然写出来有些日子了，它仍能提供编制和安装 Linux 软件基本技术的很好总结。</para>
     </listitem>
 
     <listitem>

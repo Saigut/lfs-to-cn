@@ -49,7 +49,7 @@
     </listitem>
 
     <listitem>
-      <para><emphasis role="strong">GCC-4.1.2</emphasis> (高于 &gcc-version; 的版本因未经测试而不推荐)</para>
+      <para><emphasis role="strong">GCC-4.1.2</emphasis> 包括 C++ 编译器 <command>g++</command> (高于 &gcc-version; 的版本因未经测试而不推荐)</para>
     </listitem>
 
     <listitem>
@@ -136,6 +136,7 @@ if [ -e /usr/bin/awk ];
   else echo "awk not found"; fi
 
 gcc --version | head -n1
+g++ --version | head -n1
 ldd --version | head -n1 | cut -d" " -f2-  # glibc version
 grep --version | head -n1
 gzip --version | head -n1
@@ -149,10 +150,10 @@ tar --version | head -n1
 echo "Texinfo: `makeinfo --version | head -n1`"
 xz --version | head -n1
 
-echo 'main(){}' &gt; dummy.c &amp;&amp; gcc -o dummy dummy.c
+echo 'main(){}' &gt; dummy.c &amp;&amp; g++ -o dummy dummy.c
 if [ -x dummy ]
-  then echo "gcc compilation OK";
-  else echo "gcc compilation failed"; fi
+  then echo "g++ compilation OK";
+  else echo "g++ compilation failed"; fi
 rm -f dummy.c dummy</literal>
 EOF
 
