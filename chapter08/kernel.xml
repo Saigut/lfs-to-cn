@@ -94,11 +94,11 @@
 
 <screen><userinput remap="install">cp -v arch/x86/boot/bzImage /boot/vmlinuz-&linux-version;-lfs-&version;</userinput></screen>
 
-    <para><filename>System.map</filename> 是内核的一个符号文件。它映射内核 API 中的每个函数的函数入口以及正在运行的内核的内核数据结构地址。它被用作调查内核问题时的一个资源。运行以下命令来安装映射文件：</para>
+    <para><filename>System.map</filename> 是内核的一个符号文件。它映射内核 API 中的每个函数的入口以及运行中内核的内核数据结构地址。它被用作调查内核问题时的一个资源。运行以下命令来安装映射文件：</para>
 
 <screen><userinput remap="install">cp -v System.map /boot/System.map-&linux-version;</userinput></screen>
 
-    <para>由上面的 <command>make menuconfig</command> 步骤生成的内核配置文件 <filename>.config</filename> 包含所有刚刚被编译的内核配置选项。保存此文件以备日后查阅是一个好主意：</para>
+    <para>此前 <command>make menuconfig</command> 步骤生成的内核配置文件 <filename>.config</filename> 包含刚刚编译的内核的所有配置选项。保存此文件以备日后查阅：</para>
 
 <screen><userinput remap="install">cp -v .config /boot/config-&linux-version;</userinput></screen>
 
@@ -107,16 +107,16 @@
 <screen><userinput remap="install">install -d /usr/share/doc/linux-&linux-version;
 cp -r Documentation/* /usr/share/doc/linux-&linux-version;</userinput></screen>
 
-    <para>注意内核源目录中的文件不属于 <emphasis>root</emphasis> 是很重要的。每当一个程序包被以用户 <emphasis>root</emphasis> 解压 (就像我们在 chroot 中做的那样) ，文件得到打包者的电脑上的用户和组 ID 。这对其他任何要安装的程序包通常不成问题，鉴于源代码树在安装后移除。然而 Linux 源代码树通常会保存较长的时间。因此，打包者使用的 ID 有机会被赋值到机器上的某处。那个人将会得到修改内核源代码的权限。</para>
+    <para>注意内核源目录中的文件不属于 <emphasis>root</emphasis> 是很重要的。每当一个程序包被以用户 <emphasis>root</emphasis> 解压 (就像我们在 chroot 中做的那样) ，文件得到打包者的电脑上的用户和组 ID 。这对要安装的任何其他程序包通常都不成问题，因为安装过后会移除源代码树。然而内核源代码树通常会保存较长的时间，所以打包者使用的 ID 有可能分配给某个用户。此用户将会得到修改内核源代码的权限。</para>
 
-    <para>如果内核源代码树要被保存，在 <filename class="directory">linux-&linux-version;</filename> 目录运行 <command>chown -R 0:0</command> 来确保所有文件被用户 <emphasis>root</emphasis> 所有。</para>
+    <para>如果要保存内核源代码树，对 <filename class="directory">linux-&linux-version;</filename> 目录运行 <command>chown -R 0:0</command> 来确保所有文件归 <emphasis>root</emphasis> 所有。</para>
 
     <warning>
-      <para>一些内核文档建议创建一个从 <filename class="symlink">/usr/src/linux</filename> 指向内核源代码目录的符号链接。这是针对 2.6 之前版本内核的并且 <emphasis>一定不要</emphasis> 在一个 LFS 系统上创建，因为它可能在你在基本 LFS 系统完成后试图编制程序包时造成问题。</para>
+      <para>一些内核文档建议创建一个从 <filename class="symlink">/usr/src/linux</filename> 指向内核源代码目录的符号链接。这是针对 2.6 之前版本内核的并且 <emphasis>一定不要</emphasis> 在 LFS 系统上创建，因为它可能在你在基本 LFS 系统完成后试图编制程序包时造成问题。</para>
     </warning>
 
     <warning>
-      <para>系统的 <filename class="directory">include</filename> 目录下的头文件应该 <emphasis>始终</emphasis> 和 Glibc 一起编译，也就是说，来自这个 Linux 系统内核中 tarball 的纯净头文件。这样一来，它们应当 <emphasis>永不</emphasis> 被原始的内核头文件或任何其他内核纯净头文件替换。</para>
+      <para>系统的 <filename class="directory">include</filename> 目录下的头文件应该 <emphasis>始终</emphasis> 是 Glibc 编译使用的一份，也就是来自这个 Linux 内核压缩包的纯净头文件。这样一来，它们应当 <emphasis>永远不</emphasis> 被原始的内核头文件或任何其他内核纯净头文件替换。</para>
     </warning>
 
   </sect2>
@@ -128,9 +128,9 @@ cp -r Documentation/* /usr/share/doc/linux-&linux-version;</userinput></screen>
       <primary sortas="e-/etc/modprobe.d/usb.conf">/etc/modprobe.d/usb.conf</primary>
     </indexterm>
 
-    <para><filename>/etc/modprobe.d/usb.conf</filename> 需要被创建。这样一来，如果 USB 驱动 (ehci_hcd， ohci_hcd 和 uhci_hcd) 已被编制为模块，他们会按正确的序列被加载；ehci_hcd 需要先于 ohci_hcd 和 uhci_hcd 被加载以避免引导时输出警告。</para>
+    <para>大部分时候 Linux 模块会自动加载，但有时候会需要特定的规则。加载模块的程序 <command>modprobe</command> 或者 <command>insmod</command> 将 <filename>/etc/modprobe.d/usb.conf</filename> 用于这一目的。如果 USB 驱动 (ehci_hcd, ohci_hcd 和 uhci_hcd) 编制为模块，就需要创建此文件使得它们按正确顺序加载；ehci_hcd 先于 ohci_hcd 和 uhci_hcd，以防止引导时输出警告。</para>
 
-    <para>运行以下命令来创建一个新 <filename>/etc/modprobe.d/usb.conf</filename>  文件：</para>
+    <para>运行以下命令新建 <filename>/etc/modprobe.d/usb.conf</filename> 文件：</para>
 
 <screen><userinput>install -v -m755 -d /etc/modprobe.d
 cat &gt; /etc/modprobe.d/usb.conf &lt;&lt; "EOF"
@@ -152,8 +152,8 @@ EOF</userinput></screen>
       <segtitle>安装的目录</segtitle>
 
       <seglistitem>
-        <seg>config-&linux-version;、vmlinux-&linux-version;-lfs-&version;-&linux-version; 和 System.map-&linux-version;</seg>
-        <seg>/lib/modules、/usr/share/doc/linux-&linux-version;</seg>
+        <seg>config-&linux-version;, vmlinux-&linux-version;-lfs-&version;-&linux-version; 和 System.map-&linux-version;</seg>
+        <seg>/lib/modules 和 /usr/share/doc/linux-&linux-version;</seg>
       </seglistitem>
     </segmentedlist>
 
@@ -175,7 +175,7 @@ EOF</userinput></screen>
       <varlistentry id="lfskernel">
         <term><filename>vmlinux-&linux-version;-lfs-&version;</filename></term>
         <listitem>
-          <para>Linux 系统的引擎。当开启电脑时，内核是运行系统中首先被加载的部分。它检测并初始化电脑硬件的所有组件，然后让这些组件以一个文件树的形式对软件可用并转换一个单个的 CPU 为可以看上去是同时地运行大量程序的多线程机</para>
+          <para>Linux 系统的引擎。当开启电脑时，内核是操作系统中首先加载的部分。它检测并初始化电脑硬件的所有组件，然后让这些组件以文件树的形式对软件可用，并将单个 CPU 转换为可以看上去可以同时运行大量程序的多线程机</para>
           <indexterm zone="ch-bootable-kernel lfskernel">
             <primary sortas="b-lfskernel">lfskernel-&linux-version;</primary>
           </indexterm>
@@ -185,7 +185,7 @@ EOF</userinput></screen>
       <varlistentry id="System.map">
         <term><filename>System.map-&linux-version;</filename></term>
         <listitem>
-          <para>一个地址和符号的列表；它映射内核中所有函数和数据结构的入口点和地址</para>
+          <para>地址和符号列表；映射内核中所有函数的入口和数据结构的地址</para>
           <indexterm zone="ch-bootable-kernel System.map">
             <primary sortas="e-/boot/System.map">/boot/System.map-&linux-version;</primary>
           </indexterm>
