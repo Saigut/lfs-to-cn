@@ -10,7 +10,7 @@
 
 
 ### 参与翻译
-翻译工作在lfs book各版本分支(brahcn)内进行。
+翻译工作在lfs book各版本分支(branch)内进行。
 #### 目录结构
 lfs book各版本分支内有两个目录ori和cn  
 
