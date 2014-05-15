@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+  "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../general.ent">
+  %general-entities;
+]>
+
+<sect1 id="ch-system-file" role="wrap">
+  <?dbhtml filename="file.html"?>
+
+  <sect1info condition="script">
+    <productname>file</productname>
+    <productnumber>&file-version;</productnumber>
+    <address>&file-url;</address>
+  </sect1info>
+
+  <title>File-&file-version;</title>
+
+  <indexterm zone="ch-system-file">
+    <primary sortas="a-File">File</primary>
+  </indexterm>
+
+  <sect2 role="package">
+    <title/>
+
+    <para>File 程序包包含一个用于检测给定文件类型的工具。</para>
+
+    <segmentedlist>
+      <segtitle>&buildtime;</segtitle>
+      <segtitle>&diskspace;</segtitle>
+
+      <seglistitem>
+        <seg>&file-ch6-sbu;</seg>
+        <seg>&file-ch6-du;</seg>
+      </seglistitem>
+    </segmentedlist>
+
+  </sect2>
+
+  <sect2 role="installation">
+    <title>安装 File</title>
+
+    <para>准备编译 File：</para>
+
+<screen><userinput remap="configure">./configure --prefix=/usr</userinput></screen>
+
+    <para>编译程序包：</para>
+
+<screen><userinput remap="make">make</userinput></screen>
+
+    <para>要测试结果，执行：</para>
+
+<screen><userinput remap="test">make check</userinput></screen>
+
+    <para>安装程序包</para>
+
+<screen><userinput remap="install">make install</userinput></screen>
+
+  </sect2>
+
+
+  <sect2 id="contents-file" role="content">
+    <title>File 的内容</title>
+
+    <segmentedlist>
+      <segtitle>安装的程序</segtitle>
+      <segtitle>安装的库</segtitle>
+
+      <seglistitem>
+        <seg>file</seg>
+        <seg>libmagic.{a,so}</seg>
+      </seglistitem>
+    </segmentedlist>
+
+    <variablelist>
+      <bridgehead renderas="sect3">简介</bridgehead>
+      <?dbfo list-presentation="list"?>
+      <?dbhtml list-presentation="table"?>
+
+      <varlistentry id="file">
+        <term><command>file</command></term>
+        <listitem>
+          <para>试图对每个给定的文件进行分类；通过进行多种测试 &mdash;&mdash;文件系统测试、魔数测试和语言测试&mdash;&mdash;来实现</para>
+          <indexterm zone="ch-system-file file">
+            <primary sortas="b-file">file</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="libmagic">
+        <term><filename class="libraryfile">libmagic</filename></term>
+        <listitem>
+          <para>包含用于识别魔数的途径，被 <command>file</command> 程序使用</para>
+          <indexterm zone="ch-system-file libmagic">
+            <primary sortas="c-libmagic">libmagic</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+    </variablelist>
+
+  </sect2>
+
+</sect1>

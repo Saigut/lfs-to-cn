@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+  "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../general.ent">
+  %general-entities;
+]>
+
+<sect1 id="ch-system-procps" role="wrap">
+  <?dbhtml filename="procps-ng.html"?>
+
+  <sect1info condition="script">
+    <productname>procps-ng</productname>
+    <productnumber>&procps-ng-version;</productnumber>
+    <address>&procps-ng-url;</address>
+  </sect1info>
+
+  <title>Procps-ng-&procps-ng-version;</title>
+
+  <indexterm zone="ch-system-procps">
+    <primary sortas="a-Procps">Procps-ng</primary>
+  </indexterm>
+
+  <sect2 role="package">
+    <title/>
+
+    <para>Procps-ng 程序包包含用于监控进程的程序。</para>
+
+    <segmentedlist>
+      <segtitle>&buildtime;</segtitle>
+      <segtitle>&diskspace;</segtitle>
+
+      <seglistitem>
+        <seg>&procps-ng-ch6-sbu;</seg>
+        <seg>&procps-ng-ch6-du;</seg>
+      </seglistitem>
+    </segmentedlist>
+
+  </sect2>
+
+  <sect2 role="installation">
+    <title>安装 Procps-ng</title>
+
+    <para>现在准备编译 procps-ng：</para>
+
+<screen><userinput remap="configure">./configure --prefix=/usr                           \
+            --exec-prefix=                          \
+            --libdir=/usr/lib                       \
+            --docdir=/usr/share/doc/procps-ng-&procps-ng-version; \
+            --disable-static                        \
+            --disable-skill                         \
+            --disable-kill</userinput></screen>
+
+    <variablelist>
+      <title>配置脚本的含义：</title>
+
+      <varlistentry>
+        <term><parameter>--disable-skill</parameter></term>
+        <listitem>
+          <para>此开关禁用废弃且无法移植的 skill 和 snice 命令。</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><parameter>--disable-kill</parameter></term>
+        <listitem>
+          <para>此开关禁用编制 kill 命令，它已由 util-linux 程序包安装过。</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
+    <para>编译程序包：</para>
+
+<screen><userinput remap="make">make</userinput></screen>
+
+    <para>测试套件需要一些 LFS 特有的修改。<command>which</command> 命令现在不可用，<command>pmap</command> 的测试中有两个测试不匹配一个新行字符。要运行测试套件，运行以下命令：</para>
+
+<screen><userinput remap="test">pushd testsuite
+  sed -i 's|exec which sleep|exec echo /tools/bin/sleep|' config/unix.exp
+  sed -i 's|pmap_initname\\\$|pmap_initname|'             pmap.test/pmap.exp
+  make site.exp
+  DEJAGNU=global-conf.exp runtest
+popd</userinput></screen>
+
+    <para>安装程序包：</para>
+
+<screen><userinput remap="install">make install</userinput></screen>
+
+  </sect2>
+
+  <sect2 id="contents-procps" role="content">
+    <title>Procps 的内容</title>
+
+    <segmentedlist>
+      <segtitle>安装的程序</segtitle>
+      <segtitle>安装的库</segtitle>
+
+      <seglistitem>
+        <seg>free, pgrep, pkill, pmap, ps, pwdx, skill, slabtop, sysctl, tload, top, uptime, vmstat, w 和 watch</seg>
+        <seg>libproc.so</seg>
+      </seglistitem>
+    </segmentedlist>
+
+    <variablelist>
+      <bridgehead renderas="sect3">简介</bridgehead>
+      <?dbfo list-presentation="list"?>
+      <?dbhtml list-presentation="table"?>
+
+      <varlistentry id="free">
+        <term><command>free</command></term>
+        <listitem>
+          <para>报告系统中已用和可用内存的数量 (包括物理内存和交换)</para>
+          <indexterm zone="ch-system-procps free">
+            <primary sortas="b-free">free</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="pgrep">
+        <term><command>pgrep</command></term>
+        <listitem>
+          <para>按名称和其他属性查找进程</para>
+          <indexterm zone="ch-system-procps pgrep">
+            <primary sortas="b-pgrep">pgrep</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="pkill">
+        <term><command>pkill</command></term>
+        <listitem>
+          <para>按名称和其他属性给进程发信号</para>
+          <indexterm zone="ch-system-procps pkill">
+            <primary sortas="b-pkill">pkill</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="pmap">
+        <term><command>pmap</command></term>
+        <listitem>
+          <para>报告给定进程的内存映射</para>
+          <indexterm zone="ch-system-procps pmap">
+            <primary sortas="b-pmap">pmap</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="ps">
+        <term><command>ps</command></term>
+        <listitem>
+          <para>列出当前正在运行的进程</para>
+          <indexterm zone="ch-system-procps ps">
+            <primary sortas="b-ps">ps</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="pwdx">
+        <term><command>pwdx</command></term>
+        <listitem>
+          <para>报告一个进程的当前工作目录</para>
+          <indexterm zone="ch-system-procps pwdx">
+            <primary sortas="b-pwdx">pwdx</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="slabtop">
+        <term><command>slabtop</command></term>
+        <listitem>
+          <para>实时显示详细的内核 slap 缓存信息</para>
+          <indexterm zone="ch-system-procps slabtop">
+            <primary sortas="b-slabtop">slabtop</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="snice">
+        <term><command>snice</command></term>
+        <listitem>
+          <para>改变匹配指定标准的进程的调度优先级</para>
+          <indexterm zone="ch-system-procps snice">
+            <primary sortas="b-snice">snice</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="sysctl">
+        <term><command>sysctl</command></term>
+        <listitem>
+          <para>运行时修改内核参数</para>
+          <indexterm zone="ch-system-procps sysctl">
+            <primary sortas="b-sysctl">sysctl</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="tload">
+        <term><command>tload</command></term>
+        <listitem>
+          <para>显示当前系统平均负载的图表</para>
+          <indexterm zone="ch-system-procps tload">
+            <primary sortas="b-tload">tload</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="top">
+        <term><command>top</command></term>
+        <listitem>
+          <para>列出最 CPU 密集的进程；实时监测处理器活动</para>
+          <indexterm zone="ch-system-procps top">
+            <primary sortas="b-top">top</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="uptime">
+        <term><command>uptime</command></term>
+        <listitem>
+          <para>报告系统已经运行的时间、登录的优化和系统平均负载</para>
+          <indexterm zone="ch-system-procps uptime">
+            <primary sortas="b-uptime">uptime</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="vmstat">
+        <term><command>vmstat</command></term>
+        <listitem>
+          <para>报告虚拟内存统计数据，给出有关进程、内存、分页、块 IO、陷阱和 CPU 活动的信息</para>
+          <indexterm zone="ch-system-procps vmstat">
+            <primary sortas="b-vmstat">vmstat</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="w">
+        <term><command>w</command></term>
+        <listitem>
+          <para>显示当前登录的用户以及他们何时在何处登录</para>
+          <indexterm zone="ch-system-procps w">
+            <primary sortas="b-w">w</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="watch">
+        <term><command>watch</command></term>
+        <listitem>
+          <para>重复运行一个给定命令，显示第一屏幕的输出；允许用户贯彻输出如何随时间变化</para>
+          <indexterm zone="ch-system-procps watch">
+            <primary sortas="b-watch">watch</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="libproc">
+        <term><filename class="libraryfile">libproc</filename></term>
+        <listitem>
+          <para>包含此程序包中多数程序使用的函数</para>
+          <indexterm zone="ch-system-procps libproc">
+            <primary sortas="c-libproc">libproc</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+    </variablelist>
+
+  </sect2>
+
+</sect1>

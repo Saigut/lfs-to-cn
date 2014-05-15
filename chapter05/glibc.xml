@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+  "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../general.ent">
+  %general-entities;
+]>
+
+<sect1 id="ch-tools-glibc" role="wrap">
+  <?dbhtml filename="glibc.html"?>
+
+  <sect1info condition="script">
+    <productname>glibc</productname>
+    <productnumber>&glibc-version;</productnumber>
+    <address>&glibc-url;</address>
+  </sect1info>
+
+  <title>Glibc-&glibc-version;</title>
+
+  <indexterm zone="ch-tools-glibc">
+    <primary sortas="a-Glibc">Glibc</primary>
+    <secondary>工具</secondary>
+  </indexterm>
+
+  <sect2 role="package">
+    <title/>
+
+    <xi:include xmlns:xi="http://www.w3.org/2001/XInclude"
+    href="../chapter06/glibc.xml"
+    xpointer="xpointer(/sect1/sect2[1]/para[1])"/>
+
+    <segmentedlist>
+      <segtitle>&buildtime;</segtitle>
+      <segtitle>&diskspace;</segtitle>
+
+      <seglistitem>
+        <seg>&glibc-ch5-sbu;</seg>
+        <seg>&glibc-ch5-du;</seg>
+      </seglistitem>
+    </segmentedlist>
+
+  </sect2>
+
+  <sect2 role="installation">
+    <title>安装 Glibc</title>
+    
+    <para>在某些情况下，尤其是在 LFS 7.1 中，<filename>rpc</filename> 头文件并没有正确安装。检测它们在宿主系统上是否已经安装，如果没有则安装之：</para>
+
+<screen><userinput remap="pre">if [ ! -r /usr/include/rpc/types.h ]; then 
+  su -c 'mkdir -p /usr/include/rpc'
+  su -c 'cp -v sunrpc/rpc/*.h /usr/include/rpc'
+fi</userinput></screen>
+
+    <para>Glibc 文档推荐在源代码目录外创建目录编译 Glibc：</para>
+
+<screen><userinput remap="pre">mkdir -v ../glibc-build
+cd ../glibc-build</userinput></screen>
+<!--
+    <para>因为 Glibc 不再支持 i386，所以Glibc的开发者提出使用 <parameter>-march=i486</parameter> 参数在 x86 平台上进行编译。这里有几种不同的实现方法，但测试表明将这个参数加到 <quote>CFLAGS</quote> 中会比较好。我们通过将这个参数加入到 <filename>configparms</filename> 文件中来达到目的，而不是彻底覆盖 Glibc 的内部 CFLAGS。-mtune=native 参数也很重要，当重新设定 -march 的值时，可以得到一个合理的 -mtune 的值。</para>
+
+<screen><userinput remap="configure">case `uname -m` in
+  i?86) echo "CFLAGS += -march=i486 -mtune=native" &gt; configparms ;;
+esac</userinput></screen>
+-->
+
+    <para>接下来，准备编译 Glibc：</para>
+
+<screen><userinput remap="configure">../glibc-&glibc-version;/configure                             \
+      --prefix=/tools                                 \
+      --host=$LFS_TGT                                 \
+      --build=$(../glibc-&glibc-version;/scripts/config.guess) \
+      --disable-profile                               \
+      --enable-kernel=2.6.25                          \
+      --with-headers=/tools/include                   \
+      libc_cv_forced_unwind=yes                       \
+      libc_cv_ctors_header=yes                        \
+      libc_cv_c_cleanup=yes</userinput></screen>
+
+    <variablelist>
+      <title>配置选项的含义：</title>
+
+      <varlistentry>
+        <term><parameter>--host=$LFS_TGT, --build=$(../glibc-&glibc-version;/scripts/config.guess)</parameter></term>
+        <listitem>
+          <para>这几个参数告诉 Glibc 使用 <filename class="directory">/tools</filename> 中的编译器和链接器进行交叉编译。</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><parameter>--disable-profile</parameter></term>
+        <listitem>
+          <para>不使用检测的信息进行编译。当需要检测信息时，去掉这个参数。</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><parameter>--enable-kernel=2.6.25</parameter></term>
+        <listitem>
+          <para>告诉 Glibc 提供 2.6.25 或更高的内核的支持。比这个旧的内核将不会提供支持。</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><parameter>--with-headers=/tools/include</parameter></term>
+        <listitem>
+          <para>告诉 Glibc 使用 <filename class="directory">tools</filename> 文件夹里的头文件编译自身，这样可以让 Glibc 根据新的内核进行优化。</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><parameter>libc_cv_forced_unwind=yes</parameter></term>
+        <listitem>
+          <para>在 <xref linkend="ch-tools-binutils-pass1"/> 安装的链接器是交叉编译得到的，在 Glibc 安装好之前，它不能正常工作。这意味着 <command>configure</command> 对 force-unwind 的检查会失败。libc_cv_forced_unwind=yes 告诉 <command>configure</command> 脚本不进行这项检查。</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><parameter>libc_cv_c_cleanup=yes</parameter></term>
+        <listitem>
+          <para>同样，我们传递 <parameter>libc_cv_c_cleanup=yes</parameter> 给 <command>configure</command> 脚本跳过检查但仍配置 C 清理控制支持。</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><parameter>libc_cv_ctors_header=yes</parameter></term>
+        <listitem>
+          <para>同样，我们传递 <parameter>libc_cv_ctors_header=yes</parameter> 给 <command>configure</command> 脚本跳过检查但仍配置 GCC 构造函数支持。</para>
+        </listitem>
+      </varlistentry>
+
+    </variablelist>
+
+    <para>在这步进行时，可能会有下面的警告：</para>
+
+    <blockquote>
+<screen><computeroutput>configure: WARNING:
+*** These auxiliary programs are missing or
+*** incompatible versions: msgfmt
+*** some features will be disabled.
+*** Check the INSTALL file for required versions.</computeroutput></screen>
+    </blockquote>
+
+    <para>这个丢失或不合适的 <command>msgfmt</command> 程序在这里是无害的。这个 <command>msgfmt</command> 是 Gettext 的一部分，宿主系统应该会提供。</para>
+
+    <para>编译程序包：</para>
+
+<screen><userinput remap="make">make</userinput></screen>
+
+    <para>此程序包包含测试套件，但现在还不能运行，因为我们还没有 C++ 编译器。</para>
+
+    <note>
+      <para>这些测试的成功执行同样需要正确安装的区域数据。区域数据提供系统默认的信息，比如日期、时间、货币格式以及系统工具的输出。如果在本章不运行测试套件，就没必要现在安装区域数据 (推荐)。合适的区域数据将会在下一章安装。如果无论如何都要安装 Glibc 区域数据，参考<xref linkend="ch-system-glibc"/>。</para>
+    </note>
+
+    <para>安装程序包：</para>
+
+<screen><userinput remap="install">make install</userinput></screen>
+
+  <caution>
+    <para>在这里，停下来确保新工具链的基本功能 (编译和链接) 能正常工作很重要。要进行稳定性检查，运行以下命令：</para>
+
+<screen><userinput>echo 'main(){}' &gt; dummy.c
+$LFS_TGT-gcc dummy.c
+readelf -l a.out | grep ': /tools'</userinput></screen>
+
+    <para>如果一切工作正常，就不会出现错误，最后一条命令的输出会符合以下格式：</para>
+
+<screen><computeroutput>[Requesting program interpreter: /tools/lib/ld-linux.so.2]</computeroutput></screen>
+
+    <para>留意 <filename class="directory">/tools/lib</filename> 或者 64 位计算机上的 <filename class="directory">/tools/lib64</filename> 作为动态链接器的前缀出现。</para>
+
+    <para>如果输出不如上文所示或者根本没有输出，那就有地方出错了。研究回溯刚才的步骤，查出问题并修正之。在继续之前必须解决这一问题。</para>
+
+    <para>一切正常之后，清理测试文件：</para>
+
+<screen><userinput>rm -v dummy.c a.out</userinput></screen>
+
+  </caution>
+
+  <note><para>下一节中编制 Binutils 相当与额外检查了一次工具链是否正常编制。如果 Binutils 编制失败，就说明之前的 Binutils、GCC 或 Glibc 安装出现了问题。</para></note>
+
+  </sect2>
+
+  <sect2 role="content">
+    <title/>
+
+    <para>有关此程序包的细节位于 <xref linkend="contents-glibc"/>。</para>
+
+  </sect2>
+
+</sect1>

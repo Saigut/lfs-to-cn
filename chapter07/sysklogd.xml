@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+  "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../general.ent">
+  %general-entities;
+]>
+
+<sect1 id="ch-scripts-sysklogd">
+  <?dbhtml filename="sysklogd.html"?>
+
+  <title>配置 sysklogd 脚本</title>
+
+  <indexterm zone="ch-scripts-sysklogd">
+    <primary sortas="d-sysklogd">sysklogd</primary>
+    <secondary>配置</secondary>
+  </indexterm>
+
+  <para><filename>sysklogd</filename> 脚本调用 <command>syslogd</command> 程序，使用 <parameter>-m 0</parameter> 选项。此选项关闭 <command>syslogd</command> 默认每 20 分钟对日志文件写入的周期性时间戳。如果你要打开这个周期性时间标记，编辑 <filename>/etc/sysconfig/rc.site</filename> 并且将 SYSKLOGD_PARMS 变量调整为需要的值。若要移除所有参数，将其设置为空值：</para>
+
+<screen role="nodump">SYSKLOGD_PARMS=</screen>
+
+  <para>更多参数参考 <userinput>man syslogd</userinput>。</para>
+
+</sect1>

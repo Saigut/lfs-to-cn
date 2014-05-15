@@ -1,0 +1,480 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+  "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../general.ent">
+  %general-entities;
+]>
+
+<sect1 id="ch-system-gcc" role="wrap">
+  <?dbhtml filename="gcc.html"?>
+
+  <sect1info condition="script">
+    <productname>gcc</productname>
+    <productnumber>&gcc-version;</productnumber>
+    <address>&gcc-url;</address>
+  </sect1info>
+
+  <title>GCC-&gcc-version;</title>
+
+  <indexterm zone="ch-system-gcc">
+    <primary sortas="a-GCC">GCC</primary>
+  </indexterm>
+
+  <sect2 role="package">
+    <title/>
+
+    <para>GCC 程序包包含 GNU 编译器集，其中包括 C 和 C++ 编译器。</para>
+
+    <segmentedlist>
+      <segtitle>&buildtime;</segtitle>
+      <segtitle>&diskspace;</segtitle>
+
+      <seglistitem>
+        <seg>&gcc-ch6-sbu;</seg>
+        <seg>&gcc-ch6-du;</seg>
+      </seglistitem>
+    </segmentedlist>
+
+  </sect2>
+
+  <sect2 role="installation">
+    <title>安装 GCC</title>
+
+    <para>应用一次 <command>sed</command> 替换，禁止安装 <filename class="libraryfile">libiberty.a</filename>。我们将会使用 Binutils 提供的 <filename class="libraryfile">libiberty.a</filename>：</para>
+
+<screen><userinput remap="pre">sed -i 's/install_to_$(INSTALL_DEST) //' libiberty/Makefile.in</userinput></screen>
+
+<para>一样不要构建 .info 文件。这些文件在新版 <command>makeinfo</command> 下无法正常编译，而且我们也不会用到。</para>
+
+<screen><userinput remap="pre">sed -i 's/BUILD_INFO=info/BUILD_INFO=/' gcc/configure</userinput></screen>
+
+    <para>与<xref linkend="ch-tools-gcc-pass2"/> 相同，应用以下 <command>sed</command> 命令强制编制使用 <option>-fomit-frame-pointer</option> 编译器标记以确保编译器编制稳定：</para> 
+
+<screen><userinput remap="pre">case `uname -m` in
+  i?86) sed -i 's/^T_CFLAGS =$/&amp; -fomit-frame-pointer/' gcc/Makefile.in ;;
+esac</userinput></screen>
+
+    <para>还要修复一个测试 Makefile 中的错误：</para>
+
+<screen><userinput remap="pre">sed -i -e /autogen/d -e /check.sh/d fixincludes/Makefile.in</userinput></screen>
+
+    <para>GCC 文档推荐在源代码目录外另建目录编制 GCC：</para>
+
+<screen><userinput remap="pre">mkdir -v ../gcc-build
+cd ../gcc-build</userinput></screen>
+
+    <para>准备编译 GCC：</para>
+
+<screen><userinput remap="configure">../gcc-&gcc-version;/configure --prefix=/usr            \
+                       --libexecdir=/usr/lib    \
+                       --enable-shared          \
+                       --enable-threads=posix   \
+                       --enable-__cxa_atexit    \
+                       --enable-clocale=gnu     \
+                       --enable-languages=c,c++ \
+                       --disable-multilib       \
+                       --disable-bootstrap      \
+                       --with-system-zlib</userinput></screen>
+
+    <para>注意对于其他语言，还有一些没有满足的前提条件。编译所有 GCC 支持语言的指令见 BLFS。</para>
+
+    <variablelist>
+      <title>新的配置选项的含义：</title>
+
+      <varlistentry>
+        <term><parameter>--with-system-zlib</parameter></term>
+        <listitem>
+          <para>此开关告诉 GCC 链接至系统上安装的 Zlib 副本而不是其内部的副本。</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
+    <note>
+      <para><command>configure</command> 还有一个可选参数，<option>--enable-lto</option>，可以用于允许 <command>gcc</command> 在需要的时候进行 <quote>链接时优化</quote>。LFS 和 BLFS 中现在都没有程序包使用此功能。</para>
+    
+      <para>要使用此特性，在 <application>binutils</application> 中也要启用它。</para> 
+    </note>
+
+    <para>编译程序包：</para>
+
+<screen><userinput remap="make">make</userinput></screen>
+
+    <important>
+      <para>本节中 GCC 的测试套件是十分重要的，任何情况下都不要跳过。</para>
+    </important>
+   <para>GCC 的测试套件中有一组测试已知会爆栈。在运行测试之前增大栈尺寸:</para>
+
+<screen><userinput remap="test">ulimit -s 32768</userinput></screen>
+
+    <para>测试结果，但在出错时不停止：</para>
+
+<screen><userinput remap="test">make -k check</userinput></screen>
+
+    <para>要获取测试套件结果的摘要，运行：</para>
+
+<screen><userinput remap="test">../gcc-&gcc-version;/contrib/test_summary</userinput></screen>
+
+    <para>如果只要摘要，将结果以管道传送给 <userinput>grep -A7 Summ</userinput>。</para>
+
+    <para>可以将结果与位于 <ulink url="&test-results;"/> 和 <ulink url="http://gcc.gnu.org/ml/gcc-testresults/"/> 的样例进行比对。</para>
+
+    <para>总是会有几个非期待的失败无法避免。GCC 开发者通常了解这些问题，但还没有解决。特别地，<filename class="libraryfile">libmudflap</filename> 测试已知由于 GCC 中的一个漏洞 (<ulink url="http://gcc.gnu.org/bugzilla/show_bug.cgi?id=20003"/>) 而特别麻烦。只要测试结果没有与以上 URL 中的相差过于悬殊，都可以安全继续。</para>
+
+    <para>安装程序包：</para>
+
+<screen><userinput remap="install">make install</userinput></screen>
+
+    <para>有些程序包要求 C 预处理器安装到 <filename class="directory">/lib</filename> 目录中。要支持这些程序包，创建这个符号链接：</para>
+
+<screen><userinput remap="install">ln -sv ../usr/bin/cpp /lib</userinput></screen>
+
+    <para>很多程序包使用 <command>cc</command> 这个名字调用 C 编译器。要支持这些程序包，创建一个符号链接：</para>
+
+<screen><userinput remap="install">ln -sv gcc /usr/bin/cc</userinput></screen>
+
+    <para>现在我们最终的工具链到位了，再次确保编译和链接正常工作就十分重要。我们要进行与本章中进行过的相同的稳定性测试：</para>
+
+    <xi:include xmlns:xi="http://www.w3.org/2001/XInclude"
+    href="adjusting.xml"
+    xpointer="xpointer(//*[@os='a'])"/>
+
+    <xi:include xmlns:xi="http://www.w3.org/2001/XInclude"
+    href="adjusting.xml"
+    xpointer="xpointer(//*[@os='b'])"/>
+
+    <xi:include xmlns:xi="http://www.w3.org/2001/XInclude"
+    href="adjusting.xml"
+    xpointer="xpointer(//*[@os='c'])"/>
+
+    <xi:include xmlns:xi="http://www.w3.org/2001/XInclude"
+    href="adjusting.xml"
+    xpointer="xpointer(//*[@os='d'])"/>
+
+    <xi:include xmlns:xi="http://www.w3.org/2001/XInclude"
+    href="adjusting.xml"
+    xpointer="xpointer(//*[@os='e'])"/>
+
+    <xi:include xmlns:xi="http://www.w3.org/2001/XInclude"
+    href="adjusting.xml"
+    xpointer="xpointer(//*[@os='f'])"/>
+
+<screen><computeroutput>/usr/lib/gcc/i686-pc-linux-gnu/&gcc-version;/../../../crt1.o succeeded
+/usr/lib/gcc/i686-pc-linux-gnu/&gcc-version;/../../../crti.o succeeded
+/usr/lib/gcc/i686-pc-linux-gnu/&gcc-version;/../../../crtn.o succeeded</computeroutput></screen>
+
+  <para>取决于你的计算机架构，以上信息可能会有轻微差异，差异通常位于 <filename class="directory">/usr/lib/gcc</filename> 之后的目录名称。如果你的计算机是 64 位系统，你还可能看到字符串末尾出现一个名为 <filename class="directory">lib64</filename> 的目录。此处的重点是 <command>gcc</command> 在 <filename class="directory">/usr/lib</filename> 目录中找到了全部三个 <filename>crt*.o</filename> 文件。</para>
+
+    <xi:include xmlns:xi="http://www.w3.org/2001/XInclude"
+    href="adjusting.xml"
+    xpointer="xpointer(//*[@os='g'])"/>
+
+<screen><userinput>grep -B4 '^ /usr/include' dummy.log</userinput></screen>
+
+    <xi:include xmlns:xi="http://www.w3.org/2001/XInclude"
+    href="adjusting.xml"
+    xpointer="xpointer(//*[@os='h'])"/>
+
+<screen><computeroutput>#include &lt;...&gt; search starts here:
+ /usr/local/include
+ /usr/lib/gcc/i686-pc-linux-gnu/&gcc-version;/include
+ /usr/lib/gcc/i686-pc-linux-gnu/&gcc-version;/include-fixed
+ /usr/include</computeroutput></screen>
+
+   <para>再次注意，以你的目标三联字串命名的目录可能会不同。取决于你的架构。</para>
+
+    <note><para>对于版本 4.3.0，GCC 现在无条件安装 <filename>limits.h</filename> 文件至私有的 <filename class="directory">include-fixed</filename> 目录，这个目录需要到位。</para></note>
+
+    <xi:include xmlns:xi="http://www.w3.org/2001/XInclude"
+    href="adjusting.xml"
+    xpointer="xpointer(//*[@os='i'])"/>
+
+    <xi:include xmlns:xi="http://www.w3.org/2001/XInclude"
+    href="adjusting.xml"
+    xpointer="xpointer(//*[@os='j'])"/>
+
+    <xi:include xmlns:xi="http://www.w3.org/2001/XInclude"
+    href="adjusting.xml"
+    xpointer="xpointer(//*[@os='k'])"/>
+
+<screen><computeroutput>SEARCH_DIR("/usr/i686-pc-linux-gnu/lib")
+SEARCH_DIR("/usr/local/lib")
+SEARCH_DIR("/lib")
+SEARCH_DIR("/usr/lib");</computeroutput></screen>
+
+   <para>64 位系统会有几个额外的目录。例如这是 x86_64 计算机的输出：</para>
+
+<screen><computeroutput>SEARCH_DIR("/usr/x86_64-unknown-linux-gnu/lib64")
+SEARCH_DIR("/usr/local/lib64")
+SEARCH_DIR("/lib64")
+SEARCH_DIR("/usr/lib64")
+SEARCH_DIR("/usr/x86_64-unknown-linux-gnu/lib")
+SEARCH_DIR("/usr/local/lib")
+SEARCH_DIR("/lib")
+SEARCH_DIR("/usr/lib");</computeroutput></screen>
+
+    <xi:include xmlns:xi="http://www.w3.org/2001/XInclude"
+    href="adjusting.xml"
+    xpointer="xpointer(//*[@os='l'])"/>
+
+    <xi:include xmlns:xi="http://www.w3.org/2001/XInclude"
+    href="adjusting.xml"
+    xpointer="xpointer(//*[@os='m'])"/>
+
+    <xi:include xmlns:xi="http://www.w3.org/2001/XInclude"
+    href="adjusting.xml"
+    xpointer="xpointer(//*[@os='n'])"/>
+
+    <xi:include xmlns:xi="http://www.w3.org/2001/XInclude"
+    href="adjusting.xml"
+    xpointer="xpointer(//*[@os='o'])"/>
+
+    <xi:include xmlns:xi="http://www.w3.org/2001/XInclude"
+    href="adjusting.xml"
+    xpointer="xpointer(//*[@os='p'])"/>
+
+    <xi:include xmlns:xi="http://www.w3.org/2001/XInclude"
+    href="adjusting.xml"
+    xpointer="xpointer(//*[@os='q'])"/>
+
+    <xi:include xmlns:xi="http://www.w3.org/2001/XInclude"
+    href="adjusting.xml"
+    xpointer="xpointer(//*[@os='r'])"/>
+
+    <xi:include xmlns:xi="http://www.w3.org/2001/XInclude"
+    href="adjusting.xml"
+    xpointer="xpointer(//*[@os='s'])"/>
+
+    <xi:include xmlns:xi="http://www.w3.org/2001/XInclude"
+    href="adjusting.xml"
+    xpointer="xpointer(//*[@os='t'])"/>
+
+    <xi:include xmlns:xi="http://www.w3.org/2001/XInclude"
+    href="adjusting.xml"
+    xpointer="xpointer(//*[@os='u'])"/>
+
+    <xi:include xmlns:xi="http://www.w3.org/2001/XInclude"
+    href="adjusting.xml"
+    xpointer="xpointer(//*[@os='v'])"/>
+
+    <para>最后，移动一个位置不正确的文件：</para>
+
+<screen><userinput remap="install">mkdir -pv /usr/share/gdb/auto-load/usr/lib
+mv -v /usr/lib/*gdb.py /usr/share/gdb/auto-load/usr/lib</userinput></screen>
+
+  </sect2>
+
+  <sect2 id="contents-gcc" role="content">
+    <title>GCC 的内容</title>
+
+    <segmentedlist>
+      <segtitle>安装的程序</segtitle>
+      <segtitle>安装的库</segtitle>
+      <segtitle>安装的目录</segtitle>
+
+      <seglistitem>
+        <seg>c++, cc (到 gcc 的链接), cpp, g++, gcc, gcc-ar, gcc-nm, gcc-ranlib, gccbug 和 gcov</seg>
+        <seg>libgcc.a, libgcc_eh.a, libgcc_s.so, libgcov.a, libgomp.{a,so}, liblto_plugin.so, libmudflap.{a,so}, libmudflapth.{a,so}, libquadmath.{a,so}, libssp.{a,so}, libssp_nonshared.a, libstdc++.{a,so} 和 libsupc++.a</seg>
+        <seg>/usr/include/c++, /usr/lib/gcc, /usr/share/gcc-&gcc-version;</seg>
+      </seglistitem>
+    </segmentedlist>
+
+    <variablelist>
+      <bridgehead renderas="sect3">简介</bridgehead>
+      <?dbfo list-presentation="list"?>
+      <?dbhtml list-presentation="table"?>
+
+      <varlistentry id="c">
+        <term><command>c++</command></term>
+        <listitem>
+          <para>C++ 编译器</para>
+          <indexterm zone="ch-system-gcc c">
+            <primary sortas="b-c++">c++</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="cc">
+        <term><command>cc</command></term>
+        <listitem>
+          <para>C 编译器</para>
+          <indexterm zone="ch-system-gcc cc">
+            <primary sortas="b-cc">cc</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="cpp">
+        <term><command>cpp</command></term>
+        <listitem>
+          <para>C 预处理器；被编译器用于扩展源文件中的 #include、#define 和类似的声明</para>
+          <indexterm zone="ch-system-gcc cpp">
+            <primary sortas="b-cpp">cpp</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="g">
+        <term><command>g++</command></term>
+        <listitem>
+          <para>C++ 编译器</para>
+          <indexterm zone="ch-system-gcc g">
+            <primary sortas="b-g++">g++</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="gcc">
+        <term><command>gcc</command></term>
+        <listitem>
+          <para>C 编译器</para>
+          <indexterm zone="ch-system-gcc gcc">
+            <primary sortas="b-gcc">gcc</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="gcc-ar">
+        <term><command>gcc-ar</command></term>
+        <listitem>
+          <para><command>ar</command> 的一个打包，在命令行中加入一个插件。此程序只用于添加 <quote>链接时优化</quote>，对于默认编制选项并没有什么用处</para>
+          <indexterm zone="ch-system-gcc gcc-ar">
+            <primary sortas="b-gcc-ar">gc-ar</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="gcc-nm">
+        <term><command>gcc-nm</command></term>
+        <listitem>
+          <para><command>nm</command> 的一个打包，在命令行中加入一个插件。此程序只用于添加 <quote>链接时优化</quote>，对于默认编制选项并没有什么用处</para>
+          <indexterm zone="ch-system-gcc gcc-nm">
+            <primary sortas="b-gcc-nm">gc-nm</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="gcc-ranlib">
+        <term><command>gcc-ranlib</command></term>
+        <listitem>
+          <para><command>ranlib</command> 的一个打包，在命令行中加入一个插件。此程序只用于添加 <quote>链接时优化</quote>，对于默认编制选项并没有什么用处</para>
+          <indexterm zone="ch-system-gcc gcc-ranlib">
+            <primary sortas="b-gcc-ranlib">gc-ranlib</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="gccbug">
+        <term><command>gccbug</command></term>
+        <listitem>
+          <para>一个 shell 脚本用来协助创建漏洞报告</para>
+          <indexterm zone="ch-system-gcc gccbug">
+            <primary sortas="b-gccbug">gccbug</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="gcov">
+        <term><command>gcov</command></term>
+        <listitem>
+          <para>一个覆盖测试工具；用于分析程序获知优化在何处效果最好</para>
+          <indexterm zone="ch-system-gcc gcov">
+            <primary sortas="b-gcov">gcov</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="libgcc">
+        <term><filename class="libraryfile">libgcc</filename></term>
+        <listitem>
+          <para>包含用于 <command>gcc</command> 的运行时支持</para>
+          <indexterm zone="ch-system-gcc libgcc">
+            <primary sortas="c-libgcc*">libgcc*</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="libgcov">
+        <term><filename class="libraryfile">libgcov</filename></term>
+        <listitem>
+          <para>在 GCC 获得启用分析的指令时此库链接到程序</para>
+          <indexterm zone="ch-system-gcc libgcov">
+            <primary sortas="c-libgcov">libgcov</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="libgomp">
+        <term><filename class="libraryfile">libgomp</filename></term>
+        <listitem>
+          <para>GNU 实现的多平台 OpenMP 共享内存并行编程，用于 C/C++ 和 Fortran</para>
+          <indexterm zone="ch-system-gcc libgomp">
+            <primary sortas="c-libgomp">libgomp</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="liblto_plugin">
+        <term><filename class="libraryfile">liblto_plugin</filename></term>
+        <listitem>
+          <para>GCC 的链接时优化插件，允许 GCC 在多个编译单元之间进行优化</para>
+          <indexterm zone="ch-system-gcc liblto_plugin">
+            <primary sortas="c-liblto_plugin*">liblto_plugin*</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="libmudflap">
+        <term><filename class="libraryfile">libmudflap</filename></term>
+        <listitem>
+          <para>包含支持 GCC 的边界检查功能的途径</para>
+          <indexterm zone="ch-system-gcc libmudflap">
+            <primary sortas="c-libmudflap*">libmudflap*</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="libquadmath">
+        <term><filename class="libraryfile">libquadmath</filename></term>
+        <listitem>
+          <para>GCC 四精度数学库 API</para>
+          <indexterm zone="ch-system-gcc libquadmath">
+            <primary sortas="c-libquadmath*">libquadmath*</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="libssp">
+        <term><filename class="libraryfile">libssp</filename></term>
+        <listitem>
+          <para>包含支持 GCC 防爆栈保护功能的途径</para>
+          <indexterm zone="ch-system-gcc libssp">
+            <primary sortas="c-libssp*">libssp*</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="libstdc">
+        <term><filename class="libraryfile">libstdc++</filename></term>
+        <listitem>
+          <para>标准 C++ 库</para>
+          <indexterm zone="ch-system-gcc libstdc">
+            <primary sortas="c-libstdc++">libstdc++</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="libsupc">
+        <term><filename class="libraryfile">libsupc++</filename></term>
+        <listitem>
+          <para>为 C++ 程序设计语言提供支持的途径</para>
+          <indexterm zone="ch-system-gcc libsupc">
+            <primary sortas="c-libsupc++">libsupc++</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+    </variablelist>
+
+  </sect2>
+
+</sect1>

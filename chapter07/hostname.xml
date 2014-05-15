@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+  "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../general.ent">
+  %general-entities;
+]>
+
+<sect1 id="ch-scripts-hostname">
+  <?dbhtml filename="hostname.html"?>
+
+  <title>配置系统主机名</title>
+
+  <indexterm zone="ch-scripts-hostname">
+    <primary sortas="d-hostname">hostname</primary>
+    <secondary>配置</secondary>
+  </indexterm>
+
+  <para><command>localnet</command> 脚本的部分工作就是设置系统的主机名。它需要在 <filename>/etc/sysconfig/network</filename> 文件中配置。</para>
+
+  <para>创建 <filename>/etc/sysconfig/network</filename> 文件并输入一个主机名，运行：</para>
+
+<screen><userinput>echo "HOSTNAME=<replaceable>&lt;lfs&gt;</replaceable>" &gt; /etc/sysconfig/network</userinput></screen>
+
+  <para><replaceable>&lt;lfs&gt;</replaceable> 应改为计算机名。不要在此处输入 FDQN，该信息应存入 <filename>/etc/hosts</filename> 文件。</para>
+
+</sect1>

@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+  "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../general.ent">
+  %general-entities;
+]>
+
+<sect1 id="ch-system-inetutils" role="wrap">
+  <?dbhtml filename="inetutils.html"?>
+
+  <sect1info condition="script">
+    <productname>inetutils</productname>
+    <productnumber>&inetutils-version;</productnumber>
+    <address>&inetutils-url;</address>
+  </sect1info>
+
+  <title>Inetutils-&inetutils-version;</title>
+
+  <indexterm zone="ch-system-inetutils">
+    <primary sortas="a-Inetutils">Inetutils</primary>
+  </indexterm>
+
+  <sect2 role="package">
+    <title/>
+
+    <para>Inetutils 程序包包含用于基本网络的程序。</para>
+
+    <segmentedlist>
+      <segtitle>&buildtime;</segtitle>
+      <segtitle>&diskspace;</segtitle>
+
+      <seglistitem>
+        <seg>&inetutils-ch6-sbu;</seg>
+        <seg>&inetutils-ch6-du;</seg>
+      </seglistitem>
+    </segmentedlist>
+
+  </sect2>
+
+  <sect2 role="installation">
+    <title>安装 Inetutils</title>
+
+    <para>修复此程序包与 Glibc-&glibc-version; 不兼容的问题：</para>
+
+<screen><userinput remap="pre">sed -i -e '/gets is a/d' lib/stdio.in.h</userinput></screen>
+
+    <para>准备编译 Inetutils：</para>
+
+<screen><userinput remap="configure">./configure --prefix=/usr  \
+    --libexecdir=/usr/sbin \
+    --localstatedir=/var   \
+    --disable-ifconfig     \
+    --disable-logger       \
+    --disable-syslogd      \
+    --disable-whois        \
+    --disable-servers</userinput></screen>
+
+    <variablelist>
+      <title>配置选项的含义：</title>
+
+      <varlistentry>
+        <term><parameter>--disable-ifconfig</parameter></term>
+        <listitem>
+          <para>此选项阻止 Inetutils 安装 <command>ifconfig</command> 程序，此程序用于配置网络接口。LFS 使用 IPRoute2 中的 <command>ip</command> 完成此任务。</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><parameter>--disable-logger</parameter></term>
+        <listitem>
+          <para>此选项防止 Inetutils 安装 <command>logger</command> 程序，它被脚本用于给系统日志 Daemon 传递消息。Util-linux 此前已经安装过了。</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><parameter>--disable-syslogd</parameter></term>
+        <listitem>
+          <para>此选项阻止 Inetutils 安装系统日志 Daemon，它已经被 Sysklogd 程序包安装过了。</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><parameter>--disable-whois</parameter></term>
+        <listitem>
+          <para>此选项禁用过时的 <command>whois</command> 客户端。配置一个更好的 <command>whois</command> 客户端的指令位于 BLFS 中。</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><parameter>--disable-servers</parameter></term>
+        <listitem>
+          <para>此项禁用多种网络服务器。这些服务器在基本 LFS 系统中并不合适。其中有的天生不安全，有的只在信任网络内安全。更多信息位于 <ulink url="&blfs-root;view/svn/basicnet/inetutils.html"/>。注意其中很多服务器都有更好的替代品。</para>
+        </listitem>
+      </varlistentry>
+
+    </variablelist>
+
+    <para>编译程序包：</para>
+
+<screen><userinput remap="make">make</userinput></screen>
+
+    <para>要测试结果，执行：</para>
+
+<screen><userinput remap="test">make check</userinput></screen>
+
+    <para>安装程序包：</para>
+
+<screen><userinput remap="install">make install
+make -C doc html
+make -C doc install-html docdir=/usr/share/doc/inetutils-&inetutils-version;</userinput></screen>
+
+      <para>如果 <filename class='directory'>/usr</filename> 不可使用，移动一些程序来让他们可用：</para>
+
+<screen><userinput remap="install">mv -v /usr/bin/{hostname,ping,ping6,traceroute} /bin</userinput></screen>
+
+  </sect2>
+
+  <sect2 id="contents-inetutils" role="content">
+    <title>Inetutils 的内容</title>
+
+    <segmentedlist>
+      <segtitle>安装的程序</segtitle>
+
+      <seglistitem>
+        <seg>ftp, hostname, ping, ping6, rcp, rexec, rlogin, rsh, talk, telnet, tftp 和 traceroute</seg>
+      </seglistitem>
+    </segmentedlist>
+
+    <variablelist>
+      <bridgehead renderas="sect3">简介</bridgehead>
+      <?dbfo list-presentation="list"?>
+      <?dbhtml list-presentation="table"?>
+
+      <varlistentry id="ftp">
+        <term><command>ftp</command></term>
+        <listitem>
+        <para>文件传输程序</para>
+        <indexterm zone="ch-system-inetutils ftp">
+          <primary sortas="b-ftp">ftp</primary>
+        </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="hostname">
+        <term><command>hostname</command></term>
+        <listitem>
+          <para>报告或者设置主机名</para>
+          <indexterm zone="ch-system-inetutils hostname">
+            <primary sortas="b-hostname">hostname</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="ping">
+        <term><command>ping</command></term>
+        <listitem>
+          <para>发送要求回执的数据包并报告收到回执所用的时间</para>
+          <indexterm zone="ch-system-inetutils ping">
+            <primary sortas="b-ping">ping</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="ping6">
+        <term><command>ping6</command></term>
+        <listitem>
+          <para><command>ping</command> 的用于 IPv6 网络的版本</para>
+          <indexterm zone="ch-system-inetutils ping6">
+            <primary sortas="b-ping6">ping6</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="rcp">
+        <term><command>rcp</command></term>
+        <listitem>
+          <para>进行远程文件复制</para>
+          <indexterm zone="ch-system-inetutils rcp">
+            <primary sortas="b-rcp">rcp</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="rexec">
+        <term><command>rexec</command></term>
+        <listitem>
+          <para>在远程主机上运行指令</para>
+          <indexterm zone="ch-system-inetutils rexec">
+            <primary sortas="b-rexec">rexec</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="rlogin">
+        <term><command>rlogin</command></term>
+        <listitem>
+          <para>进行远程登录</para>
+          <indexterm zone="ch-system-inetutils rlogin">
+            <primary sortas="b-rlogin">rlogin</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="rsh">
+        <term><command>rsh</command></term>
+        <listitem>
+          <para>运行远程 shell</para>
+          <indexterm zone="ch-system-inetutils rsh">
+            <primary sortas="b-rsh">rsh</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="talk">
+        <term><command>talk</command></term>
+        <listitem>
+          <para>用于与其他用户聊天</para>
+          <indexterm zone="ch-system-inetutils talk">
+            <primary sortas="b-talk">talk</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="telnet">
+        <term><command>telnet</command></term>
+        <listitem>
+          <para>TELNET 协议的一个界面</para>
+          <indexterm zone="ch-system-inetutils telnet">
+            <primary sortas="b-telnet">telnet</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="tftp">
+        <term><command>tftp</command></term>
+        <listitem>
+          <para>简易文件传输程序</para>
+          <indexterm zone="ch-system-inetutils tftp">
+            <primary sortas="b-tftp">tftp</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="traceroute">
+        <term><command>traceroute</command></term>
+        <listitem>
+          <para>跟踪你正在工作的主机到网络上另一台主机的数据包通过的路由，显示沿途所有中介跃点 (网关)</para>
+          <indexterm zone="ch-system-inetutils traceroute">
+            <primary sortas="b-traceroute">traceroute</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+    </variablelist>
+
+  </sect2>
+
+</sect1>

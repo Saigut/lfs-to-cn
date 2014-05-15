@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+  "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../general.ent">
+  %general-entities;
+]>
+
+<sect1 id="ch-system-pkgmgt">
+  <?dbhtml filename="pkgmgt.html"?>
+
+  <title>程序包管理</title>
+
+  <para>经常有人要求向 LFS 中加入程序包管理。程序包管理器允许跟踪文件的安装，使得移除和升级程序包变得容易。程序包管理器不仅会处理二进制和库文件，还会处理配置文件的安装。不要纠结&mdash;&mdash;这一节既不会讲解也不会推荐任何一个程序包管理器。我们只是概述一下热门的技巧及其工作方式。对你来说完美的包管理器可能就在其中或者是其中几种的组合。这一节简要提及升级程序包时可能出现的问题。</para>
+
+  <para>LFS 或者 BLFS 中不提及程序包管理器的原因包括：</para>
+
+  <itemizedlist>
+    <listitem>
+      <para>进行程序包管理会减少对本书目标&mdash;&mdash;讲解 Linux 系统如何搭建&mdash;&mdash;的关注。</para>
+    </listitem>
+
+    <listitem>
+      <para>程序包管理有多种解决方案，它们有各自的强项和缺点。要选出一个来满足所有读者十分困难。</para>
+    </listitem>
+  </itemizedlist>
+
+  <para>有关程序包管理有一些提示。访问 <ulink url="&hints-index;">Hints 工程</ulink> 看看能否满足你的需求。</para>
+
+  <sect2>
+    <title>升级问题</title>
+
+    <para>程序包管理器使得在新版本发布时升级更简单。通常可以使用 LFS 和 BLFS 中的指令来升级到新版本。以下是在升级程序包，尤其是在运行的系统上如此做时需要注意的事项。</para>
+
+    <itemizedlist>
+      <listitem>
+        <para>如果工具链程序包之一 (Glibc、GCC 或 Binutils) 需要升级到一个新的小版本，重新编制 LFS 会更安全。虽然你<emphasis>可能</emphasis>能够通过按照依赖关系顺序重新编制所有程序包来解决问题，我们并不推荐这种方式。例如要升级 glibc-2.2.x 到 glibc-2.3.x，重新编制更加安全。对于微小版本升级，简单地重新安装通常就能工作，但是只是通常。例如将 glibc-2.3.4 升级为 glibc-2.3.5 通常不会产生任何问题。</para>
+      </listitem>
+
+      <listitem>
+        <para>如果一个包含共享库的程序包升级了并且库的名称改变，那么所有动态链接到这个库的程序包都要重新编译以链接到新的库。(注意程序包版本和库名称之间并没有必然联系。) 例如，假设程序包 foo-1.2.3 安装的共享库名为 <filename class='libraryfile'>libfoo.so.1</filename>。其新版本 foo-1.2.4 将安装的共享库名为 <filename class='libraryfile'>libfoo.so.2</filename>。这种情况下所有动态链接到 <filename class='libraryfile'>libfoo.so.1</filename> 的程序包都要重新编译以链接到 <filename class='libraryfile'>libfoo.so.2</filename>。注意，在所有的依赖程序包重新编译完成之前你不应该移除先前的库。</para>
+      </listitem>
+    </itemizedlist>
+
+  </sect2>
+
+  <sect2>
+    <title>程序包管理技巧</title>
+
+    <para>以下是一些常见的程序包管理技巧。在选择程序包管理器之前，了解一下不同技巧，尤其是它们的缺点。</para>
+
+    <sect3>
+      <title>我自己能够搞定！</title>
+
+      <para>是的，这也是一种程序包管理技巧。有些人因为非常了解程序包，知道每个包安装了什么文件所以不需要程序包管理器。还有一些用户也不需要程序包管理，因为他们打算在有程序包改动的时候重新编制整个系统。</para>
+
+    </sect3>
+
+    <sect3>
+      <title>安装到分立目录中</title>
+
+      <para>这是一种简单的程序包管理方式，不需要额外的程序包来管理安装。每个程序包安装于一个独立的目录中。例如，程序包 foo-1.1 安装于  <filename class='directory'>/usr/pkg/foo-1.1</filename> 中，并且创建一个由  <filename>/usr/pkg/foo</filename> 到 <filename class='directory'>/usr/pkg/foo-1.1</filename> 的符号链接。安装新的版本 foo-1.2 时，它安装于 <filename class='directory'>/usr/pkg/foo-1.2</filename> 中，之前的符号链接被替换成到新版本的符号链接。</para>
+
+      <para>环境变量，比如 <envar>PATH</envar>、<envar>LD_LIBRARY_PATH</envar>、<envar>MANPATH</envar>、<envar>INFOPATH</envar> 和 <envar>CPPFLAGS</envar> 需要扩展以包括 <filename>/usr/pkg/foo</filename>。如果程序包很多，这种方法就很难管理。</para>
+
+    </sect3>
+
+    <sect3>
+      <title>符号链接式程序包管理</title>
+
+      <para>这是前一种程序包管理技巧的一种变化。每个程序包安装的方式与前一种方式相同，但并不建立符号链接而是链接到 <filename class='directory'>/usr</filename> 目录中。这样就不必扩展环境变量。虽然符号链接可以由用户创建，仍然有很多程序包管理器使用这种方式工作。其中比较流行的包括 Stow、Epkg、Graft和 Depot。</para>
+
+      <para>因为安装需要伪装，所以程序包认为被安装到了 <filename class="directory">/usr</filename> 却实际被安装到了 <filename class="directory">/usr/pkg</filename> 目录中。以这种方式安装通常不是什么普通的任务。例如要安装 libfoo-1.1 这个程序包。以下指令可能无法正确安装之：</para>
+
+<screen role="nodump"><userinput>./configure --prefix=/usr/pkg/libfoo/1.1
+make
+make install</userinput></screen>
+
+      <para>安装能够工作，但是依赖的程序包可能不会像你期待的那样链接到 libfoo。如果你编译一个链接到 libfoo 的程序包，你会发现它链接到 <filename class='libraryfile'>/usr/pkg/libfoo/1.1/lib/libfoo.so.1</filename> 而不是你期待的 <filename class='libraryfile'>/usr/lib/libfoo.so.1</filename>。正确的方式是使用 <envar>DESTDIR</envar> 策略伪装该程序包的安装。这种方式如此工作：</para>
+
+<screen role="nodump"><userinput>./configure --prefix=/usr
+make
+make DESTDIR=/usr/pkg/libfoo/1.1 install</userinput></screen>
+
+      <para>多数程序包都支持这种方式，但也存在不支持的。对于不支持的程序包，你可以手动安装之，但将这种麻烦的程序包安装至 <filename class='directory'>/opt</filename> 中会更简单。</para>
+
+    </sect3>
+
+    <sect3>
+      <title>基于时间戳</title>
+
+      <para>在这种技巧中，程序包安装之前先给一个文件打上时间戳。安装过后简单地使用 <command>find</command> 命令的恰当选项就可以创建此时间戳文件创建之后安装的所有文件的日志。install-log 就是用这种方式写成的程序包管理器。</para>
+
+      <para>虽然这种方式具有操作简单的优势，它也有两个缺点。如果在安装过程中有某些文件不是以当前时间作为时间戳安装的，这些文件就不会被程序包管理器追踪。另外，这种方式只能在每次安装一个程序包的条件下使用。如果在两个不同的控制台上同时安装两个程序包，日志就会不可靠。</para>
+
+    </sect3>
+
+    <sect3>
+      <title>追踪安装脚本</title>
+
+      <para>在这种方法记录安装脚本运行的操作。有两种技巧可以使用：</para>
+
+      <para>可以设置 <envar>LD_PRELOAD</envar> 环境变量指向一个在安装之前预加载的库。在安装过程中，这个库将自己与多个可执行文件，如 <command>cp</command>、<command>install</command> 和 <command>mv</command>，来跟踪修改文件系统的系统调用。要让这种方式工作，所有的可执行文件都要不带 suid 和 sgid 位动态链接。预加载库可能在安装过程中产生你不想要的副作用。所以我们推荐进行一些测试来确保程序包管理器不会影响正常工作并记录所有的对应文件。</para>
+
+      <para>第二种技巧就是使用 <command>strace</command>，它会记录安装脚本执行过程中所有的系统调用。</para>
+    </sect3>
+
+    <sect3>
+      <title>创建程序包归档</title>
+
+      <para>在这种方式中，程序包安装被伪装到一个独立的目录，与符号链接式程序包管理相同。在安装过后，用安装的文件创建一个程序包归档。这个归档可以用于安装这个程序包到本机甚至其他计算机。</para>
+
+      <para>这种方式被多数商业发行版中的程序包管理器应用。以这种方式工作的程序包管理器包括 RPM (被 <ulink url="http://www.linux-foundation.org/en/Specifications">Linux 基础标准</ulink>顺带要求)、pkg-utils、Debian 的 apt 和 Gentoo 的 Portage 系统。有关如何在 LFS 系统中应用这种程序包管理方式的提示位于 <ulink url="&hints-root;fakeroot.txt"/>。</para>
+
+      <para>创建包含依赖关系信息的程序包文件是很复杂的，在 LFS 的考虑范围之外。</para>
+
+      <para>Slackware 使用一种基于 <command>tar</command> 的程序包归档系统。这个系统并没有像复杂的程序包管理器那样处理程序包依赖关系。有关 Slackware 程序包管理的细节，参考 <ulink  url="http://www.slackbook.org/html/package-management.html"/>。</para>
+    </sect3>
+
+    <sect3>
+      <title>基于用户管理</title>
+
+      <para>这种方式是 LFS 特有的，由 Matthias Benkmann 提出，在 <ulink url="&hints-index;">Hints 工程</ulink>中可用。这种方式要求每个程序包都作为独立的用户安装到标准位置。属于某一个程序包的文件可以通过检查用户 ID 来简单识别。这种方法的特点和缺陷过于复杂，在本章中不详细列举。其细节请参考 <ulink url="&hints-root;more_control_and_pkg_man.txt"/>。</para>
+
+    </sect3>
+
+  </sect2>
+
+  <sect2>
+    <title>在多台计算机上部署 LFS</title>
+
+    <para>LFS 系统的一大优势就是没有文件依赖在磁盘系统中的位置。复制 LFS 系统到另一台架构相似的计算机上只要用 <command>tar</command> 打包包含根目录的 LFS 分区 (基础 LFS 副本压缩之前大约 250 MB)，并通过网络或光盘复制到新系统上解压缩即可。然后要更改几个配置文件。要更新的配置文件包括：
+    <filename>/etc/hosts</filename>、
+    <filename>/etc/fstab</filename>、
+    <filename>/etc/passwd</filename>、
+    <filename>/etc/group</filename>、
+    <filename>/etc/shadow</filename>、
+    <filename>/etc/ld.so.conf</filename>、
+    <filename>/etc/scsi_id.config</filename>、
+    <filename>/etc/sysconfig/network</filename> 和
+    <filename>/etc/sysconfig/network-devices/ifconfig.eth0/ipv4</filename>.    
+    </para>
+
+    <para>可能还要给新系统编制一个新内核，这取决于原有内核的配置和系统硬件之间的差异。</para>
+
+    <para>最后要通过<xref linkend="ch-bootable-grub"/>使新系统能够引导。</para>
+
+  </sect2>
+
+</sect1>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+  "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../general.ent">
+  %general-entities;
+]>
+
+<sect1 id="prepare-abouttestsuites">
+  <?dbhtml filename="abouttestsuites.html"?>
+
+  <title>有关测试套件</title>
+
+  <para>大多数程序包都提供测试套件。给新编制的程序包运行测试套件可以确认是不是一切都正确编译，这种 <quote>可用性测试</quote> 是很有意义的。测试套件通过代表程序达到了开发者要求的功能。但是这并不能确保程序包没有漏洞。(译注：如果你没有对本书中的命令做很多修改，很多测试完全可以不做，它们占用很多时间，在线程较多的机器上测试时间甚至比编译时间长。)</para>
+
+  <para>有些测试套件比其他的重要，比如核心工具链程序包&mdash;&mdash;GCC、Binutils 和 Glibc&mdash;&mdash;的测试套件就很重要，因为这些程序是良好运转的系统的核心组件。GCC 和 Glibc 的测试套件占用很长时间，尤其在比较慢的硬件上，但是强烈推荐。</para>
+
+  <note>
+    <para>经验显示在 <xref linkend="chapter-temporary-tools"/>中运行测试套件收效甚微。无法避免宿主系统对这一章中的测试产生影响，经常会导致莫名其妙的失败。因为其中编制的工具是临时的，最终会被丢弃掉，所以在 <xref linkend="chapter-temporary-tools"/> 中不推荐运行测试套件。提供的运行测试套件的指令针对测试者和开发者，是可选的。</para>
+  </note>
+
+  <para>运行 Binutils 和 GCC 的测试套件时经常出现的一个问题是 PTY 不够用。这可能导致很多测试通不过。这可能有不同的原因，最可能是宿主系统没有正确建立 <systemitem class="filesystem">devpts</systemitem> 文件系统。这个问题在 <ulink url="&lfs-root;lfs/faq.html#no-ptys">此处</ulink> 讨论。</para>
+
+  <para>有时程序包的测试套件会不能通过，但是其原因开发者清楚并声明无害。查看位于 <ulink url="&test-results;">此处</ulink> 的日志来查看这些失败是否应该出现。这一站点对本书中所有的测试都有效。</para>
+
+</sect1>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+  "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../general.ent">
+  %general-entities;
+]>
+
+<sect1 id="pre-errata">
+  <?dbhtml filename="errata.html"?>
+
+  <title>勘误表</title>
+
+  <para>用于创建 LFS 系统的软件不断更新和增强。安全警告和漏洞修复可能会在本书发行后可用。要检查本次发行的 LFS 中的程序包版本或指令是否需要修改以积累安全防护或有其他漏洞修复，请在编制前访问 <ulink url="&errata;">勘误表</ulink>。您应该留意列出的所有改动并在编制 LFS 系统时应用到本书的对应部分。(译注：LFSCN 的当前分支对应 LFS 的 开发版本，LFS 中的更新会在几天内进入 LFSCN，请确保使用最新版本的 LFSCN。)</para>
+
+</sect1>

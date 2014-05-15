@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+  "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+   <!ENTITY % general-entities SYSTEM "../general.ent">
+  %general-entities;
+]>
+
+<sect1 id="ch-scripts-inputrc">
+  <?dbhtml filename="inputrc.html"?>
+
+  <title>创建 /etc/inputrc 文件</title>
+
+  <indexterm zone="ch-scripts-inputrc">
+    <primary sortas="e-/etc/inputrc">/etc/inputrc</primary>
+  </indexterm>
+
+  <para><filename>inputrc</filename> 文件处理指定情况下的键盘映射。此文件是 Readline&mdash;&mdash;有关输入的库&mdash;&mdash;的起始文件，被 Bash 和多数其他 shell 使用。</para>
+
+  <para>很多人不需要用户指定键盘映射，所以以下命令创建全局的 <filename>/etc/inputrc</filename> 文件供多有登录的用户使用。如果你此后决定要基于单一用户覆盖此默认值，可以在用户的主目录中创建一个 <filename>.inputrc</filename> 文件，其中包含修改过的映射。</para>
+
+  <para>有关如何编辑 <filename>inputrc</filename> 文件的更多信息参见 <command>info bash</command> 中的 <emphasis>Readline Init File</emphasis> 一节。<command>info readline</command> 也能提供一些信息。</para>
+
+  <para>以下为全局通用的 <filename>inputrc</filename> 文件，带有注释，解释了不同选项的功能。注意这些注释不能与命令位于同一行。运行以下命令创建此文件：</para>
+
+<screen><userinput>cat &gt; /etc/inputrc &lt;&lt; "EOF"
+<literal># Begin /etc/inputrc
+# Modified by Chris Lynn &lt;roryo@roryo.dynup.net&gt;
+
+# Allow the command prompt to wrap to the next line
+set horizontal-scroll-mode Off
+
+# Enable 8bit input
+set meta-flag On
+set input-meta On
+
+# Turns off 8th bit stripping
+set convert-meta Off
+
+# Keep the 8th bit for display
+set output-meta On
+
+# none, visible or audible
+set bell-style none
+
+# All of the following map the escape sequence of the value
+# contained in the 1st argument to the readline specific functions
+"\eOd": backward-word
+"\eOc": forward-word
+
+# for linux console
+"\e[1~": beginning-of-line
+"\e[4~": end-of-line
+"\e[5~": beginning-of-history
+"\e[6~": end-of-history
+"\e[3~": delete-char
+"\e[2~": quoted-insert
+
+# for xterm
+"\eOH": beginning-of-line
+"\eOF": end-of-line
+
+# for Konsole
+"\e[H": beginning-of-line
+"\e[F": end-of-line
+
+# End /etc/inputrc</literal>
+EOF</userinput></screen>
+
+</sect1>

@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+  "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../general.ent">
+  %general-entities;
+]>
+
+<sect1 id="pre-hostreqs" xreflabel="Host System Requirements">
+  <?dbhtml filename="hostreqs.html"?>
+
+  <title>宿主系统需求</title>
+
+    <para>您的宿主系统需要安装不低于列出版本的如下软件。对多数的现代 Linux 发行版来说这应该不成问题。要注意很多发行版将软件头文件装入分立的程序包，通常以 <quote>&lt;程序包名称&gt;-devel</quote> 或 <quote>&lt;程序包名称&gt;-dev</quote> 的形式存在。如果您的发行版提供，请您安装。</para>
+
+   <para>比列出软件包更早的版本可能工作，但未被测试过。</para>
+
+  <itemizedlist spacing="compact">
+
+    <listitem>
+      <para><emphasis role="strong">Bash-3.2</emphasis> (<filename>/bin/sh</filename> 应为到 <command>bash</command> 的符号或硬链接)</para>
+    </listitem>
+
+    <listitem>
+      <para><emphasis role="strong">Binutils-2.17</emphasis> (高于 &binutils-version; 的版本因为未经测试而不推荐)</para>
+    </listitem>
+
+    <listitem>
+      <para><emphasis role="strong">Bison-2.3</emphasis> (<filename>/usr/bin/yacc</filename> 应为到 <command>bison</command> 的链接或运行 <command>bison</command> 的脚本)</para>
+    </listitem>
+
+    <listitem>
+      <para><emphasis role="strong">Bzip2-1.0.4</emphasis></para>
+    </listitem>
+
+    <listitem>
+      <para><emphasis role="strong">Coreutils-6.9</emphasis></para>
+    </listitem>
+
+    <listitem>
+      <para><emphasis role="strong">Diffutils-2.8.1</emphasis></para>
+    </listitem>
+
+    <listitem>
+      <para><emphasis role="strong">Findutils-4.2.31</emphasis></para>
+    </listitem>
+
+    <listitem>
+      <para><emphasis role="strong">Gawk-3.1.5</emphasis> (<filename>/usr/bin/awk</filename> 应为到 <command>gawk</command> 的链接)</para>
+    </listitem>
+
+    <listitem>
+      <para><emphasis role="strong">GCC-4.1.2</emphasis> 包括 C++ 编译器 <command>g++</command> (高于 &gcc-version; 的版本因未经测试而不推荐)</para>
+    </listitem>
+
+    <listitem>
+      <para><emphasis role="strong">Glibc-2.5.1</emphasis> (高于 &glibc-version; 的版本因未经测试而不推荐)</para>
+    </listitem>
+
+    <listitem>
+      <para><emphasis role="strong">Grep-2.5.1a</emphasis></para>
+    </listitem>
+
+    <listitem>
+      <para><emphasis role="strong">Gzip-1.3.12</emphasis></para>
+    </listitem>
+
+    <listitem>
+      <para><emphasis role="strong">Linux-2.6.25</emphasis> (以 GCC-4.1.2 或更高版本编译)</para>
+
+      <para>有内核版本需求的原因是根据开发人员推荐，在 <xref linkend="chapter-building-system"/> 编译 Glibc 时指定此版本。Udev 也要求此版本。</para>
+
+      <para>如果宿主内核早于 2.6.25 或并非以 GCC-4.1.2 (或更高版本) 编译，您就需要用一个符合要求的内核来替换。有两种方法。其一，查看您的发行版是否提供 2.6.25 或更高版本的内核程序包。如果有，直接安装即可。如果没有，或者您不想安装，也可以自己编译一个。编译内核并配置引导加载器的方法 (请确保宿主系统使用 Grub) 位于 <xref linkend="chapter-bootable"/>。</para>
+
+    </listitem>
+
+    <listitem>
+      <para><emphasis role="strong">M4-1.4.10</emphasis></para>
+    </listitem>
+
+    <listitem>
+      <para><emphasis role="strong">Make-3.81</emphasis></para>
+    </listitem>
+
+    <listitem>
+      <para><emphasis role="strong">Patch-2.5.4</emphasis></para>
+    </listitem>
+
+    <listitem>
+      <para><emphasis role="strong">Perl-5.8.8</emphasis></para>
+    </listitem>
+
+    <listitem>
+      <para><emphasis role="strong">Sed-4.1.5</emphasis></para>
+    </listitem>
+
+    <listitem>
+      <para><emphasis role="strong">Tar-1.18</emphasis></para>
+    </listitem>
+
+    <!-- Needed by the apparently broken Binutils-2.18 -->
+    <listitem>
+      <para><emphasis role="strong">Texinfo-4.9</emphasis></para>
+    </listitem>
+
+    <listitem>
+      <para><emphasis role="strong">Xz-5.0.0</emphasis></para>
+    </listitem>
+
+  </itemizedlist>
+
+  <para>注意上文提到的符号链接是按本书指令编制 LFS 必需的。指向其他软件 (比如 <command>dash</command>、<command>mawk</command> 等) 的符号链接可能工作，但未被 LFS 开发团队测试和支持，并可能与指令有偏差或需要某些程序包的额外补丁。</para>
+
+  <para id="version-check">要查看您的宿主系统是否有所有正确版本并有能力编译程序，运行以下命令：</para>
+
+<!-- ANY additional lines in the script cause a pdf rendering problem-->
+<screen role="nodump"><userinput>cat &gt; version-check.sh &lt;&lt; "EOF"
+<literal>#!/bin/bash
+# Simple script to list version numbers of critical development tools
+
+export LC_ALL=C
+bash --version | head -n1 | cut -d" " -f2-4
+echo "/bin/sh -&gt; `readlink -f /bin/sh`"
+echo -n "Binutils: "; ld --version | head -n1 | cut -d" " -f3-
+bison --version | head -n1
+if [ -e /usr/bin/yacc ];
+  then echo "/usr/bin/yacc -&gt; `readlink -f /usr/bin/yacc`";
+  else echo "yacc not found"; fi
+
+bzip2 --version 2&gt;&amp;1 &lt; /dev/null | head -n1 | cut -d" " -f1,6-
+echo -n "Coreutils: "; chown --version | head -n1 | cut -d")" -f2
+diff --version | head -n1
+find --version | head -n1
+gawk --version | head -n1
+if [ -e /usr/bin/awk ];
+  then echo "/usr/bin/awk -&gt; `readlink -f /usr/bin/awk`";
+  else echo "awk not found"; fi
+
+gcc --version | head -n1
+g++ --version | head -n1
+ldd --version | head -n1 | cut -d" " -f2-  # glibc version
+grep --version | head -n1
+gzip --version | head -n1
+cat /proc/version
+m4 --version | head -n1
+make --version | head -n1
+patch --version | head -n1
+echo Perl `perl -V:version`
+sed --version | head -n1
+tar --version | head -n1
+echo "Texinfo: `makeinfo --version | head -n1`"
+xz --version | head -n1
+
+echo 'main(){}' &gt; dummy.c &amp;&amp; g++ -o dummy dummy.c
+if [ -x dummy ]
+  then echo "g++ compilation OK";
+  else echo "g++ compilation failed"; fi
+rm -f dummy.c dummy</literal>
+EOF
+
+bash version-check.sh</userinput></screen>
+
+</sect1>

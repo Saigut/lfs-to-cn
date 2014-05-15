@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+  "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../general.ent">
+  %general-entities;
+]>
+
+<sect1 id="ch-scripts-setclock">
+  <?dbhtml filename="setclock.html"?>
+
+  <title>配置 setclock 脚本</title>
+
+  <indexterm zone="ch-scripts-setclock">
+    <primary sortas="d-setclock">setclock</primary>
+  <secondary>配置</secondary></indexterm>
+
+  <para><command>setclock</command> 脚本从硬件时钟 (又称 BIOS 或 CMOS) 读取时间。如果硬件时钟设置为 UTC，此脚本会将其转换为 <filename>/etc/localtime</filename> 文件 (告知 <command>hwclock</command> 程序用户所在的时区) 中时区的时间。无法探测硬件时钟是否设置为 UTC，所以此项应手工配置。</para>
+
+  <para><command>setclock</command> 在引导时内核检测到硬件支持时通过 <application>udev</application> 运行。还可以手工不带参数运行将系统时间写入 CMOS 时钟。</para>
+
+  <para>如果你无法记住硬件时钟是否设置为 UTC，运行 <userinput>hwclock --localtime --show</userinput> 命令。它会显示你硬件时钟的当前时间。如果这个时间和你手表上的时间相同，那就表示硬件时钟设置为本地时间。如果其输出不是本地时间，它有可能是一定可能设置为 UTC。将 <command>hwclock</command> 输出的时间加减正确的小时数。例如，位于中国大陆的 GMT +0800 时区的用户应该将 <command>hwclock</command> 的输出减去 8 小时。</para>
+
+  <para>如果你的硬件时钟<emphasis>未</emphasis>设置为 UTC 时间，将以下 <envar>UTC</envar> 变量的值改为 <parameter>0</parameter> (数字零)。</para>
+
+  <para>运行以下命令创建一个新文件 <filename>/etc/sysconfig/clock</filename>：</para>
+
+<screen><userinput>cat &gt; /etc/sysconfig/clock &lt;&lt; "EOF"
+<literal># Begin /etc/sysconfig/clock
+
+UTC=1
+
+# Set this to any options you might need to give to hwclock, 
+# such as machine hardware clock type for Alphas.
+CLOCKPARAMS=
+
+# End /etc/sysconfig/clock</literal>
+EOF</userinput></screen>
+
+  <para><ulink url="&hints-root;time.txt">此处</ulink>有一个有关 LFS 系统上事件处理的提示。它解释了时区、UTC 和 <envar>TZ</envar> 环境变量的相关信息</para>
+
+  <note><para>CLOCKPARAMS 和 UTC 参数也可以在 <filename>/etc/sysconfig/rc.site</filename> 文件中设置。</para></note>
+
+</sect1>

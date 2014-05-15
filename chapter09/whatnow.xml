@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+  "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../general.ent">
+  %general-entities;
+]>
+
+<sect1 id="ch-finish-whatnow">
+  <?dbhtml filename="whatnow.html"?>
+
+  <title>接下来做什么?</title>
+
+  <para>感谢你阅读本书，我们希望读者从这本书中得到帮助。希望读者在构建的流程中能学到许多东西。</para>
+
+  <para>现在 LFS 系统已经安装好了，你也许会有疑问，<quote>接下来干什么？</quote>
+为了回答你的疑问，我们准备了的下列资源。</para>
+
+  <itemizedlist>
+
+    <listitem>
+      <para>维护</para>
+
+      <para>软件基本上都有 Bug 和安全报告。既然 LFS 系统是源码编译安装的，是否紧跟这些报告取决于你。这里有些可以跟踪这些报告的在线资源：</para>
+
+      <itemizedlist>
+
+        <listitem>
+          <para>Freecode (<ulink url="http://freecode.com/"/>)</para>
+
+          <para>如果你的系统里的软件有新的版本发布，Freshmeat 可以通过邮件通知你。</para>
+        </listitem>
+
+        <listitem>
+          <para><ulink url="http://www.cert.org/">CERT</ulink> (Computer
+          Emergency Response Team)</para>
+
+          <para>CERT 有一个可以告知你最新的系统，软件漏洞的邮件列表。订阅方式可以查看<ulink
+          url="http://www.us-cert.gov/cas/signup.html"/>。</para>
+        </listitem>
+
+        <listitem>
+          <para>Bugtraq</para>
+
+          <para>Bugtraq 是一个全方面的关于计算机安全的邮件列表。他会发布最新的安全通告，订阅方法可以查看<ulink
+          url="http://www.securityfocus.com/archive"/>。</para>
+        </listitem>
+
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
+      <para>Beyond Linux From Scratch</para>
+
+      <para>BLFS 包括了许多LFS中没有提到的应用软件的安装流程。点击 <ulink url="&blfs-root;"/>进入 BLFS 的项目地址。</para>
+    </listitem>
+
+    <listitem>
+      <para>LFS 提示</para>
+
+      <para>这里包含了一些由 LFS 社区志愿者提供的教程文档。<ulink url="&hints-index;"/>。</para>
+    </listitem>
+
+    <listitem>
+      <para>邮件列表</para>
+
+      <para>当你遇到问题的时候，关注LFS项目最新的进展，或者希望做出贡献，可以订阅邮件列表。查看<xref
+      linkend="ch-intro-maillists"/> 获得更多信息。</para>
+    </listitem>
+
+    <listitem>
+      <para>Linux 文档项目</para>
+
+      <para>Linux文档项目(TLDP) 的目的是整合关于Linux的文档。TLDP 提供了大量的HOWTO，指南，man手册。它位于<ulink url="http://www.tldp.org/"/>。</para>
+    </listitem>
+
+  </itemizedlist>
+
+</sect1>

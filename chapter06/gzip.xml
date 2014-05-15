@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+  "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../general.ent">
+  %general-entities;
+]>
+
+<sect1 id="ch-system-gzip" role="wrap">
+  <?dbhtml filename="gzip.html"?>
+
+  <sect1info condition="script">
+    <productname>gzip</productname>
+    <productnumber>&gzip-version;</productnumber>
+    <address>&gzip-url;</address>
+  </sect1info>
+
+  <title>Gzip-&gzip-version;</title>
+
+  <indexterm zone="ch-system-gzip">
+    <primary sortas="a-Gzip">Gzip</primary>
+  </indexterm>
+
+  <sect2 role="package">
+    <title/>
+
+    <para>Gzip 程序包包含用于压缩和解压缩文件的程序。</para>
+
+    <segmentedlist>
+      <segtitle>&buildtime;</segtitle>
+      <segtitle>&diskspace;</segtitle>
+
+      <seglistitem>
+        <seg>&gzip-ch6-sbu;</seg>
+        <seg>&gzip-ch6-du;</seg>
+      </seglistitem>
+    </segmentedlist>
+
+  </sect2>
+
+  <sect2 role="installation">
+    <title>安装 Gzip</title>
+
+    <para>准备编译 Gzip：</para>
+
+<screen><userinput remap="configure">./configure --prefix=/usr --bindir=/bin</userinput></screen>
+
+    <para>编译程序包：</para>
+
+<screen><userinput remap="make">make</userinput></screen>
+
+    <para>要测试结果，执行：</para>
+
+<screen><userinput remap="test">make check</userinput></screen>
+
+    <para>安装程序包：</para>
+
+<screen><userinput remap="install">make install</userinput></screen>
+
+    <para>将某些不需要在根文件系统上的程序移开：</para>
+
+<screen><userinput remap="install">mv -v /bin/{gzexe,uncompress,zcmp,zdiff,zegrep} /usr/bin
+mv -v /bin/{zfgrep,zforce,zgrep,zless,zmore,znew} /usr/bin</userinput></screen>
+
+  </sect2>
+
+  <sect2 id="contents-gzip" role="content">
+    <title>Gzip 的内容</title>
+
+    <segmentedlist>
+      <segtitle>安装的程序</segtitle>
+
+      <seglistitem>
+        <seg>gunzip, gzexe, gzip, uncompress, zcat, zcmp, zdiff, zegrep, zfgrep,
+        zforce, zgrep, zless, zmore, and znew</seg>
+      </seglistitem>
+    </segmentedlist>
+
+    <variablelist>
+      <bridgehead renderas="sect3">简介</bridgehead>
+      <?dbfo list-presentation="list"?>
+      <?dbhtml list-presentation="table"?>
+
+      <varlistentry id="gunzip">
+        <term><command>gunzip</command></term>
+        <listitem>
+          <para>解压以 gzip 压缩的文件</para>
+          <indexterm zone="ch-system-gzip gunzip">
+            <primary sortas="b-gunzip">gunzip</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="gzexe">
+        <term><command>gzexe</command></term>
+        <listitem>
+          <para>创建自解压可执行文件</para>
+          <indexterm zone="ch-system-gzip gzexe">
+            <primary sortas="b-gzexe">gzexe</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="gzip">
+        <term><command>gzip</command></term>
+        <listitem>
+          <para>以 LZ77 算法压缩给定文件</para>
+          <indexterm zone="ch-system-gzip gzip">
+            <primary sortas="b-gzip">gzip</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="uncompress">
+        <term><command>uncompress</command></term>
+        <listitem>
+          <para>解压缩压缩过的文件</para>
+          <indexterm zone="ch-system-gzip uncompress">
+            <primary sortas="b-uncompress">uncompress</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="zcat">
+        <term><command>zcat</command></term>
+        <listitem>
+          <para>解压缩给定文件至标准输出</para>
+          <indexterm zone="ch-system-gzip zcat">
+            <primary sortas="b-zcat">zcat</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="zcmp">
+        <term><command>zcmp</command></term>
+        <listitem>
+          <para>对 gzip 压缩的文件运行 <command>cmp</command></para>
+          <indexterm zone="ch-system-gzip zcmp">
+            <primary sortas="b-zcmp">zcmp</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="zdiff">
+        <term><command>zdiff</command></term>
+        <listitem>
+          <para>对 gzip 压缩的文件运行 <command>diff</command></para>
+          <indexterm zone="ch-system-gzip zdiff">
+            <primary sortas="b-zdiff">zdiff</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="zegrep">
+        <term><command>zegrep</command></term>
+        <listitem>
+          <para>对 gzip 压缩的文件运行 <command>egrep</command></para>
+          <indexterm zone="ch-system-gzip zegrep">
+            <primary sortas="b-zegrep">zegrep</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="zfgrep">
+        <term><command>zfgrep</command></term>
+        <listitem>
+          <para>对 gzip 压缩的文件运行 <command>fgrep</command></para>
+          <indexterm zone="ch-system-gzip zfgrep">
+            <primary sortas="b-zfgrep">zfgrep</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="zforce">
+        <term><command>zforce</command></term>
+        <listitem>
+          <para>强制给以 gzip 压缩过的文件带上 <filename class="extension">.gz</filename> 扩展名，这样 <command>gzip</command> 就不会再次进行压缩；这对于文件传输过程中文件名被裁切的情况很有用</para>
+          <indexterm zone="ch-system-gzip zforce">
+            <primary sortas="b-zforce">zforce</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="zgrep">
+        <term><command>zgrep</command></term>
+        <listitem>
+          <para>对 gzip 压缩的文件运行 <command>grep</command></para>
+          <indexterm zone="ch-system-gzip zgrep">
+            <primary sortas="b-zgrep">zgrep</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="zless">
+        <term><command>zless</command></term>
+        <listitem>
+          <para>对 gzip 压缩的文件运行 <command>less</command></para>
+          <indexterm zone="ch-system-gzip zless">
+            <primary sortas="b-zless">zless</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="zmore">
+        <term><command>zmore</command></term>
+        <listitem>
+          <para>对 gzip 压缩的文件运行 <command>more</command></para>
+          <indexterm zone="ch-system-gzip zmore">
+            <primary sortas="b-zmore">zmore</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="znew">
+        <term><command>znew</command></term>
+        <listitem>
+          <para>将 <command>compress</command> 格式的压缩文件以 <command>gzip</command> 格式重新压缩&mdash;&mdash;<filename class="extension">.Z</filename> 变成 <filename class="extension">.gz</filename></para>
+          <indexterm zone="ch-system-gzip znew">
+            <primary sortas="b-znew">znew</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+    </variablelist>
+
+  </sect2>
+
+</sect1>

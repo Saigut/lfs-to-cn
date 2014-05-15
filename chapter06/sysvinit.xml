@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+  "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../general.ent">
+  %general-entities;
+]>
+
+<sect1 id="ch-system-sysvinit" role="wrap">
+  <?dbhtml filename="sysvinit.html"?>
+
+  <sect1info condition="script">
+    <productname>sysvinit</productname>
+    <productnumber>&sysvinit-version;</productnumber>
+    <address>&sysvinit-url;</address>
+  </sect1info>
+
+  <title>Sysvinit-&sysvinit-version;</title>
+
+  <indexterm zone="ch-system-sysvinit">
+    <primary sortas="a-Sysvinit">Sysvinit</primary>
+  </indexterm>
+
+  <sect2 role="package">
+    <title/>
+
+    <para>Sysvinit 程序包包含控制系统启动，运行和关机的程序。</para>
+
+    <segmentedlist>
+      <segtitle>&buildtime;</segtitle>
+      <segtitle>&diskspace;</segtitle>
+
+      <seglistitem>
+        <seg>&sysvinit-ch6-sbu;</seg>
+        <seg>&sysvinit-ch6-du;</seg>
+      </seglistitem>
+    </segmentedlist>
+
+  </sect2>
+
+  <sect2 role="installation">
+    <title>安装 Sysvinit</title>
+
+      <para>当运行等级改变 (例如终止系统时)， <command>init</command> 传递终止信号到各个由 <command>init</command> 本身启动且不应当在新运行等级下运行的进程。如此做时， <command>init</command> 输出像 <quote>Sending processes the TERM signal</quote> 这样的消息，似乎是暗示它正在传递这些信号到当前所有运行进程的信息。要避免这一误解，修改源文件中的信息为 <quote>Sending processes configured via /etc/inittab the TERM signal</quote>：</para>
+
+<screen><userinput remap="pre">sed -i 's@Sending processes@&amp; configured via /etc/inittab@g' src/init.c</userinput></screen>
+
+    <para><command>wall</command> 和 <command>mountpoint</command> 程序正在维护的版本在此前已由 Util-linux 安装。阻止这些程序和它们的手册页的 Sysvinit 版本被安装：</para>
+
+<screen><userinput remap="make">sed -i -e 's/utmpdump/d' \
+       -e '/mountpoint/d' src/Makefile</userinput></screen>
+
+    <para>编译程序包：</para>
+
+<screen><userinput remap="make">make -C src</userinput></screen>
+
+    <para>这个程序包不包含测试套件。</para>
+
+    <para>安装程序包：</para>
+
+<screen><userinput remap="install">make -C src install</userinput></screen>
+
+  </sect2>
+
+  <sect2 id="contents-sysvinit" role="content">
+    <title>Sysvinit 的内容</title>
+
+    <segmentedlist>
+      <segtitle>安装的程序</segtitle>
+
+      <seglistitem>
+        <seg>bootlogd、fstab-decode、halt、init、killall5、last、lastb (到 last 的链接)、mesg、pidof (到 killall5 的链接)、poweroff (到 halt 的链接)、reboot (到 halt 的链接)、runlevel、shutdown、sulogin 和 telinit (到 init 的链接)</seg>
+      </seglistitem>
+    </segmentedlist>
+
+    <variablelist>
+      <bridgehead renderas="sect3">简介</bridgehead>
+      <?dbfo list-presentation="list"?>
+      <?dbhtml list-presentation="table"?>
+
+      <varlistentry id="bootlogd">
+        <term><command>bootlogd</command></term>
+        <listitem>
+          <para>记录引导信息到一个日志文件</para>
+          <indexterm zone="ch-system-sysvinit bootlogd">
+            <primary sortas="b-bootlogd">bootlogd</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="fstab-decode">
+        <term><command>fstab-decode</command></term>
+        <listitem>
+          <para>以 fstab 编码的参数运行一个命令</para>
+          <indexterm zone="ch-system-sysvinit fstab-decode">
+            <primary sortas="b-fstab-decode">fstab-decode</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="halt">
+        <term><command>halt</command></term>
+        <listitem>
+          <para>以 <parameter>-h</parameter> 选项正常调用 <command>shutdown</command>，在系统已经处于运行等级 0 时则告知内核终止系统；它在 <filename>/var/log/wtmp</filename> 文件中记录系统正被关闭的信息</para>
+          <indexterm zone="ch-system-sysvinit halt">
+            <primary sortas="b-halt">halt</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="init">
+        <term><command>init</command></term>
+        <listitem>
+          <para>内核初始化硬件后首先启动的进程，用以接管引导进程和启动它指向的所有进程</para>
+          <indexterm zone="ch-system-sysvinit init">
+            <primary sortas="b-init">init</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="killall5">
+        <term><command>killall5</command></term>
+        <listitem>
+          <para>传递一个信息到除在其自身会话中的进程外的所有进程，因此它不会终止运行调用它的脚本的 shell</para>
+          <indexterm zone="ch-system-sysvinit killall5">
+            <primary sortas="b-killall5">killall5</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="last">
+        <term><command>last</command></term>
+        <listitem>
+          <para>检索 <filename>/var/log/wtmp</filename> 文件并显示用户最后一次登陆 (与登出) 的系统；它同样显示系统引导，关机和运行等级的改变</para>
+          <indexterm zone="ch-system-sysvinit last">
+            <primary sortas="b-last">last</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="lastb">
+        <term><command>lastb</command></term>
+        <listitem>
+          <para>显示记录在 <filename>/var/log/btmp</filename> 中的失败的登陆尝试</para>
+          <indexterm zone="ch-system-sysvinit lastb">
+            <primary sortas="b-lastb">lastb</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="mesg">
+        <term><command>mesg</command></term>
+        <listitem>
+          <para>控制其他用户能否传递信息到当前用户的终端</para>
+          <indexterm zone="ch-system-sysvinit mesg">
+            <primary sortas="b-mesg">mesg</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="pidof">
+        <term><command>pidof</command></term>
+        <listitem>
+          <para>报告给定程序的 PIDs</para>
+          <indexterm zone="ch-system-sysvinit pidof">
+            <primary sortas="b-pidof">pidof</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="poweroff">
+        <term><command>poweroff</command></term>
+        <listitem>
+          <para>告知内核终止系统且关闭计算机 (参见 <command>halt</command>)</para>
+          <indexterm zone="ch-system-sysvinit poweroff">
+            <primary sortas="b-poweroff">poweroff</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="reboot">
+        <term><command>reboot</command></term>
+        <listitem>
+          <para>告知内核重新引导系统 (参见 <command>halt</command>)</para>
+          <indexterm zone="ch-system-sysvinit reboot">
+            <primary sortas="b-reboot">reboot</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="runlevel">
+        <term><command>runlevel</command></term>
+        <listitem>
+          <para>报告记录在 <filename>/var/run/utmp</filename> 中的最近一次运行等级记录中的最近和当前运行等级</para>
+          <indexterm zone="ch-system-sysvinit runlevel">
+            <primary sortas="b-runlevel">runlevel</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="shutdown">
+        <term><command>shutdown</command></term>
+        <listitem>
+          <para>以安全途径关闭系统，通知所有进程与所有登陆的用户</para>
+          <indexterm zone="ch-system-sysvinit shutdown">
+            <primary sortas="b-shutdown">shutdown</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="sulogin">
+        <term><command>sulogin</command></term>
+        <listitem>
+          <para>允许 <systemitem class="username">root</systemitem> 登陆；它一般由 <command>init</command> 在系统进入单独用户模式时调用</para>
+          <indexterm zone="ch-system-sysvinit sulogin">
+            <primary sortas="b-sulogin">sulogin</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="telinit">
+        <term><command>telinit</command></term>
+        <listitem>
+          <para>通知 <command>init</command> 运行等级被改为何等级</para>
+          <indexterm zone="ch-system-sysvinit telinit">
+            <primary sortas="b-telinit">telinit</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+    </variablelist>
+
+  </sect2>
+
+</sect1>

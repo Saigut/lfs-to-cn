@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+  "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../general.ent">
+  %general-entities;
+]>
+
+<sect1 id="ch-system-automake" role="wrap">
+  <?dbhtml filename="automake.html"?>
+
+  <sect1info condition="script">
+    <productname>automake</productname>
+    <productnumber>&automake-version;</productnumber>
+    <address>&automake-url;</address>
+  </sect1info>
+
+  <title>Automake-&automake-version;</title>
+
+  <indexterm zone="ch-system-automake">
+    <primary sortas="a-Automake">Automake</primary>
+  </indexterm>
+
+  <sect2 role="package">
+    <title/>
+
+    <para>Automake 程序包包含创建用于 Autoconf 的 Makefile 的程序。</para>
+
+    <segmentedlist>
+      <segtitle>&buildtime;</segtitle>
+      <segtitle>&diskspace;</segtitle>
+
+      <seglistitem>
+        <seg>&automake-ch6-sbu;</seg>
+        <seg>&automake-ch6-du;</seg>
+      </seglistitem>
+    </segmentedlist>
+
+  </sect2>
+
+  <sect2 role="installation">
+    <title>安装 Automake</title>
+
+    <para>准备编译 Automake：</para>
+
+<screen><userinput remap="configure">./configure --prefix=/usr --docdir=/usr/share/doc/automake-&automake-version;</userinput></screen>
+
+    <para>编译程序包：</para>
+
+<screen><userinput remap="make">make</userinput></screen>
+
+    <note><para>测试会占用很长时间，超过 30 SBU。不推荐运行之。</para></note>
+
+    <para>要测试结果，执行：</para>
+
+<screen><userinput remap="test">make check</userinput></screen>
+
+    <para>安装程序包：</para>
+
+<screen><userinput remap="install">make install</userinput></screen>
+
+  </sect2>
+
+
+  <sect2 id="contents-automake" role="content">
+    <title>Automake 的内容</title>
+
+    <segmentedlist>
+      <segtitle>安装的程序</segtitle>
+      <segtitle>安装的目录</segtitle>
+
+      <seglistitem>
+        <seg>acinstall, aclocal, aclocal-&am-minor-version;, automake, automake-&am-minor-version;, compile, config.guess, config.sub, depcomp, elisp-comp, install-sh, mdate-sh, missing, mkinstalldirs, py-compile, symlink-tree 和 ylwrap</seg>
+        <seg>/usr/share/aclocal-&am-minor-version;, /usr/share/automake-&am-minor-version;, /usr/share/doc/automake-&automake-version;</seg>
+      </seglistitem>
+    </segmentedlist>
+
+    <variablelist>
+      <bridgehead renderas="sect3">简介</bridgehead>
+      <?dbfo list-presentation="list"?>
+      <?dbhtml list-presentation="table"?>
+
+      <varlistentry id="acinstall">
+        <term><command>acinstall</command></term>
+        <listitem>
+          <para>一个脚本，安装 aclocal 样式的 M4 文件</para>
+          <indexterm zone="ch-system-automake acinstall">
+            <primary sortas="b-acinstall">acinstall</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="aclocal">
+        <term><command>aclocal</command></term>
+        <listitem>
+          <para>基于 <filename>configure.in</filename> 文件的内容创建 <filename>aclocal.m4</filename> 文件</para>
+          <indexterm zone="ch-system-automake aclocal">
+            <primary sortas="b-aclocal">aclocal</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="aclocalversion">
+        <term><command>aclocal-&am-minor-version;</command></term>
+        <listitem>
+          <para>到 <command>aclocal</command> 的硬链接</para>
+          <indexterm zone="ch-system-automake aclocalversion">
+            <primary sortas="b-aclocal-&am-minor-version;">aclocal-&am-minor-version;</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="automake">
+        <term><command>automake</command></term>
+        <listitem>
+          <para>一个用于以 <filename>Makefile.am</filename> 文件创建 <filename>Makefile.in</filename> 文件的个工具；要创建一个程序包的所有 <filename>Makefile.in</filename> 文件，在顶级目录运行此程序；通过扫描 <filename>configure.in</filename> 文件，它自动找到每个对应的 <filename>Makefile.am</filename> 文件并创建相应的 <filename>Makefile.in</filename> 文件</para>
+          <indexterm zone="ch-system-automake automake">
+            <primary sortas="b-automake">automake</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="automake-version">
+        <term><command>automake-&am-minor-version;</command></term>
+        <listitem>
+          <para>到 <command>automake</command> 的硬链接</para>
+          <indexterm zone="ch-system-automake automake-version">
+            <primary sortas="b-automake-&am-minor-version;">automake-&am-minor-version;</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="compile">
+        <term><command>compile</command></term>
+        <listitem>
+          <para>编译器的打包</para>
+          <indexterm zone="ch-system-automake compile">
+            <primary sortas="b-compile">compile</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="config.guess">
+        <term><command>config.guess</command></term>
+        <listitem>
+          <para>一个脚本，试图猜测给定的编制、宿主或者目标架构的规范化三联字串</para>
+          <indexterm zone="ch-system-automake config.guess">
+            <primary sortas="b-config.guess">config.guess</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="config.sub">
+        <term><command>config.sub</command></term>
+        <listitem>
+          <para>一个配置校验子途径脚本</para>
+          <indexterm zone="ch-system-automake config.sub">
+            <primary sortas="b-config.sub">config.sub</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="depcomp">
+        <term><command>depcomp</command></term>
+        <listitem>
+          <para>一个脚本，用于编译一个程序并创建依赖关系信息附加到指定的输出</para>
+          <indexterm zone="ch-system-automake depcomp">
+            <primary sortas="b-depcomp">depcomp</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="elisp-comp">
+        <term><command>elisp-comp</command></term>
+        <listitem>
+          <para>字节编译 Emacs Lisp 代码</para>
+          <indexterm zone="ch-system-automake elisp-comp">
+            <primary sortas="b-elisp-comp">elisp-comp</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="install-sh">
+        <term><command>install-sh</command></term>
+        <listitem>
+          <para>一个脚本，安装程序、脚本或者数据文件</para>
+          <indexterm zone="ch-system-automake install-sh">
+            <primary sortas="b-install-sh">install-sh</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="mdate-sh">
+        <term><command>mdate-sh</command></term>
+        <listitem>
+          <para>一个脚本，打印出文件或者目录的修改时间</para>
+          <indexterm zone="ch-system-automake mdate-sh">
+            <primary sortas="b-mdate-sh">mdate-sh</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="missing">
+        <term><command>missing</command></term>
+        <listitem>
+          <para>一个脚本，安装时作为缺失的 GNU 程序的通用存根使用</para>
+          <indexterm zone="ch-system-automake missing">
+            <primary sortas="b-missing">missing</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="mkinstalldirs">
+        <term><command>mkinstalldirs</command></term>
+        <listitem>
+          <para>一个脚本，创建目录树</para>
+          <indexterm zone="ch-system-automake mkinstalldirs">
+            <primary sortas="b-mkinstalldirs">mkinstalldirs</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="py-compile">
+        <term><command>py-compile</command></term>
+        <listitem>
+          <para>编译 Python 程序</para>
+          <indexterm zone="ch-system-automake py-compile">
+            <primary sortas="b-py-compile">py-compile</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="symlink-tree">
+        <term><command>symlink-tree</command></term>
+        <listitem>
+          <para>一个脚本，创建一个目录树的符号链接树</para>
+          <indexterm zone="ch-system-automake symlink-tree">
+            <primary sortas="b-symlink-tree">symlink-tree</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="ylwrap">
+        <term><command>ylwrap</command></term>
+        <listitem>
+          <para><command>lex</command> 和 <command>yacc</command> 的一个打包</para>
+          <indexterm zone="ch-system-automake ylwrap">
+            <primary sortas="b-ylwrap">ylwrap</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+    </variablelist>
+
+  </sect2>
+
+</sect1>

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+  "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../general.ent">
+  %general-entities;
+]>
+
+<sect1 id="ch-system-adjusting">
+  <?dbhtml filename="adjusting.html"?>
+
+  <title>调节工具链</title>
+
+  <para>现在最终的 C 库安装好了，我们应该调节工具链使得新编译的程序会链接到这些新的库。</para>
+
+  <para>首先，备份 <filename class="directory">/tools</filename> 中的链接器，并且将其替换为我们在第五章中调节过的链接器。我们还要创建一个到它在 <filename class="directory">/tools/$(gcc -dumpmachine)/bin</filename> 中的对应的链接：</para>
+
+<screen><userinput>mv -v /tools/bin/{ld,ld-old}
+mv -v /tools/$(gcc -dumpmachine)/bin/{ld,ld-old}
+mv -v /tools/bin/{ld-new,ld}
+ln -sv /tools/bin/ld /tools/$(gcc -dumpmachine)/bin/ld</userinput></screen>
+
+  <para>下一步，修改 GCC 的 <filename>specs</filename> 文件指向新的动态链接器。简单地删除所有存在的 <quote>/tools</quote> 就可以剩下到动态链接器的正确路径。另外要使 GCC 知道去哪里寻找正确的头文件和 Glibc 起始文件。应用一条 <command>sed</command> 命令完成此任务：</para>
+
+<screen><userinput>gcc -dumpspecs | sed -e 's@/tools@@g' \
+    -e '/\*startfile_prefix_spec:/{n;s@.*@/usr/lib/ @}' \
+    -e '/\*cpp:/{n;s@$@ -isystem /usr/include@}' &gt; \
+    `dirname $(gcc --print-libgcc-file-name)`/specs</userinput></screen>
+
+  <para>最好是检查一下 specs 文件确认一下要进行的改动是否真的完成了。</para>
+
+  <para>现在很有必要检查一下调节过的工具链的基本功能 (编译和链接) 能正常工作。要如此做，进行以下稳定性检查：</para>
+
+<screen os="a"><userinput>echo 'main(){}' &gt; dummy.c
+cc dummy.c -v -Wl,--verbose &amp;&gt; dummy.log
+readelf -l a.out | grep ': /lib'</userinput></screen>
+
+  <para os="b">如果一切工作正常，就不应该出错，最后一条命令的输出 (允许动态链接器名称中有针对平台的差异) 应为：</para>
+
+<screen os="c"><computeroutput>[Requesting program interpreter: /lib/ld-linux.so.2]</computeroutput></screen>
+
+  <para>注意 <filename class="directory">/lib</filename> 现在是我们动态链接器的前缀。</para>
+
+  <para os="d">现在确保设置为使用正确的起始文件：</para>
+
+<screen os="e"><userinput>grep -o '/usr/lib.*/crt[1in].*succeeded' dummy.log</userinput></screen>
+
+  <para os="f">如果一切工作正常，就不应该出错，最后一条命令的输出应为：</para>
+
+<screen><computeroutput>/usr/lib/crt1.o succeeded
+/usr/lib/crti.o succeeded
+/usr/lib/crtn.o succeeded</computeroutput></screen>
+
+  <para os="g">检查一下编译器是否寻找正确的头文件：</para>
+
+<screen><userinput>grep -B1 '^ /usr/include' dummy.log</userinput></screen>
+
+  <para os="h">此命令应该成功返回并给出以下输出：</para>
+
+<screen><computeroutput>#include &lt;...&gt; search starts here:
+ /usr/include</computeroutput></screen>
+
+  <para os="i">下一步检查新的链接器使用正确的搜索路径：</para>
+
+<screen os="j"><userinput>grep 'SEARCH.*/usr/lib' dummy.log |sed 's|; |\n|g'</userinput></screen>
+
+  <para os="k">如果一切工作正常，就不应该出错，最后一条命令的输出 (允许目标三联字串中有针对平台的差异) 应为：</para>
+
+<screen><computeroutput>SEARCH_DIR("/tools/i686-pc-linux-gnu/lib")
+SEARCH_DIR("/usr/lib")
+SEARCH_DIR("/lib");</computeroutput></screen>
+
+  <para os="l">下一步确认我们使用的是正确的 libc：</para>
+
+<screen os="m"><userinput>grep "/lib.*/libc.so.6 " dummy.log</userinput></screen>
+
+  <para os="n">如果一切工作正常，就不应该出错，最后一条命令的输出 (允许 64 位宿主上有 <filename class="directory">lib64</filename> 目录) 应为：</para>
+
+<screen os="o"><computeroutput>attempt to open /lib/libc.so.6 succeeded</computeroutput></screen>
+
+  <para os="p">最后，确保 GCC 使用正确的动态链接器：</para>
+
+<screen os="q"><userinput>grep found dummy.log</userinput></screen>
+
+  <para os="r">如果一切工作正常，就不应该出错，最后一条命令的输出 (允许动态链接器名称中有针对平台的差异、64 位宿主上有 <filename class="directory">lib64</filename> 目录) 应为：</para>
+
+<screen os="s"><computeroutput>found ld-linux.so.2 at /lib/ld-linux.so.2</computeroutput></screen>
+
+  <para os="t">如果输出不如上文所示或者根本没有输出，那么一定有某个地方严重出错了。回溯步骤，找出问题并且修正。最可能出现的原因是 specs 文件调节出错。在进行下一步之前一定要解决所有问题。</para>
+
+  <para os="u">一切都正常工作之后，清理测试文件：</para>
+
+<screen os="v"><userinput>rm -v dummy.c a.out dummy.log</userinput></screen>
+
+</sect1>

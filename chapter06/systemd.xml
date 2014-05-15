@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+  "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../general.ent">
+  %general-entities;
+]>
+
+<sect1 id="ch-system-udev" role="wrap">
+  <?dbhtml filename="udev.html"?>
+
+  <sect1info condition="script">
+    <productname>udev</productname>
+    <productnumber>&systemd-version;</productnumber>
+    <address>&systemd-url;</address>
+  </sect1info>
+
+  <title>Udev-&systemd-version; (提取自 systemd-&systemd-version;)</title>
+
+  <indexterm zone="ch-system-udev">
+    <primary sortas="a-Udev">Udev</primary>
+  </indexterm>
+
+  <sect2 role="package">
+    <title/>
+
+    <para>Udev 程序包包含用于动态创建设备节点的程序。Udev 的开发已经融合到 systemd 中，但由于其大部分与 LFS 不兼容，我们此处只编译安装需要的 udev 文件。</para>
+
+    <segmentedlist>
+      <segtitle>&buildtime;</segtitle>
+      <segtitle>&diskspace;</segtitle>
+
+      <seglistitem>
+        <seg>&systemd-ch6-sbu;</seg>
+        <seg>&systemd-ch6-du;</seg>
+      </seglistitem>
+    </segmentedlist>
+  </sect2>
+
+  <sect2 role="installation">
+    <title>安装 Udev</title>
+
+    <note><para>此程序包与其他程序包略有不同，虽然安装的应用程序是 udev 但是初始解压缩的程序包是 <filename>systemd-&systemd-version;.tar.xz</filename>。在切换至 systemd 目录中之后按以下指令执行。</para></note>
+
+    <para>udev-lfs 压缩包包含 LFS 特有的文件，用于编制 Udev。将其解包至 systemd 原地码目录中：</para>
+
+<screen><userinput remap="pre">tar -xvf ../&udev-lfs;.tar.bz2</userinput></screen>
+
+    <para>修复 <userinput>udevadm</userinput> 用途输出中的一处错误：</para>
+
+<screen><userinput remap="pre">sed -i -e 's/create/update/' src/udev/udevadm-hwdb.c</userinput></screen>
+
+    <para>编译程序包：</para>
+
+<screen><userinput remap="make">make -f &udev-lfs;/Makefile.lfs</userinput></screen>
+
+    <para>安装程序包：</para>
+
+<screen><userinput remap="make">make -f &udev-lfs;/Makefile.lfs install</userinput></screen>
+
+    <caution><para>在 <application>systemd</application> 源代码中有几处嵌入了明确的目录路径。例如硬件数据库二进制版本的路径和文件名 <filename>/etc/udev/hwdb.bin</filename>，运行时使用，不直接改动源代码无法更改。</para></caution>
+
+    <para>现在初始化硬件数据库：</para>
+
+<screen><userinput remap="install">build/udevadm hwdb --update</userinput></screen>
+
+    <para>最后设置稳定的 udev 网络规则。此任务在<xref linkend='stable-net-names'/>中具体讲解。注意 <filename class='directory'>/sys</filename> 和 <filename class='directory'>/proc</filename> 文件系统必须按本章开始处说明的方式挂载于 chroot 环境中，以下脚本才能够工作。</para>
+
+<screen><userinput remap="install">bash &udev-lfs;/init-net-rules.sh</userinput></screen>
+  </sect2>
+
+  <sect2 id="contents-udev" role="content">
+    <title>Udev 的内容</title>
+
+    <segmentedlist>
+      <segtitle>安装的程序</segtitle>
+      <segtitle>安装的库</segtitle>
+      <segtitle>安装的目录</segtitle>
+
+      <seglistitem>
+        <seg>accelerometer、ata_id、cdrom_id、collect、mtd_probe、scsi_id、v4l_id、udevadm 和 udevd</seg>
+        
+        <seg>libudev.so</seg>
+        
+        <seg>/etc/udev、/lib/udev、/lib/firmware、/usr/share/doc/udev</seg>
+      </seglistitem>
+    </segmentedlist>
+
+    <variablelist>
+      <bridgehead renderas="sect3">简介</bridgehead>
+      <?dbfo list-presentation="list"?>
+      <?dbhtml list-presentation="table"?>
+
+      <varlistentry id="ata_id">
+        <term><command>ata_id</command></term>
+        <listitem>
+          <para>对于 ATA 驱动器，给 Udev 提供一个独有的字符串以及额外信息 (uuid 和卷标)</para>
+          <indexterm zone="ch-system-udev ata_id">
+            <primary sortas="b-ata_id">ata_id</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="cdrom_id">
+        <term><command>cdrom_id</command></term>
+        <listitem>
+          <para>使 Udev 兼容 CD-ROM 或者 DVD-ROM 驱动器</para>
+          <indexterm zone="ch-system-udev cdrom_id">
+            <primary sortas="b-cdrom_id">cdrom_id</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="collect">
+        <term><command>collect</command></term>
+        <listitem>
+          <para>给定当前以及一列 uevent ID，注册当前 ID 并指示所有目标 ID 是否注册过</para>
+          <indexterm zone="ch-system-udev collect">
+            <primary sortas="b-collect">collect</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="scsi_id">
+        <term><command>scsi_id</command></term>
+        <listitem>
+          <para>基于特定设备对 SCSI INQUIRY 命令返回的数据给 Udev 提供一个独有的 SCSI 标识符</para>
+          <indexterm zone="ch-system-udev scsi_id">
+            <primary sortas="b-scsi_id">scsi_id</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="udevadm">
+        <term><command>udevadm</command></term>
+        <listitem>
+          <para>通用 udev 管理工具：控制 udevd daemon、从 Udev 数据库中提供信息、监视 uevent、并对于给定的设备激发uevent</para>
+          <indexterm zone="ch-system-udev udevadm">
+            <primary sortas="b-udevadm">udevadm</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="udevd">
+        <term><command>udevd</command></term>
+        <listitem>
+          <para>一个 daemon，监听 netlink 接口上的 uevent、创建设备并运行配置好的外置程序响应这些 uevent</para>
+          <indexterm zone="ch-system-udev udevd">
+            <primary sortas="b-udevd">udevd</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="libudev">
+        <term><filename class="libraryfile">libudev</filename></term>
+        <listitem>
+          <para>udev 设备信息的一个库界面</para>
+          <indexterm zone="ch-system-udev libudev">
+            <primary sortas="c-libudev">libudev</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="etc-udev">
+        <term><filename class="directory">/etc/udev</filename></term>
+        <listitem>
+          <para>包含 Udev 配置文件、设备权限和设备命名规则</para>
+          <indexterm zone="ch-system-udev etc-udev">
+            <primary sortas="e-/etc/udev">/etc/udev</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+    </variablelist>
+
+  </sect2>
+
+</sect1>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+  "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../general.ent">
+  %general-entities;
+]>
+
+<sect1 id="ch-bootable-fstab">
+  <?dbhtml filename="fstab.html"?>
+
+  <title>创建 /etc/fstab 文件</title>
+
+  <indexterm zone="ch-bootable-fstab">
+    <primary sortas="e-/etc/fstab">/etc/fstab</primary>
+  </indexterm>
+
+  <para>某些程序使用 <filename>/etc/fstab</filename> 文件来确定文件系统挂载的默认位置、顺序以及挂载前是否需要查错。如此创建一个新的文件系统表：</para>
+
+<screen><userinput>cat &gt; /etc/fstab &lt;&lt; "EOF"
+<literal># Begin /etc/fstab
+
+# file system  mount-point  type     options             dump  fsck
+#                                                              order
+
+/dev/<replaceable>&lt;xxx&gt;</replaceable>     /            <replaceable>&lt;fff&gt;</replaceable>    defaults            1     1
+/dev/<replaceable>&lt;yyy&gt;</replaceable>     swap         swap     pri=1               0     0
+proc           /proc        proc     nosuid,noexec,nodev 0     0
+sysfs          /sys         sysfs    nosuid,noexec,nodev 0     0
+devpts         /dev/pts     devpts   gid=4,mode=620      0     0
+tmpfs          /run         tmpfs    defaults            0     0
+devtmpfs       /dev         devtmpfs mode=0755,nosuid    0     0
+
+# End /etc/fstab</literal>
+EOF</userinput></screen>
+
+  <para>将 <replaceable>&lt;xxx&gt;</replaceable>、<replaceable>&lt;yyy&gt;</replaceable> 和 <replaceable>&lt;fff&gt;</replaceable> 替换成合适的值，例如 <filename class="partition">sda2</filename>、<filename class="partition">sda5</filename> 和 <systemitem class="filesystem">ext4</systemitem>。关于这六个域的细节，参考 <command>man 5 fstab</command>。</para>
+
+<!--
+  <para>The <filename class="directory">/dev/shm</filename> mount point
+  for <systemitem class="filesystem">tmpfs</systemitem> is included to
+  allow enabling POSIX-shared memory. The kernel must have the required
+  support built into it for this to work (more about this is in the next
+  section). Please note that very little software currently uses
+  POSIX-shared memory.  Therefore, consider the <filename
+  class="directory">/dev/shm</filename> mount point optional. For more
+  information, see
+  <filename>Documentation/filesystems/tmpfs.txt</filename> in the kernel
+  source tree.</para>
+-->
+
+  <para>源自 MS-DOS 或者 Windows 的文件系统 (例如：vfat、ntfs、smbfs、cifs、iso9660、udf) 需要使用挂载选项 <quote>iocharset</quote> 使得文件名中的非 ASCII 字符能够正确转码。此选项的值应设置为与你的区域数据的字符集相同，使得内核能够理解。如果对应的字符集定义 (位于 File systems -&gt; Native Language Support，即文件系统 -&gt; 原生语言支持) 编译到内核中或者编制成模块，它就能工作。vfat 和 smbfs 文件系统还需要 <quote>codepage</quote> 选项。它应该设置为你所在的国家在 MS-DOS 下使用的 codepage 号码。例如，为了挂载优盘，zh_CN.GB2312 用户的 <filename>/etc/fstab</filename> 文件中会需要：</para>
+
+<screen><literal>noauto,user,quiet,showexec,iocharset=gb2312,codepage=936</literal></screen>
+
+  <para>对应的 zh_CN.UTF-8 用户会需要：</para>
+
+<screen><literal>noauto,user,quiet,showexec,iocharset=utf8,codepage=936</literal></screen>
+
+  <note>
+    <para>后面一种情况中，内核会产生以下消息：</para>
+
+<screen><computeroutput>FAT: utf8 is not a recommended IO charset for FAT filesystems, filesystem will be case sensitive! </computeroutput></screen>
+
+    <para>可以忽略此消息，因为 <quote>iocharset</quote> 选项任何其他的值都会导致 UTF-8 区域数据中文件名显示不正确。</para>
+  </note>
+
+  <para>还可以在内核配置的过程中为某些文件系统指定默认的 codepage 和 iocharset 值。对应的参数名为 <quote>Default NLS Option</quote> (<option>CONFIG_NLS_DEFAULT</option>，默认 NLS 选项)、<quote>Default Remote NLS Option</quote> (<option>CONFIG_SMB_NLS_DEFAULT</option>，默认远程 NLS 选项) <quote>Default codepage for FAT</quote> (<option>CONFIG_FAT_DEFAULT_CODEPAGE</option>，FAT 默认编码页) 和 <quote>Default iocharset for FAT</quote> (<option>CONFIG_FAT_DEFAULT_IOCHARSET</option>，FAT 默认 iocharset)。在内核编译期间无法为 ntfs 文件系统指定这些设置。</para>
+  <!-- Personally, I find it more foolproof to always specify the iocharset and
+  codepage in /etc/fstab for MS-based filesystems - Alexander E. Patrakov -->
+
+  <para>在某些硬盘上可以使 ext3 文件系统在突然断电时依然可靠。若要如此，给 <filename>/etc/fstab</filename> 中对应的条目添加 <option>barrier=1</option> 挂载选项。要检查磁盘驱动器是否支持此选项，给对应的磁盘驱动器运行 <ulink url="http://www.linuxfromscratch.org/blfs/view/cvs/general/hdparm.html">hdparm</ulink>。例如：</para>
+
+<screen role="nodump"><userinput>hdparm -I /dev/sda | grep NCQ</userinput></screen>
+
+  <para>若以上命令返回非空的值，表示磁盘支持这一选项。</para>
+
+  <para>注意：基于逻辑卷管理 (LVM) 的分区不能使用 <option>barrier</option> 选项。</para>
+
+</sect1>

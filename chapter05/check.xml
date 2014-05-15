@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+  "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../general.ent">
+  %general-entities;
+]>
+
+<sect1 id="ch-tools-check" role="wrap">
+  <?dbhtml filename="check.html"?>
+
+  <sect1info condition="script">
+    <productname>check</productname>
+    <productnumber>&check-version;</productnumber>
+    <address>&check-url;</address>
+  </sect1info>
+
+  <title>Check-&check-version;</title>
+
+  <indexterm zone="ch-tools-check">
+    <primary sortas="a-Check">Check</primary>
+  </indexterm>
+
+  <sect2 role="package">
+    <title/>
+
+    <para>Check 是一个 C 的单元测试框架。</para>
+
+    <segmentedlist>
+      <segtitle>&buildtime;</segtitle>
+      <segtitle>&diskspace;</segtitle>
+
+      <seglistitem>
+        <seg>&check-ch5-sbu;</seg>
+        <seg>&check-ch5-du;</seg>
+      </seglistitem>
+    </segmentedlist>
+
+  </sect2>
+
+  <sect2 role="installation">
+    <title>安装 Check</title>
+
+    <para>准备编译 Check：</para>
+
+<screen><userinput remap="configure">./configure --prefix=/tools</userinput></screen>
+
+    <para>编制程序包：</para>
+
+<screen><userinput remap="make">make</userinput></screen>
+
+    <para>编译现在完成了。前面讨论过，没有必要在这一章中给临时工具运行测试套件。如果无论如何要运行 Check 的测试套件，执行以下指令：</para>
+
+<screen><userinput remap="test">make check</userinput></screen>
+
+    <para>注意 Check 的测试套件可能占用相对较长的时间 (可达 4 SBU)。</para>
+
+    <para>安装程序包：</para>
+
+<screen><userinput remap="install">make install</userinput></screen>
+
+  </sect2>
+
+  <sect2 id="contents-check" role="content">
+    <title>Check 的内容</title>
+
+    <segmentedlist>
+      <segtitle>安装的程序</segtitle>
+      <segtitle>安装的库</segtitle>
+
+      <seglistitem>
+        <seg>libcheck.{a,so}</seg>
+      </seglistitem>
+    </segmentedlist>
+
+    <variablelist>
+      <bridgehead renderas="sect3">简介</bridgehead>
+      <?dbfo list-presentation="list"?>
+      <?dbhtml list-presentation="table"?>
+        
+    <varlistentry id="checkmk">
+        <term><command>checkmk</command></term>
+        <listitem>
+            <para>用于为使用 Check 单元测试框架生成 C 单元测试的 Awk 脚本。</para>
+            <indexterm zone="ch-tools-check checkmk">
+                <primary sortas="b-checmk">checkmk</primary>
+            </indexterm>
+        </listitem>
+    </varlistentry>
+
+
+      <varlistentry id="libcheck">
+        <term><filename class="libraryfile">libcheck.{a,so}</filename></term>
+        <listitem>
+          <para>包含允许 Check 被测试程序调用的函数</para>
+          <indexterm zone="ch-tools-check libcheck">
+            <primary sortas="c-libcheck">libcheck</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+    </variablelist>
+
+  </sect2>
+
+</sect1>

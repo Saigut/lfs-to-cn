@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+  "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../general.ent">
+  %general-entities;
+]>
+
+<sect1 id="ch-scripts-introduction">
+  <?dbhtml filename="introduction.html"?>
+
+  <title>介绍</title>
+
+  <para>本章讨论配置文件和引导脚本。首先给出了设置网络需要的通用配置文件。</para>
+  
+  <itemizedlist>
+     <listitem>
+       <para><xref linkend="ch-scripts-network" role="."/></para>
+     </listitem>
+     <listitem>
+       <para><xref linkend="ch-scripts-hosts" role="."/></para>
+     </listitem>
+  </itemizedlist>
+  
+  <para>第二步讨论可能影响正确的设备配置的问题。</para>
+
+  <itemizedlist>
+     <listitem>
+       <para><xref linkend="ch-scripts-udev" role="."/></para>
+     </listitem>
+     <listitem>
+       <para><xref linkend="ch-scripts-symlinks" role="."/></para>
+     </listitem>
+  </itemizedlist>
+
+  <para>接下来的几节详细解释如何安装和配置引导过程中需要的 LFS 系统脚本。其中多数脚本不需修改就能够工作，但是有几个需要额外的配置文件，因为它们要处理依赖硬件的信息。</para>
+  
+  <para>本书使用 System-V 风格的引导脚本，它们广泛使用并且相对简单。还可以选择 BSD 风格的引导脚本，它位于 <ulink url="&hints-root;bsd-init.txt"/>。在 LFS 邮件列表中搜索 <quote>depinit</quote>、<quote>upstart</quote> 或 <quote>systemd</quote> 也能够提供额外信息。</para>
+ 
+  <para>如果要使用另一种风格的引导脚本，跳过以下章节。</para>
+
+  <para>引导脚本列表位于 <xref linkend="scripts" role="."/>。</para>
+
+
+  <itemizedlist>
+     <listitem>
+       <para><xref linkend="ch-scripts-bootscripts" role="."/></para>
+     </listitem>
+     <listitem>
+       <para><xref linkend="ch-scripts-usage" role="."/></para>
+     </listitem>
+     <listitem>
+       <para><xref linkend="ch-scripts-hostname" role="."/></para>
+     </listitem>
+     <listitem>
+       <para><xref linkend="ch-scripts-setclock" role="."/></para>
+     </listitem>
+     <listitem>
+       <para><xref linkend="ch-scripts-console" role="."/></para>
+     </listitem>
+     <listitem>
+       <para><xref linkend="ch-scripts-sysklogd" role="."/></para>
+     </listitem>
+  </itemizedlist>
+  
+  
+  <para>最后我们简单介绍用户登录系统时使用的脚本和配置文件。</para>
+
+  <itemizedlist>
+     <listitem>
+       <para><xref linkend="ch-scripts-profile" role="."/></para>
+     </listitem>
+     <listitem>
+       <para><xref linkend="ch-scripts-inputrc" role="."/></para>
+     </listitem>
+  </itemizedlist>
+
+
+</sect1>

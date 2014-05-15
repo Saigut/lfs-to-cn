@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+  "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../general.ent">
+  %general-entities;
+]>
+
+<sect1 id="ch-finish-theend">
+  <?dbhtml filename="theend.html"?>
+
+  <title>结束</title>
+
+  <indexterm zone="ch-finish-theend">
+    <primary sortas="e-/etc/lfs-release">/etc/lfs-release</primary>
+  </indexterm>
+
+  <para>干得好！新的 LFS 系统已经安装完毕！我们祝愿您亲自定制的新系统取得成功。</para>
+
+  <para>创建 <filename>/etc/lfs-release</filename> 是一个好主意。有了这个文件，您就可以方便地获知安装的 LFS 版本 (当您求助时对我们也是如此)。如此创建这个文件：</para>
+
+<screen><userinput>echo &version; &gt; /etc/lfs-release</userinput></screen>
+
+  <para>创建一个文件显示您的系统符合 Linux 基础标准 (LSB) 也是一个好主意。要创建此文件，运行：</para>
+
+<screen><userinput>cat &gt; /etc/lsb-release &lt;&lt; "EOF"
+DISTRIB_ID="Linux From Scratch"
+DISTRIB_RELEASE="&version;"
+DISTRIB_CODENAME="&lt;Your Name&gt;"
+DISTRIB_DESCRIPTION="Linux From Scratch"
+EOF</userinput></screen>
+  
+  <para>为了把您的系统标识为独特的，一定记得在 'DISTRIB_CODENAME' 域中填入一个自定义的字符串。</para>
+
+</sect1>

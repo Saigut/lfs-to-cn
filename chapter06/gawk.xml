@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+  "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../general.ent">
+  %general-entities;
+]>
+
+<sect1 id="ch-system-gawk" role="wrap">
+  <?dbhtml filename="gawk.html"?>
+
+  <sect1info condition="script">
+    <productname>gawk</productname>
+    <productnumber>&gawk-version;</productnumber>
+    <address>&gawk-url;</address>
+  </sect1info>
+
+  <title>Gawk-&gawk-version;</title>
+
+  <indexterm zone="ch-system-gawk">
+    <primary sortas="a-Gawk">Gawk</primary>
+  </indexterm>
+
+  <sect2 role="package">
+    <title/>
+
+    <para>Gawk 程序包包含用于操作文本文件的程序。</para>
+
+    <segmentedlist>
+      <segtitle>&buildtime;</segtitle>
+      <segtitle>&diskspace;</segtitle>
+
+      <seglistitem>
+        <seg>&gawk-ch6-sbu;</seg>
+        <seg>&gawk-ch6-du;</seg>
+      </seglistitem>
+    </segmentedlist>
+
+  </sect2>
+
+  <sect2 role="installation">
+    <title>安装 Gawk</title>
+
+    <para>准备编译 Gawk：</para>
+
+<screen><userinput remap="configure">./configure --prefix=/usr --libexecdir=/usr/lib</userinput></screen>
+
+    <para>编译程序包：</para>
+
+<screen><userinput remap="make">make</userinput></screen>
+
+    <para>要测试结果，执行：</para>
+
+<screen><userinput remap="test">make check</userinput></screen>
+
+    <para>安装程序包：</para>
+
+<screen><userinput remap="install">make install</userinput></screen>
+
+    <para>如果需要，安装文档：</para>
+
+<screen><userinput remap="install">mkdir -v /usr/share/doc/gawk-&gawk-version;
+cp    -v doc/{awkforai.txt,*.{eps,pdf,jpg}} /usr/share/doc/gawk-&gawk-version;</userinput></screen>
+
+  </sect2>
+
+  <sect2 id="contents-gawk" role="content">
+    <title>Gawk 的内容</title>
+
+    <segmentedlist>
+      <segtitle>安装的程序</segtitle>
+      <segtitle>安装的目录</segtitle>
+
+      <seglistitem>
+        <seg>awk (到 gawk 的链接), dgawk, gawk, gawk-&gawk-version;, grcat, igawk, pgawk, pgawk-&gawk-version; 和 pwcat</seg>
+        <seg>/usr/lib/awk, /usr/share/awk</seg>
+      </seglistitem>
+    </segmentedlist>
+
+    <variablelist>
+      <bridgehead renderas="sect3">简介</bridgehead>
+      <?dbfo list-presentation="list"?>
+      <?dbhtml list-presentation="table"?>
+
+      <varlistentry id="awk">
+        <term><command>awk</command></term>
+        <listitem>
+          <para>到 <command>gawk</command> 的链接</para>
+          <indexterm zone="ch-system-gawk awk">
+            <primary sortas="b-awk">awk</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="dgawk">
+        <term><command>dgawk</command></term>
+        <listitem>
+          <para>awk 调试器</para>
+          <indexterm zone="ch-system-gawk dgawk">
+            <primary sortas="b-dgawk">dgawk</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="gawk">
+        <term><command>gawk</command></term>
+        <listitem>
+          <para>一个用于修改文本文件的程序；是 GNU 实现的 <command>awk</command></para>
+          <indexterm zone="ch-system-gawk gawk">
+            <primary sortas="b-gawk">gawk</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="gawk-version">
+        <term><command>gawk-&gawk-version;</command></term>
+        <listitem>
+          <para>到 <command>gawk</command> 的硬链接</para>
+          <indexterm zone="ch-system-gawk gawk-version">
+            <primary sortas="b-gawk-&gawk-version;">gawk-&gawk-version;</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="grcat">
+        <term><command>grcat</command></term>
+        <listitem>
+          <para>转储组数据库 <filename>/etc/group</filename></para>
+          <indexterm zone="ch-system-gawk grcat">
+            <primary sortas="b-grcat">grcat</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="igawk">
+        <term><command>igawk</command></term>
+        <listitem>
+          <para>给 <command>gawk</command> 提供包含文件的能力</para>
+          <indexterm zone="ch-system-gawk igawk">
+            <primary sortas="b-igawk">igawk</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="pgawk">
+        <term><command>pgawk</command></term>
+        <listitem>
+          <para><command>gawk</command> 的带分析版本</para>
+          <indexterm zone="ch-system-gawk pgawk">
+            <primary sortas="b-pgawk">pgawk</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="pgawk-version">
+        <term><command>pgawk-&gawk-version;</command></term>
+        <listitem>
+          <para>到 <command>pgawk</command> 的硬链接</para>
+          <indexterm zone="ch-system-gawk pgawk-version">
+            <primary sortas="b-pgawk-&gawk-version;">pgawk-&gawk-version;</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="pwcat">
+        <term><command>pwcat</command></term>
+        <listitem>
+          <para>转储密码数据库 <filename>/etc/passwd</filename></para>
+          <indexterm zone="ch-system-gawk pwcat">
+            <primary sortas="b-pwcat">pwcat</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+    </variablelist>
+
+  </sect2>
+
+</sect1>

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+  "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../general.ent">
+  %general-entities;
+]>
+
+<sect1 id="ch-system-zlib" role="wrap">
+  <?dbhtml filename="zlib.html"?>
+
+  <sect1info condition="script">
+    <productname>zlib</productname>
+    <productnumber>&zlib-version;</productnumber>
+    <address>&zlib-url;</address>
+  </sect1info>
+
+  <title>Zlib-&zlib-version;</title>
+
+  <indexterm zone="ch-system-zlib">
+    <primary sortas="a-Zlib">Zlib</primary>
+  </indexterm>
+
+  <sect2 role="package">
+    <title/>
+
+    <para>Zlib 程序包包含某些程序使用的压缩和解压缩途径。</para>
+
+    <segmentedlist>
+      <segtitle>&buildtime;</segtitle>
+      <segtitle>&diskspace;</segtitle>
+
+      <seglistitem>
+        <seg>&zlib-ch6-sbu;</seg>
+        <seg>&zlib-ch6-du;</seg>
+      </seglistitem>
+    </segmentedlist>
+
+  </sect2>
+
+  <sect2 role="installation">
+    <title>安装 Zlib</title>
+
+    <para>准备编译 Zlib：</para>
+
+<screen><userinput remap="configure">./configure --prefix=/usr</userinput></screen>
+
+    <para>编译程序包：</para>
+
+<screen><userinput remap="make">make</userinput></screen>
+
+    <para>要测试结果，执行：</para>
+
+<screen><userinput remap="test">make check</userinput></screen>
+
+    <para>安装程序包：</para>
+
+<screen><userinput remap="install">make install</userinput></screen>
+
+    <para>共享库需要移动到 <filename class="directory">/lib</filename>，所以位于 <filename class="directory">/usr/lib</filename> 的, <filename class="extension">.so</filename> 文件需要重新创建：</para>
+
+<screen><userinput remap="install">mv -v /usr/lib/libz.so.* /lib
+ln -sfv ../../lib/libz.so.&zlib-version; /usr/lib/libz.so</userinput></screen>
+
+  </sect2>
+
+  <sect2 id="contents-zlib" role="content">
+    <title>Zlib 的内容</title>
+
+    <segmentedlist>
+      <segtitle>安装的库</segtitle>
+
+      <seglistitem>
+        <seg>libz.{a,so}</seg>
+      </seglistitem>
+    </segmentedlist>
+
+    <variablelist>
+      <bridgehead renderas="sect3">简介</bridgehead>
+      <?dbfo list-presentation="list"?>
+      <?dbhtml list-presentation="table"?>
+
+      <varlistentry id="libz">
+        <term><filename class="libraryfile">libz</filename></term>
+        <listitem>
+          <para>包含用于某些程序使用的压缩和解压缩函数</para>
+          <indexterm zone="ch-system-zlib libz">
+            <primary sortas="c-libz">libz</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+    </variablelist>
+
+  </sect2>
+
+</sect1>

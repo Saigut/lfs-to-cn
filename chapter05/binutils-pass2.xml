@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+  "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../general.ent">
+  %general-entities;
+]>
+
+<sect1 id="ch-tools-binutils-pass2" role="wrap">
+  <?dbhtml filename="binutils-pass2.html"?>
+
+  <sect1info condition="script">
+    <productname>binutils</productname>
+    <productnumber>&binutils-version;</productnumber>
+    <address>&binutils-url;</address>
+  </sect1info>
+
+  <title>Binutils-&binutils-version; - 第二遍</title>
+
+  <indexterm zone="ch-tools-binutils-pass2">
+    <primary sortas="a-Binutils">Binutils</primary>
+    <secondary>工具、第二遍</secondary>
+  </indexterm>
+
+  <sect2 role="package">
+    <title/>
+
+    <xi:include xmlns:xi="http://www.w3.org/2001/XInclude"
+    href="../chapter06/binutils.xml"
+    xpointer="xpointer(/sect1/sect2[1]/para[1])"/>
+
+    <segmentedlist>
+      <segtitle>&buildtime;</segtitle>
+      <segtitle>&diskspace;</segtitle>
+
+      <seglistitem>
+        <seg>&binutils-ch5p2-sbu;</seg>
+        <seg>&binutils-ch5p2-du;</seg>
+      </seglistitem>
+    </segmentedlist>
+
+  </sect2>
+
+  <sect2 role="installation">
+    <title>安装 Binutils</title>
+    
+    <para>再创建一个独立的编制目录：</para>
+
+<screen><userinput remap="pre">mkdir -v ../binutils-build
+cd ../binutils-build</userinput></screen>
+
+    <para>准备编译 Binutils：</para>
+
+<screen><userinput remap="configure">CC=$LFS_TGT-gcc            \
+AR=$LFS_TGT-ar             \
+RANLIB=$LFS_TGT-ranlib     \
+../binutils-&binutils-version;/configure \
+    --prefix=/tools        \
+    --disable-nls          \
+    --with-lib-path=/tools/lib</userinput></screen>
+
+    <variablelist>
+      <title>新的配置选项的含义：</title>
+
+      <varlistentry>
+        <term><parameter>CC=$LFS_TGT-gcc AR=$LFS_TGT-ar RANLIB=$LFS_TGT-ranlib</parameter></term>
+        <listitem>
+          <para>因为这一次是原生编制 Binutils，设置这些变量可以确保编制系统使用交叉编译器和相关工具而不是宿主系统上的工具。</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><parameter>--with-lib-path=/tools/lib</parameter></term>
+        <listitem>
+          <para>此项告诉配置脚本在 Binutils 编译期间指定库搜索路径，使得 <filename class="directory">/tools/lib</filename> 传递给链接器。这就防止了链接器搜索宿主上的库目录。</para>
+        </listitem>
+      </varlistentry>
+
+    </variablelist>
+
+    <para>编译程序包：</para>
+
+<screen><userinput remap="make">make</userinput></screen>
+
+    <para>安装程序包：</para>
+
+<screen><userinput remap="install">make install</userinput></screen>
+
+    <para>现在为了下一章中的 <quote>重新调节</quote> 一节准备链接器：</para>
+
+<screen><userinput remap="adjust">make -C ld clean
+make -C ld LIB_PATH=/usr/lib:/lib
+cp -v ld/ld-new /tools/bin</userinput></screen>
+
+    <variablelist>
+      <title>make 参数的含义：</title>
+
+      <varlistentry>
+        <term><parameter>-C ld clean</parameter></term>
+        <listitem>
+          <para>此项告诉 make 程序移除 <filename class="directory">ld</filename> 子目录中所有编译产生的文件。</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><parameter>-C ld LIB_PATH=/usr/lib:/lib</parameter></term>
+        <listitem>
+          <para>此项重新编制 <filename class="directory">ld</filename> 子目录中的一切。在命令行中指定 <envar>LIB_PATH</envar> Makefile 变量允许我门覆盖临时工具的默认值并指向正确的最终路径。此变量的值指定了链接器默认的库搜索路径。这项准备工作在下一章中用到。</para>
+        </listitem>
+      </varlistentry>
+
+    </variablelist>
+
+  </sect2>
+
+  <sect2 role="content">
+    <title/>
+
+    <para>有关此程序包的细节位于 <xref linkend="contents-binutils"/>。</para>
+
+  </sect2>
+
+</sect1>

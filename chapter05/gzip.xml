@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+  "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../general.ent">
+  %general-entities;
+]>
+
+<sect1 id="ch-tools-gzip" role="wrap">
+  <?dbhtml filename="gzip.html"?>
+
+  <sect1info condition="script">
+    <productname>gzip</productname>
+    <productnumber>&gzip-version;</productnumber>
+    <address>&gzip-url;</address>
+  </sect1info>
+
+  <title>Gzip-&gzip-version;</title>
+
+  <indexterm zone="ch-tools-gzip">
+    <primary sortas="a-Gzip">Gzip</primary>
+    <secondary>工具</secondary>
+  </indexterm>
+
+  <sect2 role="package">
+    <title/>
+
+    <xi:include xmlns:xi="http://www.w3.org/2001/XInclude"
+    href="../chapter06/gzip.xml"
+    xpointer="xpointer(/sect1/sect2[1]/para[1])"/>
+
+    <segmentedlist>
+      <segtitle>&buildtime;</segtitle>
+      <segtitle>&diskspace;</segtitle>
+
+      <seglistitem>
+        <seg>&gzip-ch5-sbu;</seg>
+        <seg>&gzip-ch5-du;</seg>
+      </seglistitem>
+    </segmentedlist>
+
+  </sect2>
+
+  <sect2 role="installation">
+    <title>安装 Gzip</title>
+
+    <para>准备编译 Gzip：</para>
+
+<screen><userinput remap="configure">./configure --prefix=/tools</userinput></screen>
+
+    <para>编译程序包：</para>
+
+<screen><userinput remap="make">make</userinput></screen>
+
+    <para>编译现在完成了。前面讨论过，没有必要在这一章中给临时工具运行测试套件。如果无论如何要运行 Gzip 的测试套件，执行以下指令：</para>
+
+<screen><userinput remap="test">make check</userinput></screen>
+
+    <para>安装程序包：</para>
+
+<screen><userinput remap="install">make install</userinput></screen>
+
+  </sect2>
+
+  <sect2 role="content">
+    <title/>
+
+    <para>有关此程序包的细节位于 <xref linkend="contents-gzip"/>。</para>
+
+  </sect2>
+
+</sect1>

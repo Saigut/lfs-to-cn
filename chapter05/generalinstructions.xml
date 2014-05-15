@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+  "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../general.ent">
+  %general-entities;
+]>
+
+<sect1 id="ch-tools-generalinstructions">
+  <?dbhtml filename="generalinstructions.html"?>
+
+  <title>通用编译指令</title>
+
+  <para>在编制程序包时，指令中包含几个前提：</para>
+
+  <itemizedlist>
+
+  <listitem>
+    <para>有几个程序包在编译之前要打补丁，但是只是在需要它来解决问题时才要求如此做。在本章和下一章中通常都会用到补丁。因此，如果下载的某个补丁对应的指令似乎丢失，不要困扰。有关 <emphasis role="strong">offset</emphasis> 或者 <emphasis role="strong">fuzz</emphasis> 的警告信息可能在应用补丁的时候也会遇到。不要担心，补丁依然成功应用了。</para>
+  </listitem>
+
+  <listitem>
+    <para>编译多数程序包时，会有一些警告在屏幕上滚动。这很正常，可以安全地忽略。这些警告如它们所说&mdash;&mdash;有关不推荐但并非不可用的 C 或 C++ 语法。C 标准经常变更，有的程序包仍然使用旧的标准。这不是问题，但确实会产生警告。</para>
+  </listitem>
+
+  <listitem>
+    <para>最后检查一次 <envar>LFS</envar> 环境变量是否设置正确：</para>
+
+<screen role="nodump"><userinput>echo $LFS</userinput></screen>
+
+    <para>确保输出显示的是到 LFS 分区挂载点的路径，在我们的例子中是 <filename class="directory">/mnt/lfs</filename>。</para>
+  </listitem>
+
+  <listitem>
+
+    <para>最后强调两点：</para>
+
+    <important>
+        <para>编制指令认为 <xref linkend='pre-hostreqs'/>，包括符号链接，已经被正确设置：</para>
+        
+        <itemizedlist role='important'>
+            
+            <listitem override='bullet'><para><command>bash</command> 是正在使用的 shell。</para></listitem>
+            
+            <listitem override='bullet'><para><command>sh</command> 是一个到 <command>bash</command> 的符号链接。</para></listitem>
+            
+            <listitem override='bullet'><para><command>/usr/bin/awk</command> 是一个到 <command>gawk</command> 的符号链接。</para></listitem>
+            
+            <listitem override='bullet'><para><command>/usr/bin/yacc</command> 是一个到 <command>bison</command> 或一个运行 bison 的小脚本的符号链接。</para></listitem>
+            
+        </itemizedlist>
+    </important>
+
+    <important>
+      <para>重新强调编制进程：</para>
+
+      <orderedlist numeration="arabic" spacing="compact">
+        <listitem>
+          <para>把所有的源代码和补丁放在 <command>chroot</command> 环境以内的一个目录，比如 <filename class="directory">/mnt/lfs/sources/</filename>。<emphasis role="strong">不要</emphasis>把源代码放在 <filename class="directory">/mnt/lfs/tools/</filename> 中。</para>
+        </listitem>
+        <listitem>
+          <para>变更至源代码目录。</para>
+        </listitem>
+        <listitem id='buildinstr' xreflabel='程序包编制指令'>
+          <para>对于每个程序包：</para>
+          <orderedlist numeration="loweralpha" spacing="compact">
+            <listitem>
+              <para>使用 <command>tar</command> 程序，提取要编制的程序包。在第五章中，确保作为 <emphasis>lfs</emphasis> 用户提取程序包。</para>
+            </listitem>
+            <listitem>
+              <para>变更至提取程序包时创建的目录。</para>
+            </listitem>
+            <listitem>
+              <para>按本书中的指令编制程序包。</para>
+            </listitem>
+            <listitem>
+              <para>变更回源代码目录。</para>
+            </listitem>
+            <listitem>
+              <para>除非另外说明，删除提取出的源代码目录和任何在编制进程中创建的 <filename class="directory"><replaceable>&lt;package&gt;</replaceable>-build</filename> 目录。</para>
+            </listitem>
+          </orderedlist>
+        </listitem>
+      </orderedlist>
+    </important>
+  </listitem>
+
+  </itemizedlist>
+
+</sect1>

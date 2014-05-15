@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+  "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../general.ent">
+  %general-entities;
+]>
+
+<sect1 id="ch-system-man-pages" role="wrap">
+  <?dbhtml filename="man-pages.html"?>
+
+  <sect1info condition="script">
+    <productname>man-pages</productname>
+    <productnumber>&man-pages-version;</productnumber>
+    <address>&man-pages-url;</address>
+  </sect1info>
+
+  <title>Man-pages-&man-pages-version;</title>
+
+  <indexterm zone="ch-system-man-pages">
+    <primary sortas="a-Man-pages">Man-pages</primary>
+  </indexterm>
+
+  <sect2 role="package">
+    <title/>
+
+    <para>Man-pages 程序包包含超过 1900 个手册页面。</para>
+
+    <segmentedlist>
+      <segtitle>&buildtime;</segtitle>
+      <segtitle>&diskspace;</segtitle>
+
+      <seglistitem>
+        <seg>&man-pages-ch6-sbu;</seg>
+        <seg>&man-pages-ch6-du;</seg>
+      </seglistitem>
+    </segmentedlist>
+
+  </sect2>
+
+  <sect2 role="installation">
+    <title>安装 Man-pages</title>
+
+    <para>运行以下命令安装 Man-pages：</para>
+
+<screen><userinput remap="install">make install</userinput></screen>
+
+  </sect2>
+
+  <sect2 id="contents-manpages" role="content">
+    <title>Man-pages 的内容</title>
+
+    <segmentedlist>
+      <segtitle>安装的文件</segtitle>
+
+      <seglistitem>
+        <seg>不同的手册页面</seg>
+      </seglistitem>
+    </segmentedlist>
+
+    <variablelist>
+      <bridgehead renderas="sect3">简介</bridgehead>
+      <?dbfo list-presentation="list"?>
+      <?dbhtml list-presentation="table"?>
+
+      <varlistentry id="man-pages">
+        <term><filename>man pages</filename></term>
+        <listitem>
+          <para>描述 C 语言的函数、重要的设备文件和配置文件</para>
+          <indexterm zone="ch-system-man-pages man-pages">
+            <primary sortas="e-man-pages">手册页</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+    </variablelist>
+
+  </sect2>
+
+</sect1>

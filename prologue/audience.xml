@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+  "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../general.ent">
+  %general-entities;
+]>
+
+<sect1 id="pre-audience">
+  <?dbhtml filename="audience.html"?>
+
+  <title>读者</title>
+
+<para>您要阅读这本书可能会有很多原因。很多人会问这样一个问题：<quote>为什么只要下载安装一个存在的 Linux 系统就行，却非要克服所有困难去从头编制一个？</quote></para>
+
+<para>这个工程存在的一个重要目的就是帮您由内而外学习 Linux 系统如何工作。编制一套 LFS 系统会帮助您了解是什么使 Linux 能够运转，这些东西又是如何协同工作并相互依赖的。这种学习经历所提供的最大的好处之一就是定制一个 Linux 系统来满足自己的独特需求的能力。</para>
+
+<para>LFS 的另一个关键的益处就是允许您更多地控制系统而不必依赖别人的 Linux 实现。有了 LFS，您亲自坐在驾驶位上来支配系统的每个层面。</para>
+
+<para>LFS 允许您创建非常紧凑的 Linux 系统。安装常规发行版的时候，您经常要被迫安装大量可能永远不会被理解和使用的程序。这些程序浪费资源。您可能要反驳说有当今强大的硬盘和 CPU，这样的资源不必再考虑了。然而有的时候，您却至少仍被尺寸限制着。想一想可引导 CD、优盘和嵌入式系统。这都是 LFS 可以应用的地方。</para>
+
+<para>定制 Linux 系统的另一个优势就是安全。通过从源代码编译整个系统，您能够审查一切并应用所有需要的安全补丁。不必再等待别人来编译二进制程序包修复安全漏洞了。除非自己检查和实现补丁，您无法绝对保证新的二进制程序正确编制并能准确修复问题。</para>
+
+<para>LFS 的目标是编制一个完整并且可用的底层系统。您如果没打算编制自己的 LFS 系统，可能就无法从本书提供的信息中获益。</para>
+
+<para>编制自己的 LFS 系统还有许多好的原因，在此就不一一列举了。说到底，教育才是最关键的因素。当您继续 LFS 经历的时候，您就会明白信息和知识带来的力量究竟有多大了。</para>
+
+</sect1>
+

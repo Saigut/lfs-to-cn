@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+  "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../general.ent">
+  %general-entities;
+]>
+
+<sect1 id="ch-system-diffutils" role="wrap">
+  <?dbhtml filename="diffutils.html"?>
+
+  <sect1info condition="script">
+    <productname>diffutils</productname>
+    <productnumber>&diffutils-version;</productnumber>
+    <address>&diffutils-url;</address>
+  </sect1info>
+
+  <title>Diffutils-&diffutils-version;</title>
+
+  <indexterm zone="ch-system-diffutils">
+    <primary sortas="a-Diffutils">Diffutils</primary>
+  </indexterm>
+
+  <sect2 role="package">
+    <title/>
+
+    <para>Diffutils 程序包包含用于显示文件或目录之间差异的程序。</para>
+
+    <segmentedlist>
+      <segtitle>&buildtime;</segtitle>
+      <segtitle>&diskspace;</segtitle>
+
+      <seglistitem>
+        <seg>&diffutils-ch6-sbu;</seg>
+        <seg>&diffutils-ch6-du;</seg>
+      </seglistitem>
+    </segmentedlist>
+
+  </sect2>
+
+  <sect2 role="installation">
+    <title>安装 Diffutils</title>
+
+    <para>修复此程序包与 Glibc-&glibc-version; 不兼容的问题：</para>
+
+<screen><userinput remap="pre">sed -i -e '/gets is a/d' lib/stdio.in.h</userinput></screen>
+
+    <para>准备编译 Diffutils：</para>
+
+<screen><userinput remap="configure">./configure --prefix=/usr</userinput></screen>
+
+    <para>编译程序包：</para>
+
+<screen><userinput remap="make">make</userinput></screen>
+
+    <para>要测试结果，执行：</para>
+
+<screen><userinput remap="test">make check</userinput></screen>
+
+    <para>安装程序包：</para>
+
+<screen><userinput remap="install">make install</userinput></screen>
+
+  </sect2>
+
+
+  <sect2 id="contents-diffutils" role="content">
+    <title>Diffutils 的内容</title>
+
+    <segmentedlist>
+      <segtitle>安装的程序</segtitle>
+
+      <seglistitem>
+        <seg>cmp, diff, diff3 和 sdiff</seg>
+      </seglistitem>
+    </segmentedlist>
+
+    <variablelist>
+      <bridgehead renderas="sect3">简介</bridgehead>
+      <?dbfo list-presentation="list"?>
+      <?dbhtml list-presentation="table"?>
+
+      <varlistentry id="cmp">
+        <term><command>cmp</command></term>
+        <listitem>
+          <para>比较两个文本文件，按字节输出差异</para>
+          <indexterm zone="ch-system-diffutils cmp">
+            <primary sortas="b-cmp">cmp</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="diff">
+        <term><command>diff</command></term>
+        <listitem>
+          <para>比较两个文本文件，按行输出差异</para>
+          <indexterm zone="ch-system-diffutils diff">
+            <primary sortas="b-diff">diff</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="diff3">
+        <term><command>diff3</command></term>
+        <listitem>
+            <para>逐行比较三个文件</para>
+            <indexterm zone="ch-system-diffutils diff3">
+              <primary sortas="b-diff3">diff3</primary>
+            </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="sdiff">
+        <term><command>sdiff</command></term>
+        <listitem>
+          <para>融合两个文件，交互输出结果</para>
+          <indexterm zone="ch-system-diffutils sdiff">
+            <primary sortas="b-sdiff">sdiff</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+    </variablelist>
+
+  </sect2>
+
+</sect1>

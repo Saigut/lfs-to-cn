@@ -1,0 +1,615 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+  "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../general.ent">
+  %general-entities;
+]>
+
+<sect1 id="materials-packages">
+  <?dbhtml filename="packages.html"?>
+
+  <title>所有程序包</title>
+
+  <para>下载或获取以下程序包：</para>
+
+  <variablelist role="materials">
+
+    <varlistentry>
+      <term>Autoconf (&autoconf-version;) - <token>&autoconf-size;</token>:</term>
+      <listitem>
+        <para>主页：<ulink url="&autoconf-home;"/></para>
+        <para>下载：<ulink url="&autoconf-url;"/></para>
+        <para>MD5 指纹码：<literal>&autoconf-md5;</literal></para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term>Automake (&automake-version;) - <token>&automake-size;</token>:</term>
+      <listitem>
+        <para>主页：<ulink url="&automake-home;"/></para>
+        <para>下载：<ulink url="&automake-url;"/></para>
+        <para>MD5 指纹码：<literal>&automake-md5;</literal></para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term>Bash (&bash-version;) - <token>&bash-size;</token>:</term>
+      <listitem>
+        <para>主页：<ulink url="&bash-home;"/></para>
+        <para>下载：<ulink url="&bash-url;"/></para>
+        <para>MD5 指纹码：<literal>&bash-md5;</literal></para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term>Binutils (&binutils-version;) - <token>&binutils-size;</token>:</term>
+      <listitem>
+        <para>主页：<ulink url="&binutils-home;"/></para>
+        <para>下载：<ulink url="&binutils-url;"/></para>
+        <para>MD5 指纹码：<literal>&binutils-md5;</literal></para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term>Bison (&bison-version;) - <token>&bison-size;</token>:</term>
+      <listitem>
+        <para>主页：<ulink url="&bison-home;"/></para>
+        <para>下载：<ulink url="&bison-url;"/></para>
+        <para>MD5 指纹码：<literal>&bison-md5;</literal></para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term>Bzip2 (&bzip2-version;) - <token>&bzip2-size;</token>:</term>
+      <listitem>
+        <para>主页：<ulink url="&bzip2-home;"/></para>
+        <para>下载：<ulink url="&bzip2-url;"/></para>
+        <para>MD5 指纹码：<literal>&bzip2-md5;</literal></para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term>Check (&check-version;) - <token>&check-size;</token>:</term>
+      <listitem>
+        <para>主页：<ulink url="&check-home;"/></para>
+        <para>下载：<ulink url="&check-url;"/></para>
+        <para>MD5 指纹码：<literal>&check-md5;</literal></para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term>Coreutils (&coreutils-version;) - <token>&coreutils-size;</token>:</term>
+      <listitem>
+        <para>主页：<ulink url="&coreutils-home;"/></para>
+        <para>下载：<ulink url="&coreutils-url;"/></para>
+        <para>MD5 指纹码：<literal>&coreutils-md5;</literal></para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term>DejaGNU (&dejagnu-version;) - <token>&dejagnu-size;</token>:</term>
+      <listitem>
+        <para>主页：<ulink url="&dejagnu-home;"/></para>
+        <para>下载：<ulink url="&dejagnu-url;"/></para>
+        <para>MD5 指纹码：<literal>&dejagnu-md5;</literal></para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term>Diffutils (&diffutils-version;) - <token>&diffutils-size;</token>:</term>
+      <listitem>
+        <para>主页：<ulink url="&diffutils-home;"/></para>
+        <para>下载：<ulink url="&diffutils-url;"/></para>
+        <para>MD5 指纹码：<literal>&diffutils-md5;</literal></para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term>E2fsprogs (&e2fsprogs-version;) - <token>&e2fsprogs-size;</token>:</term>
+      <listitem>
+        <para>主页：<ulink url="&e2fsprogs-home;"/></para>
+        <para>下载：<ulink url="&e2fsprogs-url;"/></para>
+        <para>MD5 指纹码：<literal>&e2fsprogs-md5;</literal></para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term>Expect (&expect-version;) - <token>&expect-size;</token>:</term>
+      <listitem>
+        <para>主页：<ulink url="&expect-home;"/></para>
+        <para>下载：<ulink url="&expect-url;"/></para>
+        <para>MD5 指纹码：<literal>&expect-md5;</literal></para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term>File (&file-version;) - <token>&file-size;</token>:</term>
+      <listitem>
+        <para>主页：<ulink url="&file-home;"/></para>
+        <para>下载：<ulink url="&file-url;"/></para>
+        <para>MD5 指纹码：<literal>&file-md5;</literal></para>
+
+        <note>
+          <para>File (&file-version;) 可能在列出的地方不可用。主下载位置的站点管理员偶尔会在新版本发布时移除旧版本。在 <ulink url="http://www.linuxfromscratch.org/lfs/download.html#ftp">这里</ulink> 可以找到替代地址：</para>
+        </note>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term>Findutils (&findutils-version;) - <token>&findutils-size;</token>:</term>
+      <listitem>
+        <para>主页：<ulink url="&findutils-home;"/></para>
+        <para>下载：<ulink url="&findutils-url;"/></para>
+        <para>MD5 指纹码：<literal>&findutils-md5;</literal></para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term>Flex (&flex-version;) - <token>&flex-size;</token>:</term>
+      <listitem>
+        <para>主页：<ulink url="&flex-home;"/></para>
+        <para>下载：<ulink url="&flex-url;"/></para>
+        <para>MD5 指纹码：<literal>&flex-md5;</literal></para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term>Gawk (&gawk-version;) - <token>&gawk-size;</token>:</term>
+      <listitem>
+        <para>主页：<ulink url="&gawk-home;"/></para>
+        <para>下载：<ulink url="&gawk-url;"/></para>
+        <para>MD5 指纹码：<literal>&gawk-md5;</literal></para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term>GCC (&gcc-version;) - <token>&gcc-size;</token>:</term>
+      <listitem>
+        <para>主页：<ulink url="&gcc-home;"/></para>
+        <para>下载：<ulink url="&gcc-url;"/></para>
+        <para>MD5 指纹码：<literal>&gcc-md5;</literal></para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term>GDBM (&gdbm-version;) - <token>&gdbm-size;</token>:</term>
+      <listitem>
+        <para>主页：<ulink url="&gdbm-home;"/></para>
+        <para>下载：<ulink url="&gdbm-url;"/></para>
+        <para>MD5 指纹码：<literal>&gdbm-md5;</literal></para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term>Gettext (&gettext-version;) - <token>&gettext-size;</token>:</term>
+      <listitem>
+        <para>主页：<ulink url="&gettext-home;"/></para>
+        <para>下载：<ulink url="&gettext-url;"/></para>
+        <para>MD5 指纹码：<literal>&gettext-md5;</literal></para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term>Glibc (&glibc-version;) - <token>&glibc-size;</token>:</term>
+      <listitem>
+        <para>主页：<ulink url="&glibc-home;"/></para>
+        <para>下载：<ulink url="&glibc-url;"/></para>
+        <para>MD5 指纹码：<literal>&glibc-md5;</literal></para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term>GMP (&gmp-version;) - <token>&gmp-size;</token>:</term>
+      <listitem>
+        <para>主页：<ulink url="&gmp-home;"/></para>
+        <para>下载：<ulink url="&gmp-url;"/></para>
+        <para>MD5 指纹码：<literal>&gmp-md5;</literal></para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term>Grep (&grep-version;) - <token>&grep-size;</token>:</term>
+      <listitem>
+        <para>主页：<ulink url="&grep-home;"/></para>
+        <para>下载：<ulink url="&grep-url;"/></para>
+        <para>MD5 指纹码：<literal>&grep-md5;</literal></para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term>Groff (&groff-version;) - <token>&groff-size;</token>:</term>
+      <listitem>
+        <para>主页：<ulink url="&groff-home;"/></para>
+        <para>下载：<ulink url="&groff-url;"/></para>
+        <para>MD5 指纹码：<literal>&groff-md5;</literal></para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term>GRUB (&grub-version;) - <token>&grub-size;</token>:</term>
+      <listitem>
+        <para>主页：<ulink url="&grub-home;"/></para>
+        <para>下载：<ulink url="&grub-url;"/></para>
+        <para>MD5 指纹码：<literal>&grub-md5;</literal></para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term>Gzip (&gzip-version;) - <token>&gzip-size;</token>:</term>
+      <listitem>
+        <para>主页：<ulink url="&gzip-home;"/></para>
+        <para>下载：<ulink url="&gzip-url;"/></para>
+        <para>MD5 指纹码：<literal>&gzip-md5;</literal></para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term>Iana-Etc (&iana-etc-version;) - <token>&iana-etc-size;</token>:</term>
+      <listitem>
+        <para>主页：<ulink url="&iana-etc-home;"/></para>
+        <para>下载：<ulink url="&iana-etc-url;"/></para>
+        <para>MD5 指纹码：<literal>&iana-etc-md5;</literal></para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term>Inetutils (&inetutils-version;) - <token>&inetutils-size;</token>:</term>
+      <listitem>
+        <para>主页：<ulink url="&inetutils-home;"/></para>
+        <para>下载：<ulink url="&inetutils-url;"/></para>
+        <para>MD5 指纹码：<literal>&inetutils-md5;</literal></para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term>IPRoute2 (&iproute2-version;) - <token>&iproute2-size;</token>:</term>
+      <listitem>
+        <para>主页：<ulink url="&iproute2-home;"/></para>
+        <para>下载：<ulink url="&iproute2-url;"/></para>
+        <para>MD5 指纹码：<literal>&iproute2-md5;</literal></para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term>Kbd (&kbd-version;) - <token>&kbd-size;</token>:</term>
+      <listitem>
+        <para>主页：<ulink url="&kbd-home;"/></para>
+        <para>下载：<ulink url="&kbd-url;"/></para>
+        <para>MD5 指纹码：<literal>&kbd-md5;</literal></para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term>Kmod (&kmod-version;) - <token>&kmod-size;</token>:</term>
+      <listitem>
+        <para>主页：<ulink url="&kmod-home;"/></para>
+        <para>下载：<ulink url="&kmod-url;"/></para>
+        <para>MD5 指纹码：<literal>&kmod-md5;</literal></para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term>Less (&less-version;) - <token>&less-size;</token>:</term>
+      <listitem>
+        <para>主页：<ulink url="&less-home;"/></para>
+        <para>下载：<ulink url="&less-url;"/></para>
+        <para>MD5 指纹码：<literal>&less-md5;</literal></para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term>LFS-Bootscripts (&lfs-bootscripts-version;) - <token>&lfs-bootscripts-size;</token>:</term>
+      <listitem>
+        <para>主页：<ulink url="&lfs-bootscripts-home;"/></para>
+        <para>下载：<ulink url="&lfs-bootscripts-url;"/></para>
+        <para>MD5 指纹码：<literal>&lfs-bootscripts-md5;</literal></para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term>Libpipeline (&libpipeline-version;) - <token>&libpipeline-size;</token>:</term>
+      <listitem>
+        <para>主页：<ulink url="&libpipeline-home;"/></para>
+        <para>下载：<ulink url="&libpipeline-url;"/></para>
+        <para>MD5 指纹码：<literal>&libpipeline-md5;</literal></para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term>Libtool (&libtool-version;) - <token>&libtool-size;</token>:</term>
+      <listitem>
+        <para>主页：<ulink url="&libtool-home;"/></para>
+        <para>下载：<ulink url="&libtool-url;"/></para>
+        <para>MD5 指纹码：<literal>&libtool-md5;</literal></para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term>Linux (&linux-version;) - <token>&linux-size;</token>:</term>
+      <listitem>
+        <para>主页：<ulink url="&linux-home;"/></para>
+        <para>下载：<ulink url="&linux-url;"/></para>
+        <para>MD5 指纹码：<literal>&linux-md5;</literal></para>
+
+        <note>
+          <para>Linux 内核相对经常更新，经常是因为发现了新的安全弱点。只要勘误表没有声明，总应该使用最新的 &linux-major-version;.&linux-minor-version;.x 内核版本。</para>
+
+          <para>对于速度受限或者带宽昂贵的用户，想要升级 Linux 内核，可以分别下载程序包的基线版本和补丁。这可能会节省一些时间或开销。</para>
+
+        </note>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term>M4 (&m4-version;) - <token>&m4-size;</token>:</term>
+      <listitem>
+        <para>主页：<ulink url="&m4-home;"/></para>
+        <para>下载：<ulink url="&m4-url;"/></para>
+        <para>MD5 指纹码：<literal>&m4-md5;</literal></para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term>Make (&make-version;) - <token>&make-size;</token>:</term>
+      <listitem>
+        <para>主页：<ulink url="&make-home;"/></para>
+        <para>下载：<ulink url="&make-url;"/></para>
+        <para>MD5 指纹码：<literal>&make-md5;</literal></para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term>Man-DB (&man-db-version;) - <token>&man-db-size;</token>:</term>
+      <listitem>
+        <para>主页：<ulink url="&man-db-home;"/></para>
+        <para>下载：<ulink url="&man-db-url;"/></para>
+        <para>MD5 指纹码：<literal>&man-db-md5;</literal></para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term>Man-pages (&man-pages-version;) - <token>&man-pages-size;</token>:</term>
+      <listitem>
+        <para>主页：<ulink url="&man-pages-home;"/></para>
+        <para>下载：<ulink url="&man-pages-url;"/></para>
+        <para>MD5 指纹码：<literal>&man-pages-md5;</literal></para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term>MPC (&mpc-version;) - <token>&mpc-size;</token>:</term>
+      <listitem>
+        <para>主页：<ulink url="&mpc-home;"/></para>
+        <para>下载：<ulink url="&mpc-url;"/></para>
+        <para>MD5 指纹码：<literal>&mpc-md5;</literal></para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term>MPFR (&mpfr-version;) - <token>&mpfr-size;</token>:</term>
+      <listitem>
+        <para>主页：<ulink url="&mpfr-home;"/></para>
+        <para>下载：<ulink url="&mpfr-url;"/></para>
+        <para>MD5 指纹码：<literal>&mpfr-md5;</literal></para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term>Ncurses (&ncurses-version;) - <token>&ncurses-size;</token>:</term>
+      <listitem>
+        <para>主页：<ulink url="&ncurses-home;"/></para>
+        <para>下载：<ulink url="&ncurses-url;"/></para>
+        <para>MD5 指纹码：<literal>&ncurses-md5;</literal></para>
+      </listitem>
+    </varlistentry>
+
+    <!-- FIXME:
+    <varlistentry>
+      <term>Ncurses Rollup Patch (&ncurses-date;) - 328 KB:</term>
+      <listitem>
+        <para><ulink url="ftp://invisible-island.net/ncurses/&ncurses-version;/"/></para>
+
+        <note>
+          <para>Ncurses Rollup Patch (&ncurses-date;) may no longer be available
+          at the listed location. The site administrators of the master download
+          location occasionally remove older versions when new ones are released.
+          There is no alternative download location yet.</para>
+        </note>
+      </listitem>
+    </varlistentry>
+    -->
+
+    <varlistentry>
+      <term>Patch (&patch-version;) - <token>&patch-size;</token>:</term>
+      <listitem>
+        <para>主页：<ulink url="&patch-home;"/></para>
+        <para>下载：<ulink url="&patch-url;"/></para>
+        <para>MD5 指纹码：<literal>&patch-md5;</literal></para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term>Perl (&perl-version;) - <token>&perl-size;</token>:</term>
+      <listitem>
+        <para>主页：<ulink url="&perl-home;"/></para>
+        <para>下载：<ulink url="&perl-url;"/></para>
+        <para>MD5 指纹码：<literal>&perl-md5;</literal></para>
+      </listitem>
+    </varlistentry>
+    
+    <varlistentry>
+      <term>Pkg-config (&pkgconfig-version;) - <token>&pkgconfig-size;</token>:</term>
+      <listitem>
+        <para>主页：<ulink url="&pkgconfig-home;"/></para>
+        <para>下载：<ulink url="&pkgconfig-url;"/></para>
+        <para>MD5 指纹码：<literal>&pkgconfig-md5;</literal></para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term>Procps-ng (&procps-ng-version;) - <token>&procps-ng-size;</token>:</term>
+      <listitem>
+        <para>主页：<ulink url="&procps-ng-home;"/></para>
+        <para>下载：<ulink url="&procps-ng-url;"/></para>
+        <para>MD5 指纹码：<literal>&procps-ng-md5;</literal></para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term>Psmisc (&psmisc-version;) - <token>&psmisc-size;</token>:</term>
+      <listitem>
+        <para>主页：<ulink url="&psmisc-home;"/></para>
+        <para>下载：<ulink url="&psmisc-url;"/></para>
+        <para>MD5 指纹码：<literal>&psmisc-md5;</literal></para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term>Readline (&readline-version;) - <token>&readline-size;</token>:</term>
+      <listitem>
+        <para>主页：<ulink url="&readline-home;"/></para>
+        <para>下载：<ulink url="&readline-url;"/></para>
+        <para>MD5 指纹码：<literal>&readline-md5;</literal></para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term>Sed (&sed-version;) - <token>&sed-size;</token>:</term>
+      <listitem>
+        <para>主页：<ulink url="&sed-home;"/></para>
+        <para>下载：<ulink url="&sed-url;"/></para>
+        <para>MD5 指纹码：<literal>&sed-md5;</literal></para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term>Shadow (&shadow-version;) - <token>&shadow-size;</token>:</term>
+      <listitem>
+        <para>主页：<ulink url="&shadow-home;"/></para>
+        <para>下载：<ulink url="&shadow-url;"/></para>
+        <para>MD5 指纹码：<literal>&shadow-md5;</literal></para>
+
+        <!-- Using anduin for now since this site is dead
+        <note>
+          <para>Shadow (&shadow-version;) may no longer be available at the
+          listed location. The site administrators of the master download
+          location move older versions to <ulink
+          url="ftp://ftp.pld.org.pl/software/shadow/old/"/> when new ones are
+          released.</para>
+        </note>
+        -->
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term>Sysklogd (&sysklogd-version;) - <token>&sysklogd-size;</token>:</term>
+      <listitem>
+        <para>主页：<ulink url="&sysklogd-home;"/></para>
+        <para>下载：<ulink url="&sysklogd-url;"/></para>
+        <para>MD5 指纹码：<literal>&sysklogd-md5;</literal></para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term>Sysvinit (&sysvinit-version;) - <token>&sysvinit-size;</token>:</term>
+      <listitem>
+        <para>主页：<ulink url="&sysvinit-home;"/></para>
+        <para>下载：<ulink url="&sysvinit-url;"/></para>
+        <para>MD5 指纹码：<literal>&sysvinit-md5;</literal></para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term>Tar (&tar-version;) - <token>&tar-size;</token>:</term>
+      <listitem>
+        <para>主页：<ulink url="&tar-home;"/></para>
+        <para>下载：<ulink url="&tar-url;"/></para>
+        <para>MD5 指纹码：<literal>&tar-md5;</literal></para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term>Tcl (&tcl-version;) - <token>&tcl-size;</token>:</term>
+      <listitem>
+        <para>主页：<ulink url="&tcl-home;"/></para>
+        <para>下载：<ulink url="&tcl-url;"/></para>
+        <para>MD5 指纹码：<literal>&tcl-md5;</literal></para>
+      </listitem>
+    </varlistentry>
+    
+    <varlistentry>
+      <term>Time Zone Data (&tzdata-version;) - <token>&tzdata-size;</token>:</term>
+      <listitem>
+        <para>主页：<ulink url="&tzdata-home;"/></para>
+        <para>下载：<ulink url="&tzdata-url;"/></para>
+        <para>MD5 指纹码：<literal>&tzdata-md5;</literal></para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term>Texinfo (&texinfo-version;) - <token>&texinfo-size;</token>:</term>
+      <listitem>
+        <para>主页：<ulink url="&texinfo-home;"/></para>
+        <para>下载：<ulink url="&texinfo-url;"/></para>
+        <para>MD5 指纹码：<literal>&texinfo-md5;</literal></para>
+      </listitem>
+    </varlistentry>
+    
+    <varlistentry>
+      <term>Systemd (&systemd-version;) - <token>&systemd-size;</token>:</term>
+      <listitem>
+        <para>主页：<ulink url="&systemd-home;"/></para>
+        <para>下载：<ulink url="&systemd-url;"/></para>
+        <para>MD5 指纹码：<literal>&systemd-md5;</literal></para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term>Udev-lfs 压缩包 (&systemd-version;) - <token>&udev-lfs-size;</token>:</term>
+      <listitem>
+        <para>下载：<ulink url="&udev-lfs-url;"/></para>
+        <para>MD5 指纹码：<literal>&udev-lfs-md5;</literal></para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term>Util-linux (&util-linux-version;) - <token>&util-linux-size;</token>:</term>
+      <listitem>
+        <para>主页：<ulink url="&util-linux-home;"/></para>
+        <para>下载：<ulink url="&util-linux-url;"/></para>
+        <para>MD5 指纹码：<literal>&util-linux-md5;</literal></para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term>Vim (&vim-version;) - <token>&vim-size;</token>:</term>
+      <listitem>
+        <para>主页：<ulink url="&vim-home;"/></para>
+        <para>下载：<ulink url="&vim-url;"/></para>
+        <para>MD5 指纹码：<literal>&vim-md5;</literal></para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term>Xz Utils (&xz-version;) - <token>&xz-size;</token>:</term>
+      <listitem>
+        <para>主页：<ulink url="&xz-home;"/></para>
+        <para>下载：<ulink url="&xz-url;"/></para>
+        <para>MD5 指纹码：<literal>&xz-md5;</literal></para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term>Zlib (&zlib-version;) - <token>&zlib-size;</token>:</term>
+      <listitem>
+        <para>主页：<ulink url="&zlib-home;"/></para>
+        <para>下载：<ulink url="&zlib-url;"/></para>
+        <para>MD5 指纹码：<literal>&zlib-md5;</literal></para>
+      </listitem>
+    </varlistentry>
+
+  </variablelist>
+
+  <para>这些程序包的总大小：大约 <returnvalue/></para>
+
+</sect1>

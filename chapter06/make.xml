@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+  "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../general.ent">
+  %general-entities;
+]>
+
+<sect1 id="ch-system-make" role="wrap">
+  <?dbhtml filename="make.html"?>
+
+  <sect1info condition="script">
+    <productname>make</productname>
+    <productnumber>&make-version;</productnumber>
+    <address>&make-url;</address>
+  </sect1info>
+
+  <title>Make-&make-version;</title>
+
+  <indexterm zone="ch-system-make">
+    <primary sortas="a-Make">Make</primary>
+  </indexterm>
+
+  <sect2 role="package">
+    <title/>
+
+    <para>Make 程序包包含一个用于编译程序包的程序。</para>
+
+    <segmentedlist>
+      <segtitle>&buildtime;</segtitle>
+      <segtitle>&diskspace;</segtitle>
+
+      <seglistitem>
+        <seg>&make-ch6-sbu;</seg>
+        <seg>&make-ch6-du;</seg>
+      </seglistitem>
+    </segmentedlist>
+
+  </sect2>
+
+  <sect2 role="installation">
+    <title>安装 Make</title>
+
+    <para>首先应用一些上游补丁：</para>
+
+<screen><userinput remap="configure">patch -Np1 -i ../&make-fixes-patch;</userinput></screen>
+
+    <para>准备编译 Make：</para>
+
+<screen><userinput remap="configure">./configure --prefix=/usr</userinput></screen>
+
+    <para>编译程序包：</para>
+
+<screen><userinput remap="make">make</userinput></screen>
+
+    <para>要测试结果，执行：</para>
+
+<screen><userinput remap="test">make check</userinput></screen>
+
+    <para>安装程序包：</para>
+
+<screen><userinput remap="install">make install</userinput></screen>
+
+  </sect2>
+
+
+  <sect2 id="contents-make" role="content">
+    <title>Make 的内容</title>
+
+    <segmentedlist>
+      <segtitle>安装的程序</segtitle>
+
+      <seglistitem>
+        <seg>make</seg>
+      </seglistitem>
+    </segmentedlist>
+
+    <variablelist>
+      <bridgehead renderas="sect3">简介</bridgehead>
+      <?dbfo list-presentation="list"?>
+      <?dbhtml list-presentation="table"?>
+
+      <varlistentry id="make">
+        <term><command>make</command></term>
+        <listitem>
+          <para>自动获取程序包需要 (重新) 编译的部分并执行对应的命令</para>
+          <indexterm zone="ch-system-make make">
+            <primary sortas="b-make">make</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+    </variablelist>
+
+  </sect2>
+
+</sect1>

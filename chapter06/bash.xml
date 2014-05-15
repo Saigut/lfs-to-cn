@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+  "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../general.ent">
+  %general-entities;
+]>
+
+<sect1 id="ch-system-bash" role="wrap">
+  <?dbhtml filename="bash.html"?>
+
+  <sect1info condition="script">
+    <productname>bash</productname>
+    <productnumber>&bash-version;</productnumber>
+    <address>&bash-url;</address>
+  </sect1info>
+
+  <title>Bash-&bash-version;</title>
+
+  <indexterm zone="ch-system-bash">
+    <primary sortas="a-Bash">Bash</primary>
+  </indexterm>
+
+  <sect2 role="package">
+    <title/>
+
+    <para>Bash 程序包包含 Bourne-Again SHell。</para>
+
+    <segmentedlist>
+      <segtitle>&buildtime;</segtitle>
+      <segtitle>&diskspace;</segtitle>
+
+      <seglistitem>
+        <seg>&bash-ch6-sbu;</seg>
+        <seg>&bash-ch6-du;</seg>
+      </seglistitem>
+    </segmentedlist>
+
+  </sect2>
+
+  <sect2 role="installation">
+    <title>安装 Bash</title>
+
+    <para>首先应用以下补丁修复上游指出的多个漏洞：</para>
+
+<screen><userinput remap="pre">patch -Np1 -i ../&bash-fixes-patch;</userinput></screen>
+
+    <para>准备编译 Bash：</para>
+
+<screen><userinput remap="configure">./configure --prefix=/usr                     \
+            --bindir=/bin                     \
+            --htmldir=/usr/share/doc/bash-&bash-version; \
+            --without-bash-malloc             \
+            --with-installed-readline</userinput></screen>
+
+    <variablelist>
+      <title>配置选项的含义：</title>
+
+      <varlistentry>
+        <term><parameter>--htmldir</parameter></term>
+        <listitem>
+          <para>此选项指定 HTML 格式的文档的安装目录。</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><parameter>--with-installed-readline</parameter></term>
+        <listitem>
+          <para>此选项告诉 Bash 使用系统上已经安装的 <filename class="libraryfile">readline</filename> 库而不使用自己的 readline 版本。</para>
+        </listitem>
+      </varlistentry>
+
+    </variablelist>
+
+    <para>编译程序包：</para>
+
+<screen><userinput remap="make">make</userinput></screen>
+
+    <para>如果不运行测试套件那么跳到 <quote>安装程序包</quote>。</para>
+
+    <para>要准备测试，确保 <systemitem class="username">nobody</systemitem> 用户可以写入源代码树：</para>
+
+<screen><userinput remap="test">chown -Rv nobody .</userinput></screen>
+
+    <para>现在，作为 <systemitem class="username">nobody</systemitem> 用户运行测试：</para>
+
+<screen><userinput remap="test">su nobody -s /bin/bash -c "PATH=$PATH make tests"</userinput></screen>
+
+    <para>安装程序包：</para>
+
+<screen><userinput remap="install">make install</userinput></screen>
+
+    <para>运行新编译的 <command>bash</command> 程序 (替换掉现在在运行的副本)：</para>
+
+<screen role="nodump"><userinput>exec /bin/bash --login +h</userinput></screen>
+
+    <note>
+      <para>这些选项使 <command>bash</command> 进程成为一个交互的登录 shell 并且继续禁用哈希使得新的程序一旦被可用就会立刻被发现。</para>
+    </note>
+
+  </sect2>
+
+  <sect2 id="contents-bash" role="content">
+    <title>Bash 的内容</title>
+
+    <segmentedlist>
+      <segtitle>安装的程序</segtitle>
+      <segtitle>安装的目录</segtitle>
+
+      <seglistitem>
+        <seg>bash、bashbug 和 sh (到 bash 的链接)</seg>
+        <seg>/usr/share/doc/bash-&bash-version;</seg>
+      </seglistitem>
+    </segmentedlist>
+
+    <variablelist>
+      <bridgehead renderas="sect3">简介</bridgehead>
+      <?dbfo list-presentation="list"?>
+      <?dbhtml list-presentation="table"?>
+
+      <varlistentry id="bash">
+        <term><command>bash</command></term>
+        <listitem>
+          <para>一个广泛使用的翻译器；在运行命令之前对其进行很多扩展和替换，使其成为一个强大的工具</para>
+          <indexterm zone="ch-system-bash bash">
+            <primary sortas="b-bash">bash</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="bashbug">
+        <term><command>bashbug</command></term>
+        <listitem>
+          <para>一个 shell 脚本，帮助用户组织和发送标准格式的有关 <command>bash</command> 的漏洞报告</para>
+          <indexterm zone="ch-system-bash bashbug">
+            <primary sortas="b-bashbug">bashbug</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="sh">
+        <term><command>sh</command></term>
+        <listitem>
+          <para>到 <command>bash</command> 程序的符号链接；被作为 <command>sh</command> 调用时 <command>bash</command> 试图尽可能模仿 <command>sh</command> 历史版本的行为，并且符合 POSIX 标准的要求</para>
+          <indexterm zone="ch-system-bash sh">
+            <primary sortas="b-sh">sh</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+    </variablelist>
+
+  </sect2>
+
+</sect1>

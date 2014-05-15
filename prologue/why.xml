@@ -1,0 +1,380 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+  "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../general.ent">
+  %general-entities;
+]>
+
+<sect1 id="pre-why">
+  <?dbhtml filename="package-choices.html"?>
+
+  <title>对本书中程序包的解释</title>
+
+    <para>前面提到过，LFS 的目标是构建一个完整并且可用的基础系统。这个能够完成自复制的相对最小工作环境包含一些软件包，用户在此之上定制自己的系统。这并不意味着 LFS 是最小的操作系统。几个重要的软件包在其他系统上并没有严格要求。下面列出了对本书中每个程序包的解释。</para>
+
+    <itemizedlist>
+
+      <listitem>
+        <para>Autoconf</para>
+
+        <para>此程序包包含用于根据开发者的模板生成可以自动配置源代码的 Shell 脚本的程序。编制过程更新之后要重新编制程序包通常需要用到它。</para>
+      </listitem>
+
+      <listitem>
+        <para>Automake</para>
+
+        <para>此程序包包含用于根据模板生成 Make 文件的程序。编制过程更新之后要重新编制程序包通常需要用到它。</para>
+      </listitem>
+
+      <listitem>
+        <para>Bash</para>
+
+        <para>此程序包满足一项 LSB 核心需求，给系统提供了一个 Bourne Shell 界面。因使用广泛和扩展功能强大而选用。</para>
+      </listitem>
+
+      <listitem>
+        <para>Binutils</para>
+
+        <para>此程序包包含链接器、汇编器和处理对象文件的其他工具。其中的程序在编译 LFS 系统内外的大部分程序包时都会用到。</para>
+      </listitem>
+
+      <listitem>
+        <para>Bison</para>
+
+        <para>此程序包包含 GNU 版本的 <command>yacc</command>，在编制 LFS 系统中的其他几个程序时用到。</para>
+      </listitem>
+
+      <listitem>
+        <para>Bzip2</para>
+
+        <para>此程序包包含用于压缩和解压缩文件的程序，解压许多 LFS 程序包都会用到。</para>
+      </listitem>
+      
+      <listitem>
+        <para>Check</para>
+
+        <para>此程序包包含一个用于其他程序的测试套件。它只安装于临时工具链中。</para>
+      </listitem>
+
+      <listitem>
+        <para>Coreutils</para>
+
+        <para>此程序包包含大量用于查看和修改文件和目录的必要工具。这些程序用于命令行文件管理，LFS 中每个程序包的安装过程都要用到。</para>
+      </listitem>
+
+      <listitem>
+        <para>DejaGNU</para>
+
+        <para>此程序包包含一个用于测试其他程序的框架。它只安装于临时工具链中。</para>
+      </listitem>
+
+      <listitem>
+        <para>Diffutils</para>
+
+        <para>此程序包包含用于显示文件或目录之间差异的程序。这些程序可以用于生成补丁，也在许多程序包的编制过程中用到。</para>
+      </listitem>
+
+      <listitem>
+        <para>Expect</para>
+
+        <para>此程序包包含一个用于和其他交互程序进行脚本指导对话的程序，广泛用于测试其他程序包。只安装于临时工具链中。</para>
+      </listitem>
+
+      <listitem>
+        <para>E2fsprogs</para>
+
+        <para>此程序包包含用于处理 <systemitem class="filesystem">ext2</systemitem>、<systemitem class="filesystem">ext3</systemitem> 和 <systemitem class="filesystem">ext4</systemitem> 文件系统的工具。这些是 Linux 支持的最广泛使用并且经过彻底测试的文件系统。</para>
+      </listitem>
+
+      <listitem>
+        <para>File</para>
+
+        <para>此程序包包含一个用于检测文件类型的工具。有几个程序包编制过程中会用到。</para>
+      </listitem>
+
+      <listitem>
+        <para>Findutils</para>
+
+        <para>此程序包包含用于在文件系统中查找文件的工具，在许多程序包的编制脚本中用到。</para>
+      </listitem>
+
+      <listitem>
+        <para>Flex</para>
+
+        <para>此程序包包含一个用于生成识别文本样式的程序的工具，是 GNU 版本的 <command>lex</command>。有几个 LFS 程序包编制时会用到。</para>
+      </listitem>
+
+      <listitem>
+        <para>Gawk</para>
+
+        <para>此程序包包含用于修改文本文件的程序，是 GNU 版本的 <command>awk</command>，在很多其他程序包的编制脚本中用到。</para>
+      </listitem>
+
+      <listitem>
+        <para>GCC</para>
+
+        <para>此程序包为 GNU 编译器集，其中包含 C 和 C++，还有几个 LFS 不编制的编译器。
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>GDBM</para>
+
+        <para>此程序包包含 GNU 数据库管理库，只被 Man-DB 用到。</para>
+      </listitem>
+
+      <listitem>
+        <para>Gettext</para>
+
+        <para>此程序包包含用于很多程序国际化和本地化的工具和库。</para>
+      </listitem>
+
+      <listitem>
+        <para>Glibc</para>
+
+        <para>此程序包包含标准 C 库，Linux 程序没有它就无法工作。</para>
+      </listitem>
+
+      <listitem>
+        <para>GMP</para>
+
+        <para>此程序包包含数学库，提供任意精度算术运算的常用函数，在编制 GCC 时用到。</para>
+      </listitem>
+
+      <listitem>
+        <para>Grep</para>
+
+        <para>此程序包含用于在查找文件内容的工具。在多数程序包的编制脚本中用到。</para>
+      </listitem>
+
+      <listitem>
+        <para>Groff</para>
+
+        <para>此程序包包含用于处理和格式化文本的程序，一个重要的功能是格式化手册页。</para>
+      </listitem>
+
+      <listitem>
+        <para>GRUB</para>
+
+        <para>此程序包为通用引导加载器。它是几种可用的引导加载器中最灵活的一种。</para>
+      </listitem>
+
+      <listitem>
+        <para>Gzip</para>
+
+        <para>此程序包包含用于压缩和解压缩文件的程序。解压 LFS 内外的许多程序包时都会用到。</para>
+      </listitem>
+
+      <listitem>
+        <para>Iana-etc</para>
+
+        <para>此程序给网络服务和协议提供数据，用于启用正确的网络功能。</para>
+      </listitem>
+
+      <listitem>
+        <para>Inetutils</para>
+
+        <para>此程序包包含用于基本网络管理的程序。</para>
+      </listitem>
+
+      <listitem>
+        <para>IProute2</para>
+
+        <para>此程序包包含用于基本和高级的 IPv4 和 IPv6 网络的程序，因 IPv6 功能而选用。</para>
+      </listitem>
+
+      <listitem>
+        <para>Kbd</para>
+
+        <para>此程序包包含键盘映射表文件和用于非标准美式键盘的键盘工具，还有一些控制台字体。</para>
+      </listitem>
+
+      <listitem>
+        <para>Kmod</para>
+
+        <para>此程序包包含用于管理 Linux 内核模块的程序。</para>
+      </listitem>
+
+      <listitem>
+        <para>Less</para>
+
+        <para>此程序包包含一个非常不错的文本查看器，允许在浏览文件时上下卷页，也被 Man-DB 用于查看手册页。</para>
+      </listitem>
+
+      <listitem>
+        <para>Libtool</para>
+
+        <para>此程序包包含 GNU 通用库支持脚本，把使用共享库的方式以固定而且可移植的方式打包。在几个其他 LFS 程序包的测试套件中用到。</para>
+      </listitem>
+
+      <listitem>
+        <para>Linux 内核</para>
+
+        <para>此程序包为操作系统内核，即 GNU/Linux 环境的 Linux。</para>
+      </listitem>
+
+      <listitem>
+        <para>M4</para>
+
+        <para>此程序包包含一个通用文本宏处理器，用作其他程序的编制工具。</para>
+      </listitem>
+
+      <listitem>
+        <para>Make</para>
+
+        <para>此程序包包含一个指导程序包编制的程序，在 LFS 中几乎所有程序包编制时都要用到。</para>
+      </listitem>
+
+      <listitem>
+        <para>Man-DB</para>
+
+        <para>此程序包包含用于查找和查看手册页的工具。因更好的国际化功能使用它而不使用 Man 程序包。它提供 <command>man</command> 程序。</para>
+      </listitem>
+
+      <listitem>
+        <para>Man-pages</para>
+
+        <para>此程序包包含基本 Linux 手册页的实际内容。</para>
+      </listitem>
+
+      <listitem>
+        <para>MPC</para>
+
+        <para>此程序包包含用于复数算术运算的函数，GCC 会用到它。</para>
+      </listitem>
+
+      <listitem>
+        <para>MPFR</para>
+
+        <para>此程序包包含用于多精度算术的函数，GCC 会用到它。</para>
+      </listitem>
+
+      <listitem>
+        <para>Ncurses</para>
+
+        <para>此程序包包含用于不依赖终端处理字符屏幕的库。它经常用于给菜单系统提供光标控制，LFS 系统中的很多程序包会用到。</para>
+      </listitem>
+
+      <listitem>
+        <para>Patch</para>
+
+        <para>此程序包包含一个根据由 <command>diff</command> 程序创建的 <filename>patch</filename> 文件修改或创建其他文件的程序，在几个 LFS 程序包的编制过程中用到。</para>
+      </listitem>
+<!--
+      <listitem>
+        <para>PCRE</para>
+
+        <para>提供 Perl 5 语法正则表达式函数库。被 Glib 强制依赖，也可以被 Grep 使用</para>
+      </listitem>
+-->
+      <listitem>
+        <para>Perl</para>
+        <para>此程序包包含解释型语言 PERL 的解释器，有几个 LFS 程序包的安装和测试套件中会用到。</para>
+      </listitem>
+      
+      <listitem>
+        <para>Pkg-config</para>
+
+        <para>此程序包提供了一个程序，能够返回已安装库或程序包的元数据。</para>
+      </listitem>
+      
+      <listitem>
+        <para>Popt</para>
+
+        <para>此程序包是一个库，被某些程序用于分析命令行输入。</para>
+      </listitem>
+
+      <listitem>
+        <para>Procps</para>
+
+        <para>此程序包包含用于监视进程的工具。这些工具对系统管理非常有用，并且在 LFS 系统引导脚本中用到。</para>
+      </listitem>
+
+      <listitem>
+        <para>Psmisc</para>
+
+        <para>此程序包包含用于显示运行中进程信息的程序，对系统管理非常有用。</para>
+      </listitem>
+
+      <listitem>
+        <para>Readline</para>
+
+        <para>此程序包为一组库，提供命令行编辑和历史记录功能，Bash 会用到。</para>
+      </listitem>
+
+      <listitem>
+        <para>Sed</para>
+
+        <para>此程序包允许不打开文本编辑器就编辑文本，在多数 LFS 程序包的配置脚本中用到。</para>
+      </listitem>
+
+      <listitem>
+        <para>Shadow</para>
+
+        <para>包含用于以安全方式处理密码的程序。</para>
+      </listitem>
+
+      <listitem>
+        <para>Sysklogd</para>
+
+        <para>此程序包包含用于记录系统日志，例如由内核或驻留进程在不寻常事件发生时给出的消息的程序。</para>
+      </listitem>
+
+      <listitem>
+        <para>Sysvinit</para>
+
+        <para>此程序包提供 <command>init</command> 程序。该进程是 Linux 系统中所有进程的父进程。</para>
+      </listitem>
+
+      <listitem>
+        <para>Tar</para>
+
+        <para>此程序包为 LFS 中用到的所有程序包虚拟提供归档和提取功能。</para>
+      </listitem>
+
+      <listitem>
+        <para>Tcl</para>
+
+        <para>此程序包包含 LFS 很多程序包测试套件用到的工具命令语言。它只安装于临时工具链中。</para>
+      </listitem>
+
+      <listitem>
+        <para>Texinfo</para>
+
+        <para>此程序包包含用于信息页读写、转换的程序，在许多 LFS 程序包的安装过程中用到。</para>
+      </listitem>
+
+      <listitem>
+        <para>Udev</para>
+
+        <para>此程序包包含用于动态创建设备节点的程序，以免在 <filename class="directory">/dev</filename> 目录中创建数以千记的静态设备。</para>
+      </listitem>
+
+      <listitem>
+        <para>Util-linux</para>
+
+        <para>此程序包包含大量工具程序。其中包含用于处理文件系统、控制台、分区和消息的工具。</para>
+      </listitem>
+
+      <listitem>
+        <para>Vim</para>
+
+        <para>此程序包包含一个编辑器，因为兼容传统的 <command>vi</command> 编辑器并拥有强大的兼容性而选用。对很多用户来说编辑器是个人选择，如果需要可以替换成其他编辑器。</para>
+      </listitem>
+
+      <listitem>
+        <para>XZ Utils</para>
+
+        <para>此程序包包含用于压缩和解压缩文件的程序。它提供通常可用的最大压缩率并可用于解压 XZ 或 LZMA 格式的包。</para>
+      </listitem>
+
+      <listitem>
+        <para>Zlib</para>
+
+        <para>此程序包包含一些程序用到的压缩和解压缩方法。</para>
+      </listitem>
+
+    </itemizedlist>
+
+</sect1>
+

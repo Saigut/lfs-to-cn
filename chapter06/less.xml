@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+  "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../general.ent">
+  %general-entities;
+]>
+
+<sect1 id="ch-system-less" role="wrap">
+  <?dbhtml filename="less.html"?>
+
+  <sect1info condition="script">
+    <productname>less</productname>
+    <productnumber>&less-version;</productnumber>
+    <address>&less-url;</address>
+  </sect1info>
+
+  <title>Less-&less-version;</title>
+
+  <indexterm zone="ch-system-less">
+    <primary sortas="a-Less">Less</primary>
+  </indexterm>
+
+  <sect2 role="package">
+    <title/>
+
+    <para>Less 程序包包含一个文本文件阅读器。</para>
+
+    <segmentedlist>
+      <segtitle>&buildtime;</segtitle>
+      <segtitle>&diskspace;</segtitle>
+
+      <seglistitem>
+        <seg>&less-ch6-sbu;</seg>
+        <seg>&less-ch6-du;</seg>
+      </seglistitem>
+    </segmentedlist>
+
+  </sect2>
+
+  <sect2 role="installation">
+    <title>安装 Less</title>
+
+    <para>准备编译 Less：</para>
+
+<screen><userinput remap="configure">./configure --prefix=/usr --sysconfdir=/etc</userinput></screen>
+
+    <variablelist>
+      <title>配置脚本的含义：</title>
+
+      <varlistentry>
+        <term><parameter>--sysconfdir=/etc</parameter></term>
+        <listitem>
+          <para>此选项告诉该程序包创建的程序到 <filename class="directory">/etc</filename> 中寻找配置文件。</para>
+        </listitem>
+      </varlistentry>
+
+    </variablelist>
+
+    <para>编译程序包</para>
+
+<screen><userinput remap="make">make</userinput></screen>
+
+    <para>此程序包不包含测试套件。</para>
+
+    <para>安装程序包：</para>
+
+<screen><userinput remap="install">make install</userinput></screen>
+
+  </sect2>
+
+  <sect2 id="contents-less" role="content">
+    <title>Less 的内容</title>
+
+    <segmentedlist>
+      <segtitle>安装的程序</segtitle>
+
+      <seglistitem>
+        <seg>less、lessecho 和 lesskey</seg>
+      </seglistitem>
+    </segmentedlist>
+
+    <variablelist>
+      <bridgehead renderas="sect3">简介</bridgehead>
+      <?dbfo list-presentation="list"?>
+      <?dbhtml list-presentation="table"?>
+
+      <varlistentry id="less">
+        <term><command>less</command></term>
+        <listitem>
+          <para>一个文件阅读器或者分页器；显示给定文件的内容并允许用户滚动、查找字符串和跳转到标记</para>
+          <indexterm zone="ch-system-less less">
+            <primary sortas="b-less">less</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="lessecho">
+        <term><command>lessecho</command></term>
+        <listitem>
+          <para>用于在 Unix 系统的文件名中扩展元字符，例如 <emphasis>*</emphasis> 和 <emphasis>?</emphasis></para>
+          <indexterm zone="ch-system-less lessecho">
+            <primary sortas="b-lessecho">lessecho</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="lesskey">
+        <term><command>lesskey</command></term>
+        <listitem>
+          <para>用于指定 <command>less</command> 的按键绑定</para>
+          <indexterm zone="ch-system-less lesskey">
+            <primary sortas="b-lesskey">lesskey</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+    </variablelist>
+
+  </sect2>
+
+</sect1>

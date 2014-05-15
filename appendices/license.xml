@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE appendix PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+  "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../general.ent">
+  %general-entities;
+]>
+
+<appendix id="Licenses" xreflabel="附录 E">
+  <?dbhtml dir="appendices"?>
+  <?dbhtml filename="licenses.html"?>
+
+  <title>LFS 许可证</title>
+
+  <para>本书按知识共享-署名-非商业性-相同方式共享 2.0 许可证提供许可。</para>
+
+  <para>可以在 MIT 许可证约束范围内从本书中摘录计算机指令。</para>
+
+
+  <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="creat-comm.xml"/>
+  <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="mit-lic.xml"/>
+
+
+</appendix>

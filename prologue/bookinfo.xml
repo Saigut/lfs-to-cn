@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE bookinfo PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+  "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../general.ent">
+  %general-entities;
+]>
+
+<bookinfo>
+  <title>Linux From Scratch</title>
+  <subtitle>版本 &version;</subtitle>
+
+
+  <authorgroup>
+    <author>
+      <firstname>由 Gerard</firstname>
+      <surname>Beekmans 创建</surname>
+    </author>
+    <author>
+      <firstname>由 Matthew Burgess</firstname>
+      <surname>和 Bruce Dubbs 编辑</surname>
+    </author>
+    <author>
+      <firstname>由 高</firstname>
+      <surname>建 翻译</surname>
+    </author>
+  </authorgroup>
+
+
+  <copyright id="copyright">
+    <year>&copyrightdate;</year>
+    <holder>Gerard Beekmans</holder>
+  </copyright>
+
+  <legalnotice>
+    <para>版权所有 &copy; &copyrightdate;，Gerard Beekmans</para>
+
+    <para>保留所有权利。</para>
+
+    <para>本书受 <xref linkend="CC"/> 约束。</para>
+    <para>从本书中摘录计算机指令受 <xref linkend="MIT"/> 约束。</para>
+
+    <para><trademark class='registered'>Linux</trademark> 是 Linus Torvalds 的注册商标。</para>
+
+  </legalnotice>
+
+</bookinfo>

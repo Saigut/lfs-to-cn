@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+  "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../general.ent">
+  %general-entities;
+]>
+
+<sect1 id="ch-system-kmod" role="wrap">
+  <?dbhtml filename="kmod.html"?>
+
+  <sect1info condition="script">
+    <productname>kmod</productname>
+    <productnumber>&kmod-version;</productnumber>
+    <address>&kmod-url;</address>
+  </sect1info>
+
+  <title>Kmod-&kmod-version;</title>
+
+  <indexterm zone="ch-system-kmod">
+    <primary sortas="a-Kmod">Kmod</primary>
+  </indexterm>
+
+  <sect2 role="package">
+    <title/>
+
+    <para>Kmod 程序包包含用于加载内核模块的库和工具</para>
+
+    <segmentedlist>
+      <segtitle>&buildtime;</segtitle>
+      <segtitle>&diskspace;</segtitle>
+
+      <seglistitem>
+        <seg>&kmod-ch6-sbu;</seg>
+        <seg>&kmod-ch6-du;</seg>
+      </seglistitem>
+    </segmentedlist>
+
+  </sect2>
+
+  <sect2 role="installation">
+    <title>安装 Kmod</title>
+
+    <para>准备编译 Kmod：</para>
+
+<screen><userinput remap="configure">./configure --prefix=/usr       \
+            --bindir=/bin       \
+            --libdir=/lib       \
+            --sysconfdir=/etc   \
+            --disable-manpages  \
+            --with-xz           \
+            --with-zlib</userinput></screen>
+
+    <variablelist>
+      <title>配置选项的含义：</title>
+
+      <varlistentry>
+        <term><parameter>--with-*</parameter></term>
+        <listitem>
+          <para>这些选项允许 Kmod 处理压缩的内核模块。这些 shell 变量用于在 pkg-config 缺失时使 xz 和 zlib 头文件能够被找到。</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><parameter>--disable-manpages</parameter></term>
+        <listitem>
+            <para>这一选项防止手册页被编制，因为它们依赖于在 chroot 环境下不可用的 libxsit。</para>
+        </listitem>
+      </varlistentry>
+
+    </variablelist>
+
+    <para>编译程序包：</para>
+
+<screen><userinput remap="make">make</userinput></screen>
+
+    <para>要测试结果，执行：</para>
+
+<screen><userinput remap="test">make check</userinput></screen>
+
+    <para>安装程序包并创建符号链接以兼容 Module-Init-Tools，即先前用于处理 Linux 内核模块的程序包：</para>
+
+<screen><userinput remap="install">make pkgconfigdir=/usr/lib/pkgconfig install
+
+for target in depmod insmod modinfo modprobe rmmod; do
+  ln -sv ../bin/kmod /sbin/$target
+done
+
+ln -sv kmod /bin/lsmod</userinput></screen>
+
+  </sect2>
+
+  <sect2 id="contents-kmod" role="content">
+    <title>Kmod 的内容</title>
+
+    <segmentedlist>
+      <segtitle>安装的程序</segtitle>
+      <segtitle>安装的库</segtitle>
+
+      <seglistitem>
+        <seg>depmod (到 kmod 的链接)、insmod (到 kmod 的链接)、kmod、kmod-nolib、lsmod (到 kmod 的链接)、modinfo (到 kmod 的链接)、modprobe (到 kmod 的链接) 和 rmmod (到 kmod 的链接)</seg>
+        <seg>/lib/kmod.so</seg>
+      </seglistitem>
+    </segmentedlist>
+
+    <variablelist>
+      <bridgehead renderas="sect3">简介</bridgehead>
+      <?dbfo list-presentation="list"?>
+      <?dbhtml list-presentation="table"?>
+
+      <varlistentry id="depmod">
+        <term><command>depmod</command></term>
+        <listitem>
+          <para>基于已有模块中发现的符号创建一个依赖关系文件；此文件被 <command>modprobe</command> 用于自动加载需要的模块</para>
+          <indexterm zone="ch-system-kmod depmod">
+            <primary sortas="b-depmod">depmod</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="insmod">
+        <term><command>insmod</command></term>
+        <listitem>
+          <para>向运行中的内核安装一个可加载的模块</para>
+          <indexterm zone="ch-system-kmod insmod">
+            <primary sortas="b-insmod">insmod</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="kmod">
+        <term><command>kmod</command></term>
+        <listitem>
+          <para>加载和卸载内核模块</para>
+          <indexterm zone="ch-system-kmod kmod">
+            <primary sortas="b-kmod">kmod</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="libkmod">
+        <term><filename class="libraryfile">libkmod</filename></term>
+        <listitem>
+          <para>此库被其他程序用于加载和卸载内核模块</para>
+          <indexterm zone="ch-system-kmod">
+            <primary sortas="c-libkmod">libkmod</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="lsmod">
+        <term><command>lsmod</command></term>
+        <listitem>
+          <para>列出当前加载的模块</para>
+          <indexterm zone="ch-system-kmod lsmod">
+            <primary sortas="b-lsmod">lsmod</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="modinfo">
+        <term><command>modinfo</command></term>
+        <listitem>
+          <para>检查与内核模块关联的对象文件并显示收集到的信息</para>
+          <indexterm zone="ch-system-kmod modinfo">
+            <primary sortas="b-modinfo">modinfo</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="modprobe">
+        <term><command>modprobe</command></term>
+        <listitem>
+          <para>使用 <command>depmod</command> 创建的依赖关系文件自动加载对应的模块</para>
+          <indexterm zone="ch-system-kmod modprobe">
+            <primary sortas="b-modprobe">modprobe</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="rmmod">
+        <term><command>rmmod</command></term>
+        <listitem>
+          <para>从运行中的内核中卸载模块</para>
+          <indexterm zone="ch-system-kmod rmmod">
+            <primary sortas="b-rmmod">rmmod</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+    </variablelist>
+
+  </sect2>
+
+</sect1>
+

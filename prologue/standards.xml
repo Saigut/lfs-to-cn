@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+  "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../general.ent">
+  %general-entities;
+]>
+
+<sect1 id="pre-standards">
+  <?dbhtml filename="standards.html"?>
+
+  <title>LFS 与标准</title>
+
+  <!--<sect2>
+    <title/> -->
+
+     <para>LFS 的结构应尽可能符合 Linux 标准。基本标准有：</para>
+
+    <itemizedlist>
+      <listitem>
+        <para><ulink url="http://pubs.opengroup.org/onlinepubs/9699919799/">POSIX.1-2008</ulink></para>
+      </listitem>
+      <listitem>
+        <para><ulink url="http://www.pathname.com/fhs/pub/fhs-2.3.html">FHS-2.3</ulink></para>
+
+      </listitem>
+      <listitem>
+        <para><ulink url="http://refspecs.linuxfoundation.org/lsb.shtml">LSB</ulink></para>
+
+        <para>LSB 有五个分立的标准：核心、C++、桌面、运行时语言和打印。除共有要求之外，还有一些架构特有的要求。LFS 试图符合前一节中提及的架构的相关要求。</para>
+
+        <note><para>很多人不认可 LSB 的要求。定义它的主要目的是为了确保专有软件可以在兼容的系统环境下正确安装和运行。由于 LFS 是基于源代码的，用户对程序包有完全的控制，很多人选择不安装某些由 LSB 指定的程序包。</para></note>
+
+      </listitem>
+    </itemizedlist>
+
+    <para>创建一个完整的 LFS 系统并通过 LSB 认证可以做到，但仍需很多 LFS 以外的程序包。这些附加程序包在 BLFS 中都有安装指令。</para> 
+
+    <variablelist>
+      <bridgehead renderas="sect3">LSB 需求且 LFS 提供的程序包</bridgehead>
+      <?dbfo list-presentation="list"?>
+      <?dbhtml list-presentation="table"?>
+
+      <varlistentry>
+        <term><emphasis role="strong">LSB 核心：</emphasis></term>
+        <listitem>
+          <para>Bash, Bc, Binutils, Coreutils, Diffutils, File, Findutils, Gawk, Grep, Gzip, M4, Man-DB, Ncurses, Procps, Psmisc, Sed, Shadow, Tar, Util-linux 和 Zlib</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><emphasis role="strong">LSB C++：</emphasis></term>
+        <listitem>
+          <para>Gcc</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><emphasis role="strong">LSB 桌面：</emphasis></term>
+        <listitem>
+          <para>无</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><emphasis role="strong">LSB 运行时语言：</emphasis></term>
+        <listitem>
+          <para>Perl</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><emphasis role="strong">LSB 打印：</emphasis></term>
+        <listitem>
+          <para>无</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><emphasis role="strong">LSB 多媒体：</emphasis></term>
+        <listitem>
+          <para>无</para>
+        </listitem>
+      </varlistentry>
+
+    </variablelist>
+
+    <variablelist> 
+      <bridgehead renderas="sect3">LSB 需求且 BLFS 提供的程序包</bridgehead>
+      <?dbfo list-presentation="list"?>
+      <?dbhtml list-presentation="table"?>
+
+      <varlistentry>
+        <term><emphasis role="strong">LSB 核心：</emphasis></term>
+        <listitem>
+          <para>At, Batch (作为 At 的一部分), Cpio, Ed, Fcrontab, Initd-tools, PAM 和 Sendmail (或 Postfix 或 Exim)</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><emphasis role="strong">LSB C++：</emphasis></term>
+        <listitem>
+          <para>无</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><emphasis role="strong">LSB 桌面：</emphasis></term>
+        <listitem>
+          <para>ATK, Cairo, Desktop-file-utils, Freetype, Fontconfig, Glib2, GTK+2, Icon-naming-utils, Libjpeg, Libpng, Libxml2, MesaLib, Pango, Qt4 和 Xorg</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><emphasis role="strong">LSB 运行时语言：</emphasis></term>
+        <listitem>
+          <para>Python</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><emphasis role="strong">LSB 打印：</emphasis></term>
+        <listitem>
+          <para>CUPS</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><emphasis role="strong">LSB 多媒体：</emphasis></term>
+        <listitem>
+          <para>Alsa 库, NSPR, NSS, OpenSSL, Java 和 Xdg-utils</para>
+        </listitem>
+      </varlistentry>
+
+    </variablelist>
+
+    <variablelist>
+      <bridgehead renderas="sect3">LSB 需求但 LFS 和 BLFS 都不提供的程序包</bridgehead>
+      <?dbfo list-presentation="list"?>
+      <?dbhtml list-presentation="table"?>
+
+      <varlistentry>
+        <term><emphasis role="strong">LSB 核心：</emphasis></term>
+        <listitem>
+          <para>无</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><emphasis role="strong">LSB C++：</emphasis></term>
+        <listitem>
+          <para>无</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><emphasis role="strong">LSB 桌面：</emphasis></term>
+        <listitem>
+          <para>Qt3</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><emphasis role="strong">LSB 运行时语言：</emphasis></term>
+        <listitem>
+          <para>无</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><emphasis role="strong">LSB 打印：</emphasis></term>
+        <listitem>
+          <para>无</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><emphasis role="strong">LSB 多媒体：</emphasis></term>
+        <listitem>
+          <para>无</para>
+        </listitem>
+      </varlistentry>
+
+    </variablelist>
+
+</sect1>
+

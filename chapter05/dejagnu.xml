@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+  "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../general.ent">
+  %general-entities;
+]>
+
+<sect1 id="ch-tools-dejagnu" role="wrap">
+  <?dbhtml filename="dejagnu.html"?>
+
+  <sect1info condition="script">
+    <productname>dejagnu</productname>
+    <productnumber>&dejagnu-version;</productnumber>
+    <address>&dejagnu-url;</address>
+  </sect1info>
+
+  <title>DejaGNU-&dejagnu-version;</title>
+
+  <indexterm zone="ch-tools-dejagnu">
+    <primary sortas="a-DejaGNU">DejaGNU</primary>
+  </indexterm>
+
+  <sect2 role="package">
+    <title/>
+
+    <para>DejaGNU 程序包包含一套框架用于测试其他程序。</para>
+
+    <segmentedlist>
+      <segtitle>&buildtime;</segtitle>
+      <segtitle>&diskspace;</segtitle>
+
+      <seglistitem>
+        <seg>&dejagnu-ch5-sbu;</seg>
+        <seg>&dejagnu-ch5-du;</seg>
+      </seglistitem>
+    </segmentedlist>
+
+  </sect2>
+
+  <sect2 role="installation">
+    <title>安装 DejaGNU</title>
+
+    <para>准备编译 DejaGNU：</para>
+
+<screen><userinput remap="configure">./configure --prefix=/tools</userinput></screen>
+
+    <para>编制安装程序包：</para>
+
+<screen><userinput remap="install">make install</userinput></screen>
+
+    <para>要测试结果，执行：</para>
+
+<screen><userinput remap="test">make check</userinput></screen>
+
+  </sect2>
+
+
+  <sect2 id="contents-dejagnu" role="content">
+    <title>DejaGNU 的内容</title>
+
+    <segmentedlist>
+      <segtitle>安装的程序</segtitle>
+
+      <seglistitem>
+        <seg>runtest</seg>
+      </seglistitem>
+    </segmentedlist>
+
+    <variablelist>
+      <bridgehead renderas="sect3">简介</bridgehead>
+      <?dbfo list-presentation="list"?>
+      <?dbhtml list-presentation="table"?>
+
+      <varlistentry id="runtest">
+        <term><command>runtest</command></term>
+        <listitem>
+          <para>一个打包脚本，定位正确的 <command>expect</command> Shell 然后运行 DejaGNU</para>
+          <indexterm zone="ch-tools-dejagnu runtest">
+            <primary sortas="b-runtest">runtest</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+    </variablelist>
+
+  </sect2>
+
+</sect1>

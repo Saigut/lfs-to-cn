@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+  "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../general.ent">
+  %general-entities;
+]>
+
+<sect1 id="ch-system-libtool" role="wrap">
+  <?dbhtml filename="libtool.html"?>
+
+  <sect1info condition="script">
+    <productname>libtool</productname>
+    <productnumber>&libtool-version;</productnumber>
+    <address>&libtool-url;</address>
+  </sect1info>
+
+  <title>Libtool-&libtool-version;</title>
+
+  <indexterm zone="ch-system-libtool">
+    <primary sortas="a-Libtool">Libtool</primary>
+  </indexterm>
+
+  <sect2 role="package">
+    <title/>
+
+    <para>Libtool 程序包包含 GNU 通用库支持脚本。它将使用共享库的复杂性打包为统一、可移植的接口。</para>
+
+    <segmentedlist>
+      <segtitle>&buildtime;</segtitle>
+      <segtitle>&diskspace;</segtitle>
+
+      <seglistitem>
+        <seg>&libtool-ch6-sbu;</seg>
+        <seg>&libtool-ch6-du;</seg>
+      </seglistitem>
+    </segmentedlist>
+
+  </sect2>
+
+  <sect2 role="installation">
+    <title>安装 Libtool</title>
+
+    <para>准备编译 Libtool：</para>
+
+<screen><userinput remap="configure">./configure --prefix=/usr</userinput></screen>
+
+    <para>编译程序包：</para>
+
+<screen><userinput remap="make">make</userinput></screen>
+
+    <para>要测试结果 (大约 3.0 SBU)，执行：</para>
+
+<screen><userinput remap="test">make check</userinput></screen>
+
+    <para>安装程序包：</para>
+
+<screen><userinput remap="install">make install</userinput></screen>
+
+  </sect2>
+
+
+  <sect2 id="contents-libtool" role="content">
+    <title>Libtool 的内容</title>
+
+    <segmentedlist>
+      <segtitle>安装的程序</segtitle>
+      <segtitle>安装的库</segtitle>
+      <segtitle>安装的目录</segtitle>
+
+      <seglistitem>
+        <seg>libtool 和 libtoolize</seg>
+        <seg>libltdl.{a,so}</seg>
+        <seg>/usr/include/libltdl、/usr/share/libtool</seg>
+      </seglistitem>
+    </segmentedlist>
+
+    <variablelist>
+      <bridgehead renderas="sect3">简介</bridgehead>
+      <?dbfo list-presentation="list"?>
+      <?dbhtml list-presentation="table"?>
+
+      <varlistentry id="libtool">
+        <term><command>libtool</command></term>
+        <listitem>
+          <para>提供通用化的库编制支持服务</para>
+          <indexterm zone="ch-system-libtool libtool">
+            <primary sortas="b-libtool">libtool</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="libtoolize">
+        <term><command>libtoolize</command></term>
+        <listitem>
+          <para>提供向程序包添加 <command>libtool</command> 支持的标准方式</para>
+          <indexterm zone="ch-system-libtool libtoolize">
+            <primary sortas="b-libtoolize">libtoolize</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="libltdl">
+        <term><filename class="libraryfile">libltdl</filename></term>
+        <listitem>
+          <para>隐藏 dlopen 库的困难</para>
+          <indexterm zone="ch-system-libtool libltdl">
+            <primary sortas="c-libltdl">libltdl</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+    </variablelist>
+
+  </sect2>
+
+</sect1>

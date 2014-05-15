@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+  "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../general.ent">
+  %general-entities;
+]>
+
+<sect1 id="pre-typography">
+  <?dbhtml filename="typography.html"?>
+
+  <title>版式</title>
+
+  <para>为了让内容容易跟进，本书中用到了几种版式惯例。这一节包含了 LFS 中用到的版式。</para>
+
+<screen role="nodump"><userinput>./configure --prefix=/usr</userinput></screen>
+
+  <para>这种形式的文本除上下文有说明的情况外都要求准确键入。它也在解释部分用于识别指令。</para>
+
+  <para>有些情况下，一个逻辑行可以扩展至多个物理行，每行末有一反斜线。</para>
+
+<screen role="nodump"><userinput>CC="gcc -B/usr/bin/" ../binutils-2.18/configure \
+  --prefix=/tools --disable-nls --disable-werror</userinput></screen>
+
+  <para>注意反斜线后需要立即换行。其他空字符如空格和制表符会导致不正确的结果。</para>
+
+<screen><computeroutput>install-info: unknown option '--dir-file=/mnt/lfs/usr/info/dir'</computeroutput></screen>
+
+  <para>这种形式的文本 (等宽文本) 显示屏幕输出，通常是执行的命令产生的结果。这种格式也用于表示文件名，如 <filename>/etc/ld.so.conf</filename>。</para>
+
+  <para><emphasis role="strong">强调</emphasis></para>
+
+  <para>这种形式的文本在本书中用于多种目的，主要是强调要点或重要事物。</para>
+
+  <para><ulink url="&lfs-root;"/></para>
+
+  <para>这种格式用于超链接至 LFS 社区和外部页面，包括指南，下载位置和网站。</para>
+
+<screen role="nodump"><userinput>cat &gt; $LFS/etc/group &lt;&lt; "EOF"
+<literal>root:x:0:
+bin:x:1:
+......</literal>
+EOF</userinput></screen>
+
+  <para>此格式用于创建配置文件。第一条命令告诉系统按遇到EOF之前的全部输入创建文件 <filename>$LFS/etc/group</filename> 。所以这样的部分通常要直接完整键入。</para>
+
+  <para><replaceable>&lt;text&gt;</replaceable></para>
+
+  <para>此格式用于封装不必键入或复制粘贴的文本。</para>
+
+  <para><replaceable>[text]</replaceable></para>
+
+  <para>此格式用于封装可选的文本。</para>
+
+  <para><filename>passwd(5)</filename></para>
+
+  <para>此格式用于指向特定的手册页。括号中的数字指手册中特定的章节。举个例子，<command>passwd</command> 有两页手册。 每次 LFS 安装，这两页手册会位于 <filename>/usr/share/man/man1/passwd.1</filename> 和 <filename>/usr/share/man/man5/passwd.5</filename>。当本书使用 <filename>passwd(5)</filename> 的时候指的就是 <filename>/usr/share/man/man5/passwd.5</filename>。<command>man passwd</command> 会印出找到的第一个符合 <quote>passwd</quote> 的页面,也就是 <filename>/usr/share/man/man1/passwd.1</filename>。此例中，你需要运行 <command>man 5 passwd</command> 来阅读制定的页面。要注意多数手册页不会在不同章节有相同的文件名，因此 <command>man <replaceable>&lt;name&gt;</replaceable></command> 通常是有效的。</para>
+
+</sect1>
+

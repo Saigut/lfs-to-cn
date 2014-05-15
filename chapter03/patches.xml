@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+  "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../general.ent">
+  %general-entities;
+]>
+
+<sect1 id="materials-patches">
+  <?dbhtml filename="patches.html"?>
+
+  <title>需要的补丁</title>
+
+  <para>除了程序包，还需要几个补丁。这些补丁修正程序包中应该由维护者修复的错误。它们也做一些小的修改使得程序包更容易操作。编制 LFS 系统需要以下补丁：</para>
+
+  <variablelist role="materials">
+
+    <varlistentry>
+      <term>Bash 上游修复补丁 - <token>&bash-fixes-patch-size;</token>：</term>
+      <listitem>
+        <para>下载：<ulink url="&patches-root;&bash-fixes-patch;"/></para>
+        <para>MD5 指纹码：<literal>&bash-fixes-patch-md5;</literal></para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term>Bzip2 文档补丁 - <token>&bzip2-docs-patch-size;</token>：</term>
+      <listitem>
+        <para>下载：<ulink url="&patches-root;&bzip2-docs-patch;"/></para>
+        <para>MD5 指纹码：<literal>&bzip2-docs-patch-md5;</literal></para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term>Coreutils 国际化修复补丁 - <token>&coreutils-i18n-patch-size;</token>：</term>
+      <listitem>
+        <para>下载：<ulink url="&patches-root;&coreutils-i18n-patch;"/></para>
+        <para>MD5 指纹码：<literal>&coreutils-i18n-patch-md5;</literal></para>
+      </listitem>
+    </varlistentry>
+
+<!--
+    <varlistentry>
+      <term>Coreutils Test Fixes Patch - <token>&coreutils-test-patch-size;</token>:</term>
+      <listitem>
+        <para>Download: <ulink url="&patches-root;&coreutils-test-patch;"/></para>
+        <para>MD5 sum: <literal>&coreutils-test-patch-md5;</literal></para>
+      </listitem>
+    </varlistentry>
+-->
+
+    <varlistentry>
+      <term>Flex 回归测试补丁 - <token>&flex-bison-patch-size;</token>：</term>
+      <listitem>
+        <para>下载：<ulink url="&patches-root;&flex-bison-patch;"/></para>
+        <para>MD5 指纹码：<literal>&flex-bison-patch-md5;</literal></para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term>Kbd 退格/删除修复补丁 - <token>&kbd-backspace-patch-size;</token>：</term>
+      <listitem>
+        <para>下载：<ulink url="&patches-root;&kbd-backspace-patch;"/></para>
+        <para>MD5 指纹码：<literal>&kbd-backspace-patch-md5;</literal></para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term>Make 上游修复补丁 - <token>&make-fixes-patch-size;</token>：</term>
+      <listitem>
+        <para>下载：<ulink url="&patches-root;&make-fixes-patch;"/></para>
+        <para>MD5 指纹码：<literal>&make-fixes-patch-md5;</literal></para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term>Perl Libc 补丁 - <token>&perl-libc-patch-size;</token>：</term>
+      <listitem>
+        <para>下载：<ulink url="&patches-root;&perl-libc-patch;"/></para>
+        <para>MD5 指纹码：<literal>&perl-libc-patch-md5;</literal></para>
+      </listitem>
+    </varlistentry>
+
+    <!--
+    <varlistentry>
+      <term>Procps HZ 错误补丁 - <token>&procps-hz_fixes-patch-size;</token>：</term>
+      <listitem>
+        <para>下载：<ulink url="&patches-root;&procps-hz_fixes-patch;"/></para>
+        <para>MD5 指纹码：<literal>&procps-hz_fixes-patch-md5;</literal></para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term>Procps Watch 补丁 - <token>&procps-watch-patch-size;</token>：</term>
+      <listitem>
+        <para>下载：<ulink url="&patches-root;&procps-watch-patch;"/></para>
+        <para>MD5 指纹码：<literal>&procps-watch-patch-md5;</literal></para>
+      </listitem>
+    </varlistentry>
+    -->
+
+    <varlistentry>
+      <term>Readline 上游修复补丁 - <token>&readline-fixes-patch-size;</token>：</term>
+      <listitem>
+        <para>下载：<ulink url="&patches-root;&readline-fixes-patch;"/></para>
+        <para>MD5 指纹码：<literal>&readline-fixes-patch-md5;</literal></para>
+      </listitem>
+    </varlistentry>
+
+    <!--<varlistentry>
+      <term>Zlib fPIC 补丁 - <token>&zlib-fpic-patch-size;</token>：</term>
+      <listitem>
+        <para>下载：<ulink url="&patches-root;&zlib-fpic-patch;"/></para>
+        <para>MD5 指纹码：<literal>&zlib-fpic-patch-md5;</literal></para>
+      </listitem>
+    </varlistentry>-->
+
+  </variablelist>
+
+  <para>这些补丁的总大小：大约 <returnvalue/></para>
+
+  <para>除了以上的必须补丁，还存在有一些由 LFS 社区创建的可选补丁。这些可选补丁修复一些小问题或者启用默认没有启用的功能。请到 <ulink url="&lfs-root;patches/downloads/">补丁数据库</ulink> 获取额外补丁来适合你的系统需求。</para>
+
+</sect1>

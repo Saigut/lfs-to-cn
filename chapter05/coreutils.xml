@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+  "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../general.ent">
+  %general-entities;
+]>
+
+<sect1 id="ch-tools-coreutils" role="wrap">
+  <?dbhtml filename="coreutils.html"?>
+
+  <sect1info condition="script">
+    <productname>coreutils</productname>
+    <productnumber>&coreutils-version;</productnumber>
+    <address>&coreutils-url;</address>
+  </sect1info>
+
+  <title>Coreutils-&coreutils-version;</title>
+
+  <indexterm zone="ch-tools-coreutils">
+    <primary sortas="a-Coreutils">Coreutils</primary>
+    <secondary>工具</secondary>
+  </indexterm>
+
+  <sect2 role="package">
+    <title/>
+
+    <xi:include xmlns:xi="http://www.w3.org/2001/XInclude"
+    href="../chapter06/coreutils.xml"
+    xpointer="xpointer(/sect1/sect2[1]/para[1])"/>
+
+    <segmentedlist>
+      <segtitle>&buildtime;</segtitle>
+      <segtitle>&diskspace;</segtitle>
+
+      <seglistitem>
+        <seg>&coreutils-ch5-sbu;</seg>
+        <seg>&coreutils-ch5-du;</seg>
+      </seglistitem>
+    </segmentedlist>
+
+  </sect2>
+
+  <sect2 role="installation">
+    <title>安装 Coreutils</title>
+
+    <para>准备编译 Coreutils：</para>
+
+<screen><userinput remap="configure">./configure --prefix=/tools --enable-install-program=hostname</userinput></screen>
+
+    <variablelist>
+      <title>配置脚本的含义：</title>
+
+      <varlistentry>
+        <term><envar>--enable-install-program=hostname</envar></term>
+        <listitem>
+          <para>此项启用编制和安装 <command>hostname</command> 二进制文件&ndash;&ndash;它默认禁用，但 Perl 的测试套件需要。</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
+    <para>编译程序包：</para>
+
+<screen><userinput remap="make">make</userinput></screen>
+
+    <para>编译现在完成了。前面讨论过，没有必要在这一章中给临时工具运行测试套件。如果无论如何要运行 Coreutils 的测试套件，执行以下指令：</para>
+
+<screen><userinput remap="test">make RUN_EXPENSIVE_TESTS=yes check</userinput></screen>
+
+    <para><parameter>RUN_EXPENSIVE_TESTS=yes</parameter> 参数告诉测试套件运行几个额外的测试，它们在某些平台上相对昂贵 (CPU 运算能力和内存使用)，但是在 Linux 上通常不是问题。</para>
+
+    <para>安装程序包：</para>
+
+<screen><userinput remap="install">make install</userinput></screen>
+<!--
+    <para>以上命令拒绝安装 <filename>su</filename>，因为此程序无法作为非特权用户安装为 setuid root。通过手动安装，我们就可以用它来在最终系统中作为非特权用户运行测试。如此安装之：</para>
+
+<screen><userinput remap="install">cp -v src/su /tools/bin</userinput></screen>
+-->
+  </sect2>
+
+  <sect2 role="content">
+    <title/>
+
+    <para>有关此程序包的细节位于 <xref linkend="contents-coreutils"/>。</para>
+
+  </sect2>
+
+</sect1>

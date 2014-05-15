@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+  "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../general.ent">
+  %general-entities;
+]>
+
+<sect1 id="ch-system-revisedchroot">
+  <?dbhtml filename="revisedchroot.html"?>
+
+  <title>清理</title>
+
+  <para>从现在开始，如果要重新进入 chroot 环境，使用以下修改过的命令：</para>
+
+<screen><userinput>chroot "$LFS" /usr/bin/env -i \
+    HOME=/root TERM="$TERM" PS1='\u:\w\$ ' \
+    PATH=/bin:/usr/bin:/sbin:/usr/sbin \
+    /bin/bash --login</userinput></screen>
+
+  <para>原因在于 <filename class="directory">/tools</filename> 中的工具不再需要了。所以 <filename class="directory">/tools</filename> 目录可以移除了。</para>
+
+  <note>
+    <para>移除 <filename class="directory">/tools</filename> 也会移除 Tcl、Expect 和 DejaGNU 的用于运行工具链测试的临时副本。如果你仍然需要它们，需要重新编译和安装。BLFS 中有相关指令 (参考 <ulink url="&blfs-root;"/>)。</para>
+  </note>
+
+  <para>无论手动还是由于重新引导系统，如果虚拟内核文件系统被卸载了，在进入 chroot 环境时要挂载它们。此过程在 <xref linkend="ch-system-bindmount"/> 和 <xref linkend="ch-system-kernfsmount"/> 中有讲解。</para>
+
+</sect1>

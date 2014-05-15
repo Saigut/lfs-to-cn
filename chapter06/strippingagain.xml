@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+  "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../general.ent">
+  %general-entities;
+]>
+
+<sect1 id="ch-system-strippingagain">
+  <?dbhtml filename="strippingagain.html"?>
+
+  <title>再次剥离</title>
+
+  <para>如果目标用户不是程序员并且没有计划调试系统软件，就可以通过从二进制和库中移除调试符号来使系统尺寸减少大约 90 MB。除了彻底无法调试这些软件之外，此操作不会导致任何不便。</para>
+
+  <para>使用以下提到的命令，多数用户不会遇到任何困难，然而，很容易出现输入错误使新的系统无法使用，所以在运行 <command>strip</command> 命令之前推荐备份 LFS 系统的当前状态。</para>
+
+  <para>在进行剥离之前，要确保其中没有任何一个二进制正在运行。如果不清楚是否是按<xref linkend="ch-system-chroot" role=","/>中的指令进入的 chroot 环境，首先退出之：</para>
+
+<screen role="nodump"><userinput>logout</userinput></screen>
+
+  <para>然后重新进入之：</para>
+
+<screen role="nodump"><userinput>chroot $LFS /tools/bin/env -i \
+    HOME=/root TERM=$TERM PS1='\u:\w\$ ' \
+    PATH=/bin:/usr/bin:/sbin:/usr/sbin \
+    /tools/bin/bash --login</userinput></screen>
+
+  <para>现在二进制和库就可以安全剥离了：</para>
+
+<screen><userinput>/tools/bin/find /{,usr/}{bin,lib,sbin} -type f \
+  -exec /tools/bin/strip --strip-debug '{}' ';'</userinput></screen>
+
+  <para>大量文件会因为格式不支持而报错。这些警告可以安全忽略，这些文件都是脚本而不是二进制。</para>
+</sect1>

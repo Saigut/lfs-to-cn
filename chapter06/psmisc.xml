@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+  "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../general.ent">
+  %general-entities;
+]>
+
+<sect1 id="ch-system-psmisc" role="wrap">
+  <?dbhtml filename="psmisc.html"?>
+
+  <sect1info condition="script">
+    <productname>psmisc</productname>
+    <productnumber>&psmisc-version;</productnumber>
+    <address>&psmisc-url;</address>
+  </sect1info>
+
+  <title>Psmisc-&psmisc-version;</title>
+
+  <indexterm zone="ch-system-psmisc">
+    <primary sortas="a-Psmisc">Psmisc</primary>
+  </indexterm>
+
+  <sect2 role="package">
+    <title/>
+
+    <para>Psmisc 程序包包含用于显示运行中进程信息的程序。</para>
+
+    <segmentedlist>
+      <segtitle>&buildtime;</segtitle>
+      <segtitle>&diskspace;</segtitle>
+
+      <seglistitem>
+        <seg>&psmisc-ch6-sbu;</seg>
+        <seg>&psmisc-ch6-du;</seg>
+      </seglistitem>
+    </segmentedlist>
+
+  </sect2>
+
+  <sect2 role="installation">
+    <title>安装 Psmisc</title>
+
+    <para>准备编译 Psmisc：</para>
+
+<screen><userinput remap="configure">./configure --prefix=/usr</userinput></screen>
+
+    <para>编译程序包：</para>
+
+<screen><userinput remap="make">make</userinput></screen>
+
+    <para>此程序包不包含测试套件。</para>
+
+    <para>安装程序包：</para>
+
+<screen><userinput remap="install">make install</userinput></screen>
+
+    <para>最后将 <command>killall</command> 和 <command>fuser</command> 两个程序移动到 FHS 指定的位置：</para>
+
+<screen><userinput remap="install">mv -v /usr/bin/fuser   /bin
+mv -v /usr/bin/killall /bin</userinput></screen>
+
+  </sect2>
+
+  <sect2 id="contents-psmisc" role="content">
+    <title>Psmisc 的内容</title>
+
+    <segmentedlist>
+      <segtitle>安装的程序</segtitle>
+
+      <seglistitem>
+        <seg>fuser、killall、peekfd、prtstat、pstree 和 pstree.x11 (到 pstree 的链接)</seg>
+      </seglistitem>
+    </segmentedlist>
+
+    <variablelist>
+      <bridgehead renderas="sect3">简介</bridgehead>
+      <?dbfo list-presentation="list"?>
+      <?dbhtml list-presentation="table"?>
+
+      <varlistentry id="fuser">
+        <term><command>fuser</command></term>
+        <listitem>
+          <para>报告使用指定文件或者文件系统的进程的 ID (PID)</para>
+          <indexterm zone="ch-system-psmisc fuser">
+            <primary sortas="b-fuser">fuser</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="killall">
+        <term><command>killall</command></term>
+        <listitem>
+          <para>按名称杀死进程；它给所有在运行给定指令的进程发送一个信号</para>
+          <indexterm zone="ch-system-psmisc killall">
+            <primary sortas="b-killall">killall</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="peekfd">
+        <term><command>peekfd</command></term>
+        <listitem>
+          <para>给定 PID，观察该进程的文件描述器</para>
+          <indexterm zone="ch-system-psmisc peekfd">
+            <primary sortas="b-peekfd">peekfd</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="prtstat">
+        <term><command>prtstat</command></term>
+        <listitem>
+          <para>打印进程信息</para>
+          <indexterm zone="ch-system-psmisc prtstat">
+            <primary sortas="b-prtstat">prtstat</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="pstree">
+        <term><command>pstree</command></term>
+        <listitem>
+          <para>树形显示运行中的进程</para>
+          <indexterm zone="ch-system-psmisc pstree">
+            <primary sortas="b-pstree">pstree</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="pstree.x11">
+        <term><command>pstree.x11</command></term>
+        <listitem>
+          <para>与 <command>pstree</command> 相同但在退出时等待确认</para>
+          <indexterm zone="ch-system-psmisc pstree.x11">
+            <primary sortas="b-pstree.x11">pstree.x11</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+    </variablelist>
+
+  </sect2>
+
+</sect1>

@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+  "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../general.ent">
+  %general-entities;
+]>
+
+<sect1 id="ch-system-ncurses" role="wrap">
+  <?dbhtml filename="ncurses.html"?>
+
+  <sect1info condition="script">
+    <productname>ncurses</productname>
+    <productnumber>&ncurses-version;</productnumber>
+    <address>&ncurses-url;</address>
+  </sect1info>
+
+  <title>Ncurses-&ncurses-version;</title>
+
+  <indexterm zone="ch-system-ncurses">
+    <primary sortas="a-Ncurses">Ncurses</primary>
+  </indexterm>
+
+  <sect2 role="package">
+    <title/>
+
+    <para>Ncurses 程序包包含用于不依赖终端处理字符屏幕的库。</para>
+
+    <segmentedlist>
+      <segtitle>&buildtime;</segtitle>
+      <segtitle>&diskspace;</segtitle>
+
+      <seglistitem>
+        <seg>&ncurses-ch6-sbu;</seg>
+        <seg>&ncurses-ch6-du;</seg>
+      </seglistitem>
+    </segmentedlist>
+
+  </sect2>
+
+  <sect2 role="installation">
+    <title>安装 Ncurses</title>
+
+    <!-- FIXME: Uncomment if using a dated ncurses release instead of a numbered
+         one.
+
+    <para>Since the release of Ncurses-&ncurses-version;, some bugs have been fixed
+    and features added. The most important news are .......
+    To get these fixes and features, apply the rollup patch:</para>
+
+<screen><userinput>bzcat ../&ncurses-rollup-patch; | patch -Np1</userinput></screen>
+    -->
+
+      <para>准备编译 Ncurses：</para>
+
+<screen><userinput remap="configure">./configure --prefix=/usr           \
+            --mandir=/usr/share/man \
+            --with-shared           \
+            --without-debug         \
+            --enable-widec</userinput></screen>
+
+    <variablelist>
+      <title>配置选项的含义：</title>
+
+      <varlistentry>
+        <term><parameter>--enable-widec</parameter></term>
+        <listitem>
+            <para>这个开关使长字符库 (e.g.，<filename class="libraryfile">libncursesw.so.&ncurses-version;</filename>)被编制而非普通的库 (例如 <filename class="libraryfile">libncurses.so.&ncurses-version;</filename>) 这些长字符库在多字节和传统 8 位区域数据下都可用，而普通的库只在 8 位区域数据下正常工作。宽字符库和普通库是源代码兼容的，但二进制不兼容。</para>
+        </listitem>
+      </varlistentry>
+
+      <!--
+      <varlistentry>
+        <term><parameter>- -without-cxx-binding</parameter></term>
+        <listitem>
+          <para>This optional switch causes the
+          <filename class="libraryfile">libncurses++w.a</filename> library
+          not to be built. Nothing in LFS and BLFS uses this library.</para>
+        </listitem>
+      </varlistentry>
+      -->
+
+    </variablelist>
+
+    <para>编译程序包：</para>
+
+<screen><userinput remap="make">make</userinput></screen>
+
+    <para>此程序包带有测试套件，但它只能在程序包安装完毕后运行。该测试存在于 <filename class="directory">test/</filename> 目录。 查阅此目录下的 <filename>README</filename> 文件来获得更多细节。</para>
+
+    <para>安装程序包：</para>
+
+<screen><userinput remap="install">make install</userinput></screen>
+
+    <para>移动共享库到 <filename class="directory">/lib</filename> 目录，这里是它要求的位置：</para>
+
+<screen><userinput remap="install">mv -v /usr/lib/libncursesw.so.5* /lib</userinput></screen>
+
+    <para>因为库被移动了，一个符号链接指向了一个不存在的文件夹。重新创建它：</para>
+
+<screen><userinput remap="install">ln -sfv ../../lib/libncursesw.so.5 /usr/lib/libncursesw.so</userinput></screen>
+
+    <para>许多应用程序依然要求链接器能够找到非宽字符的 Ncurses 库。以符号链接和链接器脚本的方法欺骗这些应用程序链接到宽字符库：</para>
+
+<screen><userinput remap="install">for lib in ncurses form panel menu ; do 
+    rm -vf /usr/lib/lib${lib}.so 
+    echo "INPUT(-l${lib}w)" &gt;/usr/lib/lib${lib}.so
+    ln -sfv lib${lib}w.a /usr/lib/lib${lib}.a
+done
+
+ln -sfv libncurses++w.a /usr/lib/libncurses++.a</userinput></screen>
+
+    <para>最后，确保在编制时需要 <filename class="libraryfile">-lcurses</filename> 的旧应用程序仍可以正常编制：</para>
+
+<screen><userinput remap="install">rm -vf                     /usr/lib/libcursesw.so
+echo "INPUT(-lncursesw)" &gt; /usr/lib/libcursesw.so
+ln -sfv libncurses.so      /usr/lib/libcurses.so
+ln -sfv libncursesw.a      /usr/lib/libcursesw.a
+ln -sfv libncurses.a       /usr/lib/libcurses.a</userinput></screen>
+
+    <para>如果需要，安装 Ncurses 文档：</para>
+
+<screen><userinput remap="install">mkdir -v       /usr/share/doc/ncurses-&ncurses-version;
+cp -v -R doc/* /usr/share/doc/ncurses-&ncurses-version;</userinput></screen>
+
+    <note>
+      <para>上面的向导不创建非宽字符 Ncurses 库，因为没有通过编译源代码安装的程序包会在运行时链接它们。如果你因为某些只提供二进制的应用程序或为了兼容 LSB 而必需这些库，按以下命令再次编制程序包：</para>
+
+<screen role="nodump"><userinput>make distclean
+./configure --prefix=/usr --with-shared --without-normal \
+  --without-debug --without-cxx-binding
+make sources libs
+cp -av lib/lib*.so.5* /usr/lib</userinput></screen>
+    </note>
+
+  </sect2>
+
+  <sect2 id="contents-ncurses" role="content">
+    <title>Ncurses 的内容</title>
+
+    <segmentedlist>
+      <segtitle>安装的程序</segtitle>
+      <segtitle>安装的库</segtitle>
+      <segtitle>安装的目录</segtitle>
+
+      <seglistitem>
+        <seg>captoinfo (到 tic 的链接), clear, infocmp, infotocap (到 tic 的链接), ncursesw5-config, reset (到 tset 的链接), tabs, tic, toe, tput 和 tset</seg>
+        <seg>libcursesw.{a,so} (符号链接以及链接脚本，指向 libncursesw.{a,so}), libformw.{a,so}, libmenuw.{a,so}, libncurses++w.a, libncursesw.{a,so}, libpanelw.{a,so} 及其非宽字符组件，名称中不带 <quote>w</quote>。</seg>
+        <seg>/usr/share/tabset, /usr/share/terminfo</seg>
+      </seglistitem>
+    </segmentedlist>
+
+    <variablelist>
+      <bridgehead renderas="sect3">简介</bridgehead>
+      <?dbfo list-presentation="list"?>
+      <?dbhtml list-presentation="table"?>
+
+      <varlistentry id="captoinfo">
+        <term><command>captoinfo</command></term>
+        <listitem>
+          <para>将 termcap 描述转换成 terminfo 描述</para>
+          <indexterm zone="ch-system-ncurses captoinfo">
+            <primary sortas="b-captoinfo">captoinfo</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="clear">
+        <term><command>clear</command></term>
+        <listitem>
+          <para>如果可能，刷新屏幕</para>
+          <indexterm zone="ch-system-ncurses clear">
+            <primary sortas="b-clear">clear</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="infocmp">
+        <term><command>infocmp</command></term>
+        <listitem>
+          <para>比对或打印 terminfo 描述</para>
+          <indexterm zone="ch-system-ncurses infocmp">
+            <primary sortas="b-infocmp">infocmp</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="infotocap">
+        <term><command>infotocap</command></term>
+        <listitem>
+          <para>将 terminfo 描述转换成 termcap 描述</para>
+          <indexterm zone="ch-system-ncurses infotocap">
+            <primary sortas="b-infotocap">infotocap</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="ncursesw5-config">
+        <term><command>ncursesw5-config</command></term>
+        <listitem>
+          <para>提供 Ncurses 的配置信息</para>
+          <indexterm zone="ch-system-ncurses ncursesw5-config">
+            <primary sortas="b-ncursesw5-config">ncursesw5-config</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="reset">
+        <term><command>reset</command></term>
+        <listitem>
+          <para>将一个终端再初始化到它的默认值</para>
+          <indexterm zone="ch-system-ncurses reset">
+            <primary sortas="b-reset">reset</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="tabs">
+        <term><command>tabs</command></term>
+        <listitem>
+          <para>在一个终端上刷新和设置停止跳格</para>
+          <indexterm zone="ch-system-ncurses tabs">
+            <primary sortas="b-tabs">tabs</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="tic">
+        <term><command>tic</command></term>
+        <listitem>
+          <para>将一个 terminfo 文件从源格式翻译成二进制格式的 terminfo 条目描述编译器需要 ncurses 库路径。一个 terminfo 文件包含有关某一特定终端的兼容性信息</para>
+          <indexterm zone="ch-system-ncurses tic">
+            <primary sortas="b-tic">tic</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="toe">
+        <term><command>toe</command></term>
+        <listitem>
+          <para>列出所有可用的终端类型，给出每一个的原名和描述</para>
+          <indexterm zone="ch-system-ncurses toe">
+            <primary sortas="b-toe">toe</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="tput">
+        <term><command>tput</command></term>
+        <listitem>
+          <para>使依赖终端兼容性的值可被 shell 使用；它同样可以被用来重设或初始化某一终端或报告其长名</para>
+          <indexterm zone="ch-system-ncurses tput">
+            <primary sortas="b-tput">tput</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="tset">
+        <term><command>tset</command></term>
+        <listitem>
+          <para>可以被用来初始化终端</para>
+          <indexterm zone="ch-system-ncurses tset">
+            <primary sortas="b-tset">tset</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="libcurses">
+        <term><filename class="libraryfile">libcurses</filename></term>
+        <listitem>
+          <para>一个到 <filename>libncurses</filename> 的链接</para>
+          <indexterm zone="ch-system-ncurses libcurses">
+            <primary sortas="c-libcurses">libcurses</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="libncurses">
+        <term><filename class="libraryfile">libncurses</filename></term>
+        <listitem>
+            <para>包含了可以多种复合方式在终端屏幕上显示文本的函数；一个较好的函数使用案例是在 kernel 的 <command>make menuconfig</command> 中显示的菜单</para>
+          <indexterm zone="ch-system-ncurses libncurses">
+            <primary sortas="c-libncurses">libncurses</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="libform">
+        <term><filename class="libraryfile">libform</filename></term>
+        <listitem>
+          <para>包含了实现表格的函数</para>
+          <indexterm zone="ch-system-ncurses libform">
+            <primary sortas="c-libform">libform</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="libmenu">
+        <term><filename class="libraryfile">libmenu</filename></term>
+        <listitem>
+          <para>包含了实现菜单的函数</para>
+          <indexterm zone="ch-system-ncurses libmenu">
+            <primary sortas="c-libmenu">libmenu</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="libpanel">
+        <term><filename class="libraryfile">libpanel</filename></term>
+        <listitem>
+          <para>包含了实现面板的函数</para>
+          <indexterm zone="ch-system-ncurses libpanel">
+            <primary sortas="c-libpanel">libpanel</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+    </variablelist>
+
+  </sect2>
+
+</sect1>

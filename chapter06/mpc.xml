@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+  "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../general.ent">
+  %general-entities;
+]>
+
+<sect1 id="ch-system-mpc" role="wrap">
+  <?dbhtml filename="mpc.html"?>
+
+  <sect1info condition="script">
+    <productname>mpc</productname>
+    <productnumber>&mpc-version;</productnumber>
+    <address>&mpc-url;</address>
+  </sect1info>
+
+  <title>MPC-&mpc-version;</title>
+
+  <indexterm zone="ch-system-mpc">
+    <primary sortas="a-MPC">MPC</primary>
+  </indexterm>
+
+  <sect2 role="package">
+    <title/>
+
+    <para>MPC 程序包包含用于复数算术的库，精度高而且可变，结果也会被正确近似。</para>
+
+    <segmentedlist>
+      <segtitle>&buildtime;</segtitle>
+      <segtitle>&diskspace;</segtitle>
+
+      <seglistitem>
+        <seg>&mpc-ch6-sbu;</seg>
+        <seg>&mpc-ch6-du;</seg>
+      </seglistitem>
+    </segmentedlist>
+
+  </sect2>
+
+  <sect2 role="installation">
+    <title>安装 MPC</title>
+
+    <para>准备编译 MPC：</para>
+
+<screen><userinput remap="configure">./configure --prefix=/usr</userinput></screen>
+
+    <para>编译程序包：</para>
+
+<screen><userinput remap="make">make</userinput></screen>
+
+    <para>要测试结果，执行：</para>
+
+<screen><userinput remap="test">make check</userinput></screen>
+
+    <para>安装程序包：</para>
+
+<screen><userinput remap="install">make install</userinput></screen>
+
+  </sect2>
+
+
+  <sect2 id="contents-mpc" role="content">
+    <title>MPC 的内容</title>
+
+    <segmentedlist>
+      <segtitle>安装的库</segtitle>
+
+      <seglistitem>
+        <seg>libmpc.{a,so}</seg>
+      </seglistitem>
+    </segmentedlist>
+
+    <variablelist>
+      <bridgehead renderas="sect3">简介</bridgehead>
+      <?dbfo list-presentation="list"?>
+      <?dbhtml list-presentation="table"?>
+
+      <varlistentry id="libmpc">
+        <term><filename class="libraryfile">libmpc</filename></term>
+        <listitem>
+          <para>包含复数数学函数</para>
+          <indexterm zone="ch-system-mpc libmpc">
+            <primary sortas="c-libmpc">libmpc</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+    </variablelist>
+
+  </sect2>
+
+</sect1>

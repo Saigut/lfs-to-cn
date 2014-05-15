@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+  "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../general.ent">
+  %general-entities;
+]>
+
+<sect1 id="ch-intro-resources">
+  <?dbhtml filename="resources.html"?>
+
+  <title>相关资源</title>
+
+  <sect2 id="ch-intro-faq">
+    <title>FAQ</title>
+
+    <para>如果你在构建 LFS 系统的时候遭遇任何错误，有任何问题，或者是认为本文有排版问题，请查看 <ulink url="&faq-root;">FAQ</ulink>。(译注：如果遇到描述性问题，请先提供给 <ulink url="https://github.com/davidgao/LFSCN">翻译工程</ulink>。)</para>
+
+  </sect2>
+
+  <sect2 id="ch-intro-maillists" xreflabel="第一章 - 邮件列表">
+    <title>邮件列表</title>
+
+    <para>你可以在 <uri>linuxfromscratch.org</uri> 找到大量关于 LFS 项目开发的邮件列表。这些列表包括主要开发团队、相关支持等等。如果 FAQ 没有解决你的问题，请查找这些 <ulink url="&lfs-root;search.html">邮件列表</ulink>。</para>
+
+    <para>关于如何使用邮件列表，请查看 <ulink url="&lfs-root;mail.html">邮件列表说明</ulink>。</para>
+
+  </sect2>
+
+  <!-- FIXME: Remove until such time as we have our own News Server, JH 20060105
+
+  <sect2 id="ch-intro-newsserver">
+    <title>News Server</title>
+
+    <para>The mailing lists hosted at <uri>linuxfromscratch.org</uri> are
+    also accessible via the Network News Transfer Protocol (NNTP) server.
+    All messages posted to a mailing list are copied to the corresponding
+    newsgroup, and vice versa.</para>
+
+    <para>The news server is located at
+    <uri>news.linuxfromscratch.org</uri>.</para>
+
+  </sect2> -->
+
+  <sect2 id="ch-intro-irc">
+    <title>IRC</title>
+
+    <para>数个 LFS 社区成员在 IRC 频道提供帮助。在确定 FAQ 和邮件列表无法解决你的问题时，可以向我们的 IRC 频道求助。你可以在 <uri>irc.freenode.net</uri> 找到我们的 IRC 地址，频道名称为 #LFS-support。</para>
+
+  </sect2>
+
+  <!-- Commentted out until the target link is updated
+  <sect2 id="ch-intro-references">
+    <title>References</title>
+
+    <para>For additional information on the packages, useful tips are
+    available in the LFS Package Reference page located at <ulink
+    url="http://www.linuxfromscratch.org/~matthew/LFS-references.html"/>.</para>
+
+  </sect2>  -->
+
+  <sect2 id="ch-intro-mirrors" xreflabel="第一章 - 镜像站点">
+    <title>镜像站点</title>
+
+    <para>LFS 项目在全世界有许多镜像站点。你可以在这些镜像站点更方便地下载一些资源。请访问 <ulink url="&lfs-root;mirrors.html">镜像站点列表</ulink> 查看当前可用的镜像站点。</para>
+
+  </sect2>
+
+  <sect2 id="ch-intro-contactinfo">
+    <title>联系我们</title>
+
+    <para>请将相关问题和评价提交到 LFS 项目的邮件列表 (上面提到过)。</para>
+
+  </sect2>
+
+</sect1>

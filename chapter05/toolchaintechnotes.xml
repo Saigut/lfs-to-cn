@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+  "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../general.ent">
+  %general-entities;
+]>
+
+<sect1 id="ch-tools-toolchaintechnotes">
+  <?dbhtml filename="toolchaintechnotes.html"?>
+
+  <title>工具链技术注记</title>
+
+  <para>这一节解释总体编制方法的某些基本原理和技术细节。不必立刻理解其中所有内容。大部分信息会在进行实际编制之后变得清晰，在此过程中可以随时查阅。</para>
+
+  <para><xref linkend="chapter-temporary-tools"/> 的总体目的是产生一个临时区域，要包含已知可用的、能从宿主独立出来的工具集。通过使用 <command>chroot</command>，余下章节中的命令就会被限制在此环境内，确保目标 LFS 系统编制干净而且没有麻烦。编制进程按照最小化新读者风险并同时提供最大的教育价值设计。</para>
+
+  <note>
+    <para>在继续之前，注意工作平台的名字，也叫做目标三联字串。获知目标三联字串的简单方法是运行 <command>config.guess</command> 脚本，它随很多程序包的源代码出现。解包 Binutils 源代码并运行脚本：<userinput>./config.guess</userinput> 并注意输出。举个例子，对于一个现代的 32 位英特尔处理器来说输出可能会是 <computeroutput>i686-pc-linux-gnu</computeroutput>。</para>
+
+    <para>也要注意平台的动态链接器名称，通常叫做动态加载器 (以防与作为 Binutils 的一部分的标准链接器 <command>ld</command> 混淆)。动态链接器由 Glibc 提供，会寻找并加载程序需要的共享库，准备并运行程序。32 位英特尔处理器使用的动态链接器名应为 <filename class="libraryfile">ld-linux.so.2</filename>。在宿主系统中随意查看一个二进制就可以获知动态链接器名：<userinput>readelf -l &lt;binary&gt; | grep interpreter</userinput> 留意其输出。官方的覆盖了所有平台的参考位于 Glibc 源代码树中的 <filename>shlib-versions</filename> 文件中。</para>
+  </note>
+
+  <para>有关 <xref linkend="chapter-temporary-tools"/> 中的编制方法如何工作的一些核心技术要点如下：</para>
+
+  <itemizedlist>
+    <listitem>
+      <para>轻微调整工作平台名，通过 <envar>LFS_TGT</envar> 变量改变 &quot;生产商&quot; 字段以确保首次编制的 Binutils 和 GCC 能产生兼容的交叉编译器和交叉链接器。交叉编译器和交叉链接器将会产生与当前硬件兼容的二进制而不会产生另一个架构的二进制。</para>
+    </listitem>
+    <listitem>
+      <para>临时库是交叉编译的。因为交叉编译器自然无法依赖宿主系统上的任何东西，这就减少了头文件和库从宿主被包含至新工具的可能，进而防止了对目标系统的潜在污染。交叉编译也允许在 64 位兼容的硬件上既编译 32 位库也编译 64 位库。</para>
+    </listitem>
+    <listitem>
+      <para>小心地对 <command>gcc</command> 的源代码进行操作，以告知编译器应该使用哪个目标动态链接器。</para>
+    </listitem>
+  </itemizedlist>
+
+  <para>Binutils 要首先安装，因为 GCC 和 Glibc 的 <command>configure</command> 在运行时都会对汇编器和链接器进行特性测试来决定要启用还是禁用他们自己的每个特性。这比你一开始意识到的要重要。配置不正确的 GCC 或 Glibc 会导致工具链轻微破损，而这样的破损可能在整个发行版编制接近尾声之前都不会体现出来。在完成太多额外工作之前，某一个测试套件不能通过会指出此错误。</para>
+
+  <para>Binutils 安装汇编器和链接器到两个位置：<filename class="directory">/tools/bin</filename> 和 <filename class="directory">/tools/$LFS_TGT/bin</filename>。两个位置的工具之间是硬链接。链接器很重要的一点是库搜索顺序。相关信息可以通过传递 <parameter>--verbose</parameter> 给 <command>ld</command> 来获取。比如 <userinput>ld --verbose | grep SEARCH</userinput> 就会按顺序列出当前的搜索路径。通过编译一个伪程序并给链接器传递一个 <parameter>--verbose</parameter> 开关可以显示哪些文件被 <command>ld</command> 链接。比如 <userinput>gcc dummy.c -Wl,--verbose 2&gt;&amp;1 | grep succeeded</userinput> 会显示链接过程中成功打开的所有文件。</para>
+
+  <para>下一个安装的程序包是 GCC。它的 <command>configure</command> 运行时能看到的一例输出为：</para>
+
+<screen><computeroutput>checking what assembler to use... /tools/i686-lfs-linux-gnu/bin/as
+checking what linker to use... /tools/i686-lfs-linux-gnu/bin/ld</computeroutput></screen>
+
+  <para>由于上面提到的原因，这很重要。这也显示了 GCC 的配置脚本不会搜索 PATH 目录来查找要使用的工具。然而，在实际操作 <command>gcc</command> 时，同样的搜索路径不必使用。要查看 <command>gcc</command> 要使用的标准链接器，运行：<userinput>gcc -print-prog-name=ld</userinput>。</para>
+
+  <para>详细信息可以通过在编译伪程序时传递 <parameter>-v</parameter> 命令行选项给 <command>gcc</command> 来获取。比如，<userinput>gcc -v dummy.c</userinput> 就会显示关于预处理器、编译和汇编步骤的详细信息，包括 <command>gcc</command> 的搜索路径和顺序。</para>
+
+  <para>下一个安装的是净化的 Linux API 头文件。它们允许标准 C 库 (Glibc) 与 Linux 内核将会提供的特性交互。</para>
+
+  <para>接下来安装的程序包是 Glibc。编制 Glibc 是最重要的是要考虑到编译器、二进制工具和内核头文件。编译器通常不是问题，因为 Glibc 会总是使用与传递给它的配置脚本的 <parameter>--host</parameter> 参数相关的编译器，在我们的例子中是 <command>i686-lfs-linux-gnu-gcc</command>。二进制工具和内核头文件就有一点复杂了。所以，不要冒险，使用可用的配置开关来强制正确的选择。运行 <command>configure</command> 之后，检查  <filename class="directory">glibc-build</filename> 目录中的 <filename>config.make</filename> 文件来查看所有重要的细节。注意使用 <parameter>CC="i686-lfs-gnu-gcc"</parameter> 来控制要使用的二进制工具，并用 <parameter>-nostdinc</parameter> 和 <parameter>-isystem</parameter> 标记来控制编译器的包含搜索路径。这些事项就是 Glibc 的要点&mdash;&mdash;它在编制机理上非常自我高效，通常不会依赖工具链默认设置。</para>
+
+  <para>安装 Glibc 之后，改变 <command>gcc</command> 的 specs 文件指向位于 <filename class="directory">/tools/lib</filename> 的新的动态链接器。这最后一步对于确保搜索和链接在 <filename class="directory">/tools</filename> 前缀之内进行非常关键。在每一个 ELF 格式的可执行文件中都嵌入了动态链接器的不可改变的路径。可以这样查看：<userinput>readelf -l &lt;name of binary&gt; | grep interpreter</userinput>。修改 <command>gcc</command> 的 specs 文件确保从这里到本章末编译的所有文件都会使用位于 <filename class="directory">/tools/lib</filename> 的新的动态链接器。</para>
+
+  <para>在第二遍编译 Binutils 时，我们就可以利用 <parameter>--with-lib-path</parameter> 配置开关来控制 <command>ld</command> 的库搜索路径了。</para>
+
+  <para>对于第二遍编译 GCC，也许要修改源代码来让 GCC 使用新的动态链接器。若不能如此做，GCC 程序就会嵌入宿主系统 <filename class="directory">/lib</filename> 目录中动态链接器的路径，离开宿主的目标也就无法实现。从这里开始，核心工具链就以本身为容器和宿主了。<xref linkend="chapter-temporary-tools"/> 余下的程序包都依照 <filename class="directory">/tools</filename> 中新的 Glibc 编译。</para>
+
+  <para>在 <xref linkend="chapter-building-system"/> 进入 <command>chroot</command> 环境时，第一个安装的主要程序包就是 Glibc，原因就是上面提到过的自我高效的特性。一旦这个 Glibc 安装到 <filename class="directory">/usr</filename>，我们就要调节工具链默认设置，然后继续编制目标 LFS 系统的余下部分。</para>
+
+</sect1>

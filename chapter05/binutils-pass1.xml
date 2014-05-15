@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+  "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../general.ent">
+  %general-entities;
+]>
+
+<sect1 id="ch-tools-binutils-pass1" role="wrap">
+  <?dbhtml filename="binutils-pass1.html"?>
+
+  <sect1info condition="script">
+    <productname>binutils</productname>
+    <productnumber>&binutils-version;</productnumber>
+    <address>&binutils-url;</address>
+  </sect1info>
+
+  <title>Binutils-&binutils-version; - 第一遍</title>
+
+  <indexterm zone="ch-tools-binutils-pass1">
+    <primary sortas="a-Binutils">Binutils</primary>
+    <secondary>工具、第一遍</secondary>
+  </indexterm>
+
+  <sect2 role="package">
+    <title/>
+
+    <xi:include xmlns:xi="http://www.w3.org/2001/XInclude"
+    href="../chapter06/binutils.xml"
+    xpointer="xpointer(/sect1/sect2[1]/para[1])"/>
+
+    <segmentedlist>
+      <segtitle>&buildtime;</segtitle>
+      <segtitle>&diskspace;</segtitle>
+
+      <seglistitem>
+        <seg>&binutils-ch5p1-sbu;</seg>
+        <seg>&binutils-ch5p1-du;</seg>
+      </seglistitem>
+    </segmentedlist>
+
+  </sect2>
+
+  <sect2 role="installation">
+    <title>安装交叉 Binutils</title>
+
+    <note><para>回去重新读一下上一节中的注记。读懂标记为重要的注记可以减少以后遇到的麻烦。</para></note>
+
+    <para>Binutils 作为第一个编译的程序包很重要，因为 GCC 和 Glibc 都会对汇编器和链接器进行特性测试来决定要启用还是禁用他们自己的每个特性。</para>
+    
+    <para>Binutils 文档推荐在源代码目录外创建目录编制 Binutils：</para>
+
+<screen><userinput remap="pre">mkdir -v ../binutils-build
+cd ../binutils-build</userinput></screen>
+
+    <note>
+      <para>为了使本书余下部分列出的 SBU 值有意义，测量这个程序包从配置开始到安装结束的编制时间。要完成这一任务，像这样用 <command>time</command> 命令把这三个命令打包：<userinput>time { ./configure ... &amp;&amp; make&amp;&amp; make install; }</userinput>。</para>
+    </note>
+
+    <note><para>第五章的 SBU 值和需求磁盘空间不包含测试套件数据。</para></note>
+
+    <para>现在准备编译 Binutils：</para>
+
+<screen><userinput remap="configure">../binutils-&binutils-version;/configure     \
+    --prefix=/tools            \
+    --with-sysroot=$LFS        \
+    --with-lib-path=/tools/lib \
+    --target=$LFS_TGT          \
+    --disable-nls              \
+    --disable-werror</userinput></screen>
+
+    <variablelist>
+      <title>配置选项的含义：</title>
+      
+      <varlistentry>
+        <term><parameter>--prefix=/tools</parameter></term>
+        <listitem>
+          <para>此项告诉配置脚本准备安装 Binutils 程序于 <filename class="directory">/tools</filename> 目录中。</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><parameter>--with-sysroot=$LFS</parameter></term>
+        <listitem>
+          <para>对于交叉编译，此项告诉编制系统到 $LFS 中寻找需要的目标系统库。</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><parameter>--with-lib-path=/tools/lib</parameter></term>
+        <listitem>
+          <para>此项指定要配置链接器使用的库路径。</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><envar>--target=$LFS_TGT</envar></term>
+        <listitem>
+          <para>因为 <envar>LFS_TGT</envar> 变量中的计算机描述与 <command>config.guess</command> 脚本返回的值略有区别，此开关会告诉 <command>configure</command> 脚本调节 Binutil 的编制系统编制一个交叉链接器。</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><parameter>--disable-nls</parameter></term>
+        <listitem>
+          <para>此项禁用国际化，因为国际化在临时工具中不需要。</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><parameter>--disable-werror</parameter></term>
+        <listitem>
+          <para>此项防止编制由于宿主的编译器的警告而停止。</para>
+        </listitem>
+      </varlistentry>
+
+    </variablelist>
+
+    <para>继续编译程序包：</para>
+
+<screen><userinput remap="make">make</userinput></screen>
+
+    <para>编译现在完成了。通常我们现在要运行测试套件，但现阶段测试套件框架 (Tcl、Expect 和 DejaGNU) 还没有到位。在这里运行测试意义不大，因为这第一遍编译的程序很快会被第二遍的替换掉。</para>
+
+    <para>如果在 x86_64 上编制，创建一个符号链接以确保工具链可靠：</para>
+
+<screen><userinput remap="install">case $(uname -m) in
+  x86_64) mkdir -v /tools/lib &amp;&amp; ln -sv lib /tools/lib64 ;;
+esac</userinput></screen>
+
+    <para>安装程序包：</para>
+
+<screen><userinput remap="install">make install</userinput></screen>
+
+  </sect2>
+
+  <sect2 role="content">
+    <title/>
+
+    <para>有关此程序包的细节位于 <xref linkend="contents-binutils"/>。</para>
+
+  </sect2>
+
+</sect1>

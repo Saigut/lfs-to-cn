@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+  "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../general.ent">
+  %general-entities;
+]>
+
+<sect1 id="ch-scripts-network">
+  <?dbhtml filename="network.html"?>
+
+  <title>通用网络配置</title>
+
+  <indexterm zone="ch-scripts-network">
+    <primary sortas="d-network">nettwork</primary>
+  <secondary>配置</secondary></indexterm>
+
+  <para>本节仅在要配置网卡时应用。</para>
+
+  <para>如果不会使用网卡，似乎就没有必要创建任何有关网卡的配置文件。在这种情况下就应该在<xref linkend="ch-scripts-bootscripts"/>中安装引导脚本之后从运行级别目录 (<filename class="directory">/etc/rc.d/rc*.d</filename>) 中移除所有的 <filename class="symlink">network</filename> 符号链接。</para>
+
+  <sect2 id='stable-net-names'>
+    <title>创建网络接口的稳定名称</title>
+
+    <para>如果系统上只有一个网络接口，这一节就不是必须的，但是进行这些操作不会有什么错误。很多情况下 (例如有一台无线和一个有线接口的笔记本) 本节中的配置是必须的。</para>  
+
+    <para>有了 Udev 和模块化网络驱动，每次重新引导系统之后网络接口的编号默认不是固定的，因为驱动并发加载，也就是说不计顺序。例如在一台有两块分别由 Intel 和 Realtek 生产的网卡的计算机上，Intel 生产的网卡可能会成为 <filename class="devicefile">eth0</filename> 而 Realtek 生产的成为 <filename class="devicefile">eth1</filename>。有些情况下重新引导之后网卡的重新编号就会颠倒。要防止这种现象产生，Udev 带有一个脚本和一些规则来按照 MAC 地址将网卡对应到稳定的名称。</para>
+
+    <para>这些规则在上一章 <application>udev (systemd)</application> 的编制指令中已经生成了。检查 <filename>/etc/udev/rules.d/70-persistent-net.rules</filename> 这个文件查找名称和网络设备的对应：</para>
+
+<screen role="nodump"><userinput>cat /etc/udev/rules.d/70-persistent-net.rules</userinput></screen>
+
+    <note><para>在某些情况下，如手动给网卡或 Xen 等虚拟环境分配了 MAC 地址时，网络规则文件可能就不会生成，因为地址不是固定对应的。这种情况下直接跳到下一节。</para></note>
+
+    <para>此文件以一个注释块开始，接下来每个 NIC 由两行组成。第一行是注释，显示其硬件 ID (例如 PCI 卡的生产商和设备 ID)，如果找到了驱动会写在括号中。硬件 ID 和驱动都不会用来确定接口的名称；这些信息仅供参考。第二行是 Udev 匹配此 NIC 并将其与一个名称实际对应的规则。</para>
+
+    <para>所有的 Udev 规则都由几个关键字组成，以逗号和可选的空格隔开。此规则的关键字及其解释如下：</para>
+
+    <itemizedlist>
+      <listitem>
+        <para><literal>SUBSYSTEM=="net"</literal> - 此项告诉 Udev 忽略不是网卡的设备。</para>
+      </listitem>
+      <listitem>
+        <para><literal>ACTION=="add"</literal> - 此项告诉 Udev 对于非添加的 uevent ("移除" 和 "改变" 这两个 uevents 也会发生，但是无需重命名网络接口) 忽略此规则。</para>
+      </listitem>
+      <listitem>
+        <para><literal>DRIVERS=="?*"</literal> - 此项存在时 Udev 会忽略 VLAN 或者子接口 (因为子接口没有驱动)。这些子接口要跳过是为了防止名称与其父设备冲突。</para>
+      </listitem>
+      <listitem>
+        <para><literal>ATTR{address}</literal> - 此关键字的值是 NIC 的 MAC 地址。</para>
+      </listitem>
+      <listitem>
+        <para><literal>ATTR{type}=="1"</literal> - 此项确保此规则对于某些创建多个虚拟接口的无线驱动只匹配首要接口。跳过次要接口的原因和 VLAN 以及子接口的原因相同：若不如此会出现冲突。</para>
+      </listitem>
+      <listitem>
+        <para><literal>KERNEL=="eth*"</literal> - 此关键字添加到 Udev 规则创建器以处理具有多个网络接口而且有相同的 MAC 地址的情况 (例如 PS3).如果独立的接口有不同的基础名称，此关键字就将允许 Udev 区分它们。对于多数 LFS 用户而言此项并不必须然而无害。</para>
+      </listitem>
+      <listitem>
+        <para><literal>NAME</literal> - 此关键字的值是 Udev 将会给此接口分配的名称。</para>
+      </listitem>
+    </itemizedlist>
+
+    <para><literal>NAME</literal> 的值是最重要的部分。在继续之前要确保你知道每个网卡的名称，在创建以下配置文件时使用这个 <literal>NAME</literal> 值。</para>
+
+  </sect2>
+
+  <sect2>
+    <title>创建网络接口配置文件</title>
+
+    <para>网络脚本开关的接口取决于 <filename class="directory">/etc/sysconfig/</filename> 中的文件。要配置的每个接口在此目录中都应该有一个文件，例如 <filename>ifconfig.xyz</filename>，其中 <quote>xyz</quote> 应该是一个对管理员有意义的名称，如设备名 (比如 eth0)。此文件中是该接口的属性，例如 IP 地址、子网掩码等。文件名的主干必须是 <emphasis>ifconfig</emphasis>。</para>
+
+    <para>以下命令会创建一个样例文件，给 <emphasis>eth0</emphasis> 设备分配一个静态 IP 地址：</para>
+
+<screen><userinput>cd /etc/sysconfig/
+cat &gt; ifconfig.eth0 &lt;&lt; "EOF"
+<literal>ONBOOT=yes
+IFACE=eth0
+SERVICE=ipv4-static
+IP=192.168.1.1
+GATEWAY=192.168.1.2
+PREFIX=24
+BROADCAST=192.168.1.255</literal>
+EOF</userinput></screen>
+
+    <para>这些变量的值在每个文件中都要改为正确设置的地址。</para>
+
+    <para>如果 <envar>ONBOOT</envar> 变量设置为 <quote>yes</quote>，网络脚本会在系统引导时打开该 NIC，否则网络脚本就会忽略之并且不会自动打开该 NIC。该接口可以使用 <command>ifup</command> 和 <command>ifdown</command> 命令来手动打开和关闭。</para>
+
+    <para><envar>IFACE</envar> 变量定义接口名称，例如 eth0。所有的网络设备配置文件都需要它。</para>
+
+    <para><envar>SERVICE</envar> 变量定义获取 IP 地址的方法。LFS-Bootscripts 程序包有一个模块化的 IP 对应方法，在 <filename class="directory">/lib/services/</filename> 目录中创建额外文件可以允许其他的 IP 对应directory allows other IP 对应方法。此项经常用于 DHCP，在 BLFS 中提到。</para>
+
+    <para>如果有网关，<envar>GATEWAY</envar> 变量应该包含默认网关的 IP 地址，否则注释掉这整个变量。</para>
+
+    <para><envar>PREFIX</envar> 比啊量包含子网使用的位数。IP 地址中有 4 个 8 位组。如果子网的掩码是 255.255.255.0，它就使用前 3 个 8 位组指定网络号。如果子网掩码是 255.255.255.240，使用的就是前 28 位。超过 24 位的前缀通常被 DSL 和基于线电缆的 ISP 使用。这一例子 (PREFIX=24) 中，子网掩码是 255.255.255.0。根据你的子网调节 <envar>PREFIX</envar> 变量的值。如果忽略，其默认值为24。</para>
+
+    <para>获取更多信息，参考 <command>ifup</command> 的手册页。</para>
+
+  </sect2>
+
+  <sect2 id="resolv.conf">
+    <title>创建 /etc/resolv.conf 文件</title>
+
+    <indexterm zone="resolv.conf">
+      <primary sortas="e-/etc/resolv.conf">/etc/resolv.conf</primary>
+    </indexterm>
+
+    <para>如果你的系统要连接到互联网，它需要一种 DNS 名称解析服务来解析互联网域名和 IP 地址，反之亦然。最佳实现方式是将 DNS 服务器的 IP 地址 (从 ISP 或者网络管理员处获取) 置于 <filename>/etc/resolv.conf</filename> 中。运行以下命令创建此文件：</para>
+
+<screen><userinput>cat &gt; /etc/resolv.conf &lt;&lt; "EOF"
+<literal># Begin /etc/resolv.conf
+
+domain <replaceable>&lt;domain&gt;</replaceable>
+nameserver <replaceable>&lt;address&gt;</replaceable>
+nameserver <replaceable>&lt;address&gt;</replaceable>
+
+# End /etc/resolv.conf</literal>
+EOF</userinput></screen>
+
+    <para><varname>domain</varname> 声明可以忽略或者以 <varname>search</varname> 声明替换。参考 resolv.conf 的手册页获取更多细节。</para>
+
+    <para>将 <replaceable>&lt;address&gt;</replaceable> 替换为最适合的 DNS 的 IP 地址。经常会有超过一个条目 (要求备选服务器有相关兼容性)。如果你只想要一个 DNS 服务器，移除文件中 <emphasis>nameserver</emphasis> 的第二行。该 IP 地址可以是本地网络上的一台路由器。</para>
+
+    <note><para>谷歌公开 IPv4 DNS 地址为 8.8.8.8 和 8.8.4.4。</para></note>
+
+  </sect2>
+
+</sect1>

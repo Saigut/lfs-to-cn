@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+  "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../general.ent">
+  %general-entities;
+]>
+
+<sect1 id="ch-system-patch" role="wrap">
+  <?dbhtml filename="patch.html"?>
+
+  <sect1info condition="script">
+    <productname>patch</productname>
+    <productnumber>&patch-version;</productnumber>
+    <address>&patch-url;</address>
+  </sect1info>
+
+  <title>Patch-&patch-version;</title>
+
+  <indexterm zone="ch-system-patch">
+    <primary sortas="a-Patch">Patch</primary>
+  </indexterm>
+
+  <sect2 role="package">
+    <title/>
+
+    <para>Patch 程序包包含一个应用由 <command>diff</command> 程序产生的 <quote>patch</quote> 文件 (补丁) 从而修改或创建文件的程序。</para>
+
+    <segmentedlist>
+      <segtitle>&buildtime;</segtitle>
+      <segtitle>&diskspace;</segtitle>
+
+      <seglistitem>
+        <seg>&patch-ch6-sbu;</seg>
+        <seg>&patch-ch6-du;</seg>
+      </seglistitem>
+    </segmentedlist>
+
+  </sect2>
+
+  <sect2 role="installation">
+    <title>安装 Patch</title>
+
+    <para>准备编译 Patch：</para>
+
+<screen><userinput remap="configure">./configure --prefix=/usr</userinput></screen>
+
+    <para>编译程序包：</para>
+
+<screen><userinput remap="make">make</userinput></screen>
+
+    <para>要测试结果，执行：</para>
+
+<screen><userinput remap="test">make check</userinput></screen>
+
+    <para>安装程序包：</para>
+
+<screen><userinput remap="install">make install</userinput></screen>
+
+  </sect2>
+
+  <sect2 id="contents-patch" role="content">
+    <title>Patch 的内容</title>
+
+    <segmentedlist>
+      <segtitle>安装的程序</segtitle>
+
+      <seglistitem>
+        <seg>patch</seg>
+      </seglistitem>
+    </segmentedlist>
+
+    <variablelist>
+      <bridgehead renderas="sect3">简介</bridgehead>
+      <?dbfo list-presentation="list"?>
+      <?dbhtml list-presentation="table"?>
+
+      <varlistentry id="patch">
+        <term><command>patch</command></term>
+        <listitem>
+          <para>依据补丁文件修改文件；补丁文件通常是 <command>diff</command> 程序创建的差异列表；将这些差异应用到原始文件上，<command>patch</command> 就创建了打过补丁的版本</para>
+          <indexterm zone="ch-system-patch patch">
+            <primary sortas="b-patch">patch</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+    </variablelist>
+
+  </sect2>
+
+</sect1>

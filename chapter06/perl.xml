@@ -1,0 +1,545 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+  "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../general.ent">
+  %general-entities;
+]>
+
+<sect1 id="ch-system-perl" role="wrap">
+  <?dbhtml filename="perl.html"?>
+
+  <sect1info condition="script">
+    <productname>perl</productname>
+    <productnumber>&perl-version;</productnumber>
+    <address>&perl-url;</address>
+  </sect1info>
+
+  <title>Perl-&perl-version;</title>
+
+  <indexterm zone="ch-system-perl">
+    <primary sortas="a-Perl">Perl</primary>
+  </indexterm>
+
+  <sect2 role="package">
+    <title/>
+
+    <para>Perl 程序包包含 Perl 语言的相关工具。</para>
+
+    <segmentedlist>
+      <segtitle>&buildtime;</segtitle>
+      <segtitle>&diskspace;</segtitle>
+
+      <seglistitem>
+        <seg>&perl-ch6-sbu;</seg>
+        <seg>&perl-ch6-du;</seg>
+      </seglistitem>
+    </segmentedlist>
+
+  </sect2>
+
+  <sect2 role="installation">
+    <title>安装 Perl</title>
+
+    <para>首先创建一个基本的 <filename>/etc/hosts</filename> 文件供 Perl 的配置文件和可选的测试套件使用：</para>
+
+<screen><userinput remap="pre">echo "127.0.0.1 localhost $(hostname)" &gt; /etc/hosts</userinput></screen>
+
+    <para>此版本的 Perl 现在编制 Compress::Raw::Zlib 模块。默认地，Perl 会使用其内置的 Zlib 源代码副本。运行以下命令使 Perl 使用系统上安装的 Zlib 库：</para>
+
+<screen><userinput remap="pre">sed -i -e "s|BUILD_ZLIB\s*= True|BUILD_ZLIB = False|"           \
+       -e "s|INCLUDE\s*= ./zlib-src|INCLUDE    = /usr/include|" \
+       -e "s|LIB\s*= ./zlib-src|LIB        = /usr/lib|"         \
+    cpan/Compress-Raw-Zlib/config.in</userinput></screen>
+
+    <para>要完全控制 Perl 设置的方式，你可以移除以下命令中的 <quote>-des</quote> 选项并手工选择该程序包编制的方式。也可以直接使用以下命令使用 Perl 自动检测到的默认值：</para>
+
+<screen><userinput remap="configure">sh Configure -des -Dprefix=/usr                 \
+                  -Dvendorprefix=/usr           \
+                  -Dman1dir=/usr/share/man/man1 \
+                  -Dman3dir=/usr/share/man/man3 \
+                  -Dpager="/usr/bin/less -isR"  \
+                  -Duseshrplib</userinput></screen>
+
+    <variablelist>
+      <title>配置脚本的含义：</title>
+
+      <varlistentry>
+        <term><parameter>-Dvendorprefix=/usr</parameter></term>
+        <listitem>
+          <para>此项确保 <command>perl</command> 知道如何告诉程序包将 perl 模块安装到什么地方。</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><parameter>-Dpager="/usr/bin/less -isR"</parameter></term>
+        <listitem>
+          <para>此项修复 <command>perldoc</command> 调用 <command>less</command> 程序的方法问题。</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><parameter>-Dman1dir=/usr/share/man/man1
+        -Dman3dir=/usr/share/man/man3</parameter></term>
+        <listitem>
+          <para>因为 Groff 还没有安装，<command>Configure</command> 认为我们不需要 Perl 的手册页。执行以下会覆盖这个决定。</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><parameter>-Duseshrplib</parameter></term>
+        <listitem>
+          <para>编制某些 perl 模块需要的共享的 libperl。</para>
+        </listitem>
+      </varlistentry>
+
+    </variablelist>
+
+    <para>编译程序包：</para>
+
+<screen><userinput remap="make">make</userinput></screen>
+
+    <para>要测试结果 (大约 2.5 SBU)，执行：</para>
+
+<screen><userinput remap="test">make -k test</userinput></screen>
+
+    <para>安装程序包：</para>
+
+<screen><userinput remap="install">make install</userinput></screen>
+
+  </sect2>
+
+  <sect2 id="contents-perl" role="content">
+    <title>Perl 的内容</title>
+
+    <segmentedlist>
+      <segtitle>安装的程序</segtitle>
+      <segtitle>安装的库</segtitle>
+      <segtitle>安装的目录</segtitle>
+
+      <seglistitem>
+        <seg>a2p, c2ph, config_data, corelist, cpan, cpan2dist, cpanp cpanp-run-perl, enc2xs, find2perl, h2ph, h2xs instmodsh, json_pp, libnetcfg, perl, perl&perl-version; (到 perl 的链接), perlbug, perldoc, perlivp, perlthanks (到 perlbug 的链接), piconv, pl2pm, pod2html, pod2latex, pod2man, pod2text, pod2usage, podchecker, podselect, prove, psed (到 s2p 的链接), pstruct (到 c2ph 的链接), ptar, ptardiff, ptargrep, s2p, shasum, splain, xsubpp 和 zipdetails</seg>
+        <seg>数百个，此处无法一一列出</seg>
+        <seg>/usr/lib/perl5</seg>
+      </seglistitem>
+    </segmentedlist>
+
+    <variablelist>
+      <bridgehead renderas="sect3">简介</bridgehead>
+      <?dbfo list-presentation="list"?>
+      <?dbhtml list-presentation="table"?>
+
+      <varlistentry id="a2p">
+        <term><command>a2p</command></term>
+        <listitem>
+          <para>将 awk 翻译成 Perl</para>
+          <indexterm zone="ch-system-perl a2p">
+            <primary sortas="b-a2p">a2p</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="c2ph">
+        <term><command>c2ph</command></term>
+        <listitem>
+          <para>转储 <command>cc -g -S</command> 创建的 C 结构</para>
+          <indexterm zone="ch-system-perl c2ph">
+            <primary sortas="b-c2ph">c2ph</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="config_data">
+        <term><command>config_data</command></term>
+        <listitem>
+          <para>询问或者修改 Perl 模块的配置</para>
+          <indexterm zone="ch-system-perl config_data">
+            <primary sortas="b-config_data">config_data</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="corelist">
+        <term><command>corelist</command></term>
+        <listitem>
+          <para>Module::CoreList 的命令行前端</para>
+          <indexterm zone="ch-system-perl corelist">
+            <primary sortas="b-corelist">corelist</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="cpan">
+        <term><command>cpan</command></term>
+        <listitem>
+          <para>从命令行与 CPAN (Perl 综合典藏网) 交互</para>
+          <indexterm zone="ch-system-perl cpan">
+            <primary sortas="b-cpan">cpan</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="cpan2dist">
+        <term><command>cpan2dist</command></term>
+        <listitem>
+          <para>CPANPLUS 发行版创建器</para>
+          <indexterm zone="ch-system-perl cpan2dist">
+            <primary sortas="b-cpan2dist">cpan2dist</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="cpanp">
+        <term><command>cpanp</command></term>
+        <listitem>
+          <para>CPANPLUS 启动器</para>
+          <indexterm zone="ch-system-perl cpanp">
+            <primary sortas="b-cpanp">cpanp</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="cpanp-run-perl">
+        <term><command>cpanp-run-perl</command></term>
+        <listitem>
+          <para>Perl 脚本，用于启用在生成的进程的每次写入操作之后立即冲掉输出缓存</para>
+          <indexterm zone="ch-system-perl cpanp-run-perl">
+            <primary sortas="b-cpanp-run-perl">cpanp-run-perl</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="enc2xs">
+        <term><command>enc2xs</command></term>
+        <listitem>
+          <para>从 Unicode 字符映射表或者 Tcl 映射表给编码模块编制一个 Perl 扩展</para>
+          <indexterm zone="ch-system-perl enc2xs">
+            <primary sortas="b-enc2xs">enc2xs</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="find2perl">
+        <term><command>find2perl</command></term>
+        <listitem>
+          <para>将 <command>find</command> 命令翻译成 Perl</para>
+          <indexterm zone="ch-system-perl find2perl">
+            <primary sortas="b-find2perl">find2perl</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="h2ph">
+        <term><command>h2ph</command></term>
+        <listitem>
+          <para>将 <filename class="extension">.h</filename> C 头文件转换成 <filename class="extension">.ph</filename> Perl 头文件</para>
+          <indexterm zone="ch-system-perl h2ph">
+            <primary sortas="b-h2ph">h2ph</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="h2xs">
+        <term><command>h2xs</command></term>
+        <listitem>
+          <para>将 <filename class="extension">.h</filename> C 头文件转换成 Perl 扩展</para>
+          <indexterm zone="ch-system-perl h2xs">
+            <primary sortas="b-h2xs">h2xs</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="instmodsh">
+        <term><command>instmodsh</command></term>
+        <listitem>
+          <para>Shell 脚本，用于检查安装的 Perl 模块，还可以用于将以安装的模块打包</para>
+          <indexterm zone="ch-system-perl instmodsh">
+            <primary sortas="b-instmodsh">instmodsh</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="json_pp">
+        <term><command>json_pp</command></term>
+        <listitem>
+          <para>在特定的输入输出格式之间转换数据</para>
+          <indexterm zone="ch-system-perl json_pp">
+            <primary sortas="b-json_pp">json_pp</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="libnetcfg">
+        <term><command>libnetcfg</command></term>
+        <listitem>
+          <para>可以用于配置 <filename class="libraryfile">libnet</filename> Perl 模块</para>
+          <indexterm zone="ch-system-perl libnetcfg">
+            <primary sortas="b-libnetcfg">libnetcfg</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="perl">
+        <term><command>perl</command></term>
+        <listitem>
+          <para>将 C、<command>sed</command>、<command>awk</command> 和 <command>sh</command> 的某些最好的特性组合成一种像瑞士军刀一样的语言</para>
+          <indexterm zone="ch-system-perl perl">
+            <primary sortas="b-perl">perl</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="perl-version">
+        <term><command>perl&perl-version;</command></term>
+        <listitem>
+          <para>到 <command>perl</command> 的硬链接</para>
+          <indexterm zone="ch-system-perl perl-version">
+            <primary sortas="b-perl&perl-version;">perl&perl-version;</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="perlbug">
+        <term><command>perlbug</command></term>
+        <listitem>
+          <para>用于创建有关 Perl 或其包含的模块的漏洞报告并发送之</para>
+          <indexterm zone="ch-system-perl perlbug">
+            <primary sortas="b-perlbug">perlbug</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="perldoc">
+        <term><command>perldoc</command></term>
+        <listitem>
+          <para>以 pod 格式显示一份嵌入在 Perl 安装树或脚本中的文档</para>
+          <indexterm zone="ch-system-perl perldoc">
+            <primary sortas="b-perldoc">perldoc</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="perlivp">
+        <term><command>perlivp</command></term>
+        <listitem>
+          <para>Perl 安装验证过程；可以用于验证 Perl 及其库是否正确安装</para>
+          <indexterm zone="ch-system-perl perlivp">
+            <primary sortas="b-perlivp">perlivp</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="perlthanks">
+        <term><command>perlthanks</command></term>
+        <listitem>
+          <para>用于创建一条感谢消息供发给 Perl 开发者</para>
+          <indexterm zone="ch-system-perl perlthanks">
+            <primary sortas="b-perlthanks">perlthanks</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="piconv">
+        <term><command>piconv</command></term>
+        <listitem>
+          <para>字符编码转换器 <command>iconv</command> 的一个 Perl 版本</para>
+          <indexterm zone="ch-system-perl piconv">
+            <primary sortas="b-piconv">piconv</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="pl2pm">
+        <term><command>pl2pm</command></term>
+        <listitem>
+          <para>一个粗略的工具，将 Perl4 的 <filename class="extension">.pl</filename> 文件转换成 Perl5 的 <filename class="extension">.pm</filename> 模块</para>
+          <indexterm zone="ch-system-perl pl2pm">
+            <primary sortas="b-pl2pm">pl2pm</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="pod2html">
+        <term><command>pod2html</command></term>
+        <listitem>
+          <para>将 pod 格式的文件转换成 HTML 格式</para>
+          <indexterm zone="ch-system-perl pod2html">
+            <primary sortas="b-pod2html">pod2html</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="pod2latex">
+        <term><command>pod2latex</command></term>
+        <listitem>
+          <para>将 pod 格式的文件转换为 LaTeX 格式</para>
+          <indexterm zone="ch-system-perl pod2latex">
+            <primary sortas="b-pod2latex">pod2latex</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="pod2man">
+        <term><command>pod2man</command></term>
+        <listitem>
+          <para>将 pod 数据转换成格式化的 *roff 数据</para>
+          <indexterm zone="ch-system-perl pod2man">
+            <primary sortas="b-pod2man">pod2man</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="pod2text">
+        <term><command>pod2text</command></term>
+        <listitem>
+          <para>将 pod 数据抓换成格式化的 ASCII 文本</para>
+          <indexterm zone="ch-system-perl pod2text">
+            <primary sortas="b-pod2text">pod2text</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="pod2usage">
+        <term><command>pod2usage</command></term>
+        <listitem>
+          <para>显示文件中嵌入的 pod 文档中的使用方式</para>
+          <indexterm zone="ch-system-perl pod2usage">
+            <primary sortas="b-pod2usage">pod2usage</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="podchecker">
+        <term><command>podchecker</command></term>
+        <listitem>
+          <para>检查 pod 格式文档的语法</para>
+          <indexterm zone="ch-system-perl podchecker">
+            <primary sortas="b-podchecker">podchecker</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="podselect">
+        <term><command>podselect</command></term>
+        <listitem>
+          <para>显示 pod 文档的选定部分</para>
+          <indexterm zone="ch-system-perl podselect">
+            <primary sortas="b-podselect">podselect</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="prove">
+        <term><command>prove</command></term>
+        <listitem>
+          <para>命令行工具，用于依据 Test::Harness 模块运行测试</para>
+          <indexterm zone="ch-system-perl prove">
+            <primary sortas="b-prove">prove</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="psed">
+        <term><command>psed</command></term>
+        <listitem>
+          <para>流编辑器 <command>sed</command> 的 Perl 版本</para>
+          <indexterm zone="ch-system-perl psed">
+            <primary sortas="b-psed">psed</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="pstruct">
+        <term><command>pstruct</command></term>
+        <listitem>
+          <para>转储 <command>cc -g -S</command> 尝试产生的 C 结构</para>
+          <indexterm zone="ch-system-perl pstruct">
+            <primary sortas="b-pstruct">pstruct</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="ptar">
+        <term><command>ptar</command></term>
+        <listitem>
+          <para>一个以 Perl 语言写成的类似 <command>tar</command> 的程序</para>
+          <indexterm zone="ch-system-perl ptar">
+            <primary sortas="b-ptar">ptar</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="ptardiff">
+        <term><command>ptardiff</command></term>
+        <listitem>
+          <para>一个 Perl 程序，将提取的归档文件与未归档的进行比较</para>
+          <indexterm zone="ch-system-perl ptardiff">
+            <primary sortas="b-ptardiff">ptardiff</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="ptargrep">
+        <term><command>ptargrep</command></term>
+        <listitem>
+          <para>一个 Perl 程序，对 tar 归档中的文件内同进行匹配</para>
+          <indexterm zone="ch-system-perl ptargrep">
+            <primary sortas="b-ptargrep">ptargrep</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="s2p">
+        <term><command>s2p</command></term>
+        <listitem>
+          <para>将 <command>sed</command> 脚本翻译成 Perl</para>
+          <indexterm zone="ch-system-perl s2p">
+            <primary sortas="b-s2p">s2p</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="shasum">
+        <term><command>shasum</command></term>
+        <listitem>
+          <para>打印或者检查 SHA 指纹码</para>
+          <indexterm zone="ch-system-perl shasum">
+            <primary sortas="b-shasum">shasum</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="splain">
+        <term><command>splain</command></term>
+        <listitem>
+          <para>用于强制详细输出 Perl 诊断的警告</para>
+          <indexterm zone="ch-system-perl splain">
+            <primary sortas="b-splain">splain</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="xsubpp">
+        <term><command>xsubpp</command></term>
+        <listitem>
+          <para>将 Perl XS 代码转换成 C 代码</para>
+          <indexterm zone="ch-system-perl xsubpp">
+            <primary sortas="b-xsubpp">xsubpp</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="zipdetails">
+        <term><command>zipdetails</command></term>
+        <listitem>
+          <para>显示一 Zip 文件的内在结构细节</para>
+          <indexterm zone="ch-system-perl zipdetails">
+            <primary sortas="b-zipdetails">zipdetails</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+    </variablelist>
+
+  </sect2>
+
+</sect1>

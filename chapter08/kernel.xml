@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+  "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../general.ent">
+  %general-entities;
+]>
+
+<sect1 id="ch-bootable-kernel" role="wrap">
+  <?dbhtml filename="kernel.html"?>
+
+  <sect1info condition="script">
+    <productname>linux</productname>
+    <productnumber>&linux-version;</productnumber>
+    <address>&linux-url;</address>
+  </sect1info>
+
+  <title>Linux-&linux-version;</title>
+
+  <indexterm zone="ch-bootable-kernel">
+    <primary sortas="a-Linux">Linux</primary>
+  </indexterm>
+
+  <sect2 role="package">
+    <title/>
+
+    <para>Linux 程序包包含 linux 内核。</para>
+
+    <segmentedlist>
+      <segtitle>&buildtime;</segtitle>
+      <segtitle>&diskspace;</segtitle>
+
+      <seglistitem>
+        <seg>&linux-ch8-sbu;</seg>
+        <seg>&linux-ch8-du;</seg>
+      </seglistitem>
+    </segmentedlist>
+
+  </sect2>
+
+  <sect2 role="installation">
+    <title>安装内核</title>
+
+    <para>编制内核包含数个步骤&mdash;&mdash;配置，编译和安装。阅读内核源代码树中的 <filename>README</filename> 文件来获知不同于本书的配置方法。</para>
+
+    <para>运行以下命令来准备编译：</para>
+
+<screen><userinput remap="pre">make mrproper</userinput></screen>
+
+    <para>此步骤确保内核树完全干净。内核团队建议每次编译内核前都运行此命令。不要依赖内核树在解包后就是干净的。</para>
+
+    <!-- Support for compiling a keymap into the kernel is deliberately removed -->
+
+      <para>通过一个目录驱动的接口配置内核。要获得内核配置的常规信息，参考 <ulink url="&hints-root;kernel-configuration.txt"/>。LFS 以外的部分程序包有特定的内核配置要求，BLFS 中有相关信息，位于<ulink url="&blfs-root;view/svn/longindex.html#kernel-config-index">此处</ulink>。</para>
+
+    <note><para>由于近期在 <application>udev</application> 中的改动，确保选择了：</para>
+    
+    <screen role="nodump">Device Drivers  ---&gt;
+  Generic Driver Options  ---&gt;
+     Maintain a devtmpfs filesystem to mount at /dev</screen></note>
+
+<screen role="nodump"><userinput>make LANG=<replaceable>&lt;host_LANG_value&gt;</replaceable> LC_ALL= menuconfig</userinput></screen>
+
+    <variablelist>
+      <title>make 参数的含义：</title>
+
+      <varlistentry>
+        <term><parameter>LANG=&lt;host_LANG_value&gt; LC_ALL=</parameter></term>
+        <listitem>
+          <para>此项建立宿主系统使用的区域设置，对于 menuconfig 的 ncurses 界面在 linux UTF-8 文本控制台上绘制是必须的。</para>
+
+          <para>确保将 <replaceable>&lt;host_LANG_value&gt;</replaceable> 替换为宿主上 <envar>$LANG</envar> 变量的值。如果没有设置，您可以使用宿主上 <envar>$LC_ALL</envar> 或 <envar>$LC_CTYPE</envar> 的值。</para>
+        </listitem>
+      </varlistentry>
+
+    </variablelist>
+
+    <para><command>make oldconfig</command> 在一些情况下可能更加合适。要获得更多信息，参考 <filename>README</filename> 文件。</para>
+
+      <para>如果需要，通过复制宿主系统的内核配置文件 <filename>.config</filename> (这里默认它可用) 到未打包的 <filename class="directory">linux-&linux-version;</filename> 目录中，可以跳过内核配置，但是我们并不推荐如此。探索整个配置菜单并从头创建一个内核配置通常更好。</para>
+
+    <para>编译内核镜像和模块：</para>
+
+<screen><userinput remap="make">make</userinput></screen>
+
+      <para>如果使用内核模块，可能会需要<filename class="directory">/etc/modprobe.d</filename> 中的模块配置。有关模块和内核配置的信息位于 <xref linkend="ch-scripts-udev"/> 和 <filename class="directory">linux-&linux-version;/Documentation</filename> 目录的内核文档中。同时，<filename>modprobe.conf(5)</filename> 也可能有用。</para>
+
+    <para>如果内核配置需要，安装模块：</para>
+
+<screen><userinput remap="install">make modules_install</userinput></screen>
+
+    <para>在内核编译完成后，需要额外的步骤来完成安装。一些文件需要复制到 <filename class="directory">/boot</filename> 目录。</para>
+
+    <para>到内核镜像的路径可能随所使用的平台改变。以下文件名可根据你的喜好改变，但文件名的主干必须是 <emphasis>vmlinuz</emphasis> 以和下一节中的提及的引导进程自动设置相兼容。以下的命令默认 x86 架构：</para>
+
+<screen><userinput remap="install">cp -v arch/x86/boot/bzImage /boot/vmlinuz-&linux-version;-lfs-&version;</userinput></screen>
+
+    <para><filename>System.map</filename> 是内核的一个符号文件。它映射内核 API 中的每个函数的入口以及运行中内核的内核数据结构地址。它被用作调查内核问题时的一个资源。运行以下命令来安装映射文件：</para>
+
+<screen><userinput remap="install">cp -v System.map /boot/System.map-&linux-version;</userinput></screen>
+
+    <para>此前 <command>make menuconfig</command> 步骤生成的内核配置文件 <filename>.config</filename> 包含刚刚编译的内核的所有配置选项。保存此文件以备日后查阅：</para>
+
+<screen><userinput remap="install">cp -v .config /boot/config-&linux-version;</userinput></screen>
+
+    <para>安装 Linux 内核文档：</para>
+
+<screen><userinput remap="install">install -d /usr/share/doc/linux-&linux-version;
+cp -r Documentation/* /usr/share/doc/linux-&linux-version;</userinput></screen>
+
+    <para>注意内核源目录中的文件不属于 <emphasis>root</emphasis> 是很重要的。每当一个程序包被以用户 <emphasis>root</emphasis> 解压 (就像我们在 chroot 中做的那样) ，文件得到打包者的电脑上的用户和组 ID 。这对要安装的任何其他程序包通常都不成问题，因为安装过后会移除源代码树。然而内核源代码树通常会保存较长的时间，所以打包者使用的 ID 有可能分配给某个用户。此用户将会得到修改内核源代码的权限。</para>
+
+    <para>如果要保存内核源代码树，对 <filename class="directory">linux-&linux-version;</filename> 目录运行 <command>chown -R 0:0</command> 来确保所有文件归 <emphasis>root</emphasis> 所有。</para>
+
+    <warning>
+      <para>一些内核文档建议创建一个从 <filename class="symlink">/usr/src/linux</filename> 指向内核源代码目录的符号链接。这是针对 2.6 之前版本内核的并且 <emphasis>一定不要</emphasis> 在 LFS 系统上创建，因为它可能在你在基本 LFS 系统完成后试图编制程序包时造成问题。</para>
+    </warning>
+
+    <warning>
+      <para>系统的 <filename class="directory">include</filename> 目录下的头文件应该 <emphasis>始终</emphasis> 是 Glibc 编译使用的一份，也就是来自这个 Linux 内核压缩包的纯净头文件。这样一来，它们应当 <emphasis>永远不</emphasis> 被原始的内核头文件或任何其他内核纯净头文件替换。</para>
+    </warning>
+
+  </sect2>
+
+  <sect2 id="conf-modprobe" role="configuration">
+    <title>配置 Linux 模块加载序列</title>
+
+    <indexterm zone="conf-modprobe">
+      <primary sortas="e-/etc/modprobe.d/usb.conf">/etc/modprobe.d/usb.conf</primary>
+    </indexterm>
+
+    <para>大部分时候 Linux 模块会自动加载，但有时候会需要特定的规则。加载模块的程序 <command>modprobe</command> 或者 <command>insmod</command> 将 <filename>/etc/modprobe.d/usb.conf</filename> 用于这一目的。如果 USB 驱动 (ehci_hcd, ohci_hcd 和 uhci_hcd) 编制为模块，就需要创建此文件使得它们按正确顺序加载；ehci_hcd 先于 ohci_hcd 和 uhci_hcd，以防止引导时输出警告。</para>
+
+    <para>运行以下命令新建 <filename>/etc/modprobe.d/usb.conf</filename> 文件：</para>
+
+<screen><userinput>install -v -m755 -d /etc/modprobe.d
+cat &gt; /etc/modprobe.d/usb.conf &lt;&lt; "EOF"
+<literal># Begin /etc/modprobe.d/usb.conf
+
+install ohci_hcd /sbin/modprobe ehci_hcd ; /sbin/modprobe -i ohci_hcd ; true
+install uhci_hcd /sbin/modprobe ehci_hcd ; /sbin/modprobe -i uhci_hcd ; true
+
+# End /etc/modprobe.d/usb.conf</literal>
+EOF</userinput></screen>
+
+  </sect2>
+
+  <sect2 id="contents-kernel" role="content">
+    <title>Linux 的内容</title>
+
+    <segmentedlist>
+      <segtitle>安装的文件</segtitle>
+      <segtitle>安装的目录</segtitle>
+
+      <seglistitem>
+        <seg>config-&linux-version;, vmlinux-&linux-version;-lfs-&version;-&linux-version; 和 System.map-&linux-version;</seg>
+        <seg>/lib/modules 和 /usr/share/doc/linux-&linux-version;</seg>
+      </seglistitem>
+    </segmentedlist>
+
+    <variablelist>
+      <bridgehead renderas="sect3">简介</bridgehead>
+      <?dbfo list-presentation="list"?>
+      <?dbhtml list-presentation="table"?>
+
+      <varlistentry id="config">
+        <term><filename>config-&linux-version;</filename></term>
+        <listitem>
+          <para>包含所有内核配置选项</para>
+          <indexterm zone="ch-bootable-kernel config">
+            <primary sortas="e-/boot/config">/boot/config-&linux-version;</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="lfskernel">
+        <term><filename>vmlinux-&linux-version;-lfs-&version;</filename></term>
+        <listitem>
+          <para>Linux 系统的引擎。当开启电脑时，内核是操作系统中首先加载的部分。它检测并初始化电脑硬件的所有组件，然后让这些组件以文件树的形式对软件可用，并将单个 CPU 转换为可以看上去可以同时运行大量程序的多线程机</para>
+          <indexterm zone="ch-bootable-kernel lfskernel">
+            <primary sortas="b-lfskernel">lfskernel-&linux-version;</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="System.map">
+        <term><filename>System.map-&linux-version;</filename></term>
+        <listitem>
+          <para>地址和符号列表；映射内核中所有函数的入口和数据结构的地址</para>
+          <indexterm zone="ch-bootable-kernel System.map">
+            <primary sortas="e-/boot/System.map">/boot/System.map-&linux-version;</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+    </variablelist>
+
+  </sect2>
+
+</sect1>

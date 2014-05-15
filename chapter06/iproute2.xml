@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+  "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../general.ent">
+  %general-entities;
+]>
+
+<sect1 id="ch-system-iproute2" role="wrap">
+  <?dbhtml filename="iproute2.html"?>
+
+  <sect1info condition="script">
+    <productname>iproute2</productname>
+    <productnumber>&iproute2-version;</productnumber>
+    <address>&iproute2-url;</address>
+  </sect1info>
+
+  <title>IPRoute2-&iproute2-version;</title>
+
+  <indexterm zone="ch-system-iproute2">
+    <primary sortas="a-IPRoute2">IPRoute2</primary>
+  </indexterm>
+
+  <sect2 role="package">
+    <title/>
+
+    <para>IPRoute2 程序包包含用于 IPv4 网络的基本和高级程序。</para>
+
+    <segmentedlist>
+      <segtitle>&buildtime;</segtitle>
+      <segtitle>&diskspace;</segtitle>
+
+      <seglistitem>
+        <seg>&iproute2-ch6-sbu;</seg>
+        <seg>&iproute2-ch6-du;</seg>
+      </seglistitem>
+    </segmentedlist>
+
+  </sect2>
+
+  <sect2 role="installation">
+    <title>安装 IPRoute2</title>
+
+    <para>此程序包包含的 <command>arpd</command> 二进制依赖 Berkeley DB。因为 <command>arpd</command> 对于基本 Linux 系统来说不是必要的，应用以下命令移除对 Berkeley DB 的依赖。如果需要 <command>arpd</command> 这个二进制，编译 Berkeley DB 的指令位于 BLFS 中的 <ulink url="&blfs-root;view/svn/server/databases.html#db"/>。
+    </para>
+
+<screen><userinput remap="pre">sed -i '/^TARGETS/s@arpd@@g' misc/Makefile
+sed -i /ARPD/d Makefile
+sed -i 's/arpd.8//' man/man8/Makefile</userinput></screen>
+
+    <para>编译程序包：</para>
+
+<screen><userinput remap="make">make DESTDIR=</userinput></screen>
+
+    <variablelist>
+      <title>make 选项的含义</title>
+
+      <varlistentry>
+        <term><parameter>DESTDIR=</parameter></term>
+        <listitem>
+          <para>此项确保 IPRoute2 的二进制安装到正确的目录。<parameter>DESTDIR</parameter> 默认设置为 <filename class="directory">/usr</filename>。</para>
+        </listitem>
+      </varlistentry>
+
+    </variablelist>
+
+    <para>此程序包带有测试套件，但由于它所做的一些假设，在 chroot 环境中可靠运行是不可能的。如果你要在引导到新的 LFS 系统之后运行这些测试，确保你在内核中选中 <filename>/proc/config.gz</filename> CONFIG_IKCONFIG_PROC (位于 &quot;General setup&quot; -> &quot;Enable access to .config through /proc/config.gz&quot;) 支持，然后在 <filename class="directory">testsuite/</filename> 子目录中执行 make alltests.</para>
+
+    <para>安装程序包：</para>
+
+<screen><userinput remap="install">make DESTDIR=              \
+     MANDIR=/usr/share/man \
+     DOCDIR=/usr/share/doc/iproute2-&iproute2-version; install</userinput></screen>
+
+  </sect2>
+
+  <sect2 id="contents-iproute2" role="content">
+    <title>IPRoute2 的内容</title>
+
+    <segmentedlist>
+      <segtitle>安装的程序</segtitle>
+      <segtitle>安装的库</segtitle>
+
+      <seglistitem>
+        <seg>bridge、ctstat (到 lnstat 的链接)、genl、ifcfg、ifstat、ip、lnstat、nstat、routef、routel、rtacct、rtmon、rtpr、rtstat (到 lnstat 的链接)、ss 和 tc</seg>
+        <seg>/etc/iproute2、/lib/tc、/usr/share/doc/iproute2-&iproute2-version;、/usr/lib/tc</seg>
+      </seglistitem>
+    </segmentedlist>
+
+    <variablelist>
+      <bridgehead renderas="sect3">简介</bridgehead>
+      <?dbfo list-presentation="list"?>
+      <?dbhtml list-presentation="table"?>
+
+      <varlistentry id="bridge">
+        <term><command>bridge</command></term>
+        <listitem>
+          <para>配置网络桥</para>
+          <indexterm zone="ch-system-iproute2 bridge">
+            <primary sortas="b-bridge">bridge</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="ctstat">
+        <term><command>ctstat</command></term>
+        <listitem>
+          <para>连接状态工具</para>
+          <indexterm zone="ch-system-iproute2 ctstat">
+            <primary sortas="b-ctstat">ctstat</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="genl">
+        <term><command>genl</command></term>
+        <listitem>
+          <para></para>
+          <indexterm zone="ch-system-iproute2 genl">
+            <primary sortas="b-genl">genl</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="ifcfg">
+        <term><command>ifcfg</command></term>
+        <listitem>
+          <para><command>ip</command> 命令的一个 shell 脚本打包；注意它需求 <command>arping</command> 和 <command>rdisk</command> 程序；这些程序来自 iputils 程序包，位于 <ulink url="http://www.skbuff.net/iputils/"/></para>
+          <indexterm zone="ch-system-iproute2 ifcfg">
+            <primary sortas="b-ifcfg">ifcfg</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="ifstat">
+        <term><command>ifstat</command></term>
+        <listitem>
+          <para>显示接口统计数据，包括其发送和接收的数据包</para>
+          <indexterm zone="ch-system-iproute2 ifstat">
+            <primary sortas="b-ifstat">ifstat</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="ip">
+        <term><command>ip</command></term>
+        <listitem>
+          <para>主可执行文件，有几个不同的功能：</para>
+
+          <para><command>ip link <replaceable>&lt;dev&gt;</replaceable></command> 允许用户查看设备状态并作出改动</para>
+
+          <para><command>ip addr</command> 允许用户查看地址和属性、添加地址和删除旧地址</para>
+
+          <para><command>ip neighbor</command> 允许用户查看邻居绑定和属性、添加邻居和删除旧邻居</para>
+
+          <para><command>ip rule</command> 允许用户查看路由政策并调整之</para>
+
+          <para><command>ip route</command> 允许用户查看路由表并修改其规则</para>
+
+          <para><command>ip tunnel</command> 允许用户查看 IP 隧道及其属性并修改之</para>
+
+          <para><command>ip maddr</command> 允许用户查看多播地址及其属性并修改之</para>
+
+          <para><command>ip mroute</command> 允许用户设置、修改或删除多播路由</para>
+
+          <para><command>ip monitor</command> 允许用户持续监视设备状态、地址和路由</para>
+          <indexterm zone="ch-system-iproute2 ip">
+            <primary sortas="b-ip">ip</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="lnstat">
+        <term><command>lnstat</command></term>
+        <listitem>
+          <para>提供 Linux 网络统计数据；比老式的 <command>rtstat</command> 程序更加通用和完善</para>
+          <indexterm zone="ch-system-iproute2 lnstat">
+            <primary sortas="b-lnstat">lnstat</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="nstat">
+        <term><command>nstat</command></term>
+        <listitem>
+          <para>显示网络统计数据</para>
+          <indexterm zone="ch-system-iproute2 nstat">
+            <primary sortas="b-nstat">nstat</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="routef">
+        <term><command>routef</command></term>
+        <listitem>
+          <para><command>ip route</command> 的一个组件；用于刷写路由表</para>
+          <indexterm zone="ch-system-iproute2 routef">
+            <primary sortas="b-routef">routef</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="routel">
+        <term><command>routel</command></term>
+        <listitem>
+          <para><command>ip route</command> 的一个组件；用于列出路由表</para>
+          <indexterm zone="ch-system-iproute2 routel">
+            <primary sortas="b-routel">routel</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="rtacct">
+        <term><command>rtacct</command></term>
+        <listitem>
+          <para>显示 <filename>/proc/net/rt_acct</filename> 的内容</para>
+          <indexterm zone="ch-system-iproute2 rtacct">
+            <primary sortas="b-rtacct">rtacct</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="rtmon">
+        <term><command>rtmon</command></term>
+        <listitem>
+          <para>路由监视工具</para>
+          <indexterm zone="ch-system-iproute2 rtmon">
+            <primary sortas="b-rtmon">rtmon</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="rtpr">
+        <term><command>rtpr</command></term>
+        <listitem>
+          <para>将 <command>ip -o</command> 的输出转换为可读格式</para>
+          <indexterm zone="ch-system-iproute2 rtpr">
+            <primary sortas="b-rtpr">rtpr</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="rtstat">
+        <term><command>rtstat</command></term>
+        <listitem>
+          <para>路由状态工具</para>
+          <indexterm zone="ch-system-iproute2 rtstat">
+            <primary sortas="b-rtstat">rtstat</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="ss">
+        <term><command>ss</command></term>
+        <listitem>
+          <para>类似 <command>netstat</command> 命令；显示活动的连接</para>
+          <indexterm zone="ch-system-iproute2 ss">
+            <primary sortas="b-ss">ss</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="tc">
+        <term><command>tc</command></term>
+        <listitem>
+          <para>流量控制程序；用于 QOS 和 COS 的实现</para>
+
+          <para><command>tc qdisc</command> 允许用户设置队列原则</para>
+
+          <para><command>tc class</command> 允许用户基于队列原则设置类</para>
+
+          <para><command>tc estimator</command> 允许用户估计网络上的流量</para>
+
+          <para><command>tc filter</command> 允许用户设置 QOS/COS 数据包筛选</para>
+
+          <para><command>tc policy</command> 允许用户设置 QOS/COS 政策</para>
+          <indexterm zone="ch-system-iproute2 ss">
+            <primary sortas="b-tc">tc</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+    </variablelist>
+
+  </sect2>
+
+</sect1>

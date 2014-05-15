@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+  "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../general.ent">
+  %general-entities;
+]>
+
+<sect1 id="ch-system-tar" role="wrap">
+  <?dbhtml filename="tar.html"?>
+
+  <sect1info condition="script">
+    <productname>tar</productname>
+    <productnumber>&tar-version;</productnumber>
+    <address>&tar-url;</address>
+  </sect1info>
+
+  <title>Tar-&tar-version;</title>
+
+  <indexterm zone="ch-system-tar">
+    <primary sortas="a-Tar">Tar</primary>
+  </indexterm>
+
+  <sect2 role="package">
+    <title/>
+
+    <para>Tar 程序包包含一个归档程序。</para>
+
+    <segmentedlist>
+      <segtitle>&buildtime;</segtitle>
+      <segtitle>&diskspace;</segtitle>
+
+      <seglistitem>
+        <seg>&tar-ch6-sbu;</seg>
+        <seg>&tar-ch6-du;</seg>
+      </seglistitem>
+    </segmentedlist>
+
+  </sect2>
+
+  <sect2 role="installation">
+    <title>安装 Tar</title>
+
+    <para>修复此程序包与 Glibc-&glibc-version; 不兼容的问题：</para>
+
+<screen><userinput remap="pre">sed -i -e '/gets is a/d' gnu/stdio.in.h</userinput></screen>
+
+    <para>准备编译 Tar：</para>
+
+<screen><userinput remap="configure">FORCE_UNSAFE_CONFIGURE=1  \
+./configure --prefix=/usr \
+            --bindir=/bin \
+            --libexecdir=/usr/sbin</userinput></screen>
+
+    <variablelist>
+      <title>配置选项的含义：</title>
+
+      <varlistentry>
+        <term><envar>FORCE_UNSAFE_CONFIGURE=1</envar></term>
+        <listitem>
+          <para>此项强制 <function>mknod</function> 的测试以 root 用户运行。此行为通常认为很危险，但由于系统编制尚不完整，可以覆盖此选项。</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
+    <para>编译程序包：</para>
+
+<screen><userinput remap="make">make</userinput></screen>
+
+    <para>要测试结果 (约 1 SBU)，执行：</para>
+
+<screen><userinput remap="test">make check</userinput></screen>
+
+    <para>安装程序包：</para>
+
+<screen><userinput remap="install">make install
+make -C doc install-html docdir=/usr/share/doc/tar-&tar-version;</userinput></screen>
+
+  </sect2>
+
+
+  <sect2 id="contents-tar" role="content">
+    <title>Tar 的内容</title>
+
+    <segmentedlist>
+      <segtitle>安装的程序</segtitle>
+      <segtitle>安装的目录</segtitle>
+
+      <seglistitem>
+        <seg>rmt 和 tar</seg>
+        <seg>/usr/share/doc/tar-&tar-version;</seg>
+      </seglistitem>
+    </segmentedlist>
+
+    <variablelist>
+      <bridgehead renderas="sect3">简介</bridgehead>
+      <?dbfo list-presentation="list"?>
+      <?dbhtml list-presentation="table"?>
+
+      <varlistentry id="rmt">
+        <term><command>rmt</command></term>
+        <listitem>
+          <para>通过跨进程通信连接远程修改磁带驱动器Remotely manipulates a magnetic
+          tape drive through an interprocess communication connection</para>
+          <indexterm zone="ch-system-tar rmt">
+            <primary sortas="b-rmt">rmt</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="tar">
+        <term><command>tar</command></term>
+        <listitem>
+          <para>创建、提取归档文件 (压缩包) 或列出其内容</para>
+          <indexterm zone="ch-system-tar tar">
+            <primary sortas="b-tar">tar</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+    </variablelist>
+
+  </sect2>
+
+</sect1>

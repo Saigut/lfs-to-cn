@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+  "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../general.ent">
+  %general-entities;
+]>
+
+<sect1 id="ch-tools-gcc-pass2" role="wrap">
+  <?dbhtml filename="gcc-pass2.html"?>
+
+  <sect1info condition="script">
+    <productname>gcc</productname>
+    <productnumber>&gcc-version;</productnumber>
+    <address>&gcc-url;</address>
+  </sect1info>
+
+  <title>GCC-&gcc-version; - 第二遍</title>
+
+  <indexterm zone="ch-tools-gcc-pass2">
+    <primary sortas="a-GCC">GCC</primary>
+    <secondary>工具、第二遍</secondary>
+  </indexterm>
+
+  <sect2 role="package">
+    <title/>
+
+    <xi:include xmlns:xi="http://www.w3.org/2001/XInclude"
+    href="../chapter06/gcc.xml"
+    xpointer="xpointer(/sect1/sect2[1]/para[1])"/>
+
+    <segmentedlist>
+      <segtitle>&buildtime;</segtitle>
+      <segtitle>&diskspace;</segtitle>
+
+      <seglistitem>
+        <seg>&gcc-ch5p2-sbu;</seg>
+        <seg>&gcc-ch5p2-du;</seg>
+      </seglistitem>
+    </segmentedlist>
+
+  </sect2>
+
+  <sect2 role="installation">
+    <title>安装 GCC</title>
+
+    <para>我们第一次编制的 GCC 安装了几个内置系统头文件。通常其中一个，<filename>limits.h</filename> 会反过来包含对应的系统 <filename>limits.h</filename> 头文件，也就是 <filename>/tools/include/limits.h</filename>。然而在第一次编制 GCC 时 <filename>/tools/include/limits.h</filename> 不存在，所以 GCC 安装的内置头文件是一个部分的、自包含的文件，不包含系统头文件的扩展特性。这对于临时的 libc 已经足够了，但是这次编制的 GCC 需要完整的内置头文件。创建一个完整版本的内置头文件使用的命令与 GCC 编制系统通常情况下的行为相同：</para>
+
+<screen><userinput remap="pre">cat gcc/limitx.h gcc/glimits.h gcc/limity.h &gt; \
+  `dirname $($LFS_TGT-gcc -print-libgcc-file-name)`/include-fixed/limits.h</userinput></screen>
+
+    <para>对于 x86 计算机，引导编制 GCC 使用 <option>-fomit-frame-pointer</option> 编译器标记。非引导编制默认会忽略这个标记，而我们的目标是产生一个和引导过完全一样的编译器。应用以下的 <command>sed</command> 命令强制编制使用这个标记：</para> 
+
+<screen><userinput remap="pre">cp -v gcc/Makefile.in{,.tmp}
+sed 's/^T_CFLAGS =$/&amp; -fomit-frame-pointer/' gcc/Makefile.in.tmp \
+  &gt; gcc/Makefile.in</userinput></screen>
+
+    <para>再次改变 GCC 的默认动态链接器位置以使用安装于 <filename class="directory">/tools</filename> 的副本。</para>
+
+<screen><userinput remap="pre">for file in \
+ $(find gcc/config -name linux64.h -o -name linux.h -o -name sysv4.h)
+do
+  cp -uv $file{,.orig}
+  sed -e 's@/lib\(64\)\?\(32\)\?/ld@/tools&amp;@g' \
+  -e 's@/usr@/tools@g' $file.orig &gt; $file
+  echo '
+#undef STANDARD_STARTFILE_PREFIX_1
+#undef STANDARD_STARTFILE_PREFIX_2
+#define STANDARD_STARTFILE_PREFIX_1 "/tools/lib/"
+#define STANDARD_STARTFILE_PREFIX_2 ""' &gt;&gt; $file
+  touch $file.orig
+done</userinput></screen>
+
+    <para>与第一次编译 GCC 相同，它需要 GMP、MPFR 和 MPC 程序包。解开压缩包并将它们移动到指定名称的目录中：</para>
+
+<screen><userinput remap="pre">tar -Jxf ../mpfr-&mpfr-version;.tar.xz
+mv -v mpfr-&mpfr-version; mpfr
+tar -Jxf ../gmp-&gmp-version;.tar.xz
+mv -v gmp-&gmp-version; gmp
+tar -zxf ../mpc-&mpc-version;.tar.gz
+mv -v mpc-&mpc-version; mpc</userinput></screen>
+
+	<para>这次同样不要构建 .info 文件。这些文件在新版 <command>makeinfo</command> 下无法正常编译，而且我们也不会用到。</para>
+
+<screen><userinput remap="pre">sed -i 's/BUILD_INFO=info/BUILD_INFO=/' gcc/configure</userinput></screen>
+
+    <para>再创建一个独立的编制目录：</para>
+
+<screen><userinput remap="pre">mkdir -v ../gcc-build
+cd ../gcc-build</userinput></screen>
+
+    <para>在开始编制 GCC 之前，记得解除所有覆盖默认优化标记的环境变量。</para>
+
+    <para>现在准备编译 GCC：</para>
+
+<screen><userinput remap="configure">CC=$LFS_TGT-gcc \
+AR=$LFS_TGT-ar                  \
+RANLIB=$LFS_TGT-ranlib          \
+../gcc-&gcc-version;/configure          \
+    --prefix=/tools             \
+    --with-local-prefix=/tools  \
+    --with-native-system-header-dir=/tools/include \
+    --enable-clocale=gnu        \
+    --enable-shared             \
+    --enable-threads=posix      \
+    --enable-__cxa_atexit       \
+    --enable-languages=c,c++    \
+    --disable-libstdcxx-pch     \
+    --disable-multilib          \
+    --disable-bootstrap         \
+    --disable-libgomp           \
+    --with-mpfr-include=$(pwd)/../gcc-&gcc-version;/mpfr/src \
+    --with-mpfr-lib=$(pwd)/mpfr/src/.libs</userinput></screen>
+
+    <variablelist>
+      <title>新配置脚本的含义：</title>
+
+      <varlistentry>
+        <term><parameter>--enable-clocale=gnu</parameter></term>
+        <listitem>
+          <para>此选项确保在任何情况下都能给 C++ 库选择正确的区域数据模型。如果配置脚本发现安装了 <emphasis>de_DE</emphasis> 区域数据，它就会选择正确的 gnu 区域数据模型。但是如果 <emphasis>de_DE</emphasis> 区域数据没有安装，就有可能因为选中了不正确的通用区域数据模型而编制出与 ABI 不兼容的 C++ 库。</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><parameter>--enable-threads=posix</parameter></term>
+        <listitem>
+          <para>此项启用 C++ 多线程代码的异常处理。</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><parameter>--enable-__cxa_atexit</parameter></term>
+        <listitem>
+          <para>此选项允许使用 <function>__cxa_atexit</function> 而不是 <function>atexit</function> 来本地静态和全局对象注册 C++ 析构函数。此选项对于完全兼容标准的析构函数处理是必要的。它也会影响 C++ ABI，而使得 C++ 程序和共享库可以与其他 Linux 发行版相互操作。</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><parameter>--enable-languages=c,c++</parameter></term>
+        <listitem>
+          <para>此选项确保 C 和 C++ 编译器都被编制。</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><parameter>--disable-libstdcxx-pch</parameter></term>
+        <listitem>
+          <para>不要给 <filename class="libraryfile">libstdc++</filename> 编制预编译头文件。它占用很多空间，对我们还没有用。</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><parameter>--disable-bootstrap</parameter></term>
+        <listitem>
+          <para>对于原生 GCC 编制，默认会进行 “引导” 编制。这不是只编译 GCC，而是编译它几遍。用第一次编译的程序把自己编译第二遍，然后编译第三遍。然后比较第二遍和第三遍的产物以确保它可以不出差错地自编译。这也就表示它编译正确。然而，LFS 编制方法会提供一个固化的编译器，不用每次都引导。</para> 
+        </listitem>
+      </varlistentry>
+
+    </variablelist>
+
+    <para>编译程序包：</para>
+
+<screen><userinput remap="make">make</userinput></screen>
+
+    <para>安装程序包：</para>
+
+<screen><userinput remap="install">make install</userinput></screen>
+
+    <para>最后一步，创建一个符号链接。很多程序和脚本会运行 <command>cc</command> 而不是 <command>gcc</command>，用来使程序通用，在所有的 UNIX 系统上都可用，而 GNU 编译器并不总是安装。运行 <command>cc</command> 就给系统管理员留出了选择安装哪一个 C 编译器的自由：</para>
+
+<screen><userinput remap="install">ln -vs gcc /tools/bin/cc</userinput></screen>
+
+  <caution>
+    <para>在这里，停下来确保新工具链的基本功能 (编译和链接) 能正常工作很重要。要进行稳定性检查，运行以下命令：</para>
+
+<screen><userinput>echo 'main(){}' &gt; dummy.c
+cc dummy.c
+readelf -l a.out | grep ': /tools'</userinput></screen>
+
+    <para>果一切工作正常，就不会出现错误，最后一条命令的输出会符合以下格式：</para>
+
+<screen><computeroutput>[Requesting program interpreter: /tools/lib/ld-linux.so.2]</computeroutput></screen>
+
+    <para>留意 <filename class="directory">/tools/lib</filename> 或者 64 位计算机上的 <filename class="directory">/tools/lib64</filename> 作为动态链接器的前缀出现。</para>
+
+    <para>如果输出不如上文所示或者根本没有输出，那就有什么地方出错了。研究回溯刚才的步骤，查出问题并修正它。在继续之前必须解决这一问题。首先，使用 <command>gcc</command> 而不是 <command>cc</command> 再做一次完整性检查。如果能够工作，那就是 <filename class="symlink">/tools/bin/cc</filename> 这个符号链接丢失了。重做这个链接。下一步，确保 <envar>PATH</envar> 正确。可以运行 <command>echo $PATH</command> 并检查 <filename class="directory">/tools/bin</filename> 是否在列表首位。如果 <envar>PATH</envar> 错误可能就是你未作为 <systemitem class="username">lfs</systemitem> 用户登录或者早在 <xref linkend="ch-tools-settingenviron"/> 就出现了错误。</para>
+
+    <para>一切正常之后，清理测试文件：</para>
+
+<screen><userinput>rm -v dummy.c a.out</userinput></screen>
+
+  </caution>
+
+  </sect2>
+
+  <sect2 role="content">
+    <title/>
+
+    <para>有关此程序包的细节位于<xref linkend="contents-gcc"/>。</para>
+
+  </sect2>
+
+</sect1>

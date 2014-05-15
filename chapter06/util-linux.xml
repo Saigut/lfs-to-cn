@@ -1,0 +1,1057 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+  "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../general.ent">
+  %general-entities;
+]>
+
+<sect1 id="ch-system-util-linux" role="wrap">
+  <?dbhtml filename="util-linux.html"?>
+
+  <sect1info condition="script">
+    <productname>util-linux</productname>
+    <productnumber>&util-linux-version;</productnumber>
+    <address>&util-linux-url;</address>
+  </sect1info>
+
+  <title>Util-linux-&util-linux-version;</title>
+
+  <indexterm zone="ch-system-util-linux">
+    <primary sortas="a-Util-linux">Util-linux</primary>
+  </indexterm>
+
+  <sect2 role="package">
+    <title/>
+
+    <para>Util-linux 程序包包含大量工具程序。其中有处理文件系统、控制台、分区和消息的程序。</para>
+
+    <segmentedlist>
+      <segtitle>&buildtime;</segtitle>
+      <segtitle>&diskspace;</segtitle>
+
+      <seglistitem>
+        <seg>&util-linux-ch6-sbu;</seg>
+        <seg>&util-linux-ch6-du;</seg>
+      </seglistitem>
+    </segmentedlist>
+
+  </sect2>
+
+  <sect2 role="installation">
+    <title>FHS 兼容注记</title>
+
+    <para>FHS 推荐使用 <filename class="directory">/var/lib/hwclock</filename> 目录而不是通常的 <filename class="directory">/etc</filename> 目录作为 <filename>adjtime</filename> 文件的位置。要使 <command>hwclock</command> 程序兼容 FHS，运行以下：</para>
+
+<screen><userinput remap="pre">sed -i -e 's@etc/adjtime@var/lib/hwclock/adjtime@g' \
+     $(grep -rl '/etc/adjtime' .)
+
+mkdir -pv /var/lib/hwclock</userinput></screen>
+
+  </sect2>
+
+  <sect2 role="installation">
+    <title>安装 Util-linux</title>
+
+<screen><userinput remap="configure">./configure --disable-su --disable-sulogin --disable-login</userinput></screen>
+
+    <variablelist>
+      <title>配置选项的含义：</title>
+
+      <varlistentry>
+        <term><parameter>--disable-*</parameter></term>
+        <listitem>
+          <para>这些开关禁用编制 su、sulogin 和 login。它们与 <xref linkend='ch-system-shadow'/> 提供的副本重复了，并且需求 LFS 中不可用的 <ulink url="&blfs-root;/view/svn/postlfs/linux-pam.html">Linux-PAM</ulink>。</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
+    <para>编译程序包：</para>
+
+<screen><userinput remap="make">make</userinput></screen>
+
+    <para>此程序包不包含测试套件。</para>
+
+    <para>安装程序包</para>
+
+<screen><userinput remap="install">make install</userinput></screen>
+
+  </sect2>
+
+  <sect2 id="contents-utillinux" role="content">
+    <title>Util-linux 的内容</title>
+
+    <segmentedlist>
+      <segtitle>安装的程序</segtitle>
+      <segtitle>安装的库</segtitle>
+      <segtitle>安装的目录</segtitle>
+
+      <seglistitem>
+        <seg>addpart, agetty, blkid, blockdev, cal, cfdisk, chcpu, chrt, col, colcrt, colrm, column, ctrlaltdel, cytune, delpart, dmesg, eject, fallocate, fdformat, fdisk, findfs, findmnt, flock, fsck, fsck.cramfs, fsck.minix, fsfreeze, fstrim, getopt, hexdump, hwclock, i386, ionice, ipcmk, ipcrm, ipcs, kill, isosize, ldattach, linux32, linux64, logger, look, losetup, lsblk, lscpu, lslocks, mcookie, mkfs, mkfs.bfs, mkfs.cramfs, mkfs.minix, mkswap, more, mount, mountpoint, namei, partx, pg, pivot_root, prlimit, raw, readprofile, rename, renice, resizepart, rev, rtcwake, script, scriptreplay, setarch, setsid, setterm, sfdisk, swaplabel, swapoff (到 swapon 的链接), swapon, switch_root, tailf, taskset, tunelp, ul, umount, unshare, utmpdump, uuidd, uuidgen, wall, wdctl, whereis, wipefs 和 x86_64</seg>
+
+        <seg>libblkid.{a,so}, libmount.{a,so}, libuuid.{a,so}</seg>
+        
+        <seg>/usr/include/blkid, /usr/include/libmount, /usr/include/uuid, /usr/share/getopt, /var/lib/hwclock</seg>
+      </seglistitem>
+    </segmentedlist>
+
+    <variablelist>
+      <bridgehead renderas="sect3">简介</bridgehead>
+      <?dbfo list-presentation="list"?>
+      <?dbhtml list-presentation="table"?>
+
+      <varlistentry id="addpart">
+        <term><command>addpart</command></term>
+        <listitem>
+          <para>通知内核有新的分区</para>
+          <indexterm zone="ch-system-util-linux addpart">
+            <primary sortas="b-addpart">addpart</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="agetty">
+        <term><command>agetty</command></term>
+        <listitem>
+          <para>打开一个 tty 端口，提示输入登录名然后调用 <command>login</command> 程序</para>
+          <indexterm zone="ch-system-util-linux agetty">
+            <primary sortas="b-agetty">agetty</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="blkid">
+        <term><command>blkid</command></term>
+        <listitem>
+          <para>一个命令行工具，定位并打印块设备属性</para>
+          <indexterm zone="ch-system-util-linux blkid">
+            <primary sortas="b-blkid">blkid</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="blockdev">
+        <term><command>blockdev</command></term>
+        <listitem>
+          <para>允许用户从命令行调用块设备 ioctls</para>
+          <indexterm zone="ch-system-util-linux blockdev">
+            <primary sortas="b-blockdev">blockdev</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="cal">
+        <term><command>cal</command></term>
+        <listitem>
+          <para>显示一个简单的日历</para>
+          <indexterm zone="ch-system-util-linux cal">
+            <primary sortas="b-cal">cal</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="cfdisk">
+        <term><command>cfdisk</command></term>
+        <listitem>
+          <para>修改给定设备的分区表</para>
+          <indexterm zone="ch-system-util-linux cfdisk">
+            <primary sortas="b-cfdisk">cfdisk</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="chcpu">
+        <term><command>chcpu</command></term>
+        <listitem>
+          <para>修改 CPU 状态</para>
+          <indexterm zone="ch-system-util-linux chcpu">
+            <primary sortas="b-chcpu">chcpu</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="chrt">
+        <term><command>chrt</command></term>
+        <listitem>
+          <para>修改进程的实时属性</para>
+          <indexterm zone="ch-system-util-linux chrt">
+            <primary sortas="b-chrt">chrt</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="col">
+        <term><command>col</command></term>
+        <listitem>
+          <para>筛选反向换行</para>
+          <indexterm zone="ch-system-util-linux col">
+            <primary sortas="b-col">col</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="colcrt">
+        <term><command>colcrt</command></term>
+        <listitem>
+          <para>为缺乏重叠字符和半行等兼容性的终端筛选 <command>nroff</command> 输出</para>
+          <indexterm zone="ch-system-util-linux colcrt">
+            <primary sortas="b-colcrt">colcrt</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="colrm">
+        <term><command>colrm</command></term>
+        <listitem>
+          <para>筛选指定的栏目</para>
+          <indexterm zone="ch-system-util-linux colrm">
+            <primary sortas="b-colrm">colrm</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="column">
+        <term><command>column</command></term>
+        <listitem>
+          <para>将指定文件格式化分成多栏</para>
+          <indexterm zone="ch-system-util-linux column">
+            <primary sortas="b-column">column</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="ctrlaltdel">
+        <term><command>ctrlaltdel</command></term>
+        <listitem>
+          <para>将 Ctrl+Alt+Del 组合键的功能设置为硬重启或软重启</para>
+          <indexterm zone="ch-system-util-linux ctrlaltdel">
+            <primary sortas="b-ctrlaltdel">ctrlaltdel</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="cytune">
+        <term><command>cytune</command></term>
+        <listitem>
+          <para>调节 Cyclades 卡的串行线路驱动参数</para>
+          <indexterm zone="ch-system-util-linux cytune">
+            <primary sortas="b-cytune">cytune</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="delpart">
+        <term><command>delpart</command></term>
+        <listitem>
+          <para>要求 Linux 内核移除一个分区</para>
+          <indexterm zone="ch-system-util-linux delpart">
+            <primary sortas="b-delpart">delpart</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="dmesg">
+        <term><command>dmesg</command></term>
+        <listitem>
+          <para>转储内核引导消息</para>
+          <indexterm zone="ch-system-util-linux dmesg">
+            <primary sortas="b-dmesg">dmesg</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="eject">
+        <term><command>eject</command></term>
+        <listitem>
+          <para>弹出可移动介质</para>
+          <indexterm zone="ch-system-util-linux eject">
+            <primary sortas="b-eject">eject</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="fallocate">
+        <term><command>fallocate</command></term>
+        <listitem>
+          <para>给文件预先分配空间</para>
+          <indexterm zone="ch-system-util-linux fallocate">
+            <primary sortas="b-fallocate">fallocate</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="fdformat">
+        <term><command>fdformat</command></term>
+        <listitem>
+          <para>低级格式化软盘</para>
+          <indexterm zone="ch-system-util-linux fdformat">
+            <primary sortas="b-fdformat">fdformat</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="fdisk">
+        <term><command>fdisk</command></term>
+        <listitem>
+          <para>修改给定设备的分区表</para>
+          <indexterm zone="ch-system-util-linux fdisk">
+            <primary sortas="b-fdisk">fdisk</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="findfs">
+        <term><command>findfs</command></term>
+        <listitem>
+          <para>按标签或通用唯一识别码 (UUID) 寻找文件系统</para>
+          <indexterm zone="ch-system-util-linux findfs">
+            <primary sortas="b-findfs">findfs</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="findmnt">
+        <term><command>findmnt</command></term>
+        <listitem>
+          <para>是 libmount 库的一个命令行界面，用于与 mountinfo、fstab 和 mtab 文件一同工作</para>
+          <indexterm zone="ch-system-util-linux findmnt">
+            <primary sortas="b-findmnt">findmnt</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="flock">
+        <term><command>flock</command></term>
+        <listitem>
+          <para>获得一个文件锁然后在保持之的状态下运行一条命令</para>
+          <indexterm zone="ch-system-util-linux flock">
+            <primary sortas="b-flock">flock</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="fsck">
+        <term><command>fsck</command></term>
+        <listitem>
+          <para>用于检查或者修复文件系统</para>
+          <indexterm zone="ch-system-util-linux fsck">
+            <primary sortas="b-fsck">fsck</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="fsck.cramfs">
+        <term><command>fsck.cramfs</command></term>
+        <listitem>
+          <para>对给定设备上的 Cramfs 文件系统进行容量检查</para>
+          <indexterm zone="ch-system-util-linux fsck.cramfs">
+            <primary sortas="b-fsck.cramfs">fsck.cramfs</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="fsck.minix">
+        <term><command>fsck.minix</command></term>
+        <listitem>
+          <para>对给定设备上的 Minix 文件系统进行容量检查</para>
+          <indexterm zone="ch-system-util-linux fsck.minix">
+            <primary sortas="b-fsck.minix">fsck.minix</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="fsfreeze">
+        <term><command>fsfreeze</command></term>
+        <listitem>
+          <para>一个非常简单的 FIFREEZE/FITHAW ioctl 内核驱动操作包裹</para>
+          <indexterm zone="ch-system-util-linux fsfreeze">
+            <primary sortas="b-fsfreeze">fsfreeze</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="fstrim">
+        <term><command>fstrim</command></term>
+        <listitem>
+          <para>在挂载的文件系统上弃置未使用的块</para>
+          <indexterm zone="ch-system-util-linux fstrim">
+            <primary sortas="b-fstrim">fstrim</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="getopt">
+        <term><command>getopt</command></term>
+        <listitem>
+          <para>解析给定命令行的选项</para>
+          <indexterm zone="ch-system-util-linux getopt">
+            <primary sortas="b-getopt">getopt</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="hexdump">
+        <term><command>hexdump</command></term>
+        <listitem>
+          <para>以十六进制或其他给定格式转储给定文件</para>
+          <indexterm zone="ch-system-util-linux hexdump">
+            <primary sortas="b-hexdump">hexdump</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="hwclock">
+        <term><command>hwclock</command></term>
+        <listitem>
+          <para>读取或者设置系统的硬件时钟，也叫做实时时钟 (RTC) 或者基本输入输出系统 (BIOS)
+          clock</para>
+          <indexterm zone="ch-system-util-linux hwclock">
+            <primary sortas="b-hwclock">hwclock</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="i386">
+        <term><command>i386</command></term>
+        <listitem>
+          <para>到 setarch 的符号链接</para>
+          <indexterm zone="ch-system-util-linux i386">
+            <primary sortas="b-i386">i386</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="ionice">
+        <term><command>ionice</command></term>
+        <listitem>
+          <para>获取或设置一个程序的时间表类别和优先级</para>
+          <indexterm zone="ch-system-util-linux ionice">
+            <primary sortas="b-ionice">ionice</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="ipcmk">
+        <term><command>ipcmk</command></term>
+        <listitem>
+          <para>创建多种 IPC 资源</para>
+          <indexterm zone="ch-system-util-linux ipcmk">
+            <primary sortas="b-ipcmk">ipcmk</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="ipcrm">
+        <term><command>ipcrm</command></term>
+        <listitem>
+          <para>移除给定的 IPC 资源</para>
+          <indexterm zone="ch-system-util-linux ipcrm">
+            <primary sortas="b-ipcrm">ipcrm</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="ipcs">
+        <term><command>ipcs</command></term>
+        <listitem>
+          <para>提供 IPC 状态信息</para>
+          <indexterm zone="ch-system-util-linux ipcs">
+            <primary sortas="b-ipcs">ipcs</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="isosize">
+        <term><command>isosize</command></term>
+        <listitem>
+          <para>报告 iso9660 文件系统的尺寸</para>
+          <indexterm zone="ch-system-util-linux isosize">
+            <primary sortas="b-isosize">isosize</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="kill">
+        <term><command>kill</command></term>
+        <listitem>
+          <para>给进程发信号</para>
+          <indexterm zone="ch-system-util-linux kill">
+            <primary sortas="b-kill">kill</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="ldattach">
+        <term><command>ldattach</command></term>
+        <listitem>
+          <para>给串行线路附加一个行约束</para>
+          <indexterm zone="ch-system-util-linux ldattach">
+            <primary sortas="b-ldattach">ldattach</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="linux32">
+        <term><command>linux32</command></term>
+        <listitem>
+          <para>到 setarch 的符号链接</para>
+          <indexterm zone="ch-system-util-linux linux32">
+            <primary sortas="b-linux32">linux32</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="linux64">
+        <term><command>linux64</command></term>
+        <listitem>
+          <para>到 setarch 的符号链接</para>
+          <indexterm zone="ch-system-util-linux linux64">
+            <primary sortas="b-linux64">linux64</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="logger">
+        <term><command>logger</command></term>
+        <listitem>
+          <para>将给定的消息写入系统日志</para>
+          <indexterm zone="ch-system-util-linux logger">
+            <primary sortas="b-logger">logger</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="look">
+        <term><command>look</command></term>
+        <listitem>
+          <para>显示以给定字符串开始的行</para>
+          <indexterm zone="ch-system-util-linux look">
+            <primary sortas="b-look">look</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="losetup">
+        <term><command>losetup</command></term>
+        <listitem>
+          <para>设置并控制回环设备</para>
+          <indexterm zone="ch-system-util-linux losetup">
+            <primary sortas="b-losetup">losetup</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="lsblk">
+        <term><command>lsblk</command></term>
+        <listitem>
+          <para>树形列出所有或者选中的块设备的信息</para>
+          <indexterm zone="ch-system-util-linux lsblk">
+            <primary sortas="b-lsblk">lsblk</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="lscpu">
+        <term><command>lscpu</command></term>
+        <listitem>
+          <para>打印出 CPU 架构信息</para>
+          <indexterm zone="ch-system-util-linux lscpu">
+            <primary sortas="b-lscpu">lscpu</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="lslocks">
+        <term><command>lslocks</command></term>
+        <listitem>
+          <para>列出本地系统锁</para>
+          <indexterm zone="ch-system-util-linux lslocks">
+            <primary sortas="b-lslocks">lslocks</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="mcookie">
+        <term><command>mcookie</command></term>
+        <listitem>
+          <para>创建 magic cookies (128 位十六进制数) 供 <command>xauth</command> 使用</para>
+          <indexterm zone="ch-system-util-linux mcookie">
+            <primary sortas="b-mcookie">mcookie</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="mkfs">
+        <term><command>mkfs</command></term>
+        <listitem>
+          <para>在设备 (通常是硬盘) 上创建文件系统</para>
+          <indexterm zone="ch-system-util-linux mkfs">
+            <primary sortas="b-mkfs">mkfs</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="mkfs.bfs">
+        <term><command>mkfs.bfs</command></term>
+        <listitem>
+          <para>创建 Santa Cruz Operations (SCO) bfs 文件系统</para>
+          <indexterm zone="ch-system-util-linux mkfs.bfs">
+            <primary sortas="b-mkfs.bfs">mkfs.bfs</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="mkfs.cramfs">
+        <term><command>mkfs.cramfs</command></term>
+        <listitem>
+          <para>创建 cramfs 文件系统</para>
+          <indexterm zone="ch-system-util-linux mkfs.cramfs">
+            <primary sortas="b-mkfs.cramfs">mkfs.cramfs</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="mkfs.minix">
+        <term><command>mkfs.minix</command></term>
+        <listitem>
+          <para>创建 Minix 文件系统</para>
+          <indexterm zone="ch-system-util-linux mkfs.minix">
+            <primary sortas="b-mkfs.minix">mkfs.minix</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="mkswap">
+        <term><command>mkswap</command></term>
+        <listitem>
+          <para>将给定的设备或者文件初始化并用于交换区</para>
+          <indexterm zone="ch-system-util-linux mkswap">
+            <primary sortas="b-mkswap">mkswap</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="more">
+        <term><command>more</command></term>
+        <listitem>
+          <para>一个筛选器，在屏幕上分页显示文本</para>
+          <indexterm zone="ch-system-util-linux more">
+            <primary sortas="b-more">more</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="mount">
+        <term><command>mount</command></term>
+        <listitem>
+          <para>将给定设备上的文件系统挂载到文件系统树中的指定目录</para>
+          <indexterm zone="ch-system-util-linux mount">
+            <primary sortas="b-mount">mount</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="mountpoint">
+        <term><command>mountpoint</command></term>
+        <listitem>
+          <para>检查目录是否是挂载点</para>
+          <indexterm zone="ch-system-util-linux mountpoint">
+            <primary sortas="b-mountpoint">mountpoint</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="namei">
+        <term><command>namei</command></term>
+        <listitem>
+          <para>显示给定路径名中的符号链接</para>
+          <indexterm zone="ch-system-util-linux namei">
+            <primary sortas="b-namei">namei</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="partx">
+        <term><command>partx</command></term>
+        <listitem>
+          <para>将磁盘上分区的存在和编号告知内核</para>
+          <indexterm zone="ch-system-util-linux partx">
+            <primary sortas="b-partx">partx</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="pg">
+        <term><command>pg</command></term>
+        <listitem>
+          <para>显示文本文件，每次一整个屏幕</para>
+          <indexterm zone="ch-system-util-linux pg">
+            <primary sortas="b-pg">pg</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="pivot_root">
+        <term><command>pivot_root</command></term>
+        <listitem>
+          <para>使给定的文件成为当前进程新的根文件系统</para>
+          <indexterm zone="ch-system-util-linux pivot_root">
+            <primary sortas="b-pivot_root">pivot_root</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="prlimit">
+        <term><command>prlimit</command></term>
+        <listitem>
+          <para>获取并设置一个进程的资源限制</para>
+          <indexterm zone="ch-system-util-linux prlimit">
+            <primary sortas="b-prlimit">prlimit</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="raw">
+        <term><command>raw</command></term>
+        <listitem>
+          <para>将一个 Linux 字符设备捆绑到一个块设备上</para>
+          <indexterm zone="ch-system-util-linux raw">
+            <primary sortas="b-raw">raw</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="readprofile">
+        <term><command>readprofile</command></term>
+        <listitem>
+          <para>如去内核分析信息</para>
+          <indexterm zone="ch-system-util-linux readprofile">
+            <primary sortas="b-readprofile">readprofile</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="rename">
+        <term><command>rename</command></term>
+        <listitem>
+          <para>重命名给定文件，将给定字符串替换为另一个</para>
+          <indexterm zone="ch-system-util-linux rename">
+            <primary sortas="b-rename">rename</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="renice">
+        <term><command>renice</command></term>
+        <listitem>
+          <para>调节运行中进程的优先级</para>
+          <indexterm zone="ch-system-util-linux renice">
+            <primary sortas="b-renice">renice</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="resizepart">
+        <term><command>resizepart</command></term>
+        <listitem>
+          <para>要求内核调节一个分区的尺寸</para>
+          <indexterm zone="ch-system-util-linux resizepart">
+            <primary sortas="b-resizepart">resizepart</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="rev">
+        <term><command>rev</command></term>
+        <listitem>
+          <para>将给定文件按行倒序输出</para>
+          <indexterm zone="ch-system-util-linux rev">
+            <primary sortas="b-rev">rev</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="rtcwake">
+        <term><command>rtcwake</command></term>
+        <listitem>
+          <para>用于进入系统睡眠状态直到指定的唤醒时间</para>
+          <indexterm zone="ch-system-util-linux rtcwake">
+            <primary sortas="b-rtcwake">rtcwake</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="script">
+        <term><command>script</command></term>
+        <listitem>
+          <para>为一个终端会话制作打字稿</para>
+          <indexterm zone="ch-system-util-linux script">
+            <primary sortas="b-script">script</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="scriptreplay">
+        <term><command>scriptreplay</command></term>
+        <listitem>
+          <para>使用计时信息回放打字稿</para>
+          <indexterm zone="ch-system-util-linux scriptreplay">
+            <primary sortas="b-scriptreplay">scriptreplay</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="setarch">
+        <term><command>setarch</command></term>
+        <listitem>
+          <para>在新的程序环境中改变报告的架构并设置个性标记</para>
+          <indexterm zone="ch-system-util-linux setarch">
+            <primary sortas="b-setarch">setarch</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="setsid">
+        <term><command>setsid</command></term>
+        <listitem>
+          <para>在新的会话中运行指定程序</para>
+          <indexterm zone="ch-system-util-linux setsid">
+            <primary sortas="b-setsid">setsid</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="setterm">
+        <term><command>setterm</command></term>
+        <listitem>
+          <para>设置终端属性</para>
+          <indexterm zone="ch-system-util-linux setterm">
+            <primary sortas="b-setterm">setterm</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="sfdisk">
+        <term><command>sfdisk</command></term>
+        <listitem>
+          <para>一个磁盘分区表修改工具</para>
+          <indexterm zone="ch-system-util-linux sfdisk">
+            <primary sortas="b-sfdisk">sfdisk</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="swaplabel">
+        <term><command>swaplabel</command></term>
+        <listitem>
+          <para>允许改变交换空间的 UUID 和标签</para>
+          <indexterm zone="ch-system-util-linux swaplabel">
+            <primary sortas="b-swaplabel">swaplabel</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="swapoff">
+        <term><command>swapoff</command></term>
+        <listitem>
+          <para>禁用文件和设备的交换和分页</para>
+          <indexterm zone="ch-system-util-linux swapoff">
+            <primary sortas="b-swapoff">swapoff</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="swapon">
+        <term><command>swapon</command></term>
+        <listitem>
+          <para>启用文件和设备的交换和分页并列出正在使用的文件和设备</para>
+          <indexterm zone="ch-system-util-linux swapon">
+            <primary sortas="b-swapon">swapon</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="switch_root">
+        <term><command>switch_root</command></term>
+        <listitem>
+          <para>切换到另一个文件系统作为挂载树的根</para>
+          <indexterm zone="ch-system-util-linux switch_root">
+            <primary sortas="b-switch_root">switch_root</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="tailf">
+        <term><command>tailf</command></term>
+        <listitem>
+          <para>追踪一个日志文件的膨胀；显示其最后 10 行然后每当有新条目创建时显示之</para>
+          <indexterm zone="ch-system-util-linux tailf">
+            <primary sortas="b-tailf">tailf</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="taskset">
+        <term><command>taskset</command></term>
+        <listitem>
+          <para>取回或者设置一个进程的 CPU 亲和力</para>
+          <indexterm zone="ch-system-util-linux taskset">
+            <primary sortas="b-taskset">taskset</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="tunelp">
+        <term><command>tunelp</command></term>
+        <listitem>
+          <para>调节行打印机的参数</para>
+          <indexterm zone="ch-system-util-linux tunelp">
+            <primary sortas="b-tunelp">tunelp</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="ul">
+        <term><command>ul</command></term>
+        <listitem>
+          <para>一个筛选器，将下划线翻译成供当前终端使用的转义序列</para>
+          <indexterm zone="ch-system-util-linux ul">
+            <primary sortas="b-ul">ul</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="umount">
+        <term><command>umount</command></term>
+        <listitem>
+          <para>将一个文件系统从系统的文件树上断开</para>
+          <indexterm zone="ch-system-util-linux umount">
+            <primary sortas="b-umount">umount</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="unshare">
+        <term><command>unshare</command></term>
+        <listitem>
+          <para>运行一个程序，使其某些命名空间独立于父进程</para>
+          <indexterm zone="ch-system-util-linux unshare">
+            <primary sortas="b-unshare">unshare</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="utmpdump">
+        <term><command>utmpdump</command></term>
+        <listitem>
+          <para>以更加用户友好的格式显示给定登录文件的内容</para>
+          <indexterm zone="ch-system-util-linux utmpdump">
+            <primary sortas="b-utmpdump">utmpdump</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="uuidd">
+        <term><command>uuidd</command></term>
+        <listitem>
+          <para>一个 daemon，被 UUID 库用于以安全并保证不同的方法创建基于时间的 UUID。</para>
+          <indexterm zone="ch-system-util-linux uuidd">
+            <primary sortas="b-uuidd">uuidd</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="uuidgen">
+        <term><command>uuidgen</command></term>
+        <listitem>
+          <para>创建新的 UUID。每个新的 UUID 都可以认为是唯一的，无论在本机系统上还是其他系统上，无论过去还是未来</para>
+          <indexterm zone="ch-system-util-linux uuidgen">
+            <primary sortas="b-uuidgen">uuidgen</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="wall">
+        <term><command>wall</command></term>
+        <listitem>
+          <para>在当前登录的所有用户的终端上显示文件内容，默认显示标准输入</para>
+          <indexterm zone="ch-system-util-linux wall">
+            <primary sortas="b-wall">wall</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="wdctl">
+        <term><command>wdctl</command></term>
+        <listitem>
+          <para>显示硬件监视器状态</para>
+          <indexterm zone="ch-system-util-linux wdctl">
+            <primary sortas="b-wdctl">wdctl</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="whereis">
+        <term><command>whereis</command></term>
+        <listitem>
+          <para>报告给定命令的二进制、源代码和手册页的位置</para>
+          <indexterm zone="ch-system-util-linux whereis">
+            <primary sortas="b-whereis">whereis</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="wipefs">
+        <term><command>wipefs</command></term>
+        <listitem>
+          <para>从设备擦除文件系统签名</para>
+          <indexterm zone="ch-system-util-linux wipefs">
+            <primary sortas="b-wipefs">wipefs</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="x86_64">
+        <term><command>x86_64</command></term>
+        <listitem>
+          <para>到 setarch 的符号链接</para>
+          <indexterm zone="ch-system-util-linux x86_64">
+            <primary sortas="b-x86_64">x86_64</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="libblkid">
+        <term><filename class="libraryfile">libblkid</filename></term>
+        <listitem>
+          <para>包含用于设备识别和标记提取的途径</para>
+          <indexterm zone="ch-system-util-linux libblkid">
+            <primary sortas="c-libblkid">libblkid</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="libmount">
+        <term><filename class="libraryfile">libmount</filename></term>
+        <listitem>
+          <para>包含用于块设备挂载和卸载的途径</para>
+          <indexterm zone="ch-system-util-linux libmount">
+            <primary sortas="c-libmount">libmount</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="libuuid">
+        <term><filename class="libraryfile">libuuid</filename></term>
+        <listitem>
+          <para>包含用于创建可能在本地系统以外能够访问的对象的唯一标识符的途径</para>
+          <indexterm zone="ch-system-util-linux libuuid">
+            <primary sortas="c-libuuid">libuuid</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+    </variablelist>
+
+  </sect2>
+
+</sect1>
