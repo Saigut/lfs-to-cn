@@ -3,7 +3,7 @@
 ## Linux From Scratch 中文翻译项目
 
 
-### github库结构介绍
+### lfs-to-cn库结构介绍
 |分支|作用|
 |-----|-----|
 |working|当前主要进行翻译的版本，与某个版本同步|
