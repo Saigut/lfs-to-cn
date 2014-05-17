@@ -28,7 +28,7 @@
 <xsl:param name="chunk.append"/>
 <xsl:param name="chunk.quietly" select="0"/>
 <xsl:param name="chunker.output.method" select="'xml'"/>
-<xsl:param name="chunker.output.encoding" select="'ISO-8859-1'"/>
+<xsl:param name="chunker.output.encoding" select="'UTF-8'"/>
 <xsl:param name="chunker.output.indent" select="'no'"/>
 <xsl:param name="chunker.output.omit-xml-declaration" select="'no'"/>
 <xsl:param name="chunker.output.standalone" select="'no'"/>
