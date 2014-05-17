@@ -29,8 +29,8 @@ cn  目录内存放翻译后的中文文档
 cn目录一开始为空，翻译的文件都取自ori目录。ori目录里翻译了某个页面，翻译工作完成或部分完成后，就在cn目录里提交相应的页面。
 
 #### 翻译参考
-高建翻译的svn-20130711版本：<a href="https://davidgao.github.io/LFSCN/index.html" target="_blank">https://davidgao.github.io/LFSCN/index.html</a>（即20130711分支原项目导出的网页）  
-金步国翻译的6.1.1版本：<a href="http://linux.chinaitlab.com/manual/linux/lfs/LFS-6.1.1/index.html" target="_blank">http://linux.chinaitlab.com/manual/linux/lfs/LFS-6.1.1/index.html</a>
+高建翻译的svn-20130711版本：<a href="https://davidgao.github.io/LFSCN/index.html" target="_blank">davidgao.github.io/LFSCN/index.html</a>（即20130711分支原项目导出的网页）  
+金步国翻译的6.1.1版本：<a href="http://linux.chinaitlab.com/manual/linux/lfs/LFS-6.1.1/index.html" target="_blank">linux.chinaitlab.com/manual/linux/lfs/LFS-6.1.1/index.html</a>
 
 
 ### irc交流频道
