@@ -97,7 +97,7 @@ make: *** [all-recursive-am] Error 2</computeroutput></screen>
 
 <screen><computeroutput>make [2]: *** [make] Error 1</computeroutput></screen>
 
-    <para>这没有为正确地诊断问题提供足够的信息，因为它只说了有地方出错了了，
+    <para>这没有为正确地诊断问题提供足够的信息，因为它只说有地方出错了，
     但没说出是<emphasis>哪里</emphasis>出的错。上述例子中的整个部分，都是应该被保存的，
     因为它包含了被执行的命令和与之相关的错误信息。</para>
 
