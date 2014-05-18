@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='ISO-8859-1'?>
+<?xml version='1.0' encoding='UTF-8'?>
 
 <!--
 $LastChangedBy: bdubbs $
@@ -101,6 +101,22 @@ $Date: 2012-09-09 05:41:53 +0800 (Sun, 09 Sep 2012) $
     <l:gentext key="Packages" text="Pakete"/>
     <l:gentext key="Programs" text="Programme"/>
     <l:gentext key="Scripts" text="Skripte"/>
+
+  </l:l10n>
+
+    <!-- Chinese -->
+  <l:l10n xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0"
+	  language="zh_cn" english-language-name="Chinese Simplified">
+
+    <l:gentext key="description" text="描述"/>
+    <l:gentext key="Bootscripts" text="启动脚本"/>
+    <l:gentext key="Configuration Files" text="配置文件"/>
+    <l:gentext key="Kernel Configuration" text="内核配置"/>
+    <l:gentext key="Libraries" text="库"/>
+    <l:gentext key="Others" text="其它"/>
+    <l:gentext key="Packages" text="包"/>
+    <l:gentext key="Programs" text="程序"/>
+    <l:gentext key="Scripts" text="脚本"/>
 
   </l:l10n>
 
