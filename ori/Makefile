@@ -17,6 +17,7 @@ lfs: validate profile-html
 	@echo "Generating chunked XHTML files..."
 	$(Q)xsltproc --nonet -stringparam chunk.quietly $(CHUNK_QUIET) \
 	  -stringparam rootid "$(ROOT_ID)" -stringparam base.dir $(BASEDIR)/ \
+	  -stringparam l10n.gentext.default.language zh_cn \
 	  stylesheets/lfs-chunked.xsl $(RENDERTMP)/lfs-html.xml
 
 	@echo "Copying CSS code and images..."
@@ -49,6 +50,7 @@ pdf: validate
 
 	@echo "Generating FO file..."
 	$(Q)xsltproc --nonet -stringparam rootid "$(ROOT_ID)" \
+	  -stringparam l10n.gentext.default.language zh_cn \
 	  --output $(RENDERTMP)/lfs-pdf.fo stylesheets/lfs-pdf.xsl \
 	  $(RENDERTMP)/lfs-pdf.xml
 	$(Q)sed -i -e 's/span="inherit"/span="all"/' $(RENDERTMP)/lfs-pdf.fo
@@ -65,6 +67,7 @@ pdf: validate
 nochunks: validate profile-html
 	@echo "Generating non chunked XHTML file..."
 	$(Q)xsltproc --nonet -stringparam rootid "$(ROOT_ID)" \
+	  -stringparam l10n.gentext.default.language zh_cn \
 	  --output $(BASEDIR)/$(NOCHUNKS_OUTPUT) \
 	  stylesheets/lfs-nochunks.xsl $(RENDERTMP)/lfs-html.xml
 
