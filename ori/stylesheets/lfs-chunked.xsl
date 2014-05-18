@@ -15,4 +15,6 @@ $Date: 2007-05-19 20:43:37 +0200 (sáb, 19 may 2007) $
     <!-- The LFS book type to be processed (lfs, blfs, clfs, or hlfs) -->
   <xsl:param name="book-type">lfs</xsl:param>
 
+  <xsl:param name="l10n.gentext.default.language" select="'zh_cn'"/>
+
 </xsl:stylesheet>
