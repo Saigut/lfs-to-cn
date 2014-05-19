@@ -20,7 +20,7 @@
   <sect2 id="ch-intro-maillists" xreflabel="Chapter 1 - Mailing Lists">
     <title>邮件列表</title>
 
-    <para>在<uri>linuxfromscratch.org</uri>服务器上有许多LFS工程的邮件列表。这些列表包括主要的开发和支持列表，以及其它列表。如果FAQ不能解决你的问题，你接下来将要做的是，搜索邮件列表：<ulink url="&lfs-root;search.html"/>。</para>
+    <para>在 <uri>linuxfromscratch.org</uri> 服务器上有许多LFS工程的邮件列表。这些列表包括主要的开发和支持列表，以及其它列表。如果FAQ不能解决你的问题，你接下来将要做的是，搜索邮件列表：<ulink url="&lfs-root;search.html"/>。</para>
 
     <para>关于不同列表的作用，如何订阅列表，以及其它信息，请访问：<ulink url="&lfs-root;mail.html"/>.</para>
 
@@ -44,7 +44,7 @@
   <sect2 id="ch-intro-irc">
     <title>IRC</title>
 
-    <para>有一些LFS社区的成员在IRC上提供帮助，在这里提问之前，请先确保你的问题没有在LFS的FAQ和邮件列表中被回答。你可以在<uri>irc.freenode.net</uri>找到我们的IRC频道，我们的支持频道是 #LFS-support。中文频道是 #LFS-cn（建设中）</para>
+    <para>有一些LFS社区的成员在IRC上提供帮助，在这里提问之前，请先确保你的问题没有在LFS的FAQ和邮件列表中被回答。你可以在 <uri>irc.freenode.net</uri> 找到我们的IRC频道，我们的支持频道是 #LFS-support。中文频道是 #LFS-cn（建设中）</para>
 
   </sect2>
 

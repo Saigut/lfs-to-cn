@@ -38,7 +38,7 @@
 
   <para>为了让新系统与宿主系统隔离而做的努力，似乎看起来是多余的。<xref linkend="ch-tools-toolchaintechnotes"/>中提供了一个为什么要这样做的完整的技术解释。<xref linkend="ch-tools-toolchaintechnotes"/>.</para>
 
-  <para>在<xref linkend="chapter-building-system"/>中，完整的LFS系统将会被构建。用<command>chroot</command>(change root)程序进入一个虚拟环境，并启动一个新shell，而这个shell的根目录被设为LFS分区。这和重启电脑并让内核把LFS分区挂载为根分区非常类似。系统不重启而用<command>chroot</command>代替，这是因为创建一个可启动的系统还需要做其它的工作，而那些工作目前是不需要的。这样做的主要优点是，<quote>chrooting</quote>使你在构建LFS的时候能继续使用宿主系统。在等待软件包编译的时候，你可以继续正常地使用你的计算机。</para>
+  <para>在<xref linkend="chapter-building-system"/>中，完整的LFS系统将会被构建。用 <command>chroot</command>(change root) 程序进入一个虚拟环境，并启动一个新shell，而这个shell的根目录被设为LFS分区。这和重启电脑并让内核把LFS分区挂载为根分区非常类似。系统不重启而用 <command>chroot</command> 代替，这是因为创建一个可启动的系统还需要做其它的工作，而那些工作目前是不需要的。这样做的主要优点是，<quote>chrooting</quote>使你在构建LFS的时候能继续使用宿主系统。在等待软件包编译的时候，你可以继续正常地使用你的计算机。</para>
 
   <para>为了完成安装，<xref linkend="chapter-bootscripts"/>中设置LFS启动脚本，<xref linkend="chapter-bootable"/>中设置内核和启动器。<xref linkend="chapter-finalizing"/> 中包含了在这本书之外获得进一步的LFS体验的信息。在完成了这本书中的步骤之后，计算机将会准备好重启进入新的LFS系统。</para>
 

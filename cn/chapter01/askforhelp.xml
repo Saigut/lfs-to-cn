@@ -10,7 +10,7 @@
 
   <title>帮助</title>
 
-  <para>如果在看这本书的过程中有任何问题，请先查看FAQ页面<ulink url="&faq-root;#generalfaq"/>。多数问题在里面已被回答。如果里面没有回答你的问题，请尝试自己去查找问题的源头。这个提示会为你排除错误提供一些指引：<ulink url="&hints-root;errors.txt"/>。</para>
+  <para>如果在看这本书的过程中有任何问题，请先查看FAQ页面：<ulink url="&faq-root;#generalfaq"/>。多数问题在里面已被回答。如果里面没有回答你的问题，请尝试自己去查找问题的源头。这个提示会为你排除错误提供一些指引：<ulink url="&hints-root;errors.txt"/>。</para>
 
   <para>如果在FAQ的问题列表里找不到你的问题，可以在邮件列表里查找：<ulink url="&lfs-root;search.html"/>。</para>
 
@@ -51,14 +51,14 @@
   <sect2>
     <title>Configure脚本问题</title>
 
-    <para>如果你运行<command>configure</command>脚本时哪里出现了问题，请检查<filename>config.log</filename>文件。这个文件可能会包含运行<command>configure</command>时出现但没输出到屏幕的错误。如果你需要请求帮助的话，请提供<emphasis>相关的</emphasis>行的内容。</para>
+    <para>如果你运行 <command>configure</command> 脚本时哪里出现了问题，请检查 <filename>config.log</filename> 文件。这个文件可能会包含运行 <command>configure</command> 时出现但没输出到屏幕的错误。如果你需要请求帮助的话，请提供<emphasis>相关的</emphasis>行的内容。</para>
 
   </sect2>
 
   <sect2>
     <title>编译问题</title>
 
-    <para>屏幕输出和各种文件的内容对判断编译问题的原因都是有用的。<command>configure</command>脚本和<command>make</command>命令的屏幕输出会很有帮助。不必要包括整个输出，但一定要包含足够的相关信息。下面是一个在<command>make</command>命令的屏幕输出中要包含信息的类型的例子:</para>
+    <para>屏幕输出和各种文件的内容对判断编译问题的原因都是有用的。<command>configure</command> 脚本和 <command>make</command> 命令的屏幕输出会很有帮助。不必要包括整个输出，但一定要包含足够的相关信息。下面是一个在 <command>make</command> 命令的屏幕输出中要包含信息的类型的例子:</para>
 
 <screen><computeroutput>gcc -DALIASPATH=\"/mnt/lfs/usr/share/locale:.\"
 -DLOCALEDIR=\"/mnt/lfs/usr/share/locale\"
