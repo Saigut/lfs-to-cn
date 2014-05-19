@@ -22,7 +22,7 @@
 
     <para>在 <uri>linuxfromscratch.org</uri> 服务器上有许多LFS工程的邮件列表。这些列表包括主要的开发和支持列表，以及其它列表。如果FAQ不能解决你的问题，你接下来将要做的是，搜索邮件列表：<ulink url="&lfs-root;search.html"/>。</para>
 
-    <para>关于不同列表的作用，如何订阅列表，以及其它信息，请访问：<ulink url="&lfs-root;mail.html"/>.</para>
+    <para>关于不同列表的作用，如何订阅列表，以及其它信息，请访问：<ulink url="&lfs-root;mail.html"/>。</para>
 
   </sect2>
 
@@ -61,7 +61,7 @@
   <sect2 id="ch-intro-mirrors" xreflabel="Chapter 1 - Mirror sites">
     <title>镜像站点</title>
 
-    <para>LFS工程在世界范围内有许多镜像站点，可以让访问LFS网站和下载必要软件包更加便捷。请访问<ulink url="&lfs-root;mirrors.html"/>查看当前的镜像列表。</para>
+    <para>LFS工程在世界范围内有许多镜像站点，可以让访问LFS网站和下载必要软件包更加便捷。请访问 <ulink url="&lfs-root;mirrors.html"/> 查看当前的镜像列表。</para>
 
   </sect2>
 
