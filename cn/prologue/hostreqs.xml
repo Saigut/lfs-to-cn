@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+  "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../general.ent">
+  %general-entities;
+]>
+
+<sect1 id="pre-hostreqs" xreflabel="Host System Requirements">
+  <?dbhtml filename="hostreqs.html"?>
+
+  <title>宿主系统需求</title>
+
+    <para>你的宿主系统应该要有下面列出的软件，而且不应低于所标出的最低版本。这个要求对大多数现代Linux发行版应该都不是问题。也要注意，有许多发行版会把软件的软件头放在一个独立的包里，通常像这样<quote>&lt;package-name&gt;-devel</quote>或这样<quote>&lt;package-name&gt;-dev</quote>，如果你的发行版是这样，要确保也安装他们。</para>
+
+   <para>下面列出的软件的更早版本可能也能用，但还没有测试过。</para>
+
+  <itemizedlist spacing="compact">
+
+    <listitem>
+      <para><emphasis role="strong">Bash-3.2</emphasis> （/bin/sh应该是一个到bash的软连接或硬链接）</para>
+    </listitem>
+
+    <listitem>
+      <para><emphasis role="strong">Binutils-2.17</emphasis> （高于&binutils-version;的版本不建议使用，因为还没测试过）</para>
+    </listitem>
+
+    <listitem>
+      <para><emphasis role="strong">Bison-2.3</emphasis> （/usr/bin/yacc应该是一个到 bison 的链接，或是一个执行bison的小脚本）</para>
+    </listitem>
+
+    <listitem>
+      <para><emphasis role="strong">Bzip2-1.0.4</emphasis></para>
+    </listitem>
+
+    <listitem>
+      <para><emphasis role="strong">Coreutils-6.9</emphasis></para>
+    </listitem>
+
+    <listitem>
+      <para><emphasis role="strong">Diffutils-2.8.1</emphasis></para>
+    </listitem>
+
+    <listitem>
+      <para><emphasis role="strong">Findutils-4.2.31</emphasis></para>
+    </listitem>
+
+    <listitem>
+      <para><emphasis role="strong">Gawk-4.0.1</emphasis> （/usr/bin/awk应是一个到gawk的链接）</para>
+    </listitem>
+
+    <listitem>
+      <para><emphasis role="strong">GCC-4.1.2</emphasis> 包含C++编译器，<command>g++</command> （高于&gcc-version;的版本不建议使用，因为还没测试过）</para>
+
+      <note><para>在一些发行版上，有报告说一些被gcc使用的库会处于一种易变的状态，这会干扰一到些LFS包的构建。要检查这个，要先在/usr/lib目录，也可能是/usr/lib64目录，找一下libgmp.la，libmpfr.la和libmpc.la这三个文件。它们可能全都有，或者全部没有，但不会是只有其中一个或两个。如果它们导致了问题，你可以把它们改名或者删掉，或者安装合适的缺失的软件包。</para></note>
+
+    </listitem>
+
+    <listitem>
+      <para><emphasis role="strong">Glibc-2.5.1</emphasis> （高于&glibc-version;的版本不建议使用，因为还没测试过）</para>
+    </listitem>
+
+    <listitem>
+      <para><emphasis role="strong">Grep-2.5.1a</emphasis></para>
+    </listitem>
+
+    <listitem>
+      <para><emphasis role="strong">Gzip-1.3.12</emphasis></para>
+    </listitem>
+
+    <listitem>
+      <para><emphasis role="strong">Linux Kernel-&min-kernel;</emphasis></para>
+
+      <para>对内核版本的要求的原因是，在第 6 章构建<application>glibc</application>的时候，我们在开发者的建议下指定了这个版本。它也被udev所要求。</para>
+
+      <para>如果宿主系统的内核早于&min-kernel;，你需要把内核替换为更新的版本。这里有两种放法作替换。第一个，查看你的发行版是否提供了&min-kernel;或更新版本的内核，如果是，你可以去安装它。第二个，如果你的发行版没有提供合适的内核包，或者你不想安装它提供的内核，那么你可以自己编译一个内核。编译内核和配置启动器（假设宿主系统使用GRUB）的指令在<xref linkend="chapter-bootable"/>。</para>
+
+    </listitem>
+
+    <listitem>
+      <para><emphasis role="strong">M4-1.4.10</emphasis></para>
+    </listitem>
+
+    <listitem>
+      <para><emphasis role="strong">Make-3.81</emphasis></para>
+    </listitem>
+
+    <listitem>
+      <para><emphasis role="strong">Patch-2.5.4</emphasis></para>
+    </listitem>
+
+    <listitem>
+      <para><emphasis role="strong">Perl-5.8.8</emphasis></para>
+    </listitem>
+
+    <listitem>
+      <para><emphasis role="strong">Sed-4.1.5</emphasis></para>
+    </listitem>
+
+    <listitem>
+      <para><emphasis role="strong">Tar-1.18</emphasis></para>
+    </listitem>
+
+    <listitem>
+      <para><emphasis role="strong">Xz-5.0.0</emphasis></para>
+    </listitem>
+
+  </itemizedlist>
+
+  <para>要注意上面提到的软连接是用本书中的指令构建LFS系统所要求的。指向其它软件（比如dash，mawk等）的软连接可能也能用，但没被测试过或被LFS开发组所支持，而且那可能会要求指令上的修改或对一些软件的额外的补丁。</para>
+
+  <!-- Use an empty sect2 element to prevent a pdf warning.  -->
+  <sect2 id="version-check">
+  <title> </title>
+
+  <para >要查看你的宿主系统是否全部具有那些软件的合适版本，和编译程序的能力，请运行下面：</para>
+
+<!-- ANY additional lines in the script cause a pdf rendering problem-->
+<screen role="nodump"><userinput>cat &gt; version-check.sh &lt;&lt; "EOF"
+<literal>#!/bin/bash
+# Simple script to list version numbers of critical development tools
+
+export LC_ALL=C
+bash --version | head -n1 | cut -d" " -f2-4
+echo "/bin/sh -&gt; `readlink -f /bin/sh`"
+echo -n "Binutils: "; ld --version | head -n1 | cut -d" " -f3-
+bison --version | head -n1
+if [ -e /usr/bin/yacc ];
+  then echo "/usr/bin/yacc -&gt; `readlink -f /usr/bin/yacc`";
+  else echo "yacc not found"; fi
+
+bzip2 --version 2&gt;&amp;1 &lt; /dev/null | head -n1 | cut -d" " -f1,6-
+echo -n "Coreutils: "; chown --version | head -n1 | cut -d")" -f2
+diff --version | head -n1
+find --version | head -n1
+gawk --version | head -n1
+if [ -e /usr/bin/awk ];
+  then echo "/usr/bin/awk -&gt; `readlink -f /usr/bin/awk`";
+  else echo "awk not found"; fi
+
+gcc --version | head -n1
+g++ --version | head -n1
+ldd --version | head -n1 | cut -d" " -f2-  # glibc version
+grep --version | head -n1
+gzip --version | head -n1
+cat /proc/version
+m4 --version | head -n1
+make --version | head -n1
+patch --version | head -n1
+echo Perl `perl -V:version`
+sed --version | head -n1
+tar --version | head -n1
+xz --version | head -n1
+
+echo 'main(){}' &gt; dummy.c &amp;&amp; g++ -o dummy dummy.c
+if [ -x dummy ]
+  then echo "g++ compilation OK";
+  else echo "g++ compilation failed"; fi
+rm -f dummy.c dummy
+
+for lib in lib{gmp,mpfr,mpc}.la; do
+  echo $lib: $(if find /usr/lib* -name $lib|
+               grep -q $lib;then :;else echo not;fi) found
+done
+unset lib</literal>
+EOF
+
+bash version-check.sh</userinput></screen>
+
+</sect2>
+</sect1>

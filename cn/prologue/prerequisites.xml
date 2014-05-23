@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+  "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../general.ent">
+  %general-entities;
+]>
+
+<sect1 id="pre-prerequisites">
+  <?dbhtml filename="prerequisites.html"?>
+
+  <title>前提条件</title>
+
+  <para>构建LFS系统不是一个简单的任务。它要求你具备一定的Unix系统管理知识，以便能够解决问题，并能正确执行书中列出的命令。作为最低要求，你应该至少能够用命令行（shell）来复制或移动文件和目录、列出目录和文件内容、以及改变当前所处目录。同时也希望你有一定的使用和安装Linux软件的只是。</para>
+
+  <para>由于本书假定你<emphasis>至少</emphasis> 有了上述的基本技能，所以各个LFS支持论坛是不可能在这些地方为你提供帮助的。你会发现，对于这种类型的问题，很可能没有人回答，或者干脆让你先到LFS安装前必读列表看看。</para>
+
+  <para>在构建一个LFS系统之前，我们建议你先读一下下面的指南：</para>
+
+  <itemizedlist>
+    <listitem>
+      <para>如何构建软件
+      <ulink url="http://www.tldp.org/HOWTO/Software-Building-HOWTO.html"/></para>
+
+      <para>这是一篇在Linux下编译和安装Unix软件的<quote>通用指南</quote>。尽管它是比较久之前写的，但仍为构建和安装软件的所需的基本技术提供了一个很好的总结。</para>
+    </listitem>
+
+    <listitem>
+      <para>Linux用户指南
+      <ulink url="http://tldp.org/pub/Linux/docs/ldp-archived/users-guide/"/></para>
+
+      <para>这个指南涵盖了各种Linux软件的用法。这篇指南也相对较旧了，但仍然可用。</para>
+    </listitem>
+
+    <listitem>
+      <para>读前必知
+      <ulink url="&hints-root;essential_prereading.txt"/></para>
+
+      <para>这是一篇为Linux新手写的LFS提示点。它包含了一个广泛的各种优秀资源的链接的列表。任何一个想要安装LFS的人，都应对其中的许多话题有一定的了解。</para>
+    </listitem>
+
+  </itemizedlist>
+
+</sect1>
