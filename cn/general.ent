@@ -22,7 +22,7 @@
 <!ENTITY anduin-sources  "&anduin;/LFS/lfs-packages/conglomeration/">
 <!ENTITY anduin-other    "&anduin;/other/">
 
-<!ENTITY buildtime       "估计编译时间">
+<!ENTITY buildtime       "预计编译时间">
 <!ENTITY diskspace       "盘空间需求">
 <!ENTITY dependencies    "安装依赖">
 <!ENTITY testsuites      "测试套件依赖">
