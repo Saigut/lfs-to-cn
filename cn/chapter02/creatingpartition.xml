@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+  "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../general.ent">
+  %general-entities;
+]>
+
+<sect1 id="space-creatingpartition">
+  <?dbhtml filename="creatingpartition.html"?>
+
+  <title>创建一个新分区</title>
+
+  <para>像大多数其它操作系统一样，LFS通常被安装在一个专用分区上。建议的做法是，在一个可用的空分区上构建LFS系统，或者，如果你有足够的未分配空间的话，可以创建一个新分区。</para>
+
+<!--
+
+  <para>It is possible to install an LFS system (in fact even multiple LFS
+  systems) on a partition already occupied by another
+  operating system and the different systems will co-exist peacefully. The
+  document <ulink url="&hints-root;lfs_next_to_existing_systems.txt"/>
+  contains notes on how to implement this. This document was last updated
+  in 2004. It has not been updated since and it has not been tested with
+  recent versions of this LFS book. The document is more than likely not
+  usable as-is and you will need to account for changes made to the LFS
+  procedures since it was written. This is only recommended for expert LFS
+  users.</para>
+
+-->
+
+  <para>一个最小系统需要的分区大小在2.8 gigabytes (GB)左右。这个大小足够存储所有的源码包并进行编译了。然而，如果你打算把LFS系统当做主要系统来用的话，很可能会安装额外的软件，这会要求额外的空间。考虑到以后的使用，10GB的分区是一个比较合理的大小。LFS系统本身是不会占用这么多的空间的。空间需求中的比较大的部分，是用于提供足够的空闲临时空间。编译软件包可能会需要很多的临时空间，这些空间在软件安装后会被回收。</para>
+
+  <para>电脑上不总是有足够的内存（RAM）用来编译软件，用一小块硬盘分区作为 <systemitem class="filesystem">swap</systemitem> 空间是个不错的解决办法。这被内核用来存储不常用到的数据，空出更多内存留给活跃的进程。LFS系统的 <systemitem class="filesystem">swap</systemitem> 分区可以和宿主系统用的是同一块，这样就不需要再另建一个了。</para>
+
+  <para>启动一个磁盘分区工具比如 <command>cfdisk</command>
+  或者 <command>fdisk</command>，跟着一个表示你想要在上面创建新分区的硬盘的命令行参数&mdash;&mdash;例如，<filename class="devicefile">/dev/sda</filename> 表示第一块IDE硬盘。如果需要的话，你可以创建一个Linux分区和一个 <systemitem class="filesystem">swap</systemitem> 分区。如果你不知道如何使用这些程序，请查阅 <filename>cfdisk(8)</filename> 或 <filename>fdisk(8)</filename>。</para>
+
+  <note><para>对于有经验的用户，其它的分区方案也是可以的。新LFS系统可以构建于一个软件 <ulink url="&blfs-root;/view/svn/postlfs/raid.html">RAID</ulink> 阵列或一个 <ulink url="&blfs-root;/view/svn/postlfs/aboutlvm.html">LVM</ulink> 逻辑卷之上。不过其中的一些方案需要用到 <ulink
+  url="&blfs-root;/view/svn/postlfs/initramfs.html">initramfs</ulink>，这是一个高级话题。对于这些分区方案，不建议第一次接触LFS的用户使用。</para></note>
+
+  <para>记住新分区的标号（比如，<filename
+  class="devicefile">sda5</filename>）。这本书会将这个作为LFS分区。也要记住 <systemitem class="filesystem">swap</systemitem> 分区的标号。这些标号会在后面的 <filename>/etc/fstab</filename> 文件中用到。</para>
+
+  <sect2>
+  <title>其它分区问题</title>
+
+  <para>LFS的邮件列表上经常有人寻求分区建议，这是一个十分主观的话题。大多数的发行版会使用整个驱动器，除了分出一小块的swap分区。由于一些原因，这并不是LFS的最佳方案。它降低了灵活性，使得在多个发行版或LFS系统间分享数据更加困难，使得备份更加耗时间，并且低效的文件系统结构分配会浪费磁盘空间。</para>
+
+    <sect3>
+    <title>根分区</title>
+
+    <para>10GB的LFS根分区（不要与 <filename class="directory">/root</filename> 目录相混淆）对多数系统是一个不错的方案。它提供了足够的空间用来构建LFS和大部分BLFS，但又足够小以便创建出多个用来实验。</para> </sect3>
+
+    <sect3>
+    <title>Swap分区</title>
+
+    <para>绝大多数发行版会自动创建一个swap分区。通常推荐的swap分区大小是物理内存的两倍，然而这是很少用到的。 如果硬盘空间有限，将其尺寸限制到2GB，并监视其使用情况。</para>
+
+    <para>交换从来就不是好的。通常你只需听硬盘的活动并观察系统如何相应命令即可判断它是否在交换。对交换现象的首要反应应该是去检查不合理的命令，比如尝试编辑一个5GB的文件。如果交换现象变得经常发生，最好的解决方案是为你的电脑加大内存。</para> </sect3>
+
+    <sect3>
+    <title>便利分区</title>
+
+    <para>有几种其它分区不是必需的，但在设计分区布局的时候应该加以考虑。下面的列表不算很全面，但作为一个指引还是很有意义的。</para>
+
+    <itemizedlist>
+
+      <listitem><para>/boot &ndash; 高度推荐。使用这个分区存储内核和其它启动信息。为了最小化大硬盘的潜在问题，可以把这个作为你的第一块硬盘的第一个物理分区。100MB的大小就很够了。</para></listitem>
+
+      <listitem><para>/home &ndash; 高度推荐。在多个发行版或LFS系统间分享你的home目录和用户配置。它的尺寸相对较大，并且依赖于硬盘可用空间的大小。</para></listitem>
+
+      <listitem><para>/usr &ndash; 一个单独的 /usr 分区通常用在用于小客户端或无盘工作站的服务器上。LFS一般不需要它。它5GB的大小就足以满足绝大多数安装需求了。</para></listitem>
+
+      <listitem><para>/opt &ndash; 这个目录对BLFS中像Gnome或KDE这样的大型软件在安装的时候，不把文件嵌入到 /usr 目录时最有用。如果要用到它，5到10GB一般够了。</para>
+      </listitem>
+
+      <listitem><para>/tmp &ndash; 单独的 /tmp 分区很少见，但在配置一个小客户端的时候很有用。如果用到了这个分区，一般不需要超过几GB。</para></listitem>
+
+      <listitem><para>/usr/src &ndash; 这个分区对提供一个位置存储BLFS源文件并在不同LFS系统间共享很有用。它也可以作为一个构建BLFS包的位置。30到50G的合理大小提供了大量的空间。</para></listitem>
+
+    </itemizedlist>
+
+    <para>任何你想要开机自动挂载的分区都要在 <filename>/etc/fstab</filename> 文件中指定。关于如何指定的细节将会在<xref linkend="ch-bootable-fstab"/>中被讨论。</para>
+
+    </sect3>
+  </sect2>
+</sect1>

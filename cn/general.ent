@@ -23,7 +23,7 @@
 <!ENTITY anduin-other    "&anduin;/other/">
 
 <!ENTITY buildtime       "预计编译时间">
-<!ENTITY diskspace       "盘空间需求">
+<!ENTITY diskspace       "空间需求">
 <!ENTITY dependencies    "安装依赖">
 <!ENTITY testsuites      "测试套件依赖">
 <!ENTITY before          "安装必须先于">
