@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+  "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../general.ent">
+  %general-entities;
+]>
+
+<sect1 id="materials-introduction">
+  <?dbhtml filename="introduction.html"?>
+
+  <title>说明</title>
+
+  <para>本章介绍了为构建基本Linux系统所需要下载的软件包。软件包列出的版本号经过验证是可以正常工作的，本书也是基于这些版本的软件包编写。我们不建议使用新版本的软件，因为本书所写的构建命令在新版本上可能不能正常运行。而且新版本的软件包还有一些需要处理的问题，这些问题将在本书的后续版本中解决。</para>
+
+  <para>下载地址有时可能不能用。如果下载地址在本书发布后发生改变，Google (<ulink url="http://www.google.com/"/>) 是一个搜索新下载地址的好方法。如果没有搜索到，那么请到这里发起讨论<ulink url="&lfs-root;lfs/packages.html#packages"/>。 </para>
+
+  <para>下载后的软件包和补丁需要存储在整个构建Linux系统时可以访问到的位置。这样一个工作目录需要能够解压源码和编译构建它们。<filename class="directory">$LFS/sources</filename>这样一个目录将同时保存源码和编译它们，它在本书中代表工作目录。使用这个目录，用到的软件包和补丁会存储在LFS分区，并且在构建系统的全过程中可以使用。</para>
+
+  <para>在下载软件包和补丁之前，请在<systemitem class="username">root</systemitem>用户下使用如下命令创建这个目录：</para>
+
+<screen role="nodump"><userinput>mkdir -v $LFS/sources</userinput></screen>
+
+<para>请赋予这个目录写权限和带有粘滞位。<quote>粘滞位(原文：Sticky)</quote>意味着即使有很多用户对文件有写权限，但只有文件的主人才能删除这个文件。下面这条命令将赋予目录写权限和粘滞位：</para>
+
+<screen role="nodump"><userinput>chmod -v a+wt $LFS/sources</userinput></screen>
+
+  <para>下载所有软件包和补丁的简单方法是使用<ulink url="../wget-list">wget-list</ulink>作为<command>wget</command>的输入文件。例如：</para>
+
+<screen role="nodump"><userinput>wget -i wget-list -P $LFS/sources</userinput></screen>
+
+<para>补充一点，从LFS-7.0开始提供单独的<ulink url="../md5sums">md5sums</ulink>。这个文件可以用来验证所有下载的文件是否完整可用。请将这个文件放在<filename class="directory">$LFS/sources</filename>目录中然后执行：</para>
+
+<screen role="nodump"><userinput>pushd $LFS/sources
+md5sum -c md5sums
+popd</userinput></screen>
+
+</sect1>
