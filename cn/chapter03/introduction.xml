@@ -14,7 +14,7 @@
 
   <para>下载地址有时可能不能用。如果下载地址在本书发布后发生改变，Google (<ulink url="http://www.google.com/"/>) 是一个搜索新下载地址的好方法。如果没有搜索到，那么请到这里发起讨论<ulink url="&lfs-root;lfs/packages.html#packages"/>。 </para>
 
-  <para>下载后的软件包和补丁需要存储在整个构建Linux系统时可以访问到的位置。这样一个工作目录需要能够解压源码和编译构建它们。<filename class="directory">$LFS/sources</filename>这样一个目录将同时保存源码和编译它们，它在本书中代表工作目录。使用这个目录，用到的软件包和补丁会存储在LFS分区，并且在构建系统的全过程中可以使用。</para>
+  <para>下载后的软件包和补丁需要存储在整个构建系统的过程中都能方便地访问到的位置。还需要一个工作目录用来解压源码和编译构建它们。<filename class="directory">$LFS/sources</filename>既可以作为存储源码包和补丁地方同时也可以作为工作目录。通过使用这个目录，需要地东西会存储在LFS分区上，并且在构建系统的全过程中都可以使用。</para>
 
   <para>在下载软件包和补丁之前，请在<systemitem class="username">root</systemitem>用户下使用如下命令创建这个目录：</para>
 

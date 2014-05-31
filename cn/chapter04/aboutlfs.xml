@@ -18,7 +18,7 @@
 
 <screen role="nodump"><userinput>export LFS=/mnt/lfs</userinput></screen>
 
-  <para>设置好这个变量可以简化例如<command>mkdir $LFS/tools</command>这样的命令。在命令执行时，shell会自动将<quote>$LFS</quote>替换为<quote>/mnt/lfs</quote>（或者其他之前被设定的值）</para>
+  <para>设置好这个变量有利于让像<command>mkdir $LFS/tools</command>这样的命令直接按原样打下来。在命令执行时，shell会自动将<quote>$LFS</quote>替换为<quote>/mnt/lfs</quote>（或者其他之前被设定的值）</para>
 
   <para>当你中断后继续工作时，不要忘记检查<envar>$LFS</envar>变量的值是否正确（特别是使用<command>su</command>命令切换为<systemitem class="username">root</systemitem>用户或其他用户时）。</para>
 
