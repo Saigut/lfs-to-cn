@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+  "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../general.ent">
+  %general-entities;
+]>
+
+<sect1 id="space-mounting">
+  <?dbhtml filename="mounting.html"?>
+
+  <title>挂载新分区</title>
+
+  <para>文件系统已经被创建了，分区需要能够被访问。要达到这个目的，分区需要被挂载在一个选好的挂载点上。考虑到这本书的目的，它假设文件系统被挂载在 <filename
+  class="directory">/mnt/lfs</filename>下面，不过这个目录的选择是取决于你的。</para>
+
+  <para>选择一个挂载点，并运行下面的命令把它赋给 <envar>LFS</envar> 环境变量：</para>
+
+<screen role="nodump"><userinput>export LFS=/mnt/lfs</userinput></screen>
+
+  <para>接下来，创建挂载点并挂载LFS文件系统，运行：</para>
+
+<screen role="nodump"><userinput>mkdir -pv $LFS
+mount -v -t ext4 /dev/<replaceable>&lt;xxx&gt;</replaceable> $LFS</userinput></screen>
+
+  <para>把 <replaceable>&lt;xxx&gt;</replaceable> 替换为LFS分区的标示。</para>
+
+  <para>如果LFS使用多个分区（比如，一个用于 <filename class="directory">/</filename>，一个用于 <filename
+  class="directory">/usr</filename>)，用下面的命令挂载它们：</para>
+
+<screen role="nodump"><userinput>mkdir -pv $LFS
+mount -v -t ext4 /dev/<replaceable>&lt;xxx&gt;</replaceable> $LFS
+mkdir -v $LFS/usr
+mount -v -t ext4 /dev/<replaceable>&lt;yyy&gt;</replaceable> $LFS/usr</userinput></screen>
+
+  <para>把 <replaceable>&lt;xxx&gt;</replaceable> 和 <replaceable>&lt;yyy&gt;</replaceable> 替换为相应的分区名字。</para>
+
+  <para>要确保这个新分区不要用太严格的权限（比如 <option>nosuid</option> 或 <option>nodev</option> 选项）挂载。不加任何参数运行 <command>mount</command> 命令查看已挂载的LFS分区用了哪些挂载选项。如果 <option>nosuid</option>，<option>nodev</option>，和/或 <option>noatime</option> 参数被使用了，分区将需要重新挂载。</para>
+
+  <para>如果你使用了 <systemitem class="filesystem">swap</systemitem> 分区，要确保它通过 <command>swapon</command> 命令被启用：</para>
+
+<screen role="nodump"><userinput>/sbin/swapon -v /dev/<replaceable>&lt;zzz&gt;</replaceable></userinput></screen>
+
+  <para>把 <replaceable>&lt;zzz&gt;</replaceable> 替换为 <systemitem class="filesystem">swap</systemitem> 分区的名字。</para>
+
+  <para>现在已有一个建立好的地方来工作，是时候下载软件包了。</para>
+
+</sect1>
+
