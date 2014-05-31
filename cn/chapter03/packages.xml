@@ -341,9 +341,9 @@
         <para>MD5校验码：<literal>&linux-md5;</literal></para>
 
         <note>
-          <para>Linux Kernel经常由于修补安全漏洞而发布更新，除非勘误表有特殊说明，否则应该使用最新版的 &linux-major-version;.&linux-minor-version;.x 内核。</para>
+          <para>Linux内核更新相对较频繁，其中许多更新是由于发现了安全漏洞。除非勘误表有特殊说明，否则应该使用最新版的 &linux-major-version;.&linux-minor-version;.x 内核。</para>
 
-          <para>对于网速较慢或带宽昂贵又想升级Linux内核地用户，软件包的基础版本和补丁可以分别下载。这样可以为随后的小幅度的版本升级节省时间和花费。</para>
+          <para>对于网速较慢或带宽昂贵又想升级Linux内核的用户，软件包的基础版本和补丁可以分别下载。这样可以为随后的小幅度的版本升级节省时间和花费。</para>
         </note>
       </listitem>
     </varlistentry>
