@@ -40,5 +40,9 @@ cn目录一开始为空，翻译的文件都取自ori目录。翻译了某个页
 金步国翻译的6.1.1版本：<a href="http://linux.chinaitlab.com/manual/linux/lfs/LFS-6.1.1/index.html" target="_blank">linux.chinaitlab.com/manual/linux/lfs/LFS-6.1.1/index.html</a>
 
 
+### 生成html或pdf
+请参考文档源代码中的INSTALL和README文件
+
+
 ### irc交流频道
 Freenode上的 \#lfs-zh
