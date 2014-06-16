@@ -71,6 +71,6 @@ useradd -s /bin/bash -g lfs -m -k /dev/null lfs</userinput></screen>
 
 <screen role="nodump"><userinput>su - lfs</userinput></screen>
 
-  <para><quote><parameter>-</parameter></quote> 使 <command>su</command> 启动一个 登录shell，而不是一个 非登录shell。这两种类型shell的区别可以在 <filename>bash(1)</filename> 和 <command>info bash</command> 中找到。</para>
+  <para><quote><parameter>-</parameter></quote> 使 <command>su</command> 启动一个 login shell，而不是一个 non-login shell。这两种类型shell的区别可以在 <filename>bash(1)</filename> 和 <command>info bash</command> 中找到。</para>
 
 </sect1>
