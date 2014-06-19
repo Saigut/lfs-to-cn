@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+  "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../general.ent">
+  %general-entities;
+]>
+
+<sect1 id="prepare-aboutsbus">
+  <?dbhtml filename="aboutsbus.html"?>
+
+  <title>关于SBU</title>
+
+  <para>许多用户希望知道编译安装一个软件包最终会花费多少时间。因为 LFS 系统可以构建于多种系统中，所以不可能准确知道所需时间。最大的一个软件包 (Glibc) 在最快的系统中仅仅花费 20 分钟，但在比较慢的系统上要花费 3 天！为了说明大概的时间，我们引入了 SBU 这个概念。</para>
+
+  <para>SBU 是这样工作的。在 <xref linkend="chapter-temporary-tools"/> 中第一个安装的包是 Binutils。编译这个包所花费的时间被叫做 SBU。其他程序包的编译时间会根据这个时间来表示。</para>
+
+  <para>例如，一个标记为 4.5 SBU 的包意味着，如果一个系统需要 10 分钟编译第一个软件包 Binutils，那么这个软件包需要 45 分钟进行编译。幸运的是，绝大多数程序包进行编译时花费的时间比 Binutils 要少。</para>
+
+  <para>通常，SBU 所代表的时间并不是十分精确。它取决于很多因素，包括你的系统中 GCC 的版本。它们仅仅给你一个大概的描述。一些情况下，会有一些误差。</para>
+
+  <para>要了解某些具体的机器上的具体时间，可以登录 <ulink url="&lfs-root;~sbu/">SBU 主页</ulink>。</para>
+
+  <note><para>对于现代的许多多处理器 (或者多核心) 系统，可以使用 <quote>并发 make</quote> 来减少编译时间。为此，可以通过设置环境变量或者给 <command>make</command> 设置参数来实现。例如，一个 Core2Duo 处理器可以用：</para>
+
+  <screen><userinput>export MAKEFLAGS='-j 2'</userinput></screen>
+
+  <para>或者使用如下进行编译：</para>
+
+  <screen><userinput>make -j2</userinput></screen>
+
+  <para>如果使用这种方式进行编译，编译所用时间的变化幅度会非常大。同时，分析编译流程的输出会变的困难，因为多个处理流程会同时输出。如果你在按照此法进行编译时遇到问题，可以用单处理器模式重新编译，并分析错误信息。</para>
+
+  </note>
+
+</sect1>
+
