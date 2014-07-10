@@ -31,7 +31,7 @@ cn目录一开始为空，翻译的文件都取自ori目录。翻译了某个页
 #### 排版注意事项
 中文尽量不要随便换行，会有空白，效果不好看
 
-命令、文件名、网站域名及链接与其它文字之间最好留一下空格。这几种在xml文件中都有标签，所以是比较容易识别的
+英文与汉字之间最好留一下空格。
 
 #### 翻译参考
 高建翻译的svn-20130711版本：<a href="https://davidgao.github.io/LFSCN/index.html" target="_blank">davidgao.github.io/LFSCN/index.html</a>（即20130711分支原项目导出的网页）  

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+  "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../general.ent">
+  %general-entities;
+]>
+
+<sect1 id="prepare-abouttestsuites">
+  <?dbhtml filename="abouttestsuites.html"?>
+
+  <title>关于测试套件</title>
+
+  <para>大多数软件包都提供了一个测试套件。为一个新构建的软件包运行测试组建是一个好主意，因为它可以提供一个<quote>完整性检查</quote>，用来显示是否一切都编译正确。通过了测试套件的一系列的检查，通常表明软件包达到了开发者要求的功能。但这并不能保证软件包中完全没有 bug 了。</para>
+
+  <para>有一些测试套件是比其它的更重要的。比如，核心工具链软件包&mdash;&mdash;GCC，Binutils，和 Glibc&mdash;&mdash;的测试套件是十分重要的，因为这些软件包是一个工作良好的系统中的中心角色。GCC 和 Glibc 的测试套件可能会运行很长的时间，特别是在较慢的硬件上，但我们仍强烈建议运行这些测试套件。</para>
+
+  <note>
+    <para>经验显示在<xref linkend="chapter-temporary-tools"/>中运行测试组建收效甚微。不可避免地，宿主系统总会对那一章的中测试有一些影响，经常会导致一些莫名其妙的测试失败。因为<xref linkend="chapter-temporary-tools"/>中构建的工具是临时的，最终会被丢弃，所以我们不建议一般的读者在<xref linkend="chapter-temporary-tools"/>中运行测试套件。运行那些测试套件的指令是为测试者和开发者准备的，但它们都是可选的。</para>
+  </note>
+
+  <para>运行 Binutils 和 GCC 的测试套件时的一个常见的问题是耗尽虚拟终端（PTY）。这可能会导致大量的测试失败。它的发生可能有几个原因，但最可能的是宿主系统没有正确设置 <systemitem class="filesystem">devpts</systemitem> 文件系统。这个问题在这里有更详细的讨论：<ulink url="&lfs-root;lfs/faq.html#no-ptys"/>。</para>
+
+  <para>有时软件包测试套件会失败，但这是因为开发者们都知道它而且它被视为不重要的。你可以参考这里的日志 <ulink url="&test-results;"/> 来验证这些错误是否是预期中的。这个站点对这本书中所有的测试都有效。</para>
+
+</sect1>
