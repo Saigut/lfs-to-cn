@@ -10,85 +10,35 @@
 
   <title>工具链技术注解</title>
 
-  <para>本节解释一些总体构建方法的基本原理和技术细节。没有必要立刻理解其中的
-  所有内容。大部分信息会在实际的构建操作后更加清晰，在此过程中可以随时查阅本
-  节。</para>
+  <para>本节解释一些总体构建方法的基本原理和技术细节。没有必要立刻理解其中的所有内容。大部分信息会在实际的构建操作后更加清晰，在此过程中可以随时查阅本节。</para>
 
-  <para><xref linkend="chapter-temporary-tools"/>的总体目标是要构建一个临时的
-  区域，这个区域包含一些好的、可以从宿主机分离的工具集。通过使用
-  <command>chroot</command>命令，本章余下的命令都将被限制在该环境中，确保了目
-  标LFS系统的构建干净且没有问题。构建过程已经被设计得在让新读者承担最小风险的
-  同时提供最大有教育价值的信息。</para>
+  <para><xref linkend="chapter-temporary-tools"/>的总体目标是要构建一个临时的区域，这个区域包含一些好的、可以从宿主机分离的工具集。通过使用 <command>chroot</command> 命令，本章余下的命令都将被限制在该环境中，确保了目标LFS系统的构建干净且没有问题。构建过程已经被设计得在让新读者承担最小风险的同时提供最大有教育价值的信息。</para>
 
   <note>
-    <para>在继续之前，请注意工作平台的名称，通常也被称作目标三联字串。一个简单的
-    获取目标三联字串的方法是运行源码包中的<command>config.guess</command>脚本，
-    解压Binutils的源码并且运行脚本:<userinput>./config.guess</userinput>，注意输
-    出结果。例如，一个现代的32位因特尔处理器的输出会是
-    <emphasis>i686-pc-linux-gnu</emphasis>。</para>
+    <para>在继续之前，请注意工作平台的名称，通常也被称作目标三联字串。一个简单的获取目标三联字串的方法是运行源码包中的 <command>config.guess</command> 脚本，解压Binutils的源码并且运行脚本: <userinput>./config.guess</userinput> ，注意输出结果。例如，一个现代的32位因特尔处理器的输出会是 <emphasis>i686-pc-linux-gnu</emphasis> 。</para>
 
-    <para>同时也要注意平台的动态链接器名称，通常也被称作动态加载器(以防与Binutils
-    中的<command>ld</command>混淆)。Glibc提供的动态链接器搜寻并加载一个程序所需要
-    的共享库，准备运行程序然后运行程序。一个32位因特尔机器的动态链接器名称会是:
-    <filename class="libraryfile">ld-linux.so.2</filename>。一个万无一失的确定动态
-    链接器的方法是通过运行
-    <userinput>readelf -l &lt;name of binary&gt; | grep interpreter</userinput>来
-    查看宿主机上任何一个二进制可执行文件并注意输出结果。官方的参考覆盖了所有平台，
-    它位于Glibc源码树根目录下的<filename>shlib-versions</filename>文件中。</para>
+    <para>同时也要注意平台的动态链接器名称，通常也被称作动态加载器(以防与Binutils中的 <command>ld</command> 混淆)。Glibc提供的动态链接器搜寻并加载一个程序所需要的共享库，准备运行程序然后运行程序。一个32位因特尔机器的动态链接器名称会是: <filename class="libraryfile">ld-linux.so.2</filename> 。一个万无一失的确定动态链接器的方法是通过运行 <userinput>readelf -l &lt;name of binary&gt; | grep interpreter</userinput> 来查看宿主机上任何一个二进制可执行文件并注意输出结果。官方的参考覆盖了所有平台，它位于Glibc源码树根目录下的 <filename>shlib-versions</filename> 文件中。</para>
   </note>
 
-  <para>有关<xref linkend="chapter-temporary-tools"/>中的构建方法的一些核心技术细
-  节如下:</para>
+  <para>有关<xref linkend="chapter-temporary-tools"/>中的构建方法的一些核心技术细节如下:</para>
 
   <itemizedlist>
     <listitem>
-      <para>Slightly adjusting the name of the working platform, by changing the
-      &quot;vendor&quot; field target triplet by way of the
-      <envar>LFS_TGT</envar> variable, ensures that the first build of Binutils
-      and GCC produces a compatible cross-linker and cross-compiler. Instead of
-      producing binaries for another architecture, the cross-linker and
-      cross-compiler will produce binaries compatible with the current
-      hardware.</para>
+      <para>轻微地调整工作平台的名字，改变 <envar>LFS_TGT</envar> 变量来改变三联字串中的&quot;生产商&quot;，以确保首次构建的Binutils和GCC的产生兼容的交叉链接器和交叉编译器。交叉链接器和交叉编译器将产生兼容当前硬件的二进制文件而不是兼容另一个构架的二进制文件。</para>
     </listitem>
     <listitem>
-      <para> The temporary libraries are cross-compiled.  Because a
-      cross-compiler by its nature cannot rely on anything from its host
-      system, this method removes potential contamination of the target
-      system by lessening the chance of headers or libraries from the host
-      being incorporated into the new tools.  Cross-compilation also allows for
-      the possibility of building both 32-bit and 64-bit libraries on 64-bit
-      capable hardware.</para>
+      <para>临时的库是交叉编译的。因为交叉编译器自然不能依赖宿主系统上的任何东西，所以这种方式减小了宿主机上的头文件和库被新工具包含的可能，从而避免了目标系统可能受到的污染。交叉编译也允许在64位兼容的硬件上既构建32位的库也构建64位的库。</para>
     </listitem>
     <listitem>
-    <para>Careful manipulation of the GCC source tells the compiler which target
-    dynamic linker will be used.</para>
+    <para>谨慎地对GCC源码进行的操作告诉了编译器该使用哪个动态链接器。</para>
     </listitem>
   </itemizedlist>
 
-  <para>Binutils is installed first because the <command>configure</command>
-  runs of both GCC and Glibc perform various feature tests on the assembler
-  and linker to determine which software features to enable or disable. This
-  is more important than one might first realize. An incorrectly configured
-  GCC or Glibc can result in a subtly broken toolchain, where the impact of
-  such breakage might not show up until near the end of the build of an
-  entire distribution. A test suite failure will usually highlight this error
-  before too much additional work is performed.</para>
+  <para>Binutils首先被安装，因为运行GCC和Glibc的 <command>configure</command> 命令会对汇编器和链接器进行不同的特性测试来决定哪些软件特性会被启用，哪些会被禁用。这比你一开始就意识到的要重要。一个不正确的GCC或Glibc的配置可能会导致工具链细小的破损，这个破损所产生的影响可能会到构建整个发行版的过程快结束时才显现出来。在许多额外工作进行前，一个测试套件的失败通常会指出这个错误。</para>
 
-  <para>Binutils installs its assembler and linker in two locations,
-  <filename class="directory">/tools/bin</filename> and <filename
-  class="directory">/tools/$LFS_TGT/bin</filename>. The tools in one
-  location are hard linked to the other. An important facet of the linker is
-  its library search order. Detailed information can be obtained from
-  <command>ld</command> by passing it the <parameter>--verbose</parameter>
-  flag. For example, an <userinput>ld --verbose | grep SEARCH</userinput>
-  will illustrate the current search paths and their order. It shows which
-  files are linked by <command>ld</command> by compiling a dummy program and
-  passing the <parameter>--verbose</parameter> switch to the linker. For example,
-  <userinput>gcc dummy.c -Wl,--verbose 2&gt;&amp;1 | grep succeeded</userinput>
-  will show all the files successfully opened during the linking.</para>
+  <para>Binutils把它的汇编器和链接器安装在两个位置: <filename class="directory">/tools/bin</filename> 和 <filename class="directory">/tools/$LFS_TGT/bin</filename> 。两个位置间的工具是硬链接。链接器很重要的一点是它搜索库的顺序。可以通过传递 <parameter>--verbose</parameter> 参数给 <command>ld</command> 获取详细信息。例如，<userinput>ld --verbose | grep SEARCH</userinput> 将会按顺序列出当前的搜索路径。通过编译一个伪程序并传递 <parameter>--verbose</parameter> 参数给链接器可以显示哪些文件被 <command>ld</command> 链接。例如 <userinput>gcc dummy.c -Wl,--verbose 2&gt;&amp;1 | grep succeeded</userinput> 会显示链接过程中所有被成功打开的文件。</para>
 
-  <para>The next package installed is GCC. An example of what can be
-  seen during its run of <command>configure</command> is:</para>
+  <para>下一个被安装的软件包是GCC。在运行 <command>configure</command> 命令过程中能看到的输出的一例为:</para>
 
 <screen><computeroutput>checking what assembler to use... /tools/i686-lfs-linux-gnu/bin/as
 checking what linker to use... /tools/i686-lfs-linux-gnu/bin/ld</computeroutput></screen>
