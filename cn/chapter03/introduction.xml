@@ -8,7 +8,7 @@
 <sect1 id="materials-introduction">
   <?dbhtml filename="introduction.html"?>
 
-  <title>说明</title>
+  <title>介绍</title>
 
   <para>本章介绍了为构建基本Linux系统所需要下载的软件包。软件包列出的版本号经过验证是可以正常工作的，本书也是基于这些版本的软件包编写。我们不建议使用新版本的软件，因为本书所写的构建命令在新版本上可能不能正常运行。而且新版本的软件包还有一些需要处理的问题，这些问题将在本书的后续版本中解决。</para>
 

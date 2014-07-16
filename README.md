@@ -31,7 +31,7 @@ cn 目录一开始为空，翻译的文件都取自 ori 目录。翻译了某个
 #### 排版注意事项
 中文尽量不要随便换行，会有空白，效果不好看
 
-英文与汉字之间最好留一下空格。
+英文与汉字之间最好留一下空格。文本中的标点符号尽量用中文的
 
 #### 翻译参考
 高建翻译的 svn-20130711 版本：<a href="https://davidgao.github.io/LFSCN/index.html" target="_blank">davidgao.github.io/LFSCN/index.html</a>（即 20130711 分支原项目导出的网页）  
