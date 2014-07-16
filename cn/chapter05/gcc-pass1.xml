@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+  "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../general.ent">
+  %general-entities;
+]>
+
+<sect1 id="ch-tools-gcc-pass1" role="wrap">
+  <?dbhtml filename="gcc-pass1.html"?>
+
+  <sect1info condition="script">
+    <productname>gcc</productname>
+    <productnumber>&gcc-version;</productnumber>
+    <address>&gcc-url;</address>
+  </sect1info>
+
+  <title>GCC-&gcc-version; - 第 1 遍</title>
+
+  <indexterm zone="ch-tools-gcc-pass1">
+    <primary sortas="a-GCC">GCC</primary>
+    <secondary>工具链, 第 1 遍</secondary>
+  </indexterm>
+
+  <sect2 role="package">
+    <title/>
+
+    <xi:include xmlns:xi="http://www.w3.org/2001/XInclude"
+    href="../chapter06/gcc.xml"
+    xpointer="xpointer(/sect1/sect2[1]/para[1])"/>
+
+    <segmentedlist>
+      <segtitle>&buildtime;</segtitle>
+      <segtitle>&diskspace;</segtitle>
+
+      <seglistitem>
+        <seg>&gcc-ch5p1-sbu;</seg>
+        <seg>&gcc-ch5p1-du;</seg>
+      </seglistitem>
+    </segmentedlist>
+
+  </sect2>
+
+  <sect2 role="installation">
+    <title>交叉 GCC 的安装</title>
+
+    <para>GCC 现在需要 GMP，MPFR 和 MPC 软件包。由于你的宿主发行版可能没有这些软件，所谓它们会和 GCC 一起被构建。把每个包都解压至 GCC 源代码目录，并把解出的目录重命名，让 GCC 构建过程能够自动使用它们：</para>
+
+    <note><para>关于这一章经常会有一些误解。这里的步骤和前面的每一章都一样（<xref linkend='buildinstr'/>）。首先从 sources 目录中解压 gcc 包，然后进入解压出的目录。只有这样然后你才应该继续下面的指令。</para></note>
+
+<screen><userinput remap="pre">tar -Jxf ../mpfr-&mpfr-version;.tar.xz
+mv -v mpfr-&mpfr-version; mpfr
+tar -Jxf ../gmp-&gmp-version;.tar.xz
+mv -v gmp-&gmp-version; gmp
+tar -zxf ../mpc-&mpc-version;.tar.gz
+mv -v mpc-&mpc-version; mpc</userinput></screen>
+
+    <para>下面的命令会改变 GCC 的默认链接器的位置，以使用安装在 <filename class="directory">/tools</filename> 中的链接器。它也把 <filename class="directory">/usr/include</filename> 从 GCC 的 include 搜索路径中移除。执行：</para>
+
+<screen><userinput remap="pre">for file in \
+ $(find gcc/config -name linux64.h -o -name linux.h -o -name sysv4.h)
+do
+  cp -uv $file{,.orig}
+  sed -e 's@/lib\(64\)\?\(32\)\?/ld@/tools&amp;@g' \
+      -e 's@/usr@/tools@g' $file.orig &gt; $file
+  echo '
+#undef STANDARD_STARTFILE_PREFIX_1
+#undef STANDARD_STARTFILE_PREFIX_2
+#define STANDARD_STARTFILE_PREFIX_1 "/tools/lib/"
+#define STANDARD_STARTFILE_PREFIX_2 ""' &gt;&gt; $file
+  touch $file.orig
+done</userinput></screen>
+
+    <para>如果上述命令看起来费解的话，让我们来分解它来看。首先我们找到 <filename class="directory">gcc/config</filename> 目录中所有名为 <filename>linux.h</filename> 或 <filename>linux64.h</filename> 或 <filename>sysv4.h</filename> 的文件。我们把找到的每一个文件都复制到一个同名但增加了  <quote>.orig</quote> 后缀的文件。 然后第一个 sed 表达式在每一个 <quote>/lib/ld</quote>，<quote>/lib64/ld</quote> 或<quote>/lib32/ld</quote> 前面加上 <quote>/tools</quote>，第二个替换硬编码的 <quote>/usr</quote>。接下来我们把我们的 define 语句加到文件的最后，这些语句会改变默认起始文件前缀。注意 <quote>/tools/lib/</quote> 尾部的 <quote>/</quote> 是要带着的。最后，我们用 <command>touch</command> 来更新复制后的文件的时间戳。在与 <command>cp -u</command> 命令一起使用时，会避免万一命令不经意运行了两次而对原文件造成意外的更改。</para>
+
+    <para>GCC 不能正确检测堆保护，这会导致 Glibc-&glibc-version; 的构建出现问题，所以请执行下面的命令修复：</para>
+
+<screen><userinput remap="pre">sed -i '/k prot/agcc_cv_libc_provides_ssp=yes' gcc/configure</userinput></screen>
+
+    <para>GCC 文档建议在源代码目录外面的一个专用构建目录中构建 GCC：</para>
+
+<screen><userinput remap="pre">mkdir -v ../gcc-build
+cd ../gcc-build</userinput></screen>
+
+    <para>准备编译 GCC：</para>
+
+<screen><userinput remap="configure">../gcc-&gcc-version;/configure                               \
+    --target=$LFS_TGT                                \
+    --prefix=/tools                                  \
+    --with-sysroot=$LFS                              \
+    --with-newlib                                    \
+    --without-headers                                \
+    --with-local-prefix=/tools                       \
+    --with-native-system-header-dir=/tools/include   \
+    --disable-nls                                    \
+    --disable-shared                                 \
+    --disable-multilib                               \
+    --disable-decimal-float                          \
+    --disable-threads                                \
+    --disable-libatomic                              \
+    --disable-libgomp                                \
+    --disable-libitm                                 \
+    --disable-libmudflap                             \
+    --disable-libquadmath                            \
+    --disable-libsanitizer                           \
+    --disable-libssp                                 \
+    --disable-libstdc++-v3                           \
+    --enable-languages=c,c++                         \
+    --with-mpfr-include=$(pwd)/../gcc-&gcc-version;/mpfr/src \
+    --with-mpfr-lib=$(pwd)/mpfr/src/.libs</userinput></screen>
+
+    <variablelist>
+      <title>configure 选项的含义：</title>
+
+      <varlistentry>
+        <term><parameter>--with-newlib</parameter></term>
+        <listitem>
+          <para>由于现在 C 库还不可用，此项确保了在构建 libgcc 时 inhibit_libc 常量已被定义。这避免了任何需要 libc 支持的代码的编译。</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><parameter>--without-headers</parameter></term>
+        <listitem>
+          <para>当创建一个完整的交叉编译器的时候，GCC 需要兼容于目标系统的标准头文件。对于我们的目的，这些头文件是不需要的。此项避免 GCC 寻找它们。</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><parameter>--with-local-prefix=/tools</parameter></term>
+        <listitem>
+          <para>本地前缀是 GCC 在系统中寻找本地安装的 include 文件的位置。默认位置是 <filename>/usr/local</filename>。把这个设为 <filename>/tools</filename> 使宿主的 <filename>/usr/local</filename> 位置在 GCC 搜索路径的外面。</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><parameter>--with-native-system-header-dir=/tools/include</parameter></term>
+        <listitem>
+          <para>GCC 默认在 <filename>/usr/include</filename> 中查找系统头文件。这和 sysroot 选项一起，会把这个位置翻译为 <filename>$LFS/usr/include</filename>。然而后面两节将会把头文件安装到 <filename>$LFS/tools/include</filename>。这个选项确保 gcc 能够正确地找到它们。在 GCC 的第 2 遍中，这个相同的选项会确保不从宿主系统中寻找头文件。</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><parameter>--disable-shared</parameter></term>
+        <listitem>
+          <para>这个选项强制 GCC 静态链接它的内部库。我们这样做是为了避免可能出现与宿主系统有关的问题。</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><parameter>--disable-decimal-float, --disable-threads,
+        --disable-libatomic, --disable-libgomp, --disable-libitm,
+        --disable-libmudflap, --disable-libquadmath, --disable-libsanitizer,
+        --disable-libssp, --disable-libstdc++-v3</parameter></term>
+        <listitem>
+          <para>这些选项分别禁用了十进制浮点扩展、线程、libatomic、libgomp、libitm、libmudflap、libquadmath、libsanitizer、libssp 和 C++ 标准库的支持。这些特性在构建一个交叉编译器时会编译失败，而且对于交叉编译临时 libc 也不需要。</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><parameter>--disable-multilib</parameter></term>
+        <listitem>
+          <para>在 x86_64 上，LFS 还不支持多库配置。这个选项对 x86 无害。</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><parameter>--enable-languages=c,c++</parameter></term>
+        <listitem>
+          <para>这个选项确保只有 C 和 C++ 编译器被构建。这些是目前仅需要的语言。</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><parameter>--with-mpfr-*</parameter></term>
+        <listitem>
+          <para>这些选项使构建的系统能正确地使用 MPFR 源文件的 in-tree 拷贝。</para>
+        </listitem>
+      </varlistentry>
+
+    </variablelist>
+
+    <para>运行以下命令编译 GCC：</para>
+
+<screen><userinput remap="make">make</userinput></screen>
+
+    <para>编译现在完成了。此时，通常要运行测试套件，但正如我们前面提到的，测试套件的框架还没有就位。此时运行测试的的好处很小，因为第 1 遍安装的程序不久会被替换掉。</para>
+
+    <para>安装软件包:</para>
+
+<screen><userinput remap="install">make install</userinput></screen>
+
+    <para>使用 <parameter>--disable-shared</parameter> 意味着 <filename>libgcc_eh.a</filename> 文件不会被创建和安装。而Glibc 包依赖这个库，因为在它的构建系统中使用了 <parameter>-lgcc_eh</parameter>。这个依赖关系可以通过创建一个到 <filename>libgcc.a</filename> 的符号链接来满足，因为这个文件最终会包含 <filename>libgcc_eh.a</filename> 文件中包含的部件：</para>
+
+<screen><userinput remap="install">ln -sv libgcc.a `$LFS_TGT-gcc -print-libgcc-file-name | sed 's/libgcc/&amp;_eh/'`</userinput></screen>
+
+  </sect2>
+
+  <sect2 role="content">
+    <title/>
+
+    <para>这个包的详细信息位于 <xref linkend="contents-gcc" role="."/>。</para>
+
+  </sect2>
+
+</sect1>
