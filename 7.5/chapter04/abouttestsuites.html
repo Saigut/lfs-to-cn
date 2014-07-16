@@ -1,0 +1,118 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
+    <title>
+      4.6.&nbsp;关于测试套件
+    </title>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/lfs.css" />
+    <meta name="generator" content="DocBook XSL Stylesheets V1.78.1" />
+    <link rel="stylesheet" href="stylesheets/lfs-print.css" type="text/css"
+    media="print" />
+  </head>
+  <body class="lfs" id="lfs-7.5">
+    <div class="navheader">
+      <h4>
+        Linux From Scratch - 版本 7.5
+      </h4>
+      <h3>
+        第&nbsp;4&nbsp;章&nbsp;最后的准备工作
+      </h3>
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="aboutsbus.html" title="关于SBU">上一页</a>
+          <p>
+            关于SBU
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="../chapter05/chapter05.html" title=
+          "Constructing a Temporary System">下一页</a>
+          <p>
+            Constructing a Temporary System
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="chapter04.html" title=
+          "第&nbsp;4&nbsp;章&nbsp;最后的准备工作">上一级</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Linux From Scratch - 版本 7.5">起始页</a>
+        </li>
+      </ul>
+    </div>
+    <div class="sect1" lang="zh-cn" xml:lang="zh-cn">
+      <h1 class="sect1">
+        <a id="prepare-abouttestsuites" name=
+        "prepare-abouttestsuites"></a>4.6. 关于测试套件
+      </h1>
+      <p>
+        大多数软件包都提供了一个测试套件。为一个新构建的软件包运行测试组建是一个好主意，因为它可以提供一个<span class=
+        "quote">“<span class=
+        "quote">完整性检查</span>”</span>，用来显示是否一切都编译正确。通过了测试套件的一系列的检查，通常表明软件包达到了开发者要求的功能。但这并不能保证软件包中完全没有
+        bug 了。
+      </p>
+      <p>
+        有一些测试套件是比其它的更重要的。比如，核心工具链软件包——GCC，Binutils，和
+        Glibc——的测试套件是十分重要的，因为这些软件包是一个工作良好的系统中的中心角色。GCC 和 Glibc
+        的测试套件可能会运行很长的时间，特别是在较慢的硬件上，但我们仍强烈建议运行这些测试套件。
+      </p>
+      <div class="admon note">
+        <img alt="[注意]" src="../images/note.png" />
+        <h3>
+          注意
+        </h3>
+        <p>
+          经验显示在<a class="xref" href="../chapter05/chapter05.html" title=
+          "第&nbsp;5&nbsp;章&nbsp;Constructing a Temporary System">第 5
+          章</a>中运行测试组建收效甚微。不可避免地，宿主系统总会对那一章的中测试有一些影响，经常会导致一些莫名其妙的测试失败。因为<a class="xref"
+          href="../chapter05/chapter05.html" title=
+          "第&nbsp;5&nbsp;章&nbsp;Constructing a Temporary System">第 5
+          章</a>中构建的工具是临时的，最终会被丢弃，所以我们不建议一般的读者在<a class="xref" href=
+          "../chapter05/chapter05.html" title=
+          "第&nbsp;5&nbsp;章&nbsp;Constructing a Temporary System">第 5
+          章</a>中运行测试套件。运行那些测试套件的指令是为测试者和开发者准备的，但它们都是可选的。
+        </p>
+      </div>
+      <p>
+        运行 Binutils 和 GCC
+        的测试套件时的一个常见的问题是耗尽虚拟终端（PTY）。这可能会导致大量的测试失败。它的发生可能有几个原因，但最可能的是宿主系统没有正确设置
+        <code class="systemitem">devpts</code> 文件系统。这个问题在这里有更详细的讨论：<a class=
+        "ulink" href=
+        "http://www.linuxfromscratch.org/lfs/faq.html#no-ptys">http://www.linuxfromscratch.org/lfs/faq.html#no-ptys</a>。
+      </p>
+      <p>
+        有时软件包测试套件会失败，但这是因为开发者们都知道它而且它被视为不重要的。你可以参考这里的日志 <a class="ulink"
+        href="http://www.linuxfromscratch.org/lfs/build-logs/7.5/">http://www.linuxfromscratch.org/lfs/build-logs/7.5/</a>
+        来验证这些错误是否是预期中的。这个站点对这本书中所有的测试都有效。
+      </p>
+    </div>
+    <div class="navfooter">
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="aboutsbus.html" title="关于SBU">上一页</a>
+          <p>
+            关于SBU
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="../chapter05/chapter05.html" title=
+          "Constructing a Temporary System">下一页</a>
+          <p>
+            Constructing a Temporary System
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="chapter04.html" title=
+          "第&nbsp;4&nbsp;章&nbsp;最后的准备工作">上一级</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Linux From Scratch - 版本 7.5">起始页</a>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

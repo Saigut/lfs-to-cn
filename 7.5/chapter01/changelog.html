@@ -1,0 +1,1100 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
+    <title>
+      1.3.&nbsp;变更记录
+    </title>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/lfs.css" />
+    <meta name="generator" content="DocBook XSL Stylesheets V1.78.1" />
+    <link rel="stylesheet" href="stylesheets/lfs-print.css" type="text/css"
+    media="print" />
+  </head>
+  <body class="lfs" id="lfs-7.5">
+    <div class="navheader">
+      <h4>
+        Linux From Scratch - 版本 7.5
+      </h4>
+      <h3>
+        第&nbsp;1&nbsp;章&nbsp;介绍
+      </h3>
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="whatsnew.html" title="自上版以来的更新">上一页</a>
+          <p>
+            自上版以来的更新
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="resources.html" title="资源">下一页</a>
+          <p>
+            资源
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="chapter01.html" title=
+          "第&nbsp;1&nbsp;章&nbsp;介绍">上一级</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Linux From Scratch - 版本 7.5">起始页</a>
+        </li>
+      </ul>
+    </div>
+    <div class="sect1" lang="zh-cn" xml:lang="zh-cn">
+      <h1 class="sect1">
+        <a id="ch-scatter-changelog" name="ch-scatter-changelog"></a>1.3.
+        变更记录
+      </h1>
+      <p>
+        这是Linux From
+        Scratch书的7.5版本，发布于2014年3月2日。如果本书的发布时间过去超过六个月了，那么很可能有一个更新更好的版本已可用。要查看是否有新版本，请访问这个页面中的一个镜像网站：<a class="ulink"
+        href=
+        "http://www.linuxfromscratch.org/mirrors.html">http://www.linuxfromscratch.org/mirrors.html</a>。
+      </p>
+      <p>
+        下面是一个自上个版本发布以来的变更列表。
+      </p>
+      <div class="itemizedlist">
+        <p class="title">
+          <strong>变更条目：</strong>
+        </p>
+        <ul>
+          <li class="listitem">
+            <p>
+              2014-03-02
+            </p>
+            <div class="itemizedlist">
+              <ul>
+                <li class="listitem">
+                  <p>
+                    [bdubbs] - LFS-7.5 发布。
+                  </p>
+                </li>
+                <li class="listitem">
+                  <p>
+                    [bdubbs] - 更新宿主系统需求，报告宿主系统中可能安装有不一致库。
+                  </p>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="listitem">
+            <p>
+              2014-02-18
+            </p>
+            <div class="itemizedlist">
+              <ul>
+                <li class="listitem">
+                  <p>
+                    [bdubbs] - 改变kmod的安装指令以允许man手册的安装。修复 <a class="ulink"
+                    href=
+                    "http://wiki.linuxfromscratch.org/lfs/ticket/3502">#3502</a>。
+                  </p>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="listitem">
+            <p>
+              2014-02-16
+            </p>
+            <div class="itemizedlist">
+              <ul>
+                <li class="listitem">
+                  <p>
+                    [bdubbs] - 更新至 man-pages-3.5.9。
+                  </p>
+                </li>
+                <li class="listitem">
+                  <p>
+                    [bdubbs] - 合并beta FHS。添加 /usr/share/ppd, /usr/libexec,
+                    /usr/share/color, /usr/local/share/color, /var/lib/color,
+                    和 /usr/share/dict。
+                  </p>
+                </li>
+                <li class="listitem">
+                  <p>
+                    [bdubbs] - 合并 beta FHS。 移除对 /usr/libexec 的覆盖: coreutils,
+                    findutils, gawk, gcc, glibc, inetutils, man-db, 和
+                    tar。同时修复 <a class="ulink" href=
+                    "http://wiki.linuxfromscratch.org/lfs/ticket/3498">#3498</a>。
+                  </p>
+                </li>
+                <li class="listitem">
+                  <p>
+                    [bdubbs] - 合并 beta FHS。把 grub sbin 可执行文件从 /usr/sbin 移至
+                    /sbin。
+                  </p>
+                </li>
+                <li class="listitem">
+                  <p>
+                    [bdubbs] - 在回归测试中记入了两个新的 glibc 错误。
+                  </p>
+                </li>
+                <li class="listitem">
+                  <p>
+                    [bdubbs] - 将 man-db 移至 util-linux 后面以满足一个测试依赖。
+                  </p>
+                </li>
+                <li class="listitem">
+                  <p>
+                    [bdubbs] - 更新 automake 测试以适应 /tools 中的
+                    util-linux，并且为这个测试提了速。
+                  </p>
+                </li>
+                <li class="listitem">
+                  <p>
+                    [bdubbs] - 恢复构建 flex 静态库。
+                  </p>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="listitem">
+            <p>
+              2014-02-14
+            </p>
+            <div class="itemizedlist">
+              <ul>
+                <li class="listitem">
+                  <p>
+                    [bdubbs] - 让用于 omit-frame-pointers 的 sed 和第5、6章中的一样。修复
+                    <a class="ulink" href=
+                    "http://wiki.linuxfromscratch.org/lfs/ticket/3497">#3497</a>。
+                  </p>
+                </li>
+                <li class="listitem">
+                  <p>
+                    [bdubbs] - 简化 glibc 中的 zimesone 配置。感谢 Chris Staub 的补丁。修复
+                    <a class="ulink" href=
+                    "http://wiki.linuxfromscratch.org/lfs/ticket/3496">#3496</a>。
+                  </p>
+                </li>
+                <li class="listitem">
+                  <p>
+                    [bdubbs] - 让 glibc 的 Makefile 安装 rpc 头。 感谢 Chris Staub
+                    的补丁。修复 <a class="ulink" href=
+                    "http://wiki.linuxfromscratch.org/lfs/ticket/3495">#3495</a>。
+                  </p>
+                </li>
+                <li class="listitem">
+                  <p>
+                    [bdubbs] - 更新至 linux-3.13.3。修复 <a class="ulink" href=
+                    "http://wiki.linuxfromscratch.org/lfs/ticket/3493">#3493</a>。
+                  </p>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="listitem">
+            <p>
+              2014-02-13
+            </p>
+            <div class="itemizedlist">
+              <ul>
+                <li class="listitem">
+                  <p>
+                    [bdubbs] - 更新至 file-5.17。修复 <a class="ulink" href=
+                    "http://wiki.linuxfromscratch.org/lfs/ticket/3491">#3491</a>。
+                  </p>
+                </li>
+                <li class="listitem">
+                  <p>
+                    [bdubbs] - 更新至 flex-2.5.38。修复 <a class="ulink" href=
+                    "http://wiki.linuxfromscratch.org/lfs/ticket/3492">#3492</a>。
+                  </p>
+                </li>
+                <li class="listitem">
+                  <p>
+                    [bdubbs] - 更新至 man-pages-3.58。修复 <a class="ulink" href=
+                    "http://wiki.linuxfromscratch.org/lfs/ticket/3490">#3490</a>。
+                  </p>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="listitem">
+            <p>
+              2014-02-10
+            </p>
+            <div class="itemizedlist">
+              <ul>
+                <li class="listitem">
+                  <p>
+                    [bdubbs] - 更新 coreutils i18n 补丁。 感谢 Igor Izivkov 指出了它。修复
+                    <a class="ulink" href=
+                    "http://wiki.linuxfromscratch.org/lfs/ticket/3488">#3488</a>。
+                  </p>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="listitem">
+            <p>
+              2014-02-08
+            </p>
+            <div class="itemizedlist">
+              <ul>
+                <li class="listitem">
+                  <p>
+                    [bdubbs] - 更新至 glibc-2.19。修复 <a class="ulink" href=
+                    "http://wiki.linuxfromscratch.org/lfs/ticket/3486">#3486</a>。
+                  </p>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="listitem">
+            <p>
+              2014-02-07
+            </p>
+            <div class="itemizedlist">
+              <ul>
+                <li class="listitem">
+                  <p>
+                    [bdubbs] - 更新至 linux-3.13.2。修复 <a class="ulink" href=
+                    "http://wiki.linuxfromscratch.org/lfs/ticket/3485">#3485</a>。
+                  </p>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="listitem">
+            <p>
+              2014-02-05
+            </p>
+            <div class="itemizedlist">
+              <ul>
+                <li class="listitem">
+                  <p>
+                    [bdubbs] - 改变第 5 章中期望的库的类型。感谢 kammet 的报告。修复 <a class=
+                    "ulink" href=
+                    "http://wiki.linuxfromscratch.org/lfs/ticket/3484">#3484</a>。
+                  </p>
+                </li>
+                <li class="listitem">
+                  <p>
+                    [bdubbs] - 修复 e2fsprogs 的测试以便能够在 LFS chroot 环境下合适地运行。
+                  </p>
+                </li>
+                <li class="listitem">
+                  <p>
+                    [bdubbs] - 移除 groff 中不必要的 mkdir。
+                  </p>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="listitem">
+            <p>
+              2014-02-02
+            </p>
+            <div class="itemizedlist">
+              <ul>
+                <li class="listitem">
+                  <p>
+                    [bdubbs] - 更新至 linux-3.13.1。修复 <a class="ulink" href=
+                    "http://wiki.linuxfromscratch.org/lfs/ticket/3483">#3483</a>。
+                  </p>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="listitem">
+            <p>
+              2014-01-27
+            </p>
+            <div class="itemizedlist">
+              <ul>
+                <li class="listitem">
+                  <p>
+                    [bdubbs] - 在第 5 章中为 util-linux
+                    增加了一个环境变量以避免在那些启用了不需要的功能的宿主系统中的一个安装错误。
+                  </p>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="listitem">
+            <p>
+              2014-01-26
+            </p>
+            <div class="itemizedlist">
+              <ul>
+                <li class="listitem">
+                  <p>
+                    [bdubbs] - 更新至 man-pages-3.57。修复 <a class="ulink" href=
+                    "http://wiki.linuxfromscratch.org/lfs/ticket/3480">#3480</a>。
+                  </p>
+                </li>
+                <li class="listitem">
+                  <p>
+                    [bdubbs] - 更新至 man-db-2.6.6。修复 <a class="ulink" href=
+                    "http://wiki.linuxfromscratch.org/lfs/ticket/3479">#3479</a>。
+                  </p>
+                </li>
+                <li class="listitem">
+                  <p>
+                    [bdubbs] - 更新至 linux-3.13。修复 <a class="ulink" href=
+                    "http://wiki.linuxfromscratch.org/lfs/ticket/3478">#3478</a>。
+                  </p>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="listitem">
+            <p>
+              2014-01-25
+            </p>
+            <div class="itemizedlist">
+              <ul>
+                <li class="listitem">
+                  <p>
+                    [bdubbs] - 在第 5 章中增加了一个切换到 util-linux
+                    的配置以避免在那些安装了systemd的宿主系统中的一个安装错误。
+                  </p>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="listitem">
+            <p>
+              2014-01-22
+            </p>
+            <div class="itemizedlist">
+              <ul>
+                <li class="listitem">
+                  <p>
+                    [bdubbs] - 更新至 check-0.9.12。修复 <a class="ulink" href=
+                    "http://wiki.linuxfromscratch.org/lfs/ticket/3477">#3477</a>。
+                  </p>
+                </li>
+                <li class="listitem">
+                  <p>
+                    [bdubbs] - 更新至 util-linux-2.24.1。修复 <a class="ulink"
+                    href="http://wiki.linuxfromscratch.org/lfs/ticket/3476">#3476</a>。
+                  </p>
+                </li>
+                <li class="listitem">
+                  <p>
+                    [bdubbs] - 更新至 mpc-1.0.2。修复 <a class="ulink" href=
+                    "http://wiki.linuxfromscratch.org/lfs/ticket/3474">#3474</a>。
+                  </p>
+                </li>
+                <li class="listitem">
+                  <p>
+                    [bdubbs] - 更新至 man-pages-3.56。修复 <a class="ulink" href=
+                    "http://wiki.linuxfromscratch.org/lfs/ticket/3470">#3470</a>。
+                  </p>
+                </li>
+                <li class="listitem">
+                  <p>
+                    [bdubbs] - 更新至 linux-3.12.7。修复 <a class="ulink" href=
+                    "http://wiki.linuxfromscratch.org/lfs/ticket/3469">#3469</a>。
+                  </p>
+                </li>
+                <li class="listitem">
+                  <p>
+                    [bdubbs] - 更新至 perl-5.18.2。修复 <a class="ulink" href=
+                    "http://wiki.linuxfromscratch.org/lfs/ticket/3465">#3465</a>。
+                  </p>
+                </li>
+                <li class="listitem">
+                  <p>
+                    [bdubbs] - 更新至 gettext-0.18.3.2。修复 <a class="ulink" href=
+                    "http://wiki.linuxfromscratch.org/lfs/ticket/3464">#3464</a>。
+                  </p>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="listitem">
+            <p>
+              2014-01-21
+            </p>
+            <div class="itemizedlist">
+              <ul>
+                <li class="listitem">
+                  <p>
+                    [bdubbs] - 把 util-linux 的最终构建移至 udev 后面。修复 e2fsprogs 和
+                    udev 以使用 util-linux 在第 5 章中的构建。修复 <a class="ulink" href=
+                    "http://wiki.linuxfromscratch.org/lfs/ticket/3467">#3467</a>。
+                  </p>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="listitem">
+            <p>
+              2014-01-15
+            </p>
+            <div class="itemizedlist">
+              <ul>
+                <li class="listitem">
+                  <p>
+                    [bdubbs] - 添加了 util-linux 在第 5 章中的构建，为在第 6
+                    章中把它的构建移到udev的后面做准备。这不是完整的修复，因为这个构建还没有被纳入到第 6 章。
+                  </p>
+                </li>
+                <li class="listitem">
+                  <p>
+                    [bdubbs] - 为第 6 章把 /run 挂载为一个 tmpfs。
+                  </p>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="listitem">
+            <p>
+              2014-01-14
+            </p>
+            <div class="itemizedlist">
+              <ul>
+                <li class="listitem">
+                  <p>
+                    [bdubbs] - 更新至 inetutils-1.9.2 并移除到旧BLFS页面的指引。修复
+                    <a class="ulink" href=
+                    "http://wiki.linuxfromscratch.org/lfs/ticket/3471">#3471</a>
+                    和 <a class="ulink" href=
+                    "http://wiki.linuxfromscratch.org/lfs/ticket/3473">#3473</a>。
+                  </p>
+                </li>
+                <li class="listitem">
+                  <p>
+                    [bdubbs] - 在第 6 章的 gcc 中修复了到 /tools 的硬编码指引。修复 <a class=
+                    "ulink" href=
+                    "http://wiki.linuxfromscratch.org/lfs/ticket/3466">#3466</a>。
+                  </p>
+                </li>
+                <li class="listitem">
+                  <p>
+                    [bdubbs] - 清理 /run 和 /tmp。修复 <a class="ulink" href=
+                    "http://wiki.linuxfromscratch.org/lfs/ticket/3463">#3463</a>。
+                  </p>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="listitem">
+            <p>
+              2014-01-02
+            </p>
+            <div class="itemizedlist">
+              <ul>
+                <li class="listitem">
+                  <p>
+                    [bdubbs] - 更新至 grep-2.16。修复 <a class="ulink" href=
+                    "http://wiki.linuxfromscratch.org/lfs/ticket/3418">#3418</a>。
+                  </p>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="listitem">
+            <p>
+              2013-12-29
+            </p>
+            <div class="itemizedlist">
+              <ul>
+                <li class="listitem">
+                  <p>
+                    [bdubbs] - 更新至 e2fsprogs-1.42.9。修复 <a class="ulink" href=
+                    "http://wiki.linuxfromscratch.org/lfs/ticket/3462">#3462</a>。
+                  </p>
+                </li>
+                <li class="listitem">
+                  <p>
+                    [bdubbs] - 更新至 gdbm-1.11。修复 <a class="ulink" href=
+                    "http://wiki.linuxfromscratch.org/lfs/ticket/3459">#3459</a>。
+                  </p>
+                </li>
+                <li class="listitem">
+                  <p>
+                    [bdubbs] - 更新至 kmod-16。修复 <a class="ulink" href=
+                    "http://wiki.linuxfromscratch.org/lfs/ticket/3455">#3455</a>。
+                  </p>
+                </li>
+                <li class="listitem">
+                  <p>
+                    [bdubbs] - 更新至 automake-1.14.1。修复 <a class="ulink" href=
+                    "http://wiki.linuxfromscratch.org/lfs/ticket/3458">#3458</a>。
+                  </p>
+                </li>
+                <li class="listitem">
+                  <p>
+                    [bdubbs] - 更新 readline 的补丁到上游层。修复 <a class="ulink" href=
+                    "http://wiki.linuxfromscratch.org/lfs/ticket/3461">#3461</a>。
+                  </p>
+                </li>
+                <li class="listitem">
+                  <p>
+                    [bdubbs] - 使用 gcc 版本的 libiberty.a。修复 <a class="ulink"
+                    href=
+                    "http://wiki.linuxfromscratch.org/lfs/ticket/3456">#3456</a>。
+                  </p>
+                </li>
+                <li class="listitem">
+                  <p>
+                    [bdubbs] - 为 shadow 使用不同的 URL。修复 <a class="ulink" href=
+                    "http://wiki.linuxfromscratch.org/lfs/ticket/3453">#3453</a>。
+                  </p>
+                </li>
+                <li class="listitem">
+                  <p>
+                    [bdubbs] - 更新 coreutils i18n 补丁以修复 uniq 问题。修复 <a class=
+                    "ulink" href=
+                    "http://wiki.linuxfromscratch.org/lfs/ticket/3457">#3457</a>。
+                  </p>
+                </li>
+                <li class="listitem">
+                  <p>
+                    [bdubbs] - 从 宿主系统需求 中移除不再需要的 makeinfo。修复 <a class="ulink"
+                    href=
+                    "http://wiki.linuxfromscratch.org/lfs/ticket/3460">#3460</a>。
+                  </p>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="listitem">
+            <p>
+              2013-12-22
+            </p>
+            <div class="itemizedlist">
+              <ul>
+                <li class="listitem">
+                  <p>
+                    [matthew] - 更新至 Linux-3.12.6。修复 <a class="ulink" href=
+                    "http://wiki.linuxfromscratch.org/lfs/ticket/3452">#3452</a>。
+                  </p>
+                </li>
+                <li class="listitem">
+                  <p>
+                    [matthew] - 更新至 Tzdata-2013i。修复 <a class="ulink" href=
+                    "http://wiki.linuxfromscratch.org/lfs/ticket/3451">#3451</a>。
+                  </p>
+                </li>
+                <li class="listitem">
+                  <p>
+                    [matthew] - 更新至 Libpipeline-1.2.6。修复 <a class="ulink"
+                    href=
+                    "http://wiki.linuxfromscratch.org/lfs/ticket/3449">#3449</a>。
+                  </p>
+                </li>
+                <li class="listitem">
+                  <p>
+                    [matthew] - 修复 coreutils-i18n 补丁，之前它引入了一个断开回归。修复
+                    <a class="ulink" href=
+                    "http://wiki.linuxfromscratch.org/lfs/ticket/3448">#3448</a>。
+                  </p>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="listitem">
+            <p>
+              2013-12-16
+            </p>
+            <div class="itemizedlist">
+              <ul>
+                <li class="listitem">
+                  <p>
+                    [matthew] - 更新至 Coreutils-8.22。修复 <a class="ulink" href=
+                    "http://wiki.linuxfromscratch.org/lfs/ticket/3447">#3447</a>。
+                  </p>
+                </li>
+                <li class="listitem">
+                  <p>
+                    [matthew] - 更新至 Man-Pages-3.55。修复 <a class="ulink" href=
+                    "http://wiki.linuxfromscratch.org/lfs/ticket/3446">#3446</a>。
+                  </p>
+                </li>
+                <li class="listitem">
+                  <p>
+                    [matthew] - 更新至 Bison-3.0.2。修复 <a class="ulink" href=
+                    "http://wiki.linuxfromscratch.org/lfs/ticket/3442">#3442</a>。
+                  </p>
+                </li>
+                <li class="listitem">
+                  <p>
+                    [matthew] - 更新至 Libpipeline-1.2.5。修复 <a class="ulink"
+                    href=
+                    "http://wiki.linuxfromscratch.org/lfs/ticket/3440">#3440</a>。
+                  </p>
+                </li>
+                <li class="listitem">
+                  <p>
+                    [matthew] - 更新至 Binutils-2.24。修复 <a class="ulink" href=
+                    "http://wiki.linuxfromscratch.org/lfs/ticket/3438">#3438</a>。
+                  </p>
+                </li>
+                <li class="listitem">
+                  <p>
+                    [matthew] - 更新至 File-5.16。修复 <a class="ulink" href=
+                    "http://wiki.linuxfromscratch.org/lfs/ticket/3437">#3437</a>。
+                  </p>
+                </li>
+                <li class="listitem">
+                  <p>
+                    [matthew] - 更新至 Linux-3.12.5。修复 <a class="ulink" href=
+                    "http://wiki.linuxfromscratch.org/lfs/ticket/3436">#3436</a>。
+                  </p>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="listitem">
+            <p>
+              2013-12-13
+            </p>
+            <div class="itemizedlist">
+              <ul>
+                <li class="listitem">
+                  <p>
+                    [bdubbs] - 修复 kmod, procps-ng, zlib, readline, ncurses, 和
+                    xz 为库建立正确软连接的方法。
+                  </p>
+                </li>
+                <li class="listitem">
+                  <p>
+                    [bdubbs] - 更新至 procps-ng-3.3.9。修复 <a class="ulink" href=
+                    "http://wiki.linuxfromscratch.org/lfs/ticket/3439">#3439</a>。
+                  </p>
+                </li>
+                <li class="listitem">
+                  <p>
+                    [bdubbs] - 把来自xz包的不很重要的程序安装到 /usr/bin。修复 <a class="ulink"
+                    href=
+                    "http://wiki.linuxfromscratch.org/lfs/ticket/3445">#3445</a>。
+                  </p>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="listitem">
+            <p>
+              2013-12-07
+            </p>
+            <div class="itemizedlist">
+              <ul>
+                <li class="listitem">
+                  <p>
+                    [bdubbs] - 启用 util-linux 中 sulogin 的构建。取消安装 sysvinit 的
+                    sulogin。修复 <a class="ulink" href=
+                    "http://wiki.linuxfromscratch.org/lfs/ticket/3435">#3435</a>。
+                  </p>
+                </li>
+                <li class="listitem">
+                  <p>
+                    [bdubbs] - 取消安装 sysvinit 中的 mesg 和 last，它们会覆盖 util-linux
+                    安装的版本。感谢 Chris Staub。修复 <a class="ulink" href=
+                    "http://wiki.linuxfromscratch.org/lfs/ticket/3434">#3434</a>。
+                  </p>
+                </li>
+                <li class="listitem">
+                  <p>
+                    [bdubbs] - 为 diffutils 添加一个 sed 以使 locales 能被正确安装。修复
+                    <a class="ulink" href=
+                    "http://wiki.linuxfromscratch.org/lfs/ticket/3433">#3433</a>。
+                  </p>
+                </li>
+                <li class="listitem">
+                  <p>
+                    [bdubbs] - 为一些包更新已安装程序列表。感谢 Chris Staub。修复 <a class=
+                    "ulink" href=
+                    "http://wiki.linuxfromscratch.org/lfs/ticket/3432">#3432</a>。
+                  </p>
+                </li>
+                <li class="listitem">
+                  <p>
+                    [bdubbs] - 修复 kmod 和 xz 的二进制文件和库的位置。修复 <a class="ulink"
+                    href=
+                    "http://wiki.linuxfromscratch.org/lfs/ticket/3443">#3443</a>.
+                  </p>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="listitem">
+            <p>
+              2013-11-23
+            </p>
+            <div class="itemizedlist">
+              <ul>
+                <li class="listitem">
+                  <p>
+                    [matthew] - 更新至 IPRoute2-3.12.0。修复 <a class="ulink" href=
+                    "http://wiki.linuxfromscratch.org/lfs/ticket/3431">#3431</a>。
+                  </p>
+                </li>
+                <li class="listitem">
+                  <p>
+                    [matthew] - 更新至 Linux-3.12.1。修复 <a class="ulink" href=
+                    "http://wiki.linuxfromscratch.org/lfs/ticket/3428">#3428</a>。
+                  </p>
+                </li>
+                <li class="listitem">
+                  <p>
+                    [matthew] - 更新至 Tar-1.27.1。修复 <a class="ulink" href=
+                    "http://wiki.linuxfromscratch.org/lfs/ticket/3425">#3425</a>。
+                  </p>
+                </li>
+                <li class="listitem">
+                  <p>
+                    [matthew] - 更新至 Bison-3.0.1。修复 <a class="ulink" href=
+                    "http://wiki.linuxfromscratch.org/lfs/ticket/3423">#3423</a>。
+                  </p>
+                </li>
+                <li class="listitem">
+                  <p>
+                    [matthew] - 更新至 Check-0.9.11。修复 <a class="ulink" href=
+                    "http://wiki.linuxfromscratch.org/lfs/ticket/3422">#3422</a>。
+                  </p>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="listitem">
+            <p>
+              2013-11-05
+            </p>
+            <div class="itemizedlist">
+              <ul>
+                <li class="listitem">
+                  <p>
+                    [matthew] - 更新至 Linux-3.12。修复 <a class="ulink" href=
+                    "http://wiki.linuxfromscratch.org/lfs/ticket/3421">#3421</a>。
+                  </p>
+                </li>
+                <li class="listitem">
+                  <p>
+                    [matthew] - 更新至 Kbd-2.0.1。修复 <a class="ulink" href=
+                    "http://wiki.linuxfromscratch.org/lfs/ticket/3420">#3420</a>。
+                  </p>
+                </li>
+                <li class="listitem">
+                  <p>
+                    [matthew] - 更新至 Tzdata-2013h。修复 <a class="ulink" href=
+                    "http://wiki.linuxfromscratch.org/lfs/ticket/3416">#3416</a>。
+                  </p>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="listitem">
+            <p>
+              2013-11-04
+            </p>
+            <div class="itemizedlist">
+              <ul>
+                <li class="listitem">
+                  <p>
+                    [bdubbs] - 禁用第5章测试程序中 pkg-config
+                    的查找，那可能会导致不想要的宿主系统库被链接进测试中。
+                  </p>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="listitem">
+            <p>
+              2013-10-21
+            </p>
+            <div class="itemizedlist">
+              <ul>
+                <li class="listitem">
+                  <p>
+                    [bdubbs] - 更新至 util-linux-2.24。修复 <a class="ulink" href=
+                    "http://wiki.linuxfromscratch.org/lfs/ticket/3415">#3415</a>。
+                  </p>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="listitem">
+            <p>
+              2013-10-19
+            </p>
+            <div class="itemizedlist">
+              <ul>
+                <li class="listitem">
+                  <p>
+                    [matthew] - 更新至 Linux-3.11.6。修复 <a class="ulink" href=
+                    "http://wiki.linuxfromscratch.org/lfs/ticket/3414">#3414</a>。
+                  </p>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="listitem">
+            <p>
+              2013-10-18
+            </p>
+            <div class="itemizedlist">
+              <ul>
+                <li class="listitem">
+                  <p>
+                    [matthew] - 更新至 GCC-4.8.2。修复 <a class="ulink" href=
+                    "http://wiki.linuxfromscratch.org/lfs/ticket/3413">#3413</a>。
+                  </p>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="listitem">
+            <p>
+              2013-10-15
+            </p>
+            <div class="itemizedlist">
+              <ul>
+                <li class="listitem">
+                  <p>
+                    [matthew] - 更新至 Linux-3.11.5。修复 <a class="ulink" href=
+                    "http://wiki.linuxfromscratch.org/lfs/ticket/3411">#3411</a>。
+                  </p>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="listitem">
+            <p>
+              2013-10-14
+            </p>
+            <div class="itemizedlist">
+              <ul>
+                <li class="listitem">
+                  <p>
+                    [matthew] - 更新至 Make 4.0。修复 <a class="ulink" href=
+                    "http://wiki.linuxfromscratch.org/lfs/ticket/3410">#3410</a>。
+                  </p>
+                </li>
+                <li class="listitem">
+                  <p>
+                    [matthew] - 更新至 Tar 1.27。修复 <a class="ulink" href=
+                    "http://wiki.linuxfromscratch.org/lfs/ticket/3409">#3409</a>。
+                  </p>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="listitem">
+            <p>
+              2013-10-08
+            </p>
+            <div class="itemizedlist">
+              <ul>
+                <li class="listitem">
+                  <p>
+                    [matthew] - 将 stylesheets 更新到 docbook-xsl-1.78.1。
+                  </p>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="listitem">
+            <p>
+              2013-10-06
+            </p>
+            <div class="itemizedlist">
+              <ul>
+                <li class="listitem">
+                  <p>
+                    [matthew] - 使用 xz 版本的 M4 压缩包。
+                  </p>
+                </li>
+                <li class="listitem">
+                  <p>
+                    [matthew] - 更新至 Linux 3.11.4。修复 <a class="ulink" href=
+                    "http://wiki.linuxfromscratch.org/lfs/ticket/3408">#3408</a>。
+                  </p>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="listitem">
+            <p>
+              2013-10-02
+            </p>
+            <div class="itemizedlist">
+              <ul>
+                <li class="listitem">
+                  <p>
+                    [bdubbs] - 更新至 Udev 208 (提取自 systemd-208)。修复 <a class=
+                    "ulink" href=
+                    "http://wiki.linuxfromscratch.org/lfs/ticket/3406">#3406</a>。
+                  </p>
+                </li>
+                <li class="listitem">
+                  <p>
+                    [bdubbs] - 更新至 tzdata-2013g。修复 <a class="ulink" href=
+                    "http://wiki.linuxfromscratch.org/lfs/ticket/3400">#3400</a>。
+                  </p>
+                </li>
+                <li class="listitem">
+                  <p>
+                    [bdubbs] - 更新至 File-5.15。修复 <a class="ulink" href=
+                    "http://wiki.linuxfromscratch.org/lfs/ticket/3402">#3402</a>。
+                  </p>
+                </li>
+                <li class="listitem">
+                  <p>
+                    [bdubbs] - 更新至 linux-3.11.3。修复 <a class="ulink" href=
+                    "http://wiki.linuxfromscratch.org/lfs/ticket/3403">#3403</a>。
+                  </p>
+                </li>
+                <li class="listitem">
+                  <p>
+                    [bdubbs] - 更新至 texinfo-5.2。修复 <a class="ulink" href=
+                    "http://wiki.linuxfromscratch.org/lfs/ticket/3404">#3404</a>。
+                  </p>
+                </li>
+                <li class="listitem">
+                  <p>
+                    [bdubbs] - 更新至 gmp-5.1.3。修复 <a class="ulink" href=
+                    "http://wiki.linuxfromscratch.org/lfs/ticket/3405">#3405</a>。
+                  </p>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="listitem">
+            <p>
+              2013-09-23
+            </p>
+            <div class="itemizedlist">
+              <ul>
+                <li class="listitem">
+                  <p>
+                    [bdubbs] - 更新至 man-pages-3.54。修复 <a class="ulink" href=
+                    "http://wiki.linuxfromscratch.org/lfs/ticket/3398">#3398</a>。
+                  </p>
+                </li>
+                <li class="listitem">
+                  <p>
+                    [bdubbs] - 更新至 tcl-8.6.1。修复 <a class="ulink" href=
+                    "http://wiki.linuxfromscratch.org/lfs/ticket/3399">#3399</a>。
+                  </p>
+                </li>
+                <li class="listitem">
+                  <p>
+                    [bdubbs] - 更新至 M4-1.4.17。修复 <a class="ulink" href=
+                    "http://wiki.linuxfromscratch.org/lfs/ticket/3401">#3401</a>。
+                  </p>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="listitem">
+            <p>
+              2013-09-15
+            </p>
+            <div class="itemizedlist">
+              <ul>
+                <li class="listitem">
+                  <p>
+                    [matthew] - 更新至 Linux-3.11.1。修复 <a class="ulink" href=
+                    "http://wiki.linuxfromscratch.org/lfs/ticket/3397">#3397</a>。
+                  </p>
+                </li>
+                <li class="listitem">
+                  <p>
+                    [matthew] - 更新至 Kbd-2.0.0。修复 <a class="ulink" href=
+                    "http://wiki.linuxfromscratch.org/lfs/ticket/3390">#3390</a>。
+                  </p>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="listitem">
+            <p>
+              2013-09-13
+            </p>
+            <div class="itemizedlist">
+              <ul>
+                <li class="listitem">
+                  <p>
+                    [bdubbs] - 更新至 systemd-207。修复 <a class="ulink" href=
+                    "http://wiki.linuxfromscratch.org/lfs/ticket/3396">#3396</a>。
+                  </p>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="listitem">
+            <p>
+              2013-09-10
+            </p>
+            <div class="itemizedlist">
+              <ul>
+                <li class="listitem">
+                  <p>
+                    [bdubbs] - 更新至 gettext-0.18.3.1。修复 <a class="ulink" href=
+                    "http://wiki.linuxfromscratch.org/lfs/ticket/3389">#3389</a>。
+                  </p>
+                </li>
+                <li class="listitem">
+                  <p>
+                    [bdubbs] - 更新至 kmod-15。修复 <a class="ulink" href=
+                    "http://wiki.linuxfromscratch.org/lfs/ticket/3392">#3392</a>。
+                  </p>
+                </li>
+                <li class="listitem">
+                  <p>
+                    [bdubbs] - 更新至 iproute2-3.11.0。修复 <a class="ulink" href=
+                    "http://wiki.linuxfromscratch.org/lfs/ticket/3395">#3395</a>。
+                  </p>
+                </li>
+                <li class="listitem">
+                  <p>
+                    [bdubbs] - 更新至 linux-3.11.0。修复 <a class="ulink" href=
+                    "http://wiki.linuxfromscratch.org/lfs/ticket/3394">#3394</a>。
+                  </p>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="listitem">
+            <p>
+              2013-09-08
+            </p>
+            <div class="itemizedlist">
+              <ul>
+                <li class="listitem">
+                  <p>
+                    [bdubbs] - LFS-7.4 发布。
+                  </p>
+                </li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="navfooter">
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="whatsnew.html" title="自上版以来的更新">上一页</a>
+          <p>
+            自上版以来的更新
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="resources.html" title="资源">下一页</a>
+          <p>
+            资源
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="chapter01.html" title=
+          "第&nbsp;1&nbsp;章&nbsp;介绍">上一级</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Linux From Scratch - 版本 7.5">起始页</a>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

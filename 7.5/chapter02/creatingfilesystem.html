@@ -1,0 +1,135 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
+    <title>
+      2.3.&nbsp;在分区上创建一个文件系统
+    </title>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/lfs.css" />
+    <meta name="generator" content="DocBook XSL Stylesheets V1.78.1" />
+    <link rel="stylesheet" href="stylesheets/lfs-print.css" type="text/css"
+    media="print" />
+  </head>
+  <body class="lfs" id="lfs-7.5">
+    <div class="navheader">
+      <h4>
+        Linux From Scratch - 版本 7.5
+      </h4>
+      <h3>
+        第&nbsp;2&nbsp;章&nbsp;准备一个新分区
+      </h3>
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="creatingpartition.html" title=
+          "创建一个新分区">上一页</a>
+          <p>
+            创建一个新分区
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="mounting.html" title="挂载新分区">下一页</a>
+          <p>
+            挂载新分区
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="chapter02.html" title=
+          "第&nbsp;2&nbsp;章&nbsp;准备一个新分区">上一级</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Linux From Scratch - 版本 7.5">起始页</a>
+        </li>
+      </ul>
+    </div>
+    <div class="sect1" lang="zh-cn" xml:lang="zh-cn">
+      <h1 class="sect1">
+        <a id="space-creatingfilesystem" name=
+        "space-creatingfilesystem"></a>2.3. 在分区上创建一个文件系统
+      </h1>
+      <p>
+        现在一个空白的分区已经准备好了，就可以创建文件系统了。LFS可以使用Linux内核能识别的任何文件系统，但最常用的类型是ext3和ext4。文件系统的选择会比较复杂，要看文件的特点和分区的大小。例如：
+      </p>
+      <div class="variablelist">
+        <dl class="variablelist">
+          <dt>
+            <span class="term">ext2</span>
+          </dt>
+          <dd>
+            <p>
+              适合于不常更新的小分区，比如 /boot。
+            </p>
+          </dd>
+          <dt>
+            <span class="term">ext3</span>
+          </dt>
+          <dd>
+            <p>
+              是ext2的一个升级，包括了一个日志功能，用以在未清理的关机的情况下帮助恢复分区状态。它通常被用作通用文件系统。
+            </p>
+          </dd>
+          <dt>
+            <span class="term">ext4</span>
+          </dt>
+          <dd>
+            <p>
+              是分区类型中的ext文件系统系列的最新版本。它提供了一些新功能，包括纳秒级的时间戳，超大文件（16TB）的创建和使用，以及速度的提升。
+            </p>
+          </dd>
+        </dl>
+      </div>
+      <p>
+        其它文件系统，包括FAT32、NTFS、ReiserFS、JFS、和
+        XFS，一般用于专门目的。关于这些文件系统的更多信息可以在这里找到：<a class="ulink" href=
+        "http://en.wikipedia.org/wiki/Comparison_of_file_systems">http://en.wikipedia.org/wiki/Comparison_of_file_systems</a>。
+      </p>
+      <p>
+        LFS假设根文件系统（/）是ext4类型。要在LFS分区上创建一个 <code class=
+        "systemitem">ext4</code> 文件系统，运行下面的命令：
+      </p>
+      <pre class="userinput">
+<kbd class="command">mkfs -v -t ext4 /dev/<em class=
+"replaceable"><code>&lt;xxx&gt;</code></em></kbd>
+</pre>
+      <p>
+        如果你是使用的一个已存在的 <code class="systemitem">swap</code>
+        分区的话，就不需要把它格式化。如果创建了一个新 <code class="systemitem">swap</code>
+        分区，就需要用这个命令把它初始化：
+      </p>
+      <pre class="userinput">
+<kbd class="command">mkswap /dev/<em class=
+"replaceable"><code>&lt;yyy&gt;</code></em></kbd>
+</pre>
+      <p>
+        把 <em class="replaceable"><code>&lt;yyy&gt;</code></em> 替换为
+        <code class="systemitem">swap</code> 分区的名字。
+      </p>
+    </div>
+    <div class="navfooter">
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="creatingpartition.html" title=
+          "创建一个新分区">上一页</a>
+          <p>
+            创建一个新分区
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="mounting.html" title="挂载新分区">下一页</a>
+          <p>
+            挂载新分区
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="chapter02.html" title=
+          "第&nbsp;2&nbsp;章&nbsp;准备一个新分区">上一级</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Linux From Scratch - 版本 7.5">起始页</a>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

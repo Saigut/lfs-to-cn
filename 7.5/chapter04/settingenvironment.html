@@ -1,0 +1,165 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
+    <title>
+      4.4.&nbsp;设置工作环境
+    </title>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/lfs.css" />
+    <meta name="generator" content="DocBook XSL Stylesheets V1.78.1" />
+    <link rel="stylesheet" href="stylesheets/lfs-print.css" type="text/css"
+    media="print" />
+  </head>
+  <body class="lfs" id="lfs-7.5">
+    <div class="navheader">
+      <h4>
+        Linux From Scratch - 版本 7.5
+      </h4>
+      <h3>
+        第&nbsp;4&nbsp;章&nbsp;最后的准备工作
+      </h3>
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="addinguser.html" title="添加 LFS 用户">上一页</a>
+          <p>
+            添加 LFS 用户
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="aboutsbus.html" title="关于SBU">下一页</a>
+          <p>
+            关于SBU
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="chapter04.html" title=
+          "第&nbsp;4&nbsp;章&nbsp;最后的准备工作">上一级</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Linux From Scratch - 版本 7.5">起始页</a>
+        </li>
+      </ul>
+    </div>
+    <div class="sect1" lang="zh-cn" xml:lang="zh-cn">
+      <h1 class="sect1">
+        <a id="ch-tools-settingenviron" name=
+        "ch-tools-settingenviron"></a>4.4. 设置工作环境
+      </h1>
+      <p>
+        为 <span class="command"><strong>bash</strong></span> shell
+        创建两个启动文件来设置一个好的工作环境。以 <code class="systemitem">lfs</code>
+        用户身份登录，执行下面的命令创建一个新的 <code class="filename">.bash_profile</code>：
+      </p>
+      <pre class="userinput">
+<kbd class="command">cat &gt; ~/.bash_profile &lt;&lt; "EOF"
+<code class=
+"literal">exec env -i HOME=$HOME TERM=$TERM PS1='\u:\w\$ ' /bin/bash</code>
+EOF</kbd>
+</pre>
+      <p>
+        当以 <code class="systemitem">lfs</code> 用户登录的时候，初始shell通常是一个
+        <span class="emphasis"><em>login</em></span> shell，它会读取宿主的
+        <code class="filename">/etc/profile</code>（一般会包含一些设置和环境变量），然后读取
+        <code class="filename">.bash_profile</code>。<code class=
+        "filename">.bash_profile</code> 文件中的 <span class=
+        "command"><strong>exec env -i.../bin/bash</strong></span>
+        命令把正在运行的shell替换为一个完全是空环境的新shell，只保留 <code class=
+        "envar">HOME</code>，<code class="envar">TERM</code>，和 <code class=
+        "envar">PS1</code>
+        变量。这确保了没有我们不想要的、有潜在危险危险的环境变量会从宿主系统泄漏进构建环境。。这里用到的技术实现了确保有一个干净环。
+      </p>
+      <p>
+        shell的新实例是一个 <span class="emphasis"><em>non-login</em></span>
+        shell，它不读取 <code class="filename">/etc/profile</code> 或 <code class=
+        "filename">.bash_profile</code> 文件，而是读取 <code class=
+        "filename">.bashrc</code> 文件。现在创建 <code class=
+        "filename">.bashrc</code> 文件：
+      </p>
+      <pre class="userinput">
+<kbd class="command">cat &gt; ~/.bashrc &lt;&lt; "EOF"
+<code class="literal">set +h
+umask 022
+LFS=/mnt/lfs
+LC_ALL=POSIX
+LFS_TGT=$(uname -m)-lfs-linux-gnu
+PATH=/tools/bin:/bin:/usr/bin
+export LFS LC_ALL LFS_TGT PATH</code>
+EOF</kbd>
+</pre>
+      <p>
+        <span class="command"><strong>set +h</strong></span> 命令关闭了
+        <span class="command"><strong>bash</strong></span>
+        的hash功能。Hash通常是一个有用的特性——<span class=
+        "command"><strong>bash</strong></span>
+        用一个hash表来记住可执行文件的完整路径，以避免为找同一个可执行文件而反复搜索 <code class=
+        "envar">PATH</code>。然而，新的工具应该在它们被安装后马上被使用。通过关闭hash功能，在运行程序的时候shell将总是会搜索
+        <code class="envar">PATH</code>。这样，在新编译的程序安装后，shell会在 <code class=
+        "filename">$LFS/tools</code> 中马上找到它们，而不是记住这个程序以前在其它位置的版本。
+      </p>
+      <p>
+        将用户文件创建掩码（umask）设置为 022 以确保新创建的文件和目录只有所有者可写，但可以被任何人读取和执行（假设
+        <code class=
+        "function">open(2)</code>系统调用使用默认模式，新文件权限将会是644模式，新目录是755模式。
+      </p>
+      <p>
+        <code class="envar">LFS</code> 变量应被设置到选定的挂载点上。
+      </p>
+      <p>
+        <code class="envar">LC_ALL</code>
+        变量控制着某些程序的本地化，让它们的消息遵循指定国家的惯例。如果宿主系统使用的Glibc版本低于2.2.4，把 <code class=
+        "envar">LC_ALL</code> 设置为 <span class="quote">“<span class=
+        "quote">POSIX</span>”</span> 或 <span class="quote">“<span class=
+        "quote">C</span>”</span> 以外的值（在这一章中）会在你退出并想要以后再回来时导致问题。把 <code class=
+        "envar">LC_ALL</code> 设置为 <span class="quote">“<span class=
+        "quote">POSIX</span>”</span> 或 <span class="quote">“<span class=
+        "quote">C</span>”</span> （这两个是等价的）确保在chroot环境中的每件事情都会像所预期的那样。
+      </p>
+      <p>
+        <code class="envar">LFS_TGT</code>
+        变量设置一个非默认的但兼容的机器描述，用于构建我们的交叉编译器和连接器以及交叉编译我们的临时工具链。更多信息在<a class=
+        "xref" href="../chapter05/toolchaintechnotes.html" title=
+        "5.2.&nbsp;Toolchain Technical Notes">第&nbsp;5.2&nbsp;节 “Toolchain
+        Technical Notes”</a>。
+      </p>
+      <p>
+        通过把 <code class="filename">/tools/bin</code> 放在标准<code class=
+        "envar">PATH</code>前面，在<a class="xref" href=
+        "../chapter05/chapter05.html" title=
+        "第&nbsp;5&nbsp;章&nbsp;Constructing a Temporary System">第 5
+        章</a>中安装的所有程序在它们安装后会马上被shell找到。这样再结合关闭hash，限制了在第五章中相同的程序被安装后，来自宿主的旧程序被运行的风险。
+      </p>
+      <p>
+        最后，为使构建临时工具的环境完全准备好，source 刚刚创建的用户profile：
+      </p>
+      <pre class="userinput">
+<kbd class="command">source ~/.bash_profile</kbd>
+</pre>
+    </div>
+    <div class="navfooter">
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="addinguser.html" title="添加 LFS 用户">上一页</a>
+          <p>
+            添加 LFS 用户
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="aboutsbus.html" title="关于SBU">下一页</a>
+          <p>
+            关于SBU
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="chapter04.html" title=
+          "第&nbsp;4&nbsp;章&nbsp;最后的准备工作">上一级</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Linux From Scratch - 版本 7.5">起始页</a>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

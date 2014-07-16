@@ -1,0 +1,211 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
+    <title>
+      6.48.&nbsp;Less-458
+    </title>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/lfs.css" />
+    <meta name="generator" content="DocBook XSL Stylesheets V1.78.1" />
+    <link rel="stylesheet" href="stylesheets/lfs-print.css" type="text/css"
+    media="print" />
+  </head>
+  <body class="lfs" id="lfs-7.5">
+    <div class="navheader">
+      <h4>
+        Linux From Scratch - 版本 7.5
+      </h4>
+      <h3>
+        第&nbsp;6&nbsp;章&nbsp;Installing Basic System Software
+      </h3>
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="grub.html" title="GRUB-2.00">上一页</a>
+          <p>
+            GRUB-2.00
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="gzip.html" title="Gzip-1.6">下一页</a>
+          <p>
+            Gzip-1.6
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="chapter06.html" title=
+          "第&nbsp;6&nbsp;章&nbsp;Installing Basic System Software">上一级</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Linux From Scratch - 版本 7.5">起始页</a>
+        </li>
+      </ul>
+    </div>
+    <div class="wrap" lang="zh-cn" xml:lang="zh-cn">
+      <h1 class="sect1">
+        <a id="ch-system-less" name="ch-system-less"></a>6.48. Less-458
+      </h1>
+      <div class="package" lang="zh-cn" xml:lang="zh-cn">
+        <p>
+          The Less package contains a text file viewer.
+        </p>
+        <div class="segmentedlist">
+          <div class="seglistitem">
+            <div class="seg">
+              <strong class="segtitle">预计编译时间:</strong> <span class=
+              "segbody">less than 0.1 SBU</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">空间需求:</strong> <span class=
+              "segbody">3.6 MB</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="installation" lang="zh-cn" xml:lang="zh-cn">
+        <h2 class="sect2">
+          6.48.1. Installation of Less
+        </h2>
+        <p>
+          Prepare Less for compilation:
+        </p>
+        <pre class="userinput">
+<kbd class="command">./configure --prefix=/usr --sysconfdir=/etc</kbd>
+</pre>
+        <div class="variablelist">
+          <p class="title">
+            <strong>The meaning of the configure options:</strong>
+          </p>
+          <dl class="variablelist">
+            <dt>
+              <span class="term"><em class=
+              "parameter"><code>--sysconfdir=/etc</code></em></span>
+            </dt>
+            <dd>
+              <p>
+                This option tells the programs created by the package to look
+                in <code class="filename">/etc</code> for the configuration
+                files.
+              </p>
+            </dd>
+          </dl>
+        </div>
+        <p>
+          Compile the package:
+        </p>
+        <pre class="userinput">
+<kbd class="command">make</kbd>
+</pre>
+        <p>
+          This package does not come with a test suite.
+        </p>
+        <p>
+          Install the package:
+        </p>
+        <pre class="userinput">
+<kbd class="command">make install</kbd>
+</pre>
+      </div>
+      <div class="content" lang="zh-cn" xml:lang="zh-cn">
+        <h2 class="sect2">
+          <a id="contents-less" name="contents-less"></a>6.48.2. Contents of
+          Less
+        </h2>
+        <div class="segmentedlist">
+          <div class="seglistitem">
+            <div class="seg">
+              <strong class="segtitle">Installed programs:</strong>
+              <span class="segbody">less, lessecho, and lesskey</span>
+            </div>
+          </div>
+        </div>
+        <div class="variablelist">
+          <h3>
+            Short Descriptions
+          </h3>
+          <table border="0" class="variablelist">
+            <colgroup>
+              <col align="left" valign="top" />
+              <col />
+            </colgroup>
+            <tbody>
+              <tr>
+                <td>
+                  <p>
+                    <a id="less" name="less"></a><span class=
+                    "term"><span class=
+                    "command"><strong>less</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    A file viewer or pager; it displays the contents of the
+                    given file, letting the user scroll, find strings, and
+                    jump to marks
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="lessecho" name="lessecho"></a><span class=
+                    "term"><span class=
+                    "command"><strong>lessecho</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    Needed to expand meta-characters, such as <span class=
+                    "emphasis"><em>*</em></span> and <span class=
+                    "emphasis"><em>?</em></span>, in filenames on Unix
+                    systems
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="lesskey" name="lesskey"></a><span class=
+                    "term"><span class=
+                    "command"><strong>lesskey</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    Used to specify the key bindings for <span class=
+                    "command"><strong>less</strong></span>
+                  </p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="navfooter">
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="grub.html" title="GRUB-2.00">上一页</a>
+          <p>
+            GRUB-2.00
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="gzip.html" title="Gzip-1.6">下一页</a>
+          <p>
+            Gzip-1.6
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="chapter06.html" title=
+          "第&nbsp;6&nbsp;章&nbsp;Installing Basic System Software">上一级</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Linux From Scratch - 版本 7.5">起始页</a>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

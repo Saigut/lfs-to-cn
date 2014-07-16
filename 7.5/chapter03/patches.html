@@ -1,0 +1,220 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
+    <title>
+      3.3.&nbsp;需要的补丁
+    </title>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/lfs.css" />
+    <meta name="generator" content="DocBook XSL Stylesheets V1.78.1" />
+    <link rel="stylesheet" href="stylesheets/lfs-print.css" type="text/css"
+    media="print" />
+  </head>
+  <body class="lfs" id="lfs-7.5">
+    <div class="navheader">
+      <h4>
+        Linux From Scratch - 版本 7.5
+      </h4>
+      <h3>
+        第&nbsp;3&nbsp;章&nbsp;软件包和补丁
+      </h3>
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="packages.html" title="软件包列表">上一页</a>
+          <p>
+            软件包列表
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="../chapter04/chapter04.html" title=
+          "最后的准备工作">下一页</a>
+          <p>
+            最后的准备工作
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="chapter03.html" title=
+          "第&nbsp;3&nbsp;章&nbsp;软件包和补丁">上一级</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Linux From Scratch - 版本 7.5">起始页</a>
+        </li>
+      </ul>
+    </div>
+    <div class="sect1" lang="zh-cn" xml:lang="zh-cn">
+      <h1 class="sect1">
+        <a id="materials-patches" name="materials-patches"></a>3.3. 需要的补丁
+      </h1>
+      <p>
+        作为软件包的补充，一些补丁也是需要的。这些补丁修正了包中任何本应由维护者修正的错误，而且补丁为让软件包更易于使用也做了些小修改。构建LFS系统需要下列补丁：
+      </p>
+      <div class="materials">
+        <div class="variablelist">
+          <dl class="variablelist">
+            <dt>
+              <span class="term">Bash 上游补丁 - <span class="token">56
+              KB</span>:</span>
+            </dt>
+            <dd>
+              <p>
+                下载地址：<a class="ulink" href=
+                "http://www.linuxfromscratch.org/patches/lfs/7.5/bash-4.2-fixes-12.patch">http://www.linuxfromscratch.org/patches/lfs/7.5/bash-4.2-fixes-12.patch</a>
+              </p>
+              <p>
+                MD5校验码：<code class=
+                "literal">419f95c173596aea47a23d922598977a</code>
+              </p>
+            </dd>
+            <dt>
+              <span class="term">Bzip2 文档补丁 - <span class="token">1.6
+              KB</span>:</span>
+            </dt>
+            <dd>
+              <p>
+                下载地址：<a class="ulink" href=
+                "http://www.linuxfromscratch.org/patches/lfs/7.5/bzip2-1.0.6-install_docs-1.patch">http://www.linuxfromscratch.org/patches/lfs/7.5/bzip2-1.0.6-install_docs-1.patch</a>
+              </p>
+              <p>
+                MD5校验码：<code class=
+                "literal">6a5ac7e89b791aae556de0f745916f7f</code>
+              </p>
+            </dd>
+            <dt>
+              <span class="term">Coreutils 国际化修复补丁 - <span class="token">140
+              KB</span>:</span>
+            </dt>
+            <dd>
+              <p>
+                下载地址：<a class="ulink" href=
+                "http://www.linuxfromscratch.org/patches/lfs/7.5/coreutils-8.22-i18n-4.patch">http://www.linuxfromscratch.org/patches/lfs/7.5/coreutils-8.22-i18n-4.patch</a>
+              </p>
+              <p>
+                MD5校验码：<code class=
+                "literal">54c99871cd0ca20f29bdc9462e27f0df</code>
+              </p>
+            </dd>
+            <dt>
+              <span class="term">Glibc FHS 补丁 - <span class="token">2.8
+              KB</span>:</span>
+            </dt>
+            <dd>
+              <p>
+                下载地址：<a class="ulink" href=
+                "http://www.linuxfromscratch.org/patches/lfs/7.5/glibc-2.19-fhs-1.patch">http://www.linuxfromscratch.org/patches/lfs/7.5/glibc-2.19-fhs-1.patch</a>
+              </p>
+              <p>
+                MD5校验码：<code class=
+                "literal">9a5997c3452909b1769918c759eff8a2</code>
+              </p>
+            </dd>
+            <dt>
+              <span class="term">Kbd Backspace/Delete 修复补丁 - <span class=
+              "token">12 KB</span>:</span>
+            </dt>
+            <dd>
+              <p>
+                下载地址：<a class="ulink" href=
+                "http://www.linuxfromscratch.org/patches/lfs/7.5/kbd-2.0.1-backspace-1.patch">http://www.linuxfromscratch.org/patches/lfs/7.5/kbd-2.0.1-backspace-1.patch</a>
+              </p>
+              <p>
+                MD5校验码：<code class=
+                "literal">f75cca16a38da6caa7d52151f7136895</code>
+              </p>
+            </dd>
+            <dt>
+              <span class="term">Perl Libc 补丁 - <span class="token">1.6
+              KB</span>:</span>
+            </dt>
+            <dd>
+              <p>
+                下载地址：<a class="ulink" href=
+                "http://www.linuxfromscratch.org/patches/lfs/7.5/perl-5.18.2-libc-1.patch">http://www.linuxfromscratch.org/patches/lfs/7.5/perl-5.18.2-libc-1.patch</a>
+              </p>
+              <p>
+                MD5校验码：<code class=
+                "literal">daf5c64fd7311e924966842680535f8f</code>
+              </p>
+            </dd>
+            <dt>
+              <span class="term">Readline 上游修复补丁 - <span class="token">3.3
+              KB</span>:</span>
+            </dt>
+            <dd>
+              <p>
+                下载地址：<a class="ulink" href=
+                "http://www.linuxfromscratch.org/patches/lfs/7.5/readline-6.2-fixes-2.patch">http://www.linuxfromscratch.org/patches/lfs/7.5/readline-6.2-fixes-2.patch</a>
+              </p>
+              <p>
+                MD5校验码：<code class=
+                "literal">b793b2bf1306bc62e5f1e7ebbdae2f35</code>
+              </p>
+            </dd>
+            <dt>
+              <span class="term">Sysvinit 综合补丁 - <span class="token">3.9
+              KB</span>:</span>
+            </dt>
+            <dd>
+              <p>
+                下载地址：<a class="ulink" href=
+                "http://www.linuxfromscratch.org/patches/lfs/7.5/sysvinit-2.88dsf-consolidated-1.patch">http://www.linuxfromscratch.org/patches/lfs/7.5/sysvinit-2.88dsf-consolidated-1.patch</a>
+              </p>
+              <p>
+                MD5校验码：<code class=
+                "literal">0b7b5ea568a878fdcc4057b2bf36e5cb</code>
+              </p>
+            </dd>
+            <dt>
+              <span class="term">Tar 管理补丁 - <span class="token">7.8
+              KB</span>:</span>
+            </dt>
+            <dd>
+              <p>
+                下载地址：<a class="ulink" href=
+                "http://www.linuxfromscratch.org/patches/lfs/7.5/tar-1.27.1-manpage-1.patch">http://www.linuxfromscratch.org/patches/lfs/7.5/tar-1.27.1-manpage-1.patch</a>
+              </p>
+              <p>
+                MD5校验码：<code class=
+                "literal">321f85ec32733b1a9399e788714a5156</code>
+              </p>
+            </dd>
+          </dl>
+        </div>
+      </div>
+      <p>
+        所有软件包占用空间：大约229 KB
+      </p>
+      <p>
+        除了上述需要的补丁，LFS社区还创建了很多可选的补丁。这些可选补丁解决一些小问题，或启用一些软件包默认关闭的特性。你可以在这里浏览补丁数据库：<a class="ulink"
+        href=
+        "http://www.linuxfromscratch.org/patches/downloads/">http://www.linuxfromscratch.org/patches/downloads/</a>，并获取任何满足你系统需要的额外补丁。
+      </p>
+    </div>
+    <div class="navfooter">
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="packages.html" title="软件包列表">上一页</a>
+          <p>
+            软件包列表
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="../chapter04/chapter04.html" title=
+          "最后的准备工作">下一页</a>
+          <p>
+            最后的准备工作
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="chapter03.html" title=
+          "第&nbsp;3&nbsp;章&nbsp;软件包和补丁">上一级</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Linux From Scratch - 版本 7.5">起始页</a>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

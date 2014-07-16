@@ -1,0 +1,171 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
+    <title>
+      6.55.&nbsp;Patch-2.7.1
+    </title>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/lfs.css" />
+    <meta name="generator" content="DocBook XSL Stylesheets V1.78.1" />
+    <link rel="stylesheet" href="stylesheets/lfs-print.css" type="text/css"
+    media="print" />
+  </head>
+  <body class="lfs" id="lfs-7.5">
+    <div class="navheader">
+      <h4>
+        Linux From Scratch - 版本 7.5
+      </h4>
+      <h3>
+        第&nbsp;6&nbsp;章&nbsp;Installing Basic System Software
+      </h3>
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="make.html" title="Make-4.0">上一页</a>
+          <p>
+            Make-4.0
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="sysklogd.html" title="Sysklogd-1.5">下一页</a>
+          <p>
+            Sysklogd-1.5
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="chapter06.html" title=
+          "第&nbsp;6&nbsp;章&nbsp;Installing Basic System Software">上一级</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Linux From Scratch - 版本 7.5">起始页</a>
+        </li>
+      </ul>
+    </div>
+    <div class="wrap" lang="zh-cn" xml:lang="zh-cn">
+      <h1 class="sect1">
+        <a id="ch-system-patch" name="ch-system-patch"></a>6.55. Patch-2.7.1
+      </h1>
+      <div class="package" lang="zh-cn" xml:lang="zh-cn">
+        <p>
+          The Patch package contains a program for modifying or creating
+          files by applying a <span class="quote">“<span class=
+          "quote">patch</span>”</span> file typically created by the
+          <span class="command"><strong>diff</strong></span> program.
+        </p>
+        <div class="segmentedlist">
+          <div class="seglistitem">
+            <div class="seg">
+              <strong class="segtitle">预计编译时间:</strong> <span class=
+              "segbody">less than 0.1 SBU</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">空间需求:</strong> <span class=
+              "segbody">3.4 MB</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="installation" lang="zh-cn" xml:lang="zh-cn">
+        <h2 class="sect2">
+          6.55.1. Installation of Patch
+        </h2>
+        <p>
+          Prepare Patch for compilation:
+        </p>
+        <pre class="userinput">
+<kbd class="command">./configure --prefix=/usr</kbd>
+</pre>
+        <p>
+          Compile the package:
+        </p>
+        <pre class="userinput">
+<kbd class="command">make</kbd>
+</pre>
+        <p>
+          To test the results, issue:
+        </p>
+        <pre class="userinput">
+<kbd class="command">make check</kbd>
+</pre>
+        <p>
+          Install the package:
+        </p>
+        <pre class="userinput">
+<kbd class="command">make install</kbd>
+</pre>
+      </div>
+      <div class="content" lang="zh-cn" xml:lang="zh-cn">
+        <h2 class="sect2">
+          <a id="contents-patch" name="contents-patch"></a>6.55.2. Contents
+          of Patch
+        </h2>
+        <div class="segmentedlist">
+          <div class="seglistitem">
+            <div class="seg">
+              <strong class="segtitle">Installed program:</strong>
+              <span class="segbody">patch</span>
+            </div>
+          </div>
+        </div>
+        <div class="variablelist">
+          <h3>
+            Short Descriptions
+          </h3>
+          <table border="0" class="variablelist">
+            <colgroup>
+              <col align="left" valign="top" />
+              <col />
+            </colgroup>
+            <tbody>
+              <tr>
+                <td>
+                  <p>
+                    <a id="patch" name="patch"></a><span class=
+                    "term"><span class=
+                    "command"><strong>patch</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    Modifies files according to a patch file. A patch file is
+                    normally a difference listing created with the
+                    <span class="command"><strong>diff</strong></span>
+                    program. By applying these differences to the original
+                    files, <span class=
+                    "command"><strong>patch</strong></span> creates the
+                    patched versions.
+                  </p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="navfooter">
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="make.html" title="Make-4.0">上一页</a>
+          <p>
+            Make-4.0
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="sysklogd.html" title="Sysklogd-1.5">下一页</a>
+          <p>
+            Sysklogd-1.5
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="chapter06.html" title=
+          "第&nbsp;6&nbsp;章&nbsp;Installing Basic System Software">上一级</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Linux From Scratch - 版本 7.5">起始页</a>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

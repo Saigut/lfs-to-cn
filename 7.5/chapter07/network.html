@@ -1,0 +1,356 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
+    <title>
+      7.2.&nbsp;General Network Configuration
+    </title>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/lfs.css" />
+    <meta name="generator" content="DocBook XSL Stylesheets V1.78.1" />
+    <link rel="stylesheet" href="stylesheets/lfs-print.css" type="text/css"
+    media="print" />
+  </head>
+  <body class="lfs" id="lfs-7.5">
+    <div class="navheader">
+      <h4>
+        Linux From Scratch - 版本 7.5
+      </h4>
+      <h3>
+        第&nbsp;7&nbsp;章&nbsp;Setting Up System Bootscripts
+      </h3>
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="introduction.html" title=
+          "Introduction">上一页</a>
+          <p>
+            Introduction
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="hosts.html" title=
+          "Customizing the /etc/hosts File">下一页</a>
+          <p>
+            Customizing the /etc/hosts File
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="chapter07.html" title=
+          "第&nbsp;7&nbsp;章&nbsp;Setting Up System Bootscripts">上一级</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Linux From Scratch - 版本 7.5">起始页</a>
+        </li>
+      </ul>
+    </div>
+    <div class="sect1" lang="zh-cn" xml:lang="zh-cn">
+      <h1 class="sect1">
+        <a id="ch-scripts-network" name="ch-scripts-network"></a>7.2. General
+        Network Configuration
+      </h1>
+      <p>
+        This section only applies if a network card is to be configured.
+      </p>
+      <p>
+        If a network card will not be used, there is likely no need to create
+        any configuration files relating to network cards. If that is the
+        case, you will need to remove the <code class=
+        "filename">network</code> symlinks from all run-level directories
+        (<code class="filename">/etc/rc.d/rc*.d</code>) after the bootscripts
+        are installed in <a class="xref" href="bootscripts.html" title=
+        "7.6.&nbsp;LFS-Bootscripts-20130821">第&nbsp;7.6&nbsp;节
+        “LFS-Bootscripts-20130821”</a>.
+      </p>
+      <div class="sect2" lang="zh-cn" xml:lang="zh-cn">
+        <h2 class="sect2">
+          <a id="stable-net-names" name="stable-net-names"></a>7.2.1.
+          Creating stable names for network interfaces
+        </h2>
+        <p>
+          If there is only one network interface in the system to be
+          configured, this section is optional, although it will never be
+          wrong to do it. In many cases (e.g. a laptop with a wireless and a
+          wired interface), accomplishing the configuration in this section
+          is necessary.
+        </p>
+        <p>
+          With Udev and modular network drivers, the network interface
+          numbering is not persistent across reboots by default, because the
+          drivers are loaded in parallel and, thus, in random order. For
+          example, on a computer having two network cards made by Intel and
+          Realtek, the network card manufactured by Intel may become
+          <code class="filename">eth0</code> and the Realtek card becomes
+          <code class="filename">eth1</code>. In some cases, after a reboot
+          the cards get renumbered the other way around. To avoid this, Udev
+          comes with a script and some rules to assign stable names to
+          network cards based on their MAC address.
+        </p>
+        <p>
+          The rules were pre-generated in the build instructions for
+          <span class="application">udev (systemd)</span> in the last
+          chapter. Inspect the <code class=
+          "filename">/etc/udev/rules.d/70-persistent-net.rules</code> file,
+          to find out which name was assigned to which network device:
+        </p>
+        <pre class="userinput">
+<kbd class="command">cat /etc/udev/rules.d/70-persistent-net.rules</kbd>
+</pre>
+        <div class="admon note">
+          <img alt="[注意]" src="../images/note.png" />
+          <h3>
+            注意
+          </h3>
+          <p>
+            In some cases such as when MAC addresess have been assigned to a
+            network card manually or in a virtual environment such as Xen,
+            the network rules file may not have been generated because
+            addresses are not consistently assigned. In these cases, just
+            continue to the next section.
+          </p>
+        </div>
+        <p>
+          The file begins with a comment block followed by two lines for each
+          NIC. The first line for each NIC is a commented description showing
+          its hardware IDs (e.g. its PCI vendor and device IDs, if it's a PCI
+          card), along with its driver in parentheses, if the driver can be
+          found. Neither the hardware ID nor the driver is used to determine
+          which name to give an interface; this information is only for
+          reference. The second line is the Udev rule that matches this NIC
+          and actually assigns it a name.
+        </p>
+        <p>
+          All Udev rules are made up of several keys, separated by commas and
+          optional whitespace. This rule's keys and an explanation of each of
+          them are as follows:
+        </p>
+        <div class="itemizedlist">
+          <ul>
+            <li class="listitem">
+              <p>
+                <code class="literal">SUBSYSTEM=="net"</code> - This tells
+                Udev to ignore devices that are not network cards.
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                <code class="literal">ACTION=="add"</code> - This tells Udev
+                to ignore this rule for a uevent that isn't an add ("remove"
+                and "change" uevents also happen, but don't need to rename
+                network interfaces).
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                <code class="literal">DRIVERS=="?*"</code> - This exists so
+                that Udev will ignore VLAN or bridge sub-interfaces (because
+                these sub-interfaces do not have drivers). These
+                sub-interfaces are skipped because the name that would be
+                assigned would collide with their parent devices.
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                <code class="literal">ATTR{address}</code> - The value of
+                this key is the NIC's MAC address.
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                <code class="literal">ATTR{type}=="1"</code> - This ensures
+                the rule only matches the primary interface in the case of
+                certain wireless drivers, which create multiple virtual
+                interfaces. The secondary interfaces are skipped for the same
+                reason that VLAN and bridge sub-interfaces are skipped: there
+                would be a name collision otherwise.
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                <code class="literal">KERNEL=="eth*"</code> - This key was
+                added to the Udev rule generator to handle machines that have
+                multiple network interfaces, all with the same MAC address
+                (the PS3 is one such machine). If the independent interfaces
+                have different basenames, this key will allow Udev to tell
+                them apart. This is generally not necessary for most Linux
+                From Scratch users, but does not hurt.
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                <code class="literal">NAME</code> - The value of this key is
+                the name that Udev will assign to this interface.
+              </p>
+            </li>
+          </ul>
+        </div>
+        <p>
+          The value of <code class="literal">NAME</code> is the important
+          part. Make sure you know which name has been assigned to each of
+          your network cards before proceeding, and be sure to use that
+          <code class="literal">NAME</code> value when creating your
+          configuration files below.
+        </p>
+      </div>
+      <div class="sect2" lang="zh-cn" xml:lang="zh-cn">
+        <h2 class="sect2">
+          7.2.2. Creating Network Interface Configuration Files
+        </h2>
+        <p>
+          Which interfaces are brought up and down by the network script
+          depends on the files in <code class=
+          "filename">/etc/sysconfig/</code>. This directory should contain a
+          file for each interface to be configured, such as <code class=
+          "filename">ifconfig.xyz</code>, where <span class=
+          "quote">“<span class="quote">xyz</span>”</span> is meaningful to
+          the administrator such as the device name (e.g. eth0). Inside this
+          file are attributes to this interface, such as its IP address(es),
+          subnet masks, and so forth. It is necessary that the stem of the
+          filename be <span class="emphasis"><em>ifconfig</em></span>.
+        </p>
+        <p>
+          The following command creates a sample file for the <span class=
+          "emphasis"><em>eth0</em></span> device with a static IP address:
+        </p>
+        <pre class="userinput">
+<kbd class="command">cd /etc/sysconfig/
+cat &gt; ifconfig.eth0 &lt;&lt; "EOF"
+<code class="literal">ONBOOT=yes
+IFACE=eth0
+SERVICE=ipv4-static
+IP=192.168.1.1
+GATEWAY=192.168.1.2
+PREFIX=24
+BROADCAST=192.168.1.255</code>
+EOF</kbd>
+</pre>
+        <p>
+          The values of these variables must be changed in every file to
+          match the proper setup.
+        </p>
+        <p>
+          If the <code class="envar">ONBOOT</code> variable is set to
+          <span class="quote">“<span class="quote">yes</span>”</span> the
+          network script will bring up the Network Interface Card (NIC)
+          during booting of the system. If set to anything but <span class=
+          "quote">“<span class="quote">yes</span>”</span> the NIC will be
+          ignored by the network script and not be automatically brought up.
+          The interface can be manually started or stopped with the
+          <span class="command"><strong>ifup</strong></span> and <span class=
+          "command"><strong>ifdown</strong></span> commands.
+        </p>
+        <p>
+          The <code class="envar">IFACE</code> variable defines the interface
+          name, for example, eth0. It is required for all network device
+          configuration files.
+        </p>
+        <p>
+          The <code class="envar">SERVICE</code> variable defines the method
+          used for obtaining the IP address. The LFS-Bootscripts package has
+          a modular IP assignment format, and creating additional files in
+          the <code class="filename">/lib/services/</code> directory allows
+          other IP assignment methods. This is commonly used for Dynamic Host
+          Configuration Protocol (DHCP), which is addressed in the BLFS book.
+        </p>
+        <p>
+          The <code class="envar">GATEWAY</code> variable should contain the
+          default gateway IP address, if one is present. If not, then comment
+          out the variable entirely.
+        </p>
+        <p>
+          The <code class="envar">PREFIX</code> variable contains the number
+          of bits used in the subnet. Each octet in an IP address is 8 bits.
+          If the subnet's netmask is 255.255.255.0, then it is using the
+          first three octets (24 bits) to specify the network number. If the
+          netmask is 255.255.255.240, it would be using the first 28 bits.
+          Prefixes longer than 24 bits are commonly used by DSL and
+          cable-based Internet Service Providers (ISPs). In this example
+          (PREFIX=24), the netmask is 255.255.255.0. Adjust the <code class=
+          "envar">PREFIX</code> variable according to your specific subnet.
+          If omitted, the PREFIX defaults to 24.
+        </p>
+        <p>
+          For more information see the <span class=
+          "command"><strong>ifup</strong></span> man page.
+        </p>
+      </div>
+      <div class="sect2" lang="zh-cn" xml:lang="zh-cn">
+        <h2 class="sect2">
+          <a id="resolv.conf" name="resolv.conf"></a>7.2.3. Creating the
+          /etc/resolv.conf File
+        </h2>
+        <p>
+          If the system is going to be connected to the Internet, it will
+          need some means of Domain Name Service (DNS) name resolution to
+          resolve Internet domain names to IP addresses, and vice versa. This
+          is best achieved by placing the IP address of the DNS server,
+          available from the ISP or network administrator, into <code class=
+          "filename">/etc/resolv.conf</code>. Create the file by running the
+          following:
+        </p>
+        <pre class="userinput">
+<kbd class="command">cat &gt; /etc/resolv.conf &lt;&lt; "EOF"
+<code class="literal"># Begin /etc/resolv.conf
+
+domain <em class="replaceable"><code>&lt;Your Domain Name&gt;</code></em>
+nameserver <em class=
+"replaceable"><code>&lt;IP address of your primary nameserver&gt;</code></em>
+nameserver <em class=
+"replaceable"><code>&lt;IP address of your secondary nameserver&gt;</code></em>
+
+# End /etc/resolv.conf</code>
+EOF</kbd>
+</pre>
+        <p>
+          The <code class="varname">domain</code> statement can be omitted or
+          replaced with a <code class="varname">search</code> statement. See
+          the man page for resolv.conf for more details.
+        </p>
+        <p>
+          Replace <em class="replaceable"><code>&lt;IP address of the
+          nameserver&gt;</code></em> with the IP address of the DNS most
+          appropriate for the setup. There will often be more than one entry
+          (requirements demand secondary servers for fallback capability). If
+          you only need or want one DNS server, remove the second
+          <span class="emphasis"><em>nameserver</em></span> line from the
+          file. The IP address may also be a router on the local network.
+        </p>
+        <div class="admon note">
+          <img alt="[注意]" src="../images/note.png" />
+          <h3>
+            注意
+          </h3>
+          <p>
+            The Google Public IPv4 DNS addresses are 8.8.8.8 and 8.8.4.4.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="navfooter">
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="introduction.html" title=
+          "Introduction">上一页</a>
+          <p>
+            Introduction
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="hosts.html" title=
+          "Customizing the /etc/hosts File">下一页</a>
+          <p>
+            Customizing the /etc/hosts File
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="chapter07.html" title=
+          "第&nbsp;7&nbsp;章&nbsp;Setting Up System Bootscripts">上一级</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Linux From Scratch - 版本 7.5">起始页</a>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>
