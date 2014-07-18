@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+  "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../general.ent">
+  %general-entities;
+]>
+
+<sect1 id="ch-tools-introduction">
+  <?dbhtml filename="introduction.html"?>
+
+  <title>介绍</title>
+
+  <para>本章展示如何构建一个最小的Linux系统。这个系统将包括足够的工具来构建一个在<xref linkend="chapter-building-system"/>中提及的最终的LFS系统，并且使工作环境比一个最小系统更加便捷。</para>
+
+  <para>构建最小系统中有两个步骤。第一步是构建一个新的、独立于宿主的工具链(编译器、汇编器、链接器、库和几种有用的工具)。第二步是是使用这些工具链来构建其他必要的工具。</para>
+
+  <para>本章中编译的文件将被安装到 <filename class="directory">$LFS/tools</filename> 目录来保证他们与下一章要安装的文件和宿主开发目录分离。由于这里编译的程序包是临时的，所以我们不希望他们污染了快成型的 LFS 系统。</para>
+
+</sect1>
