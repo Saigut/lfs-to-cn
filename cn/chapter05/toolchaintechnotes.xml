@@ -45,7 +45,7 @@ checking what linker to use... /tools/i686-lfs-linux-gnu/bin/ld</computeroutput>
 
   <para>对于上面提到的原因，这很重要。这也说明了GCC的配置脚本不会搜索PATH目录来寻找要用的工具。然而，在实际的 <command>gcc</command> 操作过程中，同样的搜索路径不必被使用。要找出 <command>gcc</command> 所使用的标准链接器，只要运行： <userinput>gcc -print-prog-name=ld</userinput> 。</para>
 
-  <para>详细信息可以通过在编译一个伪程序时传递 <parameter>-v<parameter> 参数给 <command>gcc</command> 来获得。例如， <userinput>gcc -v dummy.c</userinput> 可以显示有关预处理、编译以及汇编阶段的详细信息，还包括了 <command>gcc</command> 的搜索路径以及其顺序。</para>
+  <para>详细信息可以通过在编译一个伪程序时传递 <parameter>-v</parameter> 参数给 <command>gcc</command> 来获得。例如， <userinput>gcc -v dummy.c</userinput> 可以显示有关预处理、编译以及汇编阶段的详细信息，还包括了 <command>gcc</command> 的搜索路径以及其顺序。</para>
 
   <para>接下来要安装的是干净的 Linux API 头文件。这些头文件将允许标准 C 库（Glibc）与 Linux内核提供的特性交互。</para>
 
@@ -53,7 +53,7 @@ checking what linker to use... /tools/i686-lfs-linux-gnu/bin/ld</computeroutput>
 
   <para>在第二遍构建 Binutils 的过程中，我们可以利用 <parameter>--with-lib-path</parameter> 配置开关来控制 <command>ld</command> 的库搜索路径。</para>
 
-  <para>对于 GCC 的第二遍构建，也需要调整它的源码来告诉 GCC 使用新的动态链接器。这一步的错误会导致 GCC 程序本身会把宿主系统 <filename class="directory">/lib</filename> 目录中动态链接器的名称嵌入进来，这样会有悖于与宿主分离的目标。从这时起，核心工具链就自我包含和自我寄宿了。余下的 <xref linkend="chapter-temporary-tools"/> 的软件包的构建将依赖于 <filename classs="directory">/tools</filename> 中新的Glibc。</para>
+  <para>对于 GCC 的第二遍构建，也需要调整它的源码来告诉 GCC 使用新的动态链接器。这一步的错误会导致 GCC 程序本身会把宿主系统 <filename class="directory">/lib</filename> 目录中动态链接器的名称嵌入进来，这样会有悖于与宿主分离的目标。从这时起，核心工具链就自我包含和自我寄宿了。余下的 <xref linkend="chapter-temporary-tools"/> 的软件包的构建将依赖于 <filename class="directory">/tools</filename> 中新的Glibc。</para>
 
   <para>在 <xref linkend="chapter-building-system"/> 中进入 chroot 环境时，第一个重要的要安装的软件包是 Glibc ，这是由于上面所提到的它自给自足的天性。一旦 Glibc 被安装入 <filename class="directory">/usr</filename> ，我们将进行一个快速的工具链默认配置的修改，然后继续构建 LFS 系统的余下部分。</para>
 
