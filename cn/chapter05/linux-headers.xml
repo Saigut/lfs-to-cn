@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+  "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../general.ent">
+  %general-entities;
+]>
+
+<sect1 id="ch-tools-linux-headers" role="wrap">
+  <?dbhtml filename="linux-headers.html"?>
+
+  <sect1info condition="script">
+    <productname>linux</productname>
+    <productnumber>&linux-version;</productnumber>
+    <address>&linux-url;</address>
+  </sect1info>
+
+  <title>Linux-&linux-version; API Headers</title>
+
+  <indexterm zone="ch-tools-linux-headers">
+    <primary sortas="a-Linux">Linux</primary>
+    <secondary>tools, API headers</secondary>
+  </indexterm>
+
+  <sect2 role="package">
+    <title/>
+
+    <xi:include xmlns:xi="http://www.w3.org/2001/XInclude"
+    href="../chapter06/linux-headers.xml"
+    xpointer="xpointer(/sect1/sect2[1]/para[1])"/>
+
+    <segmentedlist>
+      <segtitle>&buildtime;</segtitle>
+      <segtitle>&diskspace;</segtitle>
+
+      <seglistitem>
+        <seg>&linux-headers-ch5-sbu;</seg>
+        <seg>&linux-headers-ch5-du;</seg>
+      </seglistitem>
+    </segmentedlist>
+
+  </sect2>
+
+  <sect2 role="installation">
+    <title>安装 Linux API Headers</title>
+
+    <para>Linux 内核需要暴露应用程序接口（API）给系统的 C 库（LFS 中是 Glibc）使用。这通过清洁 Linux 源码包中的各种头文件来完成。</para>
+
+    <para>要确保不存在以前产生的文件和依赖：</para>
+
+<screen><userinput remap="pre">make mrproper</userinput></screen>
+
+    <para>现在从源代码中测试并提取用户可见的内核头文件。它们被放在另外的一个目录中，然后被复制到需要的位置，因为提取过程会移除目标目录中的所有文件。</para>
+
+<screen><userinput remap="make">make headers_check
+make INSTALL_HDR_PATH=dest headers_install
+</userinput><userinput remap="install">cp -rv dest/include/* /tools/include</userinput></screen>
+
+  </sect2>
+
+  <sect2 role="content">
+    <title/>
+
+    <para>这个包的详细信息位于 <xref linkend="contents-linux-headers" role="."/>。</para>
+
+  </sect2>
+
+</sect1>
