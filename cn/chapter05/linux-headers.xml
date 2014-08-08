@@ -14,11 +14,11 @@
     <address>&linux-url;</address>
   </sect1info>
 
-  <title>Linux-&linux-version; API Headers</title>
+  <title>Linux-&linux-version; API 头文件</title>
 
   <indexterm zone="ch-tools-linux-headers">
     <primary sortas="a-Linux">Linux</primary>
-    <secondary>tools, API headers</secondary>
+    <secondary>tools, API 头文件</secondary>
   </indexterm>
 
   <sect2 role="package">
@@ -41,7 +41,7 @@
   </sect2>
 
   <sect2 role="installation">
-    <title>安装 Linux API Headers</title>
+    <title>安装 Linux API 头文件</title>
 
     <para>Linux 内核需要暴露应用程序接口（API）给系统的 C 库（LFS 中是 Glibc）使用。这通过清洁 Linux 源码包中的各种头文件来完成。</para>
 
