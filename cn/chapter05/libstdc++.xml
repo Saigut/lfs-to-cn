@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+  "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../general.ent">
+  %general-entities;
+]>
+
+<sect1 id="ch-tools-libstdcpp" role="wrap">
+  <?dbhtml filename="gcc-libstdc++.html"?>
+
+  <sect1info condition="script">
+    <productname>libstdc++</productname>
+    <productnumber>&gcc-version;</productnumber>
+    <address>&gcc-url;</address>
+  </sect1info>
+
+  <title>Libstdc++-&gcc-version;</title>
+
+  <indexterm zone="ch-tools-libstdcpp">
+    <primary sortas="a-GCC">GCC</primary>
+    <secondary>工具链, libstdc++</secondary>
+  </indexterm>
+
+  <sect2 role="package">
+    <title/>
+
+    <para>Libstdc++ 是标准 C++ 库。g++ 编译器需要它来进行正确的操作。</para>
+
+    <segmentedlist>
+      <segtitle>&buildtime;</segtitle>
+      <segtitle>&diskspace;</segtitle>
+
+      <seglistitem>
+        <seg>&libstdcpp-ch5-sbu;</seg>
+        <seg>&libstdcpp-ch5-du;</seg>
+      </seglistitem>
+    </segmentedlist>
+
+  </sect2>
+
+  <sect2 role="installation">
+    <title>安装 Libstdc++</title>
+
+    <note>
+      <para><application>Libstdc++</application> 是 GCC 源文件中的一部分。你应该先解包 GCC，然后切换到 <filename>gcc-&gcc-version;</filename> 目录。</para>
+    </note>
+
+    <para>为 Libstdc++ 创建一个目录，然后进入它：</para>
+
+<screen><userinput remap="pre">mkdir -pv ../gcc-build
+cd ../gcc-build</userinput></screen>
+
+    <para>准备编译 Libstdc++：</para>
+
+<screen><userinput remap="configure">../gcc-&gcc-version;/libstdc++-v3/configure \
+    --host=$LFS_TGT                 \
+    --prefix=/tools                 \
+    --disable-multilib              \
+    --disable-shared                \
+    --disable-nls                   \
+    --disable-libstdcxx-threads     \
+    --disable-libstdcxx-pch         \
+    --with-gxx-include-dir=/tools/$LFS_TGT/include/c++/&gcc-version;</userinput></screen>
+
+    <variablelist>
+      <title>配置选项的含义：</title>
+
+      <varlistentry>
+        <term><parameter>--host=...</parameter></term>
+        <listitem>
+          <para>使用我们刚构建的交叉编译器，而不是用 <filename>/usr/bin</filename> 里的。</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><parameter>--disable-libstdcxx-threads</parameter></term>
+        <listitem>
+          <para>由于我们没有构建线程 C 库，线程 C++ 库也就不能被构建。</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><parameter>--disable-libstdcxx-pch</parameter></term>
+        <listitem>
+          <para>这个选项防止安装预编译的 include 文件，目前不需要它们。</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><parameter>--with-gxx-include-dir=/tools/include/c++/&gcc-version;</parameter></term>
+        <listitem>
+          <para>这是 C++ 编译器查找标准 include 文件的位置。在普通的构建中，这个信息从顶级目录传送给 Libstdc++ 的 <command>configure</command> 选项。而在我们的情况下，这个信息必须明确地给出。</para>
+        </listitem>
+      </varlistentry>
+
+    </variablelist>
+
+    <para>编译 libstdc++，运行：</para>
+
+<screen><userinput remap="make">make</userinput></screen>
+
+    <para>安装库：</para>
+
+<screen><userinput remap="install">make install</userinput></screen>
+
+  </sect2>
+
+  <sect2 role="content">
+    <title/>
+
+    <para>这个包的详细信息位于 <xref linkend="contents-gcc" role="."/></para>
+
+  </sect2>
+
+</sect1>
