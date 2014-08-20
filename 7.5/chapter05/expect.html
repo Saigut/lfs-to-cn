@@ -48,13 +48,12 @@
       </h1>
       <div class="package" lang="zh-cn" xml:lang="zh-cn">
         <p>
-          The Expect package contains a program for carrying out scripted
-          dialogues with other interactive programs.
+          Expect 程序包包含一个用于与其他交互程序进行脚本对话的程序。
         </p>
         <div class="segmentedlist">
           <div class="seglistitem">
             <div class="seg">
-              <strong class="segtitle">预计编译时间:</strong> <span class=
+              <strong class="segtitle">预计构建时间:</strong> <span class=
               "segbody">0.1 SBU</span>
             </div>
             <div class="seg">
@@ -66,21 +65,19 @@
       </div>
       <div class="installation" lang="zh-cn" xml:lang="zh-cn">
         <h2 class="sect2">
-          5.12.1. Installation of Expect
+          5.12.1. 安装 Expect
         </h2>
         <p>
-          First, force Expect's configure script to use <code class=
-          "filename">/bin/stty</code> instead of a <code class=
-          "filename">/usr/local/bin/stty</code> it may find on the host
-          system. This will ensure that our test suite tools remain sane for
-          the final builds of our toolchain:
+          首先，强制 Expect 的 configure 脚本使用 <code class=
+          "filename">/bin/stty</code> 而不是可能在宿主上找到的 <code class=
+          "filename">/usr/local/bin/stty</code>。这将确保我们的测试套件工具在最后构建工具链时可用：
         </p>
         <pre class="userinput">
 <kbd class="command">cp -v configure{,.orig}
 sed 's:/usr/local/bin:/bin:' configure.orig &gt; configure</kbd>
 </pre>
         <p>
-          Now prepare Expect for compilation:
+          现在准备编译 Expect:
         </p>
         <pre class="userinput">
 <kbd class="command">./configure --prefix=/tools       \
@@ -89,7 +86,7 @@ sed 's:/usr/local/bin:/bin:' configure.orig &gt; configure</kbd>
 </pre>
         <div class="variablelist">
           <p class="title">
-            <strong>The meaning of the configure options:</strong>
+            <strong>配置选项的含义：</strong>
           </p>
           <dl class="variablelist">
             <dt>
@@ -98,9 +95,7 @@ sed 's:/usr/local/bin:/bin:' configure.orig &gt; configure</kbd>
             </dt>
             <dd>
               <p>
-                This ensures that the configure script finds the Tcl
-                installation in the temporary tools location instead of
-                possibly locating an existing one on the host system.
+                此项确保配置脚本找到安装于临时工具位置的 Tcl 而不是宿主上可能存在的另一个。
               </p>
             </dd>
             <dt>
@@ -109,45 +104,37 @@ sed 's:/usr/local/bin:/bin:' configure.orig &gt; configure</kbd>
             </dt>
             <dd>
               <p>
-                This explicitly tells Expect where to find Tcl's internal
-                headers. Using this option avoids conditions where
-                <span class="command"><strong>configure</strong></span> fails
-                because it cannot automatically discover the location of
-                Tcl's headers.
+                此选项直接告诉 Expect 去哪里找 Tcl 的内部头文件。使用这个选项防止出现因为无法自动找到 Tcl
+                头文件的位置而使 <span class=
+                "command"><strong>configure</strong></span> 失败的情况。
               </p>
             </dd>
           </dl>
         </div>
         <p>
-          Build the package:
+          构建软件包：
         </p>
         <pre class="userinput">
 <kbd class="command">make</kbd>
 </pre>
         <p>
-          Compilation is now complete. As discussed earlier, running the test
-          suite is not mandatory for the temporary tools here in this
-          chapter. To run the Expect test suite anyway, issue the following
-          command:
+          编译现在完成了。前面讨论过，没有必要在这一章中给临时工具运行测试套件。如果无论如何要运行 Expect 的测试套件，执行以下指令：
         </p>
         <pre class="userinput">
 <kbd class="command">make test</kbd>
 </pre>
         <p>
-          Note that the Expect test suite is known to experience failures
-          under certain host conditions that are not within our control.
-          Therefore, test suite failures here are not surprising and are not
-          considered critical.
+          注意 Expect 的测试套件已知会在某些我们无法控制的宿主条件下无法通过。因此这里出现测试套件失败不要惊奇，那无关紧要。
         </p>
         <p>
-          Install the package:
+          安装软件包：
         </p>
         <pre class="userinput">
 <kbd class="command">make SCRIPTS="" install</kbd>
 </pre>
         <div class="variablelist">
           <p class="title">
-            <strong>The meaning of the make parameter:</strong>
+            <strong>make 参数的含义：</strong>
           </p>
           <dl class="variablelist">
             <dt>
@@ -156,8 +143,7 @@ sed 's:/usr/local/bin:/bin:' configure.orig &gt; configure</kbd>
             </dt>
             <dd>
               <p>
-                This prevents installation of the supplementary Expect
-                scripts, which are not needed.
+                此项防止安装不需要的补充 Expect 脚本。
               </p>
             </dd>
           </dl>
@@ -165,24 +151,24 @@ sed 's:/usr/local/bin:/bin:' configure.orig &gt; configure</kbd>
       </div>
       <div class="content" lang="zh-cn" xml:lang="zh-cn">
         <h2 class="sect2">
-          <a id="contents-expect" name="contents-expect"></a>5.12.2. Contents
-          of Expect
+          <a id="contents-expect" name="contents-expect"></a>5.12.2. Expect
+          的内容
         </h2>
         <div class="segmentedlist">
           <div class="seglistitem">
             <div class="seg">
-              <strong class="segtitle">Installed program:</strong>
-              <span class="segbody">expect</span>
+              <strong class="segtitle">安装的程序:</strong> <span class=
+              "segbody">expect</span>
             </div>
             <div class="seg">
-              <strong class="segtitle">Installed library:</strong>
-              <span class="segbody">libexpect-5.45.so</span>
+              <strong class="segtitle">安装的库:</strong> <span class=
+              "segbody">libexpect-5.45.so</span>
             </div>
           </div>
         </div>
         <div class="variablelist">
           <h3>
-            Short Descriptions
+            简介
           </h3>
           <table border="0" class="variablelist">
             <colgroup>
@@ -200,8 +186,7 @@ sed 's:/usr/local/bin:/bin:' configure.orig &gt; configure</kbd>
                 </td>
                 <td>
                   <p>
-                    Communicates with other interactive programs according to
-                    a script
+                    依据脚本与其他交互程序交流
                   </p>
                 </td>
               </tr>
@@ -215,9 +200,7 @@ sed 's:/usr/local/bin:/bin:' configure.orig &gt; configure</kbd>
                 </td>
                 <td>
                   <p>
-                    Contains functions that allow Expect to be used as a Tcl
-                    extension or to be used directly from C or C++ (without
-                    Tcl)
+                    包含一些函数，允许 Expect 作为 Tcl 的扩展或者直接从 C 或 C++ 中调用 (不使用 Tcl)
                   </p>
                 </td>
               </tr>
