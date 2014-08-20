@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+  "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../general.ent">
+  %general-entities;
+]>
+
+<sect1 id="ch-tools-expect" role="wrap">
+  <?dbhtml filename="expect.html"?>
+
+  <sect1info condition="script">
+    <productname>expect</productname>
+    <productnumber>&expect-version;</productnumber>
+    <address>&expect-url;</address>
+  </sect1info>
+
+  <title>Expect-&expect-version;</title>
+
+  <indexterm zone="ch-tools-expect">
+    <primary sortas="a-Expect">Expect</primary>
+  </indexterm>
+
+  <sect2 role="package">
+    <title/>
+
+    <para>Expect 程序包包含一个用于与其他交互程序进行脚本对话的程序。</para>
+
+    <segmentedlist>
+      <segtitle>&buildtime;</segtitle>
+      <segtitle>&diskspace;</segtitle>
+
+      <seglistitem>
+        <seg>&expect-ch5-sbu;</seg>
+        <seg>&expect-ch5-du;</seg>
+      </seglistitem>
+    </segmentedlist>
+
+  </sect2>
+
+  <sect2 role="installation">
+    <title>安装 Expect</title>
+
+    <para>首先，强制 Expect 的 configure 脚本使用 <filename>/bin/stty</filename> 而不是可能在宿主上找到的 <filename>/usr/local/bin/stty</filename>。这将确保我们的测试套件工具在最后构建工具链时可用：</para>
+
+<screen><userinput remap="pre">cp -v configure{,.orig}
+sed 's:/usr/local/bin:/bin:' configure.orig &gt; configure</userinput></screen>
+
+    <para>现在准备编译 Expect:</para>
+
+<screen><userinput remap="configure">./configure --prefix=/tools       \
+            --with-tcl=/tools/lib \
+            --with-tclinclude=/tools/include</userinput></screen>
+
+    <variablelist>
+      <title>配置选项的含义：</title>
+
+      <varlistentry>
+        <term><parameter>--with-tcl=/tools/lib</parameter></term>
+        <listitem>
+          <para>此项确保配置脚本找到安装于临时工具位置的 Tcl 而不是宿主上可能存在的另一个。</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><parameter>--with-tclinclude=/tools/include</parameter></term>
+        <listitem>
+          <para>此选项直接告诉 Expect 去哪里找 Tcl 的内部头文件。使用这个选项防止出现因为无法自动找到 Tcl 头文件的位置而使 <command>configure</command> 失败的情况。</para>
+        </listitem>
+      </varlistentry>
+
+    </variablelist>
+
+    <para>构建软件包：</para>
+
+<screen><userinput remap="make">make</userinput></screen>
+
+    <para>编译现在完成了。前面讨论过，没有必要在这一章中给临时工具运行测试套件。如果无论如何要运行 Expect 的测试套件，执行以下指令：</para>
+
+<screen><userinput remap="test">make test</userinput></screen>
+
+    <para>注意 Expect 的测试套件已知会在某些我们无法控制的宿主条件下无法通过。因此这里出现测试套件失败不要惊奇，那无关紧要。</para>
+
+    <para>安装软件包：</para>
+
+<screen><userinput remap="install">make SCRIPTS="" install</userinput></screen>
+
+    <variablelist>
+      <title>make 参数的含义：</title>
+
+      <varlistentry>
+        <term><parameter>SCRIPTS=""</parameter></term>
+        <listitem>
+          <para>此项防止安装不需要的补充 Expect 脚本。</para>
+        </listitem>
+      </varlistentry>
+
+    </variablelist>
+
+  </sect2>
+
+  <sect2 id="contents-expect" role="content">
+    <title>Expect 的内容</title>
+
+    <segmentedlist>
+      <segtitle>安装的程序</segtitle>
+      <segtitle>安装的库</segtitle>
+
+      <seglistitem>
+        <seg>expect</seg>
+        <seg>libexpect-&expect-lib-version;.so</seg>
+      </seglistitem>
+    </segmentedlist>
+
+    <variablelist>
+      <bridgehead renderas="sect3">简介</bridgehead>
+      <?dbfo list-presentation="list"?>
+      <?dbhtml list-presentation="table"?>
+
+      <varlistentry id="expect">
+        <term><command>expect</command></term>
+        <listitem>
+          <para>依据脚本与其他交互程序交流</para>
+          <indexterm zone="ch-tools-expect expect">
+            <primary sortas="b-expect">expect</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="libexpect">
+        <term><filename class="libraryfile">libexpect-&expect-lib-version;.so</filename></term>
+        <listitem>
+          <para>包含一些函数，允许 Expect 作为 Tcl 的扩展或者直接从 C 或 C++ 中调用 (不使用 Tcl)</para>
+          <indexterm zone="ch-tools-expect libexpect">
+            <primary sortas="c-libexpect-&expect-lib-version;">libexpect-&expect-lib-version;</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+    </variablelist>
+
+  </sect2>
+
+</sect1>
