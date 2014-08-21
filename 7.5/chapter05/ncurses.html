@@ -67,10 +67,10 @@
       </div>
       <div class="installation" lang="zh-cn" xml:lang="zh-cn">
         <h2 class="sect2">
-          5.15.1. Installation of Ncurses
+          5.15.1. 安装 Ncurses
         </h2>
         <p>
-          Prepare Ncurses for compilation:
+          准备编译 Ncurses：
         </p>
         <pre class="userinput">
 <kbd class="command">./configure --prefix=/tools \
@@ -82,7 +82,7 @@
 </pre>
         <div class="variablelist">
           <p class="title">
-            <strong>The meaning of the configure options:</strong>
+            <strong>配置选项的含义：</strong>
           </p>
           <dl class="variablelist">
             <dt>
@@ -91,10 +91,8 @@
             </dt>
             <dd>
               <p>
-                This ensures that Ncurses does not build support for the Ada
-                compiler which may be present on the host but will not be
-                available once we enter the <span class=
-                "command"><strong>chroot</strong></span> environment.
+                此项确保 Ncurses 不给宿主上可能存在但进入 <span class=
+                "command"><strong>chroot</strong></span> 环境后不可用的 Ada 编译器编制支持。
               </p>
             </dd>
             <dt>
@@ -103,11 +101,10 @@
             </dt>
             <dd>
               <p>
-                This tells Ncurses to install its header files into
-                <code class="filename">/tools/include</code>, instead of
-                <code class="filename">/tools/include/ncurses</code>, to
-                ensure that other packages can find the Ncurses headers
-                successfully.
+                此项告诉 Ncurses 安装头文件至 <code class=
+                "filename">/tools/include</code> 而不是 <code class=
+                "filename">/tools/include/ncurses</code>，以确保其他程序包能够成功找到
+                Ncurses 头文件。
               </p>
             </dd>
             <dt>
@@ -116,33 +113,27 @@
             </dt>
             <dd>
               <p>
-                This switch causes wide-character libraries (e.g.,
-                <code class="filename">libncursesw.so.5.9</code>) to be built
-                instead of normal ones (e.g., <code class=
-                "filename">libncurses.so.5.9</code>). These wide-character
-                libraries are usable in both multibyte and traditional 8-bit
-                locales, while normal libraries work properly only in 8-bit
-                locales. Wide-character and normal libraries are
-                source-compatible, but not binary-compatible.
+                这项导致构建宽字符库（比如，<code class=
+                "filename">libncursesw.so.5.9</code>），而不是通常的库（比如，<code class=
+                "filename">libncurses.so.5.9</code>）。这些宽字符库在多字节和传统的 8-bit
+                locale 中都可用，而通常的库只能在 8-bit locale
+                中工作。宽字符和通常的库是源代码兼容的，但不是二进制兼容的。
               </p>
             </dd>
           </dl>
         </div>
         <p>
-          Compile the package:
+          编译软件包：
         </p>
         <pre class="userinput">
 <kbd class="command">make</kbd>
 </pre>
         <p>
-          This package has a test suite, but it can only be run after the
-          package has been installed. The tests reside in the <code class=
-          "filename">test/</code> directory. See the <code class=
-          "filename">README</code> file in that directory for further
-          details.
+          此程序包带有测试套件，但是只能在安装后运行。这些测试位于 <code class="filename">test/</code>
+          目录中。查看该目录中的 <code class="filename">README</code> 文件获取更多细节。
         </p>
         <p>
-          Install the package:
+          安装软件包：
         </p>
         <pre class="userinput">
 <kbd class="command">make install</kbd>
@@ -150,7 +141,7 @@
       </div>
       <div class="content" lang="zh-cn" xml:lang="zh-cn">
         <p>
-          Details on this package are located in <a class="xref" href=
+          这个包的详细信息位于 <a class="xref" href=
           "../chapter06/ncurses.html#contents-ncurses" title=
           "6.21.2.&nbsp;Contents of Ncurses">第&nbsp;6.21.2&nbsp;节 “Contents
           of Ncurses.”</a>

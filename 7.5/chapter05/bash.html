@@ -65,24 +65,23 @@
       </div>
       <div class="installation" lang="zh-cn" xml:lang="zh-cn">
         <h2 class="sect2">
-          5.16.1. Installation of Bash
+          5.16.1. 安装 Bash
         </h2>
         <p>
-          First, apply the following patch to fix various bugs that have been
-          addressed upstream:
+          首先应用以下补丁修复几个在上游提出的漏洞：
         </p>
         <pre class="userinput">
 <kbd class="command">patch -Np1 -i ../bash-4.2-fixes-12.patch</kbd>
 </pre>
         <p>
-          Prepare Bash for compilation:
+          准备编译 Bash：
         </p>
         <pre class="userinput">
 <kbd class="command">./configure --prefix=/tools --without-bash-malloc</kbd>
 </pre>
         <div class="variablelist">
           <p class="title">
-            <strong>The meaning of the configure options:</strong>
+            <strong>配置选项的含义：</strong>
           </p>
           <dl class="variablelist">
             <dt>
@@ -91,39 +90,34 @@
             </dt>
             <dd>
               <p>
-                This option turns off the use of Bash's memory allocation
-                (<code class="function">malloc</code>) function which is
-                known to cause segmentation faults. By turning this option
-                off, Bash will use the <code class="function">malloc</code>
-                functions from Glibc which are more stable.
+                此选项关闭 Bash 的内存分配 (<code class="function">malloc</code>)
+                函数，它已知会导致段错误。通过关闭这个选项，Bash 就会使用 Glibc 的 <code class=
+                "function">malloc</code> 函数，它们更稳定。
               </p>
             </dd>
           </dl>
         </div>
         <p>
-          Compile the package:
+          编译软件包：
         </p>
         <pre class="userinput">
 <kbd class="command">make</kbd>
 </pre>
         <p>
-          Compilation is now complete. As discussed earlier, running the test
-          suite is not mandatory for the temporary tools here in this
-          chapter. To run the Bash test suite anyway, issue the following
-          command:
+          编译现在完成了。前面讨论过，没有必要在这一章中给临时工具运行测试套件。如果无论如何要运行 Bash 的测试套件，执行以下指令：
         </p>
         <pre class="userinput">
 <kbd class="command">make tests</kbd>
 </pre>
         <p>
-          Install the package:
+          安装软件包：
         </p>
         <pre class="userinput">
 <kbd class="command">make install</kbd>
 </pre>
         <p>
-          Make a link for the programs that use <span class=
-          "command"><strong>sh</strong></span> for a shell:
+          为使用 <span class="command"><strong>sh</strong></span> 作为 Shell
+          的程序做一个链接：
         </p>
         <pre class="userinput">
 <kbd class="command">ln -sv bash /tools/bin/sh</kbd>
@@ -131,7 +125,7 @@
       </div>
       <div class="content" lang="zh-cn" xml:lang="zh-cn">
         <p>
-          Details on this package are located in <a class="xref" href=
+          这个包的详细信息位于 <a class="xref" href=
           "../chapter06/bash.html#contents-bash" title=
           "6.33.2.&nbsp;Contents of Bash">第&nbsp;6.33.2&nbsp;节 “Contents of
           Bash.”</a>

@@ -48,7 +48,7 @@
       </h1>
       <div class="package" lang="zh-cn" xml:lang="zh-cn">
         <p>
-          Check is a unit testing framework for C.
+          Check 是一个 C 的单元测试框架。
         </p>
         <div class="segmentedlist">
           <div class="seglistitem">
@@ -65,17 +65,17 @@
       </div>
       <div class="installation" lang="zh-cn" xml:lang="zh-cn">
         <h2 class="sect2">
-          5.14.1. Installation of Check
+          5.14.1. 安装 Check
         </h2>
         <p>
-          Prepare Check for compilation:
+          准备编译 Check：
         </p>
         <pre class="userinput">
 <kbd class="command">PKG_CONFIG= ./configure --prefix=/tools</kbd>
 </pre>
         <div class="variablelist">
           <p class="title">
-            <strong>The meaning of the configure parameter:</strong>
+            <strong>配置参数含义：</strong>
           </p>
           <dl class="variablelist">
             <dt>
@@ -84,35 +84,29 @@
             </dt>
             <dd>
               <p>
-                This tells the configure script to ignore any pkg-config
-                options that may cause the system to try to link with
-                libraries not in the <code class="filename">/tools</code>
-                directory.
+                此项告诉 configure 脚本，忽略任何可能让系统链接到 <code class=
+                "filename">/tools</code> 目录之外的库的 pkg-config 选项。
               </p>
             </dd>
           </dl>
         </div>
         <p>
-          Build the package:
+          构建软件包：
         </p>
         <pre class="userinput">
 <kbd class="command">make</kbd>
 </pre>
         <p>
-          Compilation is now complete. As discussed earlier, running the test
-          suite is not mandatory for the temporary tools here in this
-          chapter. To run the Check test suite anyway, issue the following
-          command:
+          编译现在完成了。前面讨论过，没有必要在这一章中给临时工具运行测试套件。如果无论如何要运行 Check 的测试套件，执行以下指令：
         </p>
         <pre class="userinput">
 <kbd class="command">make check</kbd>
 </pre>
         <p>
-          Note that the Check test suite may take a relatively long (up to 4
-          SBU) time.
+          注意 Check 的测试套件可能占用相对较长的时间 (可达 4 SBU)。
         </p>
         <p>
-          Install the package:
+          安装软件包：
         </p>
         <pre class="userinput">
 <kbd class="command">make install</kbd>
@@ -120,24 +114,23 @@
       </div>
       <div class="content" lang="zh-cn" xml:lang="zh-cn">
         <h2 class="sect2">
-          <a id="contents-check" name="contents-check"></a>5.14.2. Contents
-          of Check
+          <a id="contents-check" name="contents-check"></a>5.14.2. Check 的内容
         </h2>
         <div class="segmentedlist">
           <div class="seglistitem">
             <div class="seg">
-              <strong class="segtitle">Installed program:</strong>
-              <span class="segbody">checkmk</span>
+              <strong class="segtitle">安装的程序:</strong> <span class=
+              "segbody">checkmk</span>
             </div>
             <div class="seg">
-              <strong class="segtitle">Installed library:</strong>
-              <span class="segbody">libcheck.{a,so}</span>
+              <strong class="segtitle">安装的库:</strong> <span class=
+              "segbody">libcheck.{a,so}</span>
             </div>
           </div>
         </div>
         <div class="variablelist">
           <h3>
-            Short Descriptions
+            简介
           </h3>
           <table border="0" class="variablelist">
             <colgroup>
@@ -155,8 +148,7 @@
                 </td>
                 <td>
                   <p>
-                    Awk script for generating C unit tests for use with the
-                    Check unit testing framework
+                    用于为使用 Check 单元测试框架生成 C 单元测试的 Awk 脚本。
                   </p>
                 </td>
               </tr>
@@ -170,8 +162,7 @@
                 </td>
                 <td>
                   <p>
-                    Contains functions that allow Check to be called from a
-                    test program
+                    包含允许 Check 被测试程序调用的函数
                   </p>
                 </td>
               </tr>
