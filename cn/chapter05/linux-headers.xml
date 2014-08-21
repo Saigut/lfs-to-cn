@@ -60,7 +60,7 @@ make INSTALL_HDR_PATH=dest headers_install
   <sect2 role="content">
     <title/>
 
-    <para>这个包的详细信息位于 <xref linkend="contents-linux-headers" role="."/>。</para>
+    <para>这个包的详细信息位于 <xref linkend="contents-linux-headers" role="."/></para>
 
   </sect2>
 

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+  "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../general.ent">
+  %general-entities;
+]>
+
+<sect1 id="ch-tools-ncurses" role="wrap">
+  <?dbhtml filename="ncurses.html"?>
+
+  <sect1info condition="script">
+    <productname>ncurses</productname>
+    <productnumber>&ncurses-version;</productnumber>
+    <address>&ncurses-url;</address>
+  </sect1info>
+
+  <title>Ncurses-&ncurses-version;</title>
+
+  <indexterm zone="ch-tools-ncurses">
+    <primary sortas="a-Ncurses">Ncurses</primary>
+    <secondary>工具链</secondary>
+  </indexterm>
+
+  <sect2 role="package">
+    <title/>
+
+    <xi:include xmlns:xi="http://www.w3.org/2001/XInclude"
+    href="../chapter06/ncurses.xml"
+    xpointer="xpointer(/sect1/sect2[1]/para[1])"/>
+
+    <segmentedlist>
+      <segtitle>&buildtime;</segtitle>
+      <segtitle>&diskspace;</segtitle>
+
+      <seglistitem>
+        <seg>&ncurses-ch5-sbu;</seg>
+        <seg>&ncurses-ch5-du;</seg>
+      </seglistitem>
+    </segmentedlist>
+
+  </sect2>
+
+  <sect2 role="installation">
+    <title>安装 Ncurses</title>
+
+    <para>准备编译 Ncurses：</para>
+
+<screen><userinput remap="configure">./configure --prefix=/tools \
+            --with-shared   \
+            --without-debug \
+            --without-ada   \
+            --enable-widec  \
+            --enable-overwrite</userinput></screen>
+
+    <variablelist>
+      <title>配置选项的含义：</title>
+
+      <varlistentry>
+        <term><parameter>--without-ada</parameter></term>
+        <listitem>
+          <para>此项确保 Ncurses 不给宿主上可能存在但进入 <command>chroot</command> 环境后不可用的 Ada 编译器编制支持。</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><parameter>--enable-overwrite</parameter></term>
+        <listitem>
+          <para>此项告诉 Ncurses 安装头文件至 <filename class="directory">/tools/include</filename> 而不是 <filename class="directory">/tools/include/ncurses</filename>，以确保其他程序包能够成功找到 Ncurses 头文件。</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><parameter>--enable-widec</parameter></term>
+        <listitem>
+          <para>这项导致构建宽字符库（比如，<filename class="libraryfile">libncursesw.so.&ncurses-version;</filename>），而不是通常的库（比如，<filename class="libraryfile">libncurses.so.&ncurses-version;</filename>）。这些宽字符库在多字节和传统的 8-bit locale 中都可用，而通常的库只能在 8-bit locale 中工作。宽字符和通常的库是源代码兼容的，但不是二进制兼容的。</para>
+        </listitem>
+      </varlistentry>
+
+    </variablelist>
+
+    <para>编译软件包：</para>
+
+<screen><userinput remap="make">make</userinput></screen>
+
+    <para>此程序包带有测试套件，但是只能在安装后运行。这些测试位于 <filename class="directory">test/</filename> 目录中。查看该目录中的 <filename>README</filename> 文件获取更多细节。</para>
+
+    <para>安装软件包：</para>
+
+<screen><userinput remap="install">make install</userinput></screen>
+
+  </sect2>
+
+  <sect2 role="content">
+    <title/>
+
+    <para>这个包的详细信息位于 <xref linkend="contents-ncurses" role="."/></para>
+
+  </sect2>
+
+</sect1>

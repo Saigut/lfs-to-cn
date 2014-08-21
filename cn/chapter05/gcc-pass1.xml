@@ -198,7 +198,7 @@ cd ../gcc-build</userinput></screen>
   <sect2 role="content">
     <title/>
 
-    <para>这个包的详细信息位于 <xref linkend="contents-gcc" role="."/>。</para>
+    <para>这个包的详细信息位于 <xref linkend="contents-gcc" role="."/></para>
 
   </sect2>
 
