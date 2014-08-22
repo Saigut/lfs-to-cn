@@ -18,7 +18,7 @@
 
   <indexterm zone="ch-tools-linux-headers">
     <primary sortas="a-Linux">Linux</primary>
-    <secondary>tools, API 头文件</secondary>
+    <secondary>工具, API 头文件</secondary>
   </indexterm>
 
   <sect2 role="package">

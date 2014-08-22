@@ -18,7 +18,7 @@
 
   <indexterm zone="ch-tools-ncurses">
     <primary sortas="a-Ncurses">Ncurses</primary>
-    <secondary>工具链</secondary>
+    <secondary>工具</secondary>
   </indexterm>
 
   <sect2 role="package">
@@ -58,14 +58,14 @@
       <varlistentry>
         <term><parameter>--without-ada</parameter></term>
         <listitem>
-          <para>此项确保 Ncurses 不给宿主上可能存在但进入 <command>chroot</command> 环境后不可用的 Ada 编译器编制支持。</para>
+          <para>此项确保 Ncurses 不给宿主上可能存在但进入 <command>chroot</command> 环境后不可用的 Ada 编译器构建支持。</para>
         </listitem>
       </varlistentry>
 
       <varlistentry>
         <term><parameter>--enable-overwrite</parameter></term>
         <listitem>
-          <para>此项告诉 Ncurses 安装头文件至 <filename class="directory">/tools/include</filename> 而不是 <filename class="directory">/tools/include/ncurses</filename>，以确保其他程序包能够成功找到 Ncurses 头文件。</para>
+          <para>此项告诉 Ncurses 安装头文件至 <filename class="directory">/tools/include</filename> 而不是 <filename class="directory">/tools/include/ncurses</filename>，以确保其他软件包能够成功找到 Ncurses 头文件。</para>
         </listitem>
       </varlistentry>
 
@@ -82,7 +82,7 @@
 
 <screen><userinput remap="make">make</userinput></screen>
 
-    <para>此程序包带有测试套件，但是只能在安装后运行。这些测试位于 <filename class="directory">test/</filename> 目录中。查看该目录中的 <filename>README</filename> 文件获取更多细节。</para>
+    <para>此软件包带有测试套件，但是只能在安装后运行。这些测试位于 <filename class="directory">test/</filename> 目录中。查看该目录中的 <filename>README</filename> 文件获取更多细节。</para>
 
     <para>安装软件包：</para>
 

@@ -18,7 +18,7 @@
 
   <indexterm zone="ch-tools-libstdcpp">
     <primary sortas="a-GCC">GCC</primary>
-    <secondary>工具链, libstdc++</secondary>
+    <secondary>工具, libstdc++</secondary>
   </indexterm>
 
   <sect2 role="package">

@@ -23,7 +23,7 @@
   <sect2 role="package">
     <title/>
 
-    <para>DejaGNU 程序包包含一套框架用于测试其他程序。</para>
+    <para>DejaGNU 软件包包含一套框架用于测试其他程序。</para>
 
     <segmentedlist>
       <segtitle>&buildtime;</segtitle>

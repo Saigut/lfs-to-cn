@@ -23,7 +23,7 @@
   <sect2 role="package">
     <title/>
 
-    <para>Expect 程序包包含一个用于与其他交互程序进行脚本对话的程序。</para>
+    <para>Expect 软件包包含一个用于与其他交互程序进行脚本对话的程序。</para>
 
     <segmentedlist>
       <segtitle>&buildtime;</segtitle>
@@ -74,7 +74,7 @@ sed 's:/usr/local/bin:/bin:' configure.orig &gt; configure</userinput></screen>
 
 <screen><userinput remap="make">make</userinput></screen>
 
-    <para>编译现在完成了。前面讨论过，没有必要在这一章中给临时工具运行测试套件。如果无论如何要运行 Expect 的测试套件，执行以下指令：</para>
+    <para>编译现在完成了。前面讨论过，没有必要在这一章中为临时工具运行测试套件。如果无论如何都要运行 Expect 的测试套件，执行以下命令：</para>
 
 <screen><userinput remap="test">make test</userinput></screen>
 
