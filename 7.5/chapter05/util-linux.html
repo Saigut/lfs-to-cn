@@ -49,7 +49,7 @@
       </h1>
       <div class="package" lang="zh-cn" xml:lang="zh-cn">
         <p>
-          The Util-linux package contains miscellaneous utility programs.
+          Util-linux 软件包包含了各种实用工具。
         </p>
         <div class="segmentedlist">
           <div class="seglistitem">
@@ -66,10 +66,10 @@
       </div>
       <div class="installation" lang="zh-cn" xml:lang="zh-cn">
         <h2 class="sect2">
-          5.33.1. Installation of Util-linux
+          5.33.1. 安装 Util-linux
         </h2>
         <p>
-          Prepare Util-linux for compilation:
+          准备编译 Util-linux：
         </p>
         <pre class="userinput">
 <kbd class="command">./configure --prefix=/tools                \
@@ -79,7 +79,7 @@
 </pre>
         <div class="variablelist">
           <p class="title">
-            <strong>The meaning of the configure option:</strong>
+            <strong>配置选项的含义：</strong>
           </p>
           <dl class="variablelist">
             <dt>
@@ -88,11 +88,9 @@
             </dt>
             <dd>
               <p>
-                This switch disables using the <span class=
-                "command"><strong>chown</strong></span> command during
-                installation. This is not needed when installing into the
-                /tools directory and avoids the necessity of installing as
-                root.
+                这个选项使在安装期间禁止使用 <span class=
+                "command"><strong>chown</strong></span> 命令。这在安装到 /tools
+                目录的时候是不需要的，而且也避免了要以 root 身份安装的需要。
               </p>
             </dd>
             <dt>
@@ -101,9 +99,8 @@
             </dt>
             <dd>
               <p>
-                On systems that use systemd, the package tries to install a
-                systemd specific file to a non-existent directory in /tools.
-                This switch disables the unnecessary action.
+                在使用 systemd 的系统上，这个包会尝试将一个 systemd 的特定文件安装到 /tools
+                里一个不存在的目录中。这个选项禁用了不需要的动作。
               </p>
             </dd>
             <dt>
@@ -112,25 +109,20 @@
             </dt>
             <dd>
               <p>
-                Setting this envronment variable prevents adding unneeded
-                features that may be available on the host. Note that the
-                location shown for setting this environment variable is
-                different from other LFS sections where variables are set
-                preceding the command. This location is shown to demonstrate
-                an alternative way of setting an environment variable when
-                using configure.
+                设置这个环境变量以避免添加不必要的可能在宿主上可用的特性。注意设置这个环境变量的位置，是和 LFS
+                其它章节不同的，那些是把变量放在命令的前面的。这个位置展示了另一个使用 configure 时设置环境变量的方式。
               </p>
             </dd>
           </dl>
         </div>
         <p>
-          Compile the package:
+          编译软件包：
         </p>
         <pre class="userinput">
 <kbd class="command">make</kbd>
 </pre>
         <p>
-          Install the package:
+          安装软件包：
         </p>
         <pre class="userinput">
 <kbd class="command">make install</kbd>
