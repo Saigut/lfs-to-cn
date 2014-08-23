@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+  "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../general.ent">
+  %general-entities;
+]>
+
+<sect1 id="ch-tools-texinfo" role="wrap">
+  <?dbhtml filename="texinfo.html"?>
+
+  <sect1info condition="script">
+    <productname>texinfo</productname>
+    <productnumber>&texinfo-version;</productnumber>
+    <address>&texinfo-url;</address>
+  </sect1info>
+
+  <title>Texinfo-&texinfo-version;</title>
+
+  <indexterm zone="ch-tools-texinfo">
+    <primary sortas="a-Texinfo">Texinfo</primary>
+    <secondary>工具</secondary>
+  </indexterm>
+
+  <sect2 role="package">
+    <title/>
+
+    <xi:include xmlns:xi="http://www.w3.org/2001/XInclude"
+    href="../chapter06/texinfo.xml"
+    xpointer="xpointer(/sect1/sect2[1]/para[1])"/>
+
+    <segmentedlist>
+      <segtitle>&buildtime;</segtitle>
+      <segtitle>&diskspace;</segtitle>
+
+      <seglistitem>
+        <seg>&texinfo-ch5-sbu;</seg>
+        <seg>&texinfo-ch5-du;</seg>
+      </seglistitem>
+    </segmentedlist>
+
+  </sect2>
+
+  <sect2 role="installation">
+    <title>安装 Texinfo</title>
+
+    <para>准备编译 Texinfo：</para>
+
+<screen><userinput remap="configure">./configure --prefix=/tools</userinput></screen>
+
+    <para>编译软件包：</para>
+
+<screen><userinput remap="make">make</userinput></screen>
+
+    <para>编译现在完成了。前面讨论过，没有必要在这一章中为临时工具运行测试套件。如果无论如何都要运行 Texinfo 的测试套件，执行以下命令：</para>
+
+<screen><userinput remap="test">make check</userinput></screen>
+
+    <para>安装软件包：</para>
+
+<screen><userinput remap="install">make install</userinput></screen>
+
+  </sect2>
+
+  <sect2 role="content">
+    <title/>
+
+    <para>这个包的详细信息位于
+    <xref linkend="contents-texinfo" role="."/></para>
+
+  </sect2>
+
+</sect1>

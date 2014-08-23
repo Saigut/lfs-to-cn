@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+  "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../general.ent">
+  %general-entities;
+]>
+
+<sect1 id="ch-tools-util-linux" role="wrap">
+  <?dbhtml filename="util-linux.html"?>
+
+  <sect1info condition="script">
+    <productname>util-linux</productname>
+    <productnumber>&util-linux-version;</productnumber>
+    <address>&util-linux-url;</address>
+  </sect1info>
+
+  <title>Util-linux-&util-linux-version;</title>
+
+  <indexterm zone="ch-tools-util-linux">
+    <primary sortas="a-Util-linux">Util-linux</primary>
+  </indexterm>
+
+  <sect2 role="package">
+    <title/>
+
+    <para>Util-linux 软件包包含了各种实用工具。</para>
+
+    <segmentedlist>
+      <segtitle>&buildtime;</segtitle>
+      <segtitle>&diskspace;</segtitle>
+
+      <seglistitem>
+        <seg>&util-linux-ch5-sbu;</seg>
+        <seg>&util-linux-ch5-du;</seg>
+      </seglistitem>
+    </segmentedlist>
+
+  </sect2>
+
+  <sect2 role="installation">
+    <title>安装 Util-linux</title>
+
+    <para>准备编译 Util-linux：</para>
+
+<screen><userinput remap="configure">./configure --prefix=/tools                \
+            --disable-makeinstall-chown    \
+            --without-systemdsystemunitdir \
+            PKG_CONFIG=""</userinput></screen>
+
+    <variablelist>
+      <title>配置选项的含义：</title>
+
+      <varlistentry>
+        <term><parameter>--disable-makeinstall-chown</parameter></term>
+        <listitem>
+          <para>这个选项使在安装期间禁止使用 <command>chown</command> 命令。这在安装到 /tools 目录的时候是不需要的，而且也避免了要以 root 身份安装的需要。</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><parameter>--without-systemdsystemunitdir</parameter></term>
+        <listitem>
+          <para>在使用 systemd 的系统上，这个包会尝试将一个 systemd 的特定文件安装到 /tools 里一个不存在的目录中。这个选项禁用了不需要的动作。</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><envar>PKG_CONFIG=""</envar></term>
+        <listitem>
+          <para>设置这个环境变量以避免添加不必要的可能在宿主上可用的特性。注意设置这个环境变量的位置，是和 LFS 其它章节不同的，那些是把变量放在命令的前面的。这个位置展示了另一个使用 configure 时设置环境变量的方式。</para>
+        </listitem>
+      </varlistentry>
+     </variablelist>
+
+    <para>编译软件包：</para>
+
+<screen><userinput remap="make">make</userinput></screen>
+
+    <para>安装软件包：</para>
+
+<screen><userinput remap="install">make install</userinput></screen>
+
+  </sect2>
+
+</sect1>
