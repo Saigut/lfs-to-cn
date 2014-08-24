@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+  "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../general.ent">
+  %general-entities;
+]>
+
+<sect1 id="ch-tools-changingowner">
+  <?dbhtml filename="changingowner.html"?>
+
+  <title>改变所有权</title>
+
+  <note>
+    <para>本书中余下部分的命令必须作为 <systemitem class="username">root</systemitem> 用户登录，不再是 <systemitem class="username">lfs</systemitem> 用户。同样，再次检查 <envar>$LFS</envar> 在 <systemitem class="username">root</systemitem> 的环境中设置好。</para>
+  </note>
+
+  <para>现在，<filename class="directory">$LFS/tools</filename> 目录属于 <systemitem class="username">lfs</systemitem> 用户，它只存在于宿主系统上。如果 <filename class="directory">$LFS/tools</filename> 目录就这样，这些文件就会属于一个没有对应账户的用户 ID。这很危险，因为以后创建的用户账户可能会拿到同样的用户 ID 并拥有 <filename class="directory">$LFS/tools</filename> 目录和其中的所有文件，使得这些文件暴露在恶意修改风险中。</para>
+
+  <para>要避开这个问题，你需要在创建 <filename>/etc/passwd</filename> 文件时添加 <systemitem class="username">lfs</systemitem> 用户到新的 LFS 系统中，并将其对应到与宿主系统上相同的用户和组 ID 上。更好的办法是改变 <filename class="directory">$LFS/tools</filename> 目录的所有权到 <systemitem class="username">root</systemitem> 用户，运行以下命令：</para>
+
+<screen><userinput>chown -R root:root $LFS/tools</userinput></screen>
+
+  <para>虽然 <filename class="directory">$LFS/tools</filename> 目录一旦 LFS 系统完成就可以删除，也可以留着用来构建额外的<emphasis>相同版本的</emphasis> LFS 系统。是否要备份 <filename class="directory">$LFS/tools</filename> 是个人偏好。</para>
+
+  <caution>
+    <para>如果你想要保留临时工具用于构建未来的 LFS 系统，<emphasis role="strong">现在</emphasis>就该备份了。此后第六章中的命令会改变现在搞好的工具，使它们对以后的构建没有用处。</para>
+  </caution>
+
+</sect1>
