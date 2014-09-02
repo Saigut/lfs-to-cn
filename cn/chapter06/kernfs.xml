@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+  "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../general.ent">
+  %general-entities;
+]>
+
+<sect1 id="ch-system-kernfs">
+  <?dbhtml filename="kernfs.html"?>
+
+  <title>准备虚拟内核文件系统</title>
+
+  <indexterm zone="ch-system-kernfs">
+    <primary sortas="e-/dev/">/dev/*</primary>
+  </indexterm>
+
+    <para>内核导出了多个文件系统，用于与外界交流。这些文件系统是虚拟的，并不占用硬盘空间。它们的内容位于内存中。</para>
+
+    <para>首先创建用来挂载这些文件系统的目录：</para>
+
+<screen><userinput>mkdir -pv $LFS/{dev,proc,sys,run}</userinput></screen>
+
+  <sect2>
+    <title>创建初始设备节点</title>
+
+    <para>当内核引导系统的时候，需要有几个设备节点存在，尤其是 <filename class="devicefile">console</filename> 和 <filename class="devicefile">null</filename> 设备。这些设备节点必须创建在硬盘上，这样它们就能在 <command>udevd</command> 启动之前或者以 <parameter>init=/bin/bash</parameter> 参数启动 linux 的时候可用。运行以下指令创建这些设备：</para>
+
+<screen><userinput>mknod -m 600 $LFS/dev/console c 5 1
+mknod -m 666 $LFS/dev/null c 1 3</userinput></screen>
+
+  </sect2>
+
+  <sect2 id="ch-system-bindmount">
+    <title>挂载并填充 /dev</title>
+
+      <para>要将设备填充到 <filename class="directory">/dev</filename> 目录中，推荐的方法是挂载一个虚拟文件系统 (比如 <systemitem class="filesystem">tmpfs</systemitem>) 于 <filename class="directory">/dev</filename> 目录中，并允许设备在被检测和访问的时候动态创建于其中。设备创建在引导过程中会由 Udev 总体完成。因为这个新系统还没有 Udev 也没有被引导，手动挂载并填充 <filename class="directory">/dev</filename> 就非常重要。通过捆绑挂载宿主系统的 <filename class="directory">/dev</filename> 目录来完成这一任务。捆绑挂载是一种特殊的挂载形式，允许你在其他位置创建一个目录或者挂载点的镜像。运行以下命令实现之：</para>
+
+<screen><userinput>mount -v --bind /dev $LFS/dev</userinput></screen>
+
+  </sect2>
+
+  <sect2 id="ch-system-kernfsmount">
+    <title>挂载虚拟内核文件系统</title>
+
+      <para>现在挂载虚拟内核文件系统：</para>
+
+<screen><userinput>mount -vt devpts devpts $LFS/dev/pts -o gid=5,mode=620
+mount -vt proc proc $LFS/proc
+mount -vt sysfs sysfs $LFS/sys
+mount -vt tmpfs tmpfs $LFS/run</userinput></screen>
+
+    <variablelist>
+      <title>devpts 挂载选项的含义：</title>
+
+      <varlistentry>
+        <term><parameter>gid=5</parameter></term>
+        <listitem>
+          <para>此项确保所有 devpts 创建的设备节点都为组 ID 5 所有。这是我们后面将要为 <systemitem class="groupname">tty</systemitem> 组使用的 ID。我们使用组 ID 而不是使用名字，是因为宿主系统的 <systemitem class="groupname">tty</systemitem> 组可能是不同的 ID。</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><parameter>mode=0620</parameter></term>
+        <listitem>
+          <para>此项确保所有 devpts 创建的设备节点的 mode 都是 0620（用户可读可写，组可写）。和上面的选项一起，确保 devpts 会创建满足 grantpt() 需求的设备节点。这意味着 Glibc 的辅助二进制文件 <command>pt_chown</command> （它默认不被安装）不是必需的了。</para>
+        </listitem>
+      </varlistentry>
+
+    </variablelist>
+
+      <para>在某些宿主系统上，<filename>/dev/shm</filename> 是到<filename class="directory">/run/shm</filename> 的符号链接。/run tmpfs 在前面被挂载，这样这里只需创建一个目录。</para>
+
+<screen><userinput>if [ -h $LFS/dev/shm ]; then
+  mkdir -pv $LFS/$(readlink $LFS/dev/shm)
+fi</userinput></screen>
+
+  </sect2>
+
+</sect1>

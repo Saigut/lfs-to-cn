@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+  "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../general.ent">
+  %general-entities;
+]>
+
+<sect1 id="ch-system-introduction">
+  <?dbhtml filename="introduction.html"?>
+
+  <title>介绍</title>
+
+  <para>在本章中，我们将进入构建环境，真正开始搭建 LFS 系统。也就是说，我们 chroot 到临时的 Linux 系统中，做几项最后的准备工作，然后开始安装软件包。</para>
+
+  <para>安装这些软件是很简单的。虽然在很多情况下安装指令可以更加简短和通用，我们决定给每个软件包提供完整的指令以最小化出错的可能。学习 Linux 系统如何工作的关键就是了解每个软件包的用途，还有你 (或者系统) 为什么会需要它。</para>
+
+  <para>我们不推荐使用优化。它们能够使程序运行速率略微加快，但也可能导致编译难度和运行时的问题。如果一个软件包使用了优化无法编译，请尝试关闭优化并编译之，看能否解决问题。即使一个程序能够在使用优化的条件下编译，它也有编译不正确的风险。代码和构建工具之间的交互是非常复杂的。还要注意，给 <option>-march</option> 和 <option>-mtune</option> 选项使用本书中没有指定的值是未经测试的。这可能导致工具链软件包 (Binutils、GCC 和 Glibc) 出现问题。使用编译器优化的潜在优势通常没有风险突出。我们鼓励首次构建 LFS 的用户不要自定义优化。产生的系统仍然会运行速率很快并且还很稳定。</para>
+
+  <para>本章中安装软件包的顺序要严格遵守，以确保不会有程序偶然获得一个到 <filename class="directory">/tools</filename> 中的路径并嵌入其中。出于某些原因，不要并行编译不同的软件包。并行编译可能会节省一些时间 (尤其在多线程计算机上)，但可能导致程序嵌入到 <filename class="directory">/tools</filename> 的路径，一旦此目录被移除，这个程序就会停止工作。(译注：并行 make 参数依然可以安全使用。)</para>
+
+  <para>在安装指令之前，每个软件包都提供了有关该软件包的信息，简要描述了它包含的内容，构建的预计时间和构建过程需要的磁盘空间。在安装指令之后还列出并简单介绍了该软件包安装的程序和库。</para>
+
+  <note><para>第六章中的 SBU 值和盘空间需求包含了测试套件数据。对所有可用的软件包都是如此。</para></note>
+
+</sect1>

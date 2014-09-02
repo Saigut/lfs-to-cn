@@ -23,6 +23,6 @@
 
 <screen><userinput>rm -rf /tools/{,share}/{info,man,doc}</userinput></screen>
 
-  <para>在这里，你应该在 <envar>$LFS</envar> 中有至少 850MB 可用空间用来编制安装下一章的 Glibc。如果你能编制安装 Glibc，你也就能编制安装其他的。</para>
+  <para>在这里，你应该在 <envar>$LFS</envar> 中有至少 850MB 可用空间用来构建安装下一章的 Glibc。如果你能构建安装 Glibc，你也就能构建安装其他的。</para>
 
 </sect1>
