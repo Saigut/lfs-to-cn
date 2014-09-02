@@ -62,7 +62,7 @@ mount -vt tmpfs tmpfs $LFS/run</userinput></screen>
       <varlistentry>
         <term><parameter>mode=0620</parameter></term>
         <listitem>
-          <para>此项确保所有 devpts 创建的设备节点的 mode 都是 0620（用户可读可写，组可写）。和上面的选项一起，确保 devpts 会创建满足 grantpt() 需求的设备节点。这意味着 Glibc 的辅助二进制文件 <command>pt_chown</command> （它默认不被安装）不是必需的了。</para>
+          <para>此项确保所有 devpts 创建的设备节点的 mode 都是 0620（用户可读可写，组可写）。和上面的选项一起，确保 devpts 会创建满足 grantpt() 需求的设备节点。这意味着 Glibc 的辅助二进制文件 <command>pt_chown</command>（它默认不被安装）不是必需的了。</para>
         </listitem>
       </varlistentry>
 
