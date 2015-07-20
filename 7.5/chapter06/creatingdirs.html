@@ -4,7 +4,7 @@
   <head>
     <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
     <title>
-      6.5.&nbsp;Creating Directories
+      6.5.&nbsp;创建目录
     </title>
     <link rel="stylesheet" type="text/css" href="../stylesheets/lfs.css" />
     <meta name="generator" content="DocBook XSL Stylesheets V1.78.1" />
@@ -17,26 +17,24 @@
         Linux From Scratch - 版本 7.5
       </h4>
       <h3>
-        第&nbsp;6&nbsp;章&nbsp;Installing Basic System Software
+        第&nbsp;6&nbsp;章&nbsp;安装基本系统软件
       </h3>
       <ul>
         <li class="prev">
-          <a accesskey="p" href="chroot.html" title=
-          "Entering the Chroot Environment">上一页</a>
+          <a accesskey="p" href="chroot.html" title="进入 Chroot 环境">上一页</a>
           <p>
-            Entering the Chroot Environment
+            进入 Chroot 环境
           </p>
         </li>
         <li class="next">
-          <a accesskey="n" href="createfiles.html" title=
-          "Creating Essential Files and Symlinks">下一页</a>
+          <a accesskey="n" href="createfiles.html" title="创建必要的文件和链接">下一页</a>
           <p>
-            Creating Essential Files and Symlinks
+            创建必要的文件和链接
           </p>
         </li>
         <li class="up">
           <a accesskey="u" href="chapter06.html" title=
-          "第&nbsp;6&nbsp;章&nbsp;Installing Basic System Software">上一级</a>
+          "第&nbsp;6&nbsp;章&nbsp;安装基本系统软件">上一级</a>
         </li>
         <li class="home">
           <a accesskey="h" href="../index.html" title=
@@ -47,11 +45,10 @@
     <div class="sect1" lang="zh-cn" xml:lang="zh-cn">
       <h1 class="sect1">
         <a id="ch-system-creatingdirs" name="ch-system-creatingdirs"></a>6.5.
-        Creating Directories
+        创建目录
       </h1>
       <p>
-        It is time to create some structure in the LFS file system. Create a
-        standard directory tree by issuing the following commands:
+        现在我们将创建 LFS 文件系统中的某些结构。执行以下命令创建一个标准目录树：
       </p>
       <pre class="userinput">
 <kbd class=
@@ -77,69 +74,54 @@ ln -sv /run/lock /var/lock
 mkdir -pv /var/{opt,cache,lib/{color,misc,locate},local}</kbd>
 </pre>
       <p>
-        Directories are, by default, created with permission mode 755, but
-        this is not desirable for all directories. In the commands above, two
-        changes are made—one to the home directory of user <code class=
-        "systemitem">root</code>, and another to the directories for
-        temporary files.
+        默认地，目录创建时的权限模式为 755，但是并不是所有的目录都应该如此。在以上目录中，我们进行了两项改动——一次是对于
+        <code class="systemitem">root</code> 用户的主目录，另一此是对用于临时文件的目录。
       </p>
       <p>
-        The first mode change ensures that not just anybody can enter the
-        <code class="filename">/root</code> directory—the same as a normal
-        user would do with his or her home directory. The second mode change
-        makes sure that any user can write to the <code class=
-        "filename">/tmp</code> and <code class="filename">/var/tmp</code>
-        directories, but cannot remove another user's files from them. The
-        latter is prohibited by the so-called <span class=
-        "quote">“<span class="quote">sticky bit,</span>”</span> the highest
-        bit (1) in the 1777 bit mask.
+        第一次模式修改确保并不是所有人都能进入 <code class="filename">/root</code>
+        目录——和一个普通用户保护其主目录的方式相同。第二此模式修改确保所有人都可以写入 <code class=
+        "filename">/tmp</code> 和 <code class="filename">/var/tmp</code>
+        两个目录，但是无法从中移除其他用户的文件。后者被所谓<span class="quote">“<span class=
+        "quote">粘性位</span>”</span>，1777 位掩码中的最高位实现。
       </p>
       <div class="sect2" lang="zh-cn" xml:lang="zh-cn">
         <h2 class="sect2">
-          6.5.1. FHS Compliance Note
+          6.5.1. FHS 兼容注记
         </h2>
         <p>
-          The directory tree is based on the Filesystem Hierarchy Standard
-          (FHS) (available at <a class="ulink" href=
-          "http://www.pathname.com/fhs/">http://www.pathname.com/fhs/</a>).
-          In addition to the FHS, we create compatibility symlinks for the
-          <code class="filename">man</code>, <code class=
-          "filename">doc</code>, and <code class="filename">info</code>
-          directories since many packages still try to install their
-          documentation into <code class=
-          "filename">/usr/&lt;directory&gt;</code> or <code class=
-          "filename">/usr/local/&lt;directory&gt;</code> as opposed to
-          <code class="filename">/usr/share/&lt;directory&gt;</code> or
-          <code class="filename">/usr/local/share/&lt;directory&gt;</code>.
-          The FHS also stipulates the existence of <code class=
-          "filename">/usr/local/games</code> and <code class=
-          "filename">/usr/share/games</code>. The FHS is not precise as to
-          the structure of the <code class="filename">/usr/local/share</code>
-          subdirectory, so we create only the directories that are needed.
-          However, feel free to create these directories if you prefer to
-          conform more strictly to the FHS.
+          目录树基于文件系统层级标准 (FHS) (位于 <a class="ulink" href=
+          "http://www.pathname.com/fhs/">http://www.pathname.com/fhs/</a>)。在
+          FHS 之外我们还给 <code class="filename">man</code>、<code class=
+          "filename">doc</code> 和 <code class="filename">info</code>
+          目录创建了兼容性符号链接，因为很多软件包依然试图将文档安装到 <code class=
+          "filename">/usr/&lt;dir&gt;</code> 或 <code class=
+          "filename">/usr/local/&lt;dir&gt;</code> 中而不是 <code class=
+          "filename">/usr/share/&lt;dir&gt;</code> 或 <code class=
+          "filename">/usr/local/share/&lt;dir&gt;</code> 中。FHS 还要求
+          <code class="filename">/usr/local/games</code> 和 <code class=
+          "filename">/usr/share/games</code> 存在。FHS 对于 <code class=
+          "filename">/usr/local/share</code>
+          子目录的要求并不严格，所以我们之创建了需要的目录。不过，如果要严格遵守 FHS 标准，亦可创建之。
         </p>
       </div>
     </div>
     <div class="navfooter">
       <ul>
         <li class="prev">
-          <a accesskey="p" href="chroot.html" title=
-          "Entering the Chroot Environment">上一页</a>
+          <a accesskey="p" href="chroot.html" title="进入 Chroot 环境">上一页</a>
           <p>
-            Entering the Chroot Environment
+            进入 Chroot 环境
           </p>
         </li>
         <li class="next">
-          <a accesskey="n" href="createfiles.html" title=
-          "Creating Essential Files and Symlinks">下一页</a>
+          <a accesskey="n" href="createfiles.html" title="创建必要的文件和链接">下一页</a>
           <p>
-            Creating Essential Files and Symlinks
+            创建必要的文件和链接
           </p>
         </li>
         <li class="up">
           <a accesskey="u" href="chapter06.html" title=
-          "第&nbsp;6&nbsp;章&nbsp;Installing Basic System Software">上一级</a>
+          "第&nbsp;6&nbsp;章&nbsp;安装基本系统软件">上一级</a>
         </li>
         <li class="home">
           <a accesskey="h" href="../index.html" title=
