@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
+    <title>
+      5.1.&nbsp;介绍
+    </title>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/lfs.css" />
+    <meta name="generator" content="DocBook XSL Stylesheets V1.78.1" />
+    <link rel="stylesheet" href="stylesheets/lfs-print.css" type="text/css"
+    media="print" />
+  </head>
+  <body class="lfs" id="lfs-7.5">
+    <div class="navheader">
+      <h4>
+        Linux From Scratch - 版本 7.5
+      </h4>
+      <h3>
+        第&nbsp;5&nbsp;章&nbsp;构建一个临时系统
+      </h3>
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="chapter05.html" title="构建一个临时系统">上一页</a>
+          <p>
+            构建一个临时系统
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="toolchaintechnotes.html" title=
+          "工具链技术注解">下一页</a>
+          <p>
+            工具链技术注解
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="chapter05.html" title=
+          "第&nbsp;5&nbsp;章&nbsp;构建一个临时系统">上一级</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Linux From Scratch - 版本 7.5">起始页</a>
+        </li>
+      </ul>
+    </div>
+    <div class="sect1" lang="zh-cn" xml:lang="zh-cn">
+      <h1 class="sect1">
+        <a id="ch-tools-introduction" name="ch-tools-introduction"></a>5.1.
+        介绍
+      </h1>
+      <p>
+        本章展示如何构建一个最小的Linux系统。这个系统将包括足够的工具来构建一个在<a class="xref" href=
+        "../chapter06/chapter06.html" title="第&nbsp;6&nbsp;章&nbsp;安装基本系统软件">第
+        6 章</a>中提及的最终的LFS系统，并且使工作环境比一个最小系统更加便捷。
+      </p>
+      <p>
+        构建最小系统中有两个步骤。第一步是构建一个新的、独立于宿主的工具链(编译器、汇编器、链接器、库和几种有用的工具)。第二步是是使用这些工具链来构建其他必要的工具。
+      </p>
+      <p>
+        本章中编译的文件将被安装到 <code class="filename">$LFS/tools</code>
+        目录来保证他们与下一章要安装的文件和宿主开发目录分离。由于这里编译的软件包是临时的，所以我们不希望他们污染了快成型的 LFS 系统。
+      </p>
+    </div>
+    <div class="navfooter">
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="chapter05.html" title="构建一个临时系统">上一页</a>
+          <p>
+            构建一个临时系统
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="toolchaintechnotes.html" title=
+          "工具链技术注解">下一页</a>
+          <p>
+            工具链技术注解
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="chapter05.html" title=
+          "第&nbsp;5&nbsp;章&nbsp;构建一个临时系统">上一级</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Linux From Scratch - 版本 7.5">起始页</a>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

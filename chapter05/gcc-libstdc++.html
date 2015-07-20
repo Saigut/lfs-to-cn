@@ -1,0 +1,196 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
+    <title>
+      5.8.&nbsp;Libstdc++-4.8.2
+    </title>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/lfs.css" />
+    <meta name="generator" content="DocBook XSL Stylesheets V1.78.1" />
+    <link rel="stylesheet" href="stylesheets/lfs-print.css" type="text/css"
+    media="print" />
+  </head>
+  <body class="lfs" id="lfs-7.5">
+    <div class="navheader">
+      <h4>
+        Linux From Scratch - 版本 7.5
+      </h4>
+      <h3>
+        第&nbsp;5&nbsp;章&nbsp;构建一个临时系统
+      </h3>
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="glibc.html" title="Glibc-2.19">上一页</a>
+          <p>
+            Glibc-2.19
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="binutils-pass2.html" title=
+          "Binutils-2.24 - 第 2 遍">下一页</a>
+          <p>
+            Binutils-2.24 - 第 2 遍
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="chapter05.html" title=
+          "第&nbsp;5&nbsp;章&nbsp;构建一个临时系统">上一级</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Linux From Scratch - 版本 7.5">起始页</a>
+        </li>
+      </ul>
+    </div>
+    <div class="wrap" lang="zh-cn" xml:lang="zh-cn">
+      <h1 class="sect1">
+        <a id="ch-tools-libstdcpp" name="ch-tools-libstdcpp"></a>5.8.
+        Libstdc++-4.8.2
+      </h1>
+      <div class="package" lang="zh-cn" xml:lang="zh-cn">
+        <p>
+          Libstdc++ 是标准 C++ 库。g++ 编译器需要它来进行正确的操作。
+        </p>
+        <div class="segmentedlist">
+          <div class="seglistitem">
+            <div class="seg">
+              <strong class="segtitle">预计构建时间:</strong> <span class=
+              "segbody">0.4 SBU</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">磁盘空间需求:</strong> <span class=
+              "segbody">734 MB</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="installation" lang="zh-cn" xml:lang="zh-cn">
+        <h2 class="sect2">
+          5.8.1. 安装 Libstdc++
+        </h2>
+        <div class="admon note">
+          <img alt="[注意]" src="../images/note.png" />
+          <h3>
+            注意
+          </h3>
+          <p>
+            <span class="application">Libstdc++</span> 是 GCC 源文件中的一部分。你应该先解包
+            GCC，然后切换到 <code class="filename">gcc-4.8.2</code> 目录。
+          </p>
+        </div>
+        <p>
+          为 Libstdc++ 创建一个目录，然后进入它：
+        </p>
+        <pre class="userinput">
+<kbd class="command">mkdir -pv ../gcc-build
+cd ../gcc-build</kbd>
+</pre>
+        <p>
+          准备编译 Libstdc++：
+        </p>
+        <pre class="userinput">
+<kbd class="command">../gcc-4.8.2/libstdc++-v3/configure \
+    --host=$LFS_TGT                 \
+    --prefix=/tools                 \
+    --disable-multilib              \
+    --disable-shared                \
+    --disable-nls                   \
+    --disable-libstdcxx-threads     \
+    --disable-libstdcxx-pch         \
+    --with-gxx-include-dir=/tools/$LFS_TGT/include/c++/4.8.2</kbd>
+</pre>
+        <div class="variablelist">
+          <p class="title">
+            <strong>配置选项的含义：</strong>
+          </p>
+          <dl class="variablelist">
+            <dt>
+              <span class="term"><em class=
+              "parameter"><code>--host=...</code></em></span>
+            </dt>
+            <dd>
+              <p>
+                使用我们刚构建的交叉编译器，而不是用 <code class="filename">/usr/bin</code> 里的。
+              </p>
+            </dd>
+            <dt>
+              <span class="term"><em class=
+              "parameter"><code>--disable-libstdcxx-threads</code></em></span>
+            </dt>
+            <dd>
+              <p>
+                由于我们没有构建线程 C 库，线程 C++ 库也就不能被构建。
+              </p>
+            </dd>
+            <dt>
+              <span class="term"><em class=
+              "parameter"><code>--disable-libstdcxx-pch</code></em></span>
+            </dt>
+            <dd>
+              <p>
+                这个选项防止安装预编译的 include 文件，目前不需要它们。
+              </p>
+            </dd>
+            <dt>
+              <span class="term"><em class=
+              "parameter"><code>--with-gxx-include-dir=/tools/include/c++/4.8.2</code></em></span>
+            </dt>
+            <dd>
+              <p>
+                这是 C++ 编译器查找标准 include 文件的位置。在普通的构建中，这个信息从顶级目录传送给 Libstdc++ 的
+                <span class="command"><strong>configure</strong></span>
+                选项。而在我们的情况下，这个信息必须明确地给出。
+              </p>
+            </dd>
+          </dl>
+        </div>
+        <p>
+          编译 libstdc++，运行：
+        </p>
+        <pre class="userinput">
+<kbd class="command">make</kbd>
+</pre>
+        <p>
+          安装库：
+        </p>
+        <pre class="userinput">
+<kbd class="command">make install</kbd>
+</pre>
+      </div>
+      <div class="content" lang="zh-cn" xml:lang="zh-cn">
+        <p>
+          这个包的详细信息位于 <a class="xref" href=
+          "../chapter06/gcc.html#contents-gcc" title=
+          "6.17.2.&nbsp;Contents of GCC">第&nbsp;6.17.2&nbsp;节 “Contents of
+          GCC.”</a>
+        </p>
+      </div>
+    </div>
+    <div class="navfooter">
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="glibc.html" title="Glibc-2.19">上一页</a>
+          <p>
+            Glibc-2.19
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="binutils-pass2.html" title=
+          "Binutils-2.24 - 第 2 遍">下一页</a>
+          <p>
+            Binutils-2.24 - 第 2 遍
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="chapter05.html" title=
+          "第&nbsp;5&nbsp;章&nbsp;构建一个临时系统">上一级</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Linux From Scratch - 版本 7.5">起始页</a>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

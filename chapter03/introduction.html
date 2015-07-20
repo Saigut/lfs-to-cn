@@ -1,0 +1,119 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
+    <title>
+      3.1.&nbsp;介绍
+    </title>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/lfs.css" />
+    <meta name="generator" content="DocBook XSL Stylesheets V1.78.1" />
+    <link rel="stylesheet" href="stylesheets/lfs-print.css" type="text/css"
+    media="print" />
+  </head>
+  <body class="lfs" id="lfs-7.5">
+    <div class="navheader">
+      <h4>
+        Linux From Scratch - 版本 7.5
+      </h4>
+      <h3>
+        第&nbsp;3&nbsp;章&nbsp;软件包和补丁
+      </h3>
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="chapter03.html" title="软件包和补丁">上一页</a>
+          <p>
+            软件包和补丁
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="packages.html" title="软件包列表">下一页</a>
+          <p>
+            软件包列表
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="chapter03.html" title=
+          "第&nbsp;3&nbsp;章&nbsp;软件包和补丁">上一级</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Linux From Scratch - 版本 7.5">起始页</a>
+        </li>
+      </ul>
+    </div>
+    <div class="sect1" lang="zh-cn" xml:lang="zh-cn">
+      <h1 class="sect1">
+        <a id="materials-introduction" name="materials-introduction"></a>3.1.
+        介绍
+      </h1>
+      <p>
+        本章介绍了为构建基本Linux系统所需要下载的软件包。软件包列出的版本号经过验证是可以正常工作的，本书也是基于这些版本的软件包编写。我们不建议使用新版本的软件，因为本书所写的构建命令在新版本上可能不能正常运行。而且新版本的软件包还有一些需要处理的问题，这些问题将在本书的后续版本中解决。
+      </p>
+      <p>
+        下载地址有时可能不能用。如果下载地址在本书发布后发生改变，Google (<a class="ulink" href=
+        "http://www.google.com/">http://www.google.com/</a>)
+        是一个搜索新下载地址的好方法。如果没有搜索到，那么请到这里发起讨论<a class="ulink" href=
+        "http://www.linuxfromscratch.org/lfs/packages.html#packages">http://www.linuxfromscratch.org/lfs/packages.html#packages</a>。
+      </p>
+      <p>
+        下载后的软件包和补丁需要存储在整个构建系统的过程中都能方便地访问到的位置。还需要一个工作目录用来解压源码和编译构建它们。<code class="filename">$LFS/sources</code>既可以作为存储源码包和补丁地方同时也可以作为工作目录。通过使用这个目录，需要地东西会存储在LFS分区上，并且在构建系统的全过程中都可以使用。
+      </p>
+      <p>
+        在下载软件包和补丁之前，请在<code class="systemitem">root</code>用户下使用如下命令创建这个目录：
+      </p>
+      <pre class="userinput">
+<kbd class="command">mkdir -v $LFS/sources</kbd>
+</pre>
+      <p>
+        请赋予这个目录写权限和带有粘滞位。<span class="quote">“<span class=
+        "quote">粘滞位(原文：Sticky)</span>”</span>意味着即使有很多用户对文件有写权限，但只有文件的主人才能删除这个文件。下面这条命令将赋予目录写权限和粘滞位：
+      </p>
+      <pre class="userinput">
+<kbd class="command">chmod -v a+wt $LFS/sources</kbd>
+</pre>
+      <p>
+        下载所有软件包和补丁的简单方法是使用<a class="ulink" href=
+        "../wget-list">wget-list</a>作为<span class=
+        "command"><strong>wget</strong></span>的输入文件。例如：
+      </p>
+      <pre class="userinput">
+<kbd class="command">wget -i wget-list -P $LFS/sources</kbd>
+</pre>
+      <p>
+        补充一点，从LFS-7.0开始提供单独的<a class="ulink" href=
+        "../md5sums">md5sums</a>。这个文件可以用来验证所有下载的文件是否完整可用。请将这个文件放在<code class=
+        "filename">$LFS/sources</code>目录中然后执行：
+      </p>
+      <pre class="userinput">
+<kbd class="command">pushd $LFS/sources
+md5sum -c md5sums
+popd</kbd>
+</pre>
+    </div>
+    <div class="navfooter">
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="chapter03.html" title="软件包和补丁">上一页</a>
+          <p>
+            软件包和补丁
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="packages.html" title="软件包列表">下一页</a>
+          <p>
+            软件包列表
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="chapter03.html" title=
+          "第&nbsp;3&nbsp;章&nbsp;软件包和补丁">上一级</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Linux From Scratch - 版本 7.5">起始页</a>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

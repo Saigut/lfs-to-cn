@@ -1,0 +1,246 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
+    <title>
+      6.29.&nbsp;Flex-2.5.38
+    </title>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/lfs.css" />
+    <meta name="generator" content="DocBook XSL Stylesheets V1.78.1" />
+    <link rel="stylesheet" href="stylesheets/lfs-print.css" type="text/css"
+    media="print" />
+  </head>
+  <body class="lfs" id="lfs-7.5">
+    <div class="navheader">
+      <h4>
+        Linux From Scratch - 版本 7.5
+      </h4>
+      <h3>
+        第&nbsp;6&nbsp;章&nbsp;安装基本系统软件
+      </h3>
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="m4.html" title="M4-1.4.17">上一页</a>
+          <p>
+            M4-1.4.17
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="bison.html" title="Bison-3.0.2">下一页</a>
+          <p>
+            Bison-3.0.2
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="chapter06.html" title=
+          "第&nbsp;6&nbsp;章&nbsp;安装基本系统软件">上一级</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Linux From Scratch - 版本 7.5">起始页</a>
+        </li>
+      </ul>
+    </div>
+    <div class="wrap" lang="zh-cn" xml:lang="zh-cn">
+      <h1 class="sect1">
+        <a id="ch-system-flex" name="ch-system-flex"></a>6.29. Flex-2.5.38
+      </h1>
+      <div class="package" lang="zh-cn" xml:lang="zh-cn">
+        <p>
+          The Flex package contains a utility for generating programs that
+          recognize patterns in text.
+        </p>
+        <div class="segmentedlist">
+          <div class="seglistitem">
+            <div class="seg">
+              <strong class="segtitle">预计构建时间:</strong> <span class=
+              "segbody">0.4 SBU</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">磁盘空间需求:</strong> <span class=
+              "segbody">39 MB</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="installation" lang="zh-cn" xml:lang="zh-cn">
+        <h2 class="sect2">
+          6.29.1. Installation of Flex
+        </h2>
+        <p>
+          First, skip running three regression tests that require bison.
+        </p>
+        <pre class="userinput">
+<kbd class="command">sed -i -e '/test-bison/d' tests/Makefile.in</kbd>
+</pre>
+        <p>
+          Prepare Flex for compilation:
+        </p>
+        <pre class="userinput">
+<kbd class=
+"command">./configure --prefix=/usr --docdir=/usr/share/doc/flex-2.5.38</kbd>
+</pre>
+        <p>
+          Compile the package:
+        </p>
+        <pre class="userinput">
+<kbd class="command">make</kbd>
+</pre>
+        <p>
+          To test the results (about 0.5 SBU), issue:
+        </p>
+        <pre class="userinput">
+<kbd class="command">make check</kbd>
+</pre>
+        <p>
+          Install the package:
+        </p>
+        <pre class="userinput">
+<kbd class="command">make install</kbd>
+</pre>
+        <p>
+          A few programs do not know about <span class=
+          "command"><strong>flex</strong></span> yet and try to run its
+          predecessor, <span class="command"><strong>lex</strong></span>. To
+          support those programs, create a wrapper script named <code class=
+          "filename">lex</code> that calls <code class="filename">flex</code>
+          in <span class="command"><strong>lex</strong></span> emulation
+          mode:
+        </p>
+        <pre class="userinput">
+<kbd class="command">cat &gt; /usr/bin/lex &lt;&lt; "EOF"
+<code class="literal">#!/bin/sh
+# Begin /usr/bin/lex
+
+exec /usr/bin/flex -l "$@"
+
+# End /usr/bin/lex</code>
+EOF
+chmod -v 755 /usr/bin/lex</kbd>
+</pre>
+      </div>
+      <div class="content" lang="zh-cn" xml:lang="zh-cn">
+        <h2 class="sect2">
+          <a id="contents-flex" name="contents-flex"></a>6.29.2. Contents of
+          Flex
+        </h2>
+        <div class="segmentedlist">
+          <div class="seglistitem">
+            <div class="seg">
+              <strong class="segtitle">Installed programs:</strong>
+              <span class="segbody">flex, flex++ (link to flex), and
+              lex</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed libraries:</strong>
+              <span class="segbody">libfl.{a,so} and libfl_pic.{a,so}</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed directories:</strong>
+              <span class="segbody">/usr/share/doc/flex-2.5.38</span>
+            </div>
+          </div>
+        </div>
+        <div class="variablelist">
+          <h3>
+            Short Descriptions
+          </h3>
+          <table border="0" class="variablelist">
+            <colgroup>
+              <col align="left" valign="top" />
+              <col />
+            </colgroup>
+            <tbody>
+              <tr>
+                <td>
+                  <p>
+                    <a id="flex" name="flex"></a><span class=
+                    "term"><span class=
+                    "command"><strong>flex</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    A tool for generating programs that recognize patterns in
+                    text; it allows for the versatility to specify the rules
+                    for pattern-finding, eradicating the need to develop a
+                    specialized program
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="flexpp" name="flexpp"></a><span class=
+                    "term"><span class=
+                    "command"><strong>flex++</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    An extension of flex, is used for generating C++ code and
+                    classes. It is a symbolic link to <span class=
+                    "command"><strong>flex</strong></span>
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="lex" name="lex"></a><span class=
+                    "term"><span class="command"><strong>lex</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    A script that runs <span class=
+                    "command"><strong>flex</strong></span> in <span class=
+                    "command"><strong>lex</strong></span> emulation mode
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="libfl" name="libfl"></a><span class=
+                    "term"><code class="filename">libfl</code></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    The <code class="filename">flex</code> library
+                  </p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="navfooter">
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="m4.html" title="M4-1.4.17">上一页</a>
+          <p>
+            M4-1.4.17
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="bison.html" title="Bison-3.0.2">下一页</a>
+          <p>
+            Bison-3.0.2
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="chapter06.html" title=
+          "第&nbsp;6&nbsp;章&nbsp;安装基本系统软件">上一级</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Linux From Scratch - 版本 7.5">起始页</a>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

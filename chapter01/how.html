@@ -1,0 +1,139 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
+    <title>
+      1.1.&nbsp;如何构建一个LFS系统
+    </title>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/lfs.css" />
+    <meta name="generator" content="DocBook XSL Stylesheets V1.78.1" />
+    <link rel="stylesheet" href="stylesheets/lfs-print.css" type="text/css"
+    media="print" />
+  </head>
+  <body class="lfs" id="lfs-7.5">
+    <div class="navheader">
+      <h4>
+        Linux From Scratch - 版本 7.5
+      </h4>
+      <h3>
+        第&nbsp;1&nbsp;章&nbsp;介绍
+      </h3>
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="chapter01.html" title="介绍">上一页</a>
+          <p>
+            介绍
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="whatsnew.html" title="自上版以来的更新">下一页</a>
+          <p>
+            自上版以来的更新
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="chapter01.html" title=
+          "第&nbsp;1&nbsp;章&nbsp;介绍">上一级</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Linux From Scratch - 版本 7.5">起始页</a>
+        </li>
+      </ul>
+    </div>
+    <div class="sect1" lang="zh-cn" xml:lang="zh-cn">
+      <h1 class="sect1">
+        <a id="ch-intro-how" name="ch-intro-how"></a>1.1. 如何构建一个LFS系统
+      </h1>
+      <p>
+        LFS系统将会在一个已安装好的Linux发行版上被构建（比如Debian，Mandriva，Red
+        Hat，或SUSE）。这个已存在的系统（宿主系统）会被用作构建系统的起点，为构建新系统提供必须的程序，包括编译器，连接器，以及shell等。在安装这个发行版的时候，有时会需要选择<span class="quote">“<span class="quote">开发</span>”</span>选项，以便能够使用这些工具。
+      </p>
+      <p>
+        如果不想在你的机器上安装一个独立的发行版，你可以使用商业发行版的Live CD。
+      </p>
+      <p>
+        这本书的 <a class="xref" href="../chapter02/chapter02.html" title=
+        "第&nbsp;2&nbsp;章&nbsp;准备一个新分区">第 2 章</a>
+        介绍了如何创建一个Linux分区和文件系统，新的LFS系统将会在这个分区上被编译和安装。<a class="xref" href=
+        "../chapter03/chapter03.html" title="第&nbsp;3&nbsp;章&nbsp;软件包和补丁">第 3
+        章</a> 解释了构建一个LFS系统需要下载哪些软件包和补丁，以及如何把它们存放在新的文件系统上。<a class="xref"
+        href="../chapter04/chapter04.html" title=
+        "第&nbsp;4&nbsp;章&nbsp;最后的准备工作">第 4 章</a> 讨论了如何建立一个合适的工作环境。请认真阅读
+        <a class="xref" href="../chapter04/chapter04.html" title=
+        "第&nbsp;4&nbsp;章&nbsp;最后的准备工作">第 4 章</a>，因为它解释了在 <a class="xref"
+        href="../chapter05/chapter05.html" title=
+        "第&nbsp;5&nbsp;章&nbsp;构建一个临时系统">第 5 章</a> 和它后面的工作开始前，你需要关注的一些重要问题。
+      </p>
+      <p>
+        <a class="xref" href="../chapter05/chapter05.html" title=
+        "第&nbsp;5&nbsp;章&nbsp;构建一个临时系统">第 5 章</a>
+        介绍了大量软件的安装，这些软件构成了基本开发套件（或者说是工具链），这会被用于 <a class="xref" href=
+        "../chapter06/chapter06.html" title="第&nbsp;6&nbsp;章&nbsp;安装基本系统软件">第
+        6 章</a> 中真正的系统的安装。其中的一些包需要解决循环依赖问题——比如，要编译一个编译器，你首先需要一个编译器。
+      </p>
+      <p>
+        <a class="xref" href="../chapter05/chapter05.html" title=
+        "第&nbsp;5&nbsp;章&nbsp;构建一个临时系统">第 5 章</a>
+        也向你展示了如何构建工具链的第一遍，包括编译Binutils和GCC（"第一遍"意味着这两个核心部件将会被再一次编译安装）
+        接下来是编译Glibc，即C语言库。Glibc将会被第一遍中构建的工具链程序所编译。然后，工具链的第二遍将会被构建。此时，工具链会被动态链接到刚构建好的Glibc上。<a class="xref"
+        href="../chapter05/chapter05.html" title=
+        "第&nbsp;5&nbsp;章&nbsp;构建一个临时系统">第 5 章</a>
+        中剩下的包会用第二遍工具链来编译。在这些完成之后，接下来的LFS安装进程，除了运行中的内核外，将不会再依赖宿主系统。
+      </p>
+      <p>
+        为了让新系统与宿主系统隔离而做的努力，似乎看起来是多余的。<a class="xref" href=
+        "../chapter05/toolchaintechnotes.html" title=
+        "5.2.&nbsp;工具链技术注解">第&nbsp;5.2&nbsp;节 “工具链技术注解”</a>
+        中提供了一个为什么要这样做的完整的技术解释。
+      </p>
+      <p>
+        在 <a class="xref" href="../chapter06/chapter06.html" title=
+        "第&nbsp;6&nbsp;章&nbsp;安装基本系统软件">第 6 章</a> 中，完整的LFS系统将会被构建。用
+        <span class="command"><strong>chroot</strong></span>(change root)
+        程序进入一个虚拟环境，并启动一个新shell，而这个shell的根目录被设为LFS分区。这和重启电脑并让内核把LFS分区挂载为根分区非常类似。系统不重启而用
+        <span class="command"><strong>chroot</strong></span>
+        代替，这是因为创建一个可启动的系统还需要做其它的工作，而那些工作目前是不需要的。这样做的主要优点是，<span class=
+        "quote">“<span class=
+        "quote">chrooting</span>”</span>使你在构建LFS的时候能继续使用宿主系统。在等待软件包编译的时候，你可以继续正常地使用你的计算机。
+      </p>
+      <p>
+        为了完成安装，<a class="xref" href="../chapter07/chapter07.html" title=
+        "第&nbsp;7&nbsp;章&nbsp;Setting Up System Bootscripts">第 7 章</a>
+        中设置LFS启动脚本，<a class="xref" href="../chapter08/chapter08.html" title=
+        "第&nbsp;8&nbsp;章&nbsp;Making the LFS System Bootable">第 8 章</a>
+        中设置内核和启动器。<a class="xref" href="../chapter09/chapter09.html" title=
+        "第&nbsp;9&nbsp;章&nbsp;The End">第 9 章</a>
+        中包含了在这本书之外获得进一步的LFS体验的信息。在完成了这本书中的步骤之后，计算机将会准备好重启进入新的LFS系统。
+      </p>
+      <p>
+        这就是大概的过程，每一个步骤的详细信息会在接下来的章节和软件的描述中被讨论。那些可能看起来比较复杂的地方都会被清楚地解释。当你踏上LFS冒险之旅的时候，每一件事情都会准备就绪。
+      </p>
+    </div>
+    <div class="navfooter">
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="chapter01.html" title="介绍">上一页</a>
+          <p>
+            介绍
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="whatsnew.html" title="自上版以来的更新">下一页</a>
+          <p>
+            自上版以来的更新
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="chapter01.html" title=
+          "第&nbsp;1&nbsp;章&nbsp;介绍">上一级</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Linux From Scratch - 版本 7.5">起始页</a>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

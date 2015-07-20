@@ -1,0 +1,101 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
+    <title>
+      5.35.&nbsp;清理
+    </title>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/lfs.css" />
+    <meta name="generator" content="DocBook XSL Stylesheets V1.78.1" />
+    <link rel="stylesheet" href="stylesheets/lfs-print.css" type="text/css"
+    media="print" />
+  </head>
+  <body class="lfs" id="lfs-7.5">
+    <div class="navheader">
+      <h4>
+        Linux From Scratch - 版本 7.5
+      </h4>
+      <h3>
+        第&nbsp;5&nbsp;章&nbsp;构建一个临时系统
+      </h3>
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="xz.html" title="Xz-5.0.5">上一页</a>
+          <p>
+            Xz-5.0.5
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="changingowner.html" title="改变所有权">下一页</a>
+          <p>
+            改变所有权
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="chapter05.html" title=
+          "第&nbsp;5&nbsp;章&nbsp;构建一个临时系统">上一级</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Linux From Scratch - 版本 7.5">起始页</a>
+        </li>
+      </ul>
+    </div>
+    <div class="sect1" lang="zh-cn" xml:lang="zh-cn">
+      <h1 class="sect1">
+        <a id="ch-tools-stripping" name="ch-tools-stripping"></a>5.35. 清理
+      </h1>
+      <p>
+        这一节中的步骤是可选的，但如果 LFS 分区比较小，移除不必要的项目就很有用。到现在为止构建的可执行文件和库包含大约 70MB
+        的不需要的调试符号。删除这些符号：
+      </p>
+      <pre class="userinput">
+<kbd class="command">strip --strip-debug /tools/lib/*
+/usr/bin/strip --strip-unneeded /tools/{,s}bin/*</kbd>
+</pre>
+      <p>
+        这些命令会跳过一些文件并报告不识别其文件格式。其中多数是脚本而不是二进制文件。要用宿主系统的 strip 命令，以能够清理 /tools
+        中的二进制文件。
+      </p>
+      <p>
+        注意<span class="emphasis"><em>不要</em></span>给库使用 <em class=
+        "parameter"><code>--strip-unneeded</code></em>参数。这样静态库会被破坏，工具链软件就需要重新构建了。
+      </p>
+      <p>
+        要节省更多空间，移除文档：
+      </p>
+      <pre class="userinput">
+<kbd class="command">rm -rf /tools/{,share}/{info,man,doc}</kbd>
+</pre>
+      <p>
+        在这里，你应该在 <code class="envar">$LFS</code> 中有至少 850MB 可用空间用来构建安装下一章的
+        Glibc。如果你能构建安装 Glibc，你也就能构建安装其他的。
+      </p>
+    </div>
+    <div class="navfooter">
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="xz.html" title="Xz-5.0.5">上一页</a>
+          <p>
+            Xz-5.0.5
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="changingowner.html" title="改变所有权">下一页</a>
+          <p>
+            改变所有权
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="chapter05.html" title=
+          "第&nbsp;5&nbsp;章&nbsp;构建一个临时系统">上一级</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Linux From Scratch - 版本 7.5">起始页</a>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

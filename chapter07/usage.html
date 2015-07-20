@@ -1,0 +1,305 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
+    <title>
+      7.7.&nbsp;How Do These Bootscripts Work?
+    </title>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/lfs.css" />
+    <meta name="generator" content="DocBook XSL Stylesheets V1.78.1" />
+    <link rel="stylesheet" href="stylesheets/lfs-print.css" type="text/css"
+    media="print" />
+  </head>
+  <body class="lfs" id="lfs-7.5">
+    <div class="navheader">
+      <h4>
+        Linux From Scratch - 版本 7.5
+      </h4>
+      <h3>
+        第&nbsp;7&nbsp;章&nbsp;Setting Up System Bootscripts
+      </h3>
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="bootscripts.html" title=
+          "LFS-Bootscripts-20130821">上一页</a>
+          <p>
+            LFS-Bootscripts-20130821
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="hostname.html" title=
+          "Configuring the system hostname">下一页</a>
+          <p>
+            Configuring the system hostname
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="chapter07.html" title=
+          "第&nbsp;7&nbsp;章&nbsp;Setting Up System Bootscripts">上一级</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Linux From Scratch - 版本 7.5">起始页</a>
+        </li>
+      </ul>
+    </div>
+    <div class="sect1" lang="zh-cn" xml:lang="zh-cn">
+      <h1 class="sect1">
+        <a id="ch-scripts-usage" name="ch-scripts-usage"></a>7.7. How Do
+        These Bootscripts Work?
+      </h1>
+      <p>
+        Linux uses a special booting facility named SysVinit that is based on
+        a concept of <span class="emphasis"><em>run-levels</em></span>. It
+        can be quite different from one system to another, so it cannot be
+        assumed that because things worked in one particular Linux
+        distribution, they should work the same in LFS too. LFS has its own
+        way of doing things, but it respects generally accepted standards.
+      </p>
+      <p>
+        SysVinit (which will be referred to as <span class=
+        "quote">“<span class="quote">init</span>”</span> from now on) works
+        using a run-levels scheme. There are seven (numbered 0 to 6)
+        run-levels (actually, there are more run-levels, but they are for
+        special cases and are generally not used. See <code class=
+        "filename">init(8)</code> for more details), and each one of those
+        corresponds to the actions the computer is supposed to perform when
+        it starts up. The default run-level is 3. Here are the descriptions
+        of the different run-levels as they are implemented:
+      </p>
+      <div class="literallayout">
+        <p>
+          0:&nbsp;halt&nbsp;the&nbsp;computer<br />
+          1:&nbsp;single-user&nbsp;mode<br />
+          2:&nbsp;multi-user&nbsp;mode&nbsp;without&nbsp;networking<br />
+          3:&nbsp;multi-user&nbsp;mode&nbsp;with&nbsp;networking<br />
+          4:&nbsp;reserved&nbsp;for&nbsp;customization,&nbsp;otherwise&nbsp;does&nbsp;the&nbsp;same&nbsp;as&nbsp;3<br />
+
+          5:&nbsp;same&nbsp;as&nbsp;4,&nbsp;it&nbsp;is&nbsp;usually&nbsp;used&nbsp;for&nbsp;GUI&nbsp;login&nbsp;(like&nbsp;X's&nbsp;<span class="command"><strong>xdm</strong></span>&nbsp;or&nbsp;KDE's&nbsp;<span class="command"><strong>kdm</strong></span>)<br />
+
+          6:&nbsp;reboot&nbsp;the&nbsp;computer
+        </p>
+      </div>
+      <div class="configuration" lang="zh-cn" xml:lang="zh-cn">
+        <h2 class="sect2">
+          <a id="conf-sysvinit" name="conf-sysvinit"></a>7.7.1. Configuring
+          Sysvinit
+        </h2>
+        <p>
+          During the kernel initialization, the first program that is run is
+          either specified on the command line or, by default <span class=
+          "command"><strong>init</strong></span>. This program reads the
+          initialization file <code class="filename">/etc/inittab</code>.
+          Create this file with:
+        </p>
+        <pre class="userinput">
+<kbd class="command">cat &gt; /etc/inittab &lt;&lt; "EOF"
+<code class="literal"># Begin /etc/inittab
+
+id:3:initdefault:
+
+si::sysinit:/etc/rc.d/init.d/rc S
+
+l0:0:wait:/etc/rc.d/init.d/rc 0
+l1:S1:wait:/etc/rc.d/init.d/rc 1
+l2:2:wait:/etc/rc.d/init.d/rc 2
+l3:3:wait:/etc/rc.d/init.d/rc 3
+l4:4:wait:/etc/rc.d/init.d/rc 4
+l5:5:wait:/etc/rc.d/init.d/rc 5
+l6:6:wait:/etc/rc.d/init.d/rc 6
+
+ca:12345:ctrlaltdel:/sbin/shutdown -t1 -a -r now
+
+su:S016:once:/sbin/sulogin
+
+1:2345:respawn:/sbin/agetty --noclear tty1 9600
+2:2345:respawn:/sbin/agetty tty2 9600
+3:2345:respawn:/sbin/agetty tty3 9600
+4:2345:respawn:/sbin/agetty tty4 9600
+5:2345:respawn:/sbin/agetty tty5 9600
+6:2345:respawn:/sbin/agetty tty6 9600
+
+# End /etc/inittab</code>
+EOF</kbd>
+</pre>
+        <p>
+          An explanation of this initialization file is in the man page for
+          <span class="emphasis"><em>inittab</em></span>. For LFS, the key
+          command that is run is <span class=
+          "command"><strong>rc</strong></span>. The intialization file above
+          will instruct <span class="command"><strong>rc</strong></span> to
+          run all the scripts starting with an S in the <code class=
+          "filename">/etc/rc.d/rcS.d</code> directory followed by all the
+          scripts starting with an S in the <code class=
+          "filename">/etc/rc.d/rc?.d</code> directory where the question mark
+          is specified by the initdefault value.
+        </p>
+        <p>
+          As a convenience, the <span class=
+          "command"><strong>rc</strong></span> script reads a library of
+          functions in <code class="filename">/lib/lsb/init-functions</code>.
+          This library also reads an optional configuration file,
+          <code class="filename">/etc/sysconfig/rc.site</code>. Any of the
+          system configuration file parameters described in subsequent
+          sections can be alternatively placed in this file allowing
+          consolidation of all system parameters in this one file.
+        </p>
+        <p>
+          As a debugging convenience, the functions script also logs all
+          output to <code class="filename">/run/var/bootlog</code>. Since the
+          <code class="filename">/run</code> directory is a tmpfs, this file
+          is not persistent across boots, however it is appended to the more
+          permanent file <code class="filename">/var/log/boot.log</code> at
+          the end of the boot process.
+        </p>
+      </div>
+      <div class="sect2" lang="zh-cn" xml:lang="zh-cn">
+        <h2 class="sect2">
+          <a id="init-levels" name="init-levels"></a>7.7.2. Changing Run
+          Levels
+        </h2>
+        <p>
+          Changing run-levels is done with <span class="command"><strong>init
+          <em class=
+          "replaceable"><code>&lt;runlevel&gt;</code></em></strong></span>,
+          where <em class="replaceable"><code>&lt;runlevel&gt;</code></em> is
+          the target run-level. For example, to reboot the computer, a user
+          could issue the <span class="command"><strong>init
+          6</strong></span> command, which is an alias for the <span class=
+          "command"><strong>reboot</strong></span> command. Likewise,
+          <span class="command"><strong>init 0</strong></span> is an alias
+          for the <span class="command"><strong>halt</strong></span> command.
+        </p>
+        <p>
+          There are a number of directories under <code class=
+          "filename">/etc/rc.d</code> that look like <code class=
+          "filename">rc?.d</code> (where ? is the number of the run-level)
+          and <code class="filename">rcsysinit.d</code>, all containing a
+          number of symbolic links. Some begin with a <span class=
+          "emphasis"><em>K</em></span>, the others begin with an <span class=
+          "emphasis"><em>S</em></span>, and all of them have two numbers
+          following the initial letter. The K means to stop (kill) a service
+          and the S means to start a service. The numbers determine the order
+          in which the scripts are run, from 00 to 99—the lower the number
+          the earlier it gets executed. When <span class=
+          "command"><strong>init</strong></span> switches to another
+          run-level, the appropriate services are either started or stopped,
+          depending on the runlevel chosen.
+        </p>
+        <p>
+          The real scripts are in <code class=
+          "filename">/etc/rc.d/init.d</code>. They do the actual work, and
+          the symlinks all point to them. K links and S links point to the
+          same script in <code class="filename">/etc/rc.d/init.d</code>. This
+          is because the scripts can be called with different parameters like
+          <em class="parameter"><code>start</code></em>, <em class=
+          "parameter"><code>stop</code></em>, <em class=
+          "parameter"><code>restart</code></em>, <em class=
+          "parameter"><code>reload</code></em>, and <em class=
+          "parameter"><code>status</code></em>. When a K link is encountered,
+          the appropriate script is run with the <em class=
+          "parameter"><code>stop</code></em> argument. When an S link is
+          encountered, the appropriate script is run with the <em class=
+          "parameter"><code>start</code></em> argument.
+        </p>
+        <p>
+          There is one exception to this explanation. Links that start with
+          an <span class="emphasis"><em>S</em></span> in the <code class=
+          "filename">rc0.d</code> and <code class="filename">rc6.d</code>
+          directories will not cause anything to be started. They will be
+          called with the parameter <em class=
+          "parameter"><code>stop</code></em> to stop something. The logic
+          behind this is that when a user is going to reboot or halt the
+          system, nothing needs to be started. The system only needs to be
+          stopped.
+        </p>
+        <p>
+          These are descriptions of what the arguments make the scripts do:
+        </p>
+        <div class="variablelist">
+          <dl class="variablelist">
+            <dt>
+              <span class="term"><em class=
+              "parameter"><code>start</code></em></span>
+            </dt>
+            <dd>
+              <p>
+                The service is started.
+              </p>
+            </dd>
+            <dt>
+              <span class="term"><em class=
+              "parameter"><code>stop</code></em></span>
+            </dt>
+            <dd>
+              <p>
+                The service is stopped.
+              </p>
+            </dd>
+            <dt>
+              <span class="term"><em class=
+              "parameter"><code>restart</code></em></span>
+            </dt>
+            <dd>
+              <p>
+                The service is stopped and then started again.
+              </p>
+            </dd>
+            <dt>
+              <span class="term"><em class=
+              "parameter"><code>reload</code></em></span>
+            </dt>
+            <dd>
+              <p>
+                The configuration of the service is updated. This is used
+                after the configuration file of a service was modified, when
+                the service does not need to be restarted.
+              </p>
+            </dd>
+            <dt>
+              <span class="term"><em class=
+              "parameter"><code>status</code></em></span>
+            </dt>
+            <dd>
+              <p>
+                Tells if the service is running and with which PIDs.
+              </p>
+            </dd>
+          </dl>
+        </div>
+        <p>
+          Feel free to modify the way the boot process works (after all, it
+          is your own LFS system). The files given here are an example of how
+          it can be done.
+        </p>
+      </div>
+    </div>
+    <div class="navfooter">
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="bootscripts.html" title=
+          "LFS-Bootscripts-20130821">上一页</a>
+          <p>
+            LFS-Bootscripts-20130821
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="hostname.html" title=
+          "Configuring the system hostname">下一页</a>
+          <p>
+            Configuring the system hostname
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="chapter07.html" title=
+          "第&nbsp;7&nbsp;章&nbsp;Setting Up System Bootscripts">上一级</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Linux From Scratch - 版本 7.5">起始页</a>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

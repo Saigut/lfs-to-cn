@@ -1,0 +1,157 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
+    <title>
+      5.33.&nbsp;Util-linux-2.24.1
+    </title>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/lfs.css" />
+    <meta name="generator" content="DocBook XSL Stylesheets V1.78.1" />
+    <link rel="stylesheet" href="stylesheets/lfs-print.css" type="text/css"
+    media="print" />
+  </head>
+  <body class="lfs" id="lfs-7.5">
+    <div class="navheader">
+      <h4>
+        Linux From Scratch - 版本 7.5
+      </h4>
+      <h3>
+        第&nbsp;5&nbsp;章&nbsp;构建一个临时系统
+      </h3>
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="texinfo.html" title="Texinfo-5.2">上一页</a>
+          <p>
+            Texinfo-5.2
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="xz.html" title="Xz-5.0.5">下一页</a>
+          <p>
+            Xz-5.0.5
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="chapter05.html" title=
+          "第&nbsp;5&nbsp;章&nbsp;构建一个临时系统">上一级</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Linux From Scratch - 版本 7.5">起始页</a>
+        </li>
+      </ul>
+    </div>
+    <div class="wrap" lang="zh-cn" xml:lang="zh-cn">
+      <h1 class="sect1">
+        <a id="ch-tools-util-linux" name="ch-tools-util-linux"></a>5.33.
+        Util-linux-2.24.1
+      </h1>
+      <div class="package" lang="zh-cn" xml:lang="zh-cn">
+        <p>
+          Util-linux 软件包包含了各种实用工具。
+        </p>
+        <div class="segmentedlist">
+          <div class="seglistitem">
+            <div class="seg">
+              <strong class="segtitle">预计构建时间:</strong> <span class=
+              "segbody">0.6 SBU</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">磁盘空间需求:</strong> <span class=
+              "segbody">89 MB</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="installation" lang="zh-cn" xml:lang="zh-cn">
+        <h2 class="sect2">
+          5.33.1. 安装 Util-linux
+        </h2>
+        <p>
+          准备编译 Util-linux：
+        </p>
+        <pre class="userinput">
+<kbd class="command">./configure --prefix=/tools                \
+            --disable-makeinstall-chown    \
+            --without-systemdsystemunitdir \
+            PKG_CONFIG=""</kbd>
+</pre>
+        <div class="variablelist">
+          <p class="title">
+            <strong>配置选项的含义：</strong>
+          </p>
+          <dl class="variablelist">
+            <dt>
+              <span class="term"><em class=
+              "parameter"><code>--disable-makeinstall-chown</code></em></span>
+            </dt>
+            <dd>
+              <p>
+                这个选项使在安装期间禁止使用 <span class=
+                "command"><strong>chown</strong></span> 命令。这在安装到 /tools
+                目录的时候是不需要的，而且也避免了要以 root 身份安装的需要。
+              </p>
+            </dd>
+            <dt>
+              <span class="term"><em class=
+              "parameter"><code>--without-systemdsystemunitdir</code></em></span>
+            </dt>
+            <dd>
+              <p>
+                在使用 systemd 的系统上，这个包会尝试将一个 systemd 的特定文件安装到 /tools
+                里一个不存在的目录中。这个选项禁用了不需要的动作。
+              </p>
+            </dd>
+            <dt>
+              <span class="term"><code class=
+              "envar">PKG_CONFIG=""</code></span>
+            </dt>
+            <dd>
+              <p>
+                设置这个环境变量以避免添加不必要的可能在宿主上可用的特性。注意设置这个环境变量的位置，是和 LFS
+                其它章节不同的，那些是把变量放在命令的前面的。这个位置展示了另一个使用 configure 时设置环境变量的方式。
+              </p>
+            </dd>
+          </dl>
+        </div>
+        <p>
+          编译软件包：
+        </p>
+        <pre class="userinput">
+<kbd class="command">make</kbd>
+</pre>
+        <p>
+          安装软件包：
+        </p>
+        <pre class="userinput">
+<kbd class="command">make install</kbd>
+</pre>
+      </div>
+    </div>
+    <div class="navfooter">
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="texinfo.html" title="Texinfo-5.2">上一页</a>
+          <p>
+            Texinfo-5.2
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="xz.html" title="Xz-5.0.5">下一页</a>
+          <p>
+            Xz-5.0.5
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="chapter05.html" title=
+          "第&nbsp;5&nbsp;章&nbsp;构建一个临时系统">上一级</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Linux From Scratch - 版本 7.5">起始页</a>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>
