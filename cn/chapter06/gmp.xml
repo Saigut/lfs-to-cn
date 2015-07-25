@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+  "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../general.ent">
+  %general-entities;
+]>
+
+<sect1 id="ch-system-gmp" role="wrap">
+  <?dbhtml filename="gmp.html"?>
+
+  <sect1info condition="script">
+    <productname>gmp</productname>
+    <productnumber>&gmp-version;</productnumber>
+    <address>&gmp-url;</address>
+  </sect1info>
+
+  <title>GMP-&gmp-version;</title>
+
+  <indexterm zone="ch-system-gmp">
+    <primary sortas="a-GMP">GMP</primary>
+  </indexterm>
+
+  <sect2 role="package">
+    <title/>
+
+    <para>GMP 软件包包含数学库。其中包含用于任意精度算术的实用函数。</para>
+
+    <segmentedlist>
+      <segtitle>&buildtime;</segtitle>
+      <segtitle>&diskspace;</segtitle>
+
+      <seglistitem>
+        <seg>&gmp-ch6-sbu;</seg>
+        <seg>&gmp-ch6-du;</seg>
+      </seglistitem>
+    </segmentedlist>
+
+  </sect2>
+
+  <sect2 role="installation">
+    <title>安装 GMP</title>
+
+    <note>
+      <para>如果你想要构建 32 位 x86 系统, 却有支持 64 位代码运行的 CPU <emphasis>且</emphasis>环境中有指定的 <envar>CFLAGS</envar> 存在, 配置脚本将会尝试配置 64 位并失败。要避免该错误，调用以下配置命令
+<screen role="nodump"><userinput><parameter>ABI=32</parameter> ./configure ...</userinput></screen></para>
+    </note>
+
+    <para>准备编译 GMP：</para>
+
+<screen><userinput remap="configure">./configure --prefix=/usr --enable-cxx</userinput></screen>
+
+    <variablelist>
+      <title>新的配置选项的含义：</title>
+
+      <varlistentry>
+        <term><parameter>--enable-cxx</parameter></term>
+        <listitem>
+          <para>此参数启用 C++ 支持</para>
+        </listitem>
+      </varlistentry>
+
+    </variablelist>
+
+    <para>编译软件包：</para>
+
+<screen><userinput remap="make">make</userinput></screen>
+
+    <important>
+      <para>本节中 GMP 的测试套件被是关十分重要的，无论如何都不要跳过。</para>
+    </important>
+
+    <para>测试结果：</para>
+
+<screen><userinput remap="test">make check 2>&amp;1 | tee gmp-check-log</userinput></screen>
+
+    <para>确保套件中全部 185 个测试都通过。要确认结果，执行以下命令：</para>
+
+<screen><userinput remap="test">awk '/tests passed/{total+=$2} ; END{print total}' gmp-check-log</userinput></screen>
+
+    <para>安装软件包：</para>
+
+<screen><userinput remap="install">make install</userinput></screen>
+
+    <para>如果需要，安装文档：</para>
+
+<screen><userinput remap="install">mkdir -v /usr/share/doc/gmp-&gmp-version;
+cp    -v doc/{isa_abi_headache,configuration} doc/*.html \
+         /usr/share/doc/gmp-&gmp-version;</userinput></screen>
+
+  </sect2>
+
+  <sect2 id="contents-gmp" role="content">
+    <title>GMP 的内容</title>
+
+    <segmentedlist>
+      <segtitle>安装的库</segtitle>
+      <segtitle>安装的目录</segtitle>
+
+      <seglistitem>
+        <seg>libgmp.{a,so} and libgmpxx.{a,so}</seg>
+        <seg>/usr/share/doc/gmp-&gmp-version;</seg>
+      </seglistitem>
+    </segmentedlist>
+
+    <variablelist>
+      <bridgehead renderas="sect3">简述</bridgehead>
+      <?dbfo list-presentation="list"?>
+      <?dbhtml list-presentation="table"?>
+
+      <varlistentry id="libgmp">
+        <term><filename class="libraryfile">libgmp</filename></term>
+        <listitem>
+          <para>包含精确算术函数。</para>
+          <indexterm zone="ch-system-gmp libgmp">
+            <primary sortas="c-libgmp">libgmp</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="libgmpxx">
+        <term><filename class="libraryfile">libgmpxx</filename></term>
+        <listitem>
+          <para>包含 C++ 精确算术函数。</para>
+          <indexterm zone="ch-system-gmp libgmpxx">
+            <primary sortas="c-libgmpxx">libgmpxx</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
+  </sect2>
+
+</sect1>

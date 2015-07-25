@@ -135,7 +135,7 @@ grep Error glibc-check-log</userinput></screen>
 <screen><userinput remap="install">cp -v ../glibc-&glibc-version;/nscd/nscd.conf /etc/nscd.conf
 mkdir -pv /var/cache/nscd</userinput></screen>
 
-    <para>Locale 可以使系统以不同的语言响应，但没有被以上的命令安装。这些 Locale 都不是必须的，但如果其中存在缺失，未来的程序包的测试套件可能会跳过重要的测试情况。</para>
+    <para>Locale 可以使系统以不同的语言响应，但没有被以上的命令安装。这些 Locale 都不是必须的，但如果其中存在缺失，未来的软件包的测试套件可能会跳过重要的测试情况。</para>
 
     <para>分立的区域数据可以使用 <command>localedef</command> 程序安装。例如，以下第一条 <command>localedef</command> 命令将 <filename>/usr/share/i18n/locales/cs_CZ</filename> 这个独立于字符集的区域数据定义与 <filename>/usr/share/i18n/charmaps/UTF-8.gz</filename> 这个字符集定义组合，并将结果附加到 <filename>/usr/lib/locale/locale-archive</filename> 文件。以下指令会安装覆盖必要测试需要的最少区域数据：</para>
 
@@ -781,7 +781,7 @@ mkdir -pv /etc/ld.so.conf.d</userinput></screen>
       <varlistentry id="libthread_db">
         <term><filename class="libraryfile">libthread_db</filename></term>
         <listitem>
-          <para>包含用于编制多线程程序调试器的函数</para>
+          <para>包含用于构建多线程程序调试器的函数</para>
           <indexterm zone="ch-system-glibc libthread_db">
             <primary sortas="c-libthread_db">libthread_db</primary>
           </indexterm>
