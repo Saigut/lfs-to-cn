@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+  "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../general.ent">
+  %general-entities;
+]>
+
+<sect1 id="ch-system-sed" role="wrap">
+  <?dbhtml filename="sed.html"?>
+
+  <sect1info condition="script">
+    <productname>sed</productname>
+    <productnumber>&sed-version;</productnumber>
+    <address>&sed-url;</address>
+  </sect1info>
+
+  <title>Sed-&sed-version;</title>
+
+  <indexterm zone="ch-system-sed">
+    <primary sortas="a-Sed">Sed</primary>
+  </indexterm>
+
+  <sect2 role="package">
+    <title/>
+
+    <para>Sed 软件包包含一个流编辑器。</para>
+
+    <segmentedlist>
+      <segtitle>&buildtime;</segtitle>
+      <segtitle>&diskspace;</segtitle>
+
+      <seglistitem>
+        <seg>&sed-ch6-sbu;</seg>
+        <seg>&sed-ch6-du;</seg>
+      </seglistitem>
+    </segmentedlist>
+
+  </sect2>
+
+  <sect2 role="installation">
+    <title>安装 Sed</title>
+
+    <para>准备编译 Sed：</para>
+
+<screen><userinput remap="configure">./configure --prefix=/usr --bindir=/bin --htmldir=/usr/share/doc/sed-&sed-version;</userinput></screen>
+
+    <variablelist>
+      <title>新的配置选项的含义：</title>
+
+      <varlistentry>
+        <term><parameter>--htmldir</parameter></term>
+        <listitem>
+          <para>此项设置将要安装 HTML 文档的目录。</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
+    <para>编译软件包：</para>
+
+<screen><userinput remap="make">make</userinput></screen>
+
+    <para>生成 HTML 文档：</para>
+
+<screen><userinput remap="make">make html</userinput></screen>
+
+    <para>要测试结果，执行：</para>
+
+<screen><userinput remap="test">make check</userinput></screen>
+
+    <para>安装软件包：</para>
+
+<screen><userinput remap="install">make install</userinput></screen>
+
+    <para>安装 HTML 文档：</para>
+
+<screen><userinput remap="install">make -C doc install-html</userinput></screen>
+
+  </sect2>
+
+  <sect2 id="contents-sed" role="content">
+    <title>Sed 的内容</title>
+
+    <segmentedlist>
+      <segtitle>安装的程序</segtitle>
+      <segtitle>安装的目录</segtitle>
+
+      <seglistitem>
+        <seg>sed</seg>
+        <seg>/usr/share/doc/sed-&sed-version;</seg>
+      </seglistitem>
+    </segmentedlist>
+
+    <variablelist>
+      <bridgehead renderas="sect3">简述</bridgehead>
+      <?dbfo list-presentation="list"?>
+      <?dbhtml list-presentation="table"?>
+
+      <varlistentry id="sed">
+        <term><command>sed</command></term>
+        <listitem>
+          <para>通过一次简单的操作筛选和改变文本文件</para>
+          <indexterm zone="ch-system-sed sed">
+            <primary sortas="b-sed">sed</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+    </variablelist>
+
+  </sect2>
+
+</sect1>
