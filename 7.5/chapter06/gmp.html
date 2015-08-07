@@ -48,8 +48,7 @@
       </h1>
       <div class="package" lang="zh-cn" xml:lang="zh-cn">
         <p>
-          The GMP package contains math libraries. These have useful
-          functions for arbitrary precision arithmetic.
+          GMP 软件包包含数学库。其中包含用于任意精度算术的实用函数。
         </p>
         <div class="segmentedlist">
           <div class="seglistitem">
@@ -66,7 +65,7 @@
       </div>
       <div class="installation" lang="zh-cn" xml:lang="zh-cn">
         <h2 class="sect2">
-          6.14.1. Installation of GMP
+          6.14.1. 安装 GMP
         </h2>
         <div class="admon note">
           <img alt="[注意]" src="../images/note.png" />
@@ -74,12 +73,9 @@
             注意
           </h3>
           <p>
-            If you are building for 32-bit x86, but you have a CPU which is
-            capable of running 64-bit code <span class=
-            "emphasis"><em>and</em></span> you have specified <code class=
-            "envar">CFLAGS</code> in the environment, the configure script
-            will attempt to configure for 64-bits and fail. Avoid this by
-            invoking the configure command below with
+            如果你想要构建 32 位 x86 系统, 却有支持 64 位代码运行的 CPU <span class=
+            "emphasis"><em>且</em></span>环境中有指定的 <code class=
+            "envar">CFLAGS</code> 存在, 配置脚本将会尝试配置 64 位并失败。要避免该错误，调用以下配置命令
           </p>
           <pre class="userinput">
 <kbd class="command"><em class=
@@ -87,14 +83,14 @@
 </pre>
         </div>
         <p>
-          Prepare GMP for compilation:
+          准备编译 GMP：
         </p>
         <pre class="userinput">
 <kbd class="command">./configure --prefix=/usr --enable-cxx</kbd>
 </pre>
         <div class="variablelist">
           <p class="title">
-            <strong>The meaning of the new configure options:</strong>
+            <strong>新的配置选项的含义：</strong>
           </p>
           <dl class="variablelist">
             <dt>
@@ -103,13 +99,13 @@
             </dt>
             <dd>
               <p>
-                This parameter enables C++ support
+                此参数启用 C++ 支持
               </p>
             </dd>
           </dl>
         </div>
         <p>
-          Compile the package:
+          编译软件包：
         </p>
         <pre class="userinput">
 <kbd class="command">make</kbd>
@@ -120,32 +116,30 @@
             重要
           </h3>
           <p>
-            The test suite for GMP in this section is considered critical. Do
-            not skip it under any circumstances.
+            本节中 GMP 的测试套件被是关十分重要的，无论如何都不要跳过。
           </p>
         </div>
         <p>
-          Test the results:
+          测试结果：
         </p>
         <pre class="userinput">
 <kbd class="command">make check 2&gt;&amp;1 | tee gmp-check-log</kbd>
 </pre>
         <p>
-          Ensure that all 185 tests in the test suite passed. Check the
-          results by issuing the following command:
+          确保套件中全部 185 个测试都通过。要确认结果，执行以下命令：
         </p>
         <pre class="userinput">
 <kbd class=
 "command">awk '/tests passed/{total+=$2} ; END{print total}' gmp-check-log</kbd>
 </pre>
         <p>
-          Install the package:
+          安装软件包：
         </p>
         <pre class="userinput">
 <kbd class="command">make install</kbd>
 </pre>
         <p>
-          If desired, install the documentation:
+          如果需要，安装文档：
         </p>
         <pre class="userinput">
 <kbd class="command">mkdir -v /usr/share/doc/gmp-5.1.3
@@ -155,24 +149,23 @@ cp    -v doc/{isa_abi_headache,configuration} doc/*.html \
       </div>
       <div class="content" lang="zh-cn" xml:lang="zh-cn">
         <h2 class="sect2">
-          <a id="contents-gmp" name="contents-gmp"></a>6.14.2. Contents of
-          GMP
+          <a id="contents-gmp" name="contents-gmp"></a>6.14.2. GMP 的内容
         </h2>
         <div class="segmentedlist">
           <div class="seglistitem">
             <div class="seg">
-              <strong class="segtitle">Installed Libraries:</strong>
-              <span class="segbody">libgmp.{a,so} and libgmpxx.{a,so}</span>
+              <strong class="segtitle">安装的库:</strong> <span class=
+              "segbody">libgmp.{a,so} and libgmpxx.{a,so}</span>
             </div>
             <div class="seg">
-              <strong class="segtitle">Installed directory:</strong>
-              <span class="segbody">/usr/share/doc/gmp-5.1.3</span>
+              <strong class="segtitle">安装的目录:</strong> <span class=
+              "segbody">/usr/share/doc/gmp-5.1.3</span>
             </div>
           </div>
         </div>
         <div class="variablelist">
           <h3>
-            Short Descriptions
+            简述
           </h3>
           <table border="0" class="variablelist">
             <colgroup>
@@ -189,7 +182,7 @@ cp    -v doc/{isa_abi_headache,configuration} doc/*.html \
                 </td>
                 <td>
                   <p>
-                    Contains precision math functions.
+                    包含精确算术函数。
                   </p>
                 </td>
               </tr>
@@ -202,7 +195,7 @@ cp    -v doc/{isa_abi_headache,configuration} doc/*.html \
                 </td>
                 <td>
                   <p>
-                    Contains C++ precision math functions.
+                    包含 C++ 精确算术函数。
                   </p>
                 </td>
               </tr>

@@ -49,9 +49,8 @@
       </h1>
       <div class="package" lang="zh-cn" xml:lang="zh-cn">
         <p>
-          The pkg-config package contains a tool for passing the include path
-          and/or library paths to build tools during the configure and make
-          file execution.
+          pkg-config 包包含一个工具，在 configure 和 make 文件执行时传递 include
+          路径和/或库路径给构建工具。
         </p>
         <div class="segmentedlist">
           <div class="seglistitem">
@@ -68,10 +67,10 @@
       </div>
       <div class="installation" lang="zh-cn" xml:lang="zh-cn">
         <h2 class="sect2">
-          6.20.1. Installation of Pkg-config
+          6.20.1. 安装 Pkg-config
         </h2>
         <p>
-          Prepare Pkg-config for compilation:
+          准备编译 Pkg-config：
         </p>
         <pre class="userinput">
 <kbd class="command">./configure --prefix=/usr         \
@@ -81,7 +80,7 @@
 </pre>
         <div class="variablelist">
           <p class="title">
-            <strong>The meaning of the new configure options:</strong>
+            <strong>新 configure 选项的含义：</strong>
           </p>
           <dl class="variablelist">
             <dt>
@@ -90,8 +89,7 @@
             </dt>
             <dd>
               <p>
-                This will allow pkg-config to use its internal version of
-                Glib because an external version is not available in LFS.
+                此项允许 pkg-config 使用它的内部版本的 Glib，因为 LFS 中外部版本是不可用的。
               </p>
             </dd>
             <dt>
@@ -100,26 +98,25 @@
             </dt>
             <dd>
               <p>
-                This option disables the creation of an undesired hard link
-                to the pkg-config program.
+                此项禁止一个不期望的到 pkg-config 程序的硬链接的创建。
               </p>
             </dd>
           </dl>
         </div>
         <p>
-          Compile the package:
+          编译软件包：
         </p>
         <pre class="userinput">
 <kbd class="command">make</kbd>
 </pre>
         <p>
-          To test the results, issue:
+          要测试结果，执行：
         </p>
         <pre class="userinput">
 <kbd class="command">make check</kbd>
 </pre>
         <p>
-          Install the package:
+          安装软件包：
         </p>
         <pre class="userinput">
 <kbd class="command">make install</kbd>
@@ -128,23 +125,23 @@
       <div class="content" lang="zh-cn" xml:lang="zh-cn">
         <h2 class="sect2">
           <a id="contents-pkgconfig" name="contents-pkgconfig"></a>6.20.2.
-          Contents of Pkg-config
+          Pkg-config 的内容
         </h2>
         <div class="segmentedlist">
           <div class="seglistitem">
             <div class="seg">
-              <strong class="segtitle">Installed program:</strong>
-              <span class="segbody">pkg-config</span>
+              <strong class="segtitle">安装的程序:</strong> <span class=
+              "segbody">pkg-config</span>
             </div>
             <div class="seg">
-              <strong class="segtitle">Installed directory:</strong>
-              <span class="segbody">/usr/share/doc/pkg-config-0.28</span>
+              <strong class="segtitle">安装的目录:</strong> <span class=
+              "segbody">/usr/share/doc/pkg-config-0.28</span>
             </div>
           </div>
         </div>
         <div class="variablelist">
           <h3>
-            Short Descriptions
+            简述
           </h3>
           <table border="0" class="variablelist">
             <colgroup>
@@ -162,8 +159,7 @@
                 </td>
                 <td>
                   <p>
-                    returns meta information for the specified library or
-                    package.
+                    为指定的库或包返回元信息。
                   </p>
                 </td>
               </tr>

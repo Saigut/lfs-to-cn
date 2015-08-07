@@ -4,7 +4,7 @@
   <head>
     <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
     <title>
-      6.10.&nbsp;Adjusting the Toolchain
+      6.10.&nbsp;调节工具链
     </title>
     <link rel="stylesheet" type="text/css" href="../stylesheets/lfs.css" />
     <meta name="generator" content="DocBook XSL Stylesheets V1.78.1" />
@@ -45,18 +45,15 @@
     <div class="sect1" lang="zh-cn" xml:lang="zh-cn">
       <h1 class="sect1">
         <a id="ch-system-adjusting" name="ch-system-adjusting"></a>6.10.
-        Adjusting the Toolchain
+        调节工具链
       </h1>
       <p>
-        Now that the final C libraries have been installed, it is time to
-        adjust the toolchain so that it will link any newly compiled program
-        against these new libraries.
+        现在最终的 C 库安装好了，我们应该调节工具链使得新编译的程序会链接到这些新的库。
       </p>
       <p>
-        First, backup the <code class="filename">/tools</code> linker, and
-        replace it with the adjusted linker we made in chapter 5. We'll also
-        create a link to its counterpart in <code class=
-        "filename">/tools/$(gcc -dumpmachine)/bin</code>:
+        首先，备份 <code class="filename">/tools</code>
+        中的链接器，并且将其替换为我们在第五章中调节过的链接器。我们还要创建一个到它在 <code class=
+        "filename">/tools/$(gcc -dumpmachine)/bin</code> 中的对应的链接：
       </p>
       <pre class="userinput">
 <kbd class="command">mv -v /tools/bin/{ld,ld-old}
@@ -65,13 +62,11 @@ mv -v /tools/bin/{ld-new,ld}
 ln -sv /tools/bin/ld /tools/$(gcc -dumpmachine)/bin/ld</kbd>
 </pre>
       <p>
-        Next, amend the GCC specs file so that it points to the new dynamic
-        linker. Simply deleting all instances of <span class=
-        "quote">“<span class="quote">/tools</span>”</span> should leave us
-        with the correct path to the dynamic linker. Also adjust the specs
-        file so that GCC knows where to find the correct headers and Glibc
-        start files. A <span class="command"><strong>sed</strong></span>
-        command accomplishes this:
+        下一步，修改 GCC 的 <code class="filename">specs</code>
+        文件指向新的动态链接器。简单地删除所有存在的 <span class="quote">“<span class=
+        "quote">/tools</span>”</span> 就可以剩下到动态链接器的正确路径。另外要使 GCC
+        知道去哪里寻找正确的头文件和 Glibc 起始文件。应用一条 <span class=
+        "command"><strong>sed</strong></span> 命令完成此任务：
       </p>
       <pre class="userinput">
 <kbd class=
@@ -81,13 +76,10 @@ ln -sv /tools/bin/ld /tools/$(gcc -dumpmachine)/bin/ld</kbd>
     `dirname $(gcc --print-libgcc-file-name)`/specs</kbd>
 </pre>
       <p>
-        It is a good idea to visually inspect the specs file to verify the
-        intended change was actually made.
+        最好是检查一下 specs 文件确认一下要进行的改动是否真的完成了。
       </p>
       <p>
-        It is imperative at this point to ensure that the basic functions
-        (compiling and linking) of the adjusted toolchain are working as
-        expected. To do this, perform the following sanity checks:
+        现在很有必要检查一下调节过的工具链的基本功能 (编译和链接) 能正常工作。要如此做，进行以下稳定性检查：
       </p>
       <pre class="userinput">
 <kbd class="command">echo 'main(){}' &gt; dummy.c
@@ -95,27 +87,23 @@ cc dummy.c -v -Wl,--verbose &amp;&gt; dummy.log
 readelf -l a.out | grep ': /lib'</kbd>
 </pre>
       <p>
-        If everything is working correctly, there should be no errors, and
-        the output of the last command will be (allowing for
-        platform-specific differences in dynamic linker name):
+        如果一切工作正常，就不应该出错，最后一条命令的输出 (允许动态链接器名称中有针对平台的差异) 应为：
       </p>
       <pre class="screen">
 <code class=
 "computeroutput">[Requesting program interpreter: /lib/ld-linux.so.2]</code>
 </pre>
       <p>
-        Note that <code class="filename">/lib</code> is now the prefix of our
-        dynamic linker.
+        注意 <code class="filename">/lib</code> 现在是我们动态链接器的前缀。
       </p>
       <p>
-        Now make sure that we're setup to use the correct startfiles:
+        现在确保设置为使用正确的起始文件：
       </p>
       <pre class="userinput">
 <kbd class="command">grep -o '/usr/lib.*/crt[1in].*succeeded' dummy.log</kbd>
 </pre>
       <p>
-        If everything is working correctly, there should be no errors, and
-        the output of the last command will be:
+        如果一切工作正常，就不应该出错，最后一条命令的输出应为：
       </p>
       <pre class="screen">
 <code class="computeroutput">/usr/lib/crt1.o succeeded
@@ -123,72 +111,63 @@ readelf -l a.out | grep ': /lib'</kbd>
 /usr/lib/crtn.o succeeded</code>
 </pre>
       <p>
-        Verify that the compiler is searching for the correct header files:
+        检查一下编译器是否寻找正确的头文件：
       </p>
       <pre class="userinput">
 <kbd class="command">grep -B1 '^ /usr/include' dummy.log</kbd>
 </pre>
       <p>
-        This command should return successfully with the following output:
+        此命令应该成功返回并给出以下输出：
       </p>
       <pre class="screen">
 <code class="computeroutput">#include &lt;...&gt; search starts here:
  /usr/include</code>
 </pre>
       <p>
-        Next, verify that the new linker is being used with the correct
-        search paths:
+        下一步检查新的链接器使用正确的搜索路径：
       </p>
       <pre class="userinput">
 <kbd class="command">grep 'SEARCH.*/usr/lib' dummy.log |sed 's|; |\n|g'</kbd>
 </pre>
       <p>
-        If everything is working correctly, there should be no errors, and
-        the output of the last command will be:
+        如果一切工作正常，就不应该出错，最后一条命令的输出 (允许目标三联字串中有针对平台的差异) 应为：
       </p>
       <pre class="screen">
 <code class="computeroutput">SEARCH_DIR("/usr/lib")
 SEARCH_DIR("/lib");</code>
 </pre>
       <p>
-        Next make sure that we're using the correct libc:
+        下一步确认我们使用的是正确的 libc：
       </p>
       <pre class="userinput">
 <kbd class="command">grep "/lib.*/libc.so.6 " dummy.log</kbd>
 </pre>
       <p>
-        If everything is working correctly, there should be no errors, and
-        the output of the last command (allowing for a lib64 directory on
-        64-bit hosts) will be:
+        如果一切工作正常，就不应该出错，最后一条命令的输出 (允许 64 位宿主上有 <code class=
+        "filename">lib64</code> 目录) 应为：
       </p>
       <pre class="screen">
 <code class="computeroutput">attempt to open /lib/libc.so.6 succeeded</code>
 </pre>
       <p>
-        Lastly, make sure GCC is using the correct dynamic linker:
+        最后，确保 GCC 使用正确的动态链接器：
       </p>
       <pre class="userinput">
 <kbd class="command">grep found dummy.log</kbd>
 </pre>
       <p>
-        If everything is working correctly, there should be no errors, and
-        the output of the last command will be (allowing for
-        platform-specific differences in dynamic linker name and a lib64
-        directory on 64-bit hosts):
+        如果一切工作正常，就不应该出错，最后一条命令的输出 (允许动态链接器名称中有针对平台的差异、64 位宿主上有 <code class=
+        "filename">lib64</code> 目录) 应为：
       </p>
       <pre class="screen">
 <code class="computeroutput">found ld-linux.so.2 at /lib/ld-linux.so.2</code>
 </pre>
       <p>
-        If the output does not appear as shown above or is not received at
-        all, then something is seriously wrong. Investigate and retrace the
-        steps to find out where the problem is and correct it. The most
-        likely reason is that something went wrong with the specs file
-        adjustment. Any issues will need to be resolved before continuing on
-        with the process.
+        如果输出不如上文所示或者根本没有输出，那么一定有某个地方严重出错了。回溯步骤，找出问题并且修正。最可能出现的原因是 specs
+        文件调节出错。在进行下一步之前一定要解决所有问题。
       </p>
       <p>
-        Once everything is working correctly, clean up the test files:
+        一切都正常工作之后，清理测试文件：
       </p>
       <pre class="userinput">
 <kbd class="command">rm -v dummy.c a.out dummy.log</kbd>

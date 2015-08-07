@@ -48,8 +48,7 @@
       </h1>
       <div class="package" lang="zh-cn" xml:lang="zh-cn">
         <p>
-          The GCC package contains the GNU compiler collection, which
-          includes the C and C++ compilers.
+          GCC 软件包包含 GNU 编译器集，其中包括 C 和 C++ 编译器。
         </p>
         <div class="segmentedlist">
           <div class="seglistitem">
@@ -66,15 +65,14 @@
       </div>
       <div class="installation" lang="zh-cn" xml:lang="zh-cn">
         <h2 class="sect2">
-          6.17.1. Installation of GCC
+          6.17.1. 安装 GCC
         </h2>
         <p>
-          As in <a class="xref" href="../chapter05/gcc-pass2.html" title=
+          与<a class="xref" href="../chapter05/gcc-pass2.html" title=
           "5.10.&nbsp;GCC-4.8.2 - 第 2 遍">第&nbsp;5.10&nbsp;节 “GCC-4.8.2 - 第 2
-          遍”</a>, apply the following <span class=
-          "command"><strong>sed</strong></span> to force the build to use the
-          <code class="option">-fomit-frame-pointer</code> compiler flag in
-          order to ensure consistent compiler builds:
+          遍”</a> 相同，应用以下 <span class="command"><strong>sed</strong></span>
+          命令强制构建使用 <code class="option">-fomit-frame-pointer</code>
+          编译器标记以确保编译器构建稳定：
         </p>
         <pre class="userinput">
 <kbd class="command">case `uname -m` in
@@ -82,8 +80,7 @@
 esac</kbd>
 </pre>
         <p>
-          Also fix an error in one of the check Makefiles and disable one
-          test in the g++ libmudflap test suite:
+          还要修复一个检验 Makefile 中的错误，并禁用 g++ libmudflap 测试套件中的一个测试：
         </p>
         <pre class="userinput">
 <kbd class=
@@ -91,15 +88,14 @@ esac</kbd>
 mv -v libmudflap/testsuite/libmudflap.c++/pass41-frag.cxx{,.disable}</kbd>
 </pre>
         <p>
-          The GCC documentation recommends building GCC outside of the source
-          directory in a dedicated build directory:
+          GCC 文档推荐在源代码目录外另建目录构建 GCC：
         </p>
         <pre class="userinput">
 <kbd class="command">mkdir -v ../gcc-build
 cd ../gcc-build</kbd>
 </pre>
         <p>
-          Prepare GCC for compilation:
+          准备编译 GCC：
         </p>
         <pre class="userinput">
 <kbd class="command">SED=sed                          \
@@ -115,13 +111,11 @@ cd ../gcc-build</kbd>
      --with-system-zlib</kbd>
 </pre>
         <p>
-          Note that for other languages, there are some prerequisites that
-          are not available. See the BLFS Book for instructions on how to
-          build all the GCC supported languages.
+          注意对于其他语言，还有一些没有满足的前提条件。编译所有 GCC 支持语言的指令见 BLFS。
         </p>
         <div class="variablelist">
           <p class="title">
-            <strong>The meaning of the new configure option:</strong>
+            <strong>新的配置选项的含义：</strong>
           </p>
           <dl class="variablelist">
             <dt>
@@ -129,8 +123,7 @@ cd ../gcc-build</kbd>
             </dt>
             <dd>
               <p>
-                Setting this environment variable prevents a hard-coded path
-                to /tools/bin/sed.
+                设置这个环境变量以避免一个到 /tools/bin/sed 的硬编码路径。
               </p>
             </dd>
             <dt>
@@ -139,14 +132,13 @@ cd ../gcc-build</kbd>
             </dt>
             <dd>
               <p>
-                This switch tells GCC to link to the system installed copy of
-                the Zlib library, rather than its own internal copy.
+                此选项告诉 GCC 链接至系统上安装的 Zlib 副本而不是其内部的副本。
               </p>
             </dd>
           </dl>
         </div>
         <p>
-          Compile the package:
+          编译软件包：
         </p>
         <pre class="userinput">
 <kbd class="command">make</kbd>
@@ -157,51 +149,47 @@ cd ../gcc-build</kbd>
             重要
           </h3>
           <p>
-            In this section, the test suite for GCC is considered critical.
-            Do not skip it under any circumstance.
+            本节中 GCC 的测试套件是十分重要的，任何情况下都不要跳过。
           </p>
         </div>
         <p>
-          One set of tests in the GCC test suite is known to exhaust the
-          stack, so increase the stack size prior to running the tests:
+          GCC 的测试套件中有一组测试已知会爆栈。在运行测试之前增大栈尺寸：
         </p>
         <pre class="userinput">
 <kbd class="command">ulimit -s 32768</kbd>
 </pre>
         <p>
-          Test the results, but do not stop at errors:
+          测试结果，但在出错时不停止：
         </p>
         <pre class="userinput">
 <kbd class="command">make -k check</kbd>
 </pre>
         <p>
-          To receive a summary of the test suite results, run:
+          要获取测试套件结果的摘要，运行：
         </p>
         <pre class="userinput">
 <kbd class="command">../gcc-4.8.2/contrib/test_summary</kbd>
 </pre>
         <p>
-          For only the summaries, pipe the output through <strong class=
-          "userinput"><code>grep -A7 Summ</code></strong>.
+          如果只要摘要，将结果以管道传送给 <strong class="userinput"><code>grep -A7
+          Summ</code></strong>。
         </p>
         <p>
-          Results can be compared with those located at <a class="ulink"
-          href="http://www.linuxfromscratch.org/lfs/build-logs/7.5/">http://www.linuxfromscratch.org/lfs/build-logs/7.5/</a>
-          and <a class="ulink" href=
-          "http://gcc.gnu.org/ml/gcc-testresults/">http://gcc.gnu.org/ml/gcc-testresults/</a>.
+          可以将结果与位于 <a class="ulink" href=
+          "http://www.linuxfromscratch.org/lfs/build-logs/7.5/">http://www.linuxfromscratch.org/lfs/build-logs/7.5/</a>
+          和 <a class="ulink" href=
+          "http://gcc.gnu.org/ml/gcc-testresults/">http://gcc.gnu.org/ml/gcc-testresults/</a>
+          的样例进行比对。
         </p>
         <p>
-          A few unexpected failures cannot always be avoided. The GCC
-          developers are usually aware of these issues, but have not resolved
-          them yet. In particular, the <code class=
-          "filename">libmudflap</code> tests are known to be particularly
-          problematic as a result of a bug in GCC (<a class="ulink" href=
-          "http://gcc.gnu.org/bugzilla/show_bug.cgi?id=20003">http://gcc.gnu.org/bugzilla/show_bug.cgi?id=20003</a>).
-          Unless the test results are vastly different from those at the
-          above URL, it is safe to continue.
+          总是会有几个不期待的失败无法避免。GCC 开发者通常了解这些问题，但还没有解决。特别地，<code class=
+          "filename">libmudflap</code> 测试已知由于 GCC 中的一个漏洞 (<a class="ulink"
+          href=
+          "http://gcc.gnu.org/bugzilla/show_bug.cgi?id=20003">http://gcc.gnu.org/bugzilla/show_bug.cgi?id=20003</a>)
+          而特别麻烦。只要测试结果没有与以上 URL 中的相差过于悬殊，都可以安全继续。
         </p>
         <p>
-          Install the package:
+          安装软件包：
         </p>
         <pre class="userinput">
 <kbd class="command">make install</kbd>
@@ -215,18 +203,14 @@ cd ../gcc-build</kbd>
 <kbd class="command">ln -sv ../usr/bin/cpp /lib</kbd>
 </pre>
         <p>
-          Many packages use the name <span class=
-          "command"><strong>cc</strong></span> to call the C compiler. To
-          satisfy those packages, create a symlink:
+          很多软件包使用 <span class="command"><strong>cc</strong></span> 这个名字调用 C
+          编译器。要支持这些软件包，创建一个符号链接：
         </p>
         <pre class="userinput">
 <kbd class="command">ln -sv gcc /usr/bin/cc</kbd>
 </pre>
         <p>
-          Now that our final toolchain is in place, it is important to again
-          ensure that compiling and linking will work as expected. We do this
-          by performing the same sanity checks as we did earlier in the
-          chapter:
+          现在我们最终的工具链到位了，再次确保编译和链接正常工作就十分重要。我们要进行与本章中进行过的相同的稳定性测试：
         </p>
         <pre class="userinput">
 <kbd class="command">echo 'main(){}' &gt; dummy.c
@@ -234,23 +218,20 @@ cc dummy.c -v -Wl,--verbose &amp;&gt; dummy.log
 readelf -l a.out | grep ': /lib'</kbd>
 </pre>
         <p>
-          If everything is working correctly, there should be no errors, and
-          the output of the last command will be (allowing for
-          platform-specific differences in dynamic linker name):
+          如果一切工作正常，就不应该出错，最后一条命令的输出 (允许动态链接器名称中有针对平台的差异) 应为：
         </p>
         <pre class="screen">
 <code class=
 "computeroutput">[Requesting program interpreter: /lib/ld-linux.so.2]</code>
 </pre>
         <p>
-          Now make sure that we're setup to use the correct startfiles:
+          现在确保设置为使用正确的起始文件：
         </p>
         <pre class="userinput">
 <kbd class="command">grep -o '/usr/lib.*/crt[1in].*succeeded' dummy.log</kbd>
 </pre>
         <p>
-          If everything is working correctly, there should be no errors, and
-          the output of the last command will be:
+          如果一切工作正常，就不应该出错，最后一条命令的输出应为：
         </p>
         <pre class="screen">
 <code class=
@@ -259,24 +240,21 @@ readelf -l a.out | grep ': /lib'</kbd>
 /usr/lib/gcc/i686-pc-linux-gnu/4.8.2/../../../crtn.o succeeded</code>
 </pre>
         <p>
-          Depending on your machine architecture, the above may differ
-          slightly, the difference usually being the name of the directory
-          after <code class="filename">/usr/lib/gcc</code>. If your machine
-          is a 64-bit system, you may also see a directory named <code class=
-          "filename">lib64</code> towards the end of the string. The
-          important thing to look for here is that <span class=
-          "command"><strong>gcc</strong></span> has found all three
-          <code class="filename">crt*.o</code> files under the <code class=
-          "filename">/usr/lib</code> directory.
+          取决于你的计算机架构，以上信息可能会有轻微差异，差异通常位于 <code class=
+          "filename">/usr/lib/gcc</code> 之后的目录名称。如果你的计算机是 64
+          位系统，你还可能看到字符串末尾出现一个名为 <code class="filename">lib64</code>
+          的目录。此处的重点是 <span class="command"><strong>gcc</strong></span> 在
+          <code class="filename">/usr/lib</code> 目录中找到了全部三个 <code class=
+          "filename">crt*.o</code> 文件。
         </p>
         <p>
-          Verify that the compiler is searching for the correct header files:
+          检查一下编译器是否寻找正确的头文件：
         </p>
         <pre class="userinput">
 <kbd class="command">grep -B4 '^ /usr/include' dummy.log</kbd>
 </pre>
         <p>
-          This command should return successfully with the following output:
+          此命令应该成功返回并给出以下输出：
         </p>
         <pre class="screen">
 <code class="computeroutput">#include &lt;...&gt; search starts here:
@@ -286,8 +264,7 @@ readelf -l a.out | grep ': /lib'</kbd>
  /usr/include</code>
 </pre>
         <p>
-          Again, note that the directory named after your target triplet may
-          be different than the above, depending on your architecture.
+          再次注意，以你的目标三联字串命名的目录可能会不同。取决于你的架构。
         </p>
         <div class="admon note">
           <img alt="[注意]" src="../images/note.png" />
@@ -295,22 +272,18 @@ readelf -l a.out | grep ': /lib'</kbd>
             注意
           </h3>
           <p>
-            As of version 4.3.0, GCC now unconditionally installs the
-            <code class="filename">limits.h</code> file into the private
-            <code class="filename">include-fixed</code> directory, and that
-            directory is required to be in place.
+            对于版本 4.3.0，GCC 现在无条件安装 <code class="filename">limits.h</code>
+            文件至私有的 <code class="filename">include-fixed</code> 目录，这个目录需要到位。
           </p>
         </div>
         <p>
-          Next, verify that the new linker is being used with the correct
-          search paths:
+          下一步检查新的链接器使用正确的搜索路径：
         </p>
         <pre class="userinput">
 <kbd class="command">grep 'SEARCH.*/usr/lib' dummy.log |sed 's|; |\n|g'</kbd>
 </pre>
         <p>
-          If everything is working correctly, there should be no errors, and
-          the output of the last command will be:
+          如果一切工作正常，就不应该出错，最后一条命令的输出 (允许目标三联字串中有针对平台的差异) 应为：
         </p>
         <pre class="screen">
 <code class="computeroutput">SEARCH_DIR("/usr/i686-pc-linux-gnu/lib")
@@ -319,8 +292,7 @@ SEARCH_DIR("/lib")
 SEARCH_DIR("/usr/lib");</code>
 </pre>
         <p>
-          A 64-bit system may see a few more directories. For example, here
-          is the output from an x86_64 machine:
+          64 位系统会有几个额外的目录。例如这是 x86_64 计算机的输出：
         </p>
         <pre class="screen">
 <code class=
@@ -334,50 +306,43 @@ SEARCH_DIR("/lib")
 SEARCH_DIR("/usr/lib");</code>
 </pre>
         <p>
-          Next make sure that we're using the correct libc:
+          下一步确认我们使用的是正确的 libc：
         </p>
         <pre class="userinput">
 <kbd class="command">grep "/lib.*/libc.so.6 " dummy.log</kbd>
 </pre>
         <p>
-          If everything is working correctly, there should be no errors, and
-          the output of the last command (allowing for a lib64 directory on
-          64-bit hosts) will be:
+          如果一切工作正常，就不应该出错，最后一条命令的输出 (允许 64 位宿主上有 <code class=
+          "filename">lib64</code> 目录) 应为：
         </p>
         <pre class="screen">
 <code class="computeroutput">attempt to open /lib/libc.so.6 succeeded</code>
 </pre>
         <p>
-          Lastly, make sure GCC is using the correct dynamic linker:
+          最后，确保 GCC 使用正确的动态链接器：
         </p>
         <pre class="userinput">
 <kbd class="command">grep found dummy.log</kbd>
 </pre>
         <p>
-          If everything is working correctly, there should be no errors, and
-          the output of the last command will be (allowing for
-          platform-specific differences in dynamic linker name and a lib64
-          directory on 64-bit hosts):
+          如果一切工作正常，就不应该出错，最后一条命令的输出 (允许动态链接器名称中有针对平台的差异、64 位宿主上有 <code class=
+          "filename">lib64</code> 目录) 应为：
         </p>
         <pre class="screen">
 <code class="computeroutput">found ld-linux.so.2 at /lib/ld-linux.so.2</code>
 </pre>
         <p>
-          If the output does not appear as shown above or is not received at
-          all, then something is seriously wrong. Investigate and retrace the
-          steps to find out where the problem is and correct it. The most
-          likely reason is that something went wrong with the specs file
-          adjustment. Any issues will need to be resolved before continuing
-          on with the process.
+          如果输出不如上文所示或者根本没有输出，那么一定有某个地方严重出错了。回溯步骤，找出问题并且修正。最可能出现的原因是 specs
+          文件调节出错。在进行下一步之前一定要解决所有问题。
         </p>
         <p>
-          Once everything is working correctly, clean up the test files:
+          一切都正常工作之后，清理测试文件：
         </p>
         <pre class="userinput">
 <kbd class="command">rm -v dummy.c a.out dummy.log</kbd>
 </pre>
         <p>
-          Finally, move a misplaced file:
+          最后，移动一个位置不正确的文件：
         </p>
         <pre class="userinput">
 <kbd class="command">mkdir -pv /usr/share/gdb/auto-load/usr/lib
@@ -386,35 +351,34 @@ mv -v /usr/lib/*gdb.py /usr/share/gdb/auto-load/usr/lib</kbd>
       </div>
       <div class="content" lang="zh-cn" xml:lang="zh-cn">
         <h2 class="sect2">
-          <a id="contents-gcc" name="contents-gcc"></a>6.17.2. Contents of
-          GCC
+          <a id="contents-gcc" name="contents-gcc"></a>6.17.2. GCC 的内容
         </h2>
         <div class="segmentedlist">
           <div class="seglistitem">
             <div class="seg">
-              <strong class="segtitle">Installed programs:</strong>
-              <span class="segbody">c++, cc (link to gcc), cpp, g++, gcc,
-              gcc-ar, gcc-nm, gcc-ranlib, and gcov</span>
+              <strong class="segtitle">安装的程序:</strong> <span class=
+              "segbody">c++, cc (链接到 gcc), cpp, g++, gcc, gcc-ar, gcc-nm,
+              gcc-ranlib 和 gcov</span>
             </div>
             <div class="seg">
-              <strong class="segtitle">Installed libraries:</strong>
-              <span class="segbody">libasan.{a,so}, libatomic.{a,so},
-              libgcc.a, libgcc_eh.a, libgcc_s.so, libgcov.a, libgomp.{a,so},
+              <strong class="segtitle">安装的库:</strong> <span class=
+              "segbody">libasan.{a,so}, libatomic.{a,so}, libgcc.a,
+              libgcc_eh.a, libgcc_s.so, libgcov.a, libgomp.{a,so},
               libiberty.a, libitm.{a,so}, liblto_plugin.so,
               libmudflap.{a,so}, libmudflapth.{a,so}, libquadmath.{a,so},
               libssp.{a,so}, libssp_nonshared.a, libstdc++.{a,so},
-              libsupc++.a and libtsan.{a,so}</span>
+              libsupc++.a 和 libtsan.{a,so}</span>
             </div>
             <div class="seg">
-              <strong class="segtitle">Installed directories:</strong>
-              <span class="segbody">/usr/include/c++, /usr/lib/gcc,
-              /usr/libexec/gcc, /usr/share/gcc-4.8.2</span>
+              <strong class="segtitle">安装的目录:</strong> <span class=
+              "segbody">/usr/include/c++, /usr/lib/gcc, /usr/libexec/gcc,
+              /usr/share/gcc-4.8.2</span>
             </div>
           </div>
         </div>
         <div class="variablelist">
           <h3>
-            Short Descriptions
+            简述
           </h3>
           <table border="0" class="variablelist">
             <colgroup>
@@ -431,7 +395,7 @@ mv -v /usr/lib/*gdb.py /usr/share/gdb/auto-load/usr/lib</kbd>
                 </td>
                 <td>
                   <p>
-                    The C++ compiler
+                    C++ 编译器
                   </p>
                 </td>
               </tr>
@@ -444,7 +408,7 @@ mv -v /usr/lib/*gdb.py /usr/share/gdb/auto-load/usr/lib</kbd>
                 </td>
                 <td>
                   <p>
-                    The C compiler
+                    C 编译器
                   </p>
                 </td>
               </tr>
@@ -457,9 +421,7 @@ mv -v /usr/lib/*gdb.py /usr/share/gdb/auto-load/usr/lib</kbd>
                 </td>
                 <td>
                   <p>
-                    The C preprocessor; it is used by the compiler to expand
-                    the #include, #define, and similar statements in the
-                    source files
+                    C 预处理器；被编译器用于展开源文件中的 #include、#define 以及类似的类似语句
                   </p>
                 </td>
               </tr>
@@ -472,7 +434,7 @@ mv -v /usr/lib/*gdb.py /usr/share/gdb/auto-load/usr/lib</kbd>
                 </td>
                 <td>
                   <p>
-                    The C++ compiler
+                    C++ 编译器
                   </p>
                 </td>
               </tr>
@@ -485,7 +447,7 @@ mv -v /usr/lib/*gdb.py /usr/share/gdb/auto-load/usr/lib</kbd>
                 </td>
                 <td>
                   <p>
-                    The C compiler
+                    C 编译器
                   </p>
                 </td>
               </tr>
@@ -499,11 +461,10 @@ mv -v /usr/lib/*gdb.py /usr/share/gdb/auto-load/usr/lib</kbd>
                 </td>
                 <td>
                   <p>
-                    A wrapper around <span class=
-                    "command"><strong>ar</strong></span> that adds a plugin
-                    to the command line. This program is only used to add
-                    "link time optization" and is not useful with the default
-                    build options.
+                    <span class="command"><strong>ar</strong></span>
+                    的一个封装，在命令行中加入一个插件。此程序只用于添加 <span class=
+                    "quote">“<span class=
+                    "quote">链接时优化</span>”</span>，对于默认构建选项并没有什么用处
                   </p>
                 </td>
               </tr>
@@ -517,11 +478,10 @@ mv -v /usr/lib/*gdb.py /usr/share/gdb/auto-load/usr/lib</kbd>
                 </td>
                 <td>
                   <p>
-                    A wrapper around <span class=
-                    "command"><strong>nm</strong></span> that adds a plugin
-                    to the command line. This program is only used to add
-                    "link time optization" and is not useful with the default
-                    build options.
+                    <span class="command"><strong>nm</strong></span>
+                    的一个封装，在命令行中加入一个插件。此程序只用于添加 <span class=
+                    "quote">“<span class=
+                    "quote">链接时优化</span>”</span>，对于默认构建选项并没有什么用处
                   </p>
                 </td>
               </tr>
@@ -535,11 +495,10 @@ mv -v /usr/lib/*gdb.py /usr/share/gdb/auto-load/usr/lib</kbd>
                 </td>
                 <td>
                   <p>
-                    A wrapper around <span class=
-                    "command"><strong>ranlib</strong></span> that adds a
-                    plugin to the command line. This program is only used to
-                    add "link time optization" and is not useful with the
-                    default build options.
+                    <span class="command"><strong>ranlib</strong></span>
+                    的一个封装，在命令行中加入一个插件。此程序只用于添加 <span class=
+                    "quote">“<span class=
+                    "quote">链接时优化</span>”</span>，对于默认构建选项并没有什么用处
                   </p>
                 </td>
               </tr>
@@ -553,9 +512,7 @@ mv -v /usr/lib/*gdb.py /usr/share/gdb/auto-load/usr/lib</kbd>
                 </td>
                 <td>
                   <p>
-                    A coverage testing tool; it is used to analyze programs
-                    to determine where optimizations will have the most
-                    effect
+                    一个覆盖测试工具；用于分析程序获知优化在何处效果最好
                   </p>
                 </td>
               </tr>
@@ -569,7 +526,7 @@ mv -v /usr/lib/*gdb.py /usr/share/gdb/auto-load/usr/lib</kbd>
                 </td>
                 <td>
                   <p>
-                    The Address Sanitizer runtime library
+                    地址清理器运行时库
                   </p>
                 </td>
               </tr>
@@ -582,8 +539,8 @@ mv -v /usr/lib/*gdb.py /usr/share/gdb/auto-load/usr/lib</kbd>
                 </td>
                 <td>
                   <p>
-                    Contains run-time support for <span class=
-                    "command"><strong>gcc</strong></span>
+                    包含用于 <span class="command"><strong>gcc</strong></span>
+                    的运行时支持
                   </p>
                 </td>
               </tr>
@@ -596,8 +553,7 @@ mv -v /usr/lib/*gdb.py /usr/share/gdb/auto-load/usr/lib</kbd>
                 </td>
                 <td>
                   <p>
-                    This library is linked in to a program when GCC is
-                    instructed to enable profiling
+                    在 GCC 获得启用分析的指令时此库链接到程序
                   </p>
                 </td>
               </tr>
@@ -610,8 +566,7 @@ mv -v /usr/lib/*gdb.py /usr/share/gdb/auto-load/usr/lib</kbd>
                 </td>
                 <td>
                   <p>
-                    GNU implementation of the OpenMP API for multi-platform
-                    shared-memory parallel programming in C/C++ and Fortran
+                    GNU 实现的多平台 OpenMP 共享内存并行编程，用于 C/C++ 和 Fortran
                   </p>
                 </td>
               </tr>
@@ -624,12 +579,12 @@ mv -v /usr/lib/*gdb.py /usr/share/gdb/auto-load/usr/lib</kbd>
                 </td>
                 <td>
                   <p>
-                    Contains routines used by various GNU programs, including
-                    <span class="command"><strong>getopt</strong></span>,
-                    <span class="command"><strong>obstack</strong></span>,
-                    <span class="command"><strong>strerror</strong></span>,
-                    <span class="command"><strong>strtol</strong></span>, and
-                    <span class="command"><strong>strtoul</strong></span>
+                    包含被用于各种 GNU 程序，包括 <span class=
+                    "command"><strong>getopt</strong></span>，<span class=
+                    "command"><strong>obstack</strong></span>，<span class=
+                    "command"><strong>strerror</strong></span>，<span class=
+                    "command"><strong>strtol</strong></span> 和 <span class=
+                    "command"><strong>strtoul</strong></span> 的套件
                   </p>
                 </td>
               </tr>
@@ -643,8 +598,7 @@ mv -v /usr/lib/*gdb.py /usr/share/gdb/auto-load/usr/lib</kbd>
                 </td>
                 <td>
                   <p>
-                    GCC's Link Time Optimization (LTO) plugin allows GCC to
-                    perform optimizations across compilation units.
+                    GCC 的链接时优化插件，允许 GCC 在多个编译单元之间进行优化
                   </p>
                 </td>
               </tr>
@@ -657,8 +611,7 @@ mv -v /usr/lib/*gdb.py /usr/share/gdb/auto-load/usr/lib</kbd>
                 </td>
                 <td>
                   <p>
-                    Contains routines that support GCC's bounds checking
-                    functionality
+                    包含支持 GCC 的边界检查功能的途径
                   </p>
                 </td>
               </tr>
@@ -671,7 +624,7 @@ mv -v /usr/lib/*gdb.py /usr/share/gdb/auto-load/usr/lib</kbd>
                 </td>
                 <td>
                   <p>
-                    GCC Quad Precision Math Library API
+                    GCC 四精度数学库 API
                   </p>
                 </td>
               </tr>
@@ -684,8 +637,7 @@ mv -v /usr/lib/*gdb.py /usr/share/gdb/auto-load/usr/lib</kbd>
                 </td>
                 <td>
                   <p>
-                    Contains routines supporting GCC's stack-smashing
-                    protection functionality
+                    包含支持 GCC 防爆栈保护功能的套件
                   </p>
                 </td>
               </tr>
@@ -698,7 +650,7 @@ mv -v /usr/lib/*gdb.py /usr/share/gdb/auto-load/usr/lib</kbd>
                 </td>
                 <td>
                   <p>
-                    The standard C++ library
+                    标准 C++ 库
                   </p>
                 </td>
               </tr>
@@ -711,8 +663,7 @@ mv -v /usr/lib/*gdb.py /usr/share/gdb/auto-load/usr/lib</kbd>
                 </td>
                 <td>
                   <p>
-                    Provides supporting routines for the C++ programming
-                    language
+                    为 C++ 程序设计语言提供支持的套件
                   </p>
                 </td>
               </tr>
@@ -725,7 +676,7 @@ mv -v /usr/lib/*gdb.py /usr/share/gdb/auto-load/usr/lib</kbd>
                 </td>
                 <td>
                   <p>
-                    The Thread Sanitizer runtime library
+                    线程清理器运行时库
                   </p>
                 </td>
               </tr>

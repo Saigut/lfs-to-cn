@@ -48,8 +48,7 @@
       </h1>
       <div class="package" lang="zh-cn" xml:lang="zh-cn">
         <p>
-          The Flex package contains a utility for generating programs that
-          recognize patterns in text.
+          Flex 程序包包含用于创建识别文本样式的程序的工具。
         </p>
         <div class="segmentedlist">
           <div class="seglistitem">
@@ -66,47 +65,46 @@
       </div>
       <div class="installation" lang="zh-cn" xml:lang="zh-cn">
         <h2 class="sect2">
-          6.29.1. Installation of Flex
+          6.29.1. 安装 Flex
         </h2>
         <p>
-          First, skip running three regression tests that require bison.
+          首先，跳过运行三个需要 bison 的回归测试。
         </p>
         <pre class="userinput">
 <kbd class="command">sed -i -e '/test-bison/d' tests/Makefile.in</kbd>
 </pre>
         <p>
-          Prepare Flex for compilation:
+          准备编译 Flex：
         </p>
         <pre class="userinput">
 <kbd class=
 "command">./configure --prefix=/usr --docdir=/usr/share/doc/flex-2.5.38</kbd>
 </pre>
         <p>
-          Compile the package:
+          编译软件包：
         </p>
         <pre class="userinput">
 <kbd class="command">make</kbd>
 </pre>
         <p>
-          To test the results (about 0.5 SBU), issue:
+          要测试结果 (大约 0.5 SBU)，执行：
         </p>
         <pre class="userinput">
 <kbd class="command">make check</kbd>
 </pre>
         <p>
-          Install the package:
+          安装软件包：
         </p>
         <pre class="userinput">
 <kbd class="command">make install</kbd>
 </pre>
         <p>
-          A few programs do not know about <span class=
-          "command"><strong>flex</strong></span> yet and try to run its
-          predecessor, <span class="command"><strong>lex</strong></span>. To
-          support those programs, create a wrapper script named <code class=
-          "filename">lex</code> that calls <code class="filename">flex</code>
-          in <span class="command"><strong>lex</strong></span> emulation
-          mode:
+          有几个程序还不知道 <span class=
+          "command"><strong>flex</strong></span>，会试图运行它的前身 <span class=
+          "command"><strong>lex</strong></span>。要支持这些程序，创建一个打包脚本，命名为
+          <code class="filename">lex</code>，以 <span class=
+          "command"><strong>lex</strong></span> 模拟模式调用 <code class=
+          "filename">flex</code>：
         </p>
         <pre class="userinput">
 <kbd class="command">cat &gt; /usr/bin/lex &lt;&lt; "EOF"
@@ -122,29 +120,27 @@ chmod -v 755 /usr/bin/lex</kbd>
       </div>
       <div class="content" lang="zh-cn" xml:lang="zh-cn">
         <h2 class="sect2">
-          <a id="contents-flex" name="contents-flex"></a>6.29.2. Contents of
-          Flex
+          <a id="contents-flex" name="contents-flex"></a>6.29.2. Flex 的内容
         </h2>
         <div class="segmentedlist">
           <div class="seglistitem">
             <div class="seg">
-              <strong class="segtitle">Installed programs:</strong>
-              <span class="segbody">flex, flex++ (link to flex), and
-              lex</span>
+              <strong class="segtitle">安装的程序:</strong> <span class=
+              "segbody">flex, flex++ (链接到 flex) 和 lex</span>
             </div>
             <div class="seg">
-              <strong class="segtitle">Installed libraries:</strong>
-              <span class="segbody">libfl.{a,so} and libfl_pic.{a,so}</span>
+              <strong class="segtitle">安装的库:</strong> <span class=
+              "segbody">libfl.{a,so} and libfl_pic.{a,so}</span>
             </div>
             <div class="seg">
-              <strong class="segtitle">Installed directories:</strong>
-              <span class="segbody">/usr/share/doc/flex-2.5.38</span>
+              <strong class="segtitle">安装的目录:</strong> <span class=
+              "segbody">/usr/share/doc/flex-2.5.38</span>
             </div>
           </div>
         </div>
         <div class="variablelist">
           <h3>
-            Short Descriptions
+            简述
           </h3>
           <table border="0" class="variablelist">
             <colgroup>
@@ -162,10 +158,7 @@ chmod -v 755 /usr/bin/lex</kbd>
                 </td>
                 <td>
                   <p>
-                    A tool for generating programs that recognize patterns in
-                    text; it allows for the versatility to specify the rules
-                    for pattern-finding, eradicating the need to develop a
-                    specialized program
+                    一个工具，用于创建能够识别文本样式的程序；它允许指定样式查找的规则，消除了开发特定程序的需求
                   </p>
                 </td>
               </tr>
@@ -179,9 +172,8 @@ chmod -v 755 /usr/bin/lex</kbd>
                 </td>
                 <td>
                   <p>
-                    An extension of flex, is used for generating C++ code and
-                    classes. It is a symbolic link to <span class=
-                    "command"><strong>flex</strong></span>
+                    flex 的一个扩展，用于创建 C++ 代码和类。是到 <span class=
+                    "command"><strong>flex</strong></span> 的链接
                   </p>
                 </td>
               </tr>
@@ -194,9 +186,8 @@ chmod -v 755 /usr/bin/lex</kbd>
                 </td>
                 <td>
                   <p>
-                    A script that runs <span class=
-                    "command"><strong>flex</strong></span> in <span class=
-                    "command"><strong>lex</strong></span> emulation mode
+                    一个脚本，以 <span class="command"><strong>lex</strong></span>
+                    模拟模式运行 <span class="command"><strong>flex</strong></span>
                   </p>
                 </td>
               </tr>
@@ -209,7 +200,7 @@ chmod -v 755 /usr/bin/lex</kbd>
                 </td>
                 <td>
                   <p>
-                    The <code class="filename">flex</code> library
+                    <code class="filename">flex</code> 库
                   </p>
                 </td>
               </tr>

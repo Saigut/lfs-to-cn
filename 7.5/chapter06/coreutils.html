@@ -50,8 +50,7 @@
       </h1>
       <div class="package" lang="zh-cn" xml:lang="zh-cn">
         <p>
-          The Coreutils package contains utilities for showing and setting
-          the basic system characteristics.
+          Coreutils 程序包包含用于显示和设置基本系统属性的工具。
         </p>
         <div class="segmentedlist">
           <div class="seglistitem">
@@ -68,13 +67,11 @@
       </div>
       <div class="installation" lang="zh-cn" xml:lang="zh-cn">
         <h2 class="sect2">
-          6.26.1. Installation of Coreutils
+          6.26.1. 安装 Coreutils
         </h2>
         <p>
-          POSIX requires that programs from Coreutils recognize character
-          boundaries correctly even in multibyte locales. The following patch
-          fixes this non-compliance and other internationalization-related
-          bugs:
+          POSIX 要求 Coreutils 中的程序即使在多字节区域数据中也能正确识别字符边界。以下补丁包修复这个非兼容 bug
+          和其它与国际化相关的 bug：
         </p>
         <pre class="userinput">
 <kbd class="command">patch -Np1 -i ../coreutils-8.22-i18n-4.patch</kbd>
@@ -85,13 +82,12 @@
             注意
           </h3>
           <p>
-            In the past, many bugs were found in this patch. When reporting
-            new bugs to Coreutils maintainers, please check first if they are
-            reproducible without this patch.
+            在过去，很多 bug 在该补丁包中被发现。要报告新的 bug 给 Coreutils
+            维护者，请先检查他们是否在未打该补丁时再次出现。
           </p>
         </div>
         <p>
-          Now prepare Coreutils for compilation:
+          现在准备编译 Coreutils ：
         </p>
         <pre class="userinput">
 <kbd class="command">FORCE_UNSAFE_CONFIGURE=1 ./configure \
@@ -100,7 +96,7 @@
 </pre>
         <div class="variablelist">
           <p class="title">
-            <strong>The meaning of the configure options:</strong>
+            <strong>配置选项的含义：</strong>
           </p>
           <dl class="variablelist">
             <dt>
@@ -109,70 +105,64 @@
             </dt>
             <dd>
               <p>
-                The purpose of this switch is to prevent Coreutils from
-                installing binaries that will be installed by other packages
-                later.
+                此选项是为了防止 Coreutils 安装将在之后由其他程序包安装的二进制文件。
               </p>
             </dd>
           </dl>
         </div>
         <p>
-          Compile the package:
+          编译软件包：
         </p>
         <pre class="userinput">
 <kbd class="command">make</kbd>
 </pre>
         <p>
-          Skip down to <span class="quote">“<span class="quote">Install the
-          package</span>”</span> if not running the test suite.
+          如果不运行测试套件，向下跳转到 <span class="quote">“<span class=
+          "quote">安装程序包</span>”</span>。
         </p>
         <p>
-          Now the test suite is ready to be run. First, run the tests that
-          are meant to be run as user <code class="systemitem">root</code>:
+          现在测试套件已可以运行。首先，运行意味着以用户身份运行的测试 <code class=
+          "systemitem">root</code>：
         </p>
         <pre class="userinput">
 <kbd class="command">make NON_ROOT_USERNAME=nobody check-root</kbd>
 </pre>
         <p>
-          We're going to run the remainder of the tests as the <code class=
-          "systemitem">nobody</code> user. Certain tests, however, require
-          that the user be a member of more than one group. So that these
-          tests are not skipped we'll add a temporary group and make the user
-          <code class="systemitem">nobody</code> a part of it:
+          我们将要以 <code class="systemitem">nobody</code>
+          用户运行测试的剩余部分。然而某些测试要求用户是多于一个组的成员。为使这些测试不被跳过，我们添加一个新的组并让用户
+          <code class="systemitem">nobody</code> 成为它的一部分：
         </p>
         <pre class="userinput">
 <kbd class="command">echo "dummy:x:1000:nobody" &gt;&gt; /etc/group</kbd>
 </pre>
         <p>
-          Fix some of the permissions so that the non-root user can compile
-          and run the tests:
+          修复一些许可来让普通用户可以编译以及运行测试：
         </p>
         <pre class="userinput">
 <kbd class="command">chown -Rv nobody . </kbd>
 </pre>
         <p>
-          Now run the tests. Make sure the PATH in the <strong class=
-          "userinput"><code>su</code></strong> environment includes
-          /tools/bin.
+          现在运行测试。确保 <strong class="userinput"><code>su</code></strong>
+          环境中的路径包含 /tools/bin 。
         </p>
         <pre class="userinput">
 <kbd class="command">su nobody -s /bin/bash \
           -c "PATH=$PATH make RUN_EXPENSIVE_TESTS=yes check"</kbd>
 </pre>
         <p>
-          Remove the temporary group:
+          移除临时组：
         </p>
         <pre class="userinput">
 <kbd class="command">sed -i '/dummy/d' /etc/group</kbd>
 </pre>
         <p>
-          Install the package:
+          安装软件包：
         </p>
         <pre class="userinput">
 <kbd class="command">make install</kbd>
 </pre>
         <p>
-          Move programs to the locations specified by the FHS:
+          移动程序包到 FHS 给定的位置：
         </p>
         <pre class="userinput">
 <kbd class=
@@ -184,12 +174,11 @@ mv -v /usr/share/man/man1/chroot.1 /usr/share/man/man8/chroot.8
 sed -i s/\"1\"/\"8\"/1 /usr/share/man/man8/chroot.8</kbd>
 </pre>
         <p>
-          Some of the scripts in the LFS-Bootscripts package depend on
-          <span class="command"><strong>head</strong></span>, <span class=
-          "command"><strong>sleep</strong></span>, and <span class=
-          "command"><strong>nice</strong></span>. As <code class=
-          "filename">/usr</code> may not be available during the early stages
-          of booting, those binaries need to be on the root partition:
+          LFS-Bootscripts 程序包中的一些脚本依赖 <span class=
+          "command"><strong>head</strong></span>，<span class=
+          "command"><strong>sleep</strong></span>， 和 <span class=
+          "command"><strong>nice</strong></span> 。由于 <code class=
+          "filename">/usr</code> 在引导的早期可能不可用，这些二进制文件需要在根分区下：
         </p>
         <pre class="userinput">
 <kbd class="command">mv -v /usr/bin/{head,sleep,nice} /bin</kbd>
@@ -198,38 +187,38 @@ sed -i s/\"1\"/\"8\"/1 /usr/share/man/man8/chroot.8</kbd>
       <div class="content" lang="zh-cn" xml:lang="zh-cn">
         <h2 class="sect2">
           <a id="contents-coreutils" name="contents-coreutils"></a>6.26.2.
-          Contents of Coreutils
+          Coreutils 的内容
         </h2>
         <div class="segmentedlist">
           <div class="seglistitem">
             <div class="seg">
-              <strong class="segtitle">Installed programs:</strong>
-              <span class="segbody">[, base64, basename, cat, chcon, chgrp,
-              chmod, chown, chroot, cksum, comm, cp, csplit, cut, date, dd,
-              df, dir, dircolors, dirname, du, echo, env, expand, expr,
-              factor, false, fmt, fold, groups, head, hostid, id, install,
-              join, link, ln, logname, ls, md5sum, mkdir, mkfifo, mknod,
-              mktemp, mv, nice, nl, nohup, nproc, numfmt, od, paste, pathchk,
-              pinky, pr, printenv, printf, ptx, pwd, readlink, realpath, rm,
-              rmdir, runcon, seq, sha1sum, sha224sum, sha256sum, sha384sum,
+              <strong class="segtitle">安装的程序:</strong> <span class=
+              "segbody">[, base64, basename, cat, chcon, chgrp, chmod, chown,
+              chroot, cksum, comm, cp, csplit, cut, date, dd, df, dir,
+              dircolors, dirname, du, echo, env, expand, expr, factor, false,
+              fmt, fold, groups, head, hostid, id, install, join, link, ln,
+              logname, ls, md5sum, mkdir, mkfifo, mknod, mktemp, mv, nice,
+              nl, nohup, nproc, numfmt, od, paste, pathchk, pinky, pr,
+              printenv, printf, ptx, pwd, readlink, realpath, rm, rmdir,
+              runcon, seq, sha1sum, sha224sum, sha256sum, sha384sum,
               sha512sum, shred, shuf, sleep, sort, split, stat, stdbuf, stty,
               sum, sync, tac, tail, tee, test, timeout, touch, tr, true,
               truncate, tsort, tty, uname, unexpand, uniq, unlink, users,
-              vdir, wc, who, whoami, and yes</span>
+              vdir, wc, who, whoami 和 yes</span>
             </div>
             <div class="seg">
-              <strong class="segtitle">Installed library:</strong>
-              <span class="segbody">libstdbuf.so</span>
+              <strong class="segtitle">安装的库:</strong> <span class=
+              "segbody">libstdbuf.so</span>
             </div>
             <div class="seg">
-              <strong class="segtitle">Installed directory:</strong>
-              <span class="segbody">/usr/libexec/coreutils</span>
+              <strong class="segtitle">安装的目录:</strong> <span class=
+              "segbody">/usr/libexec/coreutils</span>
             </div>
           </div>
         </div>
         <div class="variablelist">
           <h3>
-            Short Descriptions
+            简述
           </h3>
           <table border="0" class="variablelist">
             <colgroup>
@@ -247,8 +236,7 @@ sed -i s/\"1\"/\"8\"/1 /usr/share/man/man8/chroot.8</kbd>
                 </td>
                 <td>
                   <p>
-                    Encodes and decodes data according to the base64 (RFC
-                    3548) specification
+                    根据 base64 (RFC 3548) 规格编码和解码数据
                   </p>
                 </td>
               </tr>
@@ -262,7 +250,7 @@ sed -i s/\"1\"/\"8\"/1 /usr/share/man/man8/chroot.8</kbd>
                 </td>
                 <td>
                   <p>
-                    Strips any path and a given suffix from a file name
+                    从一个文件名剥离任意路径和一个给定后缀
                   </p>
                 </td>
               </tr>
@@ -275,7 +263,7 @@ sed -i s/\"1\"/\"8\"/1 /usr/share/man/man8/chroot.8</kbd>
                 </td>
                 <td>
                   <p>
-                    Concatenates files to standard output
+                    连接文件到标准输出
                   </p>
                 </td>
               </tr>
@@ -289,7 +277,7 @@ sed -i s/\"1\"/\"8\"/1 /usr/share/man/man8/chroot.8</kbd>
                 </td>
                 <td>
                   <p>
-                    Changes security context for files and directories
+                    改变文件和目录的安全内容
                   </p>
                 </td>
               </tr>
@@ -303,7 +291,7 @@ sed -i s/\"1\"/\"8\"/1 /usr/share/man/man8/chroot.8</kbd>
                 </td>
                 <td>
                   <p>
-                    Changes the group ownership of files and directories
+                    改变文件和目录的组持有人
                   </p>
                 </td>
               </tr>
@@ -317,10 +305,7 @@ sed -i s/\"1\"/\"8\"/1 /usr/share/man/man8/chroot.8</kbd>
                 </td>
                 <td>
                   <p>
-                    Changes the permissions of each file to the given mode;
-                    the mode can be either a symbolic representation of the
-                    changes to make or an octal number representing the new
-                    permissions
+                    改变每个文件的许可为给定模式；模式可以为要进行的改变的符号表达或表示新许可的八进制数
                   </p>
                 </td>
               </tr>
@@ -334,8 +319,7 @@ sed -i s/\"1\"/\"8\"/1 /usr/share/man/man8/chroot.8</kbd>
                 </td>
                 <td>
                   <p>
-                    Changes the user and/or group ownership of files and
-                    directories
+                    改变文件和目录的用户和/或组持有人
                   </p>
                 </td>
               </tr>
@@ -349,8 +333,7 @@ sed -i s/\"1\"/\"8\"/1 /usr/share/man/man8/chroot.8</kbd>
                 </td>
                 <td>
                   <p>
-                    Runs a command with the specified directory as the
-                    <code class="filename">/</code> directory
+                    以一个指定的目录作为 <code class="filename">/</code> 目录并运行程序
                   </p>
                 </td>
               </tr>
@@ -364,8 +347,7 @@ sed -i s/\"1\"/\"8\"/1 /usr/share/man/man8/chroot.8</kbd>
                 </td>
                 <td>
                   <p>
-                    Prints the Cyclic Redundancy Check (CRC) checksum and the
-                    byte counts of each specified file
+                    打印 Cyclic Redundancy Check (CRC) 指纹码和每个给定文件的字节数
                   </p>
                 </td>
               </tr>
@@ -379,8 +361,7 @@ sed -i s/\"1\"/\"8\"/1 /usr/share/man/man8/chroot.8</kbd>
                 </td>
                 <td>
                   <p>
-                    Compares two sorted files, outputting in three columns
-                    the lines that are unique and the lines that are common
+                    比较两个排序好的文件，在三栏中输出不同和相同的行
                   </p>
                 </td>
               </tr>
@@ -393,7 +374,7 @@ sed -i s/\"1\"/\"8\"/1 /usr/share/man/man8/chroot.8</kbd>
                 </td>
                 <td>
                   <p>
-                    Copies files
+                    复制文件
                   </p>
                 </td>
               </tr>
@@ -407,9 +388,7 @@ sed -i s/\"1\"/\"8\"/1 /usr/share/man/man8/chroot.8</kbd>
                 </td>
                 <td>
                   <p>
-                    Splits a given file into several new files, separating
-                    them according to given patterns or line numbers and
-                    outputting the byte count of each new file
+                    依据给定的样式或行号将给定的文件拆分为数个新文件，输出每个新文件的字节数
                   </p>
                 </td>
               </tr>
@@ -422,8 +401,7 @@ sed -i s/\"1\"/\"8\"/1 /usr/share/man/man8/chroot.8</kbd>
                 </td>
                 <td>
                   <p>
-                    Prints sections of lines, selecting the parts according
-                    to given fields or positions
+                    根据给定的区域或位置选择并打印部分行
                   </p>
                 </td>
               </tr>
@@ -437,8 +415,7 @@ sed -i s/\"1\"/\"8\"/1 /usr/share/man/man8/chroot.8</kbd>
                 </td>
                 <td>
                   <p>
-                    Displays the current time in the given format, or sets
-                    the system date
+                    以给定格式显示现在时间或设置系统日期
                   </p>
                 </td>
               </tr>
@@ -451,8 +428,7 @@ sed -i s/\"1\"/\"8\"/1 /usr/share/man/man8/chroot.8</kbd>
                 </td>
                 <td>
                   <p>
-                    Copies a file using the given block size and count, while
-                    optionally performing conversions on it
+                    使用给定的块大小和计数复制一个文件，可以同时进行转换
                   </p>
                 </td>
               </tr>
@@ -465,9 +441,7 @@ sed -i s/\"1\"/\"8\"/1 /usr/share/man/man8/chroot.8</kbd>
                 </td>
                 <td>
                   <p>
-                    Reports the amount of disk space available (and used) on
-                    all mounted file systems, or only on the file systems
-                    holding the selected files
+                    在所有挂载的文件系统上报告硬盘可用 (和已用) 空间总量，或仅在包含给定文件的文件系统上显示
                   </p>
                 </td>
               </tr>
@@ -480,9 +454,8 @@ sed -i s/\"1\"/\"8\"/1 /usr/share/man/man8/chroot.8</kbd>
                 </td>
                 <td>
                   <p>
-                    Lists the contents of each given directory (the same as
-                    the <span class="command"><strong>ls</strong></span>
-                    command)
+                    列出每个给定目录的内容 (与 <span class=
+                    "command"><strong>ls</strong></span> 命令相同)
                   </p>
                 </td>
               </tr>
@@ -496,10 +469,8 @@ sed -i s/\"1\"/\"8\"/1 /usr/share/man/man8/chroot.8</kbd>
                 </td>
                 <td>
                   <p>
-                    Outputs commands to set the <code class=
-                    "envar">LS_COLOR</code> environment variable to change
-                    the color scheme used by <span class=
-                    "command"><strong>ls</strong></span>
+                    输出命令来设置 <code class="envar">LS_COLOR</code> 环境变量以改变
+                    <span class="command"><strong>ls</strong></span> 使用的色彩方案
                   </p>
                 </td>
               </tr>
@@ -513,7 +484,7 @@ sed -i s/\"1\"/\"8\"/1 /usr/share/man/man8/chroot.8</kbd>
                 </td>
                 <td>
                   <p>
-                    Strips the non-directory suffix from a file name
+                    从一个文件名剥离非目录后缀
                   </p>
                 </td>
               </tr>
@@ -526,9 +497,7 @@ sed -i s/\"1\"/\"8\"/1 /usr/share/man/man8/chroot.8</kbd>
                 </td>
                 <td>
                   <p>
-                    Reports the amount of disk space used by the current
-                    directory, by each of the given directories (including
-                    all subdirectories) or by each of the given files
+                    报告当前目录、每个给定目录 (包括所有子目录) 或 每个给定文件所使用的硬盘空间
                   </p>
                 </td>
               </tr>
@@ -542,7 +511,7 @@ sed -i s/\"1\"/\"8\"/1 /usr/share/man/man8/chroot.8</kbd>
                 </td>
                 <td>
                   <p>
-                    Displays the given strings
+                    显示给定的字符串
                   </p>
                 </td>
               </tr>
@@ -555,7 +524,7 @@ sed -i s/\"1\"/\"8\"/1 /usr/share/man/man8/chroot.8</kbd>
                 </td>
                 <td>
                   <p>
-                    Runs a command in a modified environment
+                    在一个修改过的环境下运行一个命令
                   </p>
                 </td>
               </tr>
@@ -569,7 +538,7 @@ sed -i s/\"1\"/\"8\"/1 /usr/share/man/man8/chroot.8</kbd>
                 </td>
                 <td>
                   <p>
-                    Converts tabs to spaces
+                    转换 tab 为 space
                   </p>
                 </td>
               </tr>
@@ -583,7 +552,7 @@ sed -i s/\"1\"/\"8\"/1 /usr/share/man/man8/chroot.8</kbd>
                 </td>
                 <td>
                   <p>
-                    Evaluates expressions
+                    求表述的值
                   </p>
                 </td>
               </tr>
@@ -597,7 +566,7 @@ sed -i s/\"1\"/\"8\"/1 /usr/share/man/man8/chroot.8</kbd>
                 </td>
                 <td>
                   <p>
-                    Prints the prime factors of all specified integer numbers
+                    打印所有给定数的素因数
                   </p>
                 </td>
               </tr>
@@ -611,8 +580,7 @@ sed -i s/\"1\"/\"8\"/1 /usr/share/man/man8/chroot.8</kbd>
                 </td>
                 <td>
                   <p>
-                    Does nothing, unsuccessfully; it always exits with a
-                    status code indicating failure
+                    什么都不做；它总返回一个表示失败的状态码
                   </p>
                 </td>
               </tr>
@@ -625,7 +593,7 @@ sed -i s/\"1\"/\"8\"/1 /usr/share/man/man8/chroot.8</kbd>
                 </td>
                 <td>
                   <p>
-                    Reformats the paragraphs in the given files
+                    重新格式化给定文件中的段落
                   </p>
                 </td>
               </tr>
@@ -639,7 +607,7 @@ sed -i s/\"1\"/\"8\"/1 /usr/share/man/man8/chroot.8</kbd>
                 </td>
                 <td>
                   <p>
-                    Wraps the lines in the given files
+                    对给定文件中的内容自动换行
                   </p>
                 </td>
               </tr>
@@ -653,7 +621,7 @@ sed -i s/\"1\"/\"8\"/1 /usr/share/man/man8/chroot.8</kbd>
                 </td>
                 <td>
                   <p>
-                    Reports a user's group memberships
+                    报告某一用户的组身份
                   </p>
                 </td>
               </tr>
@@ -667,8 +635,7 @@ sed -i s/\"1\"/\"8\"/1 /usr/share/man/man8/chroot.8</kbd>
                 </td>
                 <td>
                   <p>
-                    Prints the first ten lines (or the given number of lines)
-                    of each given file
+                    打印每一个给定文件的前十行 (或给定的行数)
                   </p>
                 </td>
               </tr>
@@ -682,8 +649,7 @@ sed -i s/\"1\"/\"8\"/1 /usr/share/man/man8/chroot.8</kbd>
                 </td>
                 <td>
                   <p>
-                    Reports the numeric identifier (in hexadecimal) of the
-                    host
+                    报告 host 的数值编号 (以十六进制)
                   </p>
                 </td>
               </tr>
@@ -696,8 +662,7 @@ sed -i s/\"1\"/\"8\"/1 /usr/share/man/man8/chroot.8</kbd>
                 </td>
                 <td>
                   <p>
-                    Reports the effective user ID, group ID, and group
-                    memberships of the current user or specified user
+                    报告当前或指定用户的有效用户 ID ，组 ID ，和组成员
                   </p>
                 </td>
               </tr>
@@ -711,8 +676,7 @@ sed -i s/\"1\"/\"8\"/1 /usr/share/man/man8/chroot.8</kbd>
                 </td>
                 <td>
                   <p>
-                    Copies files while setting their permission modes and, if
-                    possible, their owner and group
+                    复制文件，同时设置它们的许可模式、所属用户和组 (可能的话)
                   </p>
                 </td>
               </tr>
@@ -726,8 +690,7 @@ sed -i s/\"1\"/\"8\"/1 /usr/share/man/man8/chroot.8</kbd>
                 </td>
                 <td>
                   <p>
-                    Joins the lines that have identical join fields from two
-                    separate files
+                    连接在两个分开的文件有相同连接区域的行
                   </p>
                 </td>
               </tr>
@@ -741,7 +704,7 @@ sed -i s/\"1\"/\"8\"/1 /usr/share/man/man8/chroot.8</kbd>
                 </td>
                 <td>
                   <p>
-                    Creates a hard link with the given name to a file
+                    以给定名称创建一个到某一文件的硬链接
                   </p>
                 </td>
               </tr>
@@ -754,7 +717,7 @@ sed -i s/\"1\"/\"8\"/1 /usr/share/man/man8/chroot.8</kbd>
                 </td>
                 <td>
                   <p>
-                    Makes hard links or soft (symbolic) links between files
+                    做文件间的硬链接或软 (符号) 链接
                   </p>
                 </td>
               </tr>
@@ -768,7 +731,7 @@ sed -i s/\"1\"/\"8\"/1 /usr/share/man/man8/chroot.8</kbd>
                 </td>
                 <td>
                   <p>
-                    Reports the current user's login name
+                    报告当前用户的登录名
                   </p>
                 </td>
               </tr>
@@ -781,7 +744,7 @@ sed -i s/\"1\"/\"8\"/1 /usr/share/man/man8/chroot.8</kbd>
                 </td>
                 <td>
                   <p>
-                    Lists the contents of each given directory
+                    列出每个给定目录的内容
                   </p>
                 </td>
               </tr>
@@ -795,7 +758,7 @@ sed -i s/\"1\"/\"8\"/1 /usr/share/man/man8/chroot.8</kbd>
                 </td>
                 <td>
                   <p>
-                    Reports or checks Message Digest 5 (MD5) checksums
+                    报告或检查 Message Digest 5 (MD5) 校验值
                   </p>
                 </td>
               </tr>
@@ -809,7 +772,7 @@ sed -i s/\"1\"/\"8\"/1 /usr/share/man/man8/chroot.8</kbd>
                 </td>
                 <td>
                   <p>
-                    Creates directories with the given names
+                    用给定名称创建目录
                   </p>
                 </td>
               </tr>
@@ -823,9 +786,9 @@ sed -i s/\"1\"/\"8\"/1 /usr/share/man/man8/chroot.8</kbd>
                 </td>
                 <td>
                   <p>
-                    Creates First-In, First-Outs (FIFOs), a <span class=
-                    "quote">“<span class="quote">named pipe</span>”</span> in
-                    UNIX parlance, with the given names
+                    用给定名称创建一个 First-In, First-Outs (FIFOs), 一个 <span class=
+                    "quote">“<span class="quote">named pipe</span>”</span> 在
+                    UNIX 用语下
                   </p>
                 </td>
               </tr>
@@ -839,9 +802,7 @@ sed -i s/\"1\"/\"8\"/1 /usr/share/man/man8/chroot.8</kbd>
                 </td>
                 <td>
                   <p>
-                    Creates device nodes with the given names; a device node
-                    is a character special file, a block special file, or a
-                    FIFO
+                    用给定名称创建一个设备节点；一个设备节点是一个字符特殊文件，一个块特殊文件或一个 FIFO
                   </p>
                 </td>
               </tr>
@@ -855,8 +816,7 @@ sed -i s/\"1\"/\"8\"/1 /usr/share/man/man8/chroot.8</kbd>
                 </td>
                 <td>
                   <p>
-                    Creates temporary files in a secure manner; it is used in
-                    scripts
+                    以一个安全的方式创建一个临时文件；它在脚本中被使用
                   </p>
                 </td>
               </tr>
@@ -869,7 +829,7 @@ sed -i s/\"1\"/\"8\"/1 /usr/share/man/man8/chroot.8</kbd>
                 </td>
                 <td>
                   <p>
-                    Moves or renames files or directories
+                    移动或重命名文件或目录
                   </p>
                 </td>
               </tr>
@@ -883,7 +843,7 @@ sed -i s/\"1\"/\"8\"/1 /usr/share/man/man8/chroot.8</kbd>
                 </td>
                 <td>
                   <p>
-                    Runs a program with modified scheduling priority
+                    以修改过的调度优先级运行一个程序
                   </p>
                 </td>
               </tr>
@@ -896,7 +856,7 @@ sed -i s/\"1\"/\"8\"/1 /usr/share/man/man8/chroot.8</kbd>
                 </td>
                 <td>
                   <p>
-                    Numbers the lines from the given files
+                    给指定文件中的行编号
                   </p>
                 </td>
               </tr>
@@ -910,8 +870,7 @@ sed -i s/\"1\"/\"8\"/1 /usr/share/man/man8/chroot.8</kbd>
                 </td>
                 <td>
                   <p>
-                    Runs a command immune to hangups, with its output
-                    redirected to a log file
+                    运行一个不会被挂起的命令，它的输出会被重定向到一个日志文件
                   </p>
                 </td>
               </tr>
@@ -925,8 +884,7 @@ sed -i s/\"1\"/\"8\"/1 /usr/share/man/man8/chroot.8</kbd>
                 </td>
                 <td>
                   <p>
-                    Prints the number of processing units available to a
-                    process
+                    打印一个进程中可用的处理器的总数
                   </p>
                 </td>
               </tr>
@@ -953,7 +911,7 @@ sed -i s/\"1\"/\"8\"/1 /usr/share/man/man8/chroot.8</kbd>
                 </td>
                 <td>
                   <p>
-                    Dumps files in octal and other formats
+                    将文件转储为八进制或其他格式
                   </p>
                 </td>
               </tr>
@@ -967,9 +925,7 @@ sed -i s/\"1\"/\"8\"/1 /usr/share/man/man8/chroot.8</kbd>
                 </td>
                 <td>
                   <p>
-                    Merges the given files, joining sequentially
-                    corresponding lines side by side, separated by tab
-                    characters
+                    合并给定的文件，并列地连接顺序上相一致的行，以制表符分隔
                   </p>
                 </td>
               </tr>
@@ -983,7 +939,7 @@ sed -i s/\"1\"/\"8\"/1 /usr/share/man/man8/chroot.8</kbd>
                 </td>
                 <td>
                   <p>
-                    Checks if file names are valid or portable
+                    检查文件名是否有效或是否可移植
                   </p>
                 </td>
               </tr>
@@ -997,8 +953,7 @@ sed -i s/\"1\"/\"8\"/1 /usr/share/man/man8/chroot.8</kbd>
                 </td>
                 <td>
                   <p>
-                    Is a lightweight finger client; it reports some
-                    information about the given users
+                    是一个轻便的 finger 客户端；它报告给定用户的一些信息
                   </p>
                 </td>
               </tr>
@@ -1011,7 +966,7 @@ sed -i s/\"1\"/\"8\"/1 /usr/share/man/man8/chroot.8</kbd>
                 </td>
                 <td>
                   <p>
-                    Paginates and columnates files for printing
+                    标页和分栏一个文件并打印
                   </p>
                 </td>
               </tr>
@@ -1025,7 +980,7 @@ sed -i s/\"1\"/\"8\"/1 /usr/share/man/man8/chroot.8</kbd>
                 </td>
                 <td>
                   <p>
-                    Prints the environment
+                    输出环境变量
                   </p>
                 </td>
               </tr>
@@ -1039,8 +994,7 @@ sed -i s/\"1\"/\"8\"/1 /usr/share/man/man8/chroot.8</kbd>
                 </td>
                 <td>
                   <p>
-                    Prints the given arguments according to the given format,
-                    much like the C printf function
+                    根据给定的格式打印给定的参数，与 C 中的 printf 函数相近
                   </p>
                 </td>
               </tr>
@@ -1053,8 +1007,7 @@ sed -i s/\"1\"/\"8\"/1 /usr/share/man/man8/chroot.8</kbd>
                 </td>
                 <td>
                   <p>
-                    Produces a permuted index from the contents of the given
-                    files, with each keyword in its context
+                    按给定文件的内容，对每个出现在文中的关键字关键词制作一个置换索引
                   </p>
                 </td>
               </tr>
@@ -1067,7 +1020,7 @@ sed -i s/\"1\"/\"8\"/1 /usr/share/man/man8/chroot.8</kbd>
                 </td>
                 <td>
                   <p>
-                    Reports the name of the current working directory
+                    报告当前工作目录的名称
                   </p>
                 </td>
               </tr>
@@ -1081,7 +1034,7 @@ sed -i s/\"1\"/\"8\"/1 /usr/share/man/man8/chroot.8</kbd>
                 </td>
                 <td>
                   <p>
-                    Reports the value of the given symbolic link
+                    报告给定符号链接的值
                   </p>
                 </td>
               </tr>
@@ -1095,7 +1048,7 @@ sed -i s/\"1\"/\"8\"/1 /usr/share/man/man8/chroot.8</kbd>
                 </td>
                 <td>
                   <p>
-                    Prints the resolved path
+                    打印解析过的路径
                   </p>
                 </td>
               </tr>
@@ -1108,7 +1061,7 @@ sed -i s/\"1\"/\"8\"/1 /usr/share/man/man8/chroot.8</kbd>
                 </td>
                 <td>
                   <p>
-                    Removes files or directories
+                    移除文件或目录
                   </p>
                 </td>
               </tr>
@@ -1122,7 +1075,7 @@ sed -i s/\"1\"/\"8\"/1 /usr/share/man/man8/chroot.8</kbd>
                 </td>
                 <td>
                   <p>
-                    Removes directories if they are empty
+                    移除空目录
                   </p>
                 </td>
               </tr>
@@ -1136,7 +1089,7 @@ sed -i s/\"1\"/\"8\"/1 /usr/share/man/man8/chroot.8</kbd>
                 </td>
                 <td>
                   <p>
-                    Runs a command with specified security context
+                    按给定的安全内容运行一个命令
                   </p>
                 </td>
               </tr>
@@ -1149,8 +1102,7 @@ sed -i s/\"1\"/\"8\"/1 /usr/share/man/man8/chroot.8</kbd>
                 </td>
                 <td>
                   <p>
-                    Prints a sequence of numbers within a given range and
-                    with a given increment
+                    在给定值域内按给定增量打印一个数列
                   </p>
                 </td>
               </tr>
@@ -1164,8 +1116,7 @@ sed -i s/\"1\"/\"8\"/1 /usr/share/man/man8/chroot.8</kbd>
                 </td>
                 <td>
                   <p>
-                    Prints or checks 160-bit Secure Hash Algorithm 1 (SHA1)
-                    checksums
+                    打印或检查 160 位 ecure Hash Algorithm 1 (SHA1) 校验值
                   </p>
                 </td>
               </tr>
@@ -1179,7 +1130,7 @@ sed -i s/\"1\"/\"8\"/1 /usr/share/man/man8/chroot.8</kbd>
                 </td>
                 <td>
                   <p>
-                    Prints or checks 224-bit Secure Hash Algorithm checksums
+                    打印或检查 224 位 Secure Hash Algorithm 校验值
                   </p>
                 </td>
               </tr>
@@ -1193,7 +1144,7 @@ sed -i s/\"1\"/\"8\"/1 /usr/share/man/man8/chroot.8</kbd>
                 </td>
                 <td>
                   <p>
-                    Prints or checks 256-bit Secure Hash Algorithm checksums
+                    打印或检查 256 位 Secure Hash Algorithm 校验值
                   </p>
                 </td>
               </tr>
@@ -1207,7 +1158,7 @@ sed -i s/\"1\"/\"8\"/1 /usr/share/man/man8/chroot.8</kbd>
                 </td>
                 <td>
                   <p>
-                    Prints or checks 384-bit Secure Hash Algorithm checksums
+                    打印或检查 384 位 Secure Hash Algorithm 校验值
                   </p>
                 </td>
               </tr>
@@ -1221,7 +1172,7 @@ sed -i s/\"1\"/\"8\"/1 /usr/share/man/man8/chroot.8</kbd>
                 </td>
                 <td>
                   <p>
-                    Prints or checks 512-bit Secure Hash Algorithm checksums
+                    打印或检查 512 位 Secure Hash Algorithm 校验值
                   </p>
                 </td>
               </tr>
@@ -1235,8 +1186,7 @@ sed -i s/\"1\"/\"8\"/1 /usr/share/man/man8/chroot.8</kbd>
                 </td>
                 <td>
                   <p>
-                    Overwrites the given files repeatedly with complex
-                    patterns, making it difficult to recover the data
+                    以复杂的样式重复重写给定的文件，使数据难以修复
                   </p>
                 </td>
               </tr>
@@ -1250,7 +1200,7 @@ sed -i s/\"1\"/\"8\"/1 /usr/share/man/man8/chroot.8</kbd>
                 </td>
                 <td>
                   <p>
-                    Shuffles lines of text
+                    将一个文本中的行打乱
                   </p>
                 </td>
               </tr>
@@ -1264,7 +1214,7 @@ sed -i s/\"1\"/\"8\"/1 /usr/share/man/man8/chroot.8</kbd>
                 </td>
                 <td>
                   <p>
-                    Pauses for the given amount of time
+                    暂停给定的时间
                   </p>
                 </td>
               </tr>
@@ -1278,7 +1228,7 @@ sed -i s/\"1\"/\"8\"/1 /usr/share/man/man8/chroot.8</kbd>
                 </td>
                 <td>
                   <p>
-                    Sorts the lines from the given files
+                    排序给定文件中的行
                   </p>
                 </td>
               </tr>
@@ -1292,8 +1242,7 @@ sed -i s/\"1\"/\"8\"/1 /usr/share/man/man8/chroot.8</kbd>
                 </td>
                 <td>
                   <p>
-                    Splits the given file into pieces, by size or by number
-                    of lines
+                    将给定文件按大小或行数分割为碎片
                   </p>
                 </td>
               </tr>
@@ -1307,7 +1256,7 @@ sed -i s/\"1\"/\"8\"/1 /usr/share/man/man8/chroot.8</kbd>
                 </td>
                 <td>
                   <p>
-                    Displays file or filesystem status
+                    显示文件或文件系统数据
                   </p>
                 </td>
               </tr>
@@ -1321,8 +1270,7 @@ sed -i s/\"1\"/\"8\"/1 /usr/share/man/man8/chroot.8</kbd>
                 </td>
                 <td>
                   <p>
-                    Runs commands with altered buffering operations for its
-                    standard streams
+                    按为其标准流更改的缓冲运算运行命令
                   </p>
                 </td>
               </tr>
@@ -1336,7 +1284,7 @@ sed -i s/\"1\"/\"8\"/1 /usr/share/man/man8/chroot.8</kbd>
                 </td>
                 <td>
                   <p>
-                    Sets or reports terminal line settings
+                    设置或报告终端行设置
                   </p>
                 </td>
               </tr>
@@ -1349,7 +1297,7 @@ sed -i s/\"1\"/\"8\"/1 /usr/share/man/man8/chroot.8</kbd>
                 </td>
                 <td>
                   <p>
-                    Prints checksum and block counts for each given file
+                    为每个文件打印校验和和块计数
                   </p>
                 </td>
               </tr>
@@ -1363,8 +1311,7 @@ sed -i s/\"1\"/\"8\"/1 /usr/share/man/man8/chroot.8</kbd>
                 </td>
                 <td>
                   <p>
-                    Flushes file system buffers; it forces changed blocks to
-                    disk and updates the super block
+                    刷新文件系统缓冲区；它会强制改变磁盘的数据块并更新超级块
                   </p>
                 </td>
               </tr>
@@ -1377,7 +1324,7 @@ sed -i s/\"1\"/\"8\"/1 /usr/share/man/man8/chroot.8</kbd>
                 </td>
                 <td>
                   <p>
-                    Concatenates the given files in reverse
+                    反向拼接给定文件
                   </p>
                 </td>
               </tr>
@@ -1391,8 +1338,7 @@ sed -i s/\"1\"/\"8\"/1 /usr/share/man/man8/chroot.8</kbd>
                 </td>
                 <td>
                   <p>
-                    Prints the last ten lines (or the given number of lines)
-                    of each given file
+                    打印每个文件的最后十行 (或给定的行数)
                   </p>
                 </td>
               </tr>
@@ -1405,8 +1351,7 @@ sed -i s/\"1\"/\"8\"/1 /usr/share/man/man8/chroot.8</kbd>
                 </td>
                 <td>
                   <p>
-                    Reads from standard input while writing both to standard
-                    output and to the given files
+                    读取标准输入并将其同时写入标准输出和给定文件
                   </p>
                 </td>
               </tr>
@@ -1420,7 +1365,7 @@ sed -i s/\"1\"/\"8\"/1 /usr/share/man/man8/chroot.8</kbd>
                 </td>
                 <td>
                   <p>
-                    Compares values and checks file types
+                    比较值并检查文件类型
                   </p>
                 </td>
               </tr>
@@ -1434,7 +1379,7 @@ sed -i s/\"1\"/\"8\"/1 /usr/share/man/man8/chroot.8</kbd>
                 </td>
                 <td>
                   <p>
-                    Runs a command with a time limit
+                    在限定时间内运行一个命令
                   </p>
                 </td>
               </tr>
@@ -1448,10 +1393,7 @@ sed -i s/\"1\"/\"8\"/1 /usr/share/man/man8/chroot.8</kbd>
                 </td>
                 <td>
                   <p>
-                    Changes file timestamps, setting the access and
-                    modification times of the given files to the current
-                    time; files that do not exist are created with zero
-                    length
+                    改变文件的时间戳，设置给定文件的使用和修改时间为当前时间；不存在的文件以 0 长度创建
                   </p>
                 </td>
               </tr>
@@ -1464,8 +1406,7 @@ sed -i s/\"1\"/\"8\"/1 /usr/share/man/man8/chroot.8</kbd>
                 </td>
                 <td>
                   <p>
-                    Translates, squeezes, and deletes the given characters
-                    from standard input
+                    转化，获取并删除标准输入中的给定文件
                   </p>
                 </td>
               </tr>
@@ -1479,8 +1420,7 @@ sed -i s/\"1\"/\"8\"/1 /usr/share/man/man8/chroot.8</kbd>
                 </td>
                 <td>
                   <p>
-                    Does nothing, successfully; it always exits with a status
-                    code indicating success
+                    什么也不做；它总返回一个表示成功的状态码
                   </p>
                 </td>
               </tr>
@@ -1494,7 +1434,7 @@ sed -i s/\"1\"/\"8\"/1 /usr/share/man/man8/chroot.8</kbd>
                 </td>
                 <td>
                   <p>
-                    Shrinks or expands a file to the specified size
+                    缩小或扩大一个文件到给定大小
                   </p>
                 </td>
               </tr>
@@ -1508,9 +1448,7 @@ sed -i s/\"1\"/\"8\"/1 /usr/share/man/man8/chroot.8</kbd>
                 </td>
                 <td>
                   <p>
-                    Performs a topological sort; it writes a completely
-                    ordered list according to the partial ordering in a given
-                    file
+                    进行一次拓扑排序；它根据给定文件中的局部顺序写出一个完全排序的列表
                   </p>
                 </td>
               </tr>
@@ -1523,8 +1461,7 @@ sed -i s/\"1\"/\"8\"/1 /usr/share/man/man8/chroot.8</kbd>
                 </td>
                 <td>
                   <p>
-                    Reports the file name of the terminal connected to
-                    standard input
+                    报告连接至标准输入的终端文件名
                   </p>
                 </td>
               </tr>
@@ -1538,7 +1475,7 @@ sed -i s/\"1\"/\"8\"/1 /usr/share/man/man8/chroot.8</kbd>
                 </td>
                 <td>
                   <p>
-                    Reports system information
+                    报告系统信息
                   </p>
                 </td>
               </tr>
@@ -1552,7 +1489,7 @@ sed -i s/\"1\"/\"8\"/1 /usr/share/man/man8/chroot.8</kbd>
                 </td>
                 <td>
                   <p>
-                    Converts spaces to tabs
+                    转换 space 到 tab
                   </p>
                 </td>
               </tr>
@@ -1566,7 +1503,7 @@ sed -i s/\"1\"/\"8\"/1 /usr/share/man/man8/chroot.8</kbd>
                 </td>
                 <td>
                   <p>
-                    Discards all but one of successive identical lines
+                    除去完全相同的行直到仅剩其中一行
                   </p>
                 </td>
               </tr>
@@ -1580,7 +1517,7 @@ sed -i s/\"1\"/\"8\"/1 /usr/share/man/man8/chroot.8</kbd>
                 </td>
                 <td>
                   <p>
-                    Removes the given file
+                    移除给定文件
                   </p>
                 </td>
               </tr>
@@ -1594,7 +1531,7 @@ sed -i s/\"1\"/\"8\"/1 /usr/share/man/man8/chroot.8</kbd>
                 </td>
                 <td>
                   <p>
-                    Reports the names of the users currently logged on
+                    报告当前正登陆上的用户名称
                   </p>
                 </td>
               </tr>
@@ -1608,8 +1545,7 @@ sed -i s/\"1\"/\"8\"/1 /usr/share/man/man8/chroot.8</kbd>
                 </td>
                 <td>
                   <p>
-                    Is the same as <span class="command"><strong>ls
-                    -l</strong></span>
+                    与 <span class="command"><strong>ls -l</strong></span> 相同
                   </p>
                 </td>
               </tr>
@@ -1622,9 +1558,7 @@ sed -i s/\"1\"/\"8\"/1 /usr/share/man/man8/chroot.8</kbd>
                 </td>
                 <td>
                   <p>
-                    Reports the number of lines, words, and bytes for each
-                    given file, as well as a total line when more than one
-                    file is given
+                    报告每个给定文件的行数，词数和字节数，当给定多个文件时还包括总行数
                   </p>
                 </td>
               </tr>
@@ -1637,7 +1571,7 @@ sed -i s/\"1\"/\"8\"/1 /usr/share/man/man8/chroot.8</kbd>
                 </td>
                 <td>
                   <p>
-                    Reports who is logged on
+                    报告谁正登陆着
                   </p>
                 </td>
               </tr>
@@ -1651,8 +1585,7 @@ sed -i s/\"1\"/\"8\"/1 /usr/share/man/man8/chroot.8</kbd>
                 </td>
                 <td>
                   <p>
-                    Reports the user name associated with the current
-                    effective user ID
+                    报告与当前有效的用户 ID 关联的用户名称
                   </p>
                 </td>
               </tr>
@@ -1665,8 +1598,8 @@ sed -i s/\"1\"/\"8\"/1 /usr/share/man/man8/chroot.8</kbd>
                 </td>
                 <td>
                   <p>
-                    Repeatedly outputs <span class="quote">“<span class=
-                    "quote">y</span>”</span> or a given string until killed
+                    重复输出 <span class="quote">“<span class=
+                    "quote">y</span>”</span> 或任一给定字符串直到被结束
                   </p>
                 </td>
               </tr>
@@ -1679,8 +1612,8 @@ sed -i s/\"1\"/\"8\"/1 /usr/share/man/man8/chroot.8</kbd>
                 </td>
                 <td>
                   <p>
-                    Library used by <span class=
-                    "command"><strong>stdbuf</strong></span>
+                    <span class="command"><strong>stdbuf</strong></span>
+                    所用到的库
                   </p>
                 </td>
               </tr>

@@ -4,7 +4,7 @@
   <head>
     <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
     <title>
-      6.7.&nbsp;Linux-3.13.3 API Headers
+      6.7.&nbsp;Linux-3.13.3 API 头文件
     </title>
     <link rel="stylesheet" type="text/css" href="../stylesheets/lfs.css" />
     <meta name="generator" content="DocBook XSL Stylesheets V1.78.1" />
@@ -46,12 +46,12 @@
     <div class="wrap" lang="zh-cn" xml:lang="zh-cn">
       <h1 class="sect1">
         <a id="ch-system-linux-headers" name=
-        "ch-system-linux-headers"></a>6.7. Linux-3.13.3 API Headers
+        "ch-system-linux-headers"></a>6.7. Linux-3.13.3 API 头文件
       </h1>
       <div class="package" lang="zh-cn" xml:lang="zh-cn">
         <p>
-          The Linux API Headers (in linux-3.13.3.tar.xz) expose the kernel's
-          API for use by Glibc.
+          Linux API 头文件 (位于 <code class=
+          "filename">linux-3.13.3.tar.xz</code>) 暴露内核的 API 供 Glibc 使用。
         </p>
         <div class="segmentedlist">
           <div class="seglistitem">
@@ -68,28 +68,21 @@
       </div>
       <div class="installation" lang="zh-cn" xml:lang="zh-cn">
         <h2 class="sect2">
-          6.7.1. Installation of Linux API Headers
+          6.7.1. 安装 Linux API 头文件
         </h2>
         <p>
-          The Linux kernel needs to expose an Application Programming
-          Interface (API) for the system's C library (Glibc in LFS) to use.
-          This is done by way of sanitizing various C header files that are
-          shipped in the Linux kernel source tarball.
+          Linux 内核需要暴露一套应用程序编程接口 (API) 供系统的 C 库 (LFS 中为 Glibc) 使用。通过净化 Linux
+          内核源代码压缩包中的多个 C 头文件来完成
         </p>
         <p>
-          Make sure there are no stale files and dependencies lying around
-          from previous activity:
+          确保不存在之前的活动产生的旧的文件和依赖关系：
         </p>
         <pre class="userinput">
 <kbd class="command">make mrproper</kbd>
 </pre>
         <p>
-          Now test and extract the user-visible kernel headers from the
-          source. They are placed in an intermediate local directory and
-          copied to the needed location because the extraction process
-          removes any existing files in the target directory. There are also
-          some hidden files used by the kernel developers and not needed by
-          LFS that are removed from the intermediate directory.
+          现在从源代码中测试并提取对用户可见的内核头文件。将它们置于本地中间目录并复制到需要的位置，因为提取进程会移除目标目录中存在的所有文件。还有一些隐藏文件，是给内核开发者使用的，LFS
+          不需要它们，所以把它们从中间目录中除去。
         </p>
         <pre class="userinput">
 <kbd class="command">make headers_check
@@ -101,31 +94,30 @@ find dest/include \( -name .install -o -name ..install.cmd \) -delete
       <div class="content" lang="zh-cn" xml:lang="zh-cn">
         <h2 class="sect2">
           <a id="contents-linux-headers" name=
-          "contents-linux-headers"></a>6.7.2. Contents of Linux API Headers
+          "contents-linux-headers"></a>6.7.2. &gt;Linux API 头文件的内容
         </h2>
         <div class="segmentedlist">
           <div class="seglistitem">
             <div class="seg">
-              <strong class="segtitle">Installed headers:</strong>
-              <span class="segbody">/usr/include/asm/*.h,
-              /usr/include/asm-generic/*.h, /usr/include/drm/*.h,
-              /usr/include/linux/*.h, /usr/include/mtd/*.h,
-              /usr/include/rdma/*.h, /usr/include/scsi/*.h,
-              /usr/include/sound/*.h, /usr/include/video/*.h,
-              /usr/include/xen/*.h</span>
+              <strong class="segtitle">安装的头文件:</strong> <span class=
+              "segbody">/usr/include/asm/*.h, /usr/include/asm-generic/*.h,
+              /usr/include/drm/*.h, /usr/include/linux/*.h,
+              /usr/include/mtd/*.h, /usr/include/rdma/*.h,
+              /usr/include/scsi/*.h, /usr/include/sound/*.h,
+              /usr/include/video/*.h, /usr/include/xen/*.h</span>
             </div>
             <div class="seg">
-              <strong class="segtitle">Installed directories:</strong>
-              <span class="segbody">/usr/include/asm,
-              /usr/include/asm-generic, /usr/include/drm, /usr/include/linux,
-              /usr/include/mtd, /usr/include/rdma, /usr/include/scsi,
-              /usr/include/sound, /usr/include/video, /usr/include/xen</span>
+              <strong class="segtitle">安装的目录:</strong> <span class=
+              "segbody">/usr/include/asm, /usr/include/asm-generic,
+              /usr/include/drm, /usr/include/linux, /usr/include/mtd,
+              /usr/include/rdma, /usr/include/scsi, /usr/include/sound,
+              /usr/include/video, /usr/include/xen</span>
             </div>
           </div>
         </div>
         <div class="variablelist">
           <h3>
-            Short Descriptions
+            简介
           </h3>
           <table border="0" class="variablelist">
             <colgroup>
@@ -142,7 +134,7 @@ find dest/include \( -name .install -o -name ..install.cmd \) -delete
                 </td>
                 <td>
                   <p>
-                    The Linux API ASM Headers
+                    Linux API ASM 头文件
                   </p>
                 </td>
               </tr>
@@ -156,7 +148,7 @@ find dest/include \( -name .install -o -name ..install.cmd \) -delete
                 </td>
                 <td>
                   <p>
-                    The Linux API ASM Generic Headers
+                    Linux API ASM 通用头文件
                   </p>
                 </td>
               </tr>
@@ -169,7 +161,7 @@ find dest/include \( -name .install -o -name ..install.cmd \) -delete
                 </td>
                 <td>
                   <p>
-                    The Linux API DRM Headers
+                    Linux API DRM 头文件
                   </p>
                 </td>
               </tr>
@@ -183,7 +175,7 @@ find dest/include \( -name .install -o -name ..install.cmd \) -delete
                 </td>
                 <td>
                   <p>
-                    The Linux API Linux Headers
+                    Linux API Linux 头文件
                   </p>
                 </td>
               </tr>
@@ -196,7 +188,7 @@ find dest/include \( -name .install -o -name ..install.cmd \) -delete
                 </td>
                 <td>
                   <p>
-                    The Linux API MTD Headers
+                    Linux API MTD 头文件
                   </p>
                 </td>
               </tr>
@@ -210,7 +202,7 @@ find dest/include \( -name .install -o -name ..install.cmd \) -delete
                 </td>
                 <td>
                   <p>
-                    The Linux API RDMA Headers
+                    Linux API RDMA 头文件
                   </p>
                 </td>
               </tr>
@@ -224,7 +216,7 @@ find dest/include \( -name .install -o -name ..install.cmd \) -delete
                 </td>
                 <td>
                   <p>
-                    The Linux API SCSI Headers
+                    Linux API SCSI 头文件
                   </p>
                 </td>
               </tr>
@@ -238,7 +230,7 @@ find dest/include \( -name .install -o -name ..install.cmd \) -delete
                 </td>
                 <td>
                   <p>
-                    The Linux API Sound Headers
+                    Linux API Sound 头文件
                   </p>
                 </td>
               </tr>
@@ -252,7 +244,7 @@ find dest/include \( -name .install -o -name ..install.cmd \) -delete
                 </td>
                 <td>
                   <p>
-                    The Linux API Video Headers
+                    Linux API Video 头文件
                   </p>
                 </td>
               </tr>
@@ -265,7 +257,7 @@ find dest/include \( -name .install -o -name ..install.cmd \) -delete
                 </td>
                 <td>
                   <p>
-                    The Linux API Xen Headers
+                    Linux API Xen 头文件
                   </p>
                 </td>
               </tr>

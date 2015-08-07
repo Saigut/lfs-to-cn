@@ -50,8 +50,7 @@
       </h1>
       <div class="package" lang="zh-cn" xml:lang="zh-cn">
         <p>
-          The Ncurses package contains libraries for terminal-independent
-          handling of character screens.
+          Ncurses 软件包包含用于不依赖终端处理字符屏幕的库。
         </p>
         <div class="segmentedlist">
           <div class="seglistitem">
@@ -68,10 +67,10 @@
       </div>
       <div class="installation" lang="zh-cn" xml:lang="zh-cn">
         <h2 class="sect2">
-          6.21.1. Installation of Ncurses
+          6.21.1. 安装 Ncurses
         </h2>
         <p>
-          Prepare Ncurses for compilation:
+          准备编译 Ncurses：
         </p>
         <pre class="userinput">
 <kbd class="command">./configure --prefix=/usr           \
@@ -83,7 +82,7 @@
 </pre>
         <div class="variablelist">
           <p class="title">
-            <strong>The meaning of the configure option:</strong>
+            <strong>配置选项的含义：</strong>
           </p>
           <dl class="variablelist">
             <dt>
@@ -92,14 +91,11 @@
             </dt>
             <dd>
               <p>
-                This switch causes wide-character libraries (e.g.,
-                <code class="filename">libncursesw.so.5.9</code>) to be built
-                instead of normal ones (e.g., <code class=
-                "filename">libncurses.so.5.9</code>). These wide-character
-                libraries are usable in both multibyte and traditional 8-bit
-                locales, while normal libraries work properly only in 8-bit
-                locales. Wide-character and normal libraries are
-                source-compatible, but not binary-compatible.
+                这个选项使长字符库 (e.g.，<code class=
+                "filename">libncursesw.so.5.9</code>)被构建而非普通的库 (例如
+                <code class="filename">libncurses.so.5.9</code>)
+                这些长字符库在多字节和传统 8 位区域数据下都可用，而普通的库只在 8
+                位区域数据下正常工作。宽字符库和普通库是源代码兼容的，但二进制不兼容。
               </p>
             </dd>
             <dt>
@@ -108,50 +104,43 @@
             </dt>
             <dd>
               <p>
-                This switch generates and installs .pc files for pkg-config.
+                此选项为 pkg-config 生成并安装 .pc 文件。
               </p>
             </dd>
           </dl>
         </div>
         <p>
-          Compile the package:
+          编译软件包：
         </p>
         <pre class="userinput">
 <kbd class="command">make</kbd>
 </pre>
         <p>
-          This package has a test suite, but it can only be run after the
-          package has been installed. The tests reside in the <code class=
-          "filename">test/</code> directory. See the <code class=
-          "filename">README</code> file in that directory for further
-          details.
+          此软件包带有测试套件，但它只能在软件包安装完毕后运行。该测试存在于 <code class=
+          "filename">test/</code> 目录。 查阅此目录下的 <code class=
+          "filename">README</code> 文件来获得更多细节。
         </p>
         <p>
-          Install the package:
+          安装软件包：
         </p>
         <pre class="userinput">
 <kbd class="command">make install</kbd>
 </pre>
         <p>
-          Move the shared libraries to the <code class="filename">/lib</code>
-          directory, where they are expected to reside:
+          移动共享库到 <code class="filename">/lib</code> 目录，这里是它要求的位置：
         </p>
         <pre class="userinput">
 <kbd class="command">mv -v /usr/lib/libncursesw.so.5* /lib</kbd>
 </pre>
         <p>
-          Because the libraries have been moved, one symlink points to a
-          non-existent file. Recreate it:
+          因为库被移动了，一个符号链接指向了一个不存在的文件夹。重新创建它：
         </p>
         <pre class="userinput">
 <kbd class=
 "command">ln -sfv ../../lib/$(readlink /usr/lib/libncursesw.so) /usr/lib/libncursesw.so</kbd>
 </pre>
         <p>
-          Many applications still expect the linker to be able to find
-          non-wide-character Ncurses libraries. Trick such applications into
-          linking with wide-character libraries by means of symlinks and
-          linker scripts:
+          许多应用程序依然要求链接器能够找到非宽字符的 Ncurses 库。以符号链接和链接器脚本的方法欺骗这些应用程序链接到宽字符库：
         </p>
         <pre class="userinput">
 <kbd class="command">for lib in ncurses form panel menu ; do
@@ -164,8 +153,7 @@ done
 ln -sfv libncurses++w.a /usr/lib/libncurses++.a</kbd>
 </pre>
         <p>
-          Finally, make sure that old applications that look for <code class=
-          "filename">-lcurses</code> at build time are still buildable:
+          最后，确保在构建时需要 <code class="filename">-lcurses</code> 的旧应用程序仍可以正常构建：
         </p>
         <pre class="userinput">
 <kbd class="command">rm -vf                     /usr/lib/libcursesw.so
@@ -175,7 +163,7 @@ ln -sfv libncursesw.a      /usr/lib/libcursesw.a
 ln -sfv libncurses.a       /usr/lib/libcurses.a</kbd>
 </pre>
         <p>
-          If desired, install the Ncurses documentation:
+          如果需要，安装 Ncurses 文档：
         </p>
         <pre class="userinput">
 <kbd class="command">mkdir -v       /usr/share/doc/ncurses-5.9
@@ -187,12 +175,9 @@ cp -v -R doc/* /usr/share/doc/ncurses-5.9</kbd>
             注意
           </h3>
           <p>
-            The instructions above don't create non-wide-character Ncurses
-            libraries since no package installed by compiling from sources
-            would link against them at runtime. If you must have such
-            libraries because of some binary-only application or to be
-            compliant with LSB, build the package again with the following
-            commands:
+            上面的指令不创建非宽字符 Ncurses
+            库，因为没有通过编译源代码安装的软件包会在运行时链接它们。如果你因为某些只提供二进制的应用程序或为了兼容 LSB
+            而必需这些库，按以下命令再次构建软件包：
           </p>
           <pre class="userinput">
 <kbd class="command">make distclean
@@ -209,34 +194,33 @@ cp -av lib/lib*.so.5* /usr/lib</kbd>
       <div class="content" lang="zh-cn" xml:lang="zh-cn">
         <h2 class="sect2">
           <a id="contents-ncurses" name="contents-ncurses"></a>6.21.2.
-          Contents of Ncurses
+          Ncurses 的内容
         </h2>
         <div class="segmentedlist">
           <div class="seglistitem">
             <div class="seg">
-              <strong class="segtitle">Installed programs:</strong>
-              <span class="segbody">captoinfo (link to tic), clear, infocmp,
-              infotocap (link to tic), ncursesw5-config, reset (link to
-              tset), tabs, tic, toe, tput, and tset</span>
+              <strong class="segtitle">安装的程序:</strong> <span class=
+              "segbody">captoinfo (链接到 tic), clear, infocmp, infotocap (链接到
+              tic), ncursesw5-config, reset (链接到 tset), tabs, tic, toe, tput
+              和 tset</span>
             </div>
             <div class="seg">
-              <strong class="segtitle">Installed libraries:</strong>
-              <span class="segbody">libcursesw.{a,so} (symlink and linker
-              script to libncursesw.{a,so}), libformw.{a,so},
-              libmenuw.{a,so}, libncurses++w.a, libncursesw.{a,so},
-              libpanelw.{a,so} and their non-wide-character counterparts
-              without "w" in the library names.</span>
+              <strong class="segtitle">安装的库:</strong> <span class=
+              "segbody">libcursesw.{a,so} (到 libncursesw.{a,so} 的符号链接及链接器脚本),
+              libformw.{a,so}, libmenuw.{a,so}, libncurses++w.a,
+              libncursesw.{a,so}, libpanelw.{a,so} 及它们的库名中不带 "w"
+              的非宽字符组件。</span>
             </div>
             <div class="seg">
-              <strong class="segtitle">Installed directories:</strong>
-              <span class="segbody">/usr/share/tabset, /usr/share/terminfo,
+              <strong class="segtitle">安装的目录:</strong> <span class=
+              "segbody">/usr/share/tabset, /usr/share/terminfo,
               /usr/share/doc/ncurses-5.9</span>
             </div>
           </div>
         </div>
         <div class="variablelist">
           <h3>
-            Short Descriptions
+            简述
           </h3>
           <table border="0" class="variablelist">
             <colgroup>
@@ -254,8 +238,7 @@ cp -av lib/lib*.so.5* /usr/lib</kbd>
                 </td>
                 <td>
                   <p>
-                    Converts a termcap description into a terminfo
-                    description
+                    将 termcap 描述转换成 terminfo 描述
                   </p>
                 </td>
               </tr>
@@ -269,7 +252,7 @@ cp -av lib/lib*.so.5* /usr/lib</kbd>
                 </td>
                 <td>
                   <p>
-                    Clears the screen, if possible
+                    如果可能，清除屏幕
                   </p>
                 </td>
               </tr>
@@ -283,7 +266,7 @@ cp -av lib/lib*.so.5* /usr/lib</kbd>
                 </td>
                 <td>
                   <p>
-                    Compares or prints out terminfo descriptions
+                    比对或打印 terminfo 描述
                   </p>
                 </td>
               </tr>
@@ -297,8 +280,7 @@ cp -av lib/lib*.so.5* /usr/lib</kbd>
                 </td>
                 <td>
                   <p>
-                    Converts a terminfo description into a termcap
-                    description
+                    将 terminfo 描述转换成 termcap 描述
                   </p>
                 </td>
               </tr>
@@ -312,7 +294,7 @@ cp -av lib/lib*.so.5* /usr/lib</kbd>
                 </td>
                 <td>
                   <p>
-                    Provides configuration information for ncurses
+                    提供 Ncurses 的配置信息
                   </p>
                 </td>
               </tr>
@@ -326,7 +308,7 @@ cp -av lib/lib*.so.5* /usr/lib</kbd>
                 </td>
                 <td>
                   <p>
-                    Reinitializes a terminal to its default values
+                    将一个终端再初始化到它的默认值
                   </p>
                 </td>
               </tr>
@@ -340,7 +322,7 @@ cp -av lib/lib*.so.5* /usr/lib</kbd>
                 </td>
                 <td>
                   <p>
-                    Clears and sets tab stops on a terminal
+                    在一个终端上刷新和设置停止跳格
                   </p>
                 </td>
               </tr>
@@ -353,11 +335,8 @@ cp -av lib/lib*.so.5* /usr/lib</kbd>
                 </td>
                 <td>
                   <p>
-                    The terminfo entry-description compiler that translates a
-                    terminfo file from source format into the binary format
-                    needed for the ncurses library routines. A terminfo file
-                    contains information on the capabilities of a certain
-                    terminal
+                    将一个 terminfo 文件从源格式翻译成二进制格式的 terminfo 条目描述编译器需要 ncurses
+                    库路径。一个 terminfo 文件包含有关某一特定终端的兼容性信息
                   </p>
                 </td>
               </tr>
@@ -370,8 +349,7 @@ cp -av lib/lib*.so.5* /usr/lib</kbd>
                 </td>
                 <td>
                   <p>
-                    Lists all available terminal types, giving the primary
-                    name and description for each
+                    列出所有可用的终端类型，给出每一个的原名和描述
                   </p>
                 </td>
               </tr>
@@ -385,9 +363,7 @@ cp -av lib/lib*.so.5* /usr/lib</kbd>
                 </td>
                 <td>
                   <p>
-                    Makes the values of terminal-dependent capabilities
-                    available to the shell; it can also be used to reset or
-                    initialize a terminal or report its long name
+                    使依赖终端兼容性的值可被 shell 使用；它同样可以被用来重设或初始化某一终端或报告其长名
                   </p>
                 </td>
               </tr>
@@ -401,7 +377,7 @@ cp -av lib/lib*.so.5* /usr/lib</kbd>
                 </td>
                 <td>
                   <p>
-                    Can be used to initialize terminals
+                    可以被用来初始化终端
                   </p>
                 </td>
               </tr>
@@ -414,7 +390,7 @@ cp -av lib/lib*.so.5* /usr/lib</kbd>
                 </td>
                 <td>
                   <p>
-                    A link to <code class="filename">libncurses</code>
+                    一个到 <code class="filename">libncurses</code> 的链接
                   </p>
                 </td>
               </tr>
@@ -427,11 +403,9 @@ cp -av lib/lib*.so.5* /usr/lib</kbd>
                 </td>
                 <td>
                   <p>
-                    Contains functions to display text in many complex ways
-                    on a terminal screen; a good example of the use of these
-                    functions is the menu displayed during the kernel's
+                    包含了可以多种复合方式在终端屏幕上显示文本的函数；一个较好的函数使用案例是在 kernel 的
                     <span class="command"><strong>make
-                    menuconfig</strong></span>
+                    menuconfig</strong></span> 中显示的菜单
                   </p>
                 </td>
               </tr>
@@ -444,7 +418,7 @@ cp -av lib/lib*.so.5* /usr/lib</kbd>
                 </td>
                 <td>
                   <p>
-                    Contains functions to implement forms
+                    包含了实现表格的函数
                   </p>
                 </td>
               </tr>
@@ -457,7 +431,7 @@ cp -av lib/lib*.so.5* /usr/lib</kbd>
                 </td>
                 <td>
                   <p>
-                    Contains functions to implement menus
+                    包含了实现菜单的函数
                   </p>
                 </td>
               </tr>
@@ -470,7 +444,7 @@ cp -av lib/lib*.so.5* /usr/lib</kbd>
                 </td>
                 <td>
                   <p>
-                    Contains functions to implement panels
+                    包含了实现面板的函数
                   </p>
                 </td>
               </tr>
