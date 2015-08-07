@@ -1,0 +1,1162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+  "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../general.ent">
+  %general-entities;
+]>
+
+<sect1 id="ch-system-coreutils" role="wrap">
+  <?dbhtml filename="coreutils.html"?>
+
+  <sect1info condition="script">
+    <productname>coreutils</productname>
+    <productnumber>&coreutils-version;</productnumber>
+    <address>&coreutils-url;</address>
+  </sect1info>
+
+  <title>Coreutils-&coreutils-version;</title>
+
+  <indexterm zone="ch-system-coreutils">
+    <primary sortas="a-Coreutils">Coreutils</primary>
+  </indexterm>
+
+  <sect2 role="package">
+    <title/>
+
+    <para>Coreutils 程序包包含用于显示和设置基本系统属性的工具。</para>
+
+    <segmentedlist>
+      <segtitle>&buildtime;</segtitle>
+      <segtitle>&diskspace;</segtitle>
+
+      <seglistitem>
+        <seg>&coreutils-ch6-sbu;</seg>
+        <seg>&coreutils-ch6-du;</seg>
+      </seglistitem>
+    </segmentedlist>
+
+  </sect2>
+
+  <sect2 role="installation">
+    <title>安装 Coreutils</title>
+<!--
+    <para>Fix a couple of test failures:</para>
+
+<screen><userinput remap="pre">patch -Np1 -i ../&coreutils-test-patch;</userinput></screen>
+-->
+    <para>POSIX 要求 Coreutils 中的程序即使在多字节区域数据中也能正确识别字符边界。以下补丁包修复这个非兼容 bug 和其它与国际化相关的 bug：</para>
+
+<screen><userinput remap="pre">patch -Np1 -i ../&coreutils-i18n-patch;</userinput></screen>
+
+    <note>
+      <para>在过去，很多 bug 在该补丁包中被发现。要报告新的 bug 给 Coreutils 维护者，请先检查他们是否在未打该补丁时再次出现。</para>
+    </note>
+
+    <para>现在准备编译 Coreutils ：</para>
+
+<screen><userinput remap="configure">FORCE_UNSAFE_CONFIGURE=1 ./configure \
+            --prefix=/usr            \
+            --enable-no-install-program=kill,uptime</userinput></screen>
+
+    <variablelist>
+      <title>配置选项的含义：</title>
+
+      <varlistentry>
+        <term><parameter>--enable-no-install-program=kill,uptime</parameter></term>
+        <listitem>
+          <para>此选项是为了防止 Coreutils 安装将在之后由其他程序包安装的二进制文件。
+          </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
+    <para>编译软件包：</para>
+
+<screen><userinput remap="make">make</userinput></screen>
+
+    <para>如果不运行测试套件，向下跳转到 <quote>安装程序包</quote>。</para>
+
+    <para>现在测试套件已可以运行。首先，运行意味着以用户身份运行的测试 <systemitem class="username">root</systemitem>：</para>
+
+<screen><userinput remap="test">make NON_ROOT_USERNAME=nobody check-root</userinput></screen>
+
+    <para>我们将要以 <systemitem class="username">nobody</systemitem> 用户运行测试的剩余部分。然而某些测试要求用户是多于一个组的成员。为使这些测试不被跳过，我们添加一个新的组并让用户 <systemitem class="username">nobody</systemitem> 成为它的一部分：</para>
+
+<screen><userinput remap="test">echo "dummy:x:1000:nobody" &gt;&gt; /etc/group</userinput></screen>
+
+    <para>修复一些许可来让普通用户可以编译以及运行测试：</para>
+
+<screen><userinput remap="test">chown -Rv nobody . </userinput></screen>
+
+    <para>现在运行测试。确保 <userinput>su</userinput> 环境中的路径包含 /tools/bin 。</para>
+
+<screen><userinput remap="test">su nobody -s /bin/bash \
+          -c "PATH=$PATH make RUN_EXPENSIVE_TESTS=yes check"</userinput></screen>
+
+    <para>移除临时组：</para>
+
+<screen><userinput remap="test">sed -i '/dummy/d' /etc/group</userinput></screen>
+
+    <para>安装软件包：</para>
+
+<screen><userinput remap="install">make install</userinput></screen>
+
+    <para>移动程序包到 FHS 给定的位置：</para>
+
+<screen><userinput remap="install">mv -v /usr/bin/{cat,chgrp,chmod,chown,cp,date,dd,df,echo} /bin
+mv -v /usr/bin/{false,ln,ls,mkdir,mknod,mv,pwd,rm} /bin
+mv -v /usr/bin/{rmdir,stty,sync,true,uname,test,[} /bin
+mv -v /usr/bin/chroot /usr/sbin
+mv -v /usr/share/man/man1/chroot.1 /usr/share/man/man8/chroot.8
+sed -i s/\"1\"/\"8\"/1 /usr/share/man/man8/chroot.8</userinput></screen>
+
+    <para>LFS-Bootscripts 程序包中的一些脚本依赖 <command>head</command>，<command>sleep</command>， 和 <command>nice</command> 。由于 <filename class="directory">/usr</filename> 在引导的早期可能不可用，这些二进制文件需要在根分区下：</para>
+
+<screen><userinput remap="install">mv -v /usr/bin/{head,sleep,nice} /bin</userinput></screen>
+
+  </sect2>
+
+  <sect2 id="contents-coreutils" role="content">
+    <title>Coreutils 的内容</title>
+
+    <segmentedlist>
+      <segtitle>安装的程序</segtitle>
+      <segtitle>安装的库</segtitle>
+      <segtitle>安装的目录</segtitle>
+
+      <seglistitem>
+        <seg>[, base64, basename, cat, chcon, chgrp, chmod, chown, chroot, cksum,
+        comm, cp, csplit, cut, date, dd, df, dir, dircolors, dirname, du, echo,
+        env, expand, expr, factor, false, fmt, fold, groups, head, hostid,
+        id, install, join, link, ln, logname, ls, md5sum, mkdir, mkfifo, mknod,
+        mktemp, mv, nice, nl, nohup, nproc, numfmt, od, paste, pathchk, pinky, pr,
+        printenv, printf, ptx, pwd, readlink, realpath, rm, rmdir, runcon, seq,
+        sha1sum, sha224sum, sha256sum, sha384sum, sha512sum, shred, shuf, sleep,
+        sort, split, stat, stdbuf, stty, sum, sync, tac, tail, tee, test,
+        timeout, touch, tr, true, truncate, tsort, tty, uname, unexpand, uniq,
+        unlink, users, vdir, wc, who, whoami 和 yes</seg>
+        <seg>libstdbuf.so</seg>
+        <seg>/usr/libexec/coreutils</seg>
+      </seglistitem>
+    </segmentedlist>
+
+    <variablelist>
+      <bridgehead renderas="sect3">简述</bridgehead>
+      <?dbfo list-presentation="list"?>
+      <?dbhtml list-presentation="table"?>
+
+      <varlistentry id="base64">
+        <term><command>base64</command></term>
+        <listitem>
+          <para>根据 base64 (RFC 3548) 规格编码和解码数据</para>
+          <indexterm zone="ch-system-coreutils base64">
+            <primary sortas="b-base64">base64</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="basename">
+        <term><command>basename</command></term>
+        <listitem>
+          <para>从一个文件名剥离任意路径和一个给定后缀</para>
+          <indexterm zone="ch-system-coreutils basename">
+            <primary sortas="b-basename">basename</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="cat">
+        <term><command>cat</command></term>
+        <listitem>
+          <para>连接文件到标准输出</para>
+          <indexterm zone="ch-system-coreutils cat">
+            <primary sortas="b-cat">cat</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="chcon">
+        <term><command>chcon</command></term>
+        <listitem>
+          <para>改变文件和目录的安全内容</para>
+          <indexterm zone="ch-system-coreutils chcon">
+            <primary sortas="b-chcon">chcon</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="chgrp">
+        <term><command>chgrp</command></term>
+        <listitem>
+          <para>改变文件和目录的组持有人</para>
+          <indexterm zone="ch-system-coreutils chgrp">
+            <primary sortas="b-chgrp">chgrp</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="chmod">
+        <term><command>chmod</command></term>
+        <listitem>
+          <para>改变每个文件的许可为给定模式；模式可以为要进行的改变的符号表达或表示新许可的八进制数</para>
+          <indexterm zone="ch-system-coreutils chmod">
+            <primary sortas="b-chmod">chmod</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="chown">
+        <term><command>chown</command></term>
+        <listitem>
+          <para>改变文件和目录的用户和/或组持有人</para>
+          <indexterm zone="ch-system-coreutils chown">
+            <primary sortas="b-chown">chown</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="chroot">
+        <term><command>chroot</command></term>
+        <listitem>
+          <para>以一个指定的目录作为 <filename class="directory">/</filename> 目录并运行程序</para>
+          <indexterm zone="ch-system-coreutils chroot">
+            <primary sortas="b-chroot">chroot</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="cksum">
+        <term><command>cksum</command></term>
+        <listitem>
+          <para>打印 Cyclic Redundancy Check (CRC) 指纹码和每个给定文件的字节数</para>
+          <indexterm zone="ch-system-coreutils cksum">
+            <primary sortas="b-cksum">cksum</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="comm">
+        <term><command>comm</command></term>
+        <listitem>
+          <para>比较两个排序好的文件，在三栏中输出不同和相同的行</para>
+          <indexterm zone="ch-system-coreutils comm">
+            <primary sortas="b-comm">comm</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="cp">
+        <term><command>cp</command></term>
+        <listitem>
+          <para>复制文件</para>
+          <indexterm zone="ch-system-coreutils cp">
+            <primary sortas="b-cp">cp</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="csplit">
+        <term><command>csplit</command></term>
+        <listitem>
+          <para>依据给定的样式或行号将给定的文件拆分为数个新文件，输出每个新文件的字节数</para>
+          <indexterm zone="ch-system-coreutils csplit">
+            <primary sortas="b-csplit">csplit</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="cut">
+        <term><command>cut</command></term>
+        <listitem>
+          <para>根据给定的区域或位置选择并打印部分行</para>
+          <indexterm zone="ch-system-coreutils cut">
+            <primary sortas="b-cut">cut</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="date">
+        <term><command>date</command></term>
+        <listitem>
+          <para>以给定格式显示现在时间或设置系统日期</para>
+          <indexterm zone="ch-system-coreutils date">
+            <primary sortas="b-date">date</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="dd">
+        <term><command>dd</command> </term>
+        <listitem>
+          <para>使用给定的块大小和计数复制一个文件，可以同时进行转换</para>
+          <indexterm zone="ch-system-coreutils dd">
+            <primary sortas="b-dd">dd</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="df">
+        <term><command>df</command></term>
+        <listitem>
+          <para>在所有挂载的文件系统上报告硬盘可用 (和已用) 空间总量，或仅在包含给定文件的文件系统上显示</para>
+          <indexterm zone="ch-system-coreutils df">
+            <primary sortas="b-df">df</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="dir">
+        <term><command>dir</command></term>
+        <listitem>
+          <para>列出每个给定目录的内容 (与 <command>ls</command> 命令相同)</para>
+          <indexterm zone="ch-system-coreutils dir">
+            <primary sortas="b-dir">dir</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="dircolors">
+        <term><command>dircolors</command></term>
+        <listitem>
+          <para>输出命令来设置 <envar>LS_COLOR</envar> 环境变量以改变 <command>ls</command> 使用的色彩方案</para>
+          <indexterm zone="ch-system-coreutils dircolors">
+            <primary sortas="b-dircolors">dircolors</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="dirname">
+        <term><command>dirname</command></term>
+        <listitem>
+          <para>从一个文件名剥离非目录后缀</para>
+          <indexterm zone="ch-system-coreutils dirname">
+            <primary sortas="b-dirname">dirname</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="du">
+        <term><command>du</command></term>
+        <listitem>
+          <para>报告当前目录、每个给定目录 (包括所有子目录) 或 每个给定文件所使用的硬盘空间</para>
+          <indexterm zone="ch-system-coreutils du">
+            <primary sortas="b-du">du</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="echo">
+        <term><command>echo</command></term>
+        <listitem>
+          <para>显示给定的字符串</para>
+          <indexterm zone="ch-system-coreutils echo">
+            <primary sortas="b-echo">echo</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="env">
+        <term><command>env</command></term>
+        <listitem>
+          <para>在一个修改过的环境下运行一个命令</para>
+          <indexterm zone="ch-system-coreutils env">
+            <primary sortas="b-env">env</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="expand">
+        <term><command>expand</command></term>
+        <listitem>
+          <para>转换 tab 为 space</para>
+          <indexterm zone="ch-system-coreutils expand">
+            <primary sortas="b-expand">expand</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="expr">
+        <term><command>expr</command></term>
+        <listitem>
+          <para>求表述的值</para>
+          <indexterm zone="ch-system-coreutils expr">
+            <primary sortas="b-expr">expr</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="factor">
+        <term><command>factor</command></term>
+        <listitem>
+          <para>打印所有给定数的素因数</para>
+          <indexterm zone="ch-system-coreutils factor">
+            <primary sortas="b-factor">factor</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="false">
+        <term><command>false</command></term>
+        <listitem>
+          <para>什么都不做；它总返回一个表示失败的状态码</para>
+          <indexterm zone="ch-system-coreutils false">
+            <primary sortas="b-false">false</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="fmt">
+        <term><command>fmt</command></term>
+        <listitem>
+          <para>重新格式化给定文件中的段落</para>
+          <indexterm zone="ch-system-coreutils fmt">
+            <primary sortas="b-fmt">fmt</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="fold">
+        <term><command>fold</command></term>
+        <listitem>
+          <para>对给定文件中的内容自动换行</para>
+          <indexterm zone="ch-system-coreutils fold">
+            <primary sortas="b-fold">fold</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="groups">
+        <term><command>groups</command></term>
+        <listitem>
+          <para>报告某一用户的组身份</para>
+          <indexterm zone="ch-system-coreutils groups">
+            <primary sortas="b-groups">groups</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="head">
+        <term><command>head</command></term>
+        <listitem>
+          <para>打印每一个给定文件的前十行 (或给定的行数)</para>
+          <indexterm zone="ch-system-coreutils head">
+            <primary sortas="b-head">head</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="hostid">
+        <term><command>hostid</command></term>
+        <listitem>
+          <para>报告 host 的数值编号 (以十六进制)</para>
+          <indexterm zone="ch-system-coreutils hostid">
+            <primary sortas="b-hostid">hostid</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="id">
+        <term><command>id</command></term>
+        <listitem>
+          <para>报告当前或指定用户的有效用户 ID ，组 ID ，和组成员</para>
+          <indexterm zone="ch-system-coreutils id">
+            <primary sortas="b-id">id</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="install">
+        <term><command>install</command> </term>
+        <listitem>
+          <para>复制文件，同时设置它们的许可模式、所属用户和组 (可能的话)</para>
+          <indexterm zone="ch-system-coreutils install">
+            <primary sortas="b-install">install</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="join">
+        <term><command>join</command></term>
+        <listitem>
+          <para>连接在两个分开的文件有相同连接区域的行</para>
+          <indexterm zone="ch-system-coreutils join">
+            <primary sortas="b-join">join</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="link">
+        <term><command>link</command></term>
+        <listitem>
+          <para>以给定名称创建一个到某一文件的硬链接</para>
+          <indexterm zone="ch-system-coreutils link">
+            <primary sortas="b-link">link</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="ln">
+        <term><command>ln</command></term>
+        <listitem>
+          <para>做文件间的硬链接或软 (符号) 链接</para>
+          <indexterm zone="ch-system-coreutils ln">
+            <primary sortas="b-ln">ln</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="logname">
+        <term><command>logname</command></term>
+        <listitem>
+          <para>报告当前用户的登录名</para>
+          <indexterm zone="ch-system-coreutils logname">
+            <primary sortas="b-logname">logname</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="ls">
+        <term><command>ls</command></term>
+        <listitem>
+          <para>列出每个给定目录的内容</para>
+          <indexterm zone="ch-system-coreutils ls">
+            <primary sortas="b-ls">ls</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="md5sum">
+        <term><command>md5sum</command></term>
+        <listitem>
+          <para>报告或检查 Message Digest 5 (MD5) 校验值</para>
+          <indexterm zone="ch-system-coreutils md5sum">
+            <primary sortas="b-md5sum">md5sum</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="mkdir">
+        <term><command>mkdir</command></term>
+        <listitem>
+          <para>用给定名称创建目录</para>
+          <indexterm zone="ch-system-coreutils mkdir">
+            <primary sortas="b-mkdir">mkdir</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="mkfifo">
+        <term><command>mkfifo</command></term>
+        <listitem>
+          <para>用给定名称创建一个 First-In, First-Outs (FIFOs), 一个 <quote>named pipe</quote> 在 UNIX 用语下</para>
+          <indexterm zone="ch-system-coreutils mkfifo">
+            <primary sortas="b-mkfifo">mkfifo</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="mknod">
+        <term><command>mknod</command></term>
+        <listitem>
+          <para>用给定名称创建一个设备节点；一个设备节点是一个字符特殊文件，一个块特殊文件或一个 FIFO</para>
+          <indexterm zone="ch-system-coreutils mknod">
+            <primary sortas="b-mknod">mknod</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="mktemp">
+        <term><command>mktemp</command></term>
+        <listitem>
+          <para>以一个安全的方式创建一个临时文件；它在脚本中被使用</para>
+        <indexterm zone="ch-system-coreutils mktemp">
+          <primary sortas="b-mktemp">mktemp</primary>
+        </indexterm>
+       </listitem>
+     </varlistentry>
+
+      <varlistentry id="mv">
+        <term><command>mv</command></term>
+        <listitem>
+          <para>移动或重命名文件或目录</para>
+          <indexterm zone="ch-system-coreutils mv">
+            <primary sortas="b-mv">mv</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="nice">
+        <term><command>nice</command></term>
+        <listitem>
+          <para>以修改过的调度优先级运行一个程序</para>
+          <indexterm zone="ch-system-coreutils nice">
+            <primary sortas="b-nice">nice</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="nl">
+        <term><command>nl</command></term>
+        <listitem>
+          <para>给指定文件中的行编号</para>
+          <indexterm zone="ch-system-coreutils nl">
+            <primary sortas="b-nl">nl</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="nohup">
+        <term><command>nohup</command></term>
+        <listitem>
+          <para>运行一个不会被挂起的命令，它的输出会被重定向到一个日志文件</para>
+          <indexterm zone="ch-system-coreutils nohup">
+            <primary sortas="b-nohup">nohup</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="nproc">
+        <term><command>nproc</command></term>
+        <listitem>
+          <para>打印一个进程中可用的处理器的总数</para>
+          <indexterm zone="ch-system-coreutils nproc">
+            <primary sortas="b-nproc">nproc</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="numfmt">
+        <term><command>numfmt</command></term>
+        <listitem>
+          <para>Converts numbers to or from human-readable strings</para>
+          <indexterm zone="ch-system-coreutils numfmt">
+            <primary sortas="b-numfmt">numfmt</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="od">
+        <term><command>od</command></term>
+        <listitem>
+          <para>将文件转储为八进制或其他格式</para>
+          <indexterm zone="ch-system-coreutils od">
+            <primary sortas="b-od">od</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="paste">
+        <term><command>paste</command></term>
+        <listitem>
+          <para>合并给定的文件，并列地连接顺序上相一致的行，以制表符分隔</para>
+          <indexterm zone="ch-system-coreutils paste">
+            <primary sortas="b-paste">paste</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="pathchk">
+        <term><command>pathchk</command></term>
+        <listitem>
+          <para>检查文件名是否有效或是否可移植</para>
+          <indexterm zone="ch-system-coreutils pathchk">
+            <primary sortas="b-pathchk">pathchk</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="pinky">
+        <term><command>pinky</command></term>
+        <listitem>
+          <para>是一个轻便的 finger 客户端；它报告给定用户的一些信息</para>
+          <indexterm zone="ch-system-coreutils pinky">
+            <primary sortas="b-pinky">pinky</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="pr">
+        <term><command>pr</command></term>
+        <listitem>
+          <para>标页和分栏一个文件并打印</para>
+          <indexterm zone="ch-system-coreutils pr">
+            <primary sortas="b-pr">pr</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="printenv">
+        <term><command>printenv</command></term>
+        <listitem>
+          <para>输出环境变量</para>
+          <indexterm zone="ch-system-coreutils printenv">
+            <primary sortas="b-printenv">printenv</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="printf">
+        <term><command>printf</command></term>
+        <listitem>
+          <para>根据给定的格式打印给定的参数，与 C 中的 printf 函数相近</para>
+          <indexterm zone="ch-system-coreutils printf">
+            <primary sortas="b-printf">printf</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="ptx">
+        <term><command>ptx</command></term>
+        <listitem>
+          <para>按给定文件的内容，对每个出现在文中的关键字关键词制作一个置换索引</para>
+          <indexterm zone="ch-system-coreutils ptx">
+            <primary sortas="b-ptx">ptx</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="pwd">
+        <term><command>pwd</command></term>
+        <listitem>
+          <para>报告当前工作目录的名称</para>
+          <indexterm zone="ch-system-coreutils pwd">
+            <primary sortas="b-pwd">pwd</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="readlink">
+        <term><command>readlink</command></term>
+        <listitem>
+          <para>报告给定符号链接的值</para>
+          <indexterm zone="ch-system-coreutils readlink">
+            <primary sortas="b-readlink">readlink</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="realpath">
+        <term><command>realpath</command></term>
+        <listitem>
+          <para>打印解析过的路径</para>
+          <indexterm zone="ch-system-coreutils realpath">
+            <primary sortas="b-realpath">realpath</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="rm">
+        <term><command>rm</command></term>
+        <listitem>
+          <para>移除文件或目录</para>
+          <indexterm zone="ch-system-coreutils rm">
+            <primary sortas="b-rm">rm</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="rmdir">
+        <term><command>rmdir</command></term>
+        <listitem>
+          <para>移除空目录</para>
+          <indexterm zone="ch-system-coreutils rmdir">
+            <primary sortas="b-rmdir">rmdir</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="runcon">
+        <term><command>runcon</command></term>
+        <listitem>
+          <para>按给定的安全内容运行一个命令</para>
+          <indexterm zone="ch-system-coreutils runcon">
+            <primary sortas="b-runcon">runcon</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="seq">
+        <term><command>seq</command></term>
+        <listitem>
+          <para>在给定值域内按给定增量打印一个数列</para>
+          <indexterm zone="ch-system-coreutils seq">
+            <primary sortas="b-seq">seq</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="sha1sum">
+        <term><command>sha1sum</command></term>
+        <listitem>
+          <para>打印或检查 160 位 ecure Hash Algorithm 1 (SHA1) 校验值</para>
+          <indexterm zone="ch-system-coreutils sha1sum">
+            <primary sortas="b-sha1sum">sha1sum</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="sha224sum">
+        <term><command>sha224sum</command></term>
+        <listitem>
+          <para>打印或检查 224 位 Secure Hash Algorithm 校验值</para>
+          <indexterm zone="ch-system-coreutils sha224sum">
+            <primary sortas="b-sha224sum">sha224sum</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="sha256sum">
+        <term><command>sha256sum</command></term>
+        <listitem>
+          <para>打印或检查 256 位 Secure Hash Algorithm 校验值</para>
+          <indexterm zone="ch-system-coreutils sha256sum">
+            <primary sortas="b-sha256sum">sha256sum</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="sha384sum">
+        <term><command>sha384sum</command></term>
+        <listitem>
+          <para>打印或检查 384 位 Secure Hash Algorithm 校验值</para>
+          <indexterm zone="ch-system-coreutils sha384sum">
+            <primary sortas="b-sha384sum">sha384sum</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="sha512sum">
+        <term><command>sha512sum</command></term>
+        <listitem>
+          <para>打印或检查 512 位 Secure Hash Algorithm 校验值</para>
+          <indexterm zone="ch-system-coreutils sha512sum">
+            <primary sortas="b-sha512sum">sha512sum</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="shred">
+        <term><command>shred</command></term>
+        <listitem>
+          <para>以复杂的样式重复重写给定的文件，使数据难以修复</para>
+          <indexterm zone="ch-system-coreutils shred">
+            <primary sortas="b-shred">shred</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="shuf">
+        <term><command>shuf</command></term>
+        <listitem>
+          <para>将一个文本中的行打乱</para>
+          <indexterm zone="ch-system-coreutils shuf">
+            <primary sortas="b-shuf">shuf</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="sleep">
+        <term><command>sleep</command></term>
+        <listitem>
+          <para>暂停给定的时间</para>
+          <indexterm zone="ch-system-coreutils sleep">
+            <primary sortas="b-sleep">sleep</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="sort">
+        <term><command>sort</command></term>
+        <listitem>
+          <para>排序给定文件中的行</para>
+          <indexterm zone="ch-system-coreutils sort">
+            <primary sortas="b-sort">sort</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="split">
+        <term><command>split</command></term>
+        <listitem>
+          <para>将给定文件按大小或行数分割为碎片</para>
+          <indexterm zone="ch-system-coreutils split">
+            <primary sortas="b-split">split</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="stat">
+        <term><command>stat</command></term>
+        <listitem>
+          <para>显示文件或文件系统数据</para>
+          <indexterm zone="ch-system-coreutils stat">
+            <primary sortas="b-stat">stat</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="stdbuf">
+        <term><command>stdbuf</command></term>
+        <listitem>
+          <para>按为其标准流更改的缓冲运算运行命令</para>
+          <indexterm zone="ch-system-coreutils stdbuf">
+            <primary sortas="b-stdbuf">stdbuf</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="stty">
+        <term><command>stty</command></term>
+        <listitem>
+          <para>设置或报告终端行设置</para>
+          <indexterm zone="ch-system-coreutils stty">
+            <primary sortas="b-stty">stty</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="sum">
+        <term><command>sum</command></term>
+        <listitem>
+          <para>为每个文件打印校验和和块计数</para>
+          <indexterm zone="ch-system-coreutils sum">
+            <primary sortas="b-sum">sum</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="sync">
+        <term><command>sync</command></term>
+        <listitem>
+          <para>刷新文件系统缓冲区；它会强制改变磁盘的数据块并更新超级块</para>
+          <indexterm zone="ch-system-coreutils sync">
+            <primary sortas="b-sync">sync</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="tac">
+        <term><command>tac</command></term>
+        <listitem>
+          <para>反向拼接给定文件</para>
+          <indexterm zone="ch-system-coreutils tac">
+            <primary sortas="b-tac">tac</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="tail">
+        <term><command>tail</command></term>
+        <listitem>
+          <para>打印每个文件的最后十行 (或给定的行数)</para>
+          <indexterm zone="ch-system-coreutils tail">
+            <primary sortas="b-tail">tail</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="tee">
+        <term><command>tee</command></term>
+        <listitem>
+          <para>读取标准输入并将其同时写入标准输出和给定文件</para>
+          <indexterm zone="ch-system-coreutils tee">
+            <primary sortas="b-tee">tee</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="test">
+        <term><command>test</command></term>
+        <listitem>
+          <para>比较值并检查文件类型</para>
+          <indexterm zone="ch-system-coreutils test">
+            <primary sortas="b-test">test</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="timeout">
+        <term><command>timeout</command></term>
+        <listitem>
+          <para>在限定时间内运行一个命令</para>
+          <indexterm zone="ch-system-coreutils timeout">
+            <primary sortas="b-timeout">timeout</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="touch">
+        <term><command>touch</command></term>
+        <listitem>
+          <para>改变文件的时间戳，设置给定文件的使用和修改时间为当前时间；不存在的文件以 0 长度创建</para>
+          <indexterm zone="ch-system-coreutils touch">
+            <primary sortas="b-touch">touch</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="tr">
+        <term><command>tr</command></term>
+        <listitem>
+          <para>转化，获取并删除标准输入中的给定文件</para>
+          <indexterm zone="ch-system-coreutils tr">
+            <primary sortas="b-tr">tr</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="true">
+        <term><command>true</command></term>
+        <listitem>
+          <para>什么也不做；它总返回一个表示成功的状态码</para>
+          <indexterm zone="ch-system-coreutils true">
+            <primary sortas="b-true">true</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="truncate">
+        <term><command>truncate</command></term>
+        <listitem>
+          <para>缩小或扩大一个文件到给定大小</para>
+          <indexterm zone="ch-system-coreutils truncate">
+            <primary sortas="b-truncate">truncate</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="tsort">
+        <term><command>tsort</command></term>
+        <listitem>
+          <para>进行一次拓扑排序；它根据给定文件中的局部顺序写出一个完全排序的列表</para>
+          <indexterm zone="ch-system-coreutils tsort">
+            <primary sortas="b-tsort">tsort</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="tty">
+        <term><command>tty</command></term>
+        <listitem>
+          <para>报告连接至标准输入的终端文件名</para>
+          <indexterm zone="ch-system-coreutils tty">
+            <primary sortas="b-tty">tty</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="uname">
+        <term><command>uname</command></term>
+        <listitem>
+          <para>报告系统信息</para>
+          <indexterm zone="ch-system-coreutils uname">
+            <primary sortas="b-uname">uname</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="unexpand">
+        <term><command>unexpand</command></term>
+        <listitem>
+          <para>转换 space 到 tab</para>
+          <indexterm zone="ch-system-coreutils unexpand">
+            <primary sortas="b-unexpand">unexpand</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="uniq">
+        <term><command>uniq</command></term>
+        <listitem>
+          <para>除去完全相同的行直到仅剩其中一行</para>
+          <indexterm zone="ch-system-coreutils uniq">
+            <primary sortas="b-uniq">uniq</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="unlink">
+        <term><command>unlink</command></term>
+        <listitem>
+          <para>移除给定文件</para>
+          <indexterm zone="ch-system-coreutils unlink">
+            <primary sortas="b-unlink">unlink</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="users">
+        <term><command>users</command></term>
+        <listitem>
+          <para>报告当前正登陆上的用户名称</para>
+          <indexterm zone="ch-system-coreutils users">
+            <primary sortas="b-users">users</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="vdir">
+        <term><command>vdir</command></term>
+        <listitem>
+          <para>与 <command>ls -l</command> 相同</para>
+          <indexterm zone="ch-system-coreutils vdir">
+            <primary sortas="b-vdir">vdir</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="wc">
+        <term><command>wc</command></term>
+        <listitem>
+          <para>报告每个给定文件的行数，词数和字节数，当给定多个文件时还包括总行数</para>
+          <indexterm zone="ch-system-coreutils wc">
+            <primary sortas="b-wc">wc</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="who">
+        <term><command>who</command></term>
+        <listitem>
+          <para>报告谁正登陆着</para>
+          <indexterm zone="ch-system-coreutils who">
+            <primary sortas="b-who">who</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="whoami">
+        <term><command>whoami</command></term>
+        <listitem>
+          <para>报告与当前有效的用户 ID 关联的用户名称</para>
+          <indexterm zone="ch-system-coreutils whoami">
+            <primary sortas="b-whoami">whoami</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="yes">
+        <term><command>yes</command></term>
+        <listitem>
+          <para>重复输出 <quote>y</quote> 或任一给定字符串直到被结束</para>
+          <indexterm zone="ch-system-coreutils yes">
+            <primary sortas="b-yes">yes</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="libstdbuf">
+        <term><filename class="libraryfile">libstdbuf.so</filename></term>
+        <listitem>
+          <para><command>stdbuf</command> 所用到的库</para>
+          <indexterm zone="ch-system-coreutils libstdbuf">
+            <primary sortas="c-libstdbuf">libstdbuf.so</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+    </variablelist>
+
+  </sect2>
+
+</sect1>

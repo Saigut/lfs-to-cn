@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+  "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../general.ent">
+  %general-entities;
+]>
+
+<sect1 id="ch-system-m4" role="wrap">
+  <?dbhtml filename="m4.html"?>
+
+  <sect1info condition="script">
+    <productname>m4</productname>
+    <productnumber>&m4-version;</productnumber>
+    <address>&m4-url;</address>
+  </sect1info>
+
+  <title>M4-&m4-version;</title>
+
+  <indexterm zone="ch-system-m4">
+    <primary sortas="a-M4">M4</primary>
+  </indexterm>
+
+  <sect2 role="package">
+    <title/>
+
+    <para>M4 程序包包含一个宏处理器。</para>
+
+    <segmentedlist>
+      <segtitle>&buildtime;</segtitle>
+      <segtitle>&diskspace;</segtitle>
+
+      <seglistitem>
+        <seg>&m4-ch6-sbu;</seg>
+        <seg>&m4-ch6-du;</seg>
+      </seglistitem>
+    </segmentedlist>
+
+  </sect2>
+
+  <sect2 role="installation">
+    <title>安装 M4</title>
+
+    <para>准备编译 M4：</para>
+
+<screen><userinput remap="configure">./configure --prefix=/usr</userinput></screen>
+
+    <para>编译软件包：</para>
+
+<screen><userinput remap="make">make</userinput></screen>
+
+    <para>要测试结果，执行：</para>
+
+<screen><userinput remap="test">make check</userinput></screen>
+
+    <para>安装软件包：</para>
+
+<screen><userinput remap="install">make install</userinput></screen>
+
+  </sect2>
+
+
+  <sect2 id="contents-m4" role="content">
+    <title>M4 的内容</title>
+
+    <segmentedlist>
+      <segtitle>安装的程序</segtitle>
+
+      <seglistitem>
+        <seg>m4</seg>
+      </seglistitem>
+    </segmentedlist>
+
+    <variablelist>
+      <bridgehead renderas="sect3">简述</bridgehead>
+      <?dbfo list-presentation="list"?>
+      <?dbhtml list-presentation="table"?>
+
+      <varlistentry id="m4">
+         <!-- Don't remove the extra space, it prevet a FOP warning. -->
+        <term><command>m4 </command></term>
+        <listitem>
+          <para>复制给定的文件并展开其中的宏。这些宏可以是内建的也可以是用户定义的，可以包含任意数量的参数。初次之外 <command>m4</command> 还有内建的包含文件、运行 Unix 命令、进行整数运算、修改文本、递归等功能。<command>m4</command> 程序可以用作编译器前端或者独立的宏处理器。</para>
+          <indexterm zone="ch-system-m4 m4">
+            <primary sortas="b-m4">m4</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+    </variablelist>
+
+  </sect2>
+
+</sect1>

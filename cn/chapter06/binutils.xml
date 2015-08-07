@@ -289,7 +289,7 @@ cd ../binutils-build</userinput></screen>
         <listitem>
           <para>Contains routines used by various GNU programs, including
           <command>getopt</command>, <command>obstack</command>,
-          <command>strerror</command>, <command>strtol</command>, and
+          <command>strerror</command>, <command>strtol</command> 和
           <command>strtoul</command></para>
           <indexterm zone="ch-system-binutils libiberty">
             <primary sortas="c-libiberty">libiberty</primary>

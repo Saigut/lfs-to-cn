@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+  "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../general.ent">
+  %general-entities;
+]>
+
+<sect1 id="ch-system-flex" role="wrap">
+  <?dbhtml filename="flex.html"?>
+
+  <sect1info condition="script">
+    <productname>flex</productname>
+    <productnumber>&flex-version;</productnumber>
+    <address>&flex-url;</address>
+  </sect1info>
+
+  <title>Flex-&flex-version;</title>
+
+  <indexterm zone="ch-system-flex">
+    <primary sortas="a-Flex">Flex</primary>
+  </indexterm>
+
+  <sect2 role="package">
+    <title/>
+
+    <para>Flex 程序包包含用于创建识别文本样式的程序的工具。</para>
+
+    <segmentedlist>
+      <segtitle>&buildtime;</segtitle>
+      <segtitle>&diskspace;</segtitle>
+
+      <seglistitem>
+        <seg>&flex-ch6-sbu;</seg>
+        <seg>&flex-ch6-du;</seg>
+      </seglistitem>
+    </segmentedlist>
+
+  </sect2>
+
+  <sect2 role="installation">
+    <title>安装 Flex</title>
+
+    <para>首先，跳过运行三个需要 bison 的回归测试。</para>
+
+<screen><userinput remap="pre">sed -i -e '/test-bison/d' tests/Makefile.in</userinput></screen>
+
+    <para>准备编译 Flex：</para>
+
+<screen><userinput remap="configure">./configure --prefix=/usr --docdir=/usr/share/doc/flex-&flex-version;</userinput></screen>
+
+    <para>编译软件包：</para>
+
+<screen><userinput remap="make">make</userinput></screen>
+
+    <para>要测试结果 (大约 0.5 SBU)，执行：</para>
+
+<screen><userinput remap="test">make check</userinput></screen>
+
+    <para>安装软件包：</para>
+
+<screen><userinput remap="install">make install</userinput></screen>
+<!--
+    <para>There are some packages that expect to find the
+    <filename class="libraryfile">lex</filename> library in <filename
+    class="directory">/usr/lib</filename>. Create a symlink to account for
+    this:</para>
+
+<screen><userinput remap="install">ln -sv libfl.a /usr/lib/libl.a</userinput></screen>
+-->
+    <para>有几个程序还不知道 <command>flex</command>，会试图运行它的前身 <command>lex</command>。要支持这些程序，创建一个打包脚本，命名为 <filename>lex</filename>，以 <command>lex</command> 模拟模式调用 <filename>flex</filename>：</para>
+
+<screen><userinput remap="install">cat &gt; /usr/bin/lex &lt;&lt; "EOF"
+<literal>#!/bin/sh
+# Begin /usr/bin/lex
+
+exec /usr/bin/flex -l "$@"
+
+# End /usr/bin/lex</literal>
+EOF
+chmod -v 755 /usr/bin/lex</userinput></screen>
+
+  </sect2>
+
+  <sect2 id="contents-flex" role="content">
+    <title>Flex 的内容</title>
+
+    <segmentedlist>
+      <segtitle>安装的程序</segtitle>
+      <segtitle>安装的库</segtitle>
+      <segtitle>安装的目录</segtitle>
+
+      <seglistitem>
+        <seg>flex, flex++ (链接到 flex) 和 lex</seg>
+        <seg>libfl.{a,so} and libfl_pic.{a,so}</seg>
+        <seg>/usr/share/doc/flex-&flex-version;</seg>
+      </seglistitem>
+    </segmentedlist>
+
+    <variablelist>
+      <bridgehead renderas="sect3">简述</bridgehead>
+      <?dbfo list-presentation="list"?>
+      <?dbhtml list-presentation="table"?>
+
+      <varlistentry id="flex">
+        <term><command>flex</command></term>
+        <listitem>
+          <para>一个工具，用于创建能够识别文本样式的程序；它允许指定样式查找的规则，消除了开发特定程序的需求</para>
+          <indexterm zone="ch-system-flex flex">
+            <primary sortas="b-flex">flex</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="flexpp">
+        <term><command>flex++</command></term>
+        <listitem>
+          <para>flex 的一个扩展，用于创建 C++ 代码和类。是到 <command>flex</command> 的链接</para>
+          <indexterm zone="ch-system-flex flexpp">
+            <primary sortas="b-flex++">flex++</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="lex">
+        <term><command>lex</command></term>
+        <listitem>
+          <para>一个脚本，以 <command>lex</command> 模拟模式运行 <command>flex</command></para>
+          <indexterm zone="ch-system-flex lex">
+            <primary sortas="b-lex">lex</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="libfl">
+        <term><filename class="libraryfile">libfl</filename></term>
+        <listitem>
+          <para><filename class="libraryfile">flex</filename> 库</para>
+          <indexterm zone="ch-system-flex libfl">
+            <primary sortas="c-libfl">libfl</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+    </variablelist>
+
+  </sect2>
+
+</sect1>

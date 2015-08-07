@@ -277,7 +277,7 @@ mv -v /usr/lib/*gdb.py /usr/share/gdb/auto-load/usr/lib</userinput></screen>
 
       <seglistitem>
         <seg>c++, cc (链接到 gcc), cpp, g++, gcc,
-        gcc-ar, gcc-nm, gcc-ranlib, and gcov</seg>
+        gcc-ar, gcc-nm, gcc-ranlib 和 gcov</seg>
 
         <seg>libasan.{a,so}, libatomic.{a,so}, libgcc.a, libgcc_eh.a, 
         libgcc_s.so, libgcov.a, libgomp.{a,so}, libiberty.a, libitm.{a,so},
